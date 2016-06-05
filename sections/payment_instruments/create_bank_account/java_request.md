@@ -1,5 +1,5 @@
-```
-import io.payline.payments.processing.client.model.BankAccount;
+
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
 
 bankAccount = client.bankAccountsClient().save(
     BankAccount.builder()
@@ -13,4 +13,3 @@ bankAccount = client.bankAccountsClient().save(
       .currency("USD")
       .build()
 );
-```

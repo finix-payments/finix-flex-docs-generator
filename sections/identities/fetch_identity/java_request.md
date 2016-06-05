@@ -1,5 +1,4 @@
-```
-import io.payline.payments.processing.client.model.Identity;
 
-Identity identity = client.identitiesClient().fetch("IDgpmLSgt9g3BaqhtEUCB7Hn");
-```
+import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().fetch("{{fetch_identity_scenario_id}}");

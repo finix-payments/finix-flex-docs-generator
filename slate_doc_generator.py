@@ -25,6 +25,7 @@ class MyTemplate(string.Template):
 partner_configs = [
     {
         'api_name': "Finix",
+        'api_name_downcase': "finix",
         'base_url': 'https://api-staging.finix.io',
         'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
@@ -39,6 +40,7 @@ partner_configs = [
     },
     {
         'api_name': "Payline",
+        'api_name_downcase': "payline",
         'base_url': 'https://api-test.payline.io',
         'admin_basic_auth_username': 'USkoFNY73WEiP8tYmZtPa6e4',
         'admin_basic_auth_password': 'e28fe471-5b2c-4f20-9db9-0a3e5fd06110',
@@ -53,6 +55,7 @@ partner_configs = [
     },
     # {
     #     'api_name': "Payscout",
+    #     'api_name_downcase': "payscout",
     #     'base_url': 'https://payscout-staging.finix.io',
     #     'admin_basic_auth_username': 'USkoFNY73WEiP8tYmZtPa6e4',
     #     'admin_basic_auth_password': 'e28fe471-5b2c-4f20-9db9-0a3e5fd06110',

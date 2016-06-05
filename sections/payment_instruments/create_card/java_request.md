@@ -1,5 +1,5 @@
-```
-import io.payline.payments.processing.client.model.PaymentCard;
+
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
 
 PaymentCard paymentCard = PaymentCard.builder()
     .name("Joe-Doe")
@@ -10,4 +10,3 @@ PaymentCard paymentCard = PaymentCard.builder()
     .securityCode("231")
     .build(); 
 paymentCard = client.paymentCardsClient().save(paymentCard);
-```

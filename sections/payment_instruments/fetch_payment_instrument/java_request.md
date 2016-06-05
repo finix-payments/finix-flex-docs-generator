@@ -1,15 +1,4 @@
-`BankAccount`
 
-```
-import io.finix.payments.processing.client.model.BankAccount;
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
 
-BankAccount bankAccount = client.bankAccountsClient().fetch("PIi98CoYWpQZi8w7ZimJxuJ")
-```
-
-`PaymentCard`
-
-```
-import io.finix.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = client.paymentCardsClient().fetch("PIi98CoYWpQZi8w7ZimJxuJ");
-```
+BankAccount bankAccount = client.bankAccountsClient().fetch("{{fetch_dispute_scenario_id}}")

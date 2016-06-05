@@ -1,5 +1,5 @@
-```
-import io.payline.payments.processing.client.model.Webhook;
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
 
 Webhook webhook = client.webhookClient().save(
     Webhook.builder()
@@ -7,4 +7,3 @@ Webhook webhook = client.webhookClient().save(
       .build()
 );
 
-```
