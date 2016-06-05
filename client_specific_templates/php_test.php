@@ -28,11 +28,11 @@ $identity = new Identity(
 	        ), 
 	        "max_transaction_amount"=> 120000, 
 	        "principal_percentage_ownership"=> 100, 
-	        "doing_business_as"=> "Dunder Mifflin", 
+	        "doing_business_as"=> "Prestige World Wide", 
 	        "annual_card_volume"=> 12000000, 
-	        "default_statement_descriptor"=> "Dunder Mifflin", 
-	        "url"=> "www.DunderMifflin.com", 
-	        "business_name"=> "Dunder Mifflin", 
+	        "default_statement_descriptor"=> "Prestige World Wide", 
+	        "url"=> "www.PrestigeWorldWide.com", 
+	        "business_name"=> "Prestige World Wide", 
 	        "incorporation_date"=> array(
 	            "year"=> 1978, 
 	            "day"=> 27, 
@@ -65,21 +65,21 @@ $bank_account = new PaymentInstrument(
 	    "currency"=> "USD", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "IDxhFxphTTEPPevsfWcScpC3"
+	    "identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd"
 	));
 $bank_account = $bank_account->save();
 
 
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDxhFxphTTEPPevsfWcScpC3');
+$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
 $identity_verification = $identity->verifyOn(
 	array(
 	    "processor"=> "DUMMY_V1"
 	));
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDxhFxphTTEPPevsfWcScpC3');
+$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
 
 $merchant = $identity->provisionMerchantOn(
 	array(
@@ -117,7 +117,7 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDjuRFj8TBroYGA6uRZT4aCU"
+	    "identity"=> "IDbq6maJgrm2xriCyRU4TFbh"
 	));
 $card = $card->save();
 
@@ -128,8 +128,8 @@ $debit = new Transfer(
 	array(
 	    "fee"=> 10, 
 	    "currency"=> "USD", 
-	    "merchant_identity"=> "IDxhFxphTTEPPevsfWcScpC3", 
-	    "source"=> "PIm8J4roNG5TE2FtswJFGY9g", 
+	    "merchant_identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd", 
+	    "source"=> "PIcW3ufSNpKKg3N81Kuz14ae", 
 	    "amount"=> 100, 
 	    "processor"=> "DUMMY_V1"
 	));
@@ -138,7 +138,7 @@ $debit = $debit->save();
 use Payline\Resources\Identity;
 use Payline\Resources\Settlement;
 
-$identity = Identity::retrieve('IDxhFxphTTEPPevsfWcScpC3');
+$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
 $settlement = $identity->createSettlement(
 	array(
 	    "currency"=> "USD", 
@@ -149,26 +149,26 @@ use Payline\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "IDxhFxphTTEPPevsfWcScpC3", 
+	    "merchant_identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
 	    "processor"=> "DUMMY_V1", 
-	    "source"=> "PIm8J4roNG5TE2FtswJFGY9g"
+	    "source"=> "PIcW3ufSNpKKg3N81Kuz14ae"
 	));
 $authorization = $authorization->save();
 
 use Payline\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUsdEUSP86DiChQzFKVEXWMP');
+$authorization = Authorization::retrieve('AU3SshCjfVV2hR1QABcUJACy');
 $authorization->capture_amount = 50;
 $authorization = $authorization->capture();
 use Payline\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUsdEUSP86DiChQzFKVEXWMP');
+$authorization = Authorization::retrieve('AU3SshCjfVV2hR1QABcUJACy');
 
 use Payline\Resources\Dispute;
 
-$dispute = Dispute::retrieve('DI9b1dqFV3RmwaAa1k6cxAWz');
+$dispute = Dispute::retrieve('DIgZqdyHDiMWZo8DPckyKTkw');
 
 use Payline\Resources\Identity;
 
@@ -214,11 +214,11 @@ $identity = new Identity(
 	        ), 
 	        "max_transaction_amount"=> 120000, 
 	        "principal_percentage_ownership"=> 100, 
-	        "doing_business_as"=> "Dunder Mifflin", 
+	        "doing_business_as"=> "Prestige World Wide", 
 	        "annual_card_volume"=> 12000000, 
-	        "default_statement_descriptor"=> "Dunder Mifflin", 
-	        "url"=> "www.DunderMifflin.com", 
-	        "business_name"=> "Dunder Mifflin", 
+	        "default_statement_descriptor"=> "Prestige World Wide", 
+	        "url"=> "www.PrestigeWorldWide.com", 
+	        "business_name"=> "Prestige World Wide", 
 	        "incorporation_date"=> array(
 	            "year"=> 1978, 
 	            "day"=> 27, 
@@ -242,10 +242,10 @@ $identity = $identity->save();
 
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDxhFxphTTEPPevsfWcScpC3');
+$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDxhFxphTTEPPevsfWcScpC3');
+$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
 
 $merchant = $identity->provisionMerchantOn(
 	array(
@@ -253,19 +253,19 @@ $merchant = $identity->provisionMerchantOn(
 	));
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDxhFxphTTEPPevsfWcScpC3');
+$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
 $identity_verification = $identity->verifyOn(
 	array(
 	    "processor"=> "DUMMY_V1"
 	));
 use Payline\Resources\Verification;
 
-$verification = Verification::retrieve('VIpiZvsLaX39YfgD9JD1TEkr');
+$verification = Verification::retrieve('VI2AhmYSt8FG5b5bDEroNzyb');
 
 use Payline\Resources\Identity;
 use Payline\Resources\Settlement;
 
-$identity = Identity::retrieve('IDxhFxphTTEPPevsfWcScpC3');
+$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
 $settlement = $identity->createSettlement(
 	array(
 	    "currency"=> "USD", 
@@ -274,7 +274,7 @@ $settlement = $identity->createSettlement(
 
 use Payline\Resources\Settlement;
 
-$settlement = Settlement::retrieve('STaL11bfgDpzJmRMA3uLb6nk');
+$settlement = Settlement::retrieve('STuek2CGQjGr4yM7vfoyYjm9');
 
 use Payline\Resources\Transfer;
 
@@ -282,19 +282,19 @@ $debit = new Transfer(
 	array(
 	    "fee"=> 10, 
 	    "currency"=> "USD", 
-	    "merchant_identity"=> "IDxhFxphTTEPPevsfWcScpC3", 
-	    "source"=> "PIm8J4roNG5TE2FtswJFGY9g", 
+	    "merchant_identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd", 
+	    "source"=> "PIcW3ufSNpKKg3N81Kuz14ae", 
 	    "amount"=> 100, 
 	    "processor"=> "DUMMY_V1"
 	));
 $debit = $debit->save();
 use Payline\Resources\Transfer;
 
-$debit = Transfer::retrieve('TRtXHpcZ8w3YY9MdpySH39PA');
+$debit = Transfer::retrieve('TRayKyreDFn7epnPcGFPQvKr');
 $refund = $debit->reverse(50);
 use Payline\Resources\Transfer;
 
-$transfer = Transfer::retrieve('TRtXHpcZ8w3YY9MdpySH39PA');
+$transfer = Transfer::retrieve('TRayKyreDFn7epnPcGFPQvKr');
 
 
 
@@ -307,7 +307,7 @@ $webhook = $webhook->save();
 
 use Payline\Resources\Webhook;
 
-$webhook = Webhook::retrieve('WH8T8Uz3qht5YyMJjsMxWYL8');
+$webhook = Webhook::retrieve('WHa7hLWdQ44kDjbiwVtXpBWt');
 
 
 
@@ -328,7 +328,7 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDjuRFj8TBroYGA6uRZT4aCU"
+	    "identity"=> "IDbq6maJgrm2xriCyRU4TFbh"
 	));
 $card = $card->save();
 
@@ -344,13 +344,13 @@ $bank_account = new PaymentInstrument(
 	    "currency"=> "USD", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "IDxhFxphTTEPPevsfWcScpC3"
+	    "identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd"
 	));
 $bank_account = $bank_account->save();
 
 
 use Payline\Resources\PaymentInstrument;
 
-$card = PaymentInstrument::retrieve('DI9b1dqFV3RmwaAa1k6cxAWz');
+$card = PaymentInstrument::retrieve('DIgZqdyHDiMWZo8DPckyKTkw');
 
 

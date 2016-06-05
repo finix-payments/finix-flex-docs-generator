@@ -1,0 +1,448 @@
+
+
+# With cURL, just supply your username as basic auth (-u) in the header of each request as follows:
+curl "api_endpoint_here"
+-u USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
+
+
+
+curl https://api-test.payline.io/identities \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "tags": {
+	        "key": "value"
+	    }, 
+	    "entity": {
+	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
+	        "business_phone": "+1 (408) 756-4497", 
+	        "first_name": "dwayne", 
+	        "last_name": "Sunkhronos", 
+	        "phone": "1234567890", 
+	        "dob": {
+	            "year": 1978, 
+	            "day": 27, 
+	            "month": 6
+	        }, 
+	        "mcc": "0742", 
+	        "business_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 8", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
+	        }, 
+	        "max_transaction_amount": 120000, 
+	        "principal_percentage_ownership": 100, 
+	        "doing_business_as": "Prestige World Wide", 
+	        "annual_card_volume": 12000000, 
+	        "default_statement_descriptor": "Prestige World Wide", 
+	        "url": "www.PrestigeWorldWide.com", 
+	        "business_name": "Prestige World Wide", 
+	        "incorporation_date": {
+	            "year": 1978, 
+	            "day": 27, 
+	            "month": 6
+	        }, 
+	        "business_tax_id": "123456789", 
+	        "personal_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 7", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
+	        }, 
+	        "email": "user@example.org", 
+	        "tax_id": "5779"
+	    }
+	}'
+
+
+curl https://api-test.payline.io/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d "
+	{
+	    "account_type": "SAVINGS", 
+	    "name": "Fran Lemke", 
+	    "bank_code": "123123123", 
+	    "country": "USA", 
+	    "currency": "USD", 
+	    "account_number": "123123123", 
+	    "type": "BANK_ACCOUNT", 
+	    "identity": "IDviGtLw6GkqoPDtAkJ6KmNd"
+	}"
+
+
+
+
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "merchant": null, 
+	    "instrument": null, 
+	    "processor": "DUMMY_V1", 
+	    "identity": null
+	}'
+
+
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/merchants \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "processor": "DUMMY_V1"
+	}'
+
+
+
+
+curl https://api-test.payline.io/identities \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "tags": {
+	        "key": "value"
+	    }, 
+	    "entity": {
+	        "first_name": "Dwayne", 
+	        "last_name": "Johnson"
+	    }
+	}'
+
+
+
+curl https://api-test.payline.io/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "expiration_year": 2020, 
+	    "number": "4242424242424242", 
+	    "expiration_month": 12, 
+	    "address": {
+	        "city": "San Mateo", 
+	        "country": "USA", 
+	        "region": "CA", 
+	        "line2": "Apartment 7", 
+	        "line1": "741 Douglass St", 
+	        "postal_code": "94114"
+	    }, 
+	    "security_code": "112", 
+	    "type": "PAYMENT_CARD", 
+	    "identity": "IDbq6maJgrm2xriCyRU4TFbh"
+	}'
+
+
+
+
+curl https://api-test.payline.io/transfers \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "fee": 10, 
+	    "currency": "USD", 
+	    "merchant_identity": "IDviGtLw6GkqoPDtAkJ6KmNd", 
+	    "source": "PIcW3ufSNpKKg3N81Kuz14ae", 
+	    "amount": 100, 
+	    "processor": "DUMMY_V1"
+	}'
+
+
+
+curl https://api-test.payline.io/transfers/TRayKyreDFn7epnPcGFPQvKr/reversals \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d  '
+	  {
+	  "refund_amount" : 100
+  	}
+	'
+
+
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/settlements \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "currency": "USD", 
+	    "processor": "DUMMY_V1"
+	}'
+
+
+curl https://api-test.payline.io/authorizations \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "merchant_identity": "IDviGtLw6GkqoPDtAkJ6KmNd", 
+	    "currency": "USD", 
+	    "amount": 100, 
+	    "processor": "DUMMY_V1", 
+	    "source": "PIcW3ufSNpKKg3N81Kuz14ae"
+	}'
+
+
+
+
+curl https://api-test.payline.io/authorizations/AU3SshCjfVV2hR1QABcUJACy \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -X PUT \
+    -d '
+	{
+	    "fee": "10", 
+	    "void_me": null, 
+	    "statement_descriptor": "Bob's Burgers", 
+	    "capture_amount": 100
+	}'
+
+
+curl https://api-test.payline.io/authorizations/AU3SshCjfVV2hR1QABcUJACy \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
+
+
+curl https://api-test.payline.io/disputes/DIgZqdyHDiMWZo8DPckyKTkw \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
+
+
+
+
+curl https://api-test.payline.io/identities \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "tags": {
+	        "key": "value"
+	    }, 
+	    "entity": {
+	        "first_name": "Dwayne", 
+	        "last_name": "Johnson"
+	    }
+	}'
+
+
+
+curl https://api-test.payline.io/identities \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "tags": {
+	        "key": "value"
+	    }, 
+	    "entity": {
+	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
+	        "business_phone": "+1 (408) 756-4497", 
+	        "first_name": "dwayne", 
+	        "last_name": "Sunkhronos", 
+	        "phone": "1234567890", 
+	        "dob": {
+	            "year": 1978, 
+	            "day": 27, 
+	            "month": 6
+	        }, 
+	        "mcc": "0742", 
+	        "business_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 8", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
+	        }, 
+	        "max_transaction_amount": 120000, 
+	        "principal_percentage_ownership": 100, 
+	        "doing_business_as": "Prestige World Wide", 
+	        "annual_card_volume": 12000000, 
+	        "default_statement_descriptor": "Prestige World Wide", 
+	        "url": "www.PrestigeWorldWide.com", 
+	        "business_name": "Prestige World Wide", 
+	        "incorporation_date": {
+	            "year": 1978, 
+	            "day": 27, 
+	            "month": 6
+	        }, 
+	        "business_tax_id": "123456789", 
+	        "personal_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 7", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
+	        }, 
+	        "email": "user@example.org", 
+	        "tax_id": "5779"
+	    }
+	}'
+
+
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
+
+
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/merchants \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "processor": "DUMMY_V1"
+	}'
+
+
+
+
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "merchant": null, 
+	    "instrument": null, 
+	    "processor": "DUMMY_V1", 
+	    "identity": null
+	}'
+
+
+curl https://api-test.payline.io/verifications/VI2AhmYSt8FG5b5bDEroNzyb \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
+
+
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/settlements \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "currency": "USD", 
+	    "processor": "DUMMY_V1"
+	}'
+
+
+
+curl https://api-test.payline.io/settlements/STuek2CGQjGr4yM7vfoyYjm9 \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+
+
+
+curl https://api-test.payline.io/transfers \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "fee": 10, 
+	    "currency": "USD", 
+	    "merchant_identity": "IDviGtLw6GkqoPDtAkJ6KmNd", 
+	    "source": "PIcW3ufSNpKKg3N81Kuz14ae", 
+	    "amount": 100, 
+	    "processor": "DUMMY_V1"
+	}'
+
+
+
+curl https://api-test.payline.io/transfers/TRayKyreDFn7epnPcGFPQvKr/reversals \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d  '
+	  {
+	  "refund_amount" : 100
+  	}
+	'
+
+
+curl https://api-test.payline.io/transfers/TRayKyreDFn7epnPcGFPQvKr \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
+
+
+
+curl https://api-test.payline.io/webhooks \
+    -H "Content-Type: application/vnd.json+api" \
+    -u USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	            {
+	            "url" : "http://requestb.in/vts8mpvt"
+	            }
+	        '
+
+
+
+
+curl https://api-test.payline.io/webhooks/WHa7hLWdQ44kDjbiwVtXpBWt \
+    -H "Content-Type: application/vnd.json+api" \
+    -u USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
+
+
+
+
+curl https://api-test.payline.io/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "expiration_year": 2020, 
+	    "number": "4242424242424242", 
+	    "expiration_month": 12, 
+	    "address": {
+	        "city": "San Mateo", 
+	        "country": "USA", 
+	        "region": "CA", 
+	        "line2": "Apartment 7", 
+	        "line1": "741 Douglass St", 
+	        "postal_code": "94114"
+	    }, 
+	    "security_code": "112", 
+	    "type": "PAYMENT_CARD", 
+	    "identity": "IDbq6maJgrm2xriCyRU4TFbh"
+	}'
+
+
+
+curl https://api-test.payline.io/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d '
+	{
+	    "account_type": "SAVINGS", 
+	    "name": "Fran Lemke", 
+	    "bank_code": "123123123", 
+	    "country": "USA", 
+	    "currency": "USD", 
+	    "account_number": "123123123", 
+	    "type": "BANK_ACCOUNT", 
+	    "identity": "IDviGtLw6GkqoPDtAkJ6KmNd"
+	}'
+
+
+
+
+curl https://api-test.payline.io/payment_instruments/IDviGtLw6GkqoPDtAkJ6KmNd/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+
+
+
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
+    -d "
+	{
+	    "merchant": null, 
+	    "instrument": null, 
+	    "processor": "DUMMY_V1", 
+	    "identity": null
+	}"
+
