@@ -158,18 +158,18 @@ Authorization authorization = client.authorizationsClient().save(
 
 import io.payline.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AUsdEUSP86DiChQzFKVEXWMP");
+Authorization authorization = client.authorizationsClient().fetch("AU3SshCjfVV2hR1QABcUJACy");
 authorization = authorization.capture(50L);
 
 
 import io.payline.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AUsdEUSP86DiChQzFKVEXWMP");
+Authorization authorization = client.authorizationsClient().fetch("AU3SshCjfVV2hR1QABcUJACy");
 
 
 import io.payline.payments.processing.client.model.Dispute;
 
-Dispute dispute = transfer.disputeClient().fetch("DI9b1dqFV3RmwaAa1k6cxAWz");
+Dispute dispute = transfer.disputeClient().fetch("DIgZqdyHDiMWZo8DPckyKTkw");
 
 
 import io.payline.payments.processing.client.model.Identity;
@@ -243,7 +243,7 @@ Identity identity = client.identitiesClient().save(
 
 import io.payline.payments.processing.client.model.Identity;
 
-Identity identity = client.identitiesClient().fetch("IDxhFxphTTEPPevsfWcScpC3");
+Identity identity = client.identitiesClient().fetch("IDviGtLw6GkqoPDtAkJ6KmNd");
 
 
 import io.payline.payments.processing.client.model.Merchant;
@@ -262,7 +262,7 @@ Verification verification = identity.verifyOn(
 
 import io.payline.payments.processing.client.model.Verification;
 
-Verification verification = client.verificationsClient().fetch("VIpiZvsLaX39YfgD9JD1TEkr");
+Verification verification = client.verificationsClient().fetch("VI2AhmYSt8FG5b5bDEroNzyb");
 
 
 import io.payline.payments.processing.client.model.Settlement;
@@ -277,7 +277,7 @@ Settlement settlement = identity.createSettlement(
 
 import io.payline.payments.processing.client.model.Settlement;
 
-Settlement settlement = client.settlementsClient().fetch("STaL11bfgDpzJmRMA3uLb6nk");
+Settlement settlement = client.settlementsClient().fetch("STuek2CGQjGr4yM7vfoyYjm9");
 
 
 import io.payline.payments.processing.client.model.Transfer;
@@ -304,7 +304,7 @@ Refund refund = transfer.reverse(100L);
 
 import io.payline.payments.processing.client.model.Transfer;
 
-Transfer transfer = client.transfersClient().fetch("TRtXHpcZ8w3YY9MdpySH39PA");
+Transfer transfer = client.transfersClient().fetch("TRayKyreDFn7epnPcGFPQvKr");
 
 
 import io.payline.payments.processing.client.model.Webhook;
@@ -319,7 +319,7 @@ Webhook webhook = client.webhookClient().save(
 
 import io.payline.payments.processing.client.model.Webhook;
 
-Webhook webhook = client.webhookClient().fetch("WH8T8Uz3qht5YyMJjsMxWYL8");
+Webhook webhook = client.webhookClient().fetch("WHa7hLWdQ44kDjbiwVtXpBWt");
 
 
 import io.payline.payments.processing.client.model.PaymentCard;
@@ -353,7 +353,7 @@ bankAccount = client.bankAccountsClient().save(
 
 import io.payline.payments.processing.client.model.BankAccount;
 
-BankAccount bankAccount = client.bankAccountsClient().fetch("DI9b1dqFV3RmwaAa1k6cxAWz")
+BankAccount bankAccount = client.bankAccountsClient().fetch("DIgZqdyHDiMWZo8DPckyKTkw")
 
 
 import io.payline.payments.processing.client.model.BankAccount;

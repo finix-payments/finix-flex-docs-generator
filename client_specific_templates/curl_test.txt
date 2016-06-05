@@ -2,13 +2,13 @@
 
 # With cURL, just supply your username as basic auth (-u) in the header of each request as follows:
 curl "api_endpoint_here"
--u USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd
+-u USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
 
 
 
 curl https://api-test.payline.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "tags": {
@@ -36,11 +36,11 @@ curl https://api-test.payline.io/identities \
 	        }, 
 	        "max_transaction_amount": 120000, 
 	        "principal_percentage_ownership": 100, 
-	        "doing_business_as": "Dunder Mifflin", 
+	        "doing_business_as": "Prestige World Wide", 
 	        "annual_card_volume": 12000000, 
-	        "default_statement_descriptor": "Dunder Mifflin", 
-	        "url": "www.DunderMifflin.com", 
-	        "business_name": "Dunder Mifflin", 
+	        "default_statement_descriptor": "Prestige World Wide", 
+	        "url": "www.PrestigeWorldWide.com", 
+	        "business_name": "Prestige World Wide", 
 	        "incorporation_date": {
 	            "year": 1978, 
 	            "day": 27, 
@@ -63,7 +63,7 @@ curl https://api-test.payline.io/identities \
 
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d "
 	{
 	    "account_type": "SAVINGS", 
@@ -73,15 +73,15 @@ curl https://api-test.payline.io/payment_instruments \
 	    "currency": "USD", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "IDxhFxphTTEPPevsfWcScpC3"
+	    "identity": "IDviGtLw6GkqoPDtAkJ6KmNd"
 	}"
 
 
 
 
-curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/verifications \
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "merchant": null, 
@@ -91,9 +91,9 @@ curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/verificatio
 	}'
 
 
-curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/merchants \
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "processor": "DUMMY_V1"
@@ -104,7 +104,7 @@ curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/merchants \
 
 curl https://api-test.payline.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "tags": {
@@ -120,7 +120,7 @@ curl https://api-test.payline.io/identities \
 
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "expiration_year": 2020, 
@@ -136,7 +136,7 @@ curl https://api-test.payline.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "IDjuRFj8TBroYGA6uRZT4aCU"
+	    "identity": "IDbq6maJgrm2xriCyRU4TFbh"
 	}'
 
 
@@ -144,22 +144,22 @@ curl https://api-test.payline.io/payment_instruments \
 
 curl https://api-test.payline.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "fee": 10, 
 	    "currency": "USD", 
-	    "merchant_identity": "IDxhFxphTTEPPevsfWcScpC3", 
-	    "source": "PIm8J4roNG5TE2FtswJFGY9g", 
+	    "merchant_identity": "IDviGtLw6GkqoPDtAkJ6KmNd", 
+	    "source": "PIcW3ufSNpKKg3N81Kuz14ae", 
 	    "amount": 100, 
 	    "processor": "DUMMY_V1"
 	}'
 
 
 
-curl https://api-test.payline.io/transfers/TRtXHpcZ8w3YY9MdpySH39PA/reversals \
+curl https://api-test.payline.io/transfers/TRayKyreDFn7epnPcGFPQvKr/reversals \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d  '
 	  {
 	  "refund_amount" : 100
@@ -167,9 +167,9 @@ curl https://api-test.payline.io/transfers/TRtXHpcZ8w3YY9MdpySH39PA/reversals \
 	'
 
 
-curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/settlements \
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/settlements \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "currency": "USD", 
@@ -179,22 +179,22 @@ curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/settlements
 
 curl https://api-test.payline.io/authorizations \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
-	    "merchant_identity": "IDxhFxphTTEPPevsfWcScpC3", 
+	    "merchant_identity": "IDviGtLw6GkqoPDtAkJ6KmNd", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "processor": "DUMMY_V1", 
-	    "source": "PIm8J4roNG5TE2FtswJFGY9g"
+	    "source": "PIcW3ufSNpKKg3N81Kuz14ae"
 	}'
 
 
 
 
-curl https://api-test.payline.io/authorizations/AUsdEUSP86DiChQzFKVEXWMP \
+curl https://api-test.payline.io/authorizations/AU3SshCjfVV2hR1QABcUJACy \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -X PUT \
     -d '
 	{
@@ -205,21 +205,21 @@ curl https://api-test.payline.io/authorizations/AUsdEUSP86DiChQzFKVEXWMP \
 	}'
 
 
-curl https://api-test.payline.io/authorizations/AUsdEUSP86DiChQzFKVEXWMP \
+curl https://api-test.payline.io/authorizations/AU3SshCjfVV2hR1QABcUJACy \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
 
 
-curl https://api-test.payline.io/disputes/DI9b1dqFV3RmwaAa1k6cxAWz \
+curl https://api-test.payline.io/disputes/DIgZqdyHDiMWZo8DPckyKTkw \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
 
 
 
 
 curl https://api-test.payline.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "tags": {
@@ -235,7 +235,7 @@ curl https://api-test.payline.io/identities \
 
 curl https://api-test.payline.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "tags": {
@@ -263,11 +263,11 @@ curl https://api-test.payline.io/identities \
 	        }, 
 	        "max_transaction_amount": 120000, 
 	        "principal_percentage_ownership": 100, 
-	        "doing_business_as": "Dunder Mifflin", 
+	        "doing_business_as": "Prestige World Wide", 
 	        "annual_card_volume": 12000000, 
-	        "default_statement_descriptor": "Dunder Mifflin", 
-	        "url": "www.DunderMifflin.com", 
-	        "business_name": "Dunder Mifflin", 
+	        "default_statement_descriptor": "Prestige World Wide", 
+	        "url": "www.PrestigeWorldWide.com", 
+	        "business_name": "Prestige World Wide", 
 	        "incorporation_date": {
 	            "year": 1978, 
 	            "day": 27, 
@@ -288,14 +288,14 @@ curl https://api-test.payline.io/identities \
 	}'
 
 
-curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3 \
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
 
 
-curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/merchants \
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "processor": "DUMMY_V1"
@@ -304,9 +304,9 @@ curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/merchants \
 
 
 
-curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/verifications \
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "merchant": null, 
@@ -316,14 +316,14 @@ curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/verificatio
 	}'
 
 
-curl https://api-test.payline.io/verifications/VIpiZvsLaX39YfgD9JD1TEkr \
+curl https://api-test.payline.io/verifications/VI2AhmYSt8FG5b5bDEroNzyb \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
 
 
-curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/settlements \
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/settlements \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "currency": "USD", 
@@ -332,30 +332,30 @@ curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/settlements
 
 
 
-curl https://api-test.payline.io/settlements/STaL11bfgDpzJmRMA3uLb6nk \
+curl https://api-test.payline.io/settlements/STuek2CGQjGr4yM7vfoyYjm9 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
 
 
 
 curl https://api-test.payline.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "fee": 10, 
 	    "currency": "USD", 
-	    "merchant_identity": "IDxhFxphTTEPPevsfWcScpC3", 
-	    "source": "PIm8J4roNG5TE2FtswJFGY9g", 
+	    "merchant_identity": "IDviGtLw6GkqoPDtAkJ6KmNd", 
+	    "source": "PIcW3ufSNpKKg3N81Kuz14ae", 
 	    "amount": 100, 
 	    "processor": "DUMMY_V1"
 	}'
 
 
 
-curl https://api-test.payline.io/transfers/TRtXHpcZ8w3YY9MdpySH39PA/reversals \
+curl https://api-test.payline.io/transfers/TRayKyreDFn7epnPcGFPQvKr/reversals \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d  '
 	  {
 	  "refund_amount" : 100
@@ -363,15 +363,15 @@ curl https://api-test.payline.io/transfers/TRtXHpcZ8w3YY9MdpySH39PA/reversals \
 	'
 
 
-curl https://api-test.payline.io/transfers/TRtXHpcZ8w3YY9MdpySH39PA \
+curl https://api-test.payline.io/transfers/TRayKyreDFn7epnPcGFPQvKr \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
 
 
 
 curl https://api-test.payline.io/webhooks \
     -H "Content-Type: application/vnd.json+api" \
-    -u USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	            {
 	            "url" : "http://requestb.in/vts8mpvt"
@@ -381,16 +381,16 @@ curl https://api-test.payline.io/webhooks \
 
 
 
-curl https://api-test.payline.io/webhooks/WH8T8Uz3qht5YyMJjsMxWYL8 \
+curl https://api-test.payline.io/webhooks/WHa7hLWdQ44kDjbiwVtXpBWt \
     -H "Content-Type: application/vnd.json+api" \
-    -u USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd
+    -u USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1
 
 
 
 
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "expiration_year": 2020, 
@@ -406,14 +406,14 @@ curl https://api-test.payline.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "IDjuRFj8TBroYGA6uRZT4aCU"
+	    "identity": "IDbq6maJgrm2xriCyRU4TFbh"
 	}'
 
 
 
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d '
 	{
 	    "account_type": "SAVINGS", 
@@ -423,21 +423,21 @@ curl https://api-test.payline.io/payment_instruments \
 	    "currency": "USD", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "IDxhFxphTTEPPevsfWcScpC3"
+	    "identity": "IDviGtLw6GkqoPDtAkJ6KmNd"
 	}'
 
 
 
 
-curl https://api-test.payline.io/payment_instruments/IDxhFxphTTEPPevsfWcScpC3/verifications \
+curl https://api-test.payline.io/payment_instruments/IDviGtLw6GkqoPDtAkJ6KmNd/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
 
 
 
-curl https://api-test.payline.io/identities/IDxhFxphTTEPPevsfWcScpC3/verifications \
+curl https://api-test.payline.io/identities/IDviGtLw6GkqoPDtAkJ6KmNd/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USumgnXTkUtiN4NaZAQ27xFf:ab90be49-03bb-4f7b-8733-24e846b6fccd \
+    -u  USsP2Z4g3jBLW4SmzLJUSz7P:3ac3488d-c98e-4d00-9e84-b61259651aa1 \
     -d "
 	{
 	    "merchant": null, 
