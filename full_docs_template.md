@@ -4,6 +4,7 @@ title: {{api_name}} API Reference
 language_tabs:
   - shell: cURL
   - php: PHP
+  - java: JAVA
 
 includes:
   - errors
@@ -33,6 +34,9 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 
 ```
+```java
+
+```
 This guide will demonstrate the main workflows for utilizing the {{api_name}} Payments API for platforms and marketplaces. We have language bindings in cURL, PHP, Ruby, Python, C#, Java and Perl! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 To communicate with the {{api_name}} API you'll need to authenticate your requests with a username and password. For the sandbox environment you may use the credentials listed below or you can supply your own.
@@ -54,7 +58,7 @@ You should also know your Application ID. An Application, also referred as an "A
 curl {{base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_merchant_identity_scenario_curl_request}}"
+    -d '{{create_merchant_identity_scenario_curl_request}}'
 
 ```
 ```php
@@ -70,6 +74,62 @@ use {{api_name}}\Resources\Identity;
 $identity = new Identity({{create_merchant_identity_scenario_php_request}}
 );
 $identity = $identity->save();
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().save(
+  Identity.builder()
+    .entity(
+      Entity.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .businessName("business inc")
+        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
+        .doingBusinessAs("doingBusinessAs")
+        .phone("1234567890")
+        .businessPhone("+1 (408) 756-4497")
+        .taxId("123456789")
+        .businessTaxId("123456789")
+        .personalAddress(
+          Address.builder()
+            .line1("741 Douglass St")
+            .line2("Apartment 7")
+            .city("San Mateo")
+            .region("CA")
+            .postalCode("94114")
+            .country("USA")
+            .build()
+        )
+        .businessAddress(
+          Address.builder()
+            .line1("741 Douglass St")
+            .line2("Apartment 7")
+            .city("San Mateo")
+            .region("CA")
+            .postalCode("94114")
+            .country("USA")
+            .build()
+        )
+        .dob(DateOfBirth.builder()
+          .day(27)
+          .month(5)
+          .year(1978)
+          .build()
+        )
+        .settlementCurrency("USD")
+        .settlementBankAccount(BankAccountType.CORPORATE)
+        .maxTransactionAmount(1)
+        .mcc(7399)
+        .url("http://sample-entity.com")
+        .annualCardVolume(100)
+        .build()
+    )
+    .build()
+);
 
 ```
 
@@ -104,6 +164,24 @@ use {{api_name}}\Resources\PaymentInstrument;
 $bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
 $bank_account = $bank_account->save();
 
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+
+bankAccount = client.bankAccountsClient().save(
+    BankAccount.builder()
+      .name("Joe-Doe")
+      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .accountNumber("84012312415")
+      .bankCode("840123124")
+      .accountType(BankAccountType.SAVINGS)
+      .companyName("company name")
+      .country("USA")
+      .currency("USD")
+      .build()
+);
 
 ```
 > Example Response:
@@ -146,7 +224,7 @@ company_name | *string*, **optional** | Name of company if the bank account is a
 curl {{base_url}}/identities/{{create_identity_scenario_id}}/verifications \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_identity_verification_scenario_curl_request}}"
+    -d '{{create_identity_verification_scenario_curl_request}}'
 
 ```
 ```php
@@ -161,6 +239,17 @@ use {{api_name}}\Resources\Identity;
 
 $identity = Identity::retrieve('{{create_identity_scenario_id}}');
 $identity_verification = $identity->verifyOn({{underwrite_identity_scenario_php_request}});
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
+
+Verification verification = identity.verifyOn(
+  Verification.builder()
+    .processor("DUMMY_V1")
+    .build()
+);
+
 ```
 
 > Example Response:
@@ -178,7 +267,7 @@ Before, being able to process funds to this seller we will need to perform an id
 curl {{base_url}}/identities/{{create_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{underwrite_identity_scenario_curl_request}}"
+    -d '{{underwrite_identity_scenario_curl_request}}'
 
 
 ```
@@ -196,6 +285,13 @@ $identity = Identity::retrieve('{{create_identity_scenario_id}}');
 
 $merchant = $identity->provisionMerchantOn({{underwrite_identity_scenario_php_request}});
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
+
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().processor("DUMMY_V1").build());
+
+```
 > Example Response:
 
 ```json
@@ -211,7 +307,7 @@ Once the Identity has been verified, {{api_name}} will need to review the submit
 curl {{base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_buyer_identity_scenario_curl_request}}"
+    -d '{{create_buyer_identity_scenario_curl_request}}'
 
 ```
 ```php
@@ -229,6 +325,23 @@ $identity = new Identity({{create_buyer_identity_scenario_php_request}}
 $identity = $identity->save();
 
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().save(
+  Identity.builder()
+    .entity(
+      Entity.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .build()
+    )
+    .build()
+);
+
+```
 > Example Response:
 
 ```json
@@ -244,7 +357,7 @@ This next step should sound familiar. Let's create an Identity to represent the 
 curl {{base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_card_scenario_curl_request}}"
+    -d '{{create_card_scenario_curl_request}}'
 
 
 ```
@@ -261,6 +374,21 @@ use {{api_name}}\Resources\PaymentInstrument;
 $card = new PaymentInstrument({{create_card_scenario_php_request}});
 $card = $card->save();
 
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .name("Joe-Doe")
+    .identity("ID572pSyFj71oVExp6XWiGRP")
+    .expirationMonth(12)
+    .expirationYear(2030)
+    .number("4111 1111 1111 1111")
+    .securityCode("231")
+    .build();
+paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -286,7 +414,7 @@ Be sure to store the ID of your newly tokenized Payment Instrument.
 curl {{base_url}}/transfers \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_debit_scenario_curl_request}}"
+    -d '{{create_debit_scenario_curl_request}}'
 
 
 ```
@@ -302,6 +430,25 @@ use {{api_name}}\Resources\Transfer;
 
 $debit = new Transfer({{create_debit_scenario_php_request}});
 $debit = $debit->save();
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
+
+Map<String, String> tags = new HashMap<>();
+tags.put("name", "sample-tag");
+
+Transfer transfer = client.transfersClient().save(
+    Transfer.builder()
+      .merchantIdentity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .source("PIi98CoYWpQZi8w7ZimJxuJ")
+      .amount(888888)
+      .currency("USD")
+      .tags(tags)
+      .processor("DUMMY_V1")
+      .build()
+);
+
 ```
 
 > Example Response:
@@ -325,7 +472,7 @@ Simple enough, right? You'll also want to store the ID from that Transfer for yo
 curl {{base_url}}/transfers/{{create_debit_scenario_id}}/reversals \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d  "{{create_refund_scenario_curl_request}}"
+    -d  '{{create_refund_scenario_curl_request}}'
 
 ```
 ```php
@@ -336,6 +483,13 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Refund;
+
+Refund refund = transfer.reverse(100L);
 
 ```
 
@@ -353,7 +507,7 @@ What if we need to issue a refund to the buyer? First, you'll need to take the p
 curl {{base_url}}/identities/{{create_identity_scenario_id}}/settlements \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_settlement_scenario_curl_request}}"
+    -d '{{create_settlement_scenario_curl_request}}'
 
 ```
 ```php
@@ -369,6 +523,18 @@ use {{api_name}}\Resources\Settlement;
 
 $identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
 $settlement = $identity->createSettlement({{create_settlement_scenario_php_request}});
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
+
+Settlement settlement = identity.createSettlement(
+  Settlement.builder()
+    .processor("DUMMY_V1")
+    .currency("USD")
+    .build()
+)
 
 ```
 > Example Response:
@@ -625,7 +791,7 @@ An Authorization resource (also known as a card hold) reserves a specific amount
 curl {{base_url}}/authorizations \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_authorization_scenario_curl_request}}"
+    -d '{{create_authorization_scenario_curl_request}}'
 
 
 
@@ -642,6 +808,20 @@ use {{api_name}}\Resources\Authorization;
 
 $authorization = new Authorization({{create_authorization_scenario_php_request}});
 $authorization = $authorization->save();
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+
+Authorization authorization = client.authorizationsClient().save(
+  Authorization.builder()
+    .amount(100L)
+    .merchantIdentity("IDrktKp2HNpogF3BWMmiSGrz")
+    .processor("DUMMY_V1")
+    .source("PIeffbMtvz2Hiy6dwBbaHhKq")
+    .build()
+);
 
 ```
 > Example Response:
@@ -671,7 +851,7 @@ curl {{base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
-    -d "{{capture_authorization_scenario_curl_request}}"
+    -d '{{capture_authorization_scenario_curl_request}}'
 
 ```
 ```php
@@ -687,6 +867,14 @@ use {{api_name}}\Resources\Authorization;
 $authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
 $authorization->capture_amount = 50;
 $authorization = $authorization->capture();
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+
+Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
+authorization = authorization.capture(50L);
+
 ```
 > Example Response:
 
@@ -734,6 +922,13 @@ use {{api_name}}\Resources\Authorization;
 $authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
 
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+
+Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
+
+```
 > Example Response:
 
 ```json
@@ -776,6 +971,13 @@ use {{api_name}}\Resources\Dispute;
 $dispute = Dispute::retrieve('{{fetch_dispute_scenario_id}}');
 
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Dispute;
+
+Dispute dispute = transfer.disputeClient().fetch("{{fetch_dispute_scenario_id}}");
+
+```
 > Example Response:
 
 ```json
@@ -804,7 +1006,7 @@ All fields for a buyer's Identity are optional. However, a business_type field s
 curl {{base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_buyer_identity_scenario_curl_request}}"
+    -d '{{create_buyer_identity_scenario_curl_request}}'
 
 ```
 ```php
@@ -820,6 +1022,23 @@ use {{api_name}}\Resources\Identity;
 $identity = new Identity({{create_buyer_identity_scenario_php_request}}
 );
 $identity = $identity->save();
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().save(
+  Identity.builder()
+    .entity(
+      Entity.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .build()
+    )
+    .build()
+);
 
 ```
 > Example Response:
@@ -855,7 +1074,7 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data |
 curl {{base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_merchant_identity_scenario_curl_request}}"
+    -d '{{create_merchant_identity_scenario_curl_request}}'
 
 ```
 ```php
@@ -871,6 +1090,62 @@ use {{api_name}}\Resources\Identity;
 $identity = new Identity({{create_merchant_identity_scenario_php_request}}
 );
 $identity = $identity->save();
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().save(
+  Identity.builder()
+    .entity(
+      Entity.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .businessName("business inc")
+        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
+        .doingBusinessAs("doingBusinessAs")
+        .phone("1234567890")
+        .businessPhone("+1 (408) 756-4497")
+        .taxId("123456789")
+        .businessTaxId("123456789")
+        .personalAddress(
+          Address.builder()
+            .line1("741 Douglass St")
+            .line2("Apartment 7")
+            .city("San Mateo")
+            .region("CA")
+            .postalCode("94114")
+            .country("USA")
+            .build()
+        )
+        .businessAddress(
+          Address.builder()
+            .line1("741 Douglass St")
+            .line2("Apartment 7")
+            .city("San Mateo")
+            .region("CA")
+            .postalCode("94114")
+            .country("USA")
+            .build()
+        )
+        .dob(DateOfBirth.builder()
+          .day(27)
+          .month(5)
+          .year(1978)
+          .build()
+        )
+        .settlementCurrency("USD")
+        .settlementBankAccount(BankAccountType.CORPORATE)
+        .maxTransactionAmount(1)
+        .mcc(7399)
+        .url("http://sample-entity.com")
+        .annualCardVolume(100)
+        .build()
+    )
+    .build()
+);
 
 ```
 > Example Response:
@@ -938,6 +1213,13 @@ use {{api_name}}\Resources\Identity;
 
 $identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().fetch("{{fetch_identity_scenario_id}}");
+
+```
 > Example Response:
 
 ```json
@@ -961,7 +1243,7 @@ identity_id | ID of the Identity
 curl {{base_url}}/identities/{{create_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{underwrite_identity_scenario_curl_request}}"
+    -d '{{underwrite_identity_scenario_curl_request}}'
 
 
 ```
@@ -978,6 +1260,13 @@ use {{api_name}}\Resources\Identity;
 $identity = Identity::retrieve('{{create_identity_scenario_id}}');
 
 $merchant = $identity->provisionMerchantOn({{underwrite_identity_scenario_php_request}});
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
+
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().processor("DUMMY_V1").build());
+
 ```
 
 > Example Response:
@@ -1016,7 +1305,7 @@ Identities (merchants) to whom you wish to pay out must be underwritten as per K
 curl {{base_url}}/identities/{{create_identity_scenario_id}}/verifications \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_identity_verification_scenario_curl_request}}"
+    -d '{{create_identity_verification_scenario_curl_request}}'
 
 ```
 ```php
@@ -1031,6 +1320,17 @@ use {{api_name}}\Resources\Identity;
 
 $identity = Identity::retrieve('{{create_identity_scenario_id}}');
 $identity_verification = $identity->verifyOn({{underwrite_identity_scenario_php_request}});
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
+
+Verification verification = identity.verifyOn(
+  Verification.builder()
+    .processor("DUMMY_V1")
+    .build()
+);
+
 ```
 > Example Response:
 
@@ -1080,6 +1380,13 @@ use {{api_name}}\Resources\Verification;
 $verification = Verification::retrieve('{{fetch_identity_verification_scenario_id}}');
 
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
+
+Verification verification = client.verificationsClient().fetch("{{fetch_identity_verification_scenario_id}}");
+
+```
 
 > Example Response:
 
@@ -1107,7 +1414,7 @@ A Settlement resource represents a collection of Transfers that are to be paid o
 curl {{base_url}}/identities/{{create_identity_scenario_id}}/settlements \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_settlement_scenario_curl_request}}"
+    -d '{{create_settlement_scenario_curl_request}}'
 
 ```
 ```php
@@ -1123,6 +1430,18 @@ use {{api_name}}\Resources\Settlement;
 
 $identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
 $settlement = $identity->createSettlement({{create_settlement_scenario_php_request}});
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
+
+Settlement settlement = identity.createSettlement(
+  Settlement.builder()
+    .processor("DUMMY_V1")
+    .currency("USD")
+    .build()
+)
 
 ```
 
@@ -1168,6 +1487,13 @@ use {{api_name}}\Resources\Settlement;
 $settlement = Settlement::retrieve('{{fetch_settlement_scenario_id}}');
 
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
+
+Settlement settlement = client.settlementsClient().fetch("{{fetch_settlement_scenario_id}}");
+
+```
 > Example Response:
 
 ```json
@@ -1198,7 +1524,7 @@ A Transfer resource represents any omnidirectional flow of funds. Transfers can 
 curl {{base_url}}/transfers \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_debit_scenario_curl_request}}"
+    -d '{{create_debit_scenario_curl_request}}'
 
 
 ```
@@ -1214,6 +1540,25 @@ use {{api_name}}\Resources\Transfer;
 
 $debit = new Transfer({{create_debit_scenario_php_request}});
 $debit = $debit->save();
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
+
+Map<String, String> tags = new HashMap<>();
+tags.put("name", "sample-tag");
+
+Transfer transfer = client.transfersClient().save(
+    Transfer.builder()
+      .merchantIdentity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .source("PIi98CoYWpQZi8w7ZimJxuJ")
+      .amount(888888)
+      .currency("USD")
+      .tags(tags)
+      .processor("DUMMY_V1")
+      .build()
+);
+
 ```
 
 
@@ -1246,7 +1591,7 @@ processor | *string*, **required** | Processor used for underwriting the Identit
 curl {{base_url}}/transfers/{{create_debit_scenario_id}}/reversals \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d  "{{create_refund_scenario_curl_request}}"
+    -d  '{{create_refund_scenario_curl_request}}'
 
 ```
 ```php
@@ -1261,6 +1606,13 @@ use {{api_name}}\Resources\Transfer;
 
 $debit = Transfer::retrieve('{{create_debit_scenario_id}}');
 $refund = $debit->reverse(50);
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Refund;
+
+Refund refund = transfer.reverse(100L);
+
 ```
 
 
@@ -1313,6 +1665,13 @@ $transfer = Transfer::retrieve('{{fetch_transfer_scenario_id}}');
 
 
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
+
+Transfer transfer = client.transfersClient().fetch("{{fetch_transfer_scenario_id}}");
+
+```
 > Example Response:
 
 ```json
@@ -1339,7 +1698,7 @@ Webhooks allow you to build or set up integrations which subscribe to certain ev
 curl {{base_url}}/webhooks \
     -H "Content-Type: application/vnd.json+api" \
     -u {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_webhook_scenario_curl_request}}"
+    -d '{{create_webhook_scenario_curl_request}}'
 
 ```
 ```php
@@ -1355,6 +1714,18 @@ use {{api_name}}\Resources\Webhook;
 $webhook = new Webhook('create_webhook_scenario_php_request');
 $webhook = $webhook->save();
 
+
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
+
+Webhook webhook = client.webhookClient().save(
+    Webhook.builder()
+      .url("https://tools.ietf.org/html/rfc2606#section-3")
+      .build()
+);
 
 
 ```
@@ -1402,6 +1773,13 @@ $webhook = Webhook::retrieve('{{fetch_webhook_scenario_id}}');
 
 
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
+
+Webhook webhook = client.webhookClient().fetch("{{fetch_webhook_scenario_id}}");
+
+```
 
 > Example Response:
 
@@ -1430,7 +1808,7 @@ A Payment Instrument resource represents either a credit card or bank account. A
 curl {{base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_card_scenario_curl_request}}"
+    -d '{{create_card_scenario_curl_request}}'
 
 
 ```
@@ -1447,6 +1825,21 @@ use {{api_name}}\Resources\PaymentInstrument;
 $card = new PaymentInstrument({{create_card_scenario_php_request}});
 $card = $card->save();
 
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .name("Joe-Doe")
+    .identity("ID572pSyFj71oVExp6XWiGRP")
+    .expirationMonth(12)
+    .expirationYear(2030)
+    .number("4111 1111 1111 1111")
+    .securityCode("231")
+    .build(); 
+paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -1489,7 +1882,7 @@ country | *string*, **optional** | Country of the associated card. | USA
 curl {{base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_bank_account_scenario_curl_request}}"
+    -d '{{create_bank_account_scenario_curl_request}}'
 
 
 ```
@@ -1506,6 +1899,24 @@ use {{api_name}}\Resources\PaymentInstrument;
 $bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
 $bank_account = $bank_account->save();
 
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+
+bankAccount = client.bankAccountsClient().save(
+    BankAccount.builder()
+      .name("Joe-Doe")
+      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .accountNumber("84012312415")
+      .bankCode("840123124")
+      .accountType(BankAccountType.SAVINGS)
+      .companyName("company name")
+      .country("USA")
+      .currency("USD")
+      .build()
+);
 
 ```
 > Example Response:
@@ -1565,6 +1976,13 @@ use {{api_name}}\Resources\PaymentInstrument;
 $card = PaymentInstrument::retrieve('{{fetch_dispute_scenario_id}}');
 
 ```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+
+BankAccount bankAccount = client.bankAccountsClient().fetch("{{fetch_dispute_scenario_id}}")
+
+```
 > Example Response:
 
 ```json
@@ -1611,6 +2029,17 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+
+client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
+  .forEachRemaining(baPage -> {
+    Collection<BankAccount> bankAccounts = baPage.getContent();
+    //do something
+  });
 
 ```
 > Example Response:

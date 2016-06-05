@@ -1,0 +1,62 @@
+import os
+import pprint
+import poster
+import time
+import random
+import base64
+from urllib2 import Request, urlopen, HTTPError
+import json
+
+
+def formatted_response(endpoint, values, encoded_auth):
+    headers = {
+        'Content-Type': 'application/vnd.json+api',
+        'Authorization': 'Basic ' + encoded_auth
+    }
+    request = Request(endpoint, data=values, headers=headers)
+    try:
+        response_body = urlopen(request).read()
+    except HTTPError as e:
+        import ipdb; ipdb.set_trace()
+        json.loads(e.read())
+    response_body = format_json(response_body)
+    response_id = json.loads(response_body)["id"]
+    if values:
+        return {'request_body': values,
+                'curl_request_body': values,
+                'php_request_body': format_php_request_body(values),
+                'response_body': response_body,
+                'response_id': response_id}
+    else:
+        return {'request_body': values,
+                'response_body': response_body,
+                'response_id': response_id}
+
+
+def format_json(response):
+    response_body = json.loads(response)
+    response_body = json.dumps(response_body, indent=4, sort_keys=False)
+    response_body = response_body.replace("\n", "\n\t")
+    if response_body[0] == "{":
+        response_body = "\n\t" + response_body
+    return response_body
+
+
+def format_curl_request_body(string):
+
+    return string
+
+
+def format_php_request_body(string):
+    string = string.replace("{", "array(")
+    string = string.replace("}", ")")
+    string = string.replace(":", "=>")
+    return string
+
+
+def random_business_name():
+    BusinessList = ["Bobs Burgers", "Prestige World Wide", "Golds Gym", "Petes Coffee",
+                    "Pollos Hermanos", "Lees Sandwiches", "Dunder Mifflin",
+                    "Pawny City Hall", "ACME Anchors"]
+    return random.choice (BusinessList)
+

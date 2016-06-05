@@ -4,6 +4,7 @@ title: Finix API Reference
 language_tabs:
   - shell: cURL
   - php: PHP
+  - java: JAVA
 
 includes:
   - errors
@@ -20,30 +21,33 @@ search: true
 
 # With cURL, just supply your username as basic auth (-u) in the header of each request as follows:
 curl "api_endpoint_here"
--u USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab
+-u USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
+
+```
+```java
 
 ```
 This guide will demonstrate the main workflows for utilizing the Finix Payments API for platforms and marketplaces. We have language bindings in cURL, PHP, Ruby, Python, C#, Java and Perl! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 To communicate with the Finix API you'll need to authenticate your requests with a username and password. For the sandbox environment you may use the credentials listed below or you can supply your own.
 
-- Username: `USoBmxXjyNWJzEufDtXdbuV8`
+- Username: `USqyhyT9n9QeeLbh63kYTWBN`
 
-- Password: `fe398ca8-bf15-4aa1-bc36-0ff448c77bab`
+- Password: `7e5c303e-c9c4-4899-9274-3962786d084a`
 
 You should also know your Application ID. An Application, also referred as an "App", is a resource that represents your web App or any service that connects customers (i.e. buyers) and merchants (i.e. sellers). For the sandbox environment you may use the following ID:
 
-- App ID: `APrRQxKrRfkC4MkL3Qa3qEW1`
+- App ID: `AP7v8pfY36AzsGMdWB2wB37j`
 
 
 ## Create an Identity for a Merchant
@@ -53,64 +57,64 @@ You should also know your Application ID. An Application, also referred as an "A
 
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"tags\": {
-	        \"key\": \"value\"
+	    "tags": {
+	        "key": "value"
 	    }, 
-	    \"entity\": {
-	        \"business_type\": \"INDIVIDUAL_SOLE_PROPRIETORSHIP\", 
-	        \"business_phone\": \"+1 (408) 756-4497\", 
-	        \"first_name\": \"dwayne\", 
-	        \"last_name\": \"Sunkhronos\", 
-	        \"phone\": \"1234567890\", 
-	        \"dob\": {
-	            \"year\": 1978, 
-	            \"day\": 27, 
-	            \"month\": 6
+	    "entity": {
+	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
+	        "business_phone": "+1 (408) 756-4497", 
+	        "first_name": "dwayne", 
+	        "last_name": "Sunkhronos", 
+	        "phone": "1234567890", 
+	        "dob": {
+	            "year": 1978, 
+	            "day": 27, 
+	            "month": 6
 	        }, 
-	        \"mcc\": \"0742\", 
-	        \"business_address\": {
-	            \"city\": \"San Mateo\", 
-	            \"country\": \"USA\", 
-	            \"region\": \"CA\", 
-	            \"line2\": \"Apartment 8\", 
-	            \"line1\": \"741 Douglass St\", 
-	            \"postal_code\": \"94114\"
+	        "mcc": "0742", 
+	        "business_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 8", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
 	        }, 
-	        \"max_transaction_amount\": 120000, 
-	        \"principal_percentage_ownership\": 100, 
-	        \"doing_business_as\": \"Gold's Gym\", 
-	        \"annual_card_volume\": 12000000, 
-	        \"default_statement_descriptor\": \"Gold's Gym\", 
-	        \"url\": \"www.Gold'sGym.com\", 
-	        \"business_name\": \"Gold's Gym\", 
-	        \"incorporation_date\": {
-	            \"year\": 1978, 
-	            \"day\": 27, 
-	            \"month\": 6
+	        "max_transaction_amount": 120000, 
+	        "principal_percentage_ownership": 100, 
+	        "doing_business_as": "Pollos Hermanos", 
+	        "annual_card_volume": 12000000, 
+	        "default_statement_descriptor": "Pollos Hermanos", 
+	        "url": "www.PollosHermanos.com", 
+	        "business_name": "Pollos Hermanos", 
+	        "incorporation_date": {
+	            "year": 1978, 
+	            "day": 27, 
+	            "month": 6
 	        }, 
-	        \"business_tax_id\": \"123456789\", 
-	        \"personal_address\": {
-	            \"city\": \"San Mateo\", 
-	            \"country\": \"USA\", 
-	            \"region\": \"CA\", 
-	            \"line2\": \"Apartment 7\", 
-	            \"line1\": \"741 Douglass St\", 
-	            \"postal_code\": \"94114\"
+	        "business_tax_id": "123456789", 
+	        "personal_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 7", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
 	        }, 
-	        \"email\": \"user@example.org\", 
-	        \"tax_id\": \"5779\"
+	        "email": "user@example.org", 
+	        "tax_id": "5779"
 	    }
-	}"
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -143,11 +147,11 @@ $identity = new Identity(
 	        ), 
 	        "max_transaction_amount"=> 120000, 
 	        "principal_percentage_ownership"=> 100, 
-	        "doing_business_as"=> "Gold's Gym", 
+	        "doing_business_as"=> "Pollos Hermanos", 
 	        "annual_card_volume"=> 12000000, 
-	        "default_statement_descriptor"=> "Gold's Gym", 
-	        "url"=> "www.Gold'sGym.com", 
-	        "business_name"=> "Gold's Gym", 
+	        "default_statement_descriptor"=> "Pollos Hermanos", 
+	        "url"=> "www.PollosHermanos.com", 
+	        "business_name"=> "Pollos Hermanos", 
 	        "incorporation_date"=> array(
 	            "year"=> 1978, 
 	            "day"=> 27, 
@@ -170,6 +174,62 @@ $identity = new Identity(
 $identity = $identity->save();
 
 ```
+```java
+
+import io.finix.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().save(
+  Identity.builder()
+    .entity(
+      Entity.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .businessName("business inc")
+        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
+        .doingBusinessAs("doingBusinessAs")
+        .phone("1234567890")
+        .businessPhone("+1 (408) 756-4497")
+        .taxId("123456789")
+        .businessTaxId("123456789")
+        .personalAddress(
+          Address.builder()
+            .line1("741 Douglass St")
+            .line2("Apartment 7")
+            .city("San Mateo")
+            .region("CA")
+            .postalCode("94114")
+            .country("USA")
+            .build()
+        )
+        .businessAddress(
+          Address.builder()
+            .line1("741 Douglass St")
+            .line2("Apartment 7")
+            .city("San Mateo")
+            .region("CA")
+            .postalCode("94114")
+            .country("USA")
+            .build()
+        )
+        .dob(DateOfBirth.builder()
+          .day(27)
+          .month(5)
+          .year(1978)
+          .build()
+        )
+        .settlementCurrency("USD")
+        .settlementBankAccount(BankAccountType.CORPORATE)
+        .maxTransactionAmount(1)
+        .mcc(7399)
+        .url("http://sample-entity.com")
+        .annualCardVolume(100)
+        .build()
+    )
+    .build()
+);
+
+```
 
 > Example Response:
 
@@ -179,20 +239,21 @@ $identity = $identity->save();
 	    "tags": {
 	        "key": "value"
 	    }, 
-	    "created_at": "2016-06-02T22:43:25.52Z", 
-	    "updated_at": "2016-06-02T22:43:25.52Z", 
+	    "created_at": "2016-06-05T22:57:03.47Z", 
+	    "updated_at": "2016-06-05T22:57:03.47Z", 
 	    "entity": {
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
 	        "first_name": "dwayne", 
 	        "last_name": "Sunkhronos", 
 	        "amex_mid": null, 
+	        "title": null, 
 	        "dob": {
 	            "year": 1978, 
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "default_statement_descriptor": "Gold's Gym", 
+	        "default_statement_descriptor": "Pollos Hermanos", 
 	        "business_tax_id_provided": true, 
 	        "business_address": {
 	            "city": "San Mateo", 
@@ -202,10 +263,10 @@ $identity = $identity->save();
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "doing_business_as": "Gold's Gym", 
+	        "doing_business_as": "Pollos Hermanos", 
 	        "phone": "1234567890", 
 	        "discover_mid": null, 
-	        "url": "www.Gold'sGym.com", 
+	        "url": "www.PollosHermanos.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -214,38 +275,38 @@ $identity = $identity->save();
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "Gold's Gym", 
+	        "business_name": "Pollos Hermanos", 
 	        "tax_id_provided": true, 
 	        "email": "user@example.org", 
 	        "short_business_name": null
 	    }, 
 	    "_links": {
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/authorizations"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/authorizations"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof"
 	        }, 
 	        "settlements": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/settlements"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/settlements"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/payment_instruments"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/payment_instruments"
 	        }, 
 	        "disputes": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/disputes"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/disputes"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/verifications"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/verifications"
 	        }, 
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/transfers"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/transfers"
 	        }, 
 	        "underwriting": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/merchants"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/merchants"
 	        }
 	    }, 
-	    "id": "IDmDq5VJgDhSurQxrM2sJoqD"
+	    "id": "IDgjCAM3iEYELUG4rTwM6Bof"
 	}
 ```
 
@@ -256,17 +317,17 @@ Before we can charge a card we need to create an Identity resource. An Identity 
 
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
     -d "
 	{
-	    \"account_type\": \"SAVINGS\", 
-	    \"name\": \"Fran Lemke\", 
-	    \"bank_code\": \"123123123\", 
-	    \"country\": \"USA\", 
-	    \"currency\": \"USD\", 
-	    \"account_number\": \"123123123\", 
-	    \"type\": \"BANK_ACCOUNT\", 
-	    \"identity\": \"IDAyTLs4vrJDCMNp6BFHAGF\"
+	    "account_type": "SAVINGS", 
+	    "name": "Fran Lemke", 
+	    "bank_code": "123123123", 
+	    "country": "USA", 
+	    "currency": "USD", 
+	    "account_number": "123123123", 
+	    "type": "BANK_ACCOUNT", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}"
 
 
@@ -275,7 +336,7 @@ curl https://api-staging.finix.io/payment_instruments \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -290,10 +351,28 @@ $bank_account = new PaymentInstrument(
 	    "currency"=> "USD", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity"=> "IDeVSYLXEjpQu3i61phpmAcg"
 	));
 $bank_account = $bank_account->save();
 
+
+```
+```java
+
+import io.finix.payments.processing.client.model.BankAccount;
+
+bankAccount = client.bankAccountsClient().save(
+    BankAccount.builder()
+      .name("Joe-Doe")
+      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .accountNumber("84012312415")
+      .bankCode("840123124")
+      .accountType(BankAccountType.SAVINGS)
+      .companyName("company name")
+      .country("USA")
+      .currency("USD")
+      .build()
+);
 
 ```
 > Example Response:
@@ -306,30 +385,30 @@ $bank_account = $bank_account->save();
 	    "name": "Fran Lemke", 
 	    "tags": {}, 
 	    "country": "USA", 
-	    "created_at": "2016-06-02T22:43:34.48Z", 
+	    "created_at": "2016-06-05T22:57:13.24Z", 
 	    "bank_code": "123123123", 
-	    "updated_at": "2016-06-02T22:43:34.48Z", 
+	    "updated_at": "2016-06-05T22:57:13.24Z", 
 	    "currency": "USD", 
 	    "_links": {
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI2XUFqgEDxT9Q3aUYRcQZTA/transfers"
+	            "href": "https://api-staging.finix.io/payment_instruments/PI7qk1L9ArF6mGJX7vkL5gAz/transfers"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI2XUFqgEDxT9Q3aUYRcQZTA"
+	            "href": "https://api-staging.finix.io/payment_instruments/PI7qk1L9ArF6mGJX7vkL5gAz"
 	        }, 
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI2XUFqgEDxT9Q3aUYRcQZTA/authorizations"
+	            "href": "https://api-staging.finix.io/payment_instruments/PI7qk1L9ArF6mGJX7vkL5gAz/authorizations"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI2XUFqgEDxT9Q3aUYRcQZTA/verifications"
+	            "href": "https://api-staging.finix.io/payment_instruments/PI7qk1L9ArF6mGJX7vkL5gAz/verifications"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
 	    "fingerprint": "FPR-1215770130", 
-	    "id": "PI2XUFqgEDxT9Q3aUYRcQZTA", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "id": "PI7qk1L9ArF6mGJX7vkL5gAz", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 <aside class="warning">
@@ -347,7 +426,7 @@ Field | Type | Description | Example
 ----- | ---- | ----------- | -------
 account_number | *string*, **required** | Bank account number. | 84012312415
 bank_code | *string*, **required** | Routing number. Specified in FedACH database defined by the US Federal Reserve. | 840123124
-identity | *string*, **required**| Identity resource which the bank account is associated. | IDAyTLs4vrJDCMNp6BFHAGF
+identity | *string*, **required**| Identity resource which the bank account is associated. | IDeVSYLXEjpQu3i61phpmAcg
 account_type | *string*, **required** | Checking or Savings | SAVINGS
 type | *string*, **required** | Type of Payment Instrument. For cards input PAYMENT_CARD. | BANK_ACCOUNT
 currency | *string*, **optional** | Default currency used when settling funds. | USD
@@ -364,33 +443,44 @@ company_name | *string*, **optional** | Name of company if the bank account is a
 ```shell
 
 
-curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/verifications \
+curl https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"merchant\": null, 
-	    \"instrument\": null, 
-	    \"processor\": \"DUMMY_V1\", 
-	    \"identity\": null
-	}"
+	    "merchant": null, 
+	    "instrument": null, 
+	    "processor": "DUMMY_V1", 
+	    "identity": null
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
+$identity = Identity::retrieve('IDeVSYLXEjpQu3i61phpmAcg');
 $identity_verification = $identity->verifyOn(
 	array(
 	    "processor"=> "DUMMY_V1"
 	));
+```
+```java
+
+import io.finix.payments.processing.client.model.Verification;
+
+Verification verification = identity.verifyOn(
+  Verification.builder()
+    .processor("DUMMY_V1")
+    .build()
+);
+
 ```
 
 > Example Response:
@@ -399,24 +489,24 @@ $identity_verification = $identity->verifyOn(
 
 	{
 	    "tags": {}, 
-	    "created_at": "2016-06-02T22:43:37.64Z", 
+	    "created_at": "2016-06-05T22:57:16.63Z", 
 	    "messages": [], 
-	    "updated_at": "2016-06-02T22:43:37.67Z", 
-	    "id": "VI3vea6eKdRhoaeXAAmf86Q1", 
+	    "updated_at": "2016-06-05T22:57:16.66Z", 
+	    "id": "VItwb6F6coPggxCHuuf9avP8", 
 	    "instrument": null, 
 	    "state": "PENDING", 
 	    "underwritten_merchant": null, 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/verifications/VI3vea6eKdRhoaeXAAmf86Q1"
+	            "href": "https://api-staging.finix.io/verifications/VItwb6F6coPggxCHuuf9avP8"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
-	    "external_trace_id": "28b097f1-1ac4-469a-8edb-7fd6f949de99", 
+	    "external_trace_id": "2512e759-d604-49b0-a9d8-4dc352dad5c3", 
 	    "processor": "DUMMY_V1", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -426,13 +516,13 @@ Before, being able to process funds to this seller we will need to perform an id
 ## Provision Merchant Account
 ```shell
 
-curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/merchants \
+curl https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"processor\": \"DUMMY_V1\"
-	}"
+	    "processor": "DUMMY_V1"
+	}'
 
 
 ```
@@ -440,49 +530,56 @@ curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/merchants \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
+$identity = Identity::retrieve('IDeVSYLXEjpQu3i61phpmAcg');
 
 $merchant = $identity->provisionMerchantOn(
 	array(
 	    "processor"=> "DUMMY_V1"
 	));
 ```
+```java
+
+import io.finix.payments.processing.client.model.Merchant;
+
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().processor("DUMMY_V1").build());
+
+```
 > Example Response:
 
 ```json
 
 	{
-	    "created_at": "2016-06-02T22:43:36.10Z", 
-	    "updated_at": "2016-06-02T22:43:36.10Z", 
-	    "id": "MUnsRFnkNjTzDrYZ9GsFu8nk", 
+	    "created_at": "2016-06-05T22:57:14.97Z", 
+	    "updated_at": "2016-06-05T22:57:14.97Z", 
+	    "id": "MUeAWuBZa8vUtQUCpBXpZDcd", 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/merchants/MUnsRFnkNjTzDrYZ9GsFu8nk"
+	            "href": "https://api-staging.finix.io/merchants/MUeAWuBZa8vUtQUCpBXpZDcd"
 	        }, 
 	        "merchant_profile": {
-	            "href": "https://api-staging.finix.io/merchant_profiles/MPgXyBjtqhZXPUtbX4vpqiNG"
+	            "href": "https://api-staging.finix.io/merchant_profiles/MPid2GHckexaQotpgUSzNwwp"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/merchants/MUnsRFnkNjTzDrYZ9GsFu8nk/verifications"
+	            "href": "https://api-staging.finix.io/merchants/MUeAWuBZa8vUtQUCpBXpZDcd/verifications"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "verification": {
-	            "href": "https://api-staging.finix.io/verifications/VIwZBfx4tRWXwkV2asE6n7Fz"
+	            "href": "https://api-staging.finix.io/verifications/VI6rgh8i7gTpq1AxrNRQ3x7t"
 	        }
 	    }, 
-	    "verification": "VIwZBfx4tRWXwkV2asE6n7Fz", 
+	    "verification": "VI6rgh8i7gTpq1AxrNRQ3x7t", 
 	    "underwriting_state": "PROVISIONING", 
-	    "merchant_profile": "MPgXyBjtqhZXPUtbX4vpqiNG", 
+	    "merchant_profile": "MPid2GHckexaQotpgUSzNwwp", 
 	    "processor": "DUMMY_V1", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -494,24 +591,24 @@ Once the Identity has been verified, Finix will need to review the submitted inf
 
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"tags\": {
-	        \"key\": \"value\"
+	    "tags": {
+	        "key": "value"
 	    }, 
-	    \"entity\": {
-	        \"first_name\": \"Dwayne\", 
-	        \"last_name\": \"Johnson\"
+	    "entity": {
+	        "first_name": "Dwayne", 
+	        "last_name": "Johnson"
 	    }
-	}"
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -531,6 +628,23 @@ $identity = new Identity(
 $identity = $identity->save();
 
 ```
+```java
+
+import io.finix.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().save(
+  Identity.builder()
+    .entity(
+      Entity.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .build()
+    )
+    .build()
+);
+
+```
 > Example Response:
 
 ```json
@@ -539,14 +653,15 @@ $identity = $identity->save();
 	    "tags": {
 	        "key": "value"
 	    }, 
-	    "created_at": "2016-06-02T22:43:38.49Z", 
-	    "updated_at": "2016-06-02T22:43:38.49Z", 
+	    "created_at": "2016-06-05T22:57:17.50Z", 
+	    "updated_at": "2016-06-05T22:57:17.50Z", 
 	    "entity": {
 	        "business_type": null, 
 	        "business_phone": null, 
 	        "first_name": "Dwayne", 
 	        "last_name": "Johnson", 
 	        "amex_mid": null, 
+	        "title": null, 
 	        "dob": null, 
 	        "default_statement_descriptor": null, 
 	        "business_tax_id_provided": false, 
@@ -563,31 +678,31 @@ $identity = $identity->save();
 	    }, 
 	    "_links": {
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/authorizations"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/authorizations"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2"
 	        }, 
 	        "settlements": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/settlements"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/settlements"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/payment_instruments"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/payment_instruments"
 	        }, 
 	        "disputes": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/disputes"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/disputes"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/verifications"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/verifications"
 	        }, 
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/transfers"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/transfers"
 	        }, 
 	        "underwriting": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/merchants"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/merchants"
 	        }
 	    }, 
-	    "id": "IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	    "id": "IDmFNoDYZeioNCgEyk3kFPV2"
 	}
 ```
 This next step should sound familiar. Let's create an Identity to represent the buyer. You'll want to store the ID of the newly created Identity resource as you'll reference it later.
@@ -599,24 +714,24 @@ This next step should sound familiar. Let's create an Identity to represent the 
 
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"expiration_year\": 2020, 
-	    \"number\": \"4242424242424242\", 
-	    \"expiration_month\": 12, 
-	    \"address\": {
-	        \"city\": \"San Mateo\", 
-	        \"country\": \"USA\", 
-	        \"region\": \"CA\", 
-	        \"line2\": \"Apartment 7\", 
-	        \"line1\": \"741 Douglass St\", 
-	        \"postal_code\": \"94114\"
+	    "expiration_year": 2020, 
+	    "number": "4242424242424242", 
+	    "expiration_month": 12, 
+	    "address": {
+	        "city": "San Mateo", 
+	        "country": "USA", 
+	        "region": "CA", 
+	        "line2": "Apartment 7", 
+	        "line1": "741 Douglass St", 
+	        "postal_code": "94114"
 	    }, 
-	    \"security_code\": \"112\", 
-	    \"type\": \"PAYMENT_CARD\", 
-	    \"identity\": \"IDcq7bJ4vTXn1RxY5v4UMQ3T\"
-	}"
+	    "security_code": "112", 
+	    "type": "PAYMENT_CARD", 
+	    "identity": "IDmFNoDYZeioNCgEyk3kFPV2"
+	}'
 
 
 ```
@@ -624,7 +739,7 @@ curl https://api-staging.finix.io/payment_instruments \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -645,10 +760,25 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	    "identity"=> "IDmFNoDYZeioNCgEyk3kFPV2"
 	));
 $card = $card->save();
 
+
+```
+```java
+
+import io.finix.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .name("Joe-Doe")
+    .identity("ID572pSyFj71oVExp6XWiGRP")
+    .expirationMonth(12)
+    .expirationYear(2030)
+    .number("4111 1111 1111 1111")
+    .securityCode("231")
+    .build();
+paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -670,7 +800,7 @@ $card = $card->save();
 	        "line1": "741 Douglass St", 
 	        "postal_code": "94114"
 	    }, 
-	    "updated_at": "2016-06-02T22:43:39.27Z", 
+	    "updated_at": "2016-06-05T22:57:18.28Z", 
 	    "expiration_month": 12, 
 	    "security_code_verification": "UNKNOWN", 
 	    "address_verification": "UNKNOWN", 
@@ -678,27 +808,27 @@ $card = $card->save();
 	    "fingerprint": "FPR1034748039", 
 	    "_links": {
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ/authorizations"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6/authorizations"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ/verifications"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6/verifications"
 	        }, 
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ/transfers"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6/transfers"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2"
 	        }, 
 	        "updates": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ/updates"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6/updates"
 	        }
 	    }, 
-	    "created_at": "2016-06-02T22:43:39.27Z", 
-	    "id": "PI5zCmfsnrvhVvPX9h14r3GJ", 
-	    "identity": "IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	    "created_at": "2016-06-05T22:57:18.28Z", 
+	    "id": "PIntahNnMqaxdDnwkC5oYrb6", 
+	    "identity": "IDmFNoDYZeioNCgEyk3kFPV2"
 	}
 ```
 
@@ -718,16 +848,16 @@ Be sure to store the ID of your newly tokenized Payment Instrument.
 
 curl https://api-staging.finix.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"fee\": 10, 
-	    \"currency\": \"USD\", 
-	    \"merchant_identity\": \"IDAyTLs4vrJDCMNp6BFHAGF\", 
-	    \"source\": \"PI5zCmfsnrvhVvPX9h14r3GJ\", 
-	    \"amount\": 100, 
-	    \"processor\": \"DUMMY_V1\"
-	}"
+	    "fee": 10, 
+	    "currency": "USD", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6", 
+	    "amount": 100, 
+	    "processor": "DUMMY_V1"
+	}'
 
 
 ```
@@ -735,7 +865,7 @@ curl https://api-staging.finix.io/transfers \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -745,12 +875,31 @@ $debit = new Transfer(
 	array(
 	    "fee"=> 10, 
 	    "currency"=> "USD", 
-	    "merchant_identity"=> "IDAyTLs4vrJDCMNp6BFHAGF", 
-	    "source"=> "PI5zCmfsnrvhVvPX9h14r3GJ", 
+	    "merchant_identity"=> "IDeVSYLXEjpQu3i61phpmAcg", 
+	    "source"=> "PIntahNnMqaxdDnwkC5oYrb6", 
 	    "amount"=> 100, 
 	    "processor"=> "DUMMY_V1"
 	));
 $debit = $debit->save();
+```
+```java
+
+import io.finix.payments.processing.client.model.Transfer;
+
+Map<String, String> tags = new HashMap<>();
+tags.put("name", "sample-tag");
+
+Transfer transfer = client.transfersClient().save(
+    Transfer.builder()
+      .merchantIdentity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .source("PIi98CoYWpQZi8w7ZimJxuJ")
+      .amount(888888)
+      .currency("USD")
+      .tags(tags)
+      .processor("DUMMY_V1")
+      .build()
+);
+
 ```
 
 > Example Response:
@@ -758,44 +907,44 @@ $debit = $debit->save();
 ```json
 
 	{
-	    "application": "APrRQxKrRfkC4MkL3Qa3qEW1", 
-	    "destination": "PIrpGUd5TDf8dKDPFr9bfgMH", 
+	    "application": "AP7v8pfY36AzsGMdWB2wB37j", 
+	    "destination": "PIaZMcu221Whh9tBgEtjZ7Ld", 
 	    "state": "PENDING", 
-	    "updated_at": "2016-06-02T22:43:40.59Z", 
-	    "created_at": "2016-06-02T22:43:40.46Z", 
+	    "updated_at": "2016-06-05T22:57:19.71Z", 
+	    "created_at": "2016-06-05T22:57:19.55Z", 
 	    "tags": {}, 
-	    "trace_id": "f75403f8-7174-4dd4-87b1-ed2e5400ace4", 
-	    "statement_descriptor": "FNX*GOLD'S GYM", 
+	    "trace_id": "c76addd8-95e1-40d6-87a4-f9629ae4c084", 
+	    "statement_descriptor": "FNX*GOLDS GYM", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "fee": 10, 
 	    "_links": {
 	        "reversals": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/reversals"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/reversals"
 	        }, 
 	        "merchant_identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt"
 	        }, 
 	        "destination": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PIrpGUd5TDf8dKDPFr9bfgMH"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIaZMcu221Whh9tBgEtjZ7Ld"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/payment_instruments"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/payment_instruments"
 	        }, 
 	        "source": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6"
 	        }, 
 	        "disputes": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/disputes"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/disputes"
 	        }
 	    }, 
-	    "source": "PI5zCmfsnrvhVvPX9h14r3GJ", 
-	    "merchant_identity": "IDAyTLs4vrJDCMNp6BFHAGF", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
 	    "type": "DEBIT", 
-	    "id": "TRbfrkiuuCEd71qFuMMkBbvu"
+	    "id": "TR6it2JUNoFd8faSkqYzyEGt"
 	}
 ```
 
@@ -811,24 +960,31 @@ Simple enough, right? You'll also want to store the ID from that Transfer for yo
 ## Reverse the Transfer (i.e. issue a refund)
 ```shell
 
-curl https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/reversals \
+curl https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/reversals \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d  "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d  '
 	  {
-	  \"refund_amount\" : 100
-  	}		
-	"
+	  "refund_amount" : 100
+  	}
+	'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Refund;
+
+Refund refund = transfer.reverse(100L);
 
 ```
 
@@ -837,38 +993,38 @@ Finix\Bootstrap::init();
 ```json
 
 	{
-	    "application": "APrRQxKrRfkC4MkL3Qa3qEW1", 
-	    "destination": "PI5zCmfsnrvhVvPX9h14r3GJ", 
+	    "application": "AP7v8pfY36AzsGMdWB2wB37j", 
+	    "destination": "PIntahNnMqaxdDnwkC5oYrb6", 
 	    "state": "PENDING", 
-	    "updated_at": "2016-06-02T22:45:13.76Z", 
-	    "created_at": "2016-06-02T22:45:13.64Z", 
+	    "updated_at": "2016-06-05T22:58:53.27Z", 
+	    "created_at": "2016-06-05T22:58:53.13Z", 
 	    "tags": {}, 
-	    "trace_id": "98028e8a-2da8-4627-adf3-1bc328174698", 
-	    "statement_descriptor": "FNX*GOLD'S GYM", 
+	    "trace_id": "bd0de806-cacc-466c-9ef0-a4df3e0ec05a", 
+	    "statement_descriptor": "FNX*GOLDS GYM", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "fee": 0, 
 	    "_links": {
 	        "merchant_identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/transfers/TRuSFU37qwp3YD4aYKA9V9X8"
+	            "href": "https://api-staging.finix.io/transfers/TRat3P2xTvZA56LjLMhXakhU"
 	        }, 
 	        "destination": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/transfers/TRuSFU37qwp3YD4aYKA9V9X8/payment_instruments"
+	            "href": "https://api-staging.finix.io/transfers/TRat3P2xTvZA56LjLMhXakhU/payment_instruments"
 	        }, 
 	        "parent": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt"
 	        }
 	    }, 
-	    "source": "PIrpGUd5TDf8dKDPFr9bfgMH", 
-	    "merchant_identity": "IDAyTLs4vrJDCMNp6BFHAGF", 
+	    "source": "PIaZMcu221Whh9tBgEtjZ7Ld", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
 	    "type": "REVERSAL", 
-	    "id": "TRuSFU37qwp3YD4aYKA9V9X8"
+	    "id": "TRat3P2xTvZA56LjLMhXakhU"
 	}
 ```
 
@@ -877,33 +1033,45 @@ What if we need to issue a refund to the buyer? First, you'll need to take the p
 ## Settle out funds to a Merchant
 ```shell
 
-curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/settlements \
+curl https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/settlements \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"currency\": \"USD\", 
-	    \"processor\": \"DUMMY_V1\"
-	}"
+	    "currency": "USD", 
+	    "processor": "DUMMY_V1"
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Identity;
 use Finix\Resources\Settlement;
 
-$identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
+$identity = Identity::retrieve('IDeVSYLXEjpQu3i61phpmAcg');
 $settlement = $identity->createSettlement(
 	array(
 	    "currency"=> "USD", 
 	    "processor"=> "DUMMY_V1"
 	));
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Settlement;
+
+Settlement settlement = identity.createSettlement(
+  Settlement.builder()
+    .processor("DUMMY_V1")
+    .currency("USD")
+    .build()
+)
 
 ```
 > Example Response:
@@ -914,24 +1082,24 @@ $settlement = $identity->createSettlement(
 	    "total_amount": 888988, 
 	    "tags": {}, 
 	    "transfer": null, 
-	    "created_at": "2016-06-02T22:46:18.05Z", 
-	    "updated_at": "2016-06-02T22:46:18.06Z", 
+	    "created_at": "2016-06-05T22:59:58.64Z", 
+	    "updated_at": "2016-06-05T22:59:58.65Z", 
 	    "processor": "DUMMY_V1", 
 	    "currency": "USD", 
 	    "_links": {
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/settlements/ST6em979P6RerKZAqxNMJTcb/transfers"
+	            "href": "https://api-staging.finix.io/settlements/STw6kgajsRAqjmhNVUPdmpN3/transfers"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/settlements/ST6em979P6RerKZAqxNMJTcb"
+	            "href": "https://api-staging.finix.io/settlements/STw6kgajsRAqjmhNVUPdmpN3"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
 	    "total_fee": 0, 
-	    "id": "ST6em979P6RerKZAqxNMJTcb", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "id": "STw6kgajsRAqjmhNVUPdmpN3", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -1024,7 +1192,7 @@ javascript
 var initTokenization = function() {
   Tokenization.init({
     server: "https://api-staging.finix.io",
-    applicationId: "APrRQxKrRfkC4MkL3Qa3qEW1",
+    applicationId: "AP7v8pfY36AzsGMdWB2wB37j",
     hosted_fields: {
       card: {
         number: {
@@ -1063,7 +1231,7 @@ We will need to configure the client so that it POSTs to the correct endpoint an
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
 server | *string*, **required** |  The base url for the Finix API| https://api-staging.finix.io
-applicationId | *string*, **required** | The ID for your Application, also referred to as your App | APrRQxKrRfkC4MkL3Qa3qEW1
+applicationId | *string*, **required** | The ID for your Application, also referred to as your App | AP7v8pfY36AzsGMdWB2wB37j
 hosted_fields | *object*, **required** |  An object containing the payment instrument information collected from your form.  | Johnson
 
 ### hosted_fields object for card
@@ -1123,7 +1291,7 @@ $('#ba-submit').click(function(e) {
 > Example Tokenization Response:
 javascript
 {
-    "id": "TKmMEyy7CQmfeFrJq1JfnigP",
+    "id": "TK78eYSSyqqxzjqefZt5PhoQ",
     "fingerprint": "FPR-1392097976",
     "created_at": "2016-03-07T22:27:01.611",
     "updated_at": "2016-03-07T22:27:01.611",
@@ -1159,12 +1327,12 @@ Great now that you have created a token you will want to store that ID to utiliz
 
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
     -d "
 	{
-	    \"token\": \"TKmMEyy7CQmfeFrJq1JfnigP\", 
-	    \"type\": \"TOKEN\", 
-	    \"identity\": \"IDAyTLs4vrJDCMNp6BFHAGF\"
+	    "token": "TK78eYSSyqqxzjqefZt5PhoQ", 
+	    "type": "TOKEN", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}"
 
 
@@ -1175,29 +1343,29 @@ json
 	{
 	    "instrument_type": "TOKEN", 
 	    "tags": {}, 
-	    "created_at": "2016-06-02T22:46:19.55Z", 
-	    "updated_at": "2016-06-02T22:46:19.55Z", 
-	    "token": "TKmMEyy7CQmfeFrJq1JfnigP", 
+	    "created_at": "2016-06-05T23:00:00.78Z", 
+	    "updated_at": "2016-06-05T23:00:00.78Z", 
+	    "token": "TK78eYSSyqqxzjqefZt5PhoQ", 
 	    "_links": {
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PIidozqLLaLceXuigdHMdAD2/transfers"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIkj6pWmmsoSZJyLKLhXUZPV/transfers"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PIidozqLLaLceXuigdHMdAD2"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIkj6pWmmsoSZJyLKLhXUZPV"
 	        }, 
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PIidozqLLaLceXuigdHMdAD2/authorizations"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIkj6pWmmsoSZJyLKLhXUZPV/authorizations"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PIidozqLLaLceXuigdHMdAD2/verifications"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIkj6pWmmsoSZJyLKLhXUZPV/verifications"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
-	    "fingerprint": "FPR-403206930", 
-	    "id": "PIidozqLLaLceXuigdHMdAD2", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "fingerprint": "FPR-2015343239", 
+	    "id": "PIkj6pWmmsoSZJyLKLhXUZPV", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 
 Before you can use the newly tokenized card or bank account you will need to associate it with an Identity. To do this you must make an authenticated POST request to `https://api-staging.finix.io/payment_instruments` like demonstrated to the right.
@@ -1214,15 +1382,15 @@ An Authorization resource (also known as a card hold) reserves a specific amount
 
 curl https://api-staging.finix.io/authorizations \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"merchant_identity\": \"IDAyTLs4vrJDCMNp6BFHAGF\", 
-	    \"currency\": \"USD\", 
-	    \"amount\": 100, 
-	    \"processor\": \"DUMMY_V1\", 
-	    \"source\": \"PI5zCmfsnrvhVvPX9h14r3GJ\"
-	}"
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
+	    "currency": "USD", 
+	    "amount": 100, 
+	    "processor": "DUMMY_V1", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6"
+	}'
 
 
 
@@ -1231,7 +1399,7 @@ curl https://api-staging.finix.io/authorizations \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -1239,13 +1407,27 @@ use Finix\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "IDAyTLs4vrJDCMNp6BFHAGF", 
+	    "merchant_identity"=> "IDeVSYLXEjpQu3i61phpmAcg", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
 	    "processor"=> "DUMMY_V1", 
-	    "source"=> "PI5zCmfsnrvhVvPX9h14r3GJ"
+	    "source"=> "PIntahNnMqaxdDnwkC5oYrb6"
 	));
 $authorization = $authorization->save();
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Authorization;
+
+Authorization authorization = client.authorizationsClient().save(
+  Authorization.builder()
+    .amount(100L)
+    .merchantIdentity("IDrktKp2HNpogF3BWMmiSGrz")
+    .processor("DUMMY_V1")
+    .source("PIeffbMtvz2Hiy6dwBbaHhKq")
+    .build()
+);
 
 ```
 > Example Response:
@@ -1254,26 +1436,26 @@ $authorization = $authorization->save();
 
 	{
 	    "tags": {}, 
-	    "merchant_identity": "IDAyTLs4vrJDCMNp6BFHAGF", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
 	    "transfer": null, 
-	    "created_at": "2016-06-02T22:45:14.81Z", 
-	    "trace_id": "47bc9c38-d601-4617-9867-3a87fcbd8b80", 
+	    "created_at": "2016-06-05T22:58:54.65Z", 
+	    "trace_id": "82e84887-9b9e-4879-88a0-0de1ab8f76cd", 
 	    "state": "SUCCEEDED", 
-	    "expires_at": "2016-06-09T22:45:14.81Z", 
-	    "updated_at": "2016-06-02T22:45:14.82Z", 
+	    "expires_at": "2016-06-12T22:58:54.65Z", 
+	    "updated_at": "2016-06-05T22:58:54.67Z", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "is_void": false, 
-	    "source": "PI5zCmfsnrvhVvPX9h14r3GJ", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6", 
 	    "_links": {
 	        "merchant_identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/authorizations/AUeVX2Rkz9k3j8aS8vUsYQf9"
+	            "href": "https://api-staging.finix.io/authorizations/AUwX5rkz4dKAHR2oxXuPqs1f"
 	        }
 	    }, 
-	    "id": "AUeVX2Rkz9k3j8aS8vUsYQf9"
+	    "id": "AUwX5rkz4dKAHR2oxXuPqs1f"
 	}
 ```
 
@@ -1285,8 +1467,8 @@ $authorization = $authorization->save();
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
-source | *string*, **required** | The Payment Instrument to debited. | PI5zCmfsnrvhVvPX9h14r3GJ
-merchant_identity | *string*, **required** | UID. | IDAyTLs4vrJDCMNp6BFHAGF
+source | *string*, **required** | The Payment Instrument to debited. | PIntahNnMqaxdDnwkC5oYrb6
+merchant_identity | *string*, **required** | UID. | IDeVSYLXEjpQu3i61phpmAcg
 amount | *integer*, **required** | The amount of the debit in cents. | 100
 processor | *string*, **required** | Processor used for underwriting the Identity, please use "DUMMY_V1" for now to test the API. | DUMMY_V1
 
@@ -1294,32 +1476,40 @@ processor | *string*, **required** | Processor used for underwriting the Identit
 
 ```shell
 
-curl https://api-staging.finix.io/authorizations/AUeVX2Rkz9k3j8aS8vUsYQf9 \
+curl https://api-staging.finix.io/authorizations/AUwX5rkz4dKAHR2oxXuPqs1f \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
     -X PUT \
-    -d "
+    -d '
 	{
-	    \"fee\": \"10\", 
-	    \"void_me\": null, 
-	    \"statement_descriptor\": \"Bob's Burgers\", 
-	    \"capture_amount\": 100
-	}"
+	    "fee": "10", 
+	    "void_me": null, 
+	    "statement_descriptor": "Bob's Burgers", 
+	    "capture_amount": 100
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUeVX2Rkz9k3j8aS8vUsYQf9');
+$authorization = Authorization::retrieve('AUwX5rkz4dKAHR2oxXuPqs1f');
 $authorization->capture_amount = 50;
 $authorization = $authorization->capture();
+```
+```java
+
+import io.finix.payments.processing.client.model.Authorization;
+
+Authorization authorization = client.authorizationsClient().fetch("AUwX5rkz4dKAHR2oxXuPqs1f");
+authorization = authorization.capture(50L);
+
 ```
 > Example Response:
 
@@ -1327,29 +1517,29 @@ $authorization = $authorization->capture();
 
 	{
 	    "tags": {}, 
-	    "merchant_identity": "IDAyTLs4vrJDCMNp6BFHAGF", 
-	    "transfer": "TR75UyzaqSzypJ5q4b95ZEfo", 
-	    "created_at": "2016-06-02T22:45:14.67Z", 
-	    "trace_id": "47bc9c38-d601-4617-9867-3a87fcbd8b80", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
+	    "transfer": "TR5rwD6zDxajnoPEbvf59ybQ", 
+	    "created_at": "2016-06-05T22:58:54.50Z", 
+	    "trace_id": "82e84887-9b9e-4879-88a0-0de1ab8f76cd", 
 	    "state": "SUCCEEDED", 
-	    "expires_at": "2016-06-09T22:45:14.67Z", 
-	    "updated_at": "2016-06-02T22:45:14.67Z", 
+	    "expires_at": "2016-06-12T22:58:54.50Z", 
+	    "updated_at": "2016-06-05T22:58:54.50Z", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "is_void": false, 
-	    "source": "PI5zCmfsnrvhVvPX9h14r3GJ", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6", 
 	    "_links": {
 	        "merchant_identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "transfer": {
-	            "href": "https://api-staging.finix.io/transfers/TR75UyzaqSzypJ5q4b95ZEfo"
+	            "href": "https://api-staging.finix.io/transfers/TR5rwD6zDxajnoPEbvf59ybQ"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/authorizations/AUeVX2Rkz9k3j8aS8vUsYQf9"
+	            "href": "https://api-staging.finix.io/authorizations/AUwX5rkz4dKAHR2oxXuPqs1f"
 	        }
 	    }, 
-	    "id": "AUeVX2Rkz9k3j8aS8vUsYQf9"
+	    "id": "AUwX5rkz4dKAHR2oxXuPqs1f"
 	}
 ```
 
@@ -1375,22 +1565,29 @@ fee | *integer*, **optional** | The amount of the transaction you would like to 
 ## Retrieve an Authorization
 ```shell
 
-curl https://api-staging.finix.io/authorizations/AUeVX2Rkz9k3j8aS8vUsYQf9 \
+curl https://api-staging.finix.io/authorizations/AUwX5rkz4dKAHR2oxXuPqs1f \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUeVX2Rkz9k3j8aS8vUsYQf9');
+$authorization = Authorization::retrieve('AUwX5rkz4dKAHR2oxXuPqs1f');
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Authorization;
+
+Authorization authorization = client.authorizationsClient().fetch("AUwX5rkz4dKAHR2oxXuPqs1f");
 
 ```
 > Example Response:
@@ -1399,29 +1596,29 @@ $authorization = Authorization::retrieve('AUeVX2Rkz9k3j8aS8vUsYQf9');
 
 	{
 	    "tags": {}, 
-	    "merchant_identity": "IDAyTLs4vrJDCMNp6BFHAGF", 
-	    "transfer": "TR75UyzaqSzypJ5q4b95ZEfo", 
-	    "created_at": "2016-06-02T22:45:14.67Z", 
-	    "trace_id": "47bc9c38-d601-4617-9867-3a87fcbd8b80", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
+	    "transfer": "TR5rwD6zDxajnoPEbvf59ybQ", 
+	    "created_at": "2016-06-05T22:58:54.50Z", 
+	    "trace_id": "82e84887-9b9e-4879-88a0-0de1ab8f76cd", 
 	    "state": "SUCCEEDED", 
-	    "expires_at": "2016-06-09T22:45:14.67Z", 
-	    "updated_at": "2016-06-02T22:45:14.67Z", 
+	    "expires_at": "2016-06-12T22:58:54.50Z", 
+	    "updated_at": "2016-06-05T22:58:54.50Z", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "is_void": false, 
-	    "source": "PI5zCmfsnrvhVvPX9h14r3GJ", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6", 
 	    "_links": {
 	        "merchant_identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "transfer": {
-	            "href": "https://api-staging.finix.io/transfers/TR75UyzaqSzypJ5q4b95ZEfo"
+	            "href": "https://api-staging.finix.io/transfers/TR5rwD6zDxajnoPEbvf59ybQ"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/authorizations/AUeVX2Rkz9k3j8aS8vUsYQf9"
+	            "href": "https://api-staging.finix.io/authorizations/AUwX5rkz4dKAHR2oxXuPqs1f"
 	        }
 	    }, 
-	    "id": "AUeVX2Rkz9k3j8aS8vUsYQf9"
+	    "id": "AUwX5rkz4dKAHR2oxXuPqs1f"
 	}
 ```
 
@@ -1442,9 +1639,9 @@ Disputes, also known as chargebacks, represent any customer-disputed charge.
 ## Retrieve a Dispute
 ```shell
 
-curl https://api-staging.finix.io/disputes/DItY913WtRH1hU2oakgf6QRw \
+curl https://api-staging.finix.io/disputes/DIvd18AYSNA3EzyyMbGb5gpg \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a
 
 
 ```
@@ -1452,13 +1649,20 @@ curl https://api-staging.finix.io/disputes/DItY913WtRH1hU2oakgf6QRw \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Dispute;
 
-$dispute = Dispute::retrieve('DItY913WtRH1hU2oakgf6QRw');
+$dispute = Dispute::retrieve('DIvd18AYSNA3EzyyMbGb5gpg');
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Dispute;
+
+Dispute dispute = transfer.disputeClient().fetch("DIvd18AYSNA3EzyyMbGb5gpg");
 
 ```
 > Example Response:
@@ -1467,27 +1671,27 @@ $dispute = Dispute::retrieve('DItY913WtRH1hU2oakgf6QRw');
 
 	{
 	    "state": "PENDING", 
-	    "transfer": "TRwqG8suJyuU6keYEbnkMrFx", 
-	    "created_at": "2016-06-02T22:44:08.83Z", 
+	    "transfer": "TR5bfADYSh231e98us57ymnE", 
+	    "created_at": "2016-06-05T22:58:09.10Z", 
 	    "tags": {}, 
-	    "occurred_at": "2016-06-02T22:43:41.68Z", 
+	    "occurred_at": "2016-06-05T22:57:20.90Z", 
 	    "amount": 0, 
-	    "updated_at": "2016-06-02T22:44:08.83Z", 
+	    "updated_at": "2016-06-05T22:58:09.10Z", 
 	    "reason": "FRAUD", 
 	    "_links": {
 	        "transfer": {
-	            "href": "https://api-staging.finix.io/transfers/TRwqG8suJyuU6keYEbnkMrFx"
+	            "href": "https://api-staging.finix.io/transfers/TR5bfADYSh231e98us57ymnE"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/disputes/DItY913WtRH1hU2oakgf6QRw"
+	            "href": "https://api-staging.finix.io/disputes/DIvd18AYSNA3EzyyMbGb5gpg"
 	        }, 
 	        "evidence": {
-	            "href": "https://api-staging.finix.io/disputes/DItY913WtRH1hU2oakgf6QRw/evidence"
+	            "href": "https://api-staging.finix.io/disputes/DIvd18AYSNA3EzyyMbGb5gpg/evidence"
 	        }
 	    }, 
-	    "respond_by": "2016-06-09T22:44:09.00Z", 
-	    "id": "DItY913WtRH1hU2oakgf6QRw", 
-	    "identity": "IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	    "respond_by": "2016-06-12T22:58:09.27Z", 
+	    "id": "DIvd18AYSNA3EzyyMbGb5gpg", 
+	    "identity": "IDmFNoDYZeioNCgEyk3kFPV2"
 	}
 ```
 
@@ -1512,24 +1716,24 @@ All fields for a buyer's Identity are optional. However, a business_type field s
 
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"tags\": {
-	        \"key\": \"value\"
+	    "tags": {
+	        "key": "value"
 	    }, 
-	    \"entity\": {
-	        \"first_name\": \"Dwayne\", 
-	        \"last_name\": \"Johnson\"
+	    "entity": {
+	        "first_name": "Dwayne", 
+	        "last_name": "Johnson"
 	    }
-	}"
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -1549,6 +1753,23 @@ $identity = new Identity(
 $identity = $identity->save();
 
 ```
+```java
+
+import io.finix.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().save(
+  Identity.builder()
+    .entity(
+      Entity.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .build()
+    )
+    .build()
+);
+
+```
 > Example Response:
 
 ```json
@@ -1557,14 +1778,15 @@ $identity = $identity->save();
 	    "tags": {
 	        "key": "value"
 	    }, 
-	    "created_at": "2016-06-02T22:43:38.49Z", 
-	    "updated_at": "2016-06-02T22:43:38.49Z", 
+	    "created_at": "2016-06-05T22:57:17.50Z", 
+	    "updated_at": "2016-06-05T22:57:17.50Z", 
 	    "entity": {
 	        "business_type": null, 
 	        "business_phone": null, 
 	        "first_name": "Dwayne", 
 	        "last_name": "Johnson", 
 	        "amex_mid": null, 
+	        "title": null, 
 	        "dob": null, 
 	        "default_statement_descriptor": null, 
 	        "business_tax_id_provided": false, 
@@ -1581,31 +1803,31 @@ $identity = $identity->save();
 	    }, 
 	    "_links": {
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/authorizations"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/authorizations"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2"
 	        }, 
 	        "settlements": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/settlements"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/settlements"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/payment_instruments"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/payment_instruments"
 	        }, 
 	        "disputes": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/disputes"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/disputes"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/verifications"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/verifications"
 	        }, 
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/transfers"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/transfers"
 	        }, 
 	        "underwriting": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T/merchants"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2/merchants"
 	        }
 	    }, 
-	    "id": "IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	    "id": "IDmFNoDYZeioNCgEyk3kFPV2"
 	}
 ```
 
@@ -1635,64 +1857,64 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data |
 
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"tags\": {
-	        \"key\": \"value\"
+	    "tags": {
+	        "key": "value"
 	    }, 
-	    \"entity\": {
-	        \"business_type\": \"INDIVIDUAL_SOLE_PROPRIETORSHIP\", 
-	        \"business_phone\": \"+1 (408) 756-4497\", 
-	        \"first_name\": \"dwayne\", 
-	        \"last_name\": \"Sunkhronos\", 
-	        \"phone\": \"1234567890\", 
-	        \"dob\": {
-	            \"year\": 1978, 
-	            \"day\": 27, 
-	            \"month\": 6
+	    "entity": {
+	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
+	        "business_phone": "+1 (408) 756-4497", 
+	        "first_name": "dwayne", 
+	        "last_name": "Sunkhronos", 
+	        "phone": "1234567890", 
+	        "dob": {
+	            "year": 1978, 
+	            "day": 27, 
+	            "month": 6
 	        }, 
-	        \"mcc\": \"0742\", 
-	        \"business_address\": {
-	            \"city\": \"San Mateo\", 
-	            \"country\": \"USA\", 
-	            \"region\": \"CA\", 
-	            \"line2\": \"Apartment 8\", 
-	            \"line1\": \"741 Douglass St\", 
-	            \"postal_code\": \"94114\"
+	        "mcc": "0742", 
+	        "business_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 8", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
 	        }, 
-	        \"max_transaction_amount\": 120000, 
-	        \"principal_percentage_ownership\": 100, 
-	        \"doing_business_as\": \"Gold's Gym\", 
-	        \"annual_card_volume\": 12000000, 
-	        \"default_statement_descriptor\": \"Gold's Gym\", 
-	        \"url\": \"www.Gold'sGym.com\", 
-	        \"business_name\": \"Gold's Gym\", 
-	        \"incorporation_date\": {
-	            \"year\": 1978, 
-	            \"day\": 27, 
-	            \"month\": 6
+	        "max_transaction_amount": 120000, 
+	        "principal_percentage_ownership": 100, 
+	        "doing_business_as": "Pollos Hermanos", 
+	        "annual_card_volume": 12000000, 
+	        "default_statement_descriptor": "Pollos Hermanos", 
+	        "url": "www.PollosHermanos.com", 
+	        "business_name": "Pollos Hermanos", 
+	        "incorporation_date": {
+	            "year": 1978, 
+	            "day": 27, 
+	            "month": 6
 	        }, 
-	        \"business_tax_id\": \"123456789\", 
-	        \"personal_address\": {
-	            \"city\": \"San Mateo\", 
-	            \"country\": \"USA\", 
-	            \"region\": \"CA\", 
-	            \"line2\": \"Apartment 7\", 
-	            \"line1\": \"741 Douglass St\", 
-	            \"postal_code\": \"94114\"
+	        "business_tax_id": "123456789", 
+	        "personal_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 7", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
 	        }, 
-	        \"email\": \"user@example.org\", 
-	        \"tax_id\": \"5779\"
+	        "email": "user@example.org", 
+	        "tax_id": "5779"
 	    }
-	}"
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -1725,11 +1947,11 @@ $identity = new Identity(
 	        ), 
 	        "max_transaction_amount"=> 120000, 
 	        "principal_percentage_ownership"=> 100, 
-	        "doing_business_as"=> "Gold's Gym", 
+	        "doing_business_as"=> "Pollos Hermanos", 
 	        "annual_card_volume"=> 12000000, 
-	        "default_statement_descriptor"=> "Gold's Gym", 
-	        "url"=> "www.Gold'sGym.com", 
-	        "business_name"=> "Gold's Gym", 
+	        "default_statement_descriptor"=> "Pollos Hermanos", 
+	        "url"=> "www.PollosHermanos.com", 
+	        "business_name"=> "Pollos Hermanos", 
 	        "incorporation_date"=> array(
 	            "year"=> 1978, 
 	            "day"=> 27, 
@@ -1752,6 +1974,62 @@ $identity = new Identity(
 $identity = $identity->save();
 
 ```
+```java
+
+import io.finix.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().save(
+  Identity.builder()
+    .entity(
+      Entity.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .businessName("business inc")
+        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
+        .doingBusinessAs("doingBusinessAs")
+        .phone("1234567890")
+        .businessPhone("+1 (408) 756-4497")
+        .taxId("123456789")
+        .businessTaxId("123456789")
+        .personalAddress(
+          Address.builder()
+            .line1("741 Douglass St")
+            .line2("Apartment 7")
+            .city("San Mateo")
+            .region("CA")
+            .postalCode("94114")
+            .country("USA")
+            .build()
+        )
+        .businessAddress(
+          Address.builder()
+            .line1("741 Douglass St")
+            .line2("Apartment 7")
+            .city("San Mateo")
+            .region("CA")
+            .postalCode("94114")
+            .country("USA")
+            .build()
+        )
+        .dob(DateOfBirth.builder()
+          .day(27)
+          .month(5)
+          .year(1978)
+          .build()
+        )
+        .settlementCurrency("USD")
+        .settlementBankAccount(BankAccountType.CORPORATE)
+        .maxTransactionAmount(1)
+        .mcc(7399)
+        .url("http://sample-entity.com")
+        .annualCardVolume(100)
+        .build()
+    )
+    .build()
+);
+
+```
 > Example Response:
 
 ```json
@@ -1760,20 +2038,21 @@ $identity = $identity->save();
 	    "tags": {
 	        "key": "value"
 	    }, 
-	    "created_at": "2016-06-02T22:43:25.52Z", 
-	    "updated_at": "2016-06-02T22:43:25.52Z", 
+	    "created_at": "2016-06-05T22:57:03.47Z", 
+	    "updated_at": "2016-06-05T22:57:03.47Z", 
 	    "entity": {
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
 	        "first_name": "dwayne", 
 	        "last_name": "Sunkhronos", 
 	        "amex_mid": null, 
+	        "title": null, 
 	        "dob": {
 	            "year": 1978, 
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "default_statement_descriptor": "Gold's Gym", 
+	        "default_statement_descriptor": "Pollos Hermanos", 
 	        "business_tax_id_provided": true, 
 	        "business_address": {
 	            "city": "San Mateo", 
@@ -1783,10 +2062,10 @@ $identity = $identity->save();
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "doing_business_as": "Gold's Gym", 
+	        "doing_business_as": "Pollos Hermanos", 
 	        "phone": "1234567890", 
 	        "discover_mid": null, 
-	        "url": "www.Gold'sGym.com", 
+	        "url": "www.PollosHermanos.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -1795,38 +2074,38 @@ $identity = $identity->save();
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "Gold's Gym", 
+	        "business_name": "Pollos Hermanos", 
 	        "tax_id_provided": true, 
 	        "email": "user@example.org", 
 	        "short_business_name": null
 	    }, 
 	    "_links": {
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/authorizations"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/authorizations"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof"
 	        }, 
 	        "settlements": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/settlements"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/settlements"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/payment_instruments"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/payment_instruments"
 	        }, 
 	        "disputes": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/disputes"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/disputes"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/verifications"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/verifications"
 	        }, 
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/transfers"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/transfers"
 	        }, 
 	        "underwriting": {
-	            "href": "https://api-staging.finix.io/identities/IDmDq5VJgDhSurQxrM2sJoqD/merchants"
+	            "href": "https://api-staging.finix.io/identities/IDgjCAM3iEYELUG4rTwM6Bof/merchants"
 	        }
 	    }, 
-	    "id": "IDmDq5VJgDhSurQxrM2sJoqD"
+	    "id": "IDgjCAM3iEYELUG4rTwM6Bof"
 	}
 ```
 
@@ -1872,22 +2151,29 @@ year | *string*, **required** | Year field of the company reprentative's date of
 ## Retrieve a Identity
 ```shell
 
-curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF \
+curl https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
+$identity = Identity::retrieve('IDeVSYLXEjpQu3i61phpmAcg');
+```
+```java
+
+import io.finix.payments.processing.client.model.Identity;
+
+Identity identity = client.identitiesClient().fetch("IDeVSYLXEjpQu3i61phpmAcg");
+
 ```
 > Example Response:
 
@@ -1897,20 +2183,21 @@ $identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
 	    "tags": {
 	        "key": "value"
 	    }, 
-	    "created_at": "2016-06-02T22:43:24.56Z", 
-	    "updated_at": "2016-06-02T22:43:24.56Z", 
+	    "created_at": "2016-06-05T22:57:01.92Z", 
+	    "updated_at": "2016-06-05T22:57:01.92Z", 
 	    "entity": {
 	        "business_type": "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone": "+1 (408) 756-4497", 
 	        "first_name": "dwayne", 
 	        "last_name": "Sunkhronos", 
 	        "amex_mid": null, 
+	        "title": null, 
 	        "dob": {
 	            "year": 1978, 
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "default_statement_descriptor": "Gold's Gym", 
+	        "default_statement_descriptor": "Golds Gym", 
 	        "business_tax_id_provided": true, 
 	        "business_address": {
 	            "city": "San Mateo", 
@@ -1920,10 +2207,10 @@ $identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "doing_business_as": "Gold's Gym", 
+	        "doing_business_as": "Golds Gym", 
 	        "phone": "1234567890", 
 	        "discover_mid": null, 
-	        "url": "www.Gold'sGym.com", 
+	        "url": "www.GoldsGym.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -1932,38 +2219,38 @@ $identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "Gold's Gym", 
+	        "business_name": "Golds Gym", 
 	        "tax_id_provided": true, 
 	        "email": "user@example.org", 
 	        "short_business_name": null
 	    }, 
 	    "_links": {
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/authorizations"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/authorizations"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "settlements": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/settlements"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/settlements"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/payment_instruments"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/payment_instruments"
 	        }, 
 	        "disputes": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/disputes"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/disputes"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/verifications"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/verifications"
 	        }, 
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/transfers"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/transfers"
 	        }, 
 	        "underwriting": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/merchants"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/merchants"
 	        }
 	    }, 
-	    "id": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "id": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -1981,13 +2268,13 @@ identity_id | ID of the Identity
 
 ```shell
 
-curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/merchants \
+curl https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"processor\": \"DUMMY_V1\"
-	}"
+	    "processor": "DUMMY_V1"
+	}'
 
 
 ```
@@ -1995,18 +2282,25 @@ curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/merchants \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
+$identity = Identity::retrieve('IDeVSYLXEjpQu3i61phpmAcg');
 
 $merchant = $identity->provisionMerchantOn(
 	array(
 	    "processor"=> "DUMMY_V1"
 	));
+```
+```java
+
+import io.finix.payments.processing.client.model.Merchant;
+
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().processor("DUMMY_V1").build());
+
 ```
 
 > Example Response:
@@ -2014,31 +2308,31 @@ $merchant = $identity->provisionMerchantOn(
 ```json
 
 	{
-	    "created_at": "2016-06-02T22:43:36.10Z", 
-	    "updated_at": "2016-06-02T22:43:36.10Z", 
-	    "id": "MUnsRFnkNjTzDrYZ9GsFu8nk", 
+	    "created_at": "2016-06-05T22:57:14.97Z", 
+	    "updated_at": "2016-06-05T22:57:14.97Z", 
+	    "id": "MUeAWuBZa8vUtQUCpBXpZDcd", 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/merchants/MUnsRFnkNjTzDrYZ9GsFu8nk"
+	            "href": "https://api-staging.finix.io/merchants/MUeAWuBZa8vUtQUCpBXpZDcd"
 	        }, 
 	        "merchant_profile": {
-	            "href": "https://api-staging.finix.io/merchant_profiles/MPgXyBjtqhZXPUtbX4vpqiNG"
+	            "href": "https://api-staging.finix.io/merchant_profiles/MPid2GHckexaQotpgUSzNwwp"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/merchants/MUnsRFnkNjTzDrYZ9GsFu8nk/verifications"
+	            "href": "https://api-staging.finix.io/merchants/MUeAWuBZa8vUtQUCpBXpZDcd/verifications"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "verification": {
-	            "href": "https://api-staging.finix.io/verifications/VIwZBfx4tRWXwkV2asE6n7Fz"
+	            "href": "https://api-staging.finix.io/verifications/VI6rgh8i7gTpq1AxrNRQ3x7t"
 	        }
 	    }, 
-	    "verification": "VIwZBfx4tRWXwkV2asE6n7Fz", 
+	    "verification": "VI6rgh8i7gTpq1AxrNRQ3x7t", 
 	    "underwriting_state": "PROVISIONING", 
-	    "merchant_profile": "MPgXyBjtqhZXPUtbX4vpqiNG", 
+	    "merchant_profile": "MPid2GHckexaQotpgUSzNwwp", 
 	    "processor": "DUMMY_V1", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -2069,33 +2363,44 @@ Identities (merchants) to whom you wish to pay out must be underwritten as per K
 ```shell
 
 
-curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/verifications \
+curl https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"merchant\": null, 
-	    \"instrument\": null, 
-	    \"processor\": \"DUMMY_V1\", 
-	    \"identity\": null
-	}"
+	    "merchant": null, 
+	    "instrument": null, 
+	    "processor": "DUMMY_V1", 
+	    "identity": null
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
+$identity = Identity::retrieve('IDeVSYLXEjpQu3i61phpmAcg');
 $identity_verification = $identity->verifyOn(
 	array(
 	    "processor"=> "DUMMY_V1"
 	));
+```
+```java
+
+import io.finix.payments.processing.client.model.Verification;
+
+Verification verification = identity.verifyOn(
+  Verification.builder()
+    .processor("DUMMY_V1")
+    .build()
+);
+
 ```
 > Example Response:
 
@@ -2103,24 +2408,24 @@ $identity_verification = $identity->verifyOn(
 
 	{
 	    "tags": {}, 
-	    "created_at": "2016-06-02T22:43:37.64Z", 
+	    "created_at": "2016-06-05T22:57:16.63Z", 
 	    "messages": [], 
-	    "updated_at": "2016-06-02T22:43:37.67Z", 
-	    "id": "VI3vea6eKdRhoaeXAAmf86Q1", 
+	    "updated_at": "2016-06-05T22:57:16.66Z", 
+	    "id": "VItwb6F6coPggxCHuuf9avP8", 
 	    "instrument": null, 
 	    "state": "PENDING", 
 	    "underwritten_merchant": null, 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/verifications/VI3vea6eKdRhoaeXAAmf86Q1"
+	            "href": "https://api-staging.finix.io/verifications/VItwb6F6coPggxCHuuf9avP8"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
-	    "external_trace_id": "28b097f1-1ac4-469a-8edb-7fd6f949de99", 
+	    "external_trace_id": "2512e759-d604-49b0-a9d8-4dc352dad5c3", 
 	    "processor": "DUMMY_V1", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -2148,22 +2453,29 @@ processor | *string*, **required** | Service used for verifying the Identity, pl
 ## Retrieve an Identity Verification
 ```shell
 
-curl https://api-staging.finix.io/verifications/VI3vea6eKdRhoaeXAAmf86Q1 \
+curl https://api-staging.finix.io/verifications/VItwb6F6coPggxCHuuf9avP8 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Verification;
 
-$verification = Verification::retrieve('VI3vea6eKdRhoaeXAAmf86Q1');
+$verification = Verification::retrieve('VItwb6F6coPggxCHuuf9avP8');
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Verification;
+
+Verification verification = client.verificationsClient().fetch("VItwb6F6coPggxCHuuf9avP8");
 
 ```
 
@@ -2173,24 +2485,24 @@ $verification = Verification::retrieve('VI3vea6eKdRhoaeXAAmf86Q1');
 
 	{
 	    "tags": {}, 
-	    "created_at": "2016-06-02T22:43:37.53Z", 
+	    "created_at": "2016-06-05T22:57:16.51Z", 
 	    "messages": [], 
-	    "updated_at": "2016-06-02T22:43:37.53Z", 
-	    "id": "VI3vea6eKdRhoaeXAAmf86Q1", 
+	    "updated_at": "2016-06-05T22:57:16.51Z", 
+	    "id": "VItwb6F6coPggxCHuuf9avP8", 
 	    "instrument": null, 
 	    "state": "SUCCEEDED", 
 	    "underwritten_merchant": null, 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/verifications/VI3vea6eKdRhoaeXAAmf86Q1"
+	            "href": "https://api-staging.finix.io/verifications/VItwb6F6coPggxCHuuf9avP8"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
-	    "external_trace_id": "28b097f1-1ac4-469a-8edb-7fd6f949de99", 
+	    "external_trace_id": "2512e759-d604-49b0-a9d8-4dc352dad5c3", 
 	    "processor": "DUMMY_V1", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -2211,33 +2523,45 @@ A Settlement resource represents a collection of Transfers that are to be paid o
 ## Create a New Settlement
 ```shell
 
-curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/settlements \
+curl https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/settlements \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"currency\": \"USD\", 
-	    \"processor\": \"DUMMY_V1\"
-	}"
+	    "currency": "USD", 
+	    "processor": "DUMMY_V1"
+	}'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Identity;
 use Finix\Resources\Settlement;
 
-$identity = Identity::retrieve('IDAyTLs4vrJDCMNp6BFHAGF');
+$identity = Identity::retrieve('IDeVSYLXEjpQu3i61phpmAcg');
 $settlement = $identity->createSettlement(
 	array(
 	    "currency"=> "USD", 
 	    "processor"=> "DUMMY_V1"
 	));
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Settlement;
+
+Settlement settlement = identity.createSettlement(
+  Settlement.builder()
+    .processor("DUMMY_V1")
+    .currency("USD")
+    .build()
+)
 
 ```
 
@@ -2250,24 +2574,24 @@ $settlement = $identity->createSettlement(
 	    "total_amount": 888988, 
 	    "tags": {}, 
 	    "transfer": null, 
-	    "created_at": "2016-06-02T22:46:18.05Z", 
-	    "updated_at": "2016-06-02T22:46:18.06Z", 
+	    "created_at": "2016-06-05T22:59:58.64Z", 
+	    "updated_at": "2016-06-05T22:59:58.65Z", 
 	    "processor": "DUMMY_V1", 
 	    "currency": "USD", 
 	    "_links": {
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/settlements/ST6em979P6RerKZAqxNMJTcb/transfers"
+	            "href": "https://api-staging.finix.io/settlements/STw6kgajsRAqjmhNVUPdmpN3/transfers"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/settlements/ST6em979P6RerKZAqxNMJTcb"
+	            "href": "https://api-staging.finix.io/settlements/STw6kgajsRAqjmhNVUPdmpN3"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
 	    "total_fee": 0, 
-	    "id": "ST6em979P6RerKZAqxNMJTcb", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "id": "STw6kgajsRAqjmhNVUPdmpN3", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -2288,22 +2612,29 @@ currency | *integer*, **required** | The currency for the settlement. | USD
 ```shell
 
 
-curl https://api-staging.finix.io/settlements/ST6em979P6RerKZAqxNMJTcb \
+curl https://api-staging.finix.io/settlements/STw6kgajsRAqjmhNVUPdmpN3 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Settlement;
 
-$settlement = Settlement::retrieve('ST6em979P6RerKZAqxNMJTcb');
+$settlement = Settlement::retrieve('STw6kgajsRAqjmhNVUPdmpN3');
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Settlement;
+
+Settlement settlement = client.settlementsClient().fetch("STw6kgajsRAqjmhNVUPdmpN3");
 
 ```
 > Example Response:
@@ -2314,24 +2645,24 @@ $settlement = Settlement::retrieve('ST6em979P6RerKZAqxNMJTcb');
 	    "total_amount": 888988, 
 	    "tags": {}, 
 	    "transfer": null, 
-	    "created_at": "2016-06-02T22:46:17.94Z", 
-	    "updated_at": "2016-06-02T22:46:17.94Z", 
+	    "created_at": "2016-06-05T22:59:58.52Z", 
+	    "updated_at": "2016-06-05T22:59:58.52Z", 
 	    "processor": "DUMMY_V1", 
 	    "currency": "USD", 
 	    "_links": {
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/settlements/ST6em979P6RerKZAqxNMJTcb/transfers"
+	            "href": "https://api-staging.finix.io/settlements/STw6kgajsRAqjmhNVUPdmpN3/transfers"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/settlements/ST6em979P6RerKZAqxNMJTcb"
+	            "href": "https://api-staging.finix.io/settlements/STw6kgajsRAqjmhNVUPdmpN3"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
 	    "total_fee": 0, 
-	    "id": "ST6em979P6RerKZAqxNMJTcb", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "id": "STw6kgajsRAqjmhNVUPdmpN3", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -2358,16 +2689,16 @@ A Transfer resource represents any omnidirectional flow of funds. Transfers can 
 
 curl https://api-staging.finix.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"fee\": 10, 
-	    \"currency\": \"USD\", 
-	    \"merchant_identity\": \"IDAyTLs4vrJDCMNp6BFHAGF\", 
-	    \"source\": \"PI5zCmfsnrvhVvPX9h14r3GJ\", 
-	    \"amount\": 100, 
-	    \"processor\": \"DUMMY_V1\"
-	}"
+	    "fee": 10, 
+	    "currency": "USD", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6", 
+	    "amount": 100, 
+	    "processor": "DUMMY_V1"
+	}'
 
 
 ```
@@ -2375,7 +2706,7 @@ curl https://api-staging.finix.io/transfers \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -2385,12 +2716,31 @@ $debit = new Transfer(
 	array(
 	    "fee"=> 10, 
 	    "currency"=> "USD", 
-	    "merchant_identity"=> "IDAyTLs4vrJDCMNp6BFHAGF", 
-	    "source"=> "PI5zCmfsnrvhVvPX9h14r3GJ", 
+	    "merchant_identity"=> "IDeVSYLXEjpQu3i61phpmAcg", 
+	    "source"=> "PIntahNnMqaxdDnwkC5oYrb6", 
 	    "amount"=> 100, 
 	    "processor"=> "DUMMY_V1"
 	));
 $debit = $debit->save();
+```
+```java
+
+import io.finix.payments.processing.client.model.Transfer;
+
+Map<String, String> tags = new HashMap<>();
+tags.put("name", "sample-tag");
+
+Transfer transfer = client.transfersClient().save(
+    Transfer.builder()
+      .merchantIdentity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .source("PIi98CoYWpQZi8w7ZimJxuJ")
+      .amount(888888)
+      .currency("USD")
+      .tags(tags)
+      .processor("DUMMY_V1")
+      .build()
+);
+
 ```
 
 
@@ -2399,44 +2749,44 @@ $debit = $debit->save();
 ```json
 
 	{
-	    "application": "APrRQxKrRfkC4MkL3Qa3qEW1", 
-	    "destination": "PIrpGUd5TDf8dKDPFr9bfgMH", 
+	    "application": "AP7v8pfY36AzsGMdWB2wB37j", 
+	    "destination": "PIaZMcu221Whh9tBgEtjZ7Ld", 
 	    "state": "PENDING", 
-	    "updated_at": "2016-06-02T22:43:40.59Z", 
-	    "created_at": "2016-06-02T22:43:40.46Z", 
+	    "updated_at": "2016-06-05T22:57:19.71Z", 
+	    "created_at": "2016-06-05T22:57:19.55Z", 
 	    "tags": {}, 
-	    "trace_id": "f75403f8-7174-4dd4-87b1-ed2e5400ace4", 
-	    "statement_descriptor": "FNX*GOLD'S GYM", 
+	    "trace_id": "c76addd8-95e1-40d6-87a4-f9629ae4c084", 
+	    "statement_descriptor": "FNX*GOLDS GYM", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "fee": 10, 
 	    "_links": {
 	        "reversals": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/reversals"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/reversals"
 	        }, 
 	        "merchant_identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt"
 	        }, 
 	        "destination": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PIrpGUd5TDf8dKDPFr9bfgMH"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIaZMcu221Whh9tBgEtjZ7Ld"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/payment_instruments"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/payment_instruments"
 	        }, 
 	        "source": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6"
 	        }, 
 	        "disputes": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/disputes"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/disputes"
 	        }
 	    }, 
-	    "source": "PI5zCmfsnrvhVvPX9h14r3GJ", 
-	    "merchant_identity": "IDAyTLs4vrJDCMNp6BFHAGF", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
 	    "type": "DEBIT", 
-	    "id": "TRbfrkiuuCEd71qFuMMkBbvu"
+	    "id": "TR6it2JUNoFd8faSkqYzyEGt"
 	}
 ```
 
@@ -2450,8 +2800,8 @@ A Transfer consisting of obtaining (charging) money from a card (i.e. debit).
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
-source | *string*, **required** | The Payment Instrument to debited. | PI5zCmfsnrvhVvPX9h14r3GJ
-merchant_identity | *string*, **required** | UID. | IDAyTLs4vrJDCMNp6BFHAGF
+source | *string*, **required** | The Payment Instrument to debited. | PIntahNnMqaxdDnwkC5oYrb6
+merchant_identity | *string*, **required** | UID. | IDeVSYLXEjpQu3i61phpmAcg
 amount | *integer*, **required** | The amount of the debit in cents. | 100
 fee | *integer*, **optional** | The amount of the transaction you would like to collect as your fee. Must be less than or equal to the amount | 100
 statement_descriptor | *string*, **required** | Text that will appear on the buyer's statement. Must be 18 characters or less. | Bob's Burgers
@@ -2460,28 +2810,35 @@ processor | *string*, **required** | Processor used for underwriting the Identit
 ## Refund a Debit
 ```shell
 
-curl https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/reversals \
+curl https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/reversals \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d  "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d  '
 	  {
-	  \"refund_amount\" : 100
-  	}		
-	"
+	  "refund_amount" : 100
+  	}
+	'
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Transfer;
 
-$debit = Transfer::retrieve('TRbfrkiuuCEd71qFuMMkBbvu');
+$debit = Transfer::retrieve('TR6it2JUNoFd8faSkqYzyEGt');
 $refund = $debit->reverse(50);
+```
+```java
+
+import io.finix.payments.processing.client.model.Refund;
+
+Refund refund = transfer.reverse(100L);
+
 ```
 
 
@@ -2490,38 +2847,38 @@ $refund = $debit->reverse(50);
 ```json
 
 	{
-	    "application": "APrRQxKrRfkC4MkL3Qa3qEW1", 
-	    "destination": "PI5zCmfsnrvhVvPX9h14r3GJ", 
+	    "application": "AP7v8pfY36AzsGMdWB2wB37j", 
+	    "destination": "PIntahNnMqaxdDnwkC5oYrb6", 
 	    "state": "PENDING", 
-	    "updated_at": "2016-06-02T22:45:13.76Z", 
-	    "created_at": "2016-06-02T22:45:13.64Z", 
+	    "updated_at": "2016-06-05T22:58:53.27Z", 
+	    "created_at": "2016-06-05T22:58:53.13Z", 
 	    "tags": {}, 
-	    "trace_id": "98028e8a-2da8-4627-adf3-1bc328174698", 
-	    "statement_descriptor": "FNX*GOLD'S GYM", 
+	    "trace_id": "bd0de806-cacc-466c-9ef0-a4df3e0ec05a", 
+	    "statement_descriptor": "FNX*GOLDS GYM", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "fee": 0, 
 	    "_links": {
 	        "merchant_identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/transfers/TRuSFU37qwp3YD4aYKA9V9X8"
+	            "href": "https://api-staging.finix.io/transfers/TRat3P2xTvZA56LjLMhXakhU"
 	        }, 
 	        "destination": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/transfers/TRuSFU37qwp3YD4aYKA9V9X8/payment_instruments"
+	            "href": "https://api-staging.finix.io/transfers/TRat3P2xTvZA56LjLMhXakhU/payment_instruments"
 	        }, 
 	        "parent": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt"
 	        }
 	    }, 
-	    "source": "PIrpGUd5TDf8dKDPFr9bfgMH", 
-	    "merchant_identity": "IDAyTLs4vrJDCMNp6BFHAGF", 
+	    "source": "PIaZMcu221Whh9tBgEtjZ7Ld", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
 	    "type": "REVERSAL", 
-	    "id": "TRuSFU37qwp3YD4aYKA9V9X8"
+	    "id": "TRat3P2xTvZA56LjLMhXakhU"
 	}
 ```
 
@@ -2547,9 +2904,9 @@ refund_amount | *integer*, **required** | The amount of the refund in cents. Mus
 ## Retrieve a Transfer
 ```shell
 
-curl https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu \
+curl https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a
 
 
 ```
@@ -2557,15 +2914,22 @@ curl https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Transfer;
 
-$transfer = Transfer::retrieve('TRbfrkiuuCEd71qFuMMkBbvu');
+$transfer = Transfer::retrieve('TR6it2JUNoFd8faSkqYzyEGt');
 
 
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Transfer;
+
+Transfer transfer = client.transfersClient().fetch("TR6it2JUNoFd8faSkqYzyEGt");
 
 ```
 > Example Response:
@@ -2573,44 +2937,44 @@ $transfer = Transfer::retrieve('TRbfrkiuuCEd71qFuMMkBbvu');
 ```json
 
 	{
-	    "application": "APrRQxKrRfkC4MkL3Qa3qEW1", 
-	    "destination": "PIrpGUd5TDf8dKDPFr9bfgMH", 
+	    "application": "AP7v8pfY36AzsGMdWB2wB37j", 
+	    "destination": "PIaZMcu221Whh9tBgEtjZ7Ld", 
 	    "state": "SUCCEEDED", 
-	    "updated_at": "2016-06-02T22:43:40.32Z", 
-	    "created_at": "2016-06-02T22:43:40.32Z", 
+	    "updated_at": "2016-06-05T22:57:19.39Z", 
+	    "created_at": "2016-06-05T22:57:19.39Z", 
 	    "tags": {}, 
-	    "trace_id": "f75403f8-7174-4dd4-87b1-ed2e5400ace4", 
-	    "statement_descriptor": "FNX*GOLD'S GYM", 
+	    "trace_id": "c76addd8-95e1-40d6-87a4-f9629ae4c084", 
+	    "statement_descriptor": "FNX*GOLDS GYM", 
 	    "currency": "USD", 
 	    "amount": 100, 
 	    "fee": 10, 
 	    "_links": {
 	        "reversals": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/reversals"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/reversals"
 	        }, 
 	        "merchant_identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt"
 	        }, 
 	        "destination": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PIrpGUd5TDf8dKDPFr9bfgMH"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIaZMcu221Whh9tBgEtjZ7Ld"
 	        }, 
 	        "payment_instruments": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/payment_instruments"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/payment_instruments"
 	        }, 
 	        "source": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6"
 	        }, 
 	        "disputes": {
-	            "href": "https://api-staging.finix.io/transfers/TRbfrkiuuCEd71qFuMMkBbvu/disputes"
+	            "href": "https://api-staging.finix.io/transfers/TR6it2JUNoFd8faSkqYzyEGt/disputes"
 	        }
 	    }, 
-	    "source": "PI5zCmfsnrvhVvPX9h14r3GJ", 
-	    "merchant_identity": "IDAyTLs4vrJDCMNp6BFHAGF", 
+	    "source": "PIntahNnMqaxdDnwkC5oYrb6", 
+	    "merchant_identity": "IDeVSYLXEjpQu3i61phpmAcg", 
 	    "type": "DEBIT", 
-	    "id": "TRbfrkiuuCEd71qFuMMkBbvu"
+	    "id": "TR6it2JUNoFd8faSkqYzyEGt"
 	}
 ```
 
@@ -2633,19 +2997,19 @@ Webhooks allow you to build or set up integrations which subscribe to certain ev
 
 curl https://api-staging.finix.io/webhooks \
     -H "Content-Type: application/vnd.json+api" \
-    -u USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	            {
-	            \"url\" : \"http://requestb.in/vts8mpvt\"
+	            "url" : "http://requestb.in/vts8mpvt"
 	            }
-	        "
+	        '
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -2657,22 +3021,34 @@ $webhook = $webhook->save();
 
 
 ```
+```java
+
+import io.finix.payments.processing.client.model.Webhook;
+
+Webhook webhook = client.webhookClient().save(
+    Webhook.builder()
+      .url("https://tools.ietf.org/html/rfc2606#section-3")
+      .build()
+);
+
+
+```
 > Example Response:
 
 ```json
 
 	{
 	    "url": "http://requestb.in/vts8mpvt", 
-	    "created_at": "2016-06-02T22:43:23.84Z", 
+	    "created_at": "2016-06-05T22:57:01.26Z", 
 	    "enabled": true, 
-	    "updated_at": "2016-06-02T22:43:23.84Z", 
-	    "application": "APrRQxKrRfkC4MkL3Qa3qEW1", 
+	    "updated_at": "2016-06-05T22:57:01.26Z", 
+	    "application": "AP7v8pfY36AzsGMdWB2wB37j", 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/webhooks/WHi69PP2ak8gV2g3AAp1n5dL"
+	            "href": "https://api-staging.finix.io/webhooks/WHjkgdTWURxQ3pjojr9nES9x"
 	        }
 	    }, 
-	    "id": "WHi69PP2ak8gV2g3AAp1n5dL"
+	    "id": "WHjkgdTWURxQ3pjojr9nES9x"
 	}
 ```
 
@@ -2693,9 +3069,9 @@ url | *string*, **required** | The HTTP or HTTPS url the callbacks will be made 
 
 
 
-curl https://api-staging.finix.io/webhooks/WHi69PP2ak8gV2g3AAp1n5dL \
+curl https://api-staging.finix.io/webhooks/WHjkgdTWURxQ3pjojr9nES9x \
     -H "Content-Type: application/vnd.json+api" \
-    -u USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab
+    -u USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a
 
 
 ```
@@ -2703,15 +3079,22 @@ curl https://api-staging.finix.io/webhooks/WHi69PP2ak8gV2g3AAp1n5dL \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\Webhook;
 
-$webhook = Webhook::retrieve('WHi69PP2ak8gV2g3AAp1n5dL');
+$webhook = Webhook::retrieve('WHjkgdTWURxQ3pjojr9nES9x');
 
 
+
+```
+```java
+
+import io.finix.payments.processing.client.model.Webhook;
+
+Webhook webhook = client.webhookClient().fetch("WHjkgdTWURxQ3pjojr9nES9x");
 
 ```
 
@@ -2721,16 +3104,16 @@ $webhook = Webhook::retrieve('WHi69PP2ak8gV2g3AAp1n5dL');
 
 	{
 	    "url": "http://requestb.in/vts8mpvt", 
-	    "created_at": "2016-06-02T22:43:23.84Z", 
+	    "created_at": "2016-06-05T22:57:01.26Z", 
 	    "enabled": true, 
-	    "updated_at": "2016-06-02T22:43:23.84Z", 
-	    "application": "APrRQxKrRfkC4MkL3Qa3qEW1", 
+	    "updated_at": "2016-06-05T22:57:01.26Z", 
+	    "application": "AP7v8pfY36AzsGMdWB2wB37j", 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/webhooks/WHi69PP2ak8gV2g3AAp1n5dL"
+	            "href": "https://api-staging.finix.io/webhooks/WHjkgdTWURxQ3pjojr9nES9x"
 	        }
 	    }, 
-	    "id": "WHi69PP2ak8gV2g3AAp1n5dL"
+	    "id": "WHjkgdTWURxQ3pjojr9nES9x"
 	}
 ```
 
@@ -2754,24 +3137,24 @@ A Payment Instrument resource represents either a credit card or bank account. A
 
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"expiration_year\": 2020, 
-	    \"number\": \"4242424242424242\", 
-	    \"expiration_month\": 12, 
-	    \"address\": {
-	        \"city\": \"San Mateo\", 
-	        \"country\": \"USA\", 
-	        \"region\": \"CA\", 
-	        \"line2\": \"Apartment 7\", 
-	        \"line1\": \"741 Douglass St\", 
-	        \"postal_code\": \"94114\"
+	    "expiration_year": 2020, 
+	    "number": "4242424242424242", 
+	    "expiration_month": 12, 
+	    "address": {
+	        "city": "San Mateo", 
+	        "country": "USA", 
+	        "region": "CA", 
+	        "line2": "Apartment 7", 
+	        "line1": "741 Douglass St", 
+	        "postal_code": "94114"
 	    }, 
-	    \"security_code\": \"112\", 
-	    \"type\": \"PAYMENT_CARD\", 
-	    \"identity\": \"IDcq7bJ4vTXn1RxY5v4UMQ3T\"
-	}"
+	    "security_code": "112", 
+	    "type": "PAYMENT_CARD", 
+	    "identity": "IDmFNoDYZeioNCgEyk3kFPV2"
+	}'
 
 
 ```
@@ -2779,7 +3162,7 @@ curl https://api-staging.finix.io/payment_instruments \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -2800,10 +3183,25 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	    "identity"=> "IDmFNoDYZeioNCgEyk3kFPV2"
 	));
 $card = $card->save();
 
+
+```
+```java
+
+import io.finix.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .name("Joe-Doe")
+    .identity("ID572pSyFj71oVExp6XWiGRP")
+    .expirationMonth(12)
+    .expirationYear(2030)
+    .number("4111 1111 1111 1111")
+    .securityCode("231")
+    .build(); 
+paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -2825,7 +3223,7 @@ $card = $card->save();
 	        "line1": "741 Douglass St", 
 	        "postal_code": "94114"
 	    }, 
-	    "updated_at": "2016-06-02T22:43:39.27Z", 
+	    "updated_at": "2016-06-05T22:57:18.28Z", 
 	    "expiration_month": 12, 
 	    "security_code_verification": "UNKNOWN", 
 	    "address_verification": "UNKNOWN", 
@@ -2833,27 +3231,27 @@ $card = $card->save();
 	    "fingerprint": "FPR1034748039", 
 	    "_links": {
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ/authorizations"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6/authorizations"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ/verifications"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6/verifications"
 	        }, 
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ/transfers"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6/transfers"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	            "href": "https://api-staging.finix.io/identities/IDmFNoDYZeioNCgEyk3kFPV2"
 	        }, 
 	        "updates": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI5zCmfsnrvhVvPX9h14r3GJ/updates"
+	            "href": "https://api-staging.finix.io/payment_instruments/PIntahNnMqaxdDnwkC5oYrb6/updates"
 	        }
 	    }, 
-	    "created_at": "2016-06-02T22:43:39.27Z", 
-	    "id": "PI5zCmfsnrvhVvPX9h14r3GJ", 
-	    "identity": "IDcq7bJ4vTXn1RxY5v4UMQ3T"
+	    "created_at": "2016-06-05T22:57:18.28Z", 
+	    "id": "PIntahNnMqaxdDnwkC5oYrb6", 
+	    "identity": "IDmFNoDYZeioNCgEyk3kFPV2"
 	}
 ```
 
@@ -2870,7 +3268,7 @@ Please review our guide on how to tokenize cards via the [tokenization.js librar
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
-identity | *string*, **required** | Identity resource which the card is associated. | IDcq7bJ4vTXn1RxY5v4UMQ3T
+identity | *string*, **required** | Identity resource which the card is associated. | IDmFNoDYZeioNCgEyk3kFPV2
 first_name | *string*, **optional** | Customer's first name on card. | Dwayne
 last_name | *string*, **optional** | Customer's last name on card. | Johnson
 full_name | *string*, **optional** | Customer's full name on card. | Dwayne Johnson
@@ -2890,18 +3288,18 @@ country | *string*, **optional** | Country of the associated card. | USA
 
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
-    -d "
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
+    -d '
 	{
-	    \"account_type\": \"SAVINGS\", 
-	    \"name\": \"Fran Lemke\", 
-	    \"bank_code\": \"123123123\", 
-	    \"country\": \"USA\", 
-	    \"currency\": \"USD\", 
-	    \"account_number\": \"123123123\", 
-	    \"type\": \"BANK_ACCOUNT\", 
-	    \"identity\": \"IDAyTLs4vrJDCMNp6BFHAGF\"
-	}"
+	    "account_type": "SAVINGS", 
+	    "name": "Fran Lemke", 
+	    "bank_code": "123123123", 
+	    "country": "USA", 
+	    "currency": "USD", 
+	    "account_number": "123123123", 
+	    "type": "BANK_ACCOUNT", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
+	}'
 
 
 ```
@@ -2909,7 +3307,7 @@ curl https://api-staging.finix.io/payment_instruments \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
@@ -2924,10 +3322,28 @@ $bank_account = new PaymentInstrument(
 	    "currency"=> "USD", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity"=> "IDeVSYLXEjpQu3i61phpmAcg"
 	));
 $bank_account = $bank_account->save();
 
+
+```
+```java
+
+import io.finix.payments.processing.client.model.BankAccount;
+
+bankAccount = client.bankAccountsClient().save(
+    BankAccount.builder()
+      .name("Joe-Doe")
+      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .accountNumber("84012312415")
+      .bankCode("840123124")
+      .accountType(BankAccountType.SAVINGS)
+      .companyName("company name")
+      .country("USA")
+      .currency("USD")
+      .build()
+);
 
 ```
 > Example Response:
@@ -2940,30 +3356,30 @@ $bank_account = $bank_account->save();
 	    "name": "Fran Lemke", 
 	    "tags": {}, 
 	    "country": "USA", 
-	    "created_at": "2016-06-02T22:43:34.48Z", 
+	    "created_at": "2016-06-05T22:57:13.24Z", 
 	    "bank_code": "123123123", 
-	    "updated_at": "2016-06-02T22:43:34.48Z", 
+	    "updated_at": "2016-06-05T22:57:13.24Z", 
 	    "currency": "USD", 
 	    "_links": {
 	        "transfers": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI2XUFqgEDxT9Q3aUYRcQZTA/transfers"
+	            "href": "https://api-staging.finix.io/payment_instruments/PI7qk1L9ArF6mGJX7vkL5gAz/transfers"
 	        }, 
 	        "self": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI2XUFqgEDxT9Q3aUYRcQZTA"
+	            "href": "https://api-staging.finix.io/payment_instruments/PI7qk1L9ArF6mGJX7vkL5gAz"
 	        }, 
 	        "authorizations": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI2XUFqgEDxT9Q3aUYRcQZTA/authorizations"
+	            "href": "https://api-staging.finix.io/payment_instruments/PI7qk1L9ArF6mGJX7vkL5gAz/authorizations"
 	        }, 
 	        "verifications": {
-	            "href": "https://api-staging.finix.io/payment_instruments/PI2XUFqgEDxT9Q3aUYRcQZTA/verifications"
+	            "href": "https://api-staging.finix.io/payment_instruments/PI7qk1L9ArF6mGJX7vkL5gAz/verifications"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
 	    "fingerprint": "FPR-1215770130", 
-	    "id": "PI2XUFqgEDxT9Q3aUYRcQZTA", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "id": "PI7qk1L9ArF6mGJX7vkL5gAz", 
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -2982,7 +3398,7 @@ Field | Type | Description | Example
 ----- | ---- | ----------- | -------
 account_number | *string*, **required** | Bank account number. | 84012312415
 bank_code | *string*, **required** | Routing number. Specified in FedACH database defined by the US Federal Reserve. | 840123124
-identity | *string*, **required**| Identity resource which the bank account is associated. | IDAyTLs4vrJDCMNp6BFHAGF
+identity | *string*, **required**| Identity resource which the bank account is associated. | IDeVSYLXEjpQu3i61phpmAcg
 account_type | *string*, **required** | Checking or Savings | SAVINGS
 type | *string*, **required** | Type of Payment Instrument. For cards input PAYMENT_CARD. | BANK_ACCOUNT
 currency | *string*, **optional** | Default currency used when settling funds. | USD
@@ -3000,22 +3416,29 @@ company_name | *string*, **optional** | Name of company if the bank account is a
 ```shell
 
 
-curl https://api-staging.finix.io/payment_instruments/IDAyTLs4vrJDCMNp6BFHAGF/verifications \
+curl https://api-staging.finix.io/payment_instruments/IDeVSYLXEjpQu3i61phpmAcg/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
 use Finix\Resources\PaymentInstrument;
 
-$card = PaymentInstrument::retrieve('DItY913WtRH1hU2oakgf6QRw');
+$card = PaymentInstrument::retrieve('DIvd18AYSNA3EzyyMbGb5gpg');
+
+```
+```java
+
+import io.finix.payments.processing.client.model.BankAccount;
+
+BankAccount bankAccount = client.bankAccountsClient().fetch("DIvd18AYSNA3EzyyMbGb5gpg")
 
 ```
 > Example Response:
@@ -3024,24 +3447,24 @@ $card = PaymentInstrument::retrieve('DItY913WtRH1hU2oakgf6QRw');
 
 	{
 	    "tags": {}, 
-	    "created_at": "2016-06-02T22:43:37.64Z", 
+	    "created_at": "2016-06-05T22:57:16.63Z", 
 	    "messages": [], 
-	    "updated_at": "2016-06-02T22:43:37.67Z", 
-	    "id": "VI3vea6eKdRhoaeXAAmf86Q1", 
+	    "updated_at": "2016-06-05T22:57:16.66Z", 
+	    "id": "VItwb6F6coPggxCHuuf9avP8", 
 	    "instrument": null, 
 	    "state": "PENDING", 
 	    "underwritten_merchant": null, 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/verifications/VI3vea6eKdRhoaeXAAmf86Q1"
+	            "href": "https://api-staging.finix.io/verifications/VItwb6F6coPggxCHuuf9avP8"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
-	    "external_trace_id": "28b097f1-1ac4-469a-8edb-7fd6f949de99", 
+	    "external_trace_id": "2512e759-d604-49b0-a9d8-4dc352dad5c3", 
 	    "processor": "DUMMY_V1", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
@@ -3071,15 +3494,15 @@ processor | *string*, **required** | Service used for verifying the Identity, pl
 ```shell
 
 
-curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/verifications \
+curl https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USoBmxXjyNWJzEufDtXdbuV8:fe398ca8-bf15-4aa1-bc36-0ff448c77bab \
+    -u  USqyhyT9n9QeeLbh63kYTWBN:7e5c303e-c9c4-4899-9274-3962786d084a \
     -d "
 	{
-	    \"merchant\": null, 
-	    \"instrument\": null, 
-	    \"processor\": \"DUMMY_V1\", 
-	    \"identity\": null
+	    "merchant": null, 
+	    "instrument": null, 
+	    "processor": "DUMMY_V1", 
+	    "identity": null
 	}"
 
 ```
@@ -3087,10 +3510,21 @@ curl https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF/verificatio
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Finix/Settings.php');
-Finix\Settings::configure('https://api-staging.finix.io', 'USoBmxXjyNWJzEufDtXdbuV8', 'fe398ca8-bf15-4aa1-bc36-0ff448c77bab');
+Finix\Settings::configure('https://api-staging.finix.io', 'USqyhyT9n9QeeLbh63kYTWBN', '7e5c303e-c9c4-4899-9274-3962786d084a');
 require(__DIR__ . '/src/Finix/Bootstrap.php');
 Finix\Bootstrap::init();
 
+
+```
+```java
+
+import io.finix.payments.processing.client.model.BankAccount;
+
+client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
+  .forEachRemaining(baPage -> {
+    Collection<BankAccount> bankAccounts = baPage.getContent();
+    //do something
+  });
 
 ```
 > Example Response:
@@ -3099,24 +3533,24 @@ Finix\Bootstrap::init();
 
 	{
 	    "tags": {}, 
-	    "created_at": "2016-06-02T22:43:37.64Z", 
+	    "created_at": "2016-06-05T22:57:16.63Z", 
 	    "messages": [], 
-	    "updated_at": "2016-06-02T22:43:37.67Z", 
-	    "id": "VI3vea6eKdRhoaeXAAmf86Q1", 
+	    "updated_at": "2016-06-05T22:57:16.66Z", 
+	    "id": "VItwb6F6coPggxCHuuf9avP8", 
 	    "instrument": null, 
 	    "state": "PENDING", 
 	    "underwritten_merchant": null, 
 	    "_links": {
 	        "self": {
-	            "href": "https://api-staging.finix.io/verifications/VI3vea6eKdRhoaeXAAmf86Q1"
+	            "href": "https://api-staging.finix.io/verifications/VItwb6F6coPggxCHuuf9avP8"
 	        }, 
 	        "identity": {
-	            "href": "https://api-staging.finix.io/identities/IDAyTLs4vrJDCMNp6BFHAGF"
+	            "href": "https://api-staging.finix.io/identities/IDeVSYLXEjpQu3i61phpmAcg"
 	        }
 	    }, 
-	    "external_trace_id": "28b097f1-1ac4-469a-8edb-7fd6f949de99", 
+	    "external_trace_id": "2512e759-d604-49b0-a9d8-4dc352dad5c3", 
 	    "processor": "DUMMY_V1", 
-	    "identity": "IDAyTLs4vrJDCMNp6BFHAGF"
+	    "identity": "IDeVSYLXEjpQu3i61phpmAcg"
 	}
 ```
 
