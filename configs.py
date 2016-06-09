@@ -16,21 +16,21 @@ partner_configs = [
         'application': None,
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/"
     },
-    {
-        'api_name': "Payline",
-        'api_name_downcase': "payline",
-        'base_url': 'https://api-test.payline.io',
-        'admin_basic_auth_username': 'USkoFNY73WEiP8tYmZtPa6e4',
-        'admin_basic_auth_password': 'e28fe471-5b2c-4f20-9db9-0a3e5fd06110',
-        'admin_encoded_auth': base64.b64encode('USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110'),
-        'basic_auth_username': None,
-        'basic_auth_password': None,
-        'encoded_auth': None,
-        'payment_processor': "DUMMY_V1",
-        'identity_verification_processor': "DUMMY_V1",
-        'application': None,
-        'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/"
-    },
+    # {
+    #     'api_name': "Payline",
+    #     'api_name_downcase': "payline",
+    #     'base_url': 'https://api-test.payline.io',
+    #     'admin_basic_auth_username': 'USkoFNY73WEiP8tYmZtPa6e4',
+    #     'admin_basic_auth_password': 'e28fe471-5b2c-4f20-9db9-0a3e5fd06110',
+    #     'admin_encoded_auth': base64.b64encode('USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110'),
+    #     'basic_auth_username': None,
+    #     'basic_auth_password': None,
+    #     'encoded_auth': None,
+    #     'payment_processor': "DUMMY_V1",
+    #     'identity_verification_processor': "DUMMY_V1",
+    #     'application': None,
+    #     'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/"
+    # },
     # {
     #     'api_name': "Payscout",
     #     'api_name_downcase': "payscout",
@@ -56,7 +56,7 @@ snippets_by_resource = {
         "getting_started",
         "create_merchant_identity",
         "create_bank_account",
-        "perform_identity_verification",
+        # "perform_identity_verification",
         "provision_merchant",
         "create_buyer_identity",
         "create_card",
@@ -89,15 +89,15 @@ snippets_by_resource = {
         "fetch_identity",
         # # "list_identities",
         # # "list_merchants",
-        "underwrite_identity"
+        "provision_merchant"
     ],
 
-    "identity_verifications": [
-        "definition",
-        "create_identity_verification",
-        "fetch_identity_verification",
-        # "list_identity_verifications"
-    ],
+    # "identity_verifications": [
+    #     "definition",
+    #     "create_identity_verification",
+    #     "fetch_identity_verification",
+    #     # "list_identity_verifications"
+    # ],
 
     "settlements": [
         "definition",
@@ -125,8 +125,8 @@ snippets_by_resource = {
         "definition",
         "create_card",
         "create_bank_account",
-        "fetch_payment_instrument",
-        "list_payment_instruments"
+        # "fetch_payment_instrument",
+        # "list_payment_instruments"
     ],
     }
 
@@ -137,7 +137,7 @@ resource_ordering = [
     "authorizations",
     "disputes",
     "identities",
-    "identity_verifications",
+    # "identity_verifications",
     "settlements",
     "transfers",
     "webhooks",
