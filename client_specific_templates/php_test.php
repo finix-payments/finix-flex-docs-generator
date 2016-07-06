@@ -7,38 +7,10 @@ $identity = new Identity(
 	        "key"=> "value"
 	    ), 
 	    "entity"=> array(
-	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
-	        "business_phone"=> "+1 (408) 756-4497", 
-	        "first_name"=> "dwayne", 
 	        "last_name"=> "Sunkhronos", 
-	        "phone"=> "1234567890", 
-	        "dob"=> array(
-	            "year"=> 1978, 
-	            "day"=> 27, 
-	            "month"=> 6
-	        ), 
-	        "mcc"=> "0742", 
-	        "business_address"=> array(
-	            "city"=> "San Mateo", 
-	            "country"=> "USA", 
-	            "region"=> "CA", 
-	            "line2"=> "Apartment 8", 
-	            "line1"=> "741 Douglass St", 
-	            "postal_code"=> "94114"
-	        ), 
+	        "amex_mid"=> "12345678910", 
 	        "max_transaction_amount"=> 120000, 
-	        "principal_percentage_ownership"=> 100, 
-	        "doing_business_as"=> "Prestige World Wide", 
-	        "annual_card_volume"=> 12000000, 
-	        "default_statement_descriptor"=> "Prestige World Wide", 
-	        "url"=> "www.PrestigeWorldWide.com", 
-	        "business_name"=> "Prestige World Wide", 
-	        "incorporation_date"=> array(
-	            "year"=> 1978, 
-	            "day"=> 27, 
-	            "month"=> 6
-	        ), 
-	        "business_tax_id"=> "123456789", 
+	        "default_statement_descriptor"=> "Pawny City Hall", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -47,8 +19,38 @@ $identity = new Identity(
 	            "line1"=> "741 Douglass St", 
 	            "postal_code"=> "94114"
 	        ), 
+	        "incorporation_date"=> array(
+	            "year"=> 1978, 
+	            "day"=> 27, 
+	            "month"=> 6
+	        ), 
+	        "business_address"=> array(
+	            "city"=> "San Mateo", 
+	            "country"=> "USA", 
+	            "region"=> "CA", 
+	            "line2"=> "Apartment 8", 
+	            "line1"=> "741 Douglass St", 
+	            "postal_code"=> "94114"
+	        ), 
+	        "first_name"=> "dwayne", 
+	        "title"=> "CEO", 
+	        "business_tax_id"=> "123456789", 
+	        "doing_business_as"=> "Pawny City Hall", 
+	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
-	        "tax_id"=> "5779"
+	        "mcc"=> "0742", 
+	        "phone"=> "1234567890", 
+	        "business_name"=> "Pawny City Hall", 
+	        "tax_id"=> "5779", 
+	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
+	        "business_phone"=> "+1 (408) 756-4497", 
+	        "dob"=> array(
+	            "year"=> 1978, 
+	            "day"=> 27, 
+	            "month"=> 6
+	        ), 
+	        "url"=> "www.PawnyCityHall.com", 
+	        "annual_card_volume"=> 12000000
 	    )
 	)
 );
@@ -65,26 +67,25 @@ $bank_account = new PaymentInstrument(
 	    "currency"=> "USD", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd"
+	    "identity"=> "IDmAU6skpdxVpkVxDazo6vt6"
 	));
 $bank_account = $bank_account->save();
 
 
+
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
-$identity_verification = $identity->verifyOn(
-	array(
-	    "processor"=> "DUMMY_V1"
-	));
-use Payline\Resources\Identity;
-
-$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
+$identity = Identity::retrieve('IDmAU6skpdxVpkVxDazo6vt6');
 
 $merchant = $identity->provisionMerchantOn(
-	array(
-	    "processor"=> "DUMMY_V1"
-	));
+	  array(
+	    "tags"=> array(
+	      "key_2"=> "value_2"
+	    )
+	  )
+	);
+
+
 use Payline\Resources\Identity;
 
 $identity = new Identity(
@@ -93,8 +94,18 @@ $identity = new Identity(
 	        "key"=> "value"
 	    ), 
 	    "entity"=> array(
-	        "first_name"=> "Dwayne", 
-	        "last_name"=> "Johnson"
+	        "phone"=> "7145677613", 
+	        "first_name"=> "Jim", 
+	        "last_name"=> "Henderson", 
+	        "email"=> "therock@gmail.com", 
+	        "personal_address"=> array(
+	            "city"=> "San Mateo", 
+	            "country"=> "USA", 
+	            "region"=> "CA", 
+	            "line2"=> "Apartment 7", 
+	            "line1"=> "741 Douglass St", 
+	            "postal_code"=> "94114"
+	        )
 	    )
 	)
 );
@@ -104,6 +115,7 @@ use Payline\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
+	    "name"=> "Fran Sterling", 
 	    "expiration_year"=> 2020, 
 	    "number"=> "4242424242424242", 
 	    "expiration_month"=> 12, 
@@ -117,7 +129,7 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDbq6maJgrm2xriCyRU4TFbh"
+	    "identity"=> "IDtvFQuCqcSbFAxuXdCnBxHo"
 	));
 $card = $card->save();
 
@@ -126,19 +138,17 @@ use Payline\Resources\Transfer;
 
 $debit = new Transfer(
 	array(
-	    "fee"=> 10, 
+	    "merchant_identity"=> "IDmAU6skpdxVpkVxDazo6vt6", 
 	    "currency"=> "USD", 
-	    "merchant_identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd", 
-	    "source"=> "PIcW3ufSNpKKg3N81Kuz14ae", 
-	    "amount"=> 100, 
-	    "processor"=> "DUMMY_V1"
+	    "amount"=> 192863, 
+	    "fee"=> 19286, 
+	    "source"=> "PIacGx85omA5mQZHUw4A8Etz"
 	));
 $debit = $debit->save();
-
 use Payline\Resources\Identity;
 use Payline\Resources\Settlement;
 
-$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
+$identity = Identity::retrieve('IDmAU6skpdxVpkVxDazo6vt6');
 $settlement = $identity->createSettlement(
 	array(
 	    "currency"=> "USD", 
@@ -149,26 +159,26 @@ use Payline\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd", 
+	    "merchant_identity"=> "IDmAU6skpdxVpkVxDazo6vt6", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
 	    "processor"=> "DUMMY_V1", 
-	    "source"=> "PIcW3ufSNpKKg3N81Kuz14ae"
+	    "source"=> "PIacGx85omA5mQZHUw4A8Etz"
 	));
 $authorization = $authorization->save();
 
 use Payline\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AU3SshCjfVV2hR1QABcUJACy');
+$authorization = Authorization::retrieve('AU9WhCbNyF1twgGSSGjduXh2');
 $authorization->capture_amount = 50;
 $authorization = $authorization->capture();
 use Payline\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AU3SshCjfVV2hR1QABcUJACy');
+$authorization = Authorization::retrieve('AU9WhCbNyF1twgGSSGjduXh2');
 
 use Payline\Resources\Dispute;
 
-$dispute = Dispute::retrieve('DIgZqdyHDiMWZo8DPckyKTkw');
+$dispute = Dispute::retrieve('DIqTYMUMHvcjkrYPmU9DggRv');
 
 use Payline\Resources\Identity;
 
@@ -178,8 +188,18 @@ $identity = new Identity(
 	        "key"=> "value"
 	    ), 
 	    "entity"=> array(
-	        "first_name"=> "Dwayne", 
-	        "last_name"=> "Johnson"
+	        "phone"=> "7145677613", 
+	        "first_name"=> "Jim", 
+	        "last_name"=> "Henderson", 
+	        "email"=> "therock@gmail.com", 
+	        "personal_address"=> array(
+	            "city"=> "San Mateo", 
+	            "country"=> "USA", 
+	            "region"=> "CA", 
+	            "line2"=> "Apartment 7", 
+	            "line1"=> "741 Douglass St", 
+	            "postal_code"=> "94114"
+	        )
 	    )
 	)
 );
@@ -193,38 +213,10 @@ $identity = new Identity(
 	        "key"=> "value"
 	    ), 
 	    "entity"=> array(
-	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
-	        "business_phone"=> "+1 (408) 756-4497", 
-	        "first_name"=> "dwayne", 
 	        "last_name"=> "Sunkhronos", 
-	        "phone"=> "1234567890", 
-	        "dob"=> array(
-	            "year"=> 1978, 
-	            "day"=> 27, 
-	            "month"=> 6
-	        ), 
-	        "mcc"=> "0742", 
-	        "business_address"=> array(
-	            "city"=> "San Mateo", 
-	            "country"=> "USA", 
-	            "region"=> "CA", 
-	            "line2"=> "Apartment 8", 
-	            "line1"=> "741 Douglass St", 
-	            "postal_code"=> "94114"
-	        ), 
+	        "amex_mid"=> "12345678910", 
 	        "max_transaction_amount"=> 120000, 
-	        "principal_percentage_ownership"=> 100, 
-	        "doing_business_as"=> "Prestige World Wide", 
-	        "annual_card_volume"=> 12000000, 
-	        "default_statement_descriptor"=> "Prestige World Wide", 
-	        "url"=> "www.PrestigeWorldWide.com", 
-	        "business_name"=> "Prestige World Wide", 
-	        "incorporation_date"=> array(
-	            "year"=> 1978, 
-	            "day"=> 27, 
-	            "month"=> 6
-	        ), 
-	        "business_tax_id"=> "123456789", 
+	        "default_statement_descriptor"=> "Pawny City Hall", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -233,8 +225,38 @@ $identity = new Identity(
 	            "line1"=> "741 Douglass St", 
 	            "postal_code"=> "94114"
 	        ), 
+	        "incorporation_date"=> array(
+	            "year"=> 1978, 
+	            "day"=> 27, 
+	            "month"=> 6
+	        ), 
+	        "business_address"=> array(
+	            "city"=> "San Mateo", 
+	            "country"=> "USA", 
+	            "region"=> "CA", 
+	            "line2"=> "Apartment 8", 
+	            "line1"=> "741 Douglass St", 
+	            "postal_code"=> "94114"
+	        ), 
+	        "first_name"=> "dwayne", 
+	        "title"=> "CEO", 
+	        "business_tax_id"=> "123456789", 
+	        "doing_business_as"=> "Pawny City Hall", 
+	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
-	        "tax_id"=> "5779"
+	        "mcc"=> "0742", 
+	        "phone"=> "1234567890", 
+	        "business_name"=> "Pawny City Hall", 
+	        "tax_id"=> "5779", 
+	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
+	        "business_phone"=> "+1 (408) 756-4497", 
+	        "dob"=> array(
+	            "year"=> 1978, 
+	            "day"=> 27, 
+	            "month"=> 6
+	        ), 
+	        "url"=> "www.PawnyCityHall.com", 
+	        "annual_card_volume"=> 12000000
 	    )
 	)
 );
@@ -242,30 +264,22 @@ $identity = $identity->save();
 
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
+$identity = Identity::retrieve('IDmAU6skpdxVpkVxDazo6vt6');
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
+$identity = Identity::retrieve('IDmAU6skpdxVpkVxDazo6vt6');
 
 $merchant = $identity->provisionMerchantOn(
-	array(
-	    "processor"=> "DUMMY_V1"
-	));
-use Payline\Resources\Identity;
-
-$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
-$identity_verification = $identity->verifyOn(
-	array(
-	    "processor"=> "DUMMY_V1"
-	));
-use Payline\Resources\Verification;
-
-$verification = Verification::retrieve('VI2AhmYSt8FG5b5bDEroNzyb');
-
+	  array(
+	    "tags"=> array(
+	      "key_2"=> "value_2"
+	    )
+	  )
+	);
 use Payline\Resources\Identity;
 use Payline\Resources\Settlement;
 
-$identity = Identity::retrieve('IDviGtLw6GkqoPDtAkJ6KmNd');
+$identity = Identity::retrieve('IDmAU6skpdxVpkVxDazo6vt6');
 $settlement = $identity->createSettlement(
 	array(
 	    "currency"=> "USD", 
@@ -274,27 +288,26 @@ $settlement = $identity->createSettlement(
 
 use Payline\Resources\Settlement;
 
-$settlement = Settlement::retrieve('STuek2CGQjGr4yM7vfoyYjm9');
+$settlement = Settlement::retrieve('STv7ccEXEPybpzKgET44Dt96');
 
 use Payline\Resources\Transfer;
 
 $debit = new Transfer(
 	array(
-	    "fee"=> 10, 
+	    "merchant_identity"=> "IDmAU6skpdxVpkVxDazo6vt6", 
 	    "currency"=> "USD", 
-	    "merchant_identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd", 
-	    "source"=> "PIcW3ufSNpKKg3N81Kuz14ae", 
-	    "amount"=> 100, 
-	    "processor"=> "DUMMY_V1"
+	    "amount"=> 192863, 
+	    "fee"=> 19286, 
+	    "source"=> "PIacGx85omA5mQZHUw4A8Etz"
 	));
 $debit = $debit->save();
 use Payline\Resources\Transfer;
 
-$debit = Transfer::retrieve('TRayKyreDFn7epnPcGFPQvKr');
+$debit = Transfer::retrieve('TRtT8ELXTQCuSv87RcQJ13Uo');
 $refund = $debit->reverse(50);
 use Payline\Resources\Transfer;
 
-$transfer = Transfer::retrieve('TRayKyreDFn7epnPcGFPQvKr');
+$transfer = Transfer::retrieve('TRtT8ELXTQCuSv87RcQJ13Uo');
 
 
 
@@ -307,7 +320,7 @@ $webhook = $webhook->save();
 
 use Payline\Resources\Webhook;
 
-$webhook = Webhook::retrieve('WHa7hLWdQ44kDjbiwVtXpBWt');
+$webhook = Webhook::retrieve('WHhdj5DrgwNwidLTTD3poXai');
 
 
 
@@ -315,6 +328,7 @@ use Payline\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
+	    "name"=> "Fran Sterling", 
 	    "expiration_year"=> 2020, 
 	    "number"=> "4242424242424242", 
 	    "expiration_month"=> 12, 
@@ -328,7 +342,7 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDbq6maJgrm2xriCyRU4TFbh"
+	    "identity"=> "IDtvFQuCqcSbFAxuXdCnBxHo"
 	));
 $card = $card->save();
 
@@ -344,13 +358,8 @@ $bank_account = new PaymentInstrument(
 	    "currency"=> "USD", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "IDviGtLw6GkqoPDtAkJ6KmNd"
+	    "identity"=> "IDmAU6skpdxVpkVxDazo6vt6"
 	));
 $bank_account = $bank_account->save();
-
-
-use Payline\Resources\PaymentInstrument;
-
-$card = PaymentInstrument::retrieve('DIgZqdyHDiMWZo8DPckyKTkw');
 
 

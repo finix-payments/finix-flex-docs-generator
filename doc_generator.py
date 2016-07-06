@@ -83,14 +83,25 @@ def make_all_doc_scenarios():
                 file = snippet_directory_location  + "/sections/" + resource + "/" + snippet + "/response.md"
                 file_ordering.append(file)
 
+    # this is an array of snippet directoris that dont have specific client requests
+    skip_client_scenarios = [
+        snippet_directory_location  + "/sections/webhooks/sample_payloads/curl_request.md",
+        snippet_directory_location  + "/sections/webhooks/sample_payloads/java_request.md",
+        snippet_directory_location  + "/sections/webhooks/sample_payloads/php_request.md",
+        snippet_directory_location  + "/sections/webhooks/sample_payloads/python_request.md",
+        snippet_directory_location  + "/sections/webhooks/sample_payloads/ruby_request.md"
+    ]
 
     with open(outfile, 'a') as outfile:
         outfile.truncate()
         for fname in file_ordering:
-            with open(fname) as infile:
-                for line in infile:
-                    outfile.write(line)
-            outfile.write("\n")
+            if fname not in skip_client_scenarios:
+            # if fname == "/Users/richardserna2/code/very_good/doc-template-builder/sections/webhooks/sample_payloads/curl_request.md":
+            #     import ipdb; ipdb.set_trace()
+                with open(fname) as infile:
+                    for line in infile:
+                        outfile.write(line)
+                outfile.write("\n")
 
 
 # This method just takes all the snippet scenarios for a particular client language
@@ -141,13 +152,14 @@ def build_docs():
         create_branded_markdown_docs(template_variables)
 
     # this generates the Client-library specific version of the snippets template which you can use to test the API calls
-    make_client_specific_scenarios()
-    create_client_specific_templates(template_variables)
+    # make_client_specific_scenarios()
+    # create_client_specific_templates(template_variables)
 
 
 def generate_template_variables(config_values):
     ## create new user and app
     create_user_scenario = create_user(config_values, "ROLE_PARTNER")
+    # print create_user_scenario
     create_app_scenario = create_app(config_values, create_user_scenario["response_id"])
     config_values["application"] = create_app_scenario["response_id"]
 
@@ -162,46 +174,43 @@ def generate_template_variables(config_values):
 
     # FIRST RUN SCENARIOS
     create_webhook_scenario = create_webhook(config_values)
-    create_identity_scenario= create_identity(config_values)
-    create_identity_individual_sole_proprietorship_scenario = create_identity_individual_sole_proprietorship(config_values)
-    create_merchant_identity_scenario = create_identity_individual_sole_proprietorship_scenario
-    create_identity_corporation_scenario = create_identity_corporation(config_values)
-    create_identity_limited_liability_company_scenario = create_identity_limited_liability_company(config_values)
-    create_identity_partnership_scenario = create_identity_partnership(config_values)
-    create_identity_limited_partnership_scenario = create_identity_limited_partnership(config_values)
-    create_identity_general_partnership_scenario = create_identity_general_partnership(config_values)
-    create_identity_association_estate_trust_scenario = create_identity_association_estate_trust(config_values)
-    create_identity_tax_exempt_organization_scenario = create_identity_tax_exempt_organization(config_values)
-    create_identity_international_organization_scenario = create_identity_international_organization(config_values)
-    create_identity_government_agency_scenario = create_identity_government_agency(config_values)
-    # create_identity_joint_venture_scenario = create_identity_joint_venture(config_values)
+    create_identity_individual_sole_proprietorship_scenario = create_merchant_identity(config_values, "INDIVIDUAL_SOLE_PROPRIETORSHIP")
+    create_identity_corporation_scenario = create_merchant_identity(config_values, "CORPORATION")
+    create_identity_limited_liability_company_scenario = create_merchant_identity(config_values, "LIMITED_LIABILITY_COMPANY")
+    create_identity_partnership_scenario = create_merchant_identity(config_values, "PARTNERSHIP")
+    create_identity_limited_partnership_scenario = create_merchant_identity(config_values, "LIMITED_PARTNERSHIP")
+    create_identity_general_partnership_scenario = create_merchant_identity(config_values, "GENERAL_PARTNERSHIP")
+    create_identity_association_estate_trust_scenario = create_merchant_identity(config_values, "ASSOCIATION_ESTATE_TRUST")
+    create_identity_tax_exempt_organization_scenario = create_merchant_identity(config_values, "TAX_EXEMPT_ORGANIZATION")
+    create_identity_international_organization_scenario = create_merchant_identity(config_values, "INTERNATIONAL_ORGANIZATION")
+    create_identity_government_agency_scenario = create_merchant_identity(config_values, "GOVERNMENT_AGENCY")
 
-    create_bank_account_scenario = create_bank_account(config_values, create_identity_scenario["response_id"])
-    create_user_merchant_role_scenario = create_user_merchant_role(config_values, create_identity_scenario["response_id"])
-    underwrite_identity_scenario = underwrite_identity(config_values, create_identity_scenario["response_id"])
-    create_identity_verification_scenario = create_identity_verification(config_values, create_identity_scenario["response_id"])
-    # create_credit_scenario = create_credit(config_values, create_identity_scenario["response_id"], create_bank_account_scenario["response_id"])
+    create_bank_account_scenario = create_bank_account(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
+    create_user_merchant_role_scenario = create_user_merchant_role(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
+    # print create_user_merchant_role_scenario
+    create_identity_verification_scenario = create_identity_verification(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
+    provision_merchant_scenario = provision_merchant(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
 
     create_buyer_identity_scenario = create_buyer_identity(config_values)
     create_card_scenario = create_card(config_values, create_buyer_identity_scenario["response_id"])
-    create_debit_scenario = create_debit(config_values, create_identity_scenario['response_id'], create_card_scenario["response_id"], 100)
-    create_dispute_scenario = create_dispute(config_values, create_identity_scenario['response_id'], create_card_scenario["response_id"])
+    create_debit_scenario = create_debit(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))
+    create_dispute_scenario = create_dispute(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
 
 
     create_refund_scenario = create_refund(config_values, create_debit_scenario['response_id'])
-    create_authorization_scenario = create_authorization(config_values, create_identity_scenario['response_id'], create_card_scenario["response_id"])
+    create_authorization_scenario = create_authorization(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
     capture_authorization_scenario = capture_authorization(config_values, create_authorization_scenario["response_id"])
     fetch_authorization_scenario = fetch_authorization(config_values, create_authorization_scenario["response_id"])
-    create_settlement_scenario = create_settlement(config_values, create_identity_scenario['response_id'])
+    create_settlement_scenario = create_settlement(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'])
     create_token_scenario = create_token(config_values)
-    associate_token_scenario = associate_token(config_values, create_identity_scenario["response_id"], create_token_scenario["response_id"])
-    # update_identity_scenario = update_identity(config_values, create_identity_scenario["id"]
+    associate_token_scenario = associate_token(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"], create_token_scenario["response_id"])
+
 
 
     # FETCH
     fetch_dispute_scenario = fetch_dispute(config_values, create_dispute_scenario["response_id"])
-    fetch_identity_scenario = fetch_identity(config_values, create_identity_scenario["response_id"])
-    fetch_merchant_scenario = fetch_merchant(config_values, underwrite_identity_scenario["response_id"])
+    fetch_identity_scenario = fetch_identity(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
+    fetch_merchant_scenario = fetch_merchant(config_values, provision_merchant_scenario["response_id"])
     fetch_payment_instrument_scenario = fetch_payment_instrument(config_values, create_bank_account_scenario["response_id"])
     fetch_identity_verification_scenario = fetch_identity_verification(config_values, create_identity_verification_scenario["response_id"])
     fetch_transfer_scenario = fetch_transfer(config_values, create_debit_scenario["response_id"])
@@ -224,16 +233,10 @@ def generate_template_variables(config_values):
     api_scenario_vars = {
         # IDENTITIES --------------------------------------------
 
-        "create_identity_scenario_curl_request": create_identity_scenario["curl_request_body"],
-        "create_identity_scenario_php_request": create_identity_scenario["php_request_body"],
-        "create_identity_scenario_response": create_identity_scenario["response_body"],
-        "create_identity_scenario_id": create_identity_scenario["response_id"],
-
-
-        "create_merchant_identity_scenario_curl_request": create_merchant_identity_scenario["curl_request_body"],
-        "create_merchant_identity_scenario_php_request": create_merchant_identity_scenario["php_request_body"],
-        "create_merchant_identity_scenario_response": create_merchant_identity_scenario["response_body"],
-        "create_merchant_identity_scenario_id": create_merchant_identity_scenario["response_id"],
+        "create_merchant_identity_scenario_curl_request": create_identity_individual_sole_proprietorship_scenario["curl_request_body"],
+        "create_merchant_identity_scenario_php_request": create_identity_individual_sole_proprietorship_scenario["php_request_body"],
+        "create_merchant_identity_scenario_response": create_identity_individual_sole_proprietorship_scenario["response_body"],
+        "create_merchant_identity_scenario_id": create_identity_individual_sole_proprietorship_scenario["response_id"],
 
 
         "create_buyer_identity_scenario_curl_request": create_buyer_identity_scenario["curl_request_body"],
@@ -252,10 +255,10 @@ def generate_template_variables(config_values):
 
         # MERCHANTS --------------------------------------------
 
-        "underwrite_identity_scenario_curl_request": underwrite_identity_scenario["curl_request_body"],
-        "underwrite_identity_scenario_php_request": underwrite_identity_scenario["php_request_body"],
-        "underwrite_identity_scenario_response": underwrite_identity_scenario["response_body"],
-        "underwrite_identity_scenario_id": underwrite_identity_scenario["response_id"],
+        "provision_merchant_scenario_curl_request": provision_merchant_scenario["curl_request_body"],
+        "provision_merchant_scenario_php_request": provision_merchant_scenario["php_request_body"],
+        "provision_merchant_scenario_response": provision_merchant_scenario["response_body"],
+        "provision_merchant_scenario_id": provision_merchant_scenario["response_id"],
 
         "fetch_merchant_scenario_request": fetch_merchant_scenario["request_body"],
         "fetch_merchant_scenario_response": fetch_merchant_scenario["response_body"],
@@ -410,7 +413,8 @@ def generate_template_variables(config_values):
         # "fetch_settlement_transfers_scenario_response": fetch_settlement_transfers_scenario["response_body"],
 
         # APPLICATIONS -------------------------------------------------------
-        "associate_payment_processor_scenario_request": associate_payment_processor_scenario["request_body"],
+        "associate_payment_processor_scenario_curl_request": associate_payment_processor_scenario["curl_request_body"],
+        "associate_payment_processor_scenario_php_request": associate_payment_processor_scenario["php_request_body"],
         "associate_payment_processor_scenario_response": associate_payment_processor_scenario["response_body"],
         "associate_payment_processor_scenario_id": associate_payment_processor_scenario["response_id"],
 

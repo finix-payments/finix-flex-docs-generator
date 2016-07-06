@@ -1,5 +1,6 @@
 use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
+$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
 
-$merchant = $identity->provisionMerchantOn({{underwrite_identity_scenario_php_request}});
+$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
+

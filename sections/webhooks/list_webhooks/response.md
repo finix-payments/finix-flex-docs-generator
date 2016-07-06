@@ -6,19 +6,19 @@
 
 Perform an identity verification check against a previously created Identity.
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/identities/identity_id/verifications`
 
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 identity_id | ID of the Identity
 
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------

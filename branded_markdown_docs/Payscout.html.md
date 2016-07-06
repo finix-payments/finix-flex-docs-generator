@@ -2254,7 +2254,7 @@ print $response->as_string;
 ```
 Before you can use the newly tokenized card or bank account you will need to associate it with an Identity. To do this you must make an authenticated POST request to `https://payscout-staging.finix.io/payment_instruments` like demonstrated to the right.
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/payment_instruments`
 
@@ -2612,11 +2612,11 @@ using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/identities`
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -2837,11 +2837,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://payscout-staging.finix.io/identities/identity_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
@@ -3022,17 +3022,17 @@ print $response->as_string;
 Underwrite a previously created Identity resource so that they can act as a seller and have funds disbursed to their bank account.
 
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/identities/identity_id/merchants`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 identity_id | ID of the Identity
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -3229,19 +3229,19 @@ print $response->as_string;
 
 Perform an identity verification check against a previously created Identity.
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/identities/identity_id/verifications`
 
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 identity_id | ID of the Identity
 
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -3391,11 +3391,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://payscout-staging.finix.io/verifications/verification_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
@@ -3647,11 +3647,11 @@ Creating cards directly via the API should only be done for testing purposes.
 </aside>
 Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/payment_instruments`
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -3887,11 +3887,11 @@ Creating bank accounts directly via the API should only be done for testing purp
 </aside>
 Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/payment_instruments`
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -4067,11 +4067,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://payscout-staging.finix.io/payment_instruments/payment_instrument_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
@@ -4264,11 +4264,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/authorizations`
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -4428,11 +4428,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://payscout-staging.finix.io/authorizations/authorization_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
@@ -4612,18 +4612,18 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `PUT https://payscout-staging.finix.io/authorizations/authorization_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 authorization_id | ID of the Authorization
 
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -4838,11 +4838,11 @@ print $response->as_string;
 
 A Transfer consisting of obtaining (charging) money from a card (i.e. debit).
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/transfers`
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -5030,18 +5030,18 @@ print $response->as_string;
 
 A Transfer representing a refund of a debit transaction. The amount of the refund may be any value up to the amount of the original debit.
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/transfers/transfer_id/reversals`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 transfer_id | ID of the original Transfer
 
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -5209,11 +5209,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://payscout-staging.finix.io/transfers/transfer_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
@@ -5371,11 +5371,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://payscout-staging.finix.io/disputes/dispute_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
@@ -5539,11 +5539,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/webhooks`
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -5685,11 +5685,11 @@ print $response->as_string;
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://payscout-staging.finix.io/webhooks/webhook_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
@@ -5776,11 +5776,11 @@ $settlement = $identity->createSettlement($payload);
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `POST https://payscout-staging.finix.io/identities/:identity_id/settlements`
 
-### Request Arguments
+#### Request Arguments
 
 Field | Type | Description | Example
 ----- | ---- | ----------- | -------
@@ -5857,7 +5857,7 @@ $settlement = Settlement::retrieve("STpspeSDXZDuVStLupbiT4Hy");
 	}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://payscout-staging.finix.io/settlements/:settlement_id`
 

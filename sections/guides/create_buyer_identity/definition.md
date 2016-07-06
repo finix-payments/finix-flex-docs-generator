@@ -1,1 +1,1 @@
-## Create an Identity for a Buyer (i.e. buyer)
+### Step 4: Create an Identity for a Buyer

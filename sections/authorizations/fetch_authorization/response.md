@@ -4,11 +4,11 @@
 {{fetch_authorization_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
-`GET {{base_url}}/authorizations/authorization_id`
+`GET {{base_url}}/authorizations/:authorization_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------

@@ -4,7 +4,7 @@ title: {{api_name}} API Reference
 language_tabs:
   - shell: cURL
   - php: PHP
-  - java: JAVA
+  - java: Java
 
 includes:
   - errors
@@ -15,13 +15,15 @@ search: true
 # Guides
 
 
-## Getting Started
+## Overview
 ```shell
 
 
 # With cURL, just supply your username as basic auth (-u) in the header of each request as follows:
-curl "api_endpoint_here"
--u {{basic_auth_username}}:{{basic_auth_password}}
+
+curl "api_endpoint_here" \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
 ```php
@@ -37,20 +39,32 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 ```java
 
 ```
-This guide will demonstrate the main workflows for utilizing the {{api_name}} Payments API for platforms and marketplaces. We have language bindings in cURL, PHP, Ruby, Python, C#, Java and Perl! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+These guides provide a collection of resources for utilizing the {{api_name}} API and its client libraries. We offer a number of client libraries for interfacing with the API, and you can view example code snippets for each in the dark area to the right.
 
-To communicate with the {{api_name}} API you'll need to authenticate your requests with a username and password. For the sandbox environment you may use the credentials listed below or you can supply your own.
+1. [Quickstart](#quickstart): A step-by-step guide demonstrating the basic workflow of charing a card. This guide will walk you through provisioning merchant accounts, tokenizing cards, charging those cards, and finally settling (i.e. payout) those funds out to your merchants.
+
+2. [Tokenization.js](#tokenization-js): This guide explains how to properly tokenize cards in production via our javascript client to remain out of PCI scope
+
+
+## Authentication
+
+To communicate with the {{api_name}} API you'll need to authenticate your requests with a `username` and `password`. To test the API against the sandbox environment feel free to use the credentials below:
 
 - Username: `{{basic_auth_username}}`
 
 - Password: `{{basic_auth_password}}`
 
-You should also know your Application ID. An Application, also referred as an "App", is a resource that represents your web App or any service that connects customers (i.e. buyers) and merchants (i.e. sellers). For the sandbox environment you may use the following ID:
+You should also know your `Application` ID. An `Application`, also referred as an "App", is a resource that represents your web app. In other words, any web service that connects buyers (i.e. customers) and sellers (i.e. merchants). This guide uses the following sandbox `Application` ID:
 
 - App ID: `{{create_app_scenario_id}}`
 
 
-## Create an Identity for a Merchant
+
+
+
+## Quickstart
+
+### Step 1: Create an Identity for a Merchant
 
 ```shell
 
@@ -139,15 +153,112 @@ Identity identity = client.identitiesClient().save(
 {{create_merchant_identity_scenario_response}}
 ```
 
-Before we can charge a card we need to create an Identity resource. An Identity represents a person or business. In this case, the Identity will represent the merchant (i.e. seller). Let's create one now.You'll want to store the ID of the newly created Identity resource as you'll reference it later.
+Before we can begin charging cards we'll need to provision a `Merchant` account for your seller. This requires 3-steps, which we'll go into greater detail in the next few sections:
 
-## Create a New Bank Account
+1. First, create an `Identity` resource with the merchant's underwriting and identity verification information
+
+    `POST https://{{base_url}}/identities/`
+
+2. Second, create a `Payment Instrument` representing the merchant's bank account where processed funds will be settled (i.e. deposited)
+
+    `POST https://{{base_url}}/payment_instruments/`
+
+3. Finally, provision the `Merchant` account
+
+    `POST https://{{base_url}}/identities/IDENTITY_ID/merchants`
+
+
+Let's start with the first step by creating an `Identity` resource, which in
+many ways is the centerpiece for the payment API's architecture. Each `Identity`
+represents either a buyer or a merchant. We use this resource to associate cards,
+bank accounts, and transactions. This structure makes it simple to manage and
+reconcile a merchant's associated bank accounts, transaction history, and payouts.
+More importantly, the `Identity` resource is used to collect underwriting information
+for the business and its principal.
+
+Let's create one now (look to the right for an example request). You'll want to
+store the ID of the newly created `Identity` resource as you'll reference it later.
+
+#### HTTP Request
+
+`POST {{base_url}}/identities`
+
+#### Business-specific Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please inout first name, last name and middle initial)
+doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
+business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
+business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
+url | *string*, **required** | Merchant's publicly available website
+business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
+incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
+business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
+
+#### Principal-specific Request Arguments
+(i.e. authorized representative or primary contact responsible for the account)
+
+Field | Type | Description
+----- | ---- | -----------
+first_name | *string*, **required** | First name of the merchant's principal representative
+last_name | *string*, **required** | Last name of the merchant's principal representative
+title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
+principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
+tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
+dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
+phone | *string*, **required** | Principal's phone number
+email | *string*, **required** | Principal's email address where they can be reached
+personal_address | *object*, **required** | Principal's personal home address. This field is used for identity verification purposes (Full description of child attributes below)
+
+#### Processing-specific Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
+annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant
+max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents
+mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf/)) that this merchant will be classified under
+amex_mid | *string*, **required** |  American Express Merchant ID for enabling Amex's OptBlue processing (Length must be between 10 and 11 characters)
+discover_mid | *string*, **optional** |  Discover Merchant ID
+has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **required** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **required** | City
+region | *string*, **required** | State
+postal_code | *string*, **required** | Zip or Postal code
+country | *string*, **required** | 3-Letter Country code
+
+#### Incorporation Date-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+day | *integer*, **required** | Day business was incorporated
+month | *integer*, **required** | Month business was incorporated
+year | *string*, **required** | Year business was incorporated
+
+
+#### DOB-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+day | *integer*, **required** | Day of birth (between 1 and 31)
+month | *integer*, **required** | Month of birth (between 1 and 12)
+year | *string*, **required** | Year of birth (4-digit)
+
+
+### Step 2: Tokenize a Bank Account for Settling (i.e. funding) your Merchant
 ```shell
 
 curl {{base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_bank_account_scenario_curl_request}}"
+    -d '{{create_bank_account_scenario_curl_request}}'
 
 
 ```
@@ -163,6 +274,7 @@ use {{api_name}}\Resources\PaymentInstrument;
 
 $bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
 $bank_account = $bank_account->save();
+
 
 
 ```
@@ -183,91 +295,57 @@ bankAccount = client.bankAccountsClient().save(
       .build()
 );
 
+
 ```
 > Example Response:
 
 ```json
 {{create_bank_account_scenario_response}}
 ```
+
+Now that we've created an `Identity` for our merchant, we'll need to add a bank
+account where we can settle out the funds that are processed on behalf of your
+merchant (i.e. their funding account).
+
+In the API, bank accounts -- as well as credit cards -- are represented by the
+`Payment Instrument` resource. There are two means of creating a
+`Payment Instrument`: 1) directly via the API and 2) via our Tokenization.js
+library. For testing purposes, we'll create one directly via the API; however,
+please review our guide on how to tokenize payment instruments via the
+[tokenization.js library](#tokenization-js) when in production.
+
 <aside class="warning">
 Creating bank accounts directly via the API should only be done for testing purposes.
 </aside>
-Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
 
-### HTTP Request
+To classify the `Payment Instrument` as a bank account you'll need to pass
+BANK_ACCOUNT in the `type` field of your request, and you'll also want to pass
+the ID of the `Identity` that you created in the last step via the `identity`
+field to properly associate it with your merchant.
+
+
+#### HTTP Request
 
 `POST {{base_url}}/payment_instruments`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-account_number | *string*, **required** | Bank account number. | 84012312415
-bank_code | *string*, **required** | Routing number. Specified in FedACH database defined by the US Federal Reserve. | 840123124
-identity | *string*, **required**| Identity resource which the bank account is associated. | {{create_identity_scenario_id}}
-account_type | *string*, **required** | Checking or Savings | SAVINGS
-type | *string*, **required** | Type of Payment Instrument. For cards input PAYMENT_CARD. | BANK_ACCOUNT
-currency | *string*, **optional** | Default currency used when settling funds. | USD
-first_name | *string*, **optional** | Customer's first name on bank account. | Dwayne
-last_name | *string*, **optional** | Customer's last name on card. | Johnson
-full_name | *string*, **optional** | Customer's full name on card. | Dwayne Johnson
-country | *string*, **optional** | Country of the associated bank account. | USA
-bic | *string*, **optional** | TBD. | foo
-iban | *string*, **optional** | International Bank Account integer | foo
-company_name | *string*, **optional** | Name of company if the bank account is a company account. |  Bob's Burgers
+Field | Type | Description
+----- | ---- | -----------
+account_number | *string*, **required** | Bank account number
+bank_code | *string*, **required** | Bank routing number
+type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
+identity | *string*, **required**| ID for the `Identity` resource which the account is associated
+account_type | *string*, **required** | Either CHECKING or SAVINGS
+name | *string*, **optional** | Account owner's full name
 
-
-## Perform an Identity Verification
+### Step 3: Provision Merchant Account
 ```shell
 
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/verifications \
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_identity_verification_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Identity;
-
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
-$identity_verification = $identity->verifyOn({{underwrite_identity_scenario_php_request}});
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
-
-Verification verification = identity.verifyOn(
-  Verification.builder()
-    .processor("DUMMY_V1")
-    .build()
-);
-
-```
-
-> Example Response:
-
-```json
-{{create_identity_verification_scenario_response}}
-```
-
-Before, being able to process funds to this seller we will need to perform an identity verification to underwrite them as a Merchant. Only underwritten Identities can be paid out per KYC regulations.
-
-
-## Provision Merchant Account
-```shell
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/merchants \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{underwrite_identity_scenario_curl_request}}'
+    -d '{{provision_merchant_scenario_curl_request}}'
 
 
 ```
@@ -281,26 +359,51 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
+$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
 
-$merchant = $identity->provisionMerchantOn({{underwrite_identity_scenario_php_request}});
+$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
+
+
 ```
 ```java
 
 import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
 
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().processor("DUMMY_V1").build());
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
+
 
 ```
+
 > Example Response:
 
 ```json
-{{underwrite_identity_scenario_response}}
+{{provision_merchant_scenario_response}}
 ```
 
-Once the Identity has been verified, {{api_name}} will need to review the submitted information and finally underwrite the Identity. You will receive an event fired off to your webhook notifying you when the Merchant has been approved. To simulate this step run this request so that they can begin processing funds.
+Now that we've associated a `Payment Instrument` with our seller's `Identity` we're ready to provision a `Merchant` account. This is the last step before you can begin processing on their behalf. Luckily you've already done most of the heavy lifting. Just make one final POST request, and you'll be returned a `Merchant` resource. Take a second to inspect this newly created resource, particularly the `underwriting_state`, which can have 3 potential states:
 
-## Create an Identity for a Buyer (i.e. buyer)
+1. `PROVISIONING`: Request is pending (state will typically change after two minutes)
+
+2. `APPROVED`: Merchant has been approved and can begin processing
+
+3. `REJECTED`: Merchant was rejected by the processor either because the collected underwriting information was invalid or it failed one a number of regulatory and compliance checks (e.g. KYC, OFAC or MATCH)
+
+<aside class="notice">
+Provisioning a `Merchant` account is an asynchronous request. We recommend creating a Webhook to listen for the state change.
+</aside>
+
+
+#### HTTP Request
+
+`POST {{base_url}}/identities/identity_id/merchants`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+identity_id | ID of the Identity
+
+### Step 4: Create an Identity for a Buyer
 ```shell
 
 
@@ -347,10 +450,49 @@ Identity identity = client.identitiesClient().save(
 ```json
 {{create_buyer_identity_scenario_response}}
 ```
-This next step should sound familiar. Let's create an Identity to represent the buyer. You'll want to store the ID of the newly created Identity resource as you'll reference it later.
+
+Now that we have successfully provisioned a `Merchant` we'll need to create an
+`Identity` that represents your buyer. Don't worry tho you won't need to capture
+the same amount of underwriting information from your buyer. **So long as you
+don't pass a business_type field all the fields are optional.**
+
+<aside class="warning">
+Passing a business_type will introduce the underwriting form validators.
+</aside>
+
+Typically, we suggest at least collecting the buyer's name and email to help
+with accounting, reconciliation, and chargebacks.
+
+#### HTTP Request
+
+`POST {{base_url}}/identities`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+first_name | *string*, **optional** | First name
+last_name | *string*, **optional** | Last name
+email | *string*, **optional** | Email
+phone | *string*, **optional** | Phone number
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+personal_address | *object*, **optional** | Customers shipping address or billing address (Full description of child attributes below)
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **required** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **required** | City
+region | *string*, **required** | State
+postal_code | *string*, **required** | Zip or Postal code
+country | *string*, **required** | 3-Letter Country code
 
 
-## Create a Payment Instrument (i.e. card)
+
+
+### Step 5: Tokenize a Card
 ```shell
 
 
@@ -397,17 +539,53 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 {{create_card_scenario_response}}
 ```
 
-Now that we have an Identity resource representing our buyer, we'll need to create a Payment Instrument which can represent either a card or bank account. In this instance we'll create a card with the request to the right (note you'll need to interpolate your own buyer's Identity from the previous request).
+Now that we have an `Identity` resource representing our buyer, we'll need to
+create a `Payment Instrument` which represents the credit card you'll be debiting
+(i.e. charging).
 
 <aside class="warning">
-Creating cards directly via the API should only be done for testing purposes.
+Please note that creating cards directly via the API should only be done for
+testing purposes. You must use the Tokenization.js library to remain out of PCI
+scope.
 </aside>
-Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
 
-Be sure to store the ID of your newly tokenized Payment Instrument.
+You'll also need to interpolate your own buyer's `Identity` ID
+from the previous request to properly associate it.
 
 
-## Create a Transfer (i.e. debit the card)
+Please review our guide on how to tokenize cards via the [tokenization.js library.](#tokenization-js)
+
+#### HTTP Request
+
+`POST {{base_url}}/payment_instruments`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+identity | *string*, **required** | ID of the `Identity` that the card should be associated
+type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | 4-digit expiration year
+name | *string*, **optional** | Full name of the registered card holder
+address | *object*, **optional** | Billing address (Full description of child attributes below)
+
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **optional** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **optional** | City
+region | *string*, **optional** | State
+postal_code | *string*, **optional** | Zip or Postal code
+country | *string*, **optional** | 3-Letter Country code
+
+
+### Step 6: Create a Transfer (i.e. debit the card)
 ```shell
 
 
@@ -445,7 +623,6 @@ Transfer transfer = client.transfersClient().save(
       .amount(888888)
       .currency("USD")
       .tags(tags)
-      .processor("DUMMY_V1")
       .build()
 );
 
@@ -457,54 +634,47 @@ Transfer transfer = client.transfersClient().save(
 {{create_debit_scenario_response}}
 ```
 
-At this point we've created resources representing the merchant, the buyer, and the buyer's card.
+At this point we've created resources representing the merchant, the buyer, and
+the buyer's card.
 
-To debit a card, you'll need to create a Transfer. What's a Transfer? Glad you asked! A Transfer is basically any omnidirectional flow of funds. In other words, a Transfer can be a debit to a card, a credit to a bank account, or even a refund. For now let's focus on charging a card.
+To debit a card, you'll need to create a `Transfer`. What's a `Transfer`? Glad
+you asked! A `Transfer` is basically any flow of funds from or two a
+`Payment Instrument`. In other words, a `Transfer` can be charging a card,
+issuing a credit to a bank account or issuing a refund. For now let's focus on
+charging a card.
 
-To do this we'll supply the buyer's Payment Instrument ID as the source and the seller's Identity ID as the merchant_identity. Note that the 'amount' field is amount in cents of the debit that will be charged on the card. The fee field is the amount in cents you would like to collect out of the debit amount before settling out to the merchant. Therefore, the fee must be equal or less than the amount field.
+To do this we'll supply the buyer's `Payment Instrument` ID as the source field
+and the seller's `Identity` ID in the merchant_identity field. Note that the
+amount field is in cents. The `fee` field is the amount in cents you would like to
+keep before settling out to the merchant. For example, if you're charging the
+ buyer $100 on behalf of your merchant, and you're taking a %10 service fee
+you'll want to pass 10000 as the amount and 1000 as the fee. This way when the
+funds are eventually settled out only $90 will be disbursed to your merchant.
 
-Simple enough, right? You'll also want to store the ID from that Transfer for your records. For the last section of this guide where we'll be showing you how to issue a refund.
+Simple enough, right? You'll also want to store the ID from that `Transfer` for
+your records. Next we're going to show you how to settle out the funds to your
+merchant.
 
 
-## Reverse the Transfer (i.e. issue a refund)
+#### HTTP Request
+
+`POST {{base_url}}/transfers`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+source | *string*, **required** | ID of the `Payment Instrument` that will be charged
+merchant_identity | *string*, **required** | `Identity` ID of the merchant whom you're charging on behalf of
+amount | *integer*, **required** | The total amount that will be charged in cents (e.g. 100 cents to charge $1.00)
+fee | *integer*, **optional** | The amount of the transfer you would like to collect as your fee (Must be less than or equal to the amount)
+currency | *string*, **required** | 3-letter ISO code designating the currency of the transfer (e.g. USD)
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+
+### Step 7: Settle Funds to Merchant
 ```shell
 
-curl {{base_url}}/transfers/{{create_debit_scenario_id}}/reversals \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d  '{{create_refund_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Refund;
-
-Refund refund = transfer.reverse(100L);
-
-```
-
-> Example Response:
-
-```json
-{{create_refund_scenario_response}}
-```
-
-What if we need to issue a refund to the buyer? First, you'll need to take the previously stored Transfer ID and interpolate it into the following url path. The amount can be equal to or less than the original debit.
-
-## Settle out funds to a Merchant
-```shell
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/settlements \
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_settlement_scenario_curl_request}}'
@@ -531,7 +701,6 @@ import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
 
 Settlement settlement = identity.createSettlement(
   Settlement.builder()
-    .processor("DUMMY_V1")
     .currency("USD")
     .build()
 )
@@ -543,11 +712,34 @@ Settlement settlement = identity.createSettlement(
 {{create_settlement_scenario_response}}
 ```
 
-Awesome! Now you know how to charge a card and reverse the debit.
+Awesome! Now you know how to charge a card. Next you need to settle out the
+funds to your merchant's bank account (i.e. issue an ACH Credit). To do so you will create a `Settlement` resource. Each
+settlement is comprised of all the `Transfers` that have a SUCCEEDED state and
+that have not been previously settled out. In other words, if a merchant has a
+`Transfer` in the PENDING state it will not be included in the batch settlement.
+In addition, `Settlements` will include any refunded Transfers as a deduction.
+The `total_amount` is the net settled amount in cents (i.e. the amount in cents
+that will be deposited into your merchant's bank account after your fees have
+been deducted).
 
-Now you need to settle out the funds to your merchant. To do so you will create a Settlement resource. Each settlement is comprised of all the Transfers that have a SUCCEEDED state and that have not been previously settled out.
-# Tokenization.js
-To ensure that you remain PCI compliant, please use tokenization.js to tokenize cards and bank accounts. Tokenization.js, keeps you out of the PCI scope by sending sensitive payment information over SSL directly to the {{api_name}} servers.
+<aside class="notice">
+To view all the Transfers that were included in a Settlement you can make a
+request to the transfers link (i.e. POST {{base_url}}/settlements/:SETTLEMENT_ID/transfers
+</aside>
+
+#### HTTP Request
+
+`POST {{base_url}}/identities/:identity_id/settlements`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+
+## Tokenization.js
+To ensure that you remain PCI compliant, please use tokenization.js to tokenize cards and bank accounts. Tokenization.js ensures sensitive card data never touches your servers and keeps you out of PCI scope by sending this info over SSL directly to {{api_name}}.
 
 For a complete example of how to use tokenization.js please refer to this [jsFiddle example]({{jsfiddle}}).
 
@@ -559,20 +751,9 @@ Creating payment instruments directly via the API should only be done for testin
 Note you must still use SSL on your servers for any actions related to financial transactions via the {{api_name}} API.
 </aside>
 
+### Step 1: Create a form
 
-## Step 1: Include library
-To use tokenization.js you will first need to include the library. Please include the script tag as demonstrated to the right.
-
-html
-<script type="text/javascript" src="https://js.verygoodproxy.com/tokenization.1-latest.js"></script>
-
-
-<aside class="notice">
-Note that we do not recommend hosting the tokenization.js library locally as doing so prevents important updates.
-</aside>
-
-## Step 2: Create a form
-html
+```html
 <!--This is an example for for Cards-->
 <form role="form" class="form-horizontal">
   <div class="form-group">
@@ -621,14 +802,34 @@ html
   </div>
   <a id="ba-submit" class="btn btn-large btn-primary pull-right">Tokenize</a>
 </form>
+```
 
-Before collecting the sensitive payment information, we will need to construct an HTML form for users to input the data.
+Before collecting the sensitive payment information, we will need to construct
+an HTML form for users to input their data.
 
-We have provided a simple example to the right for capturing Payment Instrument data.
+We have provided a simple example to the right for capturing Payment Instrument
+data.
 
-## Step 3: Configure and initialize
 
-javascript
+### Step 2: Include library
+
+To use tokenization.js you will first need to include the library on the webpage
+where you're hosting your form. Please include the script ta as demonstrated
+to the right.
+
+<aside class="notice">
+Please refrain from hosting the tokenization.js library locally as doing so prevents important updates.
+</aside>
+
+
+```html
+<script type="text/javascript" src="https://js.verygoodproxy.com/tokenization.1-latest.js"></script>
+```
+
+
+### Step 3: Configure and initialize
+
+```javascript
 var initTokenization = function() {
   Tokenization.init({
     server: "{{base_url}}",
@@ -664,35 +865,40 @@ var initTokenization = function() {
     }
   });
 };
-
-We will need to configure the client so that it POSTs to the correct endpoint and associates the Payment Instrument to your application. During the initialization we will also use the JQuery selector method to capture the form data.
-
-### Initialization Fields
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-server | *string*, **required** |  The base url for the {{api_name}} API| {{base_url}}
-applicationId | *string*, **required** | The ID for your Application, also referred to as your App | {{create_app_scenario_id}}
-hosted_fields | *object*, **required** |  An object containing the payment instrument information collected from your form.  | Johnson
-
-### hosted_fields object for card
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-number | *string*, **required** | The digits of the credit card integer. | 1111 111 1111 1111
-security_code | *string*, **optional** | The 3-4 digit security code for the card. | 123
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December). | 11
-expiration_year | *integer*, **required** | Expiration year. | 2020
-
-### hosted_fields object for bankAccount
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-full_name | *string*, **optional** | Customer's full name on card. | Dwayne Johnson
-account_number | *string*, **required** | Bank account number. | 84012312415
-bank_code | *string*, **required** | Routing number. Specified in FedACH database defined by the US Federal Reserve. | 840123124
+```
 
 
-## Step 4: Submit payload and handle response
 
-javascript
+Now we need to configure the client so that it `POSTs` to the correct endpoint and
+associates the `Payment Instrument` to your application. We'll also use the JQuery
+selector method to capture the form data during the initialization.
+
+#### Initialization Fields
+Field | Type | Description
+----- | ---- | -----------
+server | *string*, **required** |  The base url for the {{api_name}} API
+applicationId | *string*, **required** | The ID for your `Application`
+hosted_fields | *object*, **required** | An object containing the `Payment Instrument`information collected from your form
+
+#### hosted_fields object for card
+Field | Type | Description
+----- | ---- | -----------
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | Expiration year
+
+#### hosted_fields object for bankAccount
+Field | Type | Description
+----- | ---- | -----------
+full_name | *string*, **optional** | Customer's full name on card
+account_number | *string*, **required** | Bank account number
+bank_code | *string*, **required** | Bank routing number
+account_type | *string*, **required** | Either CHECKING or SAVINGS
+
+### Step 4: Submit payload and handle response
+
+```javascript
 // Register "Click" event for the Card form
 $('#cc-submit').click(function(e) {
     e.preventDefault();
@@ -726,24 +932,19 @@ $('#ba-submit').click(function(e) {
       }
     });
 });
+```
 
+> Example Response:
 
-> Example Tokenization Response:
-javascript
-{
-    "id": "{{create_token_scenario_id}}",
-    "fingerprint": "FPR-1392097976",
-    "created_at": "2016-03-07T22:27:01.611",
-    "updated_at": "2016-03-07T22:27:01.611",
-    "instrument_type": "PAYMENT_CARD"
-}
+```json
+{{create_token_scenario_response}}
+```
 
+Finally we will need to register a click event that fires when our users submit the form and define a callback for handling the tokenization.js response.
 
-Finally we will need to register a click event that fires when our users submit the form and define a callback for handling the tokenization.js response. We have included an example to the right.
+### Step 5: Send token to your back-end server for storing
 
-## Step 5: Send token to your back-end server for storing
-
-javascript
+```javascript
 callback: function(errorThrown, response) {
     // POST to your back-end server
     jQuery.post("PATH TO YOUR BACK END", {
@@ -758,34 +959,77 @@ callback: function(errorThrown, response) {
     });
 }
 
+```
+Great now that you have created a token you will want to store that ID to utilize the token in the future. To do this you will need to send the ID from your front-end client to your back-end server, which you'll do by expanding on the callback that you created in the previous step.
 
-Great now that you have created a token you will want to store that ID to utilize the token in the future. To do this you will need to send the ID from your front-end client to your back-end server. You can expand on the callback that you previously created like so:
 
-## Step 6: Associate to an Identity
-
+### Step 6: Associate to an Identity
+```shell
 
 
 curl {{base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{associate_token_scenario_curl_request}}"
+    -d '{{associate_token_scenario_curl_request}}'
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
 
+use {{api_name}}\Resources\PaymentInstrument;
 
+$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
+$card = $card->save();
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .token("TKkvwumxCgq5E8uTKyq96dta")
+    .type("TOKEN")
+    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
+    .build();
+paymentCard = client.paymentCardsClient().save(paymentCard);
+
+```
 > Example Response:
 
-json
+```json
 {{associate_token_scenario_response}}
+```
 
-Before you can use the newly tokenized card or bank account you will need to associate it with an Identity. To do this you must make an authenticated POST request to `{{base_url}}/payment_instruments` like demonstrated to the right.
+Before you can use the newly tokenized card or bank account you will need to
+associate it with an `Identity`. To do this you must make an authenticated
+`POST` request to the `/payment_instruments` endpoint with the relevant token
+and `Identity` information.
 
-### HTTP Request
+
+#### HTTP Request
 
 `POST {{base_url}}/payment_instruments`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+token | *string*, **required** | ID for the `Token` that was returned via the tokenization.js client
+type | *string*, **required** | Must pass TOKEN as the value
+identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
+
 # Authorizations
-An Authorization resource (also known as a card hold) reserves a specific amount on a card to be captured (debited) at a later date, usually within 7 days. When an Authorization is captured it produces a Transfer resource.
+An `Authorization` (also known as a card hold) reserves a specific amount on a
+card to be captured (i.e. debited) at a later date, usually within 7 days.
+When an `Authorization` is captured it produces a `Transfer` resource.
 
 
-## Create a New Authorization
+## Create an Authorization
 ```shell
 
 curl {{base_url}}/authorizations \
@@ -818,7 +1062,6 @@ Authorization authorization = client.authorizationsClient().save(
   Authorization.builder()
     .amount(100L)
     .merchantIdentity("IDrktKp2HNpogF3BWMmiSGrz")
-    .processor("DUMMY_V1")
     .source("PIeffbMtvz2Hiy6dwBbaHhKq")
     .build()
 );
@@ -830,18 +1073,28 @@ Authorization authorization = client.authorizationsClient().save(
 {{create_authorization_scenario_response}}
 ```
 
-### HTTP Request
+`Authorizations` have two possible states SUCCEEDED and FAILED. If the `Authorization`
+ has succeeded, it must be captured before the `expires_at` or the funds will
+ be released.
+
+<aside class="notice">
+If the transfer field of an Authorization is null it has not yet been captured.
+</aside>
+
+
+#### HTTP Request
 
 `POST {{base_url}}/authorizations`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-source | *string*, **required** | The Payment Instrument to debited. | {{create_card_scenario_id}}
-merchant_identity | *string*, **required** | UID. | {{create_identity_scenario_id}}
-amount | *integer*, **required** | The amount of the debit in cents. | 100
-processor | *string*, **required** | Processor used for underwriting the Identity, please use "{{payment_processor}}" for now to test the API. | {{payment_processor}}
+Field | Type | Description
+----- | ---- | -----------
+source | *string*, **required** | The `Payment Instrument` that you will be performing the authorization
+merchant_identity | *string*, **required** | The ID of the `Identity` for the merchant that you are transacting on behalf of
+amount | *integer*, **required** | The amount of the authorization in cents
+currency | *string*, **required** | 3-letter ISO code designating the currency (e.g. USD)
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
 ## Capture an Authorization
 
@@ -882,24 +1135,31 @@ authorization = authorization.capture(50L);
 {{capture_authorization_scenario_response}}
 ```
 
-### HTTP Request
+Once successfully captured the `transfer` field of the `Authorization` will
+contain the ID for the corresponding `Transfer` resource. By default, `Transfers`
+will be in a PENDING state. PENDING means that the system hasn't submitted the
+capture request as they are submitted via batch request. Once submited
+the state of the `Transfer` will update to SUCCEEDED.
 
-`PUT {{base_url}}/authorizations/authorization_id`
 
-### URL Parameters
+
+#### HTTP Request
+
+`PUT {{base_url}}/authorizations/:authorization_id`
+
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 authorization_id | ID of the Authorization
 
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-capture_amount | *integer*, **required** | The amount of the authorization you would like to capture in cents. Must be less than or equal to the amount of the authorization | 100
-statement_descriptor | *string*, **required** | Text that will appear on the buyer's statement. Must be 18 characters or less. | Bob's Burgers
-fee | *integer*, **optional** | The amount of the transaction you would like to collect as your fee. Must be less than or equal to the amount | 100
+Field | Type | Description
+----- | ---- | -----------
+capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
+fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount
 
 ## Retrieve an Authorization
 ```shell
@@ -935,11 +1195,11 @@ Authorization authorization = client.authorizationsClient().fetch("{{fetch_autho
 {{fetch_authorization_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
-`GET {{base_url}}/authorizations/authorization_id`
+`GET {{base_url}}/authorizations/:authorization_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
@@ -984,21 +1244,28 @@ Dispute dispute = transfer.disputeClient().fetch("{{fetch_dispute_scenario_id}}"
 {{fetch_dispute_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET {{base_url}}/disputes/dispute_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 dispute_id | ID of the Dispute
 
 # Identities
-An Identity resource represents a business or person. Payment Instrument resources may be associated to an Identity.
+An `Identity` resource represents either a buyer or a merchant and is in many
+ways the centerpiece of the payment API's architecture. `Transfers` and
+`Payment Instruments` must be associated with an `Identity`. For both buyers
+and merchants this structure makes it easy to manage and reconcile their
+associated bank accounts, transaction history, and payouts.
+
+For merchants, the `Identity` resource is used to collect underwriting
+information for the business and its principal.
 
 ## Create an Identity for a Buyer
-All fields for a buyer's Identity are optional. However, a business_type field should not be passed. Passing a business_type indicates that the Identity should be treated as a merchant.
+
 
 ```shell
 
@@ -1046,26 +1313,27 @@ Identity identity = client.identitiesClient().save(
 ```json
 {{create_buyer_identity_scenario_response}}
 ```
+All fields for a buyer's Identity are optional. However, a business_type field should not be passed. Passing a business_type indicates that the Identity should be treated as a merchant.
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/identities`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-first_name | *string*, **optional** | First name  | Dwayne
-last_name | *string*, **optional** | Last name  | Johnson
-phone | *string*, **optional** | Phone number | 1408756449
-email | *string*, **optional** | Email address | someone@example.com
-line1 | *string*, **optional** | Street address | 1423 S Joane Way
-line2 | *string*, **optional** | Second line of the address |  Apt. 3
-city | *string*, **optional** | City | San Mateo
-region | *string*, **optional** | State | CA
-postal_code | *string*, **optional** | Postal code | 92704
-country | *string*, **optional** | Country  | USA
-tags | *object*, **optional** | Key value pair for annotating custom meta data | {'order_number': '123123123'}
+Field | Type | Description
+----- | ---- | -----------
+first_name | *string*, **optional** | First name
+last_name | *string*, **optional** | Last name
+phone | *string*, **optional** | Phone number
+email | *string*, **optional** | Email address
+line1 | *string*, **optional** | Street address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **optional** | City
+region | *string*, **optional** | State
+postal_code | *string*, **optional** | Postal code
+country | *string*, **optional** | Country
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
 ## Create an Identity for a Merchant
 ```shell
@@ -1154,45 +1422,91 @@ Identity identity = client.identitiesClient().save(
 {{create_merchant_identity_scenario_response}}
 ```
 
-### HTTP Request
+Before we can begin charging cards we'll need to provision a `Merchant` account
+for your seller. This requires 3-steps:
+
+1. Create an `Identity` resource with the merchant's underwriting and identity
+verification information (API request to the right)
+
+
+2. [Create a Payment Instrument](#create-a-bank-account) representing the
+merchant's bank account where processed funds will be settled (i.e. deposited)
+
+
+3. [Provision the Merchant account](##provision-a-merchant)
+
+
+#### HTTP Request
 
 `POST {{base_url}}/identities`
 
-### Request Arguments
+#### Business-specific Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-business_name | *string*, **required** | Full legal business name | Business, Inc
-doing_business_as | *string*, **required** | Business name used if different from its legal name | Bob's Burgers
-business_type | *string*, **required** | Type of business | INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, LIMITED_PARTNERSHIP, GENERAL_PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
-business_tax_id | *string*, **required** | Nine digit SSN if business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP or EIN for all other business types | 123456789
-business_phone | *string*, **required** | Phone number of the business | 0123456789
-first_name | *string*, **required** | First name of the representative of the business | Dwayne
-last_name | *string*, **required** | Last name of the representative of the business | Johnson
-tax_id | *string*, **required** | Nine digit Social Security Number for the company representative | 123456789
-phone | *string*, **required** | Company representative's phone number (Note: There's a separate field for the business phone integer) | 1408756449
-email | *string*, **required** | Email address where support requests will be sent | someone@example.com
-line1 | *string*, **required** | Street address | 1423 S Joane Way
-line2 | *string*, **optional** | Second line of the address |  Apt. 3
-city | *string*, **required** | City | San Mateo
-region | *string*, **required** | State | CA
-postal_code | *string*, **required** | Postal code | 92704
-country | *string*, **required** | Country  | USA
-annual_card_volume | *integer*, **required** |  Approximate annual credit card sales in cents expected to be processed under this Merchant | 10000
-max_transaction_amount | *integer*, **required** |  Maximum amount in cents that can be transacted on a single transaction | 10000
-mcc | *string*, **required** |  MCC code that this merchant will be classified under | 5422
-url | *string*, **required** |  Company website | www.mybusiness.com
-tags | *object*, **optional** | Key value pair for annotating custom meta data | {'order_number': '123123123'}
-default_statement_descriptor | *string*, *required** | String displayed on the buyer's bank or card statement. Length must be between 1 and 20 charactesrs. | {'order_number': '123123123'}
-principal_percentage_ownership | *integer*, *required** | Percentage of company owned by the principal | 51
-incorporation_date  | *object*, **required** | Date company was incorporated. Comprised of day, month, and year. | see below
-day | *integer*, **required** | Day field of the incorporation date| 1
-month | *integer*, **required** | Month field of the incorporation date | 2
-year | *string*, **required** | Year field of the incorporation date | 1988
-dob | *object*, **required** | Date of birth of the company reprentative's date of birth. Comprised of day, month, and year. | see below
-day | *integer*, **required** | Day field of the company reprentative's date of birth | 1
-month | *integer*, **required** | Month field of the company reprentative's date of birth | 2
-year | *string*, **required** | Year field of the company reprentative's date of birth | 1988
+Field | Type | Description
+----- | ---- | -----------
+business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please inout first name, last name and middle initial)
+doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
+business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
+business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
+url | *string*, **required** | Merchant's publicly available website
+business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
+incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
+business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
+
+#### Principal-specific Request Arguments
+(i.e. authorized representative or primary contact responsible for the account)
+
+Field | Type | Description
+----- | ---- | -----------
+first_name | *string*, **required** | First name of the merchant's principal representative
+last_name | *string*, **required** | Last name of the merchant's principal representative
+title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
+principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
+tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
+dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
+phone | *string*, **required** | Principal's phone number
+email | *string*, **required** | Principal's email address where they can be reached
+personal_address | *object*, **required** | Principal's personal home address. This field is used for identity verification purposes (Full description of child attributes below)
+
+#### Processing-specific Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
+annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant
+max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents
+mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf/)) that this merchant will be classified under
+amex_mid | *string*, **required** |  American Express Merchant ID for enabling Amex's OptBlue processing (Length must be between 10 and 11 characters)
+discover_mid | *string*, **optional** |  Discover Merchant ID
+has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **required** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **required** | City
+region | *string*, **required** | State
+postal_code | *string*, **required** | Zip or Postal code
+country | *string*, **required** | 3-Letter Country code
+
+#### Incorporation Date-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+day | *integer*, **required** | Day business was incorporated
+month | *integer*, **required** | Month business was incorporated
+year | *string*, **required** | Year business was incorporated
+
+
+#### DOB-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+day | *integer*, **required** | Day of birth (between 1 and 31)
+month | *integer*, **required** | Month of birth (between 1 and 12)
+year | *string*, **required** | Year of birth (4-digit)
 ## Retrieve a Identity
 ```shell
 
@@ -1226,24 +1540,24 @@ Identity identity = client.identitiesClient().fetch("{{fetch_identity_scenario_i
 {{fetch_identity_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET {{base_url}}/identities/identity_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 identity_id | ID of the Identity
 
-## Underwrite an Identity
+## Provision a Merchant
 
 ```shell
 
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/merchants \
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{underwrite_identity_scenario_curl_request}}'
+    -d '{{provision_merchant_scenario_curl_request}}'
 
 
 ```
@@ -1257,161 +1571,67 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
+$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
 
-$merchant = $identity->provisionMerchantOn({{underwrite_identity_scenario_php_request}});
+$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
 ```
 ```java
 
 import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
 
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().processor("DUMMY_V1").build());
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 
 ```
 
 > Example Response:
 
 ```json
-{{underwrite_identity_scenario_response}}
+{{provision_merchant_scenario_response}}
 ```
 
-Underwrite a previously created Identity resource so that they can act as a seller and have funds disbursed to their bank account.
+Provision a `Merchant` for a previously created `Identity` resource to begin
+transacting on their behalf.
+
+<aside class="warning">
+Please make sure that a bank account has been created and associated to the
+previously created Identity before attempting to provision a Merchant account.
+</aside>
 
 
-### HTTP Request
+`Merchant` resources can have 3 potential states:
+
+1. `PROVISIONING`: Request is pending (state will typically change after two minutes)
+
+2. `APPROVED`: Merchant has been approved and can begin processing
+
+3. `REJECTED`: Merchant was rejected by the processor either because the collected underwriting information was invalid or it failed one a number of regulatory and compliance checks (e.g. KYC, OFAC or MATCH)
+
+<aside class="notice">
+Provisioning a `Merchant` account is an asynchronous request. We recommend creating a Webhook to listen for the state change.
+</aside>
+
+
+
+#### HTTP Request
 
 `POST {{base_url}}/identities/identity_id/merchants`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 identity_id | ID of the Identity
 
-### Request Arguments
-
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-processor | *string*, **required** | Processor used for underwriting the Identity, please use "{{payment_processor}}" for now to test the API. | {{payment_processor}}
-
-# Identity Verifications
-Identities (merchants) to whom you wish to pay out must be underwritten as per KYC regulations. Each attempt at verifying an Identity creates a Verification resource.
-
-## Create an Identity Verification
-
-```shell
-
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/verifications \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_identity_verification_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Identity;
-
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
-$identity_verification = $identity->verifyOn({{underwrite_identity_scenario_php_request}});
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
-
-Verification verification = identity.verifyOn(
-  Verification.builder()
-    .processor("DUMMY_V1")
-    .build()
-);
-
-```
-> Example Response:
-
-```json
-{{create_identity_verification_scenario_response}}
-```
-
-Perform an identity verification check against a previously created Identity.
-
-### HTTP Request
-
-`POST {{base_url}}/identities/identity_id/verifications`
-
-
-### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-identity_id | ID of the Identity
-
-
-### Request Arguments
-
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-processor | *string*, **required** | Service used for verifying the Identity, please use "{{identity_verification_processor}}" for now to test the API. | {{payment_processor}}
-
-
-## Retrieve an Identity Verification
-```shell
-
-curl {{base_url}}/verifications/{{fetch_identity_verification_scenario_id}} \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Verification;
-
-$verification = Verification::retrieve('{{fetch_identity_verification_scenario_id}}');
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
-
-Verification verification = client.verificationsClient().fetch("{{fetch_identity_verification_scenario_id}}");
-
-```
-
-> Example Response:
-
-```json
-{{fetch_identity_verification_scenario_response}}
-```
-
-### HTTP Request
-
-`GET {{base_url}}/verifications/verification_id`
-
-### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-verification_id | ID of the Identity Verification
 
 # Settlements
-A Settlement resource represents a collection of Transfers that are to be paid out to a specific Merchant.
+A `Settlement` represents a collection of `Transfers` that are to be paid out
+to a specific `Merchant` (e.g. via ACH Credit).
 
 
-## Create a New Settlement
+## Create a Settlement
 ```shell
 
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/settlements \
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_settlement_scenario_curl_request}}'
@@ -1438,33 +1658,49 @@ import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
 
 Settlement settlement = identity.createSettlement(
   Settlement.builder()
-    .processor("DUMMY_V1")
     .currency("USD")
     .build()
 )
 
 ```
-
-
 > Example Response:
 
 ```json
 {{create_settlement_scenario_response}}
 ```
+Each settlement is comprised of all the `Transfers` that have a SUCCEEDED state and
+that have not been previously settled out. In other words, if a merchant has a
+`Transfer` in the PENDING state it will not be included in the batch settlement.
+In addition, `Settlements` will include any refunded Transfers as a deduction.
+The `total_amount` is the net settled amount in cents (i.e. the amount in cents
+that will be deposited into your merchant's bank account after your fees have
+been deducted).
 
-### HTTP Request
+<aside class="notice">
+To view all the Transfers that were included in a Settlement you can make a
+request to the transfers link (i.e. POST {{base_url}}/settlements/:SETTLEMENT_ID/transfers
+</aside>
+
+
+#### HTTP Request
 
 `POST {{base_url}}/identities/:identity_id/settlements`
 
-### Request Arguments
+#### URL Parameters
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-processor | *string*, **required** | Processor used for underwriting the Identity, please use "{{payment_processor}}" for now to test the API. | {{payment_processor}}
-currency | *integer*, **required** | The currency for the settlement. | USD
+Parameter | Description
+--------- | -------------------------------------------------------------------
+identity_id | ID of the `Identity` for the merchant you wish to settle out
 
 
-## Fetch a Settlement
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+
+## Retrieve a Settlement
 
 ```shell
 
@@ -1500,21 +1736,44 @@ Settlement settlement = client.settlementsClient().fetch("{{fetch_settlement_sce
 {{fetch_settlement_scenario_response}}
 ```
 
-Fetch a previously created Settlement.
+Fetch a previously created `Settlement`.
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/settlements/settlement_id/`
 
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-settlement_id | ID of the Settlment
+settlement_id | ID of the `Settlment`
 
 # Transfers
-A Transfer resource represents any omnidirectional flow of funds. Transfers can represent either a debit to a card, a credit to a bank account, or a refund to a card depending on the request. Transfers have a state attribute representing the current state of the transaction. There are three possible status values: PENDING, SUCCEEDED, or FAILED.
+A `Transfer` represents any flow of funds either to or from a `Payment Instrument`.
+For example, a `Transfer` can be either a [debit to a card](#debit-a-card), a
+credit to a bank account, or a [refund to a card](#refund-a-debit) depending on
+the request.
+
+`Transfers` can have three possible states values: PENDING, SUCCEEDED, or FAILED.
+
+- **PENDING:** Authorization on `Payment Instrument` successfully created (i.e.
+funds are being held), but awaiting system to batch submit the capture request
+to complete the transaction
+
+- **SUCCEEDED:** Funds captured and available for settlement (i.e. disbursement
+via ACH Credit)
+
+- **FAILED:** Authorization attempt failed
+
+By default, `Transfers` will be in a PENDING state and will eventually (typically
+within an hour) update to SUCCEEDED.
+
+<aside class="notice">
+All Transfers automatically have an underlying Authorization (also known as
+a card hold). If a Transfer returns PENDING this indicates that the corresponding
+AUTHORIZATION was successful.
+</aside>
 
 ## Debit a Card
 
@@ -1555,7 +1814,6 @@ Transfer transfer = client.transfersClient().save(
       .amount(888888)
       .currency("USD")
       .tags(tags)
-      .processor("DUMMY_V1")
       .build()
 );
 
@@ -1568,22 +1826,24 @@ Transfer transfer = client.transfersClient().save(
 {{create_debit_scenario_response}}
 ```
 
-A Transfer consisting of obtaining (charging) money from a card (i.e. debit).
+A `Transfer` representing a customer payment where funds are obtained from a
+card (i.e. debit). These specific `Transfers` are distinguished by their type
+which return DEBIT.
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/transfers`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-source | *string*, **required** | The Payment Instrument to debited. | {{create_card_scenario_id}}
-merchant_identity | *string*, **required** | UID. | {{create_identity_scenario_id}}
-amount | *integer*, **required** | The amount of the debit in cents. | 100
-fee | *integer*, **optional** | The amount of the transaction you would like to collect as your fee. Must be less than or equal to the amount | 100
-statement_descriptor | *string*, **required** | Text that will appear on the buyer's statement. Must be 18 characters or less. | Bob's Burgers
-processor | *string*, **required** | Processor used for underwriting the Identity, please use "{{payment_processor}}" for now to test the API. | {{payment_processor}}
+Field | Type | Description
+----- | ---- | -----------
+source | *string*, **required** | ID of the `Payment Instrument` that will be charged
+merchant_identity | *string*, **required** | `Identity` ID of the merchant whom you're charging on behalf of
+amount | *integer*, **required** | The total amount that will be charged in cents (e.g. 100 cents to charge $1.00)
+fee | *integer*, **optional** | The amount of the `Transfer` you would like to collect as your fee in cents. Defaults to zero (Must be less than or equal to the amount)
+currency | *string*, **required** | 3-letter ISO code designating the currency of the `Transfers` (e.g. USD)
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
 ## Refund a Debit
 ```shell
@@ -1622,24 +1882,28 @@ Refund refund = transfer.reverse(100L);
 {{create_refund_scenario_response}}
 ```
 
-A Transfer representing a refund of a debit transaction. The amount of the refund may be any value up to the amount of the original debit.
+A `Transfer` representing the refund (i.e. reversal) of a previously created
+`Transfer` (type DEBIT). The refunded amount may be any value up to the amount
+of the original `Transfer`. These specific `Transfers` are distinguished by
+their type which return REVERSAL.
 
-### HTTP Request
+
+#### HTTP Request
 
 `POST {{base_url}}/transfers/transfer_id/reversals`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-transfer_id | ID of the original Transfer
+transfer_id | ID of the original `Transfer`
 
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-refund_amount | *integer*, **required** | The amount of the refund in cents. Must be equal to or less than the amount of the original debit. | 100
+Field | Type | Description
+----- | ---- | -----------
+refund_amount | *integer*, **required** | The amount of the refund in cents (Must be equal to or less than the amount of the original `Transfer`)
 
 ## Retrieve a Transfer
 ```shell
@@ -1678,21 +1942,29 @@ Transfer transfer = client.transfersClient().fetch("{{fetch_transfer_scenario_id
 {{fetch_transfer_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET {{base_url}}/transfers/transfer_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-transfer_id | ID of the Transfer
+transfer_id | ID of the `Transfer`
 
 
 # Webhooks
-Webhooks allow you to build or set up integrations which subscribe to certain events on the {{api_name}} API. When one of those events is triggered, we'll send a HTTP POST payload to the webhook's configured URL. Webhooks are particularly useful for updating asynchronous state changes in Transfers or notifications of newly created Disputes.
+`Webhooks` allow you to build or set up integrations which subscribe to certain
+automated notifications (i.e. events) on the {{api_name}} API. When one of those
+events is triggered, we'll send a HTTP POST payload to the webhook's configured
+URL. Instead of forcing you to pull info from the API, webhooks push notifications to
+your configured URL endpoint. `Webhooks` are particularly useful for updating
+asynchronous state changes in `Transfers`, `Merchant` account provisioning, and
+listening for notifications of newly created `Disputes`.
 
-## Create a New Webhook
+
+
+## Create a Webhook
 ```shell
 
 curl {{base_url}}/webhooks \
@@ -1735,15 +2007,15 @@ Webhook webhook = client.webhookClient().save(
 {{create_webhook_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/webhooks`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-url | *string*, **required** | The HTTP or HTTPS url the callbacks will be made to | https://examplesite.com
+Field | Type | Description
+----- | ---- | -----------
+url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be sent via POST request
 
 
 ## Retrieve a Webhook
@@ -1787,21 +2059,290 @@ Webhook webhook = client.webhookClient().fetch("{{fetch_webhook_scenario_id}}");
 {{fetch_webhook_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET {{base_url}}/webhooks/webhook_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-webhook_id | ID of the Webhook
+webhook_id | ID of the `Webhook`
 
+## Sample Payloads
+
+
+```shell
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+```
+```java
+```
+### Created Authorization
+
+```javascript
+
+{
+  "type" : "created",
+  "entity" : "authorization",
+  "occurred_at" : "2016-07-06T08:15:21.734",
+  "_embedded" : {
+    "authorizations" : [ {
+      "amount" : 100,
+      "trace_id" : "5e157d2f-1362-4ab2-86af-3f97a8f28f0d",
+      "created_at" : "2016-07-06T08:15:21.63Z",
+      "source" : "PIeAkgVK9TPBnmyf6CSskv5i",
+      "merchant_identity" : "IDradKrsCKMYJyj3VFKimKuy",
+      "tags" : {
+        "order_number" : "21DFASJSAKAS"
+      },
+      "transfer" : null,
+      "expires_at" : "2016-07-13T08:15:21.63Z",
+      "updated_at" : "2016-07-06T08:15:21.65Z",
+      "is_void" : false,
+      "currency" : "USD",
+      "id" : "AUfU8FU7RfgTmhfRagrF1RpS",
+      "state" : "SUCCEEDED"
+    } ]
+  }
+}
+```
+
+### Created New Transfer
+
+```javascript
+{
+ "type" : "created",
+  "entity" : "transfer",
+  "occurred_at" : "2016-07-06T07:41:38.466",
+  "_embedded" : {
+    "transfers" : [ {
+      "amount" : 100,
+      "trace_id" : "e87b8ebc-177e-4e11-9cc3-6cfcfae7adc8",
+      "fee" : 0,
+      "destination" : "PIg3pCsoqrygp1gCvBNvfT3x",
+      "created_at" : "2016-07-06T07:41:38.24Z",
+      "source" : "PI2f1E5JVeQriDMeDpULnae3",
+      "merchant_identity" : "IDoXe9ce6ztf6Pbpoq2WbeMt",
+      "type" : "REVERSAL",
+      "tags" : { },
+      "statement_descriptor" : "PLD*POLLOS HERMANOS",
+      "application" : "APdHz4LE8cNmJbbK7WW2egcg",
+      "updated_at" : "2016-07-06T07:41:38.37Z",
+      "currency" : "USD",
+      "id" : "TRjgpj7b7xZXN18XyD7G3JER",
+      "state" : "PENDING"
+    } ]
+  }
+}
+```
+
+### Updated Transfer
+
+```javascript
+{
+  "type" : "updated",
+  "entity" : "transfer",
+  "occurred_at" : "2016-07-06T07:08:02.342",
+  "_embedded" : {
+    "transfers" : [ {
+      "amount" : 100,
+      "trace_id" : "55ab6c90-2cfd-47ea-8f9b-c7385880617d",
+      "fee" : 0,
+      "destination" : "PIx7rQE9dzEGoccQ76D22xuZ",
+      "created_at" : "2016-07-06T07:07:39.51Z",
+      "source" : "PIoHzz6XzUzCqi5YqL9TVGN6",
+      "merchant_identity" : "IDhxk2ESd2eFF38ewG7Eth93",
+      "type" : "REVERSAL",
+      "tags" : { },
+      "statement_descriptor" : "PLD*PRESTIGE WORLD WI",
+      "application" : "APwD1R6mEokpr84pypG4TBZv",
+      "updated_at" : "2016-07-06T07:08:02.19Z",
+      "currency" : "USD",
+      "id" : "TR4CUpq9T8E6tBDmWMxQQ2P1",
+      "state" : "SUCCEEDED"
+    } ]
+  }
+}
+
+```
+
+
+
+### Created Payment Instrument
+
+```javascript
+{
+  "type" : "created",
+  "entity" : "instrument",
+  "occurred_at" : "2016-07-06T07:06:04.751",
+  "_embedded" : {
+    "instruments" : [ {
+      "updated_at" : "2016-07-06T07:06:04.63Z",
+      "identity" : "IDbtqHvNT1eJHi3WbkbzAb5y",
+      "fingerprint" : "FPR369385117",
+      "created_at" : "2016-07-06T07:06:04.63Z",
+      "id" : "PIx7rQE9dzEGoccQ76D22xuZ",
+      "instrument_type" : "PAYMENT_CARD",
+      "tags" : { }
+    } ]
+  }
+}
+```
+
+### Created Identity
+
+```javascript
+{
+  "type" : "created",
+  "entity" : "identity",
+  "occurred_at" : "2016-07-06T07:05:57.659",
+  "_embedded" : {
+    "identitys" : [ {
+      "updated_at" : "2016-07-06T07:05:57.55Z",
+      "created_at" : "2016-07-06T07:05:57.55Z",
+      "id" : "IDt9PQrHhTmmwxHrmcxt46Eq",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Bobs Burgers",
+        "business_type" : "INTERNATIONAL_ORGANIZATION",
+        "doing_business_as" : "Bobs Burgers",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.BobsBurgers.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Bobs Burgers"
+      },
+      "tags" : {
+        "key" : "value"
+      }
+    } ]
+  }
+}
+```
+
+### Provisioned Merchant
+
+```javascript
+{
+  "type" : "created",
+  "entity" : "merchant",
+  "occurred_at" : "2016-07-06T07:40:01.224",
+  "_embedded" : {
+    "merchants" : [ {
+      "updated_at" : "2016-07-06T07:40:00.77Z",
+      "identity" : "IDoXe9ce6ztf6Pbpoq2WbeMt",
+      "created_at" : "2016-07-06T07:40:00.66Z",
+      "id" : "MU6LMTZMw5X1MmjzqzkaPE7v",
+      "underwriting_state" : "APPROVED",
+      "processor" : "DUMMY_V1",
+      "verification" : null,
+      "merchant_profile" : "MP5LCjDsB6kY7wEPHK9szmAw"
+    } ]
+  }
+}
+```
+
+### Successfully Underwritten Merchant
+
+```javascript
+{
+  "type" : "underwritten",
+  "entity" : "merchant",
+  "occurred_at" : "2016-07-06T08:13:42.460",
+  "_embedded" : {
+    "merchants" : [ {
+      "updated_at" : "2016-07-06T08:13:42.28Z",
+      "identity" : "IDradKrsCKMYJyj3VFKimKuy",
+      "created_at" : "2016-07-06T08:13:42.28Z",
+      "id" : "MUew1oPVk5nBHypxa33U39n3",
+      "underwriting_state" : "APPROVED",
+      "processor" : "DUMMY_V1",
+      "verification" : null,
+      "merchant_profile" : "MPtn5JmNnABFXHBtkmaS1aBP"
+    } ]
+  }
+}
+```
+
+### Created Dispute
+
+```javascript
+{
+  "type" : "created",
+  "entity" : "dispute",
+  "occurred_at" : "2016-07-06T08:14:01.288",
+  "_embedded" : {
+    "disputes" : [ {
+      "occurred_at" : "2016-07-06T08:13:47.56Z",
+      "reason" : "FRAUD",
+      "amount" : 0,
+      "transfer" : "TRnEarDDVuVkBJLBL6PhZTLT",
+      "updated_at" : "2016-07-06T08:14:01.18Z",
+      "identity" : "ID4DFq8Q2V1zHoaU8WCTzpge",
+      "created_at" : "2016-07-06T08:14:01.18Z",
+      "id" : "DIvHQsw2tcwUhkMtzXVbksxo",
+      "state" : "PENDING",
+      "respond_by" : "2016-07-13T08:14:01.18Z",
+      "tags" : {
+        "order_number" : "21DFASJSAKAS"
+      }
+    } ]
+  }
+}
+```
 # Payment Instruments
-A Payment Instrument resource represents either a credit card or bank account. All information is securely vaulted and referenced by an ID. A Payment Instrument may be created multiple times, and each tokenization produces a unique ID. Each ID may only be associated one time and to only one Identity. Once associated, a Payment Instrument may not be disassociated from an Identity.
+A `Payment Instrument` resource represents either a credit card or bank account.
+A `Payment Instrument` may be tokenized multiple times and each tokenization produces
+a unique ID. Each ID may only be associated one time and to only one `Identity`.
+Once associated, a `Payment Instrument` may not be disassociated from an
+`Identity`.
 
 
-## Create a New Card
+## Create a Card
 ```shell
 
 
@@ -1849,34 +2390,44 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 ```
 
 <aside class="warning">
-Creating cards directly via the API should only be done for testing purposes.
+Please note that creating cards directly via the API should only be done for
+testing purposes. You must use the Tokenization.js library to remain out of PCI
+scope.
 </aside>
+
 Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/payment_instruments`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-identity | *string*, **required** | Identity resource which the card is associated. | {{create_buyer_identity_scenario_id}}
-first_name | *string*, **optional** | Customer's first name on card. | Dwayne
-last_name | *string*, **optional** | Customer's last name on card. | Johnson
-full_name | *string*, **optional** | Customer's full name on card. | Dwayne Johnson
-type | *string*, **required** | Type of Payment Instrument. For cards input PAYMENT_CARD. | PAYMENT_CARD
-number | *string*, **required** | The digits of the credit card integer. | 1111 111 1111 1111
-security_code | *string*, **optional** | The 3-4 digit security code for the card. | 123
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December). | 11
-expiration_year | *integer*, **required** | Expiration year. | 2020
-line1 | *string*, **optional** | Street address of the associated card. | 1423 S Joane Way
-line2 | *string*, **optional** | Second line of the address of the associated card. |  Apt. 3
-city | *string*, **optional** | City of the associated card. | San Mateo
-region | *string*, **optional** | State of the associated card. | CA
-postal_code | *string*, **optional** | Postal of the associated card. | 92704
-country | *string*, **optional** | Country of the associated card. | USA
-## Create a New Bank Account
+Field | Type | Description
+----- | ---- | -----------
+identity | *string*, **required** | ID of the `Identity` that the card should be associated
+type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | 4-digit expiration year
+name | *string*, **optional** | Full name of the registered card holder
+address | *object*, **optional** | Billing address (Full description of child attributes below)
+
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **optional** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **optional** | City
+region | *string*, **optional** | State
+postal_code | *string*, **optional** | Zip or Postal code
+country | *string*, **optional** | 3-Letter Country code
+
+
+## Create a Bank Account
 ```shell
 
 curl {{base_url}}/payment_instruments \
@@ -1926,39 +2477,35 @@ bankAccount = client.bankAccountsClient().save(
 ```
 
 <aside class="warning">
-Creating bank accounts directly via the API should only be done for testing purposes.
+Creating bank accounts directly via the API should only be done for testing
+purposes.
 </aside>
-Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
 
-### HTTP Request
+Please review our guide on how to tokenize `Payment Instruments` via the
+[tokenization.js library](#tokenization-js)
+
+
+#### HTTP Request
 
 `POST {{base_url}}/payment_instruments`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-account_number | *string*, **required** | Bank account number. | 84012312415
-bank_code | *string*, **required** | Routing number. Specified in FedACH database defined by the US Federal Reserve. | 840123124
-identity | *string*, **required**| Identity resource which the bank account is associated. | {{create_identity_scenario_id}}
-account_type | *string*, **required** | Checking or Savings | SAVINGS
-type | *string*, **required** | Type of Payment Instrument. For cards input PAYMENT_CARD. | BANK_ACCOUNT
-currency | *string*, **optional** | Default currency used when settling funds. | USD
-first_name | *string*, **optional** | Customer's first name on bank account. | Dwayne
-last_name | *string*, **optional** | Customer's last name on card. | Johnson
-full_name | *string*, **optional** | Customer's full name on card. | Dwayne Johnson
-country | *string*, **optional** | Country of the associated bank account. | USA
-bic | *string*, **optional** | TBD. | foo
-iban | *string*, **optional** | International Bank Account integer | foo
-company_name | *string*, **optional** | Name of company if the bank account is a company account. |  Bob's Burgers
+Field | Type | Description
+----- | ---- | -----------
+account_number | *string*, **required** | Bank account number
+bank_code | *string*, **required** | Bank routing number
+type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
+identity | *string*, **required**| ID for the `Identity` resource which the account is associated
+account_type | *string*, **required** | Either CHECKING or SAVINGS
+name | *string*, **optional** | Account owner's full name
 
-
-## Create an Identity Verification
+## Fetch a Payment Instrument
 
 ```shell
 
 
-curl {{base_url}}/payment_instruments/{{create_identity_scenario_id}}/verifications \
+curl {{base_url}}/payment_instruments/{{fetch_payment_instrument_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
 
@@ -1973,99 +2520,34 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 use {{api_name}}\Resources\PaymentInstrument;
 
-$card = PaymentInstrument::retrieve('{{fetch_dispute_scenario_id}}');
+$card = PaymentInstrument::retrieve('{{fetch_payment_instrument_scenario_id}}');
 
 ```
 ```java
 
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
 
-BankAccount bankAccount = client.bankAccountsClient().fetch("{{fetch_dispute_scenario_id}}")
+PaymentCard paymentCard = client.paymentCardsClient().fetch("{{fetch_payment_instrument_scenario_id}}")
 
 ```
 > Example Response:
 
 ```json
-{{create_identity_verification_scenario_response}}
+{{fetch_payment_instrument_scenario_response}}
 ```
 
-Perform an identity verification check against a previously created Identity.
+Fetch a previously created `Payment Instrument`
 
-### HTTP Request
+#### HTTP Request
 
-`POST {{base_url}}/identities/identity_id/verifications`
+`GET {{base_url}}/payment_instruments/:payment_instrument_id`
 
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-identity_id | ID of the Identity
+payment_instrument_id | ID of the `Payment Instrument`
 
-
-### Request Arguments
-
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-processor | *string*, **required** | Service used for verifying the Identity, please use "{{identity_verification_processor}}" for now to test the API. | {{payment_processor}}
-
-
-## Create an Identity Verification
-
-```shell
-
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/verifications \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_identity_verification_scenario_curl_request}}"
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
-  .forEachRemaining(baPage -> {
-    Collection<BankAccount> bankAccounts = baPage.getContent();
-    //do something
-  });
-
-```
-> Example Response:
-
-```json
-{{create_identity_verification_scenario_response}}
-```
-
-Perform an identity verification check against a previously created Identity.
-
-### HTTP Request
-
-`POST {{base_url}}/identities/identity_id/verifications`
-
-
-### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-identity_id | ID of the Identity
-
-
-### Request Arguments
-
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-processor | *string*, **required** | Service used for verifying the Identity, please use "{{identity_verification_processor}}" for now to test the API. | {{payment_processor}}
 
 

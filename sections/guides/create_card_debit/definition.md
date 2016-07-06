@@ -1,1 +1,1 @@
-## Create a Transfer (i.e. debit the card)
+### Step 6: Create a Transfer (i.e. debit the card)

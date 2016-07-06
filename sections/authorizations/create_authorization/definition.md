@@ -1,1 +1,1 @@
-## Create a New Authorization
+## Create an Authorization

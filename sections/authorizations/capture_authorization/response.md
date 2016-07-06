@@ -4,21 +4,28 @@
 {{capture_authorization_scenario_response}}
 ```
 
-### HTTP Request
+Once successfully captured the `transfer` field of the `Authorization` will
+contain the ID for the corresponding `Transfer` resource. By default, `Transfers`
+will be in a PENDING state. PENDING means that the system hasn't submitted the
+capture request as they are submitted via batch request. Once submited
+the state of the `Transfer` will update to SUCCEEDED.
 
-`PUT {{base_url}}/authorizations/authorization_id`
 
-### URL Parameters
+
+#### HTTP Request
+
+`PUT {{base_url}}/authorizations/:authorization_id`
+
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 authorization_id | ID of the Authorization
 
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-capture_amount | *integer*, **required** | The amount of the authorization you would like to capture in cents. Must be less than or equal to the amount of the authorization | 100
-statement_descriptor | *string*, **required** | Text that will appear on the buyer's statement. Must be 18 characters or less. | Bob's Burgers
-fee | *integer*, **optional** | The amount of the transaction you would like to collect as your fee. Must be less than or equal to the amount | 100
+Field | Type | Description
+----- | ---- | -----------
+capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
+fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount

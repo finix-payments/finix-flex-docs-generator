@@ -4,13 +4,13 @@
 {{create_webhook_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/webhooks`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-url | *string*, **required** | The HTTP or HTTPS url the callbacks will be made to | https://examplesite.com
+Field | Type | Description
+----- | ---- | -----------
+url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be sent via POST request
 

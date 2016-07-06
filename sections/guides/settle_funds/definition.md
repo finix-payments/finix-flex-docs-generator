@@ -1,1 +1,1 @@
-## Settle out funds to a Merchant
+### Step 7: Settle Funds to Merchant

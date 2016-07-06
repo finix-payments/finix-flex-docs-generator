@@ -11,6 +11,5 @@ Transfer transfer = client.transfersClient().save(
       .amount(888888)
       .currency("USD")
       .tags(tags)
-      .processor("DUMMY_V1")
       .build()
 );

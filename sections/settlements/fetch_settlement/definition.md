@@ -1,1 +1,1 @@
-## Fetch a Settlement
+## Retrieve a Settlement

@@ -5,12 +5,12 @@
 {{fetch_webhook_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET {{base_url}}/webhooks/webhook_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-webhook_id | ID of the Webhook
+webhook_id | ID of the `Webhook`

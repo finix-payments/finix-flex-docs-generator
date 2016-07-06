@@ -70,18 +70,11 @@ bankAccount = client.bankAccountsClient().save(
 );
 
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
-
-Verification verification = identity.verifyOn(
-  Verification.builder()
-    .processor("DUMMY_V1")
-    .build()
-);
-
 
 import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
 
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().processor("DUMMY_V1").build());
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
+
 
 
 import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
@@ -124,21 +117,14 @@ Transfer transfer = client.transfersClient().save(
       .amount(888888)
       .currency("USD")
       .tags(tags)
-      .processor("DUMMY_V1")
       .build()
 );
-
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Refund;
-
-Refund refund = transfer.reverse(100L);
 
 
 import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
 
 Settlement settlement = identity.createSettlement(
   Settlement.builder()
-    .processor("DUMMY_V1")
     .currency("USD")
     .build()
 )
@@ -150,7 +136,6 @@ Authorization authorization = client.authorizationsClient().save(
   Authorization.builder()
     .amount(100L)
     .merchantIdentity("IDrktKp2HNpogF3BWMmiSGrz")
-    .processor("DUMMY_V1")
     .source("PIeffbMtvz2Hiy6dwBbaHhKq")
     .build()
 );
@@ -248,28 +233,13 @@ Identity identity = client.identitiesClient().fetch("{{fetch_identity_scenario_i
 
 import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
 
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().processor("DUMMY_V1").build());
-
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
-
-Verification verification = identity.verifyOn(
-  Verification.builder()
-    .processor("DUMMY_V1")
-    .build()
-);
-
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Verification;
-
-Verification verification = client.verificationsClient().fetch("{{fetch_identity_verification_scenario_id}}");
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 
 
 import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
 
 Settlement settlement = identity.createSettlement(
   Settlement.builder()
-    .processor("DUMMY_V1")
     .currency("USD")
     .build()
 )
@@ -292,7 +262,6 @@ Transfer transfer = client.transfersClient().save(
       .amount(888888)
       .currency("USD")
       .tags(tags)
-      .processor("DUMMY_V1")
       .build()
 );
 
@@ -349,18 +318,4 @@ bankAccount = client.bankAccountsClient().save(
       .currency("USD")
       .build()
 );
-
-
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-BankAccount bankAccount = client.bankAccountsClient().fetch("{{fetch_dispute_scenario_id}}")
-
-
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
-  .forEachRemaining(baPage -> {
-    Collection<BankAccount> bankAccounts = baPage.getContent();
-    //do something
-  });
 

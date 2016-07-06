@@ -4,11 +4,11 @@
 {{fetch_dispute_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET {{base_url}}/disputes/dispute_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------

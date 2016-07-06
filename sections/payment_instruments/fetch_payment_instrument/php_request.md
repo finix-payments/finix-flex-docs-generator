@@ -1,3 +1,3 @@
 use {{api_name}}\Resources\PaymentInstrument;
 
-$card = PaymentInstrument::retrieve('{{fetch_dispute_scenario_id}}');
+$card = PaymentInstrument::retrieve('{{fetch_payment_instrument_scenario_id}}');

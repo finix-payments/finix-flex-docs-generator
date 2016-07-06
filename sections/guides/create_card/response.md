@@ -4,12 +4,48 @@
 {{create_card_scenario_response}}
 ```
 
-Now that we have an Identity resource representing our buyer, we'll need to create a Payment Instrument which can represent either a card or bank account. In this instance we'll create a card with the request to the right (note you'll need to interpolate your own buyer's Identity from the previous request).
+Now that we have an `Identity` resource representing our buyer, we'll need to
+create a `Payment Instrument` which represents the credit card you'll be debiting
+(i.e. charging).
 
 <aside class="warning">
-Creating cards directly via the API should only be done for testing purposes.
+Please note that creating cards directly via the API should only be done for
+testing purposes. You must use the Tokenization.js library to remain out of PCI
+scope.
 </aside>
-Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
 
-Be sure to store the ID of your newly tokenized Payment Instrument.
+You'll also need to interpolate your own buyer's `Identity` ID
+from the previous request to properly associate it.
+
+
+Please review our guide on how to tokenize cards via the [tokenization.js library.](#tokenization-js)
+
+#### HTTP Request
+
+`POST {{base_url}}/payment_instruments`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+identity | *string*, **required** | ID of the `Identity` that the card should be associated
+type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | 4-digit expiration year
+name | *string*, **optional** | Full name of the registered card holder
+address | *object*, **optional** | Billing address (Full description of child attributes below)
+
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **optional** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **optional** | City
+region | *string*, **optional** | State
+postal_code | *string*, **optional** | Zip or Postal code
+country | *string*, **optional** | 3-Letter Country code
 

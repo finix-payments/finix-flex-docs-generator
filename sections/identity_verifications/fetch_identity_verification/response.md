@@ -5,11 +5,11 @@
 {{fetch_identity_verification_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET {{base_url}}/verifications/verification_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------

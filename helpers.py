@@ -3,6 +3,7 @@ import pprint
 import poster
 import time
 import random
+import string
 import base64
 from urllib2 import Request, urlopen, HTTPError
 import json
@@ -54,9 +55,26 @@ def format_php_request_body(string):
     return string
 
 
+def random_app_name():
+    pay_facs = ["HyperWallet", "Venmo", "Square", "Paypal", "Dwolla", "WePay", "Facebook", "Google", "BrainTree"]
+    return random.choice (pay_facs)
+
 def random_business_name():
     BusinessList = ["Bobs Burgers", "Prestige World Wide", "Golds Gym", "Petes Coffee",
                     "Pollos Hermanos", "Lees Sandwiches", "Dunder Mifflin",
                     "Pawny City Hall", "ACME Anchors"]
     return random.choice (BusinessList)
+
+
+def random_first_name():
+    names = ["Jim", "Bob", "Joe", "Walter", "Daphne", "Maggie", "Fran",
+                    "Jessie", "Michae", "Marcie", "Ricardo", "Amy", "Sean",
+                    "Marshall", "Laura", "Collen", "Alex", "Ayisha", "Step"]
+    return random.choice (names)
+
+def random_last_name():
+    names = ["Jones", "Sterling", "Lopez", "Serna", "Wade", "James", "Curry",
+             "Green", "White", "Le", "Kline", "Henderson", "Diaz", "Chang"]
+    return random.choice (names)
+
 

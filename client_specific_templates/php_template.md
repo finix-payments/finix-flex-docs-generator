@@ -11,15 +11,14 @@ $bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request
 $bank_account = $bank_account->save();
 
 
+
 use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
-$identity_verification = $identity->verifyOn({{underwrite_identity_scenario_php_request}});
-use {{api_name}}\Resources\Identity;
+$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
 
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
+$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
 
-$merchant = $identity->provisionMerchantOn({{underwrite_identity_scenario_php_request}});
+
 use {{api_name}}\Resources\Identity;
 
 $identity = new Identity({{create_buyer_identity_scenario_php_request}}
@@ -36,7 +35,6 @@ use {{api_name}}\Resources\Transfer;
 
 $debit = new Transfer({{create_debit_scenario_php_request}});
 $debit = $debit->save();
-
 use {{api_name}}\Resources\Identity;
 use {{api_name}}\Resources\Settlement;
 
@@ -78,17 +76,9 @@ use {{api_name}}\Resources\Identity;
 $identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
 use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
+$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
 
-$merchant = $identity->provisionMerchantOn({{underwrite_identity_scenario_php_request}});
-use {{api_name}}\Resources\Identity;
-
-$identity = Identity::retrieve('{{create_identity_scenario_id}}');
-$identity_verification = $identity->verifyOn({{underwrite_identity_scenario_php_request}});
-use {{api_name}}\Resources\Verification;
-
-$verification = Verification::retrieve('{{fetch_identity_verification_scenario_id}}');
-
+$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
 use {{api_name}}\Resources\Identity;
 use {{api_name}}\Resources\Settlement;
 
@@ -136,10 +126,5 @@ use {{api_name}}\Resources\PaymentInstrument;
 
 $bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
 $bank_account = $bank_account->save();
-
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = PaymentInstrument::retrieve('{{fetch_dispute_scenario_id}}');
 
 

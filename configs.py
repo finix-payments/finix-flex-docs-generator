@@ -1,36 +1,36 @@
 import base64
 
 partner_configs = [
-    {
-        'api_name': "Finix",
-        'api_name_downcase': "finix",
-        'base_url': 'https://api-staging.finix.io',
-        'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
-        'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
-        'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
-        'basic_auth_username': None,
-        'basic_auth_password': None,
-        'encoded_auth': None,
-        'payment_processor': "DUMMY_V1",
-        'identity_verification_processor': "DUMMY_V1",
-        'application': None,
-        'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/"
-    },
     # {
-    #     'api_name': "Payline",
-    #     'api_name_downcase': "payline",
-    #     'base_url': 'https://api-test.payline.io',
-    #     'admin_basic_auth_username': 'USkoFNY73WEiP8tYmZtPa6e4',
-    #     'admin_basic_auth_password': 'e28fe471-5b2c-4f20-9db9-0a3e5fd06110',
-    #     'admin_encoded_auth': base64.b64encode('USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110'),
+    #     'api_name': "Finix",
+    #     'api_name_downcase': "finix",
+    #     'base_url': 'https://api-staging.finix.io',
+    #     'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
+    #     'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
+    #     'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
     #     'basic_auth_username': None,
     #     'basic_auth_password': None,
     #     'encoded_auth': None,
     #     'payment_processor': "DUMMY_V1",
     #     'identity_verification_processor': "DUMMY_V1",
     #     'application': None,
-    #     'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/"
+    #     'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/"
     # },
+    {
+        'api_name': "Payline",
+        'api_name_downcase': "payline",
+        'base_url': 'https://api-test.payline.io',
+        'admin_basic_auth_username': 'USkoFNY73WEiP8tYmZtPa6e4',
+        'admin_basic_auth_password': 'e28fe471-5b2c-4f20-9db9-0a3e5fd06110',
+        'admin_encoded_auth': base64.b64encode('USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110'),
+        'basic_auth_username': None,
+        'basic_auth_password': None,
+        'encoded_auth': None,
+        'payment_processor': "DUMMY_V1",
+        'identity_verification_processor': "DUMMY_V1",
+        'application': None,
+        'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/"
+    },
     # {
     #     'api_name': "Payscout",
     #     'api_name_downcase': "payscout",
@@ -61,11 +61,12 @@ snippets_by_resource = {
         "create_buyer_identity",
         "create_card",
         "create_card_debit",
-        "refund_debit",
         "settle_funds",
+        # "refund_debit"
         ],
     "tokenization": [
         "definition",
+        "associate_token",
         ],
     "authorizations": [
         "definition",
@@ -118,6 +119,7 @@ snippets_by_resource = {
         "definition",
         "create_webhook",
         "fetch_webhook",
+        "sample_payloads",
         # "list_webhooks"
     ],
 
@@ -125,7 +127,7 @@ snippets_by_resource = {
         "definition",
         "create_card",
         "create_bank_account",
-        # "fetch_payment_instrument",
+        "fetch_payment_instrument",
         # "list_payment_instruments"
     ],
     }
@@ -137,7 +139,7 @@ resource_ordering = [
     "authorizations",
     "disputes",
     "identities",
-    # "identity_verifications",
+    # # "identity_verifications",
     "settlements",
     "transfers",
     "webhooks",

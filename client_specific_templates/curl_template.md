@@ -1,8 +1,10 @@
 
 
 # With cURL, just supply your username as basic auth (-u) in the header of each request as follows:
-curl "api_endpoint_here"
--u {{basic_auth_username}}:{{basic_auth_password}}
+
+curl "api_endpoint_here" \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 
 
@@ -15,21 +17,14 @@ curl {{base_url}}/identities \
 curl {{base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_bank_account_scenario_curl_request}}"
+    -d '{{create_bank_account_scenario_curl_request}}'
 
 
 
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/verifications \
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_identity_verification_scenario_curl_request}}'
-
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/merchants \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{underwrite_identity_scenario_curl_request}}'
+    -d '{{provision_merchant_scenario_curl_request}}'
 
 
 
@@ -56,13 +51,7 @@ curl {{base_url}}/transfers \
 
 
 
-curl {{base_url}}/transfers/{{create_debit_scenario_id}}/reversals \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d  '{{create_refund_scenario_curl_request}}'
-
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/settlements \
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_settlement_scenario_curl_request}}'
@@ -113,26 +102,14 @@ curl {{base_url}}/identities/{{fetch_identity_scenario_id}} \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/merchants \
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{underwrite_identity_scenario_curl_request}}'
+    -d '{{provision_merchant_scenario_curl_request}}'
 
 
 
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/verifications \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_identity_verification_scenario_curl_request}}'
-
-
-curl {{base_url}}/verifications/{{fetch_identity_verification_scenario_id}} \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/settlements \
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_settlement_scenario_curl_request}}'
@@ -191,17 +168,4 @@ curl {{base_url}}/payment_instruments \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_bank_account_scenario_curl_request}}'
 
-
-
-
-curl {{base_url}}/payment_instruments/{{create_identity_scenario_id}}/verifications \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-
-
-
-curl {{base_url}}/identities/{{create_identity_scenario_id}}/verifications \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_identity_verification_scenario_curl_request}}"
 

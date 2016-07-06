@@ -1,1 +1,1 @@
-## Create a New Settlement
+## Create a Settlement

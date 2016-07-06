@@ -5,30 +5,39 @@
 ```
 
 <aside class="warning">
-Creating cards directly via the API should only be done for testing purposes.
+Please note that creating cards directly via the API should only be done for
+testing purposes. You must use the Tokenization.js library to remain out of PCI
+scope.
 </aside>
+
 Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/payment_instruments`
 
-### Request Arguments
+#### Request Arguments
 
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-identity | *string*, **required** | Identity resource which the card is associated. | {{create_buyer_identity_scenario_id}}
-first_name | *string*, **optional** | Customer's first name on card. | Dwayne
-last_name | *string*, **optional** | Customer's last name on card. | Johnson
-full_name | *string*, **optional** | Customer's full name on card. | Dwayne Johnson
-type | *string*, **required** | Type of Payment Instrument. For cards input PAYMENT_CARD. | PAYMENT_CARD
-number | *string*, **required** | The digits of the credit card integer. | 1111 111 1111 1111
-security_code | *string*, **optional** | The 3-4 digit security code for the card. | 123
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December). | 11
-expiration_year | *integer*, **required** | Expiration year. | 2020
-line1 | *string*, **optional** | Street address of the associated card. | 1423 S Joane Way
-line2 | *string*, **optional** | Second line of the address of the associated card. |  Apt. 3
-city | *string*, **optional** | City of the associated card. | San Mateo
-region | *string*, **optional** | State of the associated card. | CA
-postal_code | *string*, **optional** | Postal of the associated card. | 92704
-country | *string*, **optional** | Country of the associated card. | USA
+Field | Type | Description
+----- | ---- | -----------
+identity | *string*, **required** | ID of the `Identity` that the card should be associated
+type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | 4-digit expiration year
+name | *string*, **optional** | Full name of the registered card holder
+address | *object*, **optional** | Billing address (Full description of child attributes below)
+
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **optional** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **optional** | City
+region | *string*, **optional** | State
+postal_code | *string*, **optional** | Zip or Postal code
+country | *string*, **optional** | 3-Letter Country code
+

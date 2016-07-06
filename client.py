@@ -10,7 +10,8 @@ import time
 import random
 
 from helpers import formatted_response, format_json, format_curl_request_body,\
-    format_php_request_body, random_business_name
+    format_php_request_body, random_business_name, random_last_name, \
+    random_first_name, random_app_name
 
 def create_user(config_values, role):
     values = {
@@ -22,7 +23,8 @@ def create_user(config_values, role):
 
 
 def create_app(config_values, application_owner_user_id):
-    company = random_business_name()
+    company = random_app_name()
+
     values = {
         "tags": {
             "application_name": company
@@ -155,9 +157,19 @@ def create_buyer_identity(config_values):
             "key": "value"
         },
         "entity": {
-            "last_name": "Johnson",
-            "first_name": "Dwayne",
+            "last_name": random_last_name(),
+            "first_name": random_first_name(),
+            "email": "therock@gmail.com",
+            "phone": "7145677613",
+            "personal_address": {
+                "city": "San Mateo",
+                "country": "USA",
+                "region": "CA",
+                "line2": "Apartment 7",
+                "line1": "741 Douglass St",
+                "postal_code": "94114"
             }
+        }
     }
 
     values = format_json(json.dumps(values))
@@ -172,7 +184,9 @@ def create_merchant_identity(config_values, business_type):
             "key": "value"
         },
         "entity": {
+            "first_name": "dwayne",
             "last_name": "Sunkhronos",
+            "title": "CEO",
             "phone": "1234567890",
             "personal_address": {
                 "city": "San Mateo",
@@ -191,10 +205,9 @@ def create_merchant_identity(config_values, business_type):
                 "line1": "741 Douglass St",
                 "postal_code": "94114"
             },
-            "tax_id": "5779",
+            "tax_id": "123456789",
             "business_type": business_type,
             "business_phone": "+1 (408) 756-4497",
-            "first_name": "dwayne",
             "dob": {
                 "year": 1978,
                 "day": 27,
@@ -212,6 +225,7 @@ def create_merchant_identity(config_values, business_type):
             "amex_mid": "12345678910",
             "annual_card_volume": 12000000,
             "url": "www." + company + ".com",
+            "has_accepted_credit_cards_previously": True,
             "principal_percentage_ownership": 50,
             "url": "www." + company.replace(" ", "") + ".com",
             "doing_business_as": company,
@@ -224,47 +238,63 @@ def create_merchant_identity(config_values, business_type):
     endpoint = config_values['base_url'] + '/identities'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
-def update_identity(config_values, identity_id):
-    values = """
-	  {
-	    "tags": {
-	      "key_2": "value_2"
-	    },
-	    "entity": {
-	      "last_name": "Sunkhronos",
-	      "phone": "0987654321",
-	      "personal_address": {
-	        "city": "San Mateo",
-	        "country": "USA",
-	        "region": "CA",
-	        "line2": "Apartment 7",
-	        "line1": "741 Douglass St",
-	        "postal_code": "94114"
-	      },
-	      "business_name": "business inc",
-	      "business_address": {
-	        "city": "San Mateo",
-	        "country": "USA",
-	        "region": "CA",
-	        "line2": "Apartment 8",
-	        "line1": "741 Douglass St",
-	        "postal_code": "94114"
-	      },
-	      "tax_id": "5779",
-	      "business_type": "LIMITED_LIABILITY_COMPANY",
-	      "business_phone": "+1 (408) 756-4497",
-	      "first_name": "Jimmy",
-	      "dob": {
-	        "year": 1978,
-	        "day": 27,
-	        "month": 6
-	      },
-	      "business_tax_id": "123456789",
-	      "doing_business_as": "doingBusinessAs",
-	      "email": "user@example.org"
-	    }
-	  }
-	"""
+def update_identity(config_values, identity_id, business_type):
+    company = random_business_name()
+    values = {
+        "tags": {
+            "key": "value_2"
+        },
+        "entity": {
+            "first_name": random_first_name(),
+            "last_name": random_last_name(),
+            "title": "CTO",
+            "phone": "7144177878",
+            "personal_address": {
+                "city": "San Diego",
+                "country": "USA",
+                "region": "CA",
+                "line2": "Apartment 2",
+                "line1": "712 Douglass St",
+                "postal_code": "94194"
+            },
+            "business_name": company,
+            "personal_address": {
+                "city": "San Diego",
+                "country": "USA",
+                "region": "CA",
+                "line2": "Apartment 2",
+                "line1": "712 Douglass St",
+                "postal_code": "94194"
+            },
+            "tax_id": "999999999",
+            "business_type": business_type,
+            "business_phone": "+1 (408) 756-4497",
+            "dob": {
+                "year": 1988,
+                "day": 2,
+                "month": 5
+            },
+            "dob": {
+                "year": 1988,
+                "day": 2,
+                "month": 5
+            },
+            "business_tax_id": "123456789",
+            "mcc": "0742",
+            "default_statement_descriptor": company,
+            "max_transaction_amount": 120000,
+            "amex_mid": "12345678910",
+            "annual_card_volume": 12000000,
+            "url": "www." + company + ".com",
+            "has_accepted_credit_cards_previously": True,
+            "principal_percentage_ownership": 50,
+            "url": "www." + company.replace(" ", "") + ".com",
+            "doing_business_as": company,
+            "email": "user@example.org"
+        }
+    }
+
+    values = format_json(json.dumps(values))
     endpoint = config_values['base_url'] + '/identities/' + identity_id
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
@@ -305,8 +335,12 @@ def create_card(config_values, identity_id):
             "line1": "741 Douglass St",
             "postal_code": "94114"
         },
+        "name": random_first_name() + " " + random_last_name(),
         "security_code": "112",
-        "type": "PAYMENT_CARD"
+        "type": "PAYMENT_CARD",
+        "tags": {
+        "card name": "Business Card"
+        }
     }
     values = format_json(json.dumps(values))
     endpoint = config_values['base_url'] + '/payment_instruments'
@@ -350,14 +384,16 @@ def create_token(config_values):
 def create_bank_account(config_values, identity_id):
 
     values = {
-        "currency": "USD",
         "account_type": "SAVINGS",
         "name": "Fran Lemke",
         "bank_code": "123123123",
         "country": "USA",
         "type": "BANK_ACCOUNT",
         "identity": identity_id,
-        "account_number": "123123123"
+        "account_number": "123123123",
+        "tags": {
+            "Bank Account": "Company Account"
+        }
     }
     values = format_json(json.dumps(values))
 
@@ -366,13 +402,16 @@ def create_bank_account(config_values, identity_id):
 
 
 def create_debit(config_values, merchant_id, card_id, amount):
+    fee = int(round(amount * .1))
     values =  {
         "currency": "USD",
         "source": card_id,
-        "processor": config_values["payment_processor"],
         "merchant_identity": merchant_id,
         "amount": amount,
-        "fee": 10
+        "fee": fee,
+        "tags": {
+            "order_number": "21DFASJSAKAS"
+        },
     }
 
     values = format_json(json.dumps(values))
@@ -420,7 +459,7 @@ def create_refund(config_values, transfer_id):
 def create_webhook(config_values):
     values = """
 	            {
-	            "url" : "http://requestb.in/vts8mpvt"
+	            "url" : "http://requestb.in/1jb5zu11"
 	            }
 	        """
     endpoint = config_values['base_url'] + '/webhooks'
@@ -432,11 +471,13 @@ def create_settlement(config_values, identity_id):
     time.sleep(60)
 
     values = {
+        "currency": "USD",
         "processor": config_values['payment_processor'],
-        "currency": "USD"
+        "tags": {
+            "Internal Daily Settlement ID": "21DFASJSAKAS"
+        }
     }
     values = format_json(json.dumps(values))
-
     endpoint = config_values['base_url'] + '/identities/' + identity_id + "/settlements"
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
@@ -492,10 +533,12 @@ def create_authorization(config_values, merchant_id, card_id):
     values = {
         "currency": "USD",
         "source": card_id,
-        "processor": config_values["payment_processor"],
         "merchant_identity": merchant_id,
-        "amount": 100
-    }
+        "amount": 100,
+        "tags": {
+            "order_number": "21DFASJSAKAS"
+        }
+        }
 
     values = format_json(json.dumps(values))
 
@@ -507,9 +550,7 @@ def capture_authorization(config_values, auth_id):
 
     values = {
         "capture_amount": 100,
-        "fee": "10",
-        "statement_descriptor": "Bob's Burgers",
-        "void_me": None
+        "fee": "10"
     }
 
     values = format_json(json.dumps(values))

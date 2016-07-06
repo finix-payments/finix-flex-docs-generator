@@ -4,15 +4,15 @@
 {{fetch_settlement_scenario_response}}
 ```
 
-Fetch a previously created Settlement.
+Fetch a previously created `Settlement`.
 
-### HTTP Request
+#### HTTP Request
 
 `POST {{base_url}}/settlements/settlement_id/`
 
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-settlement_id | ID of the Settlment
+settlement_id | ID of the `Settlment`

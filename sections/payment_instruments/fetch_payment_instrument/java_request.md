@@ -1,4 +1,4 @@
 
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
 
-BankAccount bankAccount = client.bankAccountsClient().fetch("{{fetch_dispute_scenario_id}}")
+PaymentCard paymentCard = client.paymentCardsClient().fetch("{{fetch_payment_instrument_scenario_id}}")

@@ -1,5 +1,5 @@
-# Tokenization.js
-To ensure that you remain PCI compliant, please use tokenization.js to tokenize cards and bank accounts. Tokenization.js, keeps you out of the PCI scope by sending sensitive payment information over SSL directly to the {{api_name}} servers.
+## Tokenization.js
+To ensure that you remain PCI compliant, please use tokenization.js to tokenize cards and bank accounts. Tokenization.js ensures sensitive card data never touches your servers and keeps you out of PCI scope by sending this info over SSL directly to {{api_name}}.
 
 For a complete example of how to use tokenization.js please refer to this [jsFiddle example]({{jsfiddle}}).
 
@@ -11,20 +11,9 @@ Creating payment instruments directly via the API should only be done for testin
 Note you must still use SSL on your servers for any actions related to financial transactions via the {{api_name}} API.
 </aside>
 
+### Step 1: Create a form
 
-## Step 1: Include library
-To use tokenization.js you will first need to include the library. Please include the script tag as demonstrated to the right.
-
-html
-<script type="text/javascript" src="https://js.verygoodproxy.com/tokenization.1-latest.js"></script>
-
-
-<aside class="notice">
-Note that we do not recommend hosting the tokenization.js library locally as doing so prevents important updates.
-</aside>
-
-## Step 2: Create a form
-html
+```html
 <!--This is an example for for Cards-->
 <form role="form" class="form-horizontal">
   <div class="form-group">
@@ -73,14 +62,34 @@ html
   </div>
   <a id="ba-submit" class="btn btn-large btn-primary pull-right">Tokenize</a>
 </form>
+```
 
-Before collecting the sensitive payment information, we will need to construct an HTML form for users to input the data.
+Before collecting the sensitive payment information, we will need to construct
+an HTML form for users to input their data.
 
-We have provided a simple example to the right for capturing Payment Instrument data.
+We have provided a simple example to the right for capturing Payment Instrument
+data.
 
-## Step 3: Configure and initialize
 
-javascript
+### Step 2: Include library
+
+To use tokenization.js you will first need to include the library on the webpage
+where you're hosting your form. Please include the script ta as demonstrated
+to the right.
+
+<aside class="notice">
+Please refrain from hosting the tokenization.js library locally as doing so prevents important updates.
+</aside>
+
+
+```html
+<script type="text/javascript" src="https://js.verygoodproxy.com/tokenization.1-latest.js"></script>
+```
+
+
+### Step 3: Configure and initialize
+
+```javascript
 var initTokenization = function() {
   Tokenization.init({
     server: "{{base_url}}",
@@ -116,35 +125,40 @@ var initTokenization = function() {
     }
   });
 };
-
-We will need to configure the client so that it POSTs to the correct endpoint and associates the Payment Instrument to your application. During the initialization we will also use the JQuery selector method to capture the form data.
-
-### Initialization Fields
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-server | *string*, **required** |  The base url for the {{api_name}} API| {{base_url}}
-applicationId | *string*, **required** | The ID for your Application, also referred to as your App | {{create_app_scenario_id}}
-hosted_fields | *object*, **required** |  An object containing the payment instrument information collected from your form.  | Johnson
-
-### hosted_fields object for card
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-number | *string*, **required** | The digits of the credit card integer. | 1111 111 1111 1111
-security_code | *string*, **optional** | The 3-4 digit security code for the card. | 123
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December). | 11
-expiration_year | *integer*, **required** | Expiration year. | 2020
-
-### hosted_fields object for bankAccount
-Field | Type | Description | Example
------ | ---- | ----------- | -------
-full_name | *string*, **optional** | Customer's full name on card. | Dwayne Johnson
-account_number | *string*, **required** | Bank account number. | 84012312415
-bank_code | *string*, **required** | Routing number. Specified in FedACH database defined by the US Federal Reserve. | 840123124
+```
 
 
-## Step 4: Submit payload and handle response
 
-javascript
+Now we need to configure the client so that it `POSTs` to the correct endpoint and
+associates the `Payment Instrument` to your application. We'll also use the JQuery
+selector method to capture the form data during the initialization.
+
+#### Initialization Fields
+Field | Type | Description
+----- | ---- | -----------
+server | *string*, **required** |  The base url for the {{api_name}} API
+applicationId | *string*, **required** | The ID for your `Application`
+hosted_fields | *object*, **required** | An object containing the `Payment Instrument`information collected from your form
+
+#### hosted_fields object for card
+Field | Type | Description
+----- | ---- | -----------
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | Expiration year
+
+#### hosted_fields object for bankAccount
+Field | Type | Description
+----- | ---- | -----------
+full_name | *string*, **optional** | Customer's full name on card
+account_number | *string*, **required** | Bank account number
+bank_code | *string*, **required** | Bank routing number
+account_type | *string*, **required** | Either CHECKING or SAVINGS
+
+### Step 4: Submit payload and handle response
+
+```javascript
 // Register "Click" event for the Card form
 $('#cc-submit').click(function(e) {
     e.preventDefault();
@@ -178,24 +192,19 @@ $('#ba-submit').click(function(e) {
       }
     });
 });
+```
 
+> Example Response:
 
-> Example Tokenization Response:
-javascript
-{
-    "id": "{{create_token_scenario_id}}",
-    "fingerprint": "FPR-1392097976",
-    "created_at": "2016-03-07T22:27:01.611",
-    "updated_at": "2016-03-07T22:27:01.611",
-    "instrument_type": "PAYMENT_CARD"
-}
+```json
+{{create_token_scenario_response}}
+```
 
+Finally we will need to register a click event that fires when our users submit the form and define a callback for handling the tokenization.js response.
 
-Finally we will need to register a click event that fires when our users submit the form and define a callback for handling the tokenization.js response. We have included an example to the right.
+### Step 5: Send token to your back-end server for storing
 
-## Step 5: Send token to your back-end server for storing
-
-javascript
+```javascript
 callback: function(errorThrown, response) {
     // POST to your back-end server
     jQuery.post("PATH TO YOUR BACK END", {
@@ -210,26 +219,6 @@ callback: function(errorThrown, response) {
     });
 }
 
+```
+Great now that you have created a token you will want to store that ID to utilize the token in the future. To do this you will need to send the ID from your front-end client to your back-end server, which you'll do by expanding on the callback that you created in the previous step.
 
-Great now that you have created a token you will want to store that ID to utilize the token in the future. To do this you will need to send the ID from your front-end client to your back-end server. You can expand on the callback that you previously created like so:
-
-## Step 6: Associate to an Identity
-
-
-
-curl {{base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{associate_token_scenario_curl_request}}"
-
-
-> Example Response:
-
-json
-{{associate_token_scenario_response}}
-
-Before you can use the newly tokenized card or bank account you will need to associate it with an Identity. To do this you must make an authenticated POST request to `{{base_url}}/payment_instruments` like demonstrated to the right.
-
-### HTTP Request
-
-`POST {{base_url}}/payment_instruments`

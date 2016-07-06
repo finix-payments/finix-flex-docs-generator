@@ -4,13 +4,13 @@
 {{fetch_transfer_scenario_response}}
 ```
 
-### HTTP Request
+#### HTTP Request
 
 `GET {{base_url}}/transfers/transfer_id`
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-transfer_id | ID of the Transfer
+transfer_id | ID of the `Transfer`
 

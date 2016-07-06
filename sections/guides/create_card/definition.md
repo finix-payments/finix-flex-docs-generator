@@ -1,1 +1,1 @@
-## Create a Payment Instrument (i.e. card)
+### Step 5: Tokenize a Card
