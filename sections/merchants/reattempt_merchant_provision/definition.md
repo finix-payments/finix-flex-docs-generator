@@ -1,1 +1,1 @@
-## Retrieve a Identity
+## Reattempt Merchant Provisioning

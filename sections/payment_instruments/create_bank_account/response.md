@@ -4,15 +4,6 @@
 {{create_bank_account_scenario_response}}
 ```
 
-<aside class="warning">
-Creating bank accounts directly via the API should only be done for testing
-purposes.
-</aside>
-
-Please review our guide on how to tokenize `Payment Instruments` via the
-[tokenization.js library](#tokenization-js)
-
-
 #### HTTP Request
 
 `POST {{base_url}}/payment_instruments`

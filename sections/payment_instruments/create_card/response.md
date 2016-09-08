@@ -6,11 +6,12 @@
 
 <aside class="warning">
 Please note that creating cards directly via the API should only be done for
-testing purposes. You must use the Tokenization.js library to remain out of PCI
-scope.
+testing purposes. You must use the Tokenization iframe or javascript client
+to remain out of PCI scope.
 </aside>
 
-Please review our guide on how to tokenize cards via the [tokenization.js library](#tokenization-js)
+Please review our guide on how to tokenize cards via the [embedded tokenization
+form](#embedded-tokenization-using-iframe)
 
 #### HTTP Request
 
@@ -40,4 +41,3 @@ city | *string*, **optional** | City
 region | *string*, **optional** | State
 postal_code | *string*, **optional** | Zip or Postal code
 country | *string*, **optional** | 3-Letter Country code
-

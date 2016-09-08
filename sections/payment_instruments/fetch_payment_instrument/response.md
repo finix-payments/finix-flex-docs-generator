@@ -8,13 +8,11 @@ Fetch a previously created `Payment Instrument`
 
 #### HTTP Request
 
-`GET {{base_url}}/payment_instruments/:payment_instrument_id`
+`GET {{base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
 
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-payment_instrument_id | ID of the `Payment Instrument`
-
-
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`

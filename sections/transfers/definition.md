@@ -1,4 +1,5 @@
 # Transfers
+
 A `Transfer` represents any flow of funds either to or from a `Payment Instrument`.
 For example, a `Transfer` can be either a [debit to a card](#debit-a-card), a
 credit to a bank account, or a [refund to a card](#refund-a-debit) depending on
@@ -19,7 +20,5 @@ By default, `Transfers` will be in a PENDING state and will eventually (typicall
 within an hour) update to SUCCEEDED.
 
 <aside class="notice">
-All Transfers automatically have an underlying Authorization (also known as
-a card hold). If a Transfer returns PENDING this indicates that the corresponding
-AUTHORIZATION was successful.
+When an Authorization is captured a corresponding Transfer will also be created.
 </aside>

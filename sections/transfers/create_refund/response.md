@@ -1,5 +1,3 @@
-
-
 > Example Response:
 
 ```json
@@ -14,13 +12,13 @@ their type which return REVERSAL.
 
 #### HTTP Request
 
-`POST {{base_url}}/transfers/transfer_id/reversals`
+`POST {{base_url}}/transfers/:TRANSFER_ID/reversals`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-transfer_id | ID of the original `Transfer`
+:TRANSFER_ID | ID of the original `Transfer`
 
 
 #### Request Arguments

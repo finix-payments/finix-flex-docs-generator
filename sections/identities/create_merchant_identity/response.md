@@ -26,7 +26,7 @@ merchant's bank account where processed funds will be settled (i.e. deposited)
 
 Field | Type | Description
 ----- | ---- | -----------
-business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please inout first name, last name and middle initial)
+business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial)
 doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
 business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
 business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
@@ -40,8 +40,8 @@ business_address | *object*, **required** | Primary address for the legal entity
 
 Field | Type | Description
 ----- | ---- | -----------
-first_name | *string*, **required** | First name of the merchant's principal representative
-last_name | *string*, **required** | Last name of the merchant's principal representative
+first_name | *string*, **required** | Full legal first name of the merchant's principal representative
+last_name | *string*, **required** | Full legal last name of the merchant's principal representative
 title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
 principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
 tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
@@ -57,9 +57,7 @@ Field | Type | Description
 default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
 annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant
 max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents
-mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf/)) that this merchant will be classified under
-amex_mid | *string*, **required** |  American Express Merchant ID for enabling Amex's OptBlue processing (Length must be between 10 and 11 characters)
-discover_mid | *string*, **optional** |  Discover Merchant ID
+mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under
 has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
 
 #### Address-object Request Arguments
@@ -77,9 +75,9 @@ country | *string*, **required** | 3-Letter Country code
 
 Field | Type | Description
 ----- | ---- | -----------
-day | *integer*, **required** | Day business was incorporated
-month | *integer*, **required** | Month business was incorporated
-year | *string*, **required** | Year business was incorporated
+day | *integer*, **required** | Day business was incorporated (between 1 and 31)
+month | *integer*, **required** | Month business was incorporated (between 1 and 12)
+year | *integer*, **required** | Year business was incorporated (4-digit)
 
 
 #### DOB-object Request Arguments
@@ -88,4 +86,4 @@ Field | Type | Description
 ----- | ---- | -----------
 day | *integer*, **required** | Day of birth (between 1 and 31)
 month | *integer*, **required** | Month of birth (between 1 and 12)
-year | *string*, **required** | Year of birth (4-digit)
+year | *integer*, **required** | Year of birth (4-digit)

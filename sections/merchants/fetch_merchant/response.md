@@ -1,15 +1,15 @@
 > Example Response:
 
 ```json
-{{fetch_identity_scenario_response}}
+{{fetch_merchant_scenario_response}}
 ```
 
 #### HTTP Request
 
-`GET {{base_url}}/identities/identity_id`
+`GET {{base_url}}/merchants/:MERCHANT_ID`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-identity_id | ID of the Identity
+:MERCHANT_ID | ID of the `Merchant`

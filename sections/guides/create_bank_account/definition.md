@@ -1,1 +1,0 @@
-### Step 2: Tokenize a Bank Account for Settling (i.e. funding) your Merchant

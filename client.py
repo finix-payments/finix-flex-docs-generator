@@ -22,7 +22,7 @@ def create_user(config_values, role):
     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])
 
 
-def create_app(config_values, application_owner_user_id):
+def create_app(config_values, application_owner_user_id, business_type):
     company = random_app_name()
 
     values = {
@@ -51,7 +51,7 @@ def create_app(config_values, application_owner_user_id):
                 "postal_code": "94114"
             },
             "tax_id": "5779",
-            "business_type": "LIMITED_LIABILITY_COMPANY",
+            "business_type": business_type,
             "business_phone": "+1 (408) 756-4497",
             "first_name": "dwayne",
             "dob": {
@@ -71,8 +71,8 @@ def create_app(config_values, application_owner_user_id):
     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])
 
 
-def associate_payment_processor(config_values):
-    if config_values["payment_processor"] == "DUMMY_V1":
+def associate_payment_processor(config_values, processor):
+    if processor == "DUMMY_V1":
         values = {
             "default_merchant_profile_id": None,
             "type": config_values["identity_verification_processor"],
@@ -88,12 +88,12 @@ def associate_payment_processor(config_values):
             "config": {
                 "sftpPort" : 22,
                 "sftpUsername" : "finixtxn",
-                "sftpPassword" : "u6Oq5O9S",
+                "sftpPassword" : "RAS",
                 "sftpTimeout" : 7200000,
-                "payfacUsername" : "PAYLINEDATAMP",
+                "payfacUsername" : "RAS",
                 "payfacUrl" : "https://psp.litle.com/",
-                "payfacPassword" : "gw9B33qL",
-                "payfacMerchantId" : "07248611",
+                "payfacPassword" : "RAS",
+                "payfacMerchantId" : "RASR",
                 "batchRequestFolder" : "/opt/processing/litle/requests",
                 "timeout" : 10000,
                 "batchUseSSL" : True,
@@ -112,10 +112,10 @@ def associate_payment_processor(config_values):
                 "batchPort" : 22,
                 "url" : "https://payments.litle.com/vap/communicator/online",
                 "username" : "FINIX",
-                "password" : "6DDu3bLm",
+                "password" : "ras",
                 "reportsSftpHost": "reports.litle.com",
-                "reportsSftpUsername": "finixrpt",
-                "reportsSftpPassword": "2By9Gm6O",
+                "reportsSftpUsername": "ras",
+                "reportsSftpPassword": "ras",
                 "merchantFraudEnabled": False
             }
         }
@@ -296,7 +296,7 @@ def update_identity(config_values, identity_id, business_type):
 
     values = format_json(json.dumps(values))
     endpoint = config_values['base_url'] + '/identities/' + identity_id
-    return formatted_response(endpoint, values, config_values['encoded_auth'])
+    return formatted_response(endpoint, values, config_values['encoded_auth'], "PUT")
 
 def provision_merchant(config_values, identity_id):
     values = """
@@ -345,6 +345,66 @@ def create_card(config_values, identity_id):
     values = format_json(json.dumps(values))
     endpoint = config_values['base_url'] + '/payment_instruments'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def update_payment_instrument(config_values, payment_instrument_id):
+    values = {
+        "tags": {
+            "Display Name": "Updated Field"
+        }
+    }
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/payment_instruments/' + payment_instrument_id
+    return formatted_response(endpoint, values, config_values['encoded_auth'], "PUT")
+
+def disable_user(config_values, user_id, toggle):
+    values = {
+        "enabled": toggle
+    }
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/users/' + user_id
+    return formatted_response(endpoint, values, config_values['platform_encoded_auth'], "PUT")
+
+def fund_settlement(config_values, settlement_id, bank_account_id):
+    values = {
+        "destination": bank_account_id
+    }
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/settlements/' + settlement_id
+    return formatted_response(endpoint, values, config_values['encoded_auth'], "PUT")
+
+def toggle_merchant_processing(config_values, id, toggle):
+    values = {
+        "processing_enabled": toggle
+    }
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/merchants/' + id
+    return formatted_response(endpoint, values, config_values['platform_encoded_auth'], "PUT")
+
+def toggle_merchant_settlements(config_values, id, toggle):
+    values = {
+        "settlement_enabled": toggle
+    }
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/merchants/' + id
+    return formatted_response(endpoint, values, config_values['platform_encoded_auth'], "PUT")
+
+def toggle_application_processing(config_values, id, toggle):
+    values = {
+        "processing_enabled": toggle
+    }
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/applications/' + id
+    return formatted_response(endpoint, values, config_values['platform_encoded_auth'], "PUT")
+
+def toggle_application_settlements(config_values, id, toggle):
+    values = {
+        "settlement_enabled": toggle
+    }
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/applications/' + id
+    return formatted_response(endpoint, values, config_values['platform_encoded_auth'], "PUT")
+
+
 
 def associate_token(config_values, identity_id, token):
     values = {
@@ -456,6 +516,14 @@ def create_refund(config_values, transfer_id):
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 
+def reattempt_provision_merchant(config_values, id):
+    values = """
+	  {}
+	"""
+    endpoint = config_values['base_url'] + '/merchants/' + id + '/verifications'
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+
 def create_webhook(config_values):
     values = """
 	            {
@@ -552,24 +620,18 @@ def capture_authorization(config_values, auth_id):
         "capture_amount": 100,
         "fee": "10"
     }
-
     values = format_json(json.dumps(values))
-
-    headers = {
-        'Content-Type': 'application/vnd.json+api',
-        'Authorization': 'Basic ' + config_values['encoded_auth']
-    }
     endpoint = config_values['base_url'] + '/authorizations/' + auth_id
-    request = Request(endpoint, data=values, headers=headers)
-    request.get_method = lambda: 'PUT'
-    response_body = urlopen(request).read()
-    response_body = format_json(response_body)
-    response_id = json.loads(response_body)["id"]
-    return {'request_body': values,
-            'curl_request_body': format_curl_request_body(values),
-            'php_request_body': format_php_request_body(values),
-            'response_body': response_body,
-            'response_id': response_id}
+    return formatted_response(endpoint, values, config_values['encoded_auth'], "PUT")
+
+def void_authorization(config_values, auth_id):
+
+    values = {
+        "void_me": True,
+    }
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/authorizations/' + auth_id
+    return formatted_response(endpoint, values, config_values['encoded_auth'], "PUT")
 
 
 def fetch_authorization(config_values, auth_id):
@@ -584,6 +646,33 @@ def fetch_dispute(config_values, dispute_id):
 
     endpoint = config_values['base_url'] + '/disputes/' + dispute_id
     return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def fetch_user(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/users/' + id
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def fetch_application(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/applications/' + id
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def fetch_identity(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/identities/' + id
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def fetch_user(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/users/' + id
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def fetch_user(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/users/' + id
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+
 
 
 def upload_dispute_file(config_values, dispute_id):
@@ -601,14 +690,6 @@ def upload_dispute_file(config_values, dispute_id):
     return {'request_body': values,
             'response_body': response_body,
             'response_id': response_id}
-
-
-def fetch_identity(config_values, identity_id):
-
-    values = None
-
-    endpoint = config_values['base_url'] + '/identities/' + identity_id
-    return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 
 def fetch_merchant(config_values, merchant_id):
@@ -678,6 +759,16 @@ def list_merchants(config_values):
     endpoint = config_values['base_url'] + '/merchants'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
+def list_merchant_verifications_platform_user(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/merchants/' + id + '/verifications'
+    return formatted_response(endpoint, values, config_values['platform_encoded_auth'])
+
+def list_merchant_verifications(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/merchants/' + id + '/verifications'
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
 
 def list_payment_instruments(config_values):
 
@@ -699,6 +790,30 @@ def list_transfers(config_values):
     endpoint = config_values['base_url'] + '/transfers'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
+def list_settlements(config_values):
+    values = None
+    endpoint = config_values['base_url'] + '/settlements'
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def list_settlement_transfers(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/settlements/' + id + '/transfers'
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def list_settlement_funding_transfers(config_values, id):
+    values = None
+    endpoint = config_values['base_url'] + '/settlements/' + id + '/funding_transfers'
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def list_applications(config_values):
+    values = None
+    endpoint = config_values['base_url'] + '/applications/'
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def list_users(config_values):
+    values = None
+    endpoint = config_values['base_url'] + '/users/'
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 def list_webhooks(config_values):
 

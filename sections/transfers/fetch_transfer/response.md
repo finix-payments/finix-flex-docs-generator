@@ -6,11 +6,10 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/transfers/transfer_id`
+`GET {{base_url}}/transfers/:TRANSFER_ID`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-transfer_id | ID of the `Transfer`
-
+:TRANSFER_ID | ID of the `Transfer`

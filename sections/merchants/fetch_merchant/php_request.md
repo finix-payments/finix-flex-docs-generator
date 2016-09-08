@@ -1,3 +1,3 @@
-use {{api_name}}\Resources\Identity;
+use {{api_name}}\Resources\Merchant;
 
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
+$merchant = Merchant::retrieve('{{fetch_merchant_scenario_id}}');

@@ -1,6 +1,3 @@
-
-
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/verifications \
+curl {{base_url}}/settlements/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d "{{create_identity_verification_scenario_curl_request}}"
+    -u  {{basic_auth_username}}:{{basic_auth_password}}

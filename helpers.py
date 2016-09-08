@@ -9,12 +9,14 @@ from urllib2 import Request, urlopen, HTTPError
 import json
 
 
-def formatted_response(endpoint, values, encoded_auth):
+def formatted_response(endpoint, values, encoded_auth, request_type=None):
     headers = {
         'Content-Type': 'application/vnd.json+api',
         'Authorization': 'Basic ' + encoded_auth
     }
     request = Request(endpoint, data=values, headers=headers)
+    if request_type is not None:
+        request.get_method = lambda: 'PUT'
     try:
         response_body = urlopen(request).read()
     except HTTPError as e:

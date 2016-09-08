@@ -6,11 +6,11 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/authorizations/:authorization_id`
+`GET {{base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-authorization_id | ID of the Authorization
+:AUTHORIZATION_ID | ID of the Authorization
 

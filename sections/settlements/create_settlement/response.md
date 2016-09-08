@@ -19,13 +19,13 @@ request to the transfers link (i.e. POST {{base_url}}/settlements/:SETTLEMENT_ID
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:identity_id/settlements`
+`POST {{base_url}}/identities/:IDENTITY_ID/settlements`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-identity_id | ID of the `Identity` for the merchant you wish to settle out
+:IDENTITY_ID | ID of the `Identity` for the merchant you wish to settle out
 
 
 #### Request Arguments
@@ -34,3 +34,4 @@ Field | Type | Description
 ----- | ---- | -----------
 currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+

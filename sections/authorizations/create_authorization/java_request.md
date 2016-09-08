@@ -1,4 +1,3 @@
-
 import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
 
 Authorization authorization = client.authorizationsClient().save(
@@ -8,3 +7,4 @@ Authorization authorization = client.authorizationsClient().save(
     .source("PIeffbMtvz2Hiy6dwBbaHhKq")
     .build()
 );
+

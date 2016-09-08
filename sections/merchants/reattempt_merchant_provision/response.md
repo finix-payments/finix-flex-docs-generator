@@ -1,15 +1,18 @@
 > Example Response:
 
 ```json
-{{fetch_identity_scenario_response}}
+{{reattempt_provision_merchant_scenario_response}}
 ```
+
+Re-attempt provisioning a `Merchant` account on a processor if the previous attempt
+returned a FAILED `onboarding_state`.
 
 #### HTTP Request
 
-`GET {{base_url}}/identities/identity_id`
+`POST {{base_url}}/merchants/:MERCHANT_ID/verifications`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-identity_id | ID of the Identity
+:MERCHANT_ID | ID of the `Merchant`

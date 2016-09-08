@@ -1,1 +1,1 @@
-## Retrieve a Identity
+## Retrieve a Merchant

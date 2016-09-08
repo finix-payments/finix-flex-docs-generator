@@ -6,10 +6,11 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/disputes/dispute_id`
+`GET {{base_url}}/disputes/:DISPUTE_ID`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-dispute_id | ID of the Dispute
+:DISPUTE_ID | ID of the Dispute
+

@@ -39,11 +39,11 @@ def seed_database(config_values):
     for x in range(0, 120):
         card = random.choice (card_ids)
         create_debit_scenario = create_debit(config_values, "IDijNjLLr2XdE3wn5GZbbLyF", card, random.randint(100, 1000000))
-        print create_debit_scenario["response_body"]
+        # print create_debit_scenario["response_body"]
 
-    for x in range(0, 78):
-        card = random.choice (card_ids)
-        create_debit_scenario = create_debit(config_values, "IDijNjLLr2XdE3wn5GZbbLyF", card, 102)
+    # for x in range(0, 78):
+    #     card = random.choice (card_ids)
+    #     create_debit_scenario = create_debit(config_values, "IDijNjLLr2XdE3wn5GZbbLyF", card, 102)
 
 
 
@@ -66,4 +66,4 @@ def create_apps(config_values):
         config_values["basic_auth_password"] = json.loads(create_user_scenario["response_body"])['password']
         config_values["encoded_auth"] = base64.b64encode(config_values["basic_auth_username"] + ':' + config_values["basic_auth_password"])
 
-# create_apps(partner_configs)
+create_apps(partner_configs)

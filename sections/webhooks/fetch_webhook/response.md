@@ -1,4 +1,3 @@
-
 > Example Response:
 
 ```json
@@ -7,10 +6,10 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/webhooks/webhook_id`
+`GET {{base_url}}/webhooks/:WEBHOOK_ID`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-webhook_id | ID of the `Webhook`
+:WEBHOOK_ID | ID of the `Webhook`
