@@ -197,26 +197,22 @@ def generate_template_variables(config_values):
 
     create_bank_account_scenario = create_bank_account(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
     update_payment_instrument_scenario = update_payment_instrument(config_values, create_bank_account_scenario["response_id"])
+    provision_merchant_scenario = provision_merchant(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
+    create_buyer_identity_scenario = create_buyer_identity(config_values)
+    create_card_scenario = create_card(config_values, create_buyer_identity_scenario["response_id"])
+    # account_updater_scenario = account_updater(config_values, create_card_scenario["response_id"], provision_merchant_scenario["response_id"])
+    create_debit_scenario = create_debit(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))
+    create_debit_scenario = create_debit(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))
+
     create_user_merchant_role_scenario = create_user_merchant_role(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
     disable_user_scenario = disable_user(config_values, create_user_merchant_role_scenario["response_id"], False)
     enable_user_scenario = disable_user(config_values, create_user_merchant_role_scenario["response_id"], True)
     # print create_user_merchant_role_scenario
     # create_identity_verification_scenario = create_identity_verification(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
-    provision_merchant_scenario = provision_merchant(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
-
-    create_buyer_identity_scenario = create_buyer_identity(config_values)
-    create_card_scenario = create_card(config_values, create_buyer_identity_scenario["response_id"])
-    # account_updater_scenario = account_updater(config_values, create_card_scenario["response_id"], provision_merchant_scenario["response_id"])
-    create_debit_scenario = create_debit(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))
-    create_dispute_scenario = create_dispute(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
-
-
     create_refund_scenario = create_refund(config_values, create_debit_scenario['response_id'])
     create_authorization_scenario = create_authorization(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
     capture_authorization_scenario = capture_authorization(config_values, create_authorization_scenario["response_id"])
     fetch_authorization_scenario = fetch_authorization(config_values, create_authorization_scenario["response_id"])
-    create_settlement_scenario = create_settlement(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'])
-    fund_settlement_scenario = fund_settlement(config_values, create_settlement_scenario["response_id"], create_bank_account_scenario["response_id"])
     create_token_scenario = create_token(config_values)
     associate_token_scenario = associate_token(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"], create_token_scenario["response_id"])
 
@@ -224,7 +220,6 @@ def generate_template_variables(config_values):
     void_authorization_scenario = void_authorization(config_values, create_authorization_for_voiding_scenario["response_id"])
 
     # FETCH
-    fetch_dispute_scenario = fetch_dispute(config_values, create_dispute_scenario["response_id"])
     fetch_user_scenario = fetch_user(config_values, create_owner_user_scenario["response_id"])
     fetch_application_scenario = fetch_application(config_values, create_app_scenario["response_id"])
     fetch_identity_scenario = fetch_identity(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
@@ -233,8 +228,6 @@ def generate_template_variables(config_values):
     # fetch_identity_verification_scenario = fetch_identity_verification(config_values, create_identity_verification_scenario["response_id"])
     fetch_transfer_scenario = fetch_transfer(config_values, create_debit_scenario["response_id"])
     fetch_webhook_scenario = fetch_webhook(config_values, create_webhook_scenario["response_id"])
-    fetch_settlement_scenario = fetch_settlement(config_values, create_settlement_scenario['response_id'])
-    fetch_settlement_transfers_scenario = fetch_settlement_transfers(config_values, create_settlement_scenario['response_id'])
 
     # LIST
     list_authorizations_scenario = list_authorizations(config_values)
@@ -244,9 +237,6 @@ def generate_template_variables(config_values):
     list_merchant_verifications_scenario = list_merchant_verifications(config_values, provision_merchant_scenario["response_id"])
     list_merchant_verifications_platform_user_scenario = list_merchant_verifications_platform_user(config_values, provision_merchant_scenario["response_id"])
     list_payment_instruments_scenario = list_payment_instruments(config_values)
-    list_settlements_scenario = list_settlements(config_values)
-    list_settlement_transfers_scenario = list_settlement_transfers(config_values, create_settlement_scenario["response_id"])
-    list_settlement_funding_transfers_scenario = list_settlement_funding_transfers(config_values, fund_settlement_scenario["response_id"])
     # list_identity_verifications_scenario = list_identity_verifications(config_values)
     list_transfers_scenario = list_transfers(config_values)
     list_webhooks_scenario = list_webhooks(config_values)
@@ -257,15 +247,23 @@ def generate_template_variables(config_values):
     # list_queued_settlements_scenario = list_queued_settlements(config_values)
     # fetch_queued_item_scenario = fetch_queued_item(config_values)
     # update_queued_state_scenario = update_queued_state(config_values)
-
-    upload_dispute_file_scenario = upload_dispute_file(config_values, fetch_dispute_scenario["response_id"])
     update_identity_scenario = update_identity(config_values, create_identity_individual_sole_proprietorship_scenario["response_id"])
     reattempt_provision_merchant_scenario = reattempt_provision_merchant(config_values, provision_merchant_scenario["response_id"])
+
+    create_dispute_scenario = create_dispute(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+    fetch_dispute_scenario = fetch_dispute(config_values, create_dispute_scenario["response_id"])
+    upload_dispute_file_scenario = upload_dispute_file(config_values, fetch_dispute_scenario["response_id"])
+    create_settlement_scenario = create_settlement(config_values, create_identity_individual_sole_proprietorship_scenario['response_id'])
+    fund_settlement_scenario = fund_settlement(config_values, create_settlement_scenario["response_id"], create_bank_account_scenario["response_id"])
+    fetch_settlement_scenario = fetch_settlement(config_values, create_settlement_scenario['response_id'])
+    fetch_settlement_transfers_scenario = fetch_settlement_transfers(config_values, create_settlement_scenario['response_id'])
+    list_settlements_scenario = list_settlements(config_values)
+    list_settlement_transfers_scenario = list_settlement_transfers(config_values, create_settlement_scenario["response_id"])
+    list_settlement_funding_transfers_scenario = list_settlement_funding_transfers(config_values, fund_settlement_scenario["response_id"])
     toggle_merchant_processing_scenario = toggle_merchant_processing(config_values, provision_merchant_scenario["response_id"], False)
     toggle_merchant_settlements_scenario = toggle_merchant_settlements(config_values, provision_merchant_scenario["response_id"], False)
-
-    toggle_application_processing_scenario = toggle_application_processing(config_values, provision_merchant_scenario["response_id"], False)
-    toggle_application_settlements_scenario = toggle_application_settlements(config_values, provision_merchant_scenario["response_id"], False)
+    toggle_application_processing_scenario = toggle_application_processing(config_values, create_app_scenario["response_id"], False)
+    toggle_application_settlements_scenario = toggle_application_settlements(config_values, create_app_scenario["response_id"], False)
 
     # STORE RESULTS IN HASH FOR TEMPLATE
     api_scenario_vars = {
@@ -352,10 +350,10 @@ def generate_template_variables(config_values):
         "update_payment_instrument_scenario_response": update_payment_instrument_scenario["response_body"],
         "update_payment_instrument_scenario_id": update_payment_instrument_scenario["response_id"],
 
-        "account_updater_scenario_curl_request": account_updater_scenario["curl_request_body"],
-        "account_updater_scenario_php_request": account_updater_scenario["php_request_body"],
-        "account_updater_scenario_response": account_updater_scenario["response_body"],
-        "account_updater_scenario_id": account_updater_scenario["response_id"],
+        # "account_updater_scenario_curl_request": account_updater_scenario["curl_request_body"],
+        # "account_updater_scenario_php_request": account_updater_scenario["php_request_body"],
+        # "account_updater_scenario_response": account_updater_scenario["response_body"],
+        # "account_updater_scenario_id": account_updater_scenario["response_id"],
 
 
         "fetch_payment_instrument_scenario_response": fetch_payment_instrument_scenario["response_body"],
@@ -490,6 +488,7 @@ def generate_template_variables(config_values):
         "toggle_application_settlements_scenario_php_request": toggle_application_settlements_scenario["php_request_body"],
         "toggle_application_settlements_scenario_response": toggle_application_settlements_scenario["response_body"],
         "toggle_application_settlements_scenario_id": toggle_application_settlements_scenario["response_id"],
+
         "fetch_application_scenario_response": fetch_application_scenario["response_body"],
         "fetch_application_scenario_id": fetch_application_scenario["response_id"],
 

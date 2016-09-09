@@ -238,7 +238,7 @@ def create_merchant_identity(config_values, business_type):
     endpoint = config_values['base_url'] + '/identities'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
-def update_identity(config_values, identity_id, business_type):
+def update_identity(config_values, identity_id):
     company = random_business_name()
     values = {
         "tags": {
@@ -267,7 +267,6 @@ def update_identity(config_values, identity_id, business_type):
                 "postal_code": "94194"
             },
             "tax_id": "999999999",
-            "business_type": business_type,
             "business_phone": "+1 (408) 756-4497",
             "dob": {
                 "year": 1988,
@@ -370,7 +369,7 @@ def fund_settlement(config_values, settlement_id, bank_account_id):
     }
     values = format_json(json.dumps(values))
     endpoint = config_values['base_url'] + '/settlements/' + settlement_id
-    return formatted_response(endpoint, values, config_values['encoded_auth'], "PUT")
+    return formatted_response(endpoint, values, config_values['platform_encoded_auth'], "PUT")
 
 def toggle_merchant_processing(config_values, id, toggle):
     values = {
@@ -536,7 +535,7 @@ def create_webhook(config_values):
 
 def create_settlement(config_values, identity_id):
 
-    time.sleep(60)
+    time.sleep(400)
 
     values = {
         "currency": "USD",
@@ -576,7 +575,8 @@ def create_dispute(config_values, merchant_id, card_id):
     # create dispute by debiting card with amount 888888
     debit = create_debit(config_values, merchant_id, card_id, 888888)
 
-    time.sleep(90)
+    # sleeping so that the dispute can be created
+    time.sleep(240)
     # fetch list of all disputes
     headers = {
         'Content-Type': 'application/vnd.json+api',

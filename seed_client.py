@@ -385,7 +385,10 @@ def create_debit(config_values, merchant_id, card_id, amount):
         "source": card_id,
         "merchant_identity": merchant_id,
         "amount": amount,
-        "fee": 15
+        "fee": 15,
+        "tags": {
+            "ride_number": "21DFASJSAKAS"
+        },
     }
 
     values = format_json(json.dumps(values))

@@ -15,6 +15,8 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
         'Authorization': 'Basic ' + encoded_auth
     }
     request = Request(endpoint, data=values, headers=headers)
+
+    # Check if a PUT request
     if request_type is not None:
         request.get_method = lambda: 'PUT'
     try:
@@ -22,7 +24,11 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
     except HTTPError as e:
         import ipdb; ipdb.set_trace()
         json.loads(e.read())
-    response_body = format_json(response_body)
+
+    if "id" not in json.loads(response_body):
+        return {'request_body': values,
+                'response_body': response_body,
+                }
     response_id = json.loads(response_body)["id"]
     if values:
         return {'request_body': values,
