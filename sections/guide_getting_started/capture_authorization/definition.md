@@ -1,1 +1,1 @@
-### Step 6: Create an Authorization
+### Step 7: Capture the Authorization

@@ -618,7 +618,7 @@ amount | *integer*, **required** | The amount of the authorization in cents
 currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org/wiki/ISO_4217) designating the currency (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
-### Step 6: Create an Authorization
+### Step 7: Capture the Authorization
 ```shell
 curl {{base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
@@ -690,7 +690,7 @@ Field | Type | Description
 capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
 fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount
 
-### Step 7: Create a Batch Settlment
+### Step 8: Create a Batch Settlment
 ```shell
 curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
     -H "Content-Type: application/vnd.json+api" \
@@ -841,8 +841,13 @@ HTTPS request on your back-end for future use.
 {{create_token_scenario_response}}
 ```
 
-
+### Step 4: Associate the Token
 ```shell
+curl {{base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{associate_token_scenario_curl_request}}'
+
 
 ```
 ```php
@@ -853,11 +858,49 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
+use {{api_name}}\Resources\PaymentInstrument;
+
+$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
+$card = $card->save();
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .token("TKkvwumxCgq5E8uTKyq96dta")
+    .type("TOKEN")
+    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
+    .build();
+paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
+> Example Response:
+
+```json
+{{associate_token_scenario_response}}
+```
+
+Associate the newly tokenized card or bank with the instrument owner's `Identity`.
+
+<aside class="warning">
+Tokens should be associated right away. Tokens not associated within 30 mins
+of creation will be invalidated.
+</aside>
+
+#### HTTP Request
+
+`POST {{base_url}}/payment_instruments`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+token | *string*, **required** | ID for the `Token` that was returned via the tokenization client or hosted iframe
+type | *string*, **required** | Must pass TOKEN as the value
+identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
+
 
 # Authorizations
 
@@ -1113,7 +1156,6 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 ```
 ```java
-```
 import io.payline.payments.processing.client.model.Authorization;
 
 client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
@@ -1121,7 +1163,6 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
     Collection<Authorization> authorizations = page.getContent();
     //do something
   });
-```
 ```
 > Example Response:
 
@@ -1132,92 +1173,6 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
 #### HTTP Request
 
 `GET {{base_url}}/authorizations/`
-
-# Disputes
-
-Disputes, also known as chargebacks, represent any customer-disputed charge.
-
-## Retrieve a Dispute
-```shell
-
-curl {{base_url}}/disputes/{{fetch_dispute_scenario_id}} \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Dispute;
-
-$dispute = Dispute::retrieve('{{fetch_dispute_scenario_id}}');
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Dispute;
-
-Dispute dispute = transfer.disputeClient().fetch("{{fetch_dispute_scenario_id}}");
-
-```
-> Example Response:
-
-```json
-{{fetch_dispute_scenario_response}}
-```
-
-#### HTTP Request
-
-`GET {{base_url}}/disputes/:DISPUTE_ID`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:DISPUTE_ID | ID of the Dispute
-
-
-## List all Disputes
-```shell
-curl {{base_url}}/disputes/ \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Dispute;
-
-transfer.disputeClient().<Resources<Dispute>>resourcesIterator()
-  .forEachRemaining(page -> {
-    Collection<Dispute> disputes = page.getContent();
-  })
-```
-> Example Response:
-
-```json
-{{list_disputes_scenario_response}}
-```
-
-#### HTTP Request
-
-`GET {{base_url}}/disputes/`
-
 
 # Identities
 
@@ -1590,7 +1545,7 @@ Update the information of a previously created `Identity`. Please note that in
 the case of merchant accounts this API request alone does not update this
 information on the underlying processor. To update the merchant's information
  on the underlying processor you must [update the merchant on the
- processor.](#update-merchant-information-on-processor)
+ processor.](#update-info-on-processor)
 
 
 #### HTTP Request
@@ -1732,6 +1687,824 @@ Parameter | Description
 --------- | -------------------------------------------------------------------
 identity_id | ID of the Identity
 
+
+# Merchants
+
+A `Merchant` resource represents a business's merchant account on a processor. In other words, any web service that connects buyers (i.e.
+customers) and sellers (i.e. merchants).
+
+## Provision a Merchant
+```shell
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{provision_merchant_scenario_curl_request}}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\Identity;
+
+$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
+
+$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
+
+```
+```java
+import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
+
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
+
+```
+> Example Response:
+
+```json
+{{provision_merchant_scenario_response}}
+```
+
+Provision a `Merchant` for a previously created `Identity` resource to begin
+transacting on their behalf.
+
+<aside class="warning">
+Please make sure that a bank account has been created and associated to the
+previously created Identity before attempting to provision a Merchant account.
+</aside>
+
+
+`Merchant` resources can have 3 potential `onboarding_states`:
+
+1. `PROVISIONING`: Request is pending (state will typically change after two minutes)
+  * processing_enabled: False
+  * settlement_enabled: False
+
+2. `APPROVED`: Merchant has been approved and can begin processing
+  * processing_enabled: True
+  * settlement_enabled: True
+
+3. `REJECTED`: Merchant was rejected by the processor either because the collected
+information was invalid or it failed one of a number of regulatory and/or
+compliance checks (e.g. KYC, OFAC or MATCH)
+  * processing_enabled: False
+  * settlement_enabled: False
+
+<aside class="notice">
+Provisioning a `Merchant` account is an asynchronous request. We recommend creating a Webhook to listen for the state change.
+</aside>
+
+
+
+#### HTTP Request
+
+`POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:IDENTITY_ID | ID of the Identity
+
+## Retrieve a Merchant
+```shell
+curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\Merchant;
+
+$merchant = Merchant::retrieve('{{fetch_merchant_scenario_id}}');
+
+```
+```java
+import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
+
+Merchant merchant = client.merchantsClient().fetch("{{fetch_merchant_scenario_id}}");
+
+```
+> Example Response:
+
+```json
+{{fetch_merchant_scenario_response}}
+```
+
+#### HTTP Request
+
+`GET {{base_url}}/merchants/:MERCHANT_ID`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:MERCHANT_ID | ID of the `Merchant`
+
+## Create a Merchant User
+```shell
+curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/users \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{{create_user_merchant_role_scenario_response}}
+```
+
+This is the equivalent of provisioning API keys (i.e. credentials) for a `Merchant`.
+
+<aside class="notice">
+Each Identity can have multiple Users which allows each merchant to have multiple
+API keys that can be independently enabled and disabled. Merchants only have read
+access to the API.
+</aside>
+
+#### HTTP Request
+
+`POST {{base_url}}/identities/:IDENTITY_ID/users`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:IDENTITY_ID | ID of the merchant's `Identity`
+
+
+## Reattempt Merchant Provisioning
+```shell
+curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{}'
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{{reattempt_provision_merchant_scenario_response}}
+```
+
+Re-attempt provisioning a `Merchant` account on a processor if the previous attempt
+returned a FAILED `onboarding_state`.
+
+#### HTTP Request
+
+`POST {{base_url}}/merchants/:MERCHANT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:MERCHANT_ID | ID of the `Merchant`
+
+## Update Info on Processor
+```shell
+curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{{reattempt_provision_merchant_scenario_response}}
+```
+
+Update `Identity` information (e.g. default_statement_descriptor, KYC info, etc.)
+on the underlying processor.
+
+#### HTTP Request
+
+`POST {{base_url}}/merchants/:MERCHANT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:MERCHANT_ID | ID of the `Merchant`
+
+## List all Merchants
+```shell
+curl {{base_url}}/merchants/ \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{{list_merchants_scenario_response}}
+```
+
+#### HTTP Request
+
+`GET {{base_url}}/merchants/`
+
+## List Merchant Verifications
+```shell
+curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{{list_merchant_verifications_scenario_response}}
+```
+
+Retrieve all attempts to onboard (i.e. provision) a merchant onto a processor.
+
+#### HTTP Request
+
+`GET {{base_url}}/merchants/:MERCHANT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:MERCHANT_ID | ID of the `Merchant`
+
+
+
+
+# Payment Instruments
+
+A `Payment Instrument` resource represents either a credit card or bank account.
+A `Payment Instrument` may be tokenized multiple times and each tokenization produces
+a unique ID. Each ID may only be associated one time and to only one `Identity`.
+Once associated, a `Payment Instrument` may not be disassociated from an
+`Identity`.
+
+
+## Create a Card
+```shell
+
+
+curl {{base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_card_scenario_curl_request}}'
+
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\PaymentInstrument;
+
+$card = new PaymentInstrument({{create_card_scenario_php_request}});
+$card = $card->save();
+
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .name("Joe-Doe")
+    .identity("ID572pSyFj71oVExp6XWiGRP")
+    .expirationMonth(12)
+    .expirationYear(2030)
+    .number("4111 1111 1111 1111")
+    .securityCode("231")
+    .build(); 
+paymentCard = client.paymentCardsClient().save(paymentCard);
+
+```
+> Example Response:
+
+```json
+{{create_card_scenario_response}}
+```
+
+<aside class="warning">
+Please note that creating cards directly via the API should only be done for
+testing purposes. You must use the Tokenization iframe or javascript client
+to remain out of PCI scope.
+</aside>
+
+Please review our guide on how to tokenize cards via the [embedded tokenization
+form](#embedded-tokenization-using-iframe)
+
+#### HTTP Request
+
+`POST {{base_url}}/payment_instruments`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+identity | *string*, **required** | ID of the `Identity` that the card should be associated
+type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | 4-digit expiration year
+name | *string*, **optional** | Full name of the registered card holder
+address | *object*, **optional** | Billing address (Full description of child attributes below)
+
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **optional** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **optional** | City
+region | *string*, **optional** | State
+postal_code | *string*, **optional** | Zip or Postal code
+country | *string*, **optional** | 3-Letter Country code
+
+## Create a Bank Account
+```shell
+
+curl {{base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_bank_account_scenario_curl_request}}'
+
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\PaymentInstrument;
+
+$bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
+$bank_account = $bank_account->save();
+
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+
+bankAccount = client.bankAccountsClient().save(
+    BankAccount.builder()
+      .name("Joe-Doe")
+      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .accountNumber("84012312415")
+      .bankCode("840123124")
+      .accountType(BankAccountType.SAVINGS)
+      .companyName("company name")
+      .country("USA")
+      .currency("USD")
+      .build()
+);
+
+```
+> Example Response:
+
+```json
+{{create_bank_account_scenario_response}}
+```
+
+#### HTTP Request
+
+`POST {{base_url}}/payment_instruments`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+account_number | *string*, **required** | Bank account number
+bank_code | *string*, **required** | Bank routing number
+type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
+identity | *string*, **required**| ID for the `Identity` resource which the account is associated
+account_type | *string*, **required** | Either CHECKING or SAVINGS
+name | *string*, **optional** | Account owner's full name
+## Tokenize Card with Embedded Iframe
+
+Our embedded tokenization form ensures you remain out of PCI scope, while providing
+your end-users with a sleek, and seamless checkout experience.
+
+With our form, sensitive card data never touches your servers and keeps you out
+of PCI scope by sending this info over SSL directly to {{api_name}}. For your
+convenience we've provided a [jsfiddle]({{embedded_iframe_jsfiddle}}) as a live example.
+
+<aside class="notice">
+Note you must still use SSL on your servers for any actions related to financial
+transactions via the {{api_name}} API.
+</aside>
+
+### Step 1: Create a Button
+
+```html
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <body>
+        <button id="show-form">Add Your Card</button>
+    </body>
+</html>
+```
+
+Before collecting the sensitive payment information, we will to add a button
+to the HTML where we'll be hosting the iframe so that end-users can input their
+details.
+
+We have provided a simple example to the right.
+
+
+### Step 2: Include library
+
+To use the iframe you will need to include the library on the webpage
+where you're hosting the aforementioned button. Please include the script as
+demonstrated to the right. Please refrain from hosting the iframe library locally
+as doing so prevents important updates.
+
+
+```html
+<script type="text/javascript" src="{{embedded_iframe_src}}"></script>
+```
+
+
+### Step 3: Configure the client
+
+```javascript
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+      document.getElementById('show-form').addEventListener('click', function() {
+        Payline.openTokenizeCardForm({
+          applicationName: 'Business Name',
+          applicationId: '{{application}}',
+        }, function (tokenizedResponse) {
+          // Define a callback to send your token to your back-end server
+        });
+      });
+    });
+ </script>
+```
+
+Next we need to configure the client so that it associates the card with your `Application`.
+We will also need to register a click event that fires when our users click on the
+button, thereby rendering the iframe on the page. Then when the form is submitted
+you'll be returned a unique `Token` resource representing the submitted card
+details. We will also need to define a callback for handling that response.
+
+In the next step we'll show you how to claim the instrument via an authenticated
+HTTPS request on your back-end for future use.
+
+> Example Response:
+
+```json
+{{create_token_scenario_response}}
+```
+
+```shell
+curl {{base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{associate_token_scenario_curl_request}}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\PaymentInstrument;
+
+$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
+$card = $card->save();
+
+```
+```java
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .token("TKkvwumxCgq5E8uTKyq96dta")
+    .type("TOKEN")
+    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
+    .build();
+paymentCard = client.paymentCardsClient().save(paymentCard);
+
+
+```
+### Step 4: Associate to an Identity
+
+> Example Response:
+
+```json
+{{associate_token_scenario_response}}
+```
+
+Before you can use the newly tokenized card you will need to associate it with
+an `Identity`. To do this you must make an authenticated `POST` request to the
+`/payment_instruments` endpoint with the relevant token and the buyer's
+`Identity` information.
+
+<aside class="warning">
+Tokens should be associated right away. Tokens not associated within 30 mins
+of creation will be invalidated.
+</aside>
+
+#### HTTP Request
+
+`POST {{base_url}}/payment_instruments`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+token | *string*, **required** | ID for the `Token` that was returned via the tokenization client
+type | *string*, **required** | Must pass TOKEN as the value
+identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
+
+## Associate a Token
+```shell
+curl {{base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{associate_token_scenario_curl_request}}'
+
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\PaymentInstrument;
+
+$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
+$card = $card->save();
+
+```
+```java
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .token("TKkvwumxCgq5E8uTKyq96dta")
+    .type("TOKEN")
+    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
+    .build();
+paymentCard = client.paymentCardsClient().save(paymentCard);
+
+```
+> Example Response:
+
+```json
+{{associate_token_scenario_response}}
+```
+
+Associate the newly tokenized card or bank with the instrument owner's `Identity`.
+
+<aside class="warning">
+Tokens should be associated right away. Tokens not associated within 30 mins
+of creation will be invalidated.
+</aside>
+
+#### HTTP Request
+
+`POST {{base_url}}/payment_instruments`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+token | *string*, **required** | ID for the `Token` that was returned via the tokenization client or hosted iframe
+type | *string*, **required** | Must pass TOKEN as the value
+identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
+
+
+## Fetch a Payment Instrument
+
+```shell
+
+
+curl {{base_url}}/payment_instruments/{{fetch_payment_instrument_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\PaymentInstrument;
+
+$card = PaymentInstrument::retrieve('{{fetch_payment_instrument_scenario_id}}');
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = client.paymentCardsClient().fetch("{{fetch_payment_instrument_scenario_id}}")
+
+```
+> Example Response:
+
+```json
+{{fetch_payment_instrument_scenario_response}}
+```
+
+Fetch a previously created `Payment Instrument`
+
+#### HTTP Request
+
+`GET {{base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
+
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
+## Update a Payment Instrument
+```shell
+curl {{base_url}}/payment_instruments/{{update_payment_instrument_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -X PUT \
+    -d '{{update_payment_instrument_scenario_curl_request}}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{{update_payment_instrument_scenario_response}}
+```
+
+Update a previously created `Payment Instrument`.
+
+<aside class="notice">
+Only the tags field can be updated. If it is required to update other fields,
+such as account information or expiration dates please retokenize the payment
+instrument.
+</aside>
+
+#### HTTP Request
+
+`PUT {{base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
+
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+tags | *object*, **optional** | Single level key value pair for annotating custom meta data
+
+
+## List all Payment Instruments
+
+```shell
+curl {{base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+
+```
+```java
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+
+client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
+  .forEachRemaining(baPage -> {
+    Collection<BankAccount> bankAccounts = baPage.getContent();
+    //do something
+  });
+
+```
+> Example Response:
+
+```json
+{{list_payment_instruments_scenario_response}}
+```
+
+#### HTTP Request
+
+`GET {{base_url}}/payment_instruments`
 
 # Settlements
 
@@ -2628,502 +3401,3 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
   }
 }
 ```
-# Payment Instruments
-
-A `Payment Instrument` resource represents either a credit card or bank account.
-A `Payment Instrument` may be tokenized multiple times and each tokenization produces
-a unique ID. Each ID may only be associated one time and to only one `Identity`.
-Once associated, a `Payment Instrument` may not be disassociated from an
-`Identity`.
-
-
-## Create a Card
-```shell
-
-
-curl {{base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_card_scenario_curl_request}}'
-
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{create_card_scenario_php_request}});
-$card = $card->save();
-
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .name("Joe-Doe")
-    .identity("ID572pSyFj71oVExp6XWiGRP")
-    .expirationMonth(12)
-    .expirationYear(2030)
-    .number("4111 1111 1111 1111")
-    .securityCode("231")
-    .build(); 
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-```
-> Example Response:
-
-```json
-{{create_card_scenario_response}}
-```
-
-<aside class="warning">
-Please note that creating cards directly via the API should only be done for
-testing purposes. You must use the Tokenization iframe or javascript client
-to remain out of PCI scope.
-</aside>
-
-Please review our guide on how to tokenize cards via the [embedded tokenization
-form](#embedded-tokenization-using-iframe)
-
-#### HTTP Request
-
-`POST {{base_url}}/payment_instruments`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-identity | *string*, **required** | ID of the `Identity` that the card should be associated
-type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
-number | *string*, **required** | Credit card account number
-security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
-expiration_year | *integer*, **required** | 4-digit expiration year
-name | *string*, **optional** | Full name of the registered card holder
-address | *object*, **optional** | Billing address (Full description of child attributes below)
-
-
-#### Address-object Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-line1 | *string*, **optional** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **optional** | City
-region | *string*, **optional** | State
-postal_code | *string*, **optional** | Zip or Postal code
-country | *string*, **optional** | 3-Letter Country code
-
-## Create a Bank Account
-```shell
-
-curl {{base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_bank_account_scenario_curl_request}}'
-
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
-$bank_account = $bank_account->save();
-
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-bankAccount = client.bankAccountsClient().save(
-    BankAccount.builder()
-      .name("Joe-Doe")
-      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
-      .accountNumber("84012312415")
-      .bankCode("840123124")
-      .accountType(BankAccountType.SAVINGS)
-      .companyName("company name")
-      .country("USA")
-      .currency("USD")
-      .build()
-);
-
-```
-> Example Response:
-
-```json
-{{create_bank_account_scenario_response}}
-```
-
-#### HTTP Request
-
-`POST {{base_url}}/payment_instruments`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-account_number | *string*, **required** | Bank account number
-bank_code | *string*, **required** | Bank routing number
-type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
-identity | *string*, **required**| ID for the `Identity` resource which the account is associated
-account_type | *string*, **required** | Either CHECKING or SAVINGS
-name | *string*, **optional** | Account owner's full name
-## Tokenize Card with Embedded Iframe
-
-Our embedded tokenization form ensures you remain out of PCI scope, while providing
-your end-users with a sleek, and seamless checkout experience.
-
-With our form, sensitive card data never touches your servers and keeps you out
-of PCI scope by sending this info over SSL directly to {{api_name}}. For your
-convenience we've provided a [jsfiddle]({{embedded_iframe_jsfiddle}}) as a live example.
-
-<aside class="notice">
-Note you must still use SSL on your servers for any actions related to financial
-transactions via the {{api_name}} API.
-</aside>
-
-### Step 1: Create a Button
-
-```html
-<!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <body>
-        <button id="show-form">Add Your Card</button>
-    </body>
-</html>
-```
-
-Before collecting the sensitive payment information, we will to add a button
-to the HTML where we'll be hosting the iframe so that end-users can input their
-details.
-
-We have provided a simple example to the right.
-
-
-### Step 2: Include library
-
-To use the iframe you will need to include the library on the webpage
-where you're hosting the aforementioned button. Please include the script as
-demonstrated to the right. Please refrain from hosting the iframe library locally
-as doing so prevents important updates.
-
-
-```html
-<script type="text/javascript" src="{{embedded_iframe_src}}"></script>
-```
-
-
-### Step 3: Configure the client
-
-```javascript
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function(event) {
-      document.getElementById('show-form').addEventListener('click', function() {
-        Payline.openTokenizeCardForm({
-          applicationName: 'Business Name',
-          applicationId: '{{application}}',
-        }, function (tokenizedResponse) {
-          // Define a callback to send your token to your back-end server
-        });
-      });
-    });
- </script>
-```
-
-Next we need to configure the client so that it associates the card with your `Application`.
-We will also need to register a click event that fires when our users click on the
-button, thereby rendering the iframe on the page. Then when the form is submitted
-you'll be returned a unique `Token` resource representing the submitted card
-details. We will also need to define a callback for handling that response.
-
-In the next step we'll show you how to claim the instrument via an authenticated
-HTTPS request on your back-end for future use.
-
-> Example Response:
-
-```json
-{{create_token_scenario_response}}
-```
-
-```shell
-curl {{base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{associate_token_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
-$card = $card->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .token("TKkvwumxCgq5E8uTKyq96dta")
-    .type("TOKEN")
-    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-
-```
-### Step 4: Associate to an Identity
-
-> Example Response:
-
-```json
-{{associate_token_scenario_response}}
-```
-
-Before you can use the newly tokenized card you will need to associate it with
-an `Identity`. To do this you must make an authenticated `POST` request to the
-`/payment_instruments` endpoint with the relevant token and the buyer's
-`Identity` information.
-
-<aside class="warning">
-Tokens should be associated right away. Tokens not associated within 30 mins
-of creation will be invalidated.
-</aside>
-
-#### HTTP Request
-
-`POST {{base_url}}/payment_instruments`
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-token | *string*, **required** | ID for the `Token` that was returned via the tokenization client
-type | *string*, **required** | Must pass TOKEN as the value
-identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
-
-## Associate a Token
-```shell
-curl {{base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{associate_token_scenario_curl_request}}'
-
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
-$card = $card->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .token("TKkvwumxCgq5E8uTKyq96dta")
-    .type("TOKEN")
-    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-```
-> Example Response:
-
-```json
-{{associate_token_scenario_response}}
-```
-
-Associate the newly tokenized card or bank with the instrument owner's `Identity`.
-
-<aside class="warning">
-Tokens should be associated right away. Tokens not associated within 30 mins
-of creation will be invalidated.
-</aside>
-
-#### HTTP Request
-
-`POST {{base_url}}/payment_instruments`
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-token | *string*, **required** | ID for the `Token` that was returned via the tokenization client or hosted iframe
-type | *string*, **required** | Must pass TOKEN as the value
-identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
-
-
-## Fetch a Payment Instrument
-
-```shell
-
-
-curl {{base_url}}/payment_instruments/{{fetch_payment_instrument_scenario_id}} \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = PaymentInstrument::retrieve('{{fetch_payment_instrument_scenario_id}}');
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = client.paymentCardsClient().fetch("{{fetch_payment_instrument_scenario_id}}")
-
-```
-> Example Response:
-
-```json
-{{fetch_payment_instrument_scenario_response}}
-```
-
-Fetch a previously created `Payment Instrument`
-
-#### HTTP Request
-
-`GET {{base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
-
-## Update a Payment Instrument
-```shell
-curl {{base_url}}/payment_instruments/{{update_payment_instrument_scenario_id}} \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -X PUT \
-    -d '{{update_payment_instrument_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-
-```
-> Example Response:
-
-```json
-{{update_payment_instrument_scenario_response}}
-```
-
-Update a previously created `Payment Instrument`.
-
-<aside class="notice">
-Only the tags field can be updated. If it is required to update other fields,
-such as account information or expiration dates please retokenize the payment
-instrument.
-</aside>
-
-#### HTTP Request
-
-`PUT {{base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-tags | *object*, **optional** | Single level key value pair for annotating custom meta data
-
-
-## List all Payment Instruments
-
-```shell
-curl {{base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
-  .forEachRemaining(baPage -> {
-    Collection<BankAccount> bankAccounts = baPage.getContent();
-    //do something
-  });
-
-```
-> Example Response:
-
-```json
-{{list_payment_instruments_scenario_response}}
-```
-
-#### HTTP Request
-
-`GET {{base_url}}/payment_instruments`
-

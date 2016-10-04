@@ -13,7 +13,7 @@ Update the information of a previously created `Identity`. Please note that in
 the case of merchant accounts this API request alone does not update this
 information on the underlying processor. To update the merchant's information
  on the underlying processor you must [update the merchant on the
- processor.](#update-merchant-information-on-processor)
+ processor.](#update-info-on-processor)
 
 
 #### HTTP Request

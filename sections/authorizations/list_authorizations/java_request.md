@@ -1,4 +1,3 @@
-```
 import io.payline.payments.processing.client.model.Authorization;
 
 client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
@@ -6,4 +5,3 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
     Collection<Authorization> authorizations = page.getContent();
     //do something
   });
-```

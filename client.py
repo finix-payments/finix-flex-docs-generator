@@ -72,53 +72,10 @@ def create_app(config_values, application_owner_user_id, business_type):
 
 
 def associate_payment_processor(config_values, processor):
-    if processor == "DUMMY_V1":
-        values = {
-            "default_merchant_profile_id": None,
-            "type": config_values["identity_verification_processor"],
-            "config": {
-                "key1" : "value-1",
-                "key2" : "value-2",
-                }
-        }
-    else:
-        values = {
-            "default_merchant_profile_id": None,
-            "type": config_values["payment_processor"],
-            "config": {
-                "sftpPort" : 22,
-                "sftpUsername" : "finixtxn",
-                "sftpPassword" : "RAS",
-                "sftpTimeout" : 7200000,
-                "payfacUsername" : "RAS",
-                "payfacUrl" : "https://psp.litle.com/",
-                "payfacPassword" : "RAS",
-                "payfacMerchantId" : "RASR",
-                "batchRequestFolder" : "/opt/processing/litle/requests",
-                "timeout" : 10000,
-                "batchUseSSL" : True,
-                "proxyPort" : 1500,
-                "reportGroup" : "Default Report Group",
-                "allowPartialAuth" : False,
-                "maxAllowedTransactionsPerFile" : 50000,
-                "batchHost" : "payments.litle.com",
-                "batchTcpTimeout" : 7200000,
-                "proxyHost" : "",
-                "maxTransactionsPerBatch" : 100000,
-                "printxml" : True,
-                "removeFetchedFile" : False,
-                "batchResponseFolder" : "/opt/processing/litle/responses",
-                "rateLimitTimeout" : 45000,
-                "batchPort" : 22,
-                "url" : "https://payments.litle.com/vap/communicator/online",
-                "username" : "FINIX",
-                "password" : "ras",
-                "reportsSftpHost": "reports.litle.com",
-                "reportsSftpUsername": "ras",
-                "reportsSftpPassword": "ras",
-                "merchantFraudEnabled": False
-            }
-        }
+    values = {
+        "type": processor,
+        "config": {"key1": "value-1", "key2": "value-2"}
+    }
     values = format_json(json.dumps(values))
     endpoint = config_values["base_url"] + '/applications/' + config_values["application"] + "/processors"
     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])

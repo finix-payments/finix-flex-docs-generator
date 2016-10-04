@@ -387,7 +387,8 @@ def create_debit(config_values, merchant_id, card_id, amount):
         "amount": amount,
         "fee": 15,
         "tags": {
-            "ride_number": "21DFASJSAKAS"
+            "ride_number": "21DFASJSAKAS",
+            "payment_reason": "referral"
         },
     }
 
