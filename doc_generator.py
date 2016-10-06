@@ -230,6 +230,12 @@ def generate_template_variables(config_values):
     fetch_transfer_scenario = fetch_transfer(config_values, create_debit_scenario["response_id"])
     fetch_webhook_scenario = fetch_webhook(config_values, create_webhook_scenario["response_id"])
 
+    #Push-to-card Scenarios
+    associate_payment_processor_push_to_card_scenario = associate_payment_processor(config_values, "VISA_V1")    
+    create_recipient_identity_scenario = create_buyer_identity(config_values)
+    create_recipient_card_scenario = create_card(config_values, create_recipient_identity_scenario["response_id"])
+    create_recipient_push_to_card_transfer = create_push_to_card_transfer(config_values, create_recipient_identity_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
+
     # LIST
     list_authorizations_scenario = list_authorizations(config_values)
     list_disputes_scenario = list_disputes(config_values)
@@ -400,6 +406,22 @@ def generate_template_variables(config_values):
         "create_bank_debit_scenario_response": create_bank_debit_scenario["response_body"],
         "create_bank_debit_scenario_id": create_bank_debit_scenario["response_id"],
 
+
+       #Push-to-card Scenarios
+       "create_recipient_identity_scenario_curl_request": create_recipient_identity_scenario["curl_request_body"],
+       "create_recipient_identity_scenario_php_request": create_recipient_identity_scenario["php_request_body"],
+       "create_recipient_identity_scenario_response": create_recipient_identity_scenario["response_body"],
+       "create_recipient_identity_scenario_id": create_recipient_identity_scenario["response_id"],
+
+       "create_recipient_card_scenario_curl_request": create_recipient_card_scenario["curl_request_body"],
+       "create_recipient_card_scenario_php_request": create_recipient_card_scenario["php_request_body"],
+       "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
+       "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
+
+       "create_recipient_push_to_card_transfer_curl_request": create_recipient_push_to_card_transfer["curl_request_body"],
+       "create_recipient_push_to_card_transfer_php_request": create_recipient_push_to_card_transfer["php_request_body"],
+       "create_recipient_push_to_card_transfer_response": create_recipient_push_to_card_transfer["response_body"],
+       "create_recipient_push_to_card_transfer_id": create_recipient_push_to_card_transfer["response_id"],
 
         # TRANSFERS (Refunds) --------------------------------------------
 

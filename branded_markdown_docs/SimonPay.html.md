@@ -35,9 +35,9 @@ explains how to properly tokenize cards in production via our embedded iframe.
 ### Step 1: Create an Identity for a Merchant
 
 ```shell
-curl https://simonpay-staging.finix.io/identities \
+curl https://api-staging.simonpayments.com/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
 	    "tags": {
@@ -48,7 +48,7 @@ curl https://simonpay-staging.finix.io/identities \
 	        "amex_mid": "12345678910", 
 	        "max_transaction_amount": 120000, 
 	        "has_accepted_credit_cards_previously": true, 
-	        "default_statement_descriptor": "Pollos Hermanos", 
+	        "default_statement_descriptor": "ACME Anchors", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -73,12 +73,12 @@ curl https://simonpay-staging.finix.io/identities \
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Pollos Hermanos", 
+	        "doing_business_as": "ACME Anchors", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Pollos Hermanos", 
+	        "business_name": "ACME Anchors", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -87,7 +87,7 @@ curl https://simonpay-staging.finix.io/identities \
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.PollosHermanos.com", 
+	        "url": "www.ACMEAnchors.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}'
@@ -97,7 +97,7 @@ curl https://simonpay-staging.finix.io/identities \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -113,7 +113,7 @@ $identity = new Identity(
 	        "amex_mid"=> "12345678910", 
 	        "max_transaction_amount"=> 120000, 
 	        "has_accepted_credit_cards_previously"=> true, 
-	        "default_statement_descriptor"=> "Pollos Hermanos", 
+	        "default_statement_descriptor"=> "ACME Anchors", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -138,12 +138,12 @@ $identity = new Identity(
 	        "first_name"=> "dwayne", 
 	        "title"=> "CEO", 
 	        "business_tax_id"=> "123456789", 
-	        "doing_business_as"=> "Pollos Hermanos", 
+	        "doing_business_as"=> "ACME Anchors", 
 	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
 	        "mcc"=> "0742", 
 	        "phone"=> "1234567890", 
-	        "business_name"=> "Pollos Hermanos", 
+	        "business_name"=> "ACME Anchors", 
 	        "tax_id"=> "123456789", 
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -152,7 +152,7 @@ $identity = new Identity(
 	            "day"=> 27, 
 	            "month"=> 6
 	        ), 
-	        "url"=> "www.PollosHermanos.com", 
+	        "url"=> "www.ACMEAnchors.com", 
 	        "annual_card_volume"=> 12000000
 	    )
 	)
@@ -218,15 +218,15 @@ Identity identity = client.identitiesClient().save(
 
 ```json
 {
-  "id" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "id" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Pollos Hermanos",
+    "business_name" : "ACME Anchors",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Pollos Hermanos",
+    "doing_business_as" : "ACME Anchors",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -254,7 +254,7 @@ Identity identity = client.identitiesClient().save(
     "max_transaction_amount" : 120000,
     "amex_mid" : "12345678910",
     "discover_mid" : null,
-    "url" : "www.PollosHermanos.com",
+    "url" : "www.ACMEAnchors.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -266,40 +266,40 @@ Identity identity = client.identitiesClient().save(
     "short_business_name" : null,
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Pollos Hermanos"
+    "default_statement_descriptor" : "ACME Anchors"
   },
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-09-09T23:55:03.24Z",
-  "updated_at" : "2016-09-09T23:55:03.24Z",
+  "created_at" : "2016-10-04T23:43:11.12Z",
+  "updated_at" : "2016-10-04T23:43:11.12Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/verifications"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/verifications"
     },
     "merchants" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merchants"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants"
     },
     "settlements" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settlements"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/settlements"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/authorizations"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/authorizations"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/transfers"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/payment_instruments"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/disputes"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/disputes"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -309,15 +309,15 @@ Before we can begin charging cards we'll need to provision a `Merchant` account 
 
 1. First, create an `Identity` resource with the merchant's underwriting and identity verification information
 
-    `POST https://simonpay-staging.finix.io/identities/`
+    `POST https://api-staging.simonpayments.com/identities/`
 
 2. Second, create a `Payment Instrument` representing the merchant's bank account where processed funds will be settled (i.e. deposited)
 
-    `POST https://simonpay-staging.finix.io/payment_instruments/`
+    `POST https://api-staging.simonpayments.com/payment_instruments/`
 
 3. Finally, provision the `Merchant` account
 
-    `POST https://simonpay-staging.finix.io/identities/:IDENTITY_ID/merchants`
+    `POST https://api-staging.simonpayments.com/identities/:IDENTITY_ID/merchants`
 
 Let's start with the first step by creating an `Identity` resource. Each `Identity`
  represents either a `buyer` or a `merchant`. We use this resource to associate
@@ -331,7 +331,7 @@ reference later.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities`
+`POST https://api-staging.simonpayments.com/identities`
 
 #### Business-specific Request Arguments
 
@@ -401,9 +401,9 @@ year | *integer*, **required** | Year of birth (4-digit)
 
 ### Step 2: Tokenize a Bank Account for Funding your Merchant
 ```shell
-curl https://simonpay-staging.finix.io/payment_instruments \
+curl https://api-staging.simonpayments.com/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
 	    "account_type": "SAVINGS", 
@@ -415,7 +415,7 @@ curl https://simonpay-staging.finix.io/payment_instruments \
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "ID4Soxr3Zeki8mUsucR8q4VR"
+	    "identity": "IDs3XCSAdBXoqMjtsTpMDrh5"
 	}'
 
 
@@ -424,7 +424,7 @@ curl https://simonpay-staging.finix.io/payment_instruments \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -441,7 +441,7 @@ $bank_account = new PaymentInstrument(
 	    "bank_code"=> "123123123", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "ID4Soxr3Zeki8mUsucR8q4VR"
+	    "identity"=> "IDs3XCSAdBXoqMjtsTpMDrh5"
 	));
 $bank_account = $bank_account->save();
 
@@ -468,35 +468,36 @@ bankAccount = client.bankAccountsClient().save(
 
 ```json
 {
-  "id" : "PI8kwmQkFR5PxJ49oL6SS8gz",
-  "fingerprint" : "FPR966610431",
+  "id" : "PIq1dqfyMaezBaCGGwzWQmyB",
+  "fingerprint" : "FPR-1215770130",
   "tags" : { },
   "bank_code" : "123123123",
   "country" : "USA",
   "masked_account_number" : "XXXXX3123",
   "name" : "Fran Lemke",
-  "created_at" : "2016-09-09T23:55:12.67Z",
-  "updated_at" : "2016-09-09T23:55:12.67Z",
+  "created_at" : "2016-10-04T23:43:23.91Z",
+  "updated_at" : "2016-10-04T23:43:23.91Z",
   "instrument_type" : "BANK_ACCOUNT",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "currency" : "USD",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/authorizations"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/authorizations"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/transfers"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/transfers"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/verifications"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/verifications"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -517,7 +518,7 @@ field to properly associate it with your merchant.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/payment_instruments`
+`POST https://api-staging.simonpayments.com/payment_instruments`
 
 #### Request Arguments
 
@@ -532,9 +533,9 @@ name | *string*, **optional** | Account owner's full name
 ### Step 3: Provision Merchant Account
 
 ```shell
-curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merchants \
+curl https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	  {
 	    "tags": {
@@ -547,13 +548,13 @@ curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merch
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Identity;
 
-$identity = Identity::retrieve('ID4Soxr3Zeki8mUsucR8q4VR');
+$identity = Identity::retrieve('IDs3XCSAdBXoqMjtsTpMDrh5');
 
 $merchant = $identity->provisionMerchantOn(
 	  array(
@@ -574,35 +575,35 @@ Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 
 ```json
 {
-  "id" : "MUoPBHgXu6y5znA6v74LoMUt",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-  "verification" : "VI8tvXwn1DofpkUQG9DbVC1Z",
-  "merchant_profile" : "MPsZTc5BtS9M7A8dLKcXd4rA",
+  "id" : "MU44oTHgF4SpA6dTGc1m6eu7",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "verification" : "VIfdMDaMiPyEpNgaxgojryYd",
+  "merchant_profile" : "MPovQP6nFotXCzStYYyQq1WD",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2016-09-09T23:55:14.67Z",
-  "updated_at" : "2016-09-09T23:55:14.67Z",
+  "created_at" : "2016-10-04T23:43:26.26Z",
+  "updated_at" : "2016-10-04T23:43:26.26Z",
   "onboarding_state" : "PROVISIONING",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/merchants/MUoPBHgXu6y5znA6v74LoMUt"
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/merchants/MUoPBHgXu6y5znA6v74LoMUt/verifications"
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://simonpay-staging.finix.io/merchant_profiles/MPsZTc5BtS9M7A8dLKcXd4rA"
+      "href" : "https://api-staging.simonpayments.com/merchant_profiles/MPovQP6nFotXCzStYYyQq1WD"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "verification" : {
-      "href" : "https://simonpay-staging.finix.io/verifications/VI8tvXwn1DofpkUQG9DbVC1Z"
+      "href" : "https://api-staging.simonpayments.com/verifications/VIfdMDaMiPyEpNgaxgojryYd"
     }
   }
 }
@@ -638,7 +639,7 @@ a Webhook to listen for the state change.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities/:IDENTITY_ID/merchants`
+`POST https://api-staging.simonpayments.com/identities/:IDENTITY_ID/merchants`
 
 #### URL Parameters
 
@@ -649,9 +650,9 @@ Parameter | Description
 ### Step 4: Create an Identity for a Buyer
 ```shell
 
-curl https://simonpay-staging.finix.io/identities \
+curl https://api-staging.simonpayments.com/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
 	    "tags": {
@@ -659,8 +660,8 @@ curl https://simonpay-staging.finix.io/identities \
 	    }, 
 	    "entity": {
 	        "phone": "7145677613", 
-	        "first_name": "Sean", 
-	        "last_name": "Green", 
+	        "first_name": "Marcie", 
+	        "last_name": "Henderson", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -678,7 +679,7 @@ curl https://simonpay-staging.finix.io/identities \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -691,8 +692,8 @@ $identity = new Identity(
 	    ), 
 	    "entity"=> array(
 	        "phone"=> "7145677613", 
-	        "first_name"=> "Sean", 
-	        "last_name"=> "Green", 
+	        "first_name"=> "Marcie", 
+	        "last_name"=> "Henderson", 
 	        "email"=> "therock@gmail.com", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
@@ -728,11 +729,11 @@ Identity identity = client.identitiesClient().save(
 
 ```json
 {
-  "id" : "IDm7MPi8hrSEEaVc8qMHXpKk",
+  "id" : "IDcwkUSpMa4EQyjgDQ4YjP3q",
   "entity" : {
     "title" : null,
-    "first_name" : "Sean",
-    "last_name" : "Green",
+    "first_name" : "Marcie",
+    "last_name" : "Henderson",
     "email" : "therock@gmail.com",
     "business_name" : null,
     "business_type" : null,
@@ -766,35 +767,35 @@ Identity identity = client.identitiesClient().save(
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-09-09T23:55:16.73Z",
-  "updated_at" : "2016-09-09T23:55:16.73Z",
+  "created_at" : "2016-10-04T23:43:27.81Z",
+  "updated_at" : "2016-10-04T23:43:27.81Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/verifications"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/verifications"
     },
     "merchants" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/merchants"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/merchants"
     },
     "settlements" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/settlements"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/settlements"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/authorizations"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/authorizations"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/transfers"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/payment_instruments"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/disputes"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/disputes"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -814,7 +815,7 @@ with accounting, reconciliation, and chargebacks.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities`
+`POST https://api-staging.simonpayments.com/identities`
 
 #### Request Arguments
 
@@ -842,12 +843,12 @@ country | *string*, **required** | 3-Letter Country code
 ```shell
 
 
-curl https://simonpay-staging.finix.io/payment_instruments \
+curl https://api-staging.simonpayments.com/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
-	    "name": "Sean Serna", 
+	    "name": "Ricardo White", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card name": "Business Card"
@@ -864,7 +865,7 @@ curl https://simonpay-staging.finix.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "IDm7MPi8hrSEEaVc8qMHXpKk"
+	    "identity": "IDcwkUSpMa4EQyjgDQ4YjP3q"
 	}'
 
 
@@ -873,7 +874,7 @@ curl https://simonpay-staging.finix.io/payment_instruments \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -881,7 +882,7 @@ use SimonPay\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "name"=> "Sean Serna", 
+	    "name"=> "Ricardo White", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> array(
 	        "card name"=> "Business Card"
@@ -898,7 +899,7 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDm7MPi8hrSEEaVc8qMHXpKk"
+	    "identity"=> "IDcwkUSpMa4EQyjgDQ4YjP3q"
 	));
 $card = $card->save();
 
@@ -923,15 +924,15 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```json
 {
-  "id" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "fingerprint" : "FPR806707623",
+  "id" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "fingerprint" : "FPR-657319974",
   "tags" : { },
   "expiration_month" : 12,
   "expiration_year" : 2020,
   "last_four" : "4242",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Sean Serna",
+  "name" : "Ricardo White",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -942,31 +943,32 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-09-09T23:55:17.70Z",
-  "updated_at" : "2016-09-09T23:55:17.70Z",
+  "created_at" : "2016-10-04T23:43:28.85Z",
+  "updated_at" : "2016-10-04T23:43:28.85Z",
   "instrument_type" : "PAYMENT_CARD",
-  "identity" : "IDm7MPi8hrSEEaVc8qMHXpKk",
+  "currency" : "USD",
+  "identity" : "IDcwkUSpMa4EQyjgDQ4YjP3q",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/authorizations"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/authorizations"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/transfers"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/transfers"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/verifications"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/verifications"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "updates" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/updates"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/updates"
     }
   }
 }
@@ -990,7 +992,7 @@ form](#embedded-tokenization-using-iframe)
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/payment_instruments`
+`POST https://api-staging.simonpayments.com/payment_instruments`
 
 #### Request Arguments
 
@@ -1018,15 +1020,15 @@ postal_code | *string*, **optional** | Zip or Postal code
 country | *string*, **optional** | 3-Letter Country code
 ### Step 6: Create an Authorization
 ```shell
-curl https://simonpay-staging.finix.io/authorizations \
+curl https://api-staging.simonpayments.com/authorizations \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
-	    "merchant_identity": "ID4Soxr3Zeki8mUsucR8q4VR", 
+	    "merchant_identity": "IDs3XCSAdBXoqMjtsTpMDrh5", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PIbpQk4JZiKNxTbYDMTJSs9D", 
+	    "source": "PIsWAgCjqrgp7w2eP4vP7uWj", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -1037,7 +1039,7 @@ curl https://simonpay-staging.finix.io/authorizations \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -1045,10 +1047,10 @@ use SimonPay\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "ID4Soxr3Zeki8mUsucR8q4VR", 
+	    "merchant_identity"=> "IDs3XCSAdBXoqMjtsTpMDrh5", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
-	    "source"=> "PIbpQk4JZiKNxTbYDMTJSs9D", 
+	    "source"=> "PIsWAgCjqrgp7w2eP4vP7uWj", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -1072,7 +1074,7 @@ Authorization authorization = client.authorizationsClient().save(
 
 ```json
 {
-  "id" : "AUdxGfgF9s8D4LAkj9LGufB",
+  "id" : "AUg6yBTbAobSFN2xdHtVnXeH",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -1082,22 +1084,22 @@ Authorization authorization = client.authorizationsClient().save(
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-09-09T23:55:25.50Z",
-  "updated_at" : "2016-09-09T23:55:25.52Z",
-  "trace_id" : "b3d5e9d1-4704-4ca0-bfc0-7897f10ccb79",
-  "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "created_at" : "2016-10-04T23:43:37.63Z",
+  "updated_at" : "2016-10-04T23:43:37.65Z",
+  "trace_id" : "86c29f52-b157-48da-a165-7b8fea7be2f4",
+  "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "is_void" : false,
-  "expires_at" : "2016-09-16T23:55:25.50Z",
+  "expires_at" : "2016-10-11T23:43:37.63Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB"
+      "href" : "https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "merchant_identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -1137,7 +1139,7 @@ If the transfer field of an Authorization is null it has not yet been captured.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/authorizations`
+`POST https://api-staging.simonpayments.com/authorizations`
 
 #### Request Arguments
 
@@ -1149,11 +1151,11 @@ amount | *integer*, **required** | The amount of the authorization in cents
 currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org/wiki/ISO_4217) designating the currency (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
-### Step 6: Create an Authorization
+### Step 7: Capture the Authorization
 ```shell
-curl https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB \
+curl https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -X PUT \
     -d '
 	{
@@ -1165,13 +1167,13 @@ curl https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUdxGfgF9s8D4LAkj9LGufB');
+$authorization = Authorization::retrieve('AUg6yBTbAobSFN2xdHtVnXeH');
 $authorization->capture_amount = 50;
 $authorization = $authorization->capture();
 
@@ -1179,7 +1181,7 @@ $authorization = $authorization->capture();
 ```java
 import io.simonpay.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AUdxGfgF9s8D4LAkj9LGufB");
+Authorization authorization = client.authorizationsClient().fetch("AUg6yBTbAobSFN2xdHtVnXeH");
 authorization = authorization.capture(50L);
 
 ```
@@ -1187,35 +1189,35 @@ authorization = authorization.capture(50L);
 
 ```json
 {
-  "id" : "AUdxGfgF9s8D4LAkj9LGufB",
+  "id" : "AUg6yBTbAobSFN2xdHtVnXeH",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TR2Hw6CuiAnTyP8kftGCpMDy",
+  "transfer" : "TR2DdZMC9Tsj9WZyS2T1BaxR",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-09-09T23:55:25.37Z",
-  "updated_at" : "2016-09-09T23:55:26.79Z",
-  "trace_id" : "b3d5e9d1-4704-4ca0-bfc0-7897f10ccb79",
-  "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "created_at" : "2016-10-04T23:43:37.50Z",
+  "updated_at" : "2016-10-04T23:43:38.99Z",
+  "trace_id" : "86c29f52-b157-48da-a165-7b8fea7be2f4",
+  "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "is_void" : false,
-  "expires_at" : "2016-09-16T23:55:25.37Z",
+  "expires_at" : "2016-10-11T23:43:37.50Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB"
+      "href" : "https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "transfer" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy"
+      "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR"
     },
     "merchant_identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -1241,7 +1243,7 @@ Next we're going to show you how to settle out the funds to your merchant.
 
 #### HTTP Request
 
-`PUT https://simonpay-staging.finix.io/authorizations/:AUTHORIZATION_ID`
+`PUT https://api-staging.simonpayments.com/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -1257,11 +1259,11 @@ Field | Type | Description
 capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
 fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount
 
-### Step 7: Create a Batch Settlment
+### Step 8: Create a Batch Settlment
 ```shell
-curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settlements \
+curl https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/settlements \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
 	    "currency": "USD", 
@@ -1276,14 +1278,14 @@ curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settl
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Identity;
 use SimonPay\Resources\Settlement;
 
-$identity = Identity::retrieve('ID4Soxr3Zeki8mUsucR8q4VR');
+$identity = Identity::retrieve('IDs3XCSAdBXoqMjtsTpMDrh5');
 $settlement = $identity->createSettlement(
 	array(
 	    "currency"=> "USD", 
@@ -1308,34 +1310,34 @@ Settlement settlement = identity.createSettlement(
 
 ```json
 {
-  "id" : "ST646Cozn7oSigmnmwxL2pZH",
+  "id" : "STvq7bQrBSqa8fPzXobfHa84",
   "tags" : {
     "Internal Daily Settlement ID" : "21DFASJSAKAS"
   },
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "currency" : "USD",
-  "created_at" : "2016-09-10T00:06:48.88Z",
-  "updated_at" : "2016-09-10T00:06:48.90Z",
+  "created_at" : "2016-10-04T23:50:46.63Z",
+  "updated_at" : "2016-10-04T23:50:46.78Z",
   "processor" : "DUMMY_V1",
-  "total_amount" : 2132659,
-  "total_fee" : 213267,
-  "net_amount" : 1919392,
+  "total_amount" : 434885,
+  "total_fee" : 43490,
+  "net_amount" : 391395,
   "destination" : null,
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/transfers"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/transfers"
     },
     "funding_transfers" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/funding_transfers"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/funding_transfers"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -1367,7 +1369,7 @@ link](#list-transfers-in-a-settlement) which returns a list of all the
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities/:IDENTITY_ID/settlements`
+`POST https://api-staging.simonpayments.com/identities/:IDENTITY_ID/settlements`
 
 #### Request Arguments
 
@@ -1383,7 +1385,7 @@ your end-users with a sleek, and seamless checkout experience.
 
 With our form, sensitive card data never touches your servers and keeps you out
 of PCI scope by sending this info over SSL directly to SimonPay. For your
-convenience we've provided a [jsfiddle](https://jsfiddle.net/ne96gvxs/) as a live example.
+convenience we've provided a [jsfiddle](https://jsfiddle.net/rserna2010/1626475h/) as a live example.
 
 <aside class="notice">
 Note you must still use SSL on your servers for any actions related to financial
@@ -1429,7 +1431,7 @@ as doing so prevents important updates.
       document.getElementById('show-form').addEventListener('click', function() {
         Payline.openTokenizeCardForm({
           applicationName: 'Business Name',
-          applicationId: 'AP6ifJWv3Y3vhpdASRab5afL',
+          applicationId: 'APdAAD1S6HYtHTVnrqFdPrsp',
         }, function (tokenizedResponse) {
           // Define a callback to send your token to your back-end server
         });
@@ -1451,15 +1453,16 @@ HTTPS request on your back-end for future use.
 
 ```json
 {
-  "id" : "TKxn9bDxdSmYCj3cBZVVANG7",
-  "fingerprint" : "FPR222704565",
-  "created_at" : "2016-09-09T23:55:28.85Z",
-  "updated_at" : "2016-09-09T23:55:28.85Z",
+  "id" : "TK6qtbPN4cUUXyy5wi2s6dqs",
+  "fingerprint" : "FPR284253560",
+  "created_at" : "2016-10-04T23:43:40.99Z",
+  "updated_at" : "2016-10-04T23:43:40.99Z",
   "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2016-09-10T23:55:28.85Z",
+  "expires_at" : "2016-10-05T23:43:40.99Z",
+  "currency" : "USD",
   "_links" : {
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -1467,14 +1470,14 @@ HTTPS request on your back-end for future use.
 
 ### Step 4: Associate the Token
 ```shell
-curl https://simonpay-staging.finix.io/payment_instruments \
+curl https://api-staging.simonpayments.com/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
-	    "token": "TKxn9bDxdSmYCj3cBZVVANG7", 
+	    "token": "TK6qtbPN4cUUXyy5wi2s6dqs", 
 	    "type": "TOKEN", 
-	    "identity": "ID4Soxr3Zeki8mUsucR8q4VR"
+	    "identity": "IDs3XCSAdBXoqMjtsTpMDrh5"
 	}'
 
 
@@ -1483,7 +1486,7 @@ curl https://simonpay-staging.finix.io/payment_instruments \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -1491,9 +1494,9 @@ use SimonPay\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	{
-	    "token": "TKxn9bDxdSmYCj3cBZVVANG7", 
+	    "token": "TK6qtbPN4cUUXyy5wi2s6dqs", 
 	    "type": "TOKEN", 
-	    "identity": "ID4Soxr3Zeki8mUsucR8q4VR"
+	    "identity": "IDs3XCSAdBXoqMjtsTpMDrh5"
 	});
 $card = $card->save();
 
@@ -1513,8 +1516,8 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```json
 {
-  "id" : "PIxn9bDxdSmYCj3cBZVVANG7",
-  "fingerprint" : "FPR-752937284",
+  "id" : "PI6qtbPN4cUUXyy5wi2s6dqs",
+  "fingerprint" : "FPR-1132692079",
   "tags" : { },
   "expiration_month" : 12,
   "expiration_year" : 2020,
@@ -1532,31 +1535,32 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-09-09T23:55:29.68Z",
-  "updated_at" : "2016-09-09T23:55:29.68Z",
+  "created_at" : "2016-10-04T23:43:41.84Z",
+  "updated_at" : "2016-10-04T23:43:41.84Z",
   "instrument_type" : "PAYMENT_CARD",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "currency" : "USD",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/authorizations"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/authorizations"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/transfers"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/transfers"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/verifications"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/verifications"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "updates" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/updates"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/updates"
     }
   }
 }
@@ -1571,7 +1575,7 @@ of creation will be invalidated.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/payment_instruments`
+`POST https://api-staging.simonpayments.com/payment_instruments`
 
 
 #### Request Arguments
@@ -1593,15 +1597,15 @@ When an `Authorization` is captured it produces a `Transfer` resource.
 
 
 ```shell
-curl https://simonpay-staging.finix.io/authorizations \
+curl https://api-staging.simonpayments.com/authorizations \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
-	    "merchant_identity": "ID4Soxr3Zeki8mUsucR8q4VR", 
+	    "merchant_identity": "IDs3XCSAdBXoqMjtsTpMDrh5", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PIbpQk4JZiKNxTbYDMTJSs9D", 
+	    "source": "PIsWAgCjqrgp7w2eP4vP7uWj", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -1612,7 +1616,7 @@ curl https://simonpay-staging.finix.io/authorizations \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -1620,10 +1624,10 @@ use SimonPay\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "ID4Soxr3Zeki8mUsucR8q4VR", 
+	    "merchant_identity"=> "IDs3XCSAdBXoqMjtsTpMDrh5", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
-	    "source"=> "PIbpQk4JZiKNxTbYDMTJSs9D", 
+	    "source"=> "PIsWAgCjqrgp7w2eP4vP7uWj", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -1649,7 +1653,7 @@ Authorization authorization = client.authorizationsClient().save(
 
 ```json
 {
-  "id" : "AUdxGfgF9s8D4LAkj9LGufB",
+  "id" : "AUg6yBTbAobSFN2xdHtVnXeH",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -1659,22 +1663,22 @@ Authorization authorization = client.authorizationsClient().save(
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-09-09T23:55:25.50Z",
-  "updated_at" : "2016-09-09T23:55:25.52Z",
-  "trace_id" : "b3d5e9d1-4704-4ca0-bfc0-7897f10ccb79",
-  "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "created_at" : "2016-10-04T23:43:37.63Z",
+  "updated_at" : "2016-10-04T23:43:37.65Z",
+  "trace_id" : "86c29f52-b157-48da-a165-7b8fea7be2f4",
+  "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "is_void" : false,
-  "expires_at" : "2016-09-16T23:55:25.50Z",
+  "expires_at" : "2016-10-11T23:43:37.63Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB"
+      "href" : "https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "merchant_identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -1698,7 +1702,7 @@ If the transfer field of an Authorization is null it has not yet been captured.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/authorizations`
+`POST https://api-staging.simonpayments.com/authorizations`
 
 #### Request Arguments
 
@@ -1711,9 +1715,9 @@ currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 ## Capture an Authorization
 ```shell
-curl https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB \
+curl https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -X PUT \
     -d '
 	{
@@ -1726,13 +1730,13 @@ curl https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUdxGfgF9s8D4LAkj9LGufB');
+$authorization = Authorization::retrieve('AUg6yBTbAobSFN2xdHtVnXeH');
 $authorization->capture_amount = 50;
 $authorization = $authorization->capture();
 ```
@@ -1740,7 +1744,7 @@ $authorization = $authorization->capture();
 
 import io.simonpay.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AUdxGfgF9s8D4LAkj9LGufB");
+Authorization authorization = client.authorizationsClient().fetch("AUg6yBTbAobSFN2xdHtVnXeH");
 authorization = authorization.capture(50L);
 
 ```
@@ -1748,35 +1752,35 @@ authorization = authorization.capture(50L);
 
 ```json
 {
-  "id" : "AUdxGfgF9s8D4LAkj9LGufB",
+  "id" : "AUg6yBTbAobSFN2xdHtVnXeH",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TR2Hw6CuiAnTyP8kftGCpMDy",
+  "transfer" : "TR2DdZMC9Tsj9WZyS2T1BaxR",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-09-09T23:55:25.37Z",
-  "updated_at" : "2016-09-09T23:55:26.79Z",
-  "trace_id" : "b3d5e9d1-4704-4ca0-bfc0-7897f10ccb79",
-  "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "created_at" : "2016-10-04T23:43:37.50Z",
+  "updated_at" : "2016-10-04T23:43:38.99Z",
+  "trace_id" : "86c29f52-b157-48da-a165-7b8fea7be2f4",
+  "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "is_void" : false,
-  "expires_at" : "2016-09-16T23:55:25.37Z",
+  "expires_at" : "2016-10-11T23:43:37.50Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB"
+      "href" : "https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "transfer" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy"
+      "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR"
     },
     "merchant_identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -1792,7 +1796,7 @@ the state of the `Transfer` will update to SUCCEEDED.
 
 #### HTTP Request
 
-`PUT https://simonpay-staging.finix.io/authorizations/:AUTHORIZATION_ID`
+`PUT https://api-staging.simonpayments.com/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -1811,9 +1815,9 @@ fee | *integer*, **optional** | Amount of the captured `Authorization` you would
 ## Void an Authorization
 ```shell
 
-curl https://simonpay-staging.finix.io/authorizations/AU2JQgbJr3tyTSpuTSNay3bG \
+curl https://api-staging.simonpayments.com/authorizations/AUfppmw6T6Sn9n6K18ygxLFT \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -X PUT \
     -d '
 	{
@@ -1825,7 +1829,7 @@ curl https://simonpay-staging.finix.io/authorizations/AU2JQgbJr3tyTSpuTSNay3bG \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -1838,7 +1842,7 @@ SimonPay\Bootstrap::init();
 
 ```json
 {
-  "id" : "AU2JQgbJr3tyTSpuTSNay3bG",
+  "id" : "AUfppmw6T6Sn9n6K18ygxLFT",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -1848,22 +1852,22 @@ SimonPay\Bootstrap::init();
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-09-09T23:55:30.98Z",
-  "updated_at" : "2016-09-09T23:55:33.42Z",
-  "trace_id" : "6454e616-e3d4-4e1e-945a-ea64bd786c4b",
-  "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "created_at" : "2016-10-04T23:43:43.10Z",
+  "updated_at" : "2016-10-04T23:43:44.30Z",
+  "trace_id" : "24335363-88bd-4dc8-ba0e-dbd630023b28",
+  "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "is_void" : true,
-  "expires_at" : "2016-09-16T23:55:30.98Z",
+  "expires_at" : "2016-10-11T23:43:43.10Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/authorizations/AU2JQgbJr3tyTSpuTSNay3bG"
+      "href" : "https://api-staging.simonpayments.com/authorizations/AUfppmw6T6Sn9n6K18ygxLFT"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "merchant_identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -1874,7 +1878,7 @@ Cancels the `Authorization` thereby releasing the funds. After voiding an
 
 #### HTTP Request
 
-`PUT https://simonpay-staging.finix.io/authorizations/:AUTHORIZATION_ID`
+`PUT https://api-staging.simonpayments.com/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -1892,64 +1896,64 @@ void_me | *boolean*, **required** | Set to True to void the `Authorization`
 ## Retrieve an Authorization
 ```shell
 
-curl https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB \
+curl https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUdxGfgF9s8D4LAkj9LGufB');
+$authorization = Authorization::retrieve('AUg6yBTbAobSFN2xdHtVnXeH');
 
 ```
 ```java
 
 import io.simonpay.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AUdxGfgF9s8D4LAkj9LGufB");
+Authorization authorization = client.authorizationsClient().fetch("AUg6yBTbAobSFN2xdHtVnXeH");
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "AUdxGfgF9s8D4LAkj9LGufB",
+  "id" : "AUg6yBTbAobSFN2xdHtVnXeH",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TR2Hw6CuiAnTyP8kftGCpMDy",
+  "transfer" : "TR2DdZMC9Tsj9WZyS2T1BaxR",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-09-09T23:55:25.37Z",
-  "updated_at" : "2016-09-09T23:55:26.79Z",
-  "trace_id" : "b3d5e9d1-4704-4ca0-bfc0-7897f10ccb79",
-  "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "created_at" : "2016-10-04T23:43:37.50Z",
+  "updated_at" : "2016-10-04T23:43:38.99Z",
+  "trace_id" : "86c29f52-b157-48da-a165-7b8fea7be2f4",
+  "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "is_void" : false,
-  "expires_at" : "2016-09-16T23:55:25.37Z",
+  "expires_at" : "2016-10-11T23:43:37.50Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB"
+      "href" : "https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "transfer" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy"
+      "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR"
     },
     "merchant_identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -1957,7 +1961,7 @@ Authorization authorization = client.authorizationsClient().fetch("AUdxGfgF9s8D4
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/authorizations/:AUTHORIZATION_ID`
+`GET https://api-staging.simonpayments.com/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -1968,16 +1972,16 @@ Parameter | Description
 
 ## List all Authorizations
 ```shell
-curl https://simonpay-staging.finix.io/authorizations/ \
+curl https://api-staging.simonpayments.com/authorizations/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -1998,7 +2002,7 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
 {
   "_embedded" : {
     "authorizations" : [ {
-      "id" : "AU2JQgbJr3tyTSpuTSNay3bG",
+      "id" : "AUfppmw6T6Sn9n6K18ygxLFT",
       "amount" : 100,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
@@ -2008,61 +2012,61 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
       "transfer" : null,
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-09T23:55:30.98Z",
-      "updated_at" : "2016-09-09T23:55:33.42Z",
-      "trace_id" : "6454e616-e3d4-4e1e-945a-ea64bd786c4b",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:43:43.10Z",
+      "updated_at" : "2016-10-04T23:43:44.30Z",
+      "trace_id" : "24335363-88bd-4dc8-ba0e-dbd630023b28",
+      "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "is_void" : true,
-      "expires_at" : "2016-09-16T23:55:30.98Z",
+      "expires_at" : "2016-10-11T23:43:43.10Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/authorizations/AU2JQgbJr3tyTSpuTSNay3bG"
+          "href" : "https://api-staging.simonpayments.com/authorizations/AUfppmw6T6Sn9n6K18ygxLFT"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         }
       }
     }, {
-      "id" : "AUdxGfgF9s8D4LAkj9LGufB",
+      "id" : "AUg6yBTbAobSFN2xdHtVnXeH",
       "amount" : 100,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "SUCCEEDED",
       "currency" : "USD",
-      "transfer" : "TR2Hw6CuiAnTyP8kftGCpMDy",
+      "transfer" : "TR2DdZMC9Tsj9WZyS2T1BaxR",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-09T23:55:25.37Z",
-      "updated_at" : "2016-09-09T23:55:26.79Z",
-      "trace_id" : "b3d5e9d1-4704-4ca0-bfc0-7897f10ccb79",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:43:37.50Z",
+      "updated_at" : "2016-10-04T23:43:38.99Z",
+      "trace_id" : "86c29f52-b157-48da-a165-7b8fea7be2f4",
+      "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "is_void" : false,
-      "expires_at" : "2016-09-16T23:55:25.37Z",
+      "expires_at" : "2016-10-11T23:43:37.50Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/authorizations/AUdxGfgF9s8D4LAkj9LGufB"
+          "href" : "https://api-staging.simonpayments.com/authorizations/AUg6yBTbAobSFN2xdHtVnXeH"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "transfer" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/authorizations?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.simonpayments.com/authorizations?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
@@ -2075,132 +2079,7 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/authorizations/`
-
-# Disputes
-
-Disputes, also known as chargebacks, represent any customer-disputed charge.
-
-## Retrieve a Dispute
-```shell
-
-curl https://simonpay-staging.finix.io/disputes/DI5UwnvRJHZHkD5pK4CPvHVj \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
-
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-use SimonPay\Resources\Dispute;
-
-$dispute = Dispute::retrieve('DI5UwnvRJHZHkD5pK4CPvHVj');
-
-```
-```java
-
-import io.simonpay.payments.processing.client.model.Dispute;
-
-Dispute dispute = transfer.disputeClient().fetch("DI5UwnvRJHZHkD5pK4CPvHVj");
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "DI5UwnvRJHZHkD5pK4CPvHVj",
-  "tags" : {
-    "order_number" : "21DFASJSAKAS"
-  },
-  "amount" : 0,
-  "state" : "PENDING",
-  "transfer" : "TRssyw7L9iTArzDyEu1mwafd",
-  "reason" : "FRAUD",
-  "identity" : "IDm7MPi8hrSEEaVc8qMHXpKk",
-  "created_at" : "2016-09-09T23:56:03.34Z",
-  "updated_at" : "2016-09-09T23:56:03.34Z",
-  "occurred_at" : "2016-09-09T23:56:00.39Z",
-  "respond_by" : "2016-09-16T23:56:03.52Z",
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/disputes/DI5UwnvRJHZHkD5pK4CPvHVj"
-    },
-    "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-    },
-    "transfer" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TRssyw7L9iTArzDyEu1mwafd"
-    },
-    "evidence" : {
-      "href" : "https://simonpay-staging.finix.io/disputes/DI5UwnvRJHZHkD5pK4CPvHVj/evidence"
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://simonpay-staging.finix.io/disputes/:DISPUTE_ID`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:DISPUTE_ID | ID of the Dispute
-
-
-## List all Disputes
-```shell
-curl https://simonpay-staging.finix.io/disputes/ \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-
-```
-```java
-import io.simonpay.payments.processing.client.model.Dispute;
-
-transfer.disputeClient().<Resources<Dispute>>resourcesIterator()
-  .forEachRemaining(page -> {
-    Collection<Dispute> disputes = page.getContent();
-  })
-```
-> Example Response:
-
-```json
-{
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/disputes?offset=0&limit=20&sort=created_at,desc"
-    }
-  },
-  "page" : {
-    "offset" : 0,
-    "limit" : 20,
-    "count" : 0
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://simonpay-staging.finix.io/disputes/`
-
+`GET https://api-staging.simonpayments.com/authorizations/`
 
 # Identities
 
@@ -2219,9 +2098,9 @@ information for the business and its principal.
 ```shell
 
 
-curl https://simonpay-staging.finix.io/identities \
+curl https://api-staging.simonpayments.com/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
 	    "tags": {
@@ -2229,8 +2108,8 @@ curl https://simonpay-staging.finix.io/identities \
 	    }, 
 	    "entity": {
 	        "phone": "7145677613", 
-	        "first_name": "Sean", 
-	        "last_name": "Green", 
+	        "first_name": "Marcie", 
+	        "last_name": "Henderson", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -2248,7 +2127,7 @@ curl https://simonpay-staging.finix.io/identities \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -2261,8 +2140,8 @@ $identity = new Identity(
 	    ), 
 	    "entity"=> array(
 	        "phone"=> "7145677613", 
-	        "first_name"=> "Sean", 
-	        "last_name"=> "Green", 
+	        "first_name"=> "Marcie", 
+	        "last_name"=> "Henderson", 
 	        "email"=> "therock@gmail.com", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
@@ -2299,11 +2178,11 @@ Identity identity = client.identitiesClient().save(
 
 ```json
 {
-  "id" : "IDm7MPi8hrSEEaVc8qMHXpKk",
+  "id" : "IDcwkUSpMa4EQyjgDQ4YjP3q",
   "entity" : {
     "title" : null,
-    "first_name" : "Sean",
-    "last_name" : "Green",
+    "first_name" : "Marcie",
+    "last_name" : "Henderson",
     "email" : "therock@gmail.com",
     "business_name" : null,
     "business_type" : null,
@@ -2337,35 +2216,35 @@ Identity identity = client.identitiesClient().save(
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-09-09T23:55:16.73Z",
-  "updated_at" : "2016-09-09T23:55:16.73Z",
+  "created_at" : "2016-10-04T23:43:27.81Z",
+  "updated_at" : "2016-10-04T23:43:27.81Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/verifications"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/verifications"
     },
     "merchants" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/merchants"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/merchants"
     },
     "settlements" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/settlements"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/settlements"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/authorizations"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/authorizations"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/transfers"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/payment_instruments"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/disputes"
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/disputes"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -2374,7 +2253,7 @@ All fields for a buyer's Identity are optional. However, a business_type field s
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities`
+`POST https://api-staging.simonpayments.com/identities`
 
 #### Request Arguments
 
@@ -2396,9 +2275,9 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 ```shell
 
 
-curl https://simonpay-staging.finix.io/identities \
+curl https://api-staging.simonpayments.com/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
 	    "tags": {
@@ -2409,7 +2288,7 @@ curl https://simonpay-staging.finix.io/identities \
 	        "amex_mid": "12345678910", 
 	        "max_transaction_amount": 120000, 
 	        "has_accepted_credit_cards_previously": true, 
-	        "default_statement_descriptor": "Pollos Hermanos", 
+	        "default_statement_descriptor": "ACME Anchors", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -2434,12 +2313,12 @@ curl https://simonpay-staging.finix.io/identities \
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Pollos Hermanos", 
+	        "doing_business_as": "ACME Anchors", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Pollos Hermanos", 
+	        "business_name": "ACME Anchors", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -2448,7 +2327,7 @@ curl https://simonpay-staging.finix.io/identities \
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.PollosHermanos.com", 
+	        "url": "www.ACMEAnchors.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}'
@@ -2458,7 +2337,7 @@ curl https://simonpay-staging.finix.io/identities \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -2474,7 +2353,7 @@ $identity = new Identity(
 	        "amex_mid"=> "12345678910", 
 	        "max_transaction_amount"=> 120000, 
 	        "has_accepted_credit_cards_previously"=> true, 
-	        "default_statement_descriptor"=> "Pollos Hermanos", 
+	        "default_statement_descriptor"=> "ACME Anchors", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -2499,12 +2378,12 @@ $identity = new Identity(
 	        "first_name"=> "dwayne", 
 	        "title"=> "CEO", 
 	        "business_tax_id"=> "123456789", 
-	        "doing_business_as"=> "Pollos Hermanos", 
+	        "doing_business_as"=> "ACME Anchors", 
 	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
 	        "mcc"=> "0742", 
 	        "phone"=> "1234567890", 
-	        "business_name"=> "Pollos Hermanos", 
+	        "business_name"=> "ACME Anchors", 
 	        "tax_id"=> "123456789", 
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -2513,7 +2392,7 @@ $identity = new Identity(
 	            "day"=> 27, 
 	            "month"=> 6
 	        ), 
-	        "url"=> "www.PollosHermanos.com", 
+	        "url"=> "www.ACMEAnchors.com", 
 	        "annual_card_volume"=> 12000000
 	    )
 	)
@@ -2581,15 +2460,15 @@ Identity identity = client.identitiesClient().save(
 
 ```json
 {
-  "id" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "id" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Pollos Hermanos",
+    "business_name" : "ACME Anchors",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Pollos Hermanos",
+    "doing_business_as" : "ACME Anchors",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -2617,7 +2496,7 @@ Identity identity = client.identitiesClient().save(
     "max_transaction_amount" : 120000,
     "amex_mid" : "12345678910",
     "discover_mid" : null,
-    "url" : "www.PollosHermanos.com",
+    "url" : "www.ACMEAnchors.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -2629,40 +2508,40 @@ Identity identity = client.identitiesClient().save(
     "short_business_name" : null,
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Pollos Hermanos"
+    "default_statement_descriptor" : "ACME Anchors"
   },
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-09-09T23:55:03.24Z",
-  "updated_at" : "2016-09-09T23:55:03.24Z",
+  "created_at" : "2016-10-04T23:43:11.12Z",
+  "updated_at" : "2016-10-04T23:43:11.12Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/verifications"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/verifications"
     },
     "merchants" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merchants"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants"
     },
     "settlements" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settlements"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/settlements"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/authorizations"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/authorizations"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/transfers"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/payment_instruments"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/disputes"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/disputes"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -2684,7 +2563,7 @@ merchant's bank account where processed funds will be settled (i.e. deposited)
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities`
+`POST https://api-staging.simonpayments.com/identities`
 
 #### Business-specific Request Arguments
 
@@ -2754,43 +2633,43 @@ year | *integer*, **required** | Year of birth (4-digit)
 ## Retrieve a Identity
 ```shell
 
-curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR \
+curl https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Identity;
 
-$identity = Identity::retrieve('ID4Soxr3Zeki8mUsucR8q4VR');
+$identity = Identity::retrieve('IDs3XCSAdBXoqMjtsTpMDrh5');
 ```
 ```java
 
 import io.simonpay.payments.processing.client.model.Identity;
 
-Identity identity = client.identitiesClient().fetch("ID4Soxr3Zeki8mUsucR8q4VR");
+Identity identity = client.identitiesClient().fetch("IDs3XCSAdBXoqMjtsTpMDrh5");
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "id" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Pollos Hermanos",
+    "business_name" : "ACME Anchors",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Pollos Hermanos",
+    "doing_business_as" : "ACME Anchors",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -2818,7 +2697,7 @@ Identity identity = client.identitiesClient().fetch("ID4Soxr3Zeki8mUsucR8q4VR");
     "max_transaction_amount" : 120000,
     "amex_mid" : "12345678910",
     "discover_mid" : null,
-    "url" : "www.PollosHermanos.com",
+    "url" : "www.ACMEAnchors.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -2830,40 +2709,40 @@ Identity identity = client.identitiesClient().fetch("ID4Soxr3Zeki8mUsucR8q4VR");
     "short_business_name" : null,
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Pollos Hermanos"
+    "default_statement_descriptor" : "ACME Anchors"
   },
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-09-09T23:55:03.18Z",
-  "updated_at" : "2016-09-09T23:55:03.18Z",
+  "created_at" : "2016-10-04T23:43:11.06Z",
+  "updated_at" : "2016-10-04T23:43:11.06Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/verifications"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/verifications"
     },
     "merchants" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merchants"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants"
     },
     "settlements" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settlements"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/settlements"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/authorizations"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/authorizations"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/transfers"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/payment_instruments"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/disputes"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/disputes"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -2871,7 +2750,7 @@ Identity identity = client.identitiesClient().fetch("ID4Soxr3Zeki8mUsucR8q4VR");
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/identities/:IDENTITY_ID`
+`GET https://api-staging.simonpayments.com/identities/:IDENTITY_ID`
 
 #### URL Parameters
 
@@ -2881,9 +2760,9 @@ Parameter | Description
 
 ## List all Identities
 ```shell
-curl https://simonpay-staging.finix.io/identities/ \
+curl https://api-staging.simonpayments.com/identities/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 
 ```
@@ -2891,7 +2770,7 @@ curl https://simonpay-staging.finix.io/identities/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -2913,11 +2792,11 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
 {
   "_embedded" : {
     "identities" : [ {
-      "id" : "IDm7MPi8hrSEEaVc8qMHXpKk",
+      "id" : "IDcwkUSpMa4EQyjgDQ4YjP3q",
       "entity" : {
         "title" : null,
-        "first_name" : "Sean",
-        "last_name" : "Green",
+        "first_name" : "Marcie",
+        "last_name" : "Henderson",
         "email" : "therock@gmail.com",
         "business_name" : null,
         "business_type" : null,
@@ -2951,47 +2830,47 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-09-09T23:55:16.68Z",
-      "updated_at" : "2016-09-09T23:55:16.68Z",
+      "created_at" : "2016-10-04T23:43:27.75Z",
+      "updated_at" : "2016-10-04T23:43:27.75Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q"
         },
         "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/verifications"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/verifications"
         },
         "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/merchants"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/merchants"
         },
         "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/settlements"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/settlements"
         },
         "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/authorizations"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/authorizations"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/transfers"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk/disputes"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/disputes"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     }, {
-      "id" : "IDqWwHmH44nhnEEy9yvqPxx3",
+      "id" : "ID582rm3UZiUXvvhTmhg5q5n",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Bobs Burgers",
+        "business_name" : "Lees Sandwiches",
         "business_type" : "GOVERNMENT_AGENCY",
-        "doing_business_as" : "Bobs Burgers",
+        "doing_business_as" : "Lees Sandwiches",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -3019,7 +2898,7 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.BobsBurgers.com",
+        "url" : "www.LeesSandwiches.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -3031,391 +2910,51 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Bobs Burgers"
+        "default_statement_descriptor" : "Lees Sandwiches"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-09-09T23:55:11.75Z",
-      "updated_at" : "2016-09-09T23:55:11.75Z",
+      "created_at" : "2016-10-04T23:43:22.77Z",
+      "updated_at" : "2016-10-04T23:43:22.77Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDqWwHmH44nhnEEy9yvqPxx3"
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n"
         },
         "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDqWwHmH44nhnEEy9yvqPxx3/verifications"
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/verifications"
         },
         "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDqWwHmH44nhnEEy9yvqPxx3/merchants"
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/merchants"
         },
         "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDqWwHmH44nhnEEy9yvqPxx3/settlements"
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/settlements"
         },
         "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDqWwHmH44nhnEEy9yvqPxx3/authorizations"
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/authorizations"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDqWwHmH44nhnEEy9yvqPxx3/transfers"
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDqWwHmH44nhnEEy9yvqPxx3/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDqWwHmH44nhnEEy9yvqPxx3/disputes"
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/disputes"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     }, {
-      "id" : "IDbkLiQckcK59GRJ4HEN6oNr",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "INTERNATIONAL_ORGANIZATION",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-09-09T23:55:10.82Z",
-      "updated_at" : "2016-09-09T23:55:10.82Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDbkLiQckcK59GRJ4HEN6oNr"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDbkLiQckcK59GRJ4HEN6oNr/verifications"
-        },
-        "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDbkLiQckcK59GRJ4HEN6oNr/merchants"
-        },
-        "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDbkLiQckcK59GRJ4HEN6oNr/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDbkLiQckcK59GRJ4HEN6oNr/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDbkLiQckcK59GRJ4HEN6oNr/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDbkLiQckcK59GRJ4HEN6oNr/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDbkLiQckcK59GRJ4HEN6oNr/disputes"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "IDhLKKLFK24NjxtEWc3xzCTp",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "TAX_EXEMPT_ORGANIZATION",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-09-09T23:55:09.93Z",
-      "updated_at" : "2016-09-09T23:55:09.93Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDhLKKLFK24NjxtEWc3xzCTp"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDhLKKLFK24NjxtEWc3xzCTp/verifications"
-        },
-        "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDhLKKLFK24NjxtEWc3xzCTp/merchants"
-        },
-        "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDhLKKLFK24NjxtEWc3xzCTp/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDhLKKLFK24NjxtEWc3xzCTp/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDhLKKLFK24NjxtEWc3xzCTp/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDhLKKLFK24NjxtEWc3xzCTp/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDhLKKLFK24NjxtEWc3xzCTp/disputes"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "ID5Dt1BkFrdLnkQRdd7yqAQW",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "ASSOCIATION_ESTATE_TRUST",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-09-09T23:55:08.99Z",
-      "updated_at" : "2016-09-09T23:55:08.99Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID5Dt1BkFrdLnkQRdd7yqAQW"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID5Dt1BkFrdLnkQRdd7yqAQW/verifications"
-        },
-        "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID5Dt1BkFrdLnkQRdd7yqAQW/merchants"
-        },
-        "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID5Dt1BkFrdLnkQRdd7yqAQW/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID5Dt1BkFrdLnkQRdd7yqAQW/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID5Dt1BkFrdLnkQRdd7yqAQW/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID5Dt1BkFrdLnkQRdd7yqAQW/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID5Dt1BkFrdLnkQRdd7yqAQW/disputes"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "IDpJzyNLS3EW5Y9Bd9GcWraa",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Bobs Burgers",
-        "business_type" : "GENERAL_PARTNERSHIP",
-        "doing_business_as" : "Bobs Burgers",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.BobsBurgers.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Bobs Burgers"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-09-09T23:55:07.94Z",
-      "updated_at" : "2016-09-09T23:55:07.94Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDpJzyNLS3EW5Y9Bd9GcWraa"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDpJzyNLS3EW5Y9Bd9GcWraa/verifications"
-        },
-        "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDpJzyNLS3EW5Y9Bd9GcWraa/merchants"
-        },
-        "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDpJzyNLS3EW5Y9Bd9GcWraa/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDpJzyNLS3EW5Y9Bd9GcWraa/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDpJzyNLS3EW5Y9Bd9GcWraa/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDpJzyNLS3EW5Y9Bd9GcWraa/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDpJzyNLS3EW5Y9Bd9GcWraa/disputes"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "ID3jqs2rzMhoQKbAcF88Mo4t",
+      "id" : "IDcs2K61xEh6zz2QbFppswWo",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "ACME Anchors",
-        "business_type" : "LIMITED_PARTNERSHIP",
+        "business_type" : "INTERNATIONAL_ORGANIZATION",
         "doing_business_as" : "ACME Anchors",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -3461,47 +3000,387 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-09-09T23:55:07.03Z",
-      "updated_at" : "2016-09-09T23:55:07.03Z",
+      "created_at" : "2016-10-04T23:43:21.73Z",
+      "updated_at" : "2016-10-04T23:43:21.73Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID3jqs2rzMhoQKbAcF88Mo4t"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo"
         },
         "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID3jqs2rzMhoQKbAcF88Mo4t/verifications"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/verifications"
         },
         "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID3jqs2rzMhoQKbAcF88Mo4t/merchants"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/merchants"
         },
         "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID3jqs2rzMhoQKbAcF88Mo4t/settlements"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/settlements"
         },
         "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID3jqs2rzMhoQKbAcF88Mo4t/authorizations"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/authorizations"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID3jqs2rzMhoQKbAcF88Mo4t/transfers"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID3jqs2rzMhoQKbAcF88Mo4t/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID3jqs2rzMhoQKbAcF88Mo4t/disputes"
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/disputes"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     }, {
-      "id" : "IDmJkiKAfxFTaX9ZveeoqJp2",
+      "id" : "IDeAJMyBJCRVGuBopKaRB748",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Pollos Hermanos",
+        "business_name" : "ACME Anchors",
+        "business_type" : "TAX_EXEMPT_ORGANIZATION",
+        "doing_business_as" : "ACME Anchors",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.ACMEAnchors.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "ACME Anchors"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:20.74Z",
+      "updated_at" : "2016-10-04T23:43:20.74Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDknUF3Lep3HLNCbwHASQfLP",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Prestige World Wide",
+        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "doing_business_as" : "Prestige World Wide",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PrestigeWorldWide.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Prestige World Wide"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:19.68Z",
+      "updated_at" : "2016-10-04T23:43:19.68Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDrzf86q5Kr6DVuay3jzvf9v",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Prestige World Wide",
+        "business_type" : "GENERAL_PARTNERSHIP",
+        "doing_business_as" : "Prestige World Wide",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PrestigeWorldWide.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Prestige World Wide"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:18.23Z",
+      "updated_at" : "2016-10-04T23:43:18.23Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDqe1H62ohL9z3zp9tC66YWs",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Petes Coffee",
+        "business_type" : "LIMITED_PARTNERSHIP",
+        "doing_business_as" : "Petes Coffee",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PetesCoffee.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Petes Coffee"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:16.91Z",
+      "updated_at" : "2016-10-04T23:43:16.91Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDNzj2WiJtSbzqCS7y1Lre7",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Prestige World Wide",
         "business_type" : "PARTNERSHIP",
-        "doing_business_as" : "Pollos Hermanos",
+        "doing_business_as" : "Prestige World Wide",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -3529,7 +3408,7 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.PollosHermanos.com",
+        "url" : "www.PrestigeWorldWide.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -3541,52 +3420,52 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Pollos Hermanos"
+        "default_statement_descriptor" : "Prestige World Wide"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-09-09T23:55:06.03Z",
-      "updated_at" : "2016-09-09T23:55:06.03Z",
+      "created_at" : "2016-10-04T23:43:15.58Z",
+      "updated_at" : "2016-10-04T23:43:15.58Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDmJkiKAfxFTaX9ZveeoqJp2"
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7"
         },
         "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDmJkiKAfxFTaX9ZveeoqJp2/verifications"
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/verifications"
         },
         "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDmJkiKAfxFTaX9ZveeoqJp2/merchants"
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/merchants"
         },
         "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDmJkiKAfxFTaX9ZveeoqJp2/settlements"
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/settlements"
         },
         "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDmJkiKAfxFTaX9ZveeoqJp2/authorizations"
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/authorizations"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDmJkiKAfxFTaX9ZveeoqJp2/transfers"
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDmJkiKAfxFTaX9ZveeoqJp2/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDmJkiKAfxFTaX9ZveeoqJp2/disputes"
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/disputes"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     }, {
-      "id" : "ID8HrAA5WU9RDE7YmnVDoGXE",
+      "id" : "IDrdCzHjXTDrAMx6oQSRujXb",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Pawny City Hall",
+        "business_name" : "Bobs Burgers",
         "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "Pawny City Hall",
+        "doing_business_as" : "Bobs Burgers",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -3614,7 +3493,7 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.PawnyCityHall.com",
+        "url" : "www.BobsBurgers.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -3626,44 +3505,44 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Pawny City Hall"
+        "default_statement_descriptor" : "Bobs Burgers"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-09-09T23:55:05.05Z",
-      "updated_at" : "2016-09-09T23:55:05.05Z",
+      "created_at" : "2016-10-04T23:43:14.11Z",
+      "updated_at" : "2016-10-04T23:43:14.11Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID8HrAA5WU9RDE7YmnVDoGXE"
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb"
         },
         "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID8HrAA5WU9RDE7YmnVDoGXE/verifications"
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/verifications"
         },
         "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID8HrAA5WU9RDE7YmnVDoGXE/merchants"
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/merchants"
         },
         "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID8HrAA5WU9RDE7YmnVDoGXE/settlements"
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/settlements"
         },
         "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID8HrAA5WU9RDE7YmnVDoGXE/authorizations"
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/authorizations"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID8HrAA5WU9RDE7YmnVDoGXE/transfers"
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID8HrAA5WU9RDE7YmnVDoGXE/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID8HrAA5WU9RDE7YmnVDoGXE/disputes"
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/disputes"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     }, {
-      "id" : "IDxz9onN71SiqsHnzP13ma65",
+      "id" : "ID6MzAm5hKno9t6yBvpk2gLR",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
@@ -3716,47 +3595,47 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-09-09T23:55:04.10Z",
-      "updated_at" : "2016-09-09T23:55:04.10Z",
+      "created_at" : "2016-10-04T23:43:12.65Z",
+      "updated_at" : "2016-10-04T23:43:12.65Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDxz9onN71SiqsHnzP13ma65"
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR"
         },
         "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDxz9onN71SiqsHnzP13ma65/verifications"
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/verifications"
         },
         "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDxz9onN71SiqsHnzP13ma65/merchants"
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/merchants"
         },
         "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDxz9onN71SiqsHnzP13ma65/settlements"
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/settlements"
         },
         "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDxz9onN71SiqsHnzP13ma65/authorizations"
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/authorizations"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDxz9onN71SiqsHnzP13ma65/transfers"
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDxz9onN71SiqsHnzP13ma65/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDxz9onN71SiqsHnzP13ma65/disputes"
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/disputes"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     }, {
-      "id" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "id" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Pollos Hermanos",
+        "business_name" : "ACME Anchors",
         "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-        "doing_business_as" : "Pollos Hermanos",
+        "doing_business_as" : "ACME Anchors",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -3784,7 +3663,7 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.PollosHermanos.com",
+        "url" : "www.ACMEAnchors.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -3796,52 +3675,52 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Pollos Hermanos"
+        "default_statement_descriptor" : "ACME Anchors"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-09-09T23:55:03.18Z",
-      "updated_at" : "2016-09-09T23:55:03.18Z",
+      "created_at" : "2016-10-04T23:43:11.06Z",
+      "updated_at" : "2016-10-04T23:43:11.06Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/verifications"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/verifications"
         },
         "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merchants"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants"
         },
         "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settlements"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/settlements"
         },
         "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/authorizations"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/authorizations"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/transfers"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/disputes"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/disputes"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     }, {
-      "id" : "IDwTMJwgEUEX3ydC2cS8VvUh",
+      "id" : "IDt3i17wodcs2rjpLrYF653g",
       "entity" : {
         "title" : null,
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Google",
+        "business_name" : "Venmo",
         "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "Google",
+        "doing_business_as" : "Venmo",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -3880,44 +3759,44 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
         "default_statement_descriptor" : null
       },
       "tags" : {
-        "application_name" : "Google"
+        "application_name" : "Venmo"
       },
-      "created_at" : "2016-09-09T23:54:54.43Z",
-      "updated_at" : "2016-09-09T23:54:54.49Z",
+      "created_at" : "2016-10-04T23:43:06.70Z",
+      "updated_at" : "2016-10-04T23:43:06.76Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh"
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g"
         },
         "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh/verifications"
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/verifications"
         },
         "merchants" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh/merchants"
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/merchants"
         },
         "settlements" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh/settlements"
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/settlements"
         },
         "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh/authorizations"
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/authorizations"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh/transfers"
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh/disputes"
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/disputes"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/identities?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.simonpayments.com/identities?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
@@ -3930,14 +3809,14 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/identities/`
+`GET https://api-staging.simonpayments.com/identities/`
 
 
 ## Update an Identity
 ```shell
-curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR \
+curl https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -X PUT \
     -d '
 	{
@@ -3946,7 +3825,7 @@ curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR \
 	    }, 
 	    "entity": {
 	        "business_phone": "+1 (408) 756-4497", 
-	        "first_name": "Maggie", 
+	        "first_name": "Step", 
 	        "last_name": "Lopez", 
 	        "amex_mid": "12345678910", 
 	        "title": "CTO", 
@@ -3961,11 +3840,11 @@ curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR \
 	        "business_tax_id": "123456789", 
 	        "max_transaction_amount": 120000, 
 	        "principal_percentage_ownership": 50, 
-	        "doing_business_as": "ACME Anchors", 
+	        "doing_business_as": "Golds Gym", 
 	        "annual_card_volume": 12000000, 
-	        "default_statement_descriptor": "ACME Anchors", 
-	        "url": "www.ACMEAnchors.com", 
-	        "business_name": "ACME Anchors", 
+	        "default_statement_descriptor": "Golds Gym", 
+	        "url": "www.GoldsGym.com", 
+	        "business_name": "Golds Gym", 
 	        "personal_address": {
 	            "city": "San Diego", 
 	            "country": "USA", 
@@ -3984,7 +3863,7 @@ curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -3997,15 +3876,15 @@ SimonPay\Bootstrap::init();
 
 ```json
 {
-  "id" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "id" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "entity" : {
     "title" : "CTO",
-    "first_name" : "Maggie",
+    "first_name" : "Step",
     "last_name" : "Lopez",
     "email" : "user@example.org",
-    "business_name" : "ACME Anchors",
+    "business_name" : "Golds Gym",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "ACME Anchors",
+    "doing_business_as" : "Golds Gym",
     "phone" : "7144177878",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -4033,7 +3912,7 @@ SimonPay\Bootstrap::init();
     "max_transaction_amount" : 120000,
     "amex_mid" : "12345678910",
     "discover_mid" : null,
-    "url" : "www.ACMEAnchors.com",
+    "url" : "www.GoldsGym.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -4045,40 +3924,40 @@ SimonPay\Bootstrap::init();
     "short_business_name" : null,
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "ACME Anchors"
+    "default_statement_descriptor" : "Golds Gym"
   },
   "tags" : {
     "key" : "value_2"
   },
-  "created_at" : "2016-09-09T23:55:03.18Z",
-  "updated_at" : "2016-09-09T23:55:57.18Z",
+  "created_at" : "2016-10-04T23:43:11.06Z",
+  "updated_at" : "2016-10-04T23:44:03.72Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/verifications"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/verifications"
     },
     "merchants" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merchants"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants"
     },
     "settlements" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settlements"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/settlements"
     },
     "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/authorizations"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/authorizations"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/transfers"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/payment_instruments"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/disputes"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/disputes"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -4093,12 +3972,12 @@ Update the information of a previously created `Identity`. Please note that in
 the case of merchant accounts this API request alone does not update this
 information on the underlying processor. To update the merchant's information
  on the underlying processor you must [update the merchant on the
- processor.](#update-merchant-information-on-processor)
+ processor.](#update-info-on-processor)
 
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities`
+`POST https://api-staging.simonpayments.com/identities`
 
 #### Business-specific Request Arguments
 
@@ -4167,9 +4046,9 @@ year | *integer*, **required** | Year of birth (4-digit)
 
 ```shell
 
-curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merchants \
+curl https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	  {
 	    "tags": {
@@ -4184,13 +4063,13 @@ curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/merch
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Identity;
 
-$identity = Identity::retrieve('ID4Soxr3Zeki8mUsucR8q4VR');
+$identity = Identity::retrieve('IDs3XCSAdBXoqMjtsTpMDrh5');
 
 $merchant = $identity->provisionMerchantOn(
 	  array(
@@ -4212,35 +4091,35 @@ Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 
 ```json
 {
-  "id" : "MUoPBHgXu6y5znA6v74LoMUt",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-  "verification" : "VI8tvXwn1DofpkUQG9DbVC1Z",
-  "merchant_profile" : "MPsZTc5BtS9M7A8dLKcXd4rA",
+  "id" : "MU44oTHgF4SpA6dTGc1m6eu7",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "verification" : "VIfdMDaMiPyEpNgaxgojryYd",
+  "merchant_profile" : "MPovQP6nFotXCzStYYyQq1WD",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2016-09-09T23:55:14.67Z",
-  "updated_at" : "2016-09-09T23:55:14.67Z",
+  "created_at" : "2016-10-04T23:43:26.26Z",
+  "updated_at" : "2016-10-04T23:43:26.26Z",
   "onboarding_state" : "PROVISIONING",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/merchants/MUoPBHgXu6y5znA6v74LoMUt"
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/merchants/MUoPBHgXu6y5znA6v74LoMUt/verifications"
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://simonpay-staging.finix.io/merchant_profiles/MPsZTc5BtS9M7A8dLKcXd4rA"
+      "href" : "https://api-staging.simonpayments.com/merchant_profiles/MPovQP6nFotXCzStYYyQq1WD"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "verification" : {
-      "href" : "https://simonpay-staging.finix.io/verifications/VI8tvXwn1DofpkUQG9DbVC1Z"
+      "href" : "https://api-staging.simonpayments.com/verifications/VIfdMDaMiPyEpNgaxgojryYd"
     }
   }
 }
@@ -4271,7 +4150,7 @@ Provisioning a `Merchant` account is an asynchronous request. We recommend creat
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities/identity_id/merchants`
+`POST https://api-staging.simonpayments.com/identities/identity_id/merchants`
 
 #### URL Parameters
 
@@ -4279,6 +4158,2760 @@ Parameter | Description
 --------- | -------------------------------------------------------------------
 identity_id | ID of the Identity
 
+
+# Merchants
+
+A `Merchant` resource represents a business's merchant account on a processor. In other words, any web service that connects buyers (i.e.
+customers) and sellers (i.e. merchants).
+
+## Provision a Merchant
+```shell
+curl https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -d '
+	  {
+	    "tags": {
+	      "key_2": "value_2"
+	    }
+	  }
+	'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+use SimonPay\Resources\Identity;
+
+$identity = Identity::retrieve('IDs3XCSAdBXoqMjtsTpMDrh5');
+
+$merchant = $identity->provisionMerchantOn(
+	  array(
+	    "tags"=> array(
+	      "key_2"=> "value_2"
+	    )
+	  )
+	);
+
+```
+```java
+import io.simonpay.payments.processing.client.model.Merchant;
+
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "MU44oTHgF4SpA6dTGc1m6eu7",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "verification" : "VIfdMDaMiPyEpNgaxgojryYd",
+  "merchant_profile" : "MPovQP6nFotXCzStYYyQq1WD",
+  "processor" : "DUMMY_V1",
+  "processing_enabled" : false,
+  "settlement_enabled" : false,
+  "tags" : { },
+  "created_at" : "2016-10-04T23:43:26.26Z",
+  "updated_at" : "2016-10-04T23:43:26.26Z",
+  "onboarding_state" : "PROVISIONING",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7"
+    },
+    "identity" : {
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+    },
+    "verifications" : {
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7/verifications"
+    },
+    "merchant_profile" : {
+      "href" : "https://api-staging.simonpayments.com/merchant_profiles/MPovQP6nFotXCzStYYyQq1WD"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    },
+    "verification" : {
+      "href" : "https://api-staging.simonpayments.com/verifications/VIfdMDaMiPyEpNgaxgojryYd"
+    }
+  }
+}
+```
+
+Provision a `Merchant` for a previously created `Identity` resource to begin
+transacting on their behalf.
+
+<aside class="warning">
+Please make sure that a bank account has been created and associated to the
+previously created Identity before attempting to provision a Merchant account.
+</aside>
+
+
+`Merchant` resources can have 3 potential `onboarding_states`:
+
+1. `PROVISIONING`: Request is pending (state will typically change after two minutes)
+  * processing_enabled: False
+  * settlement_enabled: False
+
+2. `APPROVED`: Merchant has been approved and can begin processing
+  * processing_enabled: True
+  * settlement_enabled: True
+
+3. `REJECTED`: Merchant was rejected by the processor either because the collected
+information was invalid or it failed one of a number of regulatory and/or
+compliance checks (e.g. KYC, OFAC or MATCH)
+  * processing_enabled: False
+  * settlement_enabled: False
+
+<aside class="notice">
+Provisioning a `Merchant` account is an asynchronous request. We recommend creating a Webhook to listen for the state change.
+</aside>
+
+
+
+#### HTTP Request
+
+`POST https://api-staging.simonpayments.com/identities/:IDENTITY_ID/merchants`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:IDENTITY_ID | ID of the Identity
+
+## Retrieve a Merchant
+```shell
+curl https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7 \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+use SimonPay\Resources\Merchant;
+
+$merchant = Merchant::retrieve('MU44oTHgF4SpA6dTGc1m6eu7');
+
+```
+```java
+import io.simonpay.payments.processing.client.model.Merchant;
+
+Merchant merchant = client.merchantsClient().fetch("MU44oTHgF4SpA6dTGc1m6eu7");
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "MU44oTHgF4SpA6dTGc1m6eu7",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "verification" : null,
+  "merchant_profile" : "MPovQP6nFotXCzStYYyQq1WD",
+  "processor" : "DUMMY_V1",
+  "processing_enabled" : true,
+  "settlement_enabled" : true,
+  "tags" : { },
+  "created_at" : "2016-10-04T23:43:26.16Z",
+  "updated_at" : "2016-10-04T23:43:26.38Z",
+  "onboarding_state" : "APPROVED",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7"
+    },
+    "identity" : {
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+    },
+    "verifications" : {
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7/verifications"
+    },
+    "merchant_profile" : {
+      "href" : "https://api-staging.simonpayments.com/merchant_profiles/MPovQP6nFotXCzStYYyQq1WD"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api-staging.simonpayments.com/merchants/:MERCHANT_ID`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:MERCHANT_ID | ID of the `Merchant`
+
+## Create a Merchant User
+```shell
+curl https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/users \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -d '{}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "US9D1BFHCEmHxk7bJLwwT2Db",
+  "password" : "f5245e14-ee53-425b-961f-5b0d4424f32d",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "enabled" : true,
+  "role" : "ROLE_MERCHANT",
+  "tags" : { },
+  "created_at" : "2016-10-04T23:43:33.93Z",
+  "updated_at" : "2016-10-04T23:43:33.93Z",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/users/US9D1BFHCEmHxk7bJLwwT2Db"
+    },
+    "applications" : {
+      "href" : "https://api-staging.simonpayments.com/applications"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    }
+  }
+}
+```
+
+This is the equivalent of provisioning API keys (i.e. credentials) for a `Merchant`.
+
+<aside class="notice">
+Each Identity can have multiple Users which allows each merchant to have multiple
+API keys that can be independently enabled and disabled. Merchants only have read
+access to the API.
+</aside>
+
+#### HTTP Request
+
+`POST https://api-staging.simonpayments.com/identities/:IDENTITY_ID/users`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:IDENTITY_ID | ID of the merchant's `Identity`
+
+
+## Reattempt Merchant Provisioning
+```shell
+curl https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -d '{}'
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "VIn62CaT8ypqK7r915P51G1F",
+  "external_trace_id" : "3c16bb72-8b6d-4f11-9e9a-6a2285ecc9ee",
+  "tags" : { },
+  "messages" : [ ],
+  "raw" : null,
+  "processor" : "DUMMY_V1",
+  "state" : "PENDING",
+  "created_at" : "2016-10-04T23:44:05.03Z",
+  "updated_at" : "2016-10-04T23:44:05.05Z",
+  "payment_instrument" : null,
+  "merchant" : "MU44oTHgF4SpA6dTGc1m6eu7",
+  "identity" : null,
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/verifications/VIn62CaT8ypqK7r915P51G1F"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    },
+    "merchant" : {
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7"
+    }
+  }
+}
+```
+
+Re-attempt provisioning a `Merchant` account on a processor if the previous attempt
+returned a FAILED `onboarding_state`.
+
+#### HTTP Request
+
+`POST https://api-staging.simonpayments.com/merchants/:MERCHANT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:MERCHANT_ID | ID of the `Merchant`
+
+## Update Info on Processor
+```shell
+curl https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -d '{}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "VIn62CaT8ypqK7r915P51G1F",
+  "external_trace_id" : "3c16bb72-8b6d-4f11-9e9a-6a2285ecc9ee",
+  "tags" : { },
+  "messages" : [ ],
+  "raw" : null,
+  "processor" : "DUMMY_V1",
+  "state" : "PENDING",
+  "created_at" : "2016-10-04T23:44:05.03Z",
+  "updated_at" : "2016-10-04T23:44:05.05Z",
+  "payment_instrument" : null,
+  "merchant" : "MU44oTHgF4SpA6dTGc1m6eu7",
+  "identity" : null,
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/verifications/VIn62CaT8ypqK7r915P51G1F"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    },
+    "merchant" : {
+      "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7"
+    }
+  }
+}
+```
+
+Update `Identity` information (e.g. default_statement_descriptor, KYC info, etc.)
+on the underlying processor.
+
+#### HTTP Request
+
+`POST https://api-staging.simonpayments.com/merchants/:MERCHANT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:MERCHANT_ID | ID of the `Merchant`
+
+## List all Merchants
+```shell
+curl https://api-staging.simonpayments.com/merchants/ \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{
+  "_embedded" : {
+    "merchants" : [ {
+      "id" : "MU44oTHgF4SpA6dTGc1m6eu7",
+      "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+      "verification" : null,
+      "merchant_profile" : "MPovQP6nFotXCzStYYyQq1WD",
+      "processor" : "DUMMY_V1",
+      "processing_enabled" : true,
+      "settlement_enabled" : true,
+      "tags" : { },
+      "created_at" : "2016-10-04T23:43:26.16Z",
+      "updated_at" : "2016-10-04T23:43:26.38Z",
+      "onboarding_state" : "APPROVED",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7/verifications"
+        },
+        "merchant_profile" : {
+          "href" : "https://api-staging.simonpayments.com/merchant_profiles/MPovQP6nFotXCzStYYyQq1WD"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/merchants?offset=0&limit=20&sort=created_at,desc"
+    }
+  },
+  "page" : {
+    "offset" : 0,
+    "limit" : 20,
+    "count" : 1
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api-staging.simonpayments.com/merchants/`
+
+## List Merchant Verifications
+```shell
+curl https://api-staging.simonpayments.com/merchants/MU44oTHgF4SpA6dTGc1m6eu7/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{
+  "_embedded" : {
+    "identities" : [ {
+      "id" : "IDcwkUSpMa4EQyjgDQ4YjP3q",
+      "entity" : {
+        "title" : null,
+        "first_name" : "Marcie",
+        "last_name" : "Henderson",
+        "email" : "therock@gmail.com",
+        "business_name" : null,
+        "business_type" : null,
+        "doing_business_as" : null,
+        "phone" : "7145677613",
+        "business_phone" : null,
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : null,
+        "mcc" : null,
+        "dob" : null,
+        "max_transaction_amount" : 0,
+        "amex_mid" : null,
+        "discover_mid" : null,
+        "url" : null,
+        "annual_card_volume" : 0,
+        "has_accepted_credit_cards_previously" : false,
+        "incorporation_date" : null,
+        "principal_percentage_ownership" : null,
+        "short_business_name" : null,
+        "tax_id_provided" : false,
+        "business_tax_id_provided" : false,
+        "default_statement_descriptor" : null
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:27.75Z",
+      "updated_at" : "2016-10-04T23:43:27.75Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "ID582rm3UZiUXvvhTmhg5q5n",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Lees Sandwiches",
+        "business_type" : "GOVERNMENT_AGENCY",
+        "doing_business_as" : "Lees Sandwiches",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.LeesSandwiches.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Lees Sandwiches"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:22.77Z",
+      "updated_at" : "2016-10-04T23:43:22.77Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID582rm3UZiUXvvhTmhg5q5n/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDcs2K61xEh6zz2QbFppswWo",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "ACME Anchors",
+        "business_type" : "INTERNATIONAL_ORGANIZATION",
+        "doing_business_as" : "ACME Anchors",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.ACMEAnchors.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "ACME Anchors"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:21.73Z",
+      "updated_at" : "2016-10-04T23:43:21.73Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcs2K61xEh6zz2QbFppswWo/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDeAJMyBJCRVGuBopKaRB748",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "ACME Anchors",
+        "business_type" : "TAX_EXEMPT_ORGANIZATION",
+        "doing_business_as" : "ACME Anchors",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.ACMEAnchors.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "ACME Anchors"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:20.74Z",
+      "updated_at" : "2016-10-04T23:43:20.74Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDeAJMyBJCRVGuBopKaRB748/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDknUF3Lep3HLNCbwHASQfLP",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Prestige World Wide",
+        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "doing_business_as" : "Prestige World Wide",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PrestigeWorldWide.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Prestige World Wide"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:19.68Z",
+      "updated_at" : "2016-10-04T23:43:19.68Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDknUF3Lep3HLNCbwHASQfLP/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDrzf86q5Kr6DVuay3jzvf9v",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Prestige World Wide",
+        "business_type" : "GENERAL_PARTNERSHIP",
+        "doing_business_as" : "Prestige World Wide",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PrestigeWorldWide.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Prestige World Wide"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:18.23Z",
+      "updated_at" : "2016-10-04T23:43:18.23Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrzf86q5Kr6DVuay3jzvf9v/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDqe1H62ohL9z3zp9tC66YWs",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Petes Coffee",
+        "business_type" : "LIMITED_PARTNERSHIP",
+        "doing_business_as" : "Petes Coffee",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PetesCoffee.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Petes Coffee"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:16.91Z",
+      "updated_at" : "2016-10-04T23:43:16.91Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDqe1H62ohL9z3zp9tC66YWs/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDNzj2WiJtSbzqCS7y1Lre7",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Prestige World Wide",
+        "business_type" : "PARTNERSHIP",
+        "doing_business_as" : "Prestige World Wide",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PrestigeWorldWide.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Prestige World Wide"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:15.58Z",
+      "updated_at" : "2016-10-04T23:43:15.58Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDNzj2WiJtSbzqCS7y1Lre7/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDrdCzHjXTDrAMx6oQSRujXb",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Bobs Burgers",
+        "business_type" : "LIMITED_LIABILITY_COMPANY",
+        "doing_business_as" : "Bobs Burgers",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.BobsBurgers.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Bobs Burgers"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:14.11Z",
+      "updated_at" : "2016-10-04T23:43:14.11Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDrdCzHjXTDrAMx6oQSRujXb/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "ID6MzAm5hKno9t6yBvpk2gLR",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Lees Sandwiches",
+        "business_type" : "CORPORATION",
+        "doing_business_as" : "Lees Sandwiches",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.LeesSandwiches.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Lees Sandwiches"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:12.65Z",
+      "updated_at" : "2016-10-04T23:43:12.65Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID6MzAm5hKno9t6yBvpk2gLR/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "ACME Anchors",
+        "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
+        "doing_business_as" : "ACME Anchors",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.ACMEAnchors.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "ACME Anchors"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-10-04T23:43:11.06Z",
+      "updated_at" : "2016-10-04T23:43:11.06Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "IDt3i17wodcs2rjpLrYF653g",
+      "entity" : {
+        "title" : null,
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Venmo",
+        "business_type" : "LIMITED_LIABILITY_COMPANY",
+        "doing_business_as" : "Venmo",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : null,
+        "dob" : {
+          "day" : 27,
+          "month" : 5,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 12000,
+        "amex_mid" : null,
+        "discover_mid" : null,
+        "url" : null,
+        "annual_card_volume" : 0,
+        "has_accepted_credit_cards_previously" : false,
+        "incorporation_date" : null,
+        "principal_percentage_ownership" : null,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : null
+      },
+      "tags" : {
+        "application_name" : "Venmo"
+      },
+      "created_at" : "2016-10-04T23:43:06.70Z",
+      "updated_at" : "2016-10-04T23:43:06.76Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/identities?offset=0&limit=20&sort=created_at,desc"
+    }
+  },
+  "page" : {
+    "offset" : 0,
+    "limit" : 20,
+    "count" : 12
+  }
+}
+```
+
+Retrieve all attempts to onboard (i.e. provision) a merchant onto a processor.
+
+#### HTTP Request
+
+`GET https://api-staging.simonpayments.com/merchants/:MERCHANT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:MERCHANT_ID | ID of the `Merchant`
+
+
+
+
+# Payment Instruments
+
+A `Payment Instrument` resource represents either a credit card or bank account.
+A `Payment Instrument` may be tokenized multiple times and each tokenization produces
+a unique ID. Each ID may only be associated one time and to only one `Identity`.
+Once associated, a `Payment Instrument` may not be disassociated from an
+`Identity`.
+
+
+## Create a Card
+```shell
+
+
+curl https://api-staging.simonpayments.com/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -d '
+	{
+	    "name": "Ricardo White", 
+	    "expiration_year": 2020, 
+	    "tags": {
+	        "card name": "Business Card"
+	    }, 
+	    "number": "4242424242424242", 
+	    "expiration_month": 12, 
+	    "address": {
+	        "city": "San Mateo", 
+	        "country": "USA", 
+	        "region": "CA", 
+	        "line2": "Apartment 7", 
+	        "line1": "741 Douglass St", 
+	        "postal_code": "94114"
+	    }, 
+	    "security_code": "112", 
+	    "type": "PAYMENT_CARD", 
+	    "identity": "IDcwkUSpMa4EQyjgDQ4YjP3q"
+	}'
+
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+use SimonPay\Resources\PaymentInstrument;
+
+$card = new PaymentInstrument(
+	array(
+	    "name"=> "Ricardo White", 
+	    "expiration_year"=> 2020, 
+	    "tags"=> array(
+	        "card name"=> "Business Card"
+	    ), 
+	    "number"=> "4242424242424242", 
+	    "expiration_month"=> 12, 
+	    "address"=> array(
+	        "city"=> "San Mateo", 
+	        "country"=> "USA", 
+	        "region"=> "CA", 
+	        "line2"=> "Apartment 7", 
+	        "line1"=> "741 Douglass St", 
+	        "postal_code"=> "94114"
+	    ), 
+	    "security_code"=> "112", 
+	    "type"=> "PAYMENT_CARD", 
+	    "identity"=> "IDcwkUSpMa4EQyjgDQ4YjP3q"
+	));
+$card = $card->save();
+
+
+```
+```java
+
+import io.simonpay.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .name("Joe-Doe")
+    .identity("ID572pSyFj71oVExp6XWiGRP")
+    .expirationMonth(12)
+    .expirationYear(2030)
+    .number("4111 1111 1111 1111")
+    .securityCode("231")
+    .build(); 
+paymentCard = client.paymentCardsClient().save(paymentCard);
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "fingerprint" : "FPR-657319974",
+  "tags" : { },
+  "expiration_month" : 12,
+  "expiration_year" : 2020,
+  "last_four" : "4242",
+  "brand" : "VISA",
+  "card_type" : "UNKNOWN",
+  "name" : "Ricardo White",
+  "address" : {
+    "line1" : "741 Douglass St",
+    "line2" : "Apartment 7",
+    "city" : "San Mateo",
+    "region" : "CA",
+    "postal_code" : "94114",
+    "country" : "USA"
+  },
+  "address_verification" : "UNKNOWN",
+  "security_code_verification" : "UNKNOWN",
+  "created_at" : "2016-10-04T23:43:28.85Z",
+  "updated_at" : "2016-10-04T23:43:28.85Z",
+  "instrument_type" : "PAYMENT_CARD",
+  "currency" : "USD",
+  "identity" : "IDcwkUSpMa4EQyjgDQ4YjP3q",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
+    },
+    "authorizations" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/authorizations"
+    },
+    "identity" : {
+      "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q"
+    },
+    "transfers" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/transfers"
+    },
+    "verifications" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/verifications"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    },
+    "updates" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/updates"
+    }
+  }
+}
+```
+
+<aside class="warning">
+Please note that creating cards directly via the API should only be done for
+testing purposes. You must use the Tokenization iframe or javascript client
+to remain out of PCI scope.
+</aside>
+
+Please review our guide on how to tokenize cards via the [embedded tokenization
+form](#embedded-tokenization-using-iframe)
+
+#### HTTP Request
+
+`POST https://api-staging.simonpayments.com/payment_instruments`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+identity | *string*, **required** | ID of the `Identity` that the card should be associated
+type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | 4-digit expiration year
+name | *string*, **optional** | Full name of the registered card holder
+address | *object*, **optional** | Billing address (Full description of child attributes below)
+
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **optional** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **optional** | City
+region | *string*, **optional** | State
+postal_code | *string*, **optional** | Zip or Postal code
+country | *string*, **optional** | 3-Letter Country code
+
+## Create a Bank Account
+```shell
+
+curl https://api-staging.simonpayments.com/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -d '
+	{
+	    "account_type": "SAVINGS", 
+	    "name": "Fran Lemke", 
+	    "tags": {
+	        "Bank Account": "Company Account"
+	    }, 
+	    "country": "USA", 
+	    "bank_code": "123123123", 
+	    "account_number": "123123123", 
+	    "type": "BANK_ACCOUNT", 
+	    "identity": "IDs3XCSAdBXoqMjtsTpMDrh5"
+	}'
+
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+use SimonPay\Resources\PaymentInstrument;
+
+$bank_account = new PaymentInstrument(
+	array(
+	    "account_type"=> "SAVINGS", 
+	    "name"=> "Fran Lemke", 
+	    "tags"=> array(
+	        "Bank Account"=> "Company Account"
+	    ), 
+	    "country"=> "USA", 
+	    "bank_code"=> "123123123", 
+	    "account_number"=> "123123123", 
+	    "type"=> "BANK_ACCOUNT", 
+	    "identity"=> "IDs3XCSAdBXoqMjtsTpMDrh5"
+	));
+$bank_account = $bank_account->save();
+
+
+```
+```java
+
+import io.simonpay.payments.processing.client.model.BankAccount;
+
+bankAccount = client.bankAccountsClient().save(
+    BankAccount.builder()
+      .name("Joe-Doe")
+      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
+      .accountNumber("84012312415")
+      .bankCode("840123124")
+      .accountType(BankAccountType.SAVINGS)
+      .companyName("company name")
+      .country("USA")
+      .currency("USD")
+      .build()
+);
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "PIq1dqfyMaezBaCGGwzWQmyB",
+  "fingerprint" : "FPR-1215770130",
+  "tags" : { },
+  "bank_code" : "123123123",
+  "country" : "USA",
+  "masked_account_number" : "XXXXX3123",
+  "name" : "Fran Lemke",
+  "created_at" : "2016-10-04T23:43:23.91Z",
+  "updated_at" : "2016-10-04T23:43:23.91Z",
+  "instrument_type" : "BANK_ACCOUNT",
+  "currency" : "USD",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB"
+    },
+    "authorizations" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/authorizations"
+    },
+    "identity" : {
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+    },
+    "transfers" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/transfers"
+    },
+    "verifications" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/verifications"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`POST https://api-staging.simonpayments.com/payment_instruments`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+account_number | *string*, **required** | Bank account number
+bank_code | *string*, **required** | Bank routing number
+type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
+identity | *string*, **required**| ID for the `Identity` resource which the account is associated
+account_type | *string*, **required** | Either CHECKING or SAVINGS
+name | *string*, **optional** | Account owner's full name
+## Tokenize Card with Embedded Iframe
+
+Our embedded tokenization form ensures you remain out of PCI scope, while providing
+your end-users with a sleek, and seamless checkout experience.
+
+With our form, sensitive card data never touches your servers and keeps you out
+of PCI scope by sending this info over SSL directly to SimonPay. For your
+convenience we've provided a [jsfiddle](https://jsfiddle.net/rserna2010/1626475h/) as a live example.
+
+<aside class="notice">
+Note you must still use SSL on your servers for any actions related to financial
+transactions via the SimonPay API.
+</aside>
+
+### Step 1: Create a Button
+
+```html
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <body>
+        <button id="show-form">Add Your Card</button>
+    </body>
+</html>
+```
+
+Before collecting the sensitive payment information, we will to add a button
+to the HTML where we'll be hosting the iframe so that end-users can input their
+details.
+
+We have provided a simple example to the right.
+
+
+### Step 2: Include library
+
+To use the iframe you will need to include the library on the webpage
+where you're hosting the aforementioned button. Please include the script as
+demonstrated to the right. Please refrain from hosting the iframe library locally
+as doing so prevents important updates.
+
+
+```html
+<script type="text/javascript" src="https://vgs-assets.s3.amazonaws.com/payline-1.latest.js"></script>
+```
+
+
+### Step 3: Configure the client
+
+```javascript
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+      document.getElementById('show-form').addEventListener('click', function() {
+        Payline.openTokenizeCardForm({
+          applicationName: 'Business Name',
+          applicationId: 'APdAAD1S6HYtHTVnrqFdPrsp',
+        }, function (tokenizedResponse) {
+          // Define a callback to send your token to your back-end server
+        });
+      });
+    });
+ </script>
+```
+
+Next we need to configure the client so that it associates the card with your `Application`.
+We will also need to register a click event that fires when our users click on the
+button, thereby rendering the iframe on the page. Then when the form is submitted
+you'll be returned a unique `Token` resource representing the submitted card
+details. We will also need to define a callback for handling that response.
+
+In the next step we'll show you how to claim the instrument via an authenticated
+HTTPS request on your back-end for future use.
+
+> Example Response:
+
+```json
+{
+  "id" : "TK6qtbPN4cUUXyy5wi2s6dqs",
+  "fingerprint" : "FPR284253560",
+  "created_at" : "2016-10-04T23:43:40.99Z",
+  "updated_at" : "2016-10-04T23:43:40.99Z",
+  "instrument_type" : "PAYMENT_CARD",
+  "expires_at" : "2016-10-05T23:43:40.99Z",
+  "currency" : "USD",
+  "_links" : {
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    }
+  }
+}
+```
+
+```shell
+curl https://api-staging.simonpayments.com/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -d '
+	{
+	    "token": "TK6qtbPN4cUUXyy5wi2s6dqs", 
+	    "type": "TOKEN", 
+	    "identity": "IDs3XCSAdBXoqMjtsTpMDrh5"
+	}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+use SimonPay\Resources\PaymentInstrument;
+
+$card = new PaymentInstrument(
+	{
+	    "token": "TK6qtbPN4cUUXyy5wi2s6dqs", 
+	    "type": "TOKEN", 
+	    "identity": "IDs3XCSAdBXoqMjtsTpMDrh5"
+	});
+$card = $card->save();
+
+```
+```java
+import io.simonpay.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .token("TKkvwumxCgq5E8uTKyq96dta")
+    .type("TOKEN")
+    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
+    .build();
+paymentCard = client.paymentCardsClient().save(paymentCard);
+
+
+```
+### Step 4: Associate to an Identity
+
+> Example Response:
+
+```json
+{
+  "id" : "PI6qtbPN4cUUXyy5wi2s6dqs",
+  "fingerprint" : "FPR-1132692079",
+  "tags" : { },
+  "expiration_month" : 12,
+  "expiration_year" : 2020,
+  "last_four" : "4242",
+  "brand" : "VISA",
+  "card_type" : "UNKNOWN",
+  "name" : null,
+  "address" : {
+    "line1" : "741 Douglass St",
+    "line2" : "Apartment 7",
+    "city" : "San Mateo",
+    "region" : "CA",
+    "postal_code" : "94114",
+    "country" : "USA"
+  },
+  "address_verification" : "UNKNOWN",
+  "security_code_verification" : "UNKNOWN",
+  "created_at" : "2016-10-04T23:43:41.84Z",
+  "updated_at" : "2016-10-04T23:43:41.84Z",
+  "instrument_type" : "PAYMENT_CARD",
+  "currency" : "USD",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs"
+    },
+    "authorizations" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/authorizations"
+    },
+    "identity" : {
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+    },
+    "transfers" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/transfers"
+    },
+    "verifications" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/verifications"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    },
+    "updates" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/updates"
+    }
+  }
+}
+```
+
+Before you can use the newly tokenized card you will need to associate it with
+an `Identity`. To do this you must make an authenticated `POST` request to the
+`/payment_instruments` endpoint with the relevant token and the buyer's
+`Identity` information.
+
+<aside class="warning">
+Tokens should be associated right away. Tokens not associated within 30 mins
+of creation will be invalidated.
+</aside>
+
+#### HTTP Request
+
+`POST https://api-staging.simonpayments.com/payment_instruments`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+token | *string*, **required** | ID for the `Token` that was returned via the tokenization client
+type | *string*, **required** | Must pass TOKEN as the value
+identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
+
+## Associate a Token
+```shell
+curl https://api-staging.simonpayments.com/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -d '
+	{
+	    "token": "TK6qtbPN4cUUXyy5wi2s6dqs", 
+	    "type": "TOKEN", 
+	    "identity": "IDs3XCSAdBXoqMjtsTpMDrh5"
+	}'
+
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+use SimonPay\Resources\PaymentInstrument;
+
+$card = new PaymentInstrument(
+	{
+	    "token": "TK6qtbPN4cUUXyy5wi2s6dqs", 
+	    "type": "TOKEN", 
+	    "identity": "IDs3XCSAdBXoqMjtsTpMDrh5"
+	});
+$card = $card->save();
+
+```
+```java
+import io.simonpay.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = PaymentCard.builder()
+    .token("TKkvwumxCgq5E8uTKyq96dta")
+    .type("TOKEN")
+    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
+    .build();
+paymentCard = client.paymentCardsClient().save(paymentCard);
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "PI6qtbPN4cUUXyy5wi2s6dqs",
+  "fingerprint" : "FPR-1132692079",
+  "tags" : { },
+  "expiration_month" : 12,
+  "expiration_year" : 2020,
+  "last_four" : "4242",
+  "brand" : "VISA",
+  "card_type" : "UNKNOWN",
+  "name" : null,
+  "address" : {
+    "line1" : "741 Douglass St",
+    "line2" : "Apartment 7",
+    "city" : "San Mateo",
+    "region" : "CA",
+    "postal_code" : "94114",
+    "country" : "USA"
+  },
+  "address_verification" : "UNKNOWN",
+  "security_code_verification" : "UNKNOWN",
+  "created_at" : "2016-10-04T23:43:41.84Z",
+  "updated_at" : "2016-10-04T23:43:41.84Z",
+  "instrument_type" : "PAYMENT_CARD",
+  "currency" : "USD",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs"
+    },
+    "authorizations" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/authorizations"
+    },
+    "identity" : {
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+    },
+    "transfers" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/transfers"
+    },
+    "verifications" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/verifications"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    },
+    "updates" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/updates"
+    }
+  }
+}
+```
+
+Associate the newly tokenized card or bank with the instrument owner's `Identity`.
+
+<aside class="warning">
+Tokens should be associated right away. Tokens not associated within 30 mins
+of creation will be invalidated.
+</aside>
+
+#### HTTP Request
+
+`POST https://api-staging.simonpayments.com/payment_instruments`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+token | *string*, **required** | ID for the `Token` that was returned via the tokenization client or hosted iframe
+type | *string*, **required** | Must pass TOKEN as the value
+identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
+
+
+## Fetch a Payment Instrument
+
+```shell
+
+
+curl https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+use SimonPay\Resources\PaymentInstrument;
+
+$card = PaymentInstrument::retrieve('PIq1dqfyMaezBaCGGwzWQmyB');
+
+```
+```java
+
+import io.simonpay.payments.processing.client.model.PaymentCard;
+
+PaymentCard paymentCard = client.paymentCardsClient().fetch("PIq1dqfyMaezBaCGGwzWQmyB")
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "PIq1dqfyMaezBaCGGwzWQmyB",
+  "fingerprint" : "FPR-1215770130",
+  "tags" : {
+    "Display Name" : "Updated Field"
+  },
+  "bank_code" : "123123123",
+  "country" : "USA",
+  "masked_account_number" : "XXXXX3123",
+  "name" : "Fran Lemke",
+  "created_at" : "2016-10-04T23:43:23.81Z",
+  "updated_at" : "2016-10-04T23:43:25.07Z",
+  "instrument_type" : "BANK_ACCOUNT",
+  "currency" : "USD",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB"
+    },
+    "authorizations" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/authorizations"
+    },
+    "identity" : {
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+    },
+    "transfers" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/transfers"
+    },
+    "verifications" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/verifications"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    }
+  }
+}
+```
+
+Fetch a previously created `Payment Instrument`
+
+#### HTTP Request
+
+`GET https://api-staging.simonpayments.com/payment_instruments/:PAYMENT_INSTRUMENT_ID`
+
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
+## Update a Payment Instrument
+```shell
+curl https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
+    -X PUT \
+    -d '
+	{
+	    "tags": {
+	        "Display Name": "Updated Field"
+	    }
+	}'
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+
+```
+```java
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "PIq1dqfyMaezBaCGGwzWQmyB",
+  "fingerprint" : "FPR-1215770130",
+  "tags" : {
+    "Display Name" : "Updated Field"
+  },
+  "bank_code" : "123123123",
+  "country" : "USA",
+  "masked_account_number" : "XXXXX3123",
+  "name" : "Fran Lemke",
+  "created_at" : "2016-10-04T23:43:23.81Z",
+  "updated_at" : "2016-10-04T23:43:25.07Z",
+  "instrument_type" : "BANK_ACCOUNT",
+  "currency" : "USD",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB"
+    },
+    "authorizations" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/authorizations"
+    },
+    "identity" : {
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+    },
+    "transfers" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/transfers"
+    },
+    "verifications" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/verifications"
+    },
+    "application" : {
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+    }
+  }
+}
+```
+
+Update a previously created `Payment Instrument`.
+
+<aside class="notice">
+Only the tags field can be updated. If it is required to update other fields,
+such as account information or expiration dates please retokenize the payment
+instrument.
+</aside>
+
+#### HTTP Request
+
+`PUT https://api-staging.simonpayments.com/payment_instruments/:PAYMENT_INSTRUMENT_ID`
+
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+tags | *object*, **optional** | Single level key value pair for annotating custom meta data
+
+
+## List all Payment Instruments
+
+```shell
+curl https://api-staging.simonpayments.com/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/SimonPay/Settings.php');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
+require(__DIR__ . '/src/SimonPay/Bootstrap.php');
+SimonPay\Bootstrap::init();
+
+
+```
+```java
+import io.simonpay.payments.processing.client.model.BankAccount;
+
+client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
+  .forEachRemaining(baPage -> {
+    Collection<BankAccount> bankAccounts = baPage.getContent();
+    //do something
+  });
+
+```
+> Example Response:
+
+```json
+{
+  "_embedded" : {
+    "payment_instruments" : [ {
+      "id" : "PI6qtbPN4cUUXyy5wi2s6dqs",
+      "fingerprint" : "FPR-1132692079",
+      "tags" : { },
+      "expiration_month" : 12,
+      "expiration_year" : 2020,
+      "last_four" : "4242",
+      "brand" : "VISA",
+      "card_type" : "UNKNOWN",
+      "name" : null,
+      "address" : {
+        "line1" : "741 Douglass St",
+        "line2" : "Apartment 7",
+        "city" : "San Mateo",
+        "region" : "CA",
+        "postal_code" : "94114",
+        "country" : "USA"
+      },
+      "address_verification" : "UNKNOWN",
+      "security_code_verification" : "UNKNOWN",
+      "created_at" : "2016-10-04T23:43:41.71Z",
+      "updated_at" : "2016-10-04T23:43:41.71Z",
+      "instrument_type" : "PAYMENT_CARD",
+      "currency" : "USD",
+      "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        },
+        "updates" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI6qtbPN4cUUXyy5wi2s6dqs/updates"
+        }
+      }
+    }, {
+      "id" : "PIkpHPDjN9dgWn3Qe2vtNbW",
+      "fingerprint" : "FPR-1215770130",
+      "tags" : { },
+      "bank_code" : "123123123",
+      "country" : "USA",
+      "masked_account_number" : "XXXXX3123",
+      "name" : "Fran Lemke",
+      "created_at" : "2016-10-04T23:43:29.66Z",
+      "updated_at" : "2016-10-04T23:43:29.66Z",
+      "instrument_type" : "BANK_ACCOUNT",
+      "currency" : "USD",
+      "identity" : "IDcwkUSpMa4EQyjgDQ4YjP3q",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIkpHPDjN9dgWn3Qe2vtNbW"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIkpHPDjN9dgWn3Qe2vtNbW/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIkpHPDjN9dgWn3Qe2vtNbW/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIkpHPDjN9dgWn3Qe2vtNbW/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+      "fingerprint" : "FPR-657319974",
+      "tags" : { },
+      "expiration_month" : 12,
+      "expiration_year" : 2020,
+      "last_four" : "4242",
+      "brand" : "VISA",
+      "card_type" : "UNKNOWN",
+      "name" : "Ricardo White",
+      "address" : {
+        "line1" : "741 Douglass St",
+        "line2" : "Apartment 7",
+        "city" : "San Mateo",
+        "region" : "CA",
+        "postal_code" : "94114",
+        "country" : "USA"
+      },
+      "address_verification" : "POSTAL_CODE_AND_STREET_MATCH",
+      "security_code_verification" : "MATCHED",
+      "created_at" : "2016-10-04T23:43:28.77Z",
+      "updated_at" : "2016-10-04T23:43:37.64Z",
+      "instrument_type" : "PAYMENT_CARD",
+      "currency" : "USD",
+      "identity" : "IDcwkUSpMa4EQyjgDQ4YjP3q",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDcwkUSpMa4EQyjgDQ4YjP3q"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        },
+        "updates" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj/updates"
+        }
+      }
+    }, {
+      "id" : "PInQqESDuQkLQ3TwrcJH166t",
+      "fingerprint" : "FPR-1645745263",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-10-04T23:43:26.16Z",
+      "updated_at" : "2016-10-04T23:43:26.16Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "PIbMVsgFAfDi8pqJghnzd4o",
+      "fingerprint" : "FPR-2042121662",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-10-04T23:43:26.16Z",
+      "updated_at" : "2016-10-04T23:43:26.16Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIbMVsgFAfDi8pqJghnzd4o"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIbMVsgFAfDi8pqJghnzd4o/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIbMVsgFAfDi8pqJghnzd4o/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIbMVsgFAfDi8pqJghnzd4o/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "PI4BEPvWyuB7X1hw2KnPiihb",
+      "fingerprint" : "FPR-1383578548",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-10-04T23:43:26.16Z",
+      "updated_at" : "2016-10-04T23:43:26.16Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI4BEPvWyuB7X1hw2KnPiihb"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI4BEPvWyuB7X1hw2KnPiihb/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI4BEPvWyuB7X1hw2KnPiihb/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI4BEPvWyuB7X1hw2KnPiihb/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "PIq1dqfyMaezBaCGGwzWQmyB",
+      "fingerprint" : "FPR-1215770130",
+      "tags" : {
+        "Display Name" : "Updated Field"
+      },
+      "bank_code" : "123123123",
+      "country" : "USA",
+      "masked_account_number" : "XXXXX3123",
+      "name" : "Fran Lemke",
+      "created_at" : "2016-10-04T23:43:23.81Z",
+      "updated_at" : "2016-10-04T23:43:25.07Z",
+      "instrument_type" : "BANK_ACCOUNT",
+      "currency" : "USD",
+      "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "PIfejCmYCnavDjL6Tg3RpxM",
+      "fingerprint" : "FPR-2042121662",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-10-04T23:43:07.35Z",
+      "updated_at" : "2016-10-04T23:43:07.35Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "ID2f67hZpBDEM1xBfKSp7LPD",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIfejCmYCnavDjL6Tg3RpxM"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIfejCmYCnavDjL6Tg3RpxM/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/ID2f67hZpBDEM1xBfKSp7LPD"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIfejCmYCnavDjL6Tg3RpxM/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIfejCmYCnavDjL6Tg3RpxM/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "PIgw6PwPGBvvxdhaGxs7gnNs",
+      "fingerprint" : "FPR-2042121662",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-10-04T23:43:07.35Z",
+      "updated_at" : "2016-10-04T23:43:07.35Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "IDt3i17wodcs2rjpLrYF653g",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIgw6PwPGBvvxdhaGxs7gnNs"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIgw6PwPGBvvxdhaGxs7gnNs/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIgw6PwPGBvvxdhaGxs7gnNs/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIgw6PwPGBvvxdhaGxs7gnNs/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "PIwSL7c1igqnU7PKeSb6aswK",
+      "fingerprint" : "FPR-1383578548",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-10-04T23:43:07.35Z",
+      "updated_at" : "2016-10-04T23:43:07.35Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "IDt3i17wodcs2rjpLrYF653g",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIwSL7c1igqnU7PKeSb6aswK"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIwSL7c1igqnU7PKeSb6aswK/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIwSL7c1igqnU7PKeSb6aswK/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIwSL7c1igqnU7PKeSb6aswK/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    }, {
+      "id" : "PI56eKDaQWQf6LvidJtBg9Nu",
+      "fingerprint" : "FPR-1645745263",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-10-04T23:43:07.35Z",
+      "updated_at" : "2016-10-04T23:43:07.35Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "IDt3i17wodcs2rjpLrYF653g",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI56eKDaQWQf6LvidJtBg9Nu"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI56eKDaQWQf6LvidJtBg9Nu/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-staging.simonpayments.com/identities/IDt3i17wodcs2rjpLrYF653g"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI56eKDaQWQf6LvidJtBg9Nu/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PI56eKDaQWQf6LvidJtBg9Nu/verifications"
+        },
+        "application" : {
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.simonpayments.com/payment_instruments?offset=0&limit=20&sort=created_at,desc"
+    }
+  },
+  "page" : {
+    "offset" : 0,
+    "limit" : 20,
+    "count" : 11
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api-staging.simonpayments.com/payment_instruments`
 
 # Settlements
 
@@ -4288,9 +6921,9 @@ A `Settlement` is a logical construct representing a collection (i.e. batch) of
 ## Create a Settlement
 ```shell
 
-curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settlements \
+curl https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5/settlements \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	{
 	    "currency": "USD", 
@@ -4305,14 +6938,14 @@ curl https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR/settl
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Identity;
 use SimonPay\Resources\Settlement;
 
-$identity = Identity::retrieve('ID4Soxr3Zeki8mUsucR8q4VR');
+$identity = Identity::retrieve('IDs3XCSAdBXoqMjtsTpMDrh5');
 $settlement = $identity->createSettlement(
 	array(
 	    "currency"=> "USD", 
@@ -4338,34 +6971,34 @@ Settlement settlement = identity.createSettlement(
 
 ```json
 {
-  "id" : "ST646Cozn7oSigmnmwxL2pZH",
+  "id" : "STvq7bQrBSqa8fPzXobfHa84",
   "tags" : {
     "Internal Daily Settlement ID" : "21DFASJSAKAS"
   },
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "currency" : "USD",
-  "created_at" : "2016-09-10T00:06:48.88Z",
-  "updated_at" : "2016-09-10T00:06:48.90Z",
+  "created_at" : "2016-10-04T23:50:46.63Z",
+  "updated_at" : "2016-10-04T23:50:46.78Z",
   "processor" : "DUMMY_V1",
-  "total_amount" : 2132659,
-  "total_fee" : 213267,
-  "net_amount" : 1919392,
+  "total_amount" : 434885,
+  "total_fee" : 43490,
+  "net_amount" : 391395,
   "destination" : null,
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/transfers"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/transfers"
     },
     "funding_transfers" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/funding_transfers"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/funding_transfers"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -4380,13 +7013,13 @@ been deducted).
 
 <aside class="notice">
 To view all the Transfers that were included in a Settlement you can make a
-request to the transfers link (i.e. POST https://simonpay-staging.finix.io/settlements/:SETTLEMENT_ID/transfers
+request to the transfers link (i.e. POST https://api-staging.simonpayments.com/settlements/:SETTLEMENT_ID/transfers
 </aside>
 
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/identities/:IDENTITY_ID/settlements`
+`POST https://api-staging.simonpayments.com/identities/:IDENTITY_ID/settlements`
 
 #### URL Parameters
 
@@ -4408,63 +7041,63 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 ```shell
 
 
-curl https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH \
+curl https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Settlement;
 
-$settlement = Settlement::retrieve('ST646Cozn7oSigmnmwxL2pZH');
+$settlement = Settlement::retrieve('STvq7bQrBSqa8fPzXobfHa84');
 
 ```
 ```java
 
 import io.simonpay.payments.processing.client.model.Settlement;
 
-Settlement settlement = client.settlementsClient().fetch("ST646Cozn7oSigmnmwxL2pZH");
+Settlement settlement = client.settlementsClient().fetch("STvq7bQrBSqa8fPzXobfHa84");
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "ST646Cozn7oSigmnmwxL2pZH",
+  "id" : "STvq7bQrBSqa8fPzXobfHa84",
   "tags" : {
     "Internal Daily Settlement ID" : "21DFASJSAKAS"
   },
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "currency" : "USD",
-  "created_at" : "2016-09-10T00:06:48.77Z",
-  "updated_at" : "2016-09-10T00:06:49.98Z",
+  "created_at" : "2016-10-04T23:50:46.49Z",
+  "updated_at" : "2016-10-04T23:50:48.44Z",
   "processor" : "DUMMY_V1",
-  "total_amount" : 2132659,
-  "total_fee" : 213267,
-  "net_amount" : 1919392,
-  "destination" : "PI8kwmQkFR5PxJ49oL6SS8gz",
+  "total_amount" : 434885,
+  "total_fee" : 43490,
+  "net_amount" : 391395,
+  "destination" : "PIq1dqfyMaezBaCGGwzWQmyB",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/transfers"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/transfers"
     },
     "funding_transfers" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/funding_transfers"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/funding_transfers"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -4474,7 +7107,7 @@ Fetch a previously created `Settlement`.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/settlements/:SETTLEMENT_ID/`
+`POST https://api-staging.simonpayments.com/settlements/:SETTLEMENT_ID/`
 
 
 #### URL Parameters
@@ -4486,13 +7119,13 @@ Parameter | Description
 
 ## Fund a Settlement
 ```shell
-curl https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH \
+curl https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84 \
     -H "Content-Type: application/vnd.json+api" \
     -u  USkq2yiDni9oFNpcuRNDMPmA:b559b81b-5b6e-4e22-aba5-81fd12265314 \
     -X PUT \
     -d '
 	{
-	    "destination": "PI8kwmQkFR5PxJ49oL6SS8gz"
+	    "destination": "PIq1dqfyMaezBaCGGwzWQmyB"
 	}'
 
 ```
@@ -4500,7 +7133,7 @@ curl https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -4513,34 +7146,34 @@ SimonPay\Bootstrap::init();
 
 ```json
 {
-  "id" : "ST646Cozn7oSigmnmwxL2pZH",
+  "id" : "STvq7bQrBSqa8fPzXobfHa84",
   "tags" : {
     "Internal Daily Settlement ID" : "21DFASJSAKAS"
   },
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "currency" : "USD",
-  "created_at" : "2016-09-10T00:06:48.77Z",
-  "updated_at" : "2016-09-10T00:06:49.98Z",
+  "created_at" : "2016-10-04T23:50:46.49Z",
+  "updated_at" : "2016-10-04T23:50:48.44Z",
   "processor" : "DUMMY_V1",
-  "total_amount" : 2132659,
-  "total_fee" : 213267,
-  "net_amount" : 1919392,
-  "destination" : "PI8kwmQkFR5PxJ49oL6SS8gz",
+  "total_amount" : 434885,
+  "total_fee" : 43490,
+  "net_amount" : 391395,
+  "destination" : "PIq1dqfyMaezBaCGGwzWQmyB",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/transfers"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/transfers"
     },
     "funding_transfers" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/funding_transfers"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/funding_transfers"
     },
     "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     }
   }
 }
@@ -4557,7 +7190,7 @@ updated.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/settlements/:SETTLEMENT_ID`
+`POST https://api-staging.simonpayments.com/settlements/:SETTLEMENT_ID`
 
 #### URL Parameters
 
@@ -4574,16 +7207,16 @@ destination | *string*, **required** | ID of the `Payment Instrument` where the 
 
 ## List all Settlements
 ```shell
-curl https://simonpay-staging.finix.io/settlements/ \
+curl https://api-staging.simonpayments.com/settlements/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -4602,41 +7235,41 @@ client.settlementsClient().<Resources<Settlement>>resourcesIterator()
 {
   "_embedded" : {
     "settlements" : [ {
-      "id" : "ST646Cozn7oSigmnmwxL2pZH",
+      "id" : "STvq7bQrBSqa8fPzXobfHa84",
       "tags" : {
         "Internal Daily Settlement ID" : "21DFASJSAKAS"
       },
-      "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "currency" : "USD",
-      "created_at" : "2016-09-10T00:06:48.77Z",
-      "updated_at" : "2016-09-10T00:06:49.98Z",
+      "created_at" : "2016-10-04T23:50:46.49Z",
+      "updated_at" : "2016-10-04T23:50:48.44Z",
       "processor" : "DUMMY_V1",
-      "total_amount" : 2132659,
-      "total_fee" : 213267,
-      "net_amount" : 1919392,
-      "destination" : "PI8kwmQkFR5PxJ49oL6SS8gz",
+      "total_amount" : 434885,
+      "total_fee" : 43490,
+      "net_amount" : 391395,
+      "destination" : "PIq1dqfyMaezBaCGGwzWQmyB",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH"
+          "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/transfers"
+          "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/transfers"
         },
         "funding_transfers" : {
-          "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/funding_transfers"
+          "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/funding_transfers"
         },
         "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/settlements?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.simonpayments.com/settlements?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
@@ -4652,7 +7285,7 @@ for the `Settlement`.
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/settlements/:SETTLEMENT_ID/funding_transfers`
+`GET https://api-staging.simonpayments.com/settlements/:SETTLEMENT_ID/funding_transfers`
 
 
 #### URL Parameters
@@ -4664,16 +7297,16 @@ Parameter | Description
 
 ## List Funding Transfers
 ```shell
-curl https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/funding_transfers \
+curl https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/funding_transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -4692,202 +7325,108 @@ client.settlementsClient().<Resources<Settlement>>resourcesIterator()
 {
   "_embedded" : {
     "transfers" : [ {
-      "id" : "TRcqsFdv8Kc1ypFR3bz2dobQ",
-      "amount" : 90,
+      "id" : "TRf9YEPHEHQRNZEjtHE373Ej",
+      "amount" : 89,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "1b09feb1-fb7b-4c7c-ab5e-3a728a404a1b",
+      "trace_id" : "24aab36c-7ac8-411f-bb31-d26feb255357",
       "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "destination" : "PI8kwmQkFR5PxJ49oL6SS8gz",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "source" : "PInQqESDuQkLQ3TwrcJH166t",
+      "destination" : "PIq1dqfyMaezBaCGGwzWQmyB",
       "ready_to_settle_at" : null,
       "fee" : 0,
       "statement_descriptor" : null,
       "type" : "CREDIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-10T00:06:49.73Z",
-      "updated_at" : "2016-09-10T00:07:02.18Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:50:48.06Z",
+      "updated_at" : "2016-10-04T23:51:01.78Z",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "_links" : {
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRcqsFdv8Kc1ypFR3bz2dobQ"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRf9YEPHEHQRNZEjtHE373Ej"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRcqsFdv8Kc1ypFR3bz2dobQ/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRf9YEPHEHQRNZEjtHE373Ej/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRcqsFdv8Kc1ypFR3bz2dobQ/reversals"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRf9YEPHEHQRNZEjtHE373Ej/reversals"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRcqsFdv8Kc1ypFR3bz2dobQ/disputes"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRf9YEPHEHQRNZEjtHE373Ej/disputes"
         },
         "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
         },
         "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB"
         }
       }
     }, {
-      "id" : "TRhwcBsGcDmkcf5egMvAscyZ",
-      "amount" : 349113,
+      "id" : "TRdTYRARubSA1NuNGdLArf4K",
+      "amount" : 391306,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "SUCCEEDED",
-      "trace_id" : "3933a2f0-e7e9-48a0-8e21-0059f59f1280",
+      "trace_id" : "f261e85a-0699-4bb2-a6db-09a209bb159a",
       "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "destination" : "PI8kwmQkFR5PxJ49oL6SS8gz",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "source" : "PInQqESDuQkLQ3TwrcJH166t",
+      "destination" : "PIq1dqfyMaezBaCGGwzWQmyB",
       "ready_to_settle_at" : null,
       "fee" : 0,
       "statement_descriptor" : null,
       "type" : "CREDIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-10T00:06:49.73Z",
-      "updated_at" : "2016-09-10T00:07:02.54Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:50:48.06Z",
+      "updated_at" : "2016-10-04T23:51:01.37Z",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "_links" : {
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRhwcBsGcDmkcf5egMvAscyZ"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRdTYRARubSA1NuNGdLArf4K"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRhwcBsGcDmkcf5egMvAscyZ/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRdTYRARubSA1NuNGdLArf4K/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRhwcBsGcDmkcf5egMvAscyZ/reversals"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRdTYRARubSA1NuNGdLArf4K/reversals"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRhwcBsGcDmkcf5egMvAscyZ/disputes"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRdTYRARubSA1NuNGdLArf4K/disputes"
         },
         "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
         },
         "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
-        }
-      }
-    }, {
-      "id" : "TRreL63YJRvyQns75N6dXHki",
-      "amount" : 799999,
-      "tags" : {
-        "order_number" : "21DFASJSAKAS"
-      },
-      "state" : "SUCCEEDED",
-      "trace_id" : "6a193259-6020-4a36-859f-ec172e00708e",
-      "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "destination" : "PI8kwmQkFR5PxJ49oL6SS8gz",
-      "ready_to_settle_at" : null,
-      "fee" : 0,
-      "statement_descriptor" : null,
-      "type" : "CREDIT",
-      "messages" : [ ],
-      "raw" : null,
-      "created_at" : "2016-09-10T00:06:49.73Z",
-      "updated_at" : "2016-09-10T00:07:01.36Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        },
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRreL63YJRvyQns75N6dXHki"
-        },
-        "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRreL63YJRvyQns75N6dXHki/payment_instruments"
-        },
-        "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRreL63YJRvyQns75N6dXHki/reversals"
-        },
-        "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRreL63YJRvyQns75N6dXHki/disputes"
-        },
-        "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
-        },
-        "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
-        }
-      }
-    }, {
-      "id" : "TRsXWepBwh7xxq3SSw7LL2PY",
-      "amount" : 770191,
-      "tags" : {
-        "order_number" : "21DFASJSAKAS"
-      },
-      "state" : "SUCCEEDED",
-      "trace_id" : "e1064f99-7a76-43db-ac05-4a625dfa2abe",
-      "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "destination" : "PI8kwmQkFR5PxJ49oL6SS8gz",
-      "ready_to_settle_at" : null,
-      "fee" : 0,
-      "statement_descriptor" : null,
-      "type" : "CREDIT",
-      "messages" : [ ],
-      "raw" : null,
-      "created_at" : "2016-09-10T00:06:49.73Z",
-      "updated_at" : "2016-09-10T00:07:01.82Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        },
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRsXWepBwh7xxq3SSw7LL2PY"
-        },
-        "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRsXWepBwh7xxq3SSw7LL2PY/payment_instruments"
-        },
-        "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRsXWepBwh7xxq3SSw7LL2PY/reversals"
-        },
-        "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRsXWepBwh7xxq3SSw7LL2PY/disputes"
-        },
-        "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
-        },
-        "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIq1dqfyMaezBaCGGwzWQmyB"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/funding_transfers?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/funding_transfers?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
     "offset" : 0,
     "limit" : 20,
-    "count" : 4
+    "count" : 2
   }
 }
 ```
@@ -4897,7 +7436,7 @@ for the `Settlement`.
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/settlements/:SETTLEMENT_ID/funding_transfers`
+`GET https://api-staging.simonpayments.com/settlements/:SETTLEMENT_ID/funding_transfers`
 
 
 #### URL Parameters
@@ -4910,16 +7449,16 @@ Parameter | Description
 ## List Transfers in a Settlement
 ```shell
 
-curl https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/transfers \
+curl https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -4934,202 +7473,108 @@ SimonPay\Bootstrap::init();
 {
   "_embedded" : {
     "transfers" : [ {
-      "id" : "TRssyw7L9iTArzDyEu1mwafd",
-      "amount" : 888888,
-      "tags" : {
-        "order_number" : "21DFASJSAKAS"
-      },
-      "state" : "SUCCEEDED",
-      "trace_id" : "bfe05597-78f6-4ca6-9a68-6aa2dac6d263",
-      "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "destination" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "ready_to_settle_at" : "2016-09-09T23:56:45.03Z",
-      "fee" : 88889,
-      "statement_descriptor" : "SPN*POLLOS HERMANOS",
-      "type" : "DEBIT",
-      "messages" : [ ],
-      "raw" : null,
-      "created_at" : "2016-09-09T23:56:00.39Z",
-      "updated_at" : "2016-09-09T23:56:03.53Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        },
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRssyw7L9iTArzDyEu1mwafd"
-        },
-        "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRssyw7L9iTArzDyEu1mwafd/payment_instruments"
-        },
-        "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRssyw7L9iTArzDyEu1mwafd/reversals"
-        },
-        "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRssyw7L9iTArzDyEu1mwafd/disputes"
-        },
-        "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
-        },
-        "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
-        }
-      }
-    }, {
-      "id" : "TR2Hw6CuiAnTyP8kftGCpMDy",
+      "id" : "TR2DdZMC9Tsj9WZyS2T1BaxR",
       "amount" : 100,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "b3d5e9d1-4704-4ca0-bfc0-7897f10ccb79",
+      "trace_id" : "86c29f52-b157-48da-a165-7b8fea7be2f4",
       "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "destination" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "ready_to_settle_at" : "2016-09-09T23:56:45.03Z",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+      "destination" : "PInQqESDuQkLQ3TwrcJH166t",
+      "ready_to_settle_at" : "2016-10-04T23:46:35.29Z",
       "fee" : 10,
-      "statement_descriptor" : "SPN*POLLOS HERMANOS",
+      "statement_descriptor" : "SPN*ACME ANCHORS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-09T23:55:26.53Z",
-      "updated_at" : "2016-09-09T23:56:06.42Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:43:38.71Z",
+      "updated_at" : "2016-10-04T23:44:01.21Z",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "_links" : {
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy/reversals"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR/reversals"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy/disputes"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR/disputes"
         },
         "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
         },
         "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
         }
       }
     }, {
-      "id" : "TRkZCP6ttc8cgj8xRyNUy3jT",
-      "amount" : 387903,
+      "id" : "TRnHSdBJQtdwZSoBmVqLgRjA",
+      "amount" : 434785,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "SUCCEEDED",
-      "trace_id" : "8a2f7f63-99a6-43e6-bcbf-191438e14544",
+      "trace_id" : "bd61c954-7825-4bd4-a6f4-58f9119ac522",
       "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "destination" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "ready_to_settle_at" : "2016-09-09T23:56:45.03Z",
-      "fee" : 38790,
-      "statement_descriptor" : "SPN*POLLOS HERMANOS",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+      "destination" : "PInQqESDuQkLQ3TwrcJH166t",
+      "ready_to_settle_at" : "2016-10-04T23:46:35.29Z",
+      "fee" : 43479,
+      "statement_descriptor" : "SPN*ACME ANCHORS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-09T23:55:20.59Z",
-      "updated_at" : "2016-09-09T23:56:02.87Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:43:30.97Z",
+      "updated_at" : "2016-10-04T23:44:04.79Z",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "_links" : {
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/reversals"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/reversals"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/disputes"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/disputes"
         },
         "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
         },
         "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
-        }
-      }
-    }, {
-      "id" : "TRc32TLcCz1CNDoqx5vD5Qoe",
-      "amount" : 855768,
-      "tags" : {
-        "order_number" : "21DFASJSAKAS"
-      },
-      "state" : "SUCCEEDED",
-      "trace_id" : "2fa8c16b-ad99-48bf-a76f-eafaa8acf8e7",
-      "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "destination" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "ready_to_settle_at" : "2016-09-09T23:56:45.03Z",
-      "fee" : 85577,
-      "statement_descriptor" : "SPN*POLLOS HERMANOS",
-      "type" : "DEBIT",
-      "messages" : [ ],
-      "raw" : null,
-      "created_at" : "2016-09-09T23:55:19.02Z",
-      "updated_at" : "2016-09-09T23:56:02.59Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        },
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRc32TLcCz1CNDoqx5vD5Qoe"
-        },
-        "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRc32TLcCz1CNDoqx5vD5Qoe/payment_instruments"
-        },
-        "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRc32TLcCz1CNDoqx5vD5Qoe/reversals"
-        },
-        "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRc32TLcCz1CNDoqx5vD5Qoe/disputes"
-        },
-        "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
-        },
-        "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/settlements/ST646Cozn7oSigmnmwxL2pZH/transfers?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.simonpayments.com/settlements/STvq7bQrBSqa8fPzXobfHa84/transfers?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
     "offset" : 0,
     "limit" : 20,
-    "count" : 4
+    "count" : 2
   }
 }
 ```
@@ -5139,7 +7584,7 @@ List the batch of `Transfers` of type `DEBIT` and `REFUND` that comprise the net
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/settlements/:SETTLEMENT_ID/transfers`
+`GET https://api-staging.simonpayments.com/settlements/:SETTLEMENT_ID/transfers`
 
 
 #### URL Parameters
@@ -5176,9 +7621,9 @@ When an Authorization is captured a corresponding Transfer will also be created.
 ## Retrieve a Transfer
 ```shell
 
-curl https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT \
+curl https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 
 ```
@@ -5186,13 +7631,13 @@ curl https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Transfer;
 
-$transfer = Transfer::retrieve('TRkZCP6ttc8cgj8xRyNUy3jT');
+$transfer = Transfer::retrieve('TRnHSdBJQtdwZSoBmVqLgRjA');
 
 
 
@@ -5201,57 +7646,57 @@ $transfer = Transfer::retrieve('TRkZCP6ttc8cgj8xRyNUy3jT');
 
 import io.simonpay.payments.processing.client.model.Transfer;
 
-Transfer transfer = client.transfersClient().fetch("TRkZCP6ttc8cgj8xRyNUy3jT");
+Transfer transfer = client.transfersClient().fetch("TRnHSdBJQtdwZSoBmVqLgRjA");
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "TRkZCP6ttc8cgj8xRyNUy3jT",
-  "amount" : 387903,
+  "id" : "TRnHSdBJQtdwZSoBmVqLgRjA",
+  "amount" : 434785,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "PENDING",
-  "trace_id" : "8a2f7f63-99a6-43e6-bcbf-191438e14544",
+  "trace_id" : "bd61c954-7825-4bd4-a6f4-58f9119ac522",
   "currency" : "USD",
-  "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-  "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "destination" : "PIj4XV1pSX9quEAedr7zrY5K",
+  "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+  "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+  "destination" : "PInQqESDuQkLQ3TwrcJH166t",
   "ready_to_settle_at" : null,
-  "fee" : 38790,
-  "statement_descriptor" : "SPN*POLLOS HERMANOS",
+  "fee" : 43479,
+  "statement_descriptor" : "SPN*ACME ANCHORS",
   "type" : "DEBIT",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-09-09T23:55:20.59Z",
-  "updated_at" : "2016-09-09T23:55:20.87Z",
-  "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "created_at" : "2016-10-04T23:43:30.97Z",
+  "updated_at" : "2016-10-04T23:43:31.27Z",
+  "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "_links" : {
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT"
+      "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA"
     },
     "payment_instruments" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/payment_instruments"
+      "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/payment_instruments"
     },
     "merchant_identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "reversals" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/reversals"
+      "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/reversals"
     },
     "disputes" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/disputes"
+      "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/disputes"
     },
     "source" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
     },
     "destination" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
     }
   }
 }
@@ -5259,7 +7704,7 @@ Transfer transfer = client.transfersClient().fetch("TRkZCP6ttc8cgj8xRyNUy3jT");
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/transfers/:TRANSFER_ID`
+`GET https://api-staging.simonpayments.com/transfers/:TRANSFER_ID`
 
 #### URL Parameters
 
@@ -5270,9 +7715,9 @@ Parameter | Description
 ## Refund a Debit
 ```shell
 
-curl https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/reversals \
+curl https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/reversals \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d  '
 	  {
 	  "refund_amount" : 100
@@ -5284,13 +7729,13 @@ curl https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/revers
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Transfer;
 
-$debit = Transfer::retrieve('TRkZCP6ttc8cgj8xRyNUy3jT');
+$debit = Transfer::retrieve('TRnHSdBJQtdwZSoBmVqLgRjA');
 $refund = $debit->reverse(50);
 ```
 ```java
@@ -5304,42 +7749,42 @@ Refund refund = transfer.reverse(100L);
 
 ```json
 {
-  "id" : "TRfyFHEJ7UtCXSMaHCKvM78K",
+  "id" : "TRsFK6nU6xUKnvGQ6HqBN3T6",
   "amount" : 100,
   "tags" : { },
   "state" : "PENDING",
-  "trace_id" : "e3e9edf6-8a80-4cbd-83d2-d17282513f55",
+  "trace_id" : "442f1a46-8119-48df-bdc5-500ad5ec2a55",
   "currency" : "USD",
-  "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-  "source" : "PIj4XV1pSX9quEAedr7zrY5K",
-  "destination" : "PIbpQk4JZiKNxTbYDMTJSs9D",
+  "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+  "source" : "PInQqESDuQkLQ3TwrcJH166t",
+  "destination" : "PIsWAgCjqrgp7w2eP4vP7uWj",
   "ready_to_settle_at" : null,
   "fee" : 0,
-  "statement_descriptor" : "SPN*POLLOS HERMANOS",
+  "statement_descriptor" : "SPN*ACME ANCHORS",
   "type" : "REVERSAL",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-09-09T23:55:24.04Z",
-  "updated_at" : "2016-09-09T23:55:24.16Z",
-  "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+  "created_at" : "2016-10-04T23:43:35.91Z",
+  "updated_at" : "2016-10-04T23:43:36.04Z",
+  "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
   "_links" : {
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     },
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TRfyFHEJ7UtCXSMaHCKvM78K"
+      "href" : "https://api-staging.simonpayments.com/transfers/TRsFK6nU6xUKnvGQ6HqBN3T6"
     },
     "parent" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT"
+      "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA"
     },
     "destination" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+      "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
     },
     "merchant_identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+      "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
     },
     "payment_instruments" : {
-      "href" : "https://simonpay-staging.finix.io/transfers/TRfyFHEJ7UtCXSMaHCKvM78K/payment_instruments"
+      "href" : "https://api-staging.simonpayments.com/transfers/TRsFK6nU6xUKnvGQ6HqBN3T6/payment_instruments"
     }
   }
 }
@@ -5353,7 +7798,7 @@ their type which return REVERSAL.
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/transfers/:TRANSFER_ID/reversals`
+`POST https://api-staging.simonpayments.com/transfers/:TRANSFER_ID/reversals`
 
 #### URL Parameters
 
@@ -5370,16 +7815,16 @@ refund_amount | *integer*, **required** | The amount of the refund in cents (Mus
 
 ## List all Transfers
 ```shell
-curl https://simonpay-staging.finix.io/transfers \
+curl https://api-staging.simonpayments.com/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -5401,188 +7846,188 @@ client.transfersClient().<Resources<Transfer>>resourcesIterator()
 {
   "_embedded" : {
     "transfers" : [ {
-      "id" : "TR2Hw6CuiAnTyP8kftGCpMDy",
+      "id" : "TR2DdZMC9Tsj9WZyS2T1BaxR",
       "amount" : 100,
       "tags" : { },
       "state" : "PENDING",
-      "trace_id" : "b3d5e9d1-4704-4ca0-bfc0-7897f10ccb79",
+      "trace_id" : "86c29f52-b157-48da-a165-7b8fea7be2f4",
       "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "destination" : "PIj4XV1pSX9quEAedr7zrY5K",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+      "destination" : "PInQqESDuQkLQ3TwrcJH166t",
       "ready_to_settle_at" : null,
       "fee" : 10,
-      "statement_descriptor" : "SPN*POLLOS HERMANOS",
+      "statement_descriptor" : "SPN*ACME ANCHORS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-09T23:55:26.53Z",
-      "updated_at" : "2016-09-09T23:55:26.79Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:43:38.71Z",
+      "updated_at" : "2016-10-04T23:43:38.99Z",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "_links" : {
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy/reversals"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR/reversals"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TR2Hw6CuiAnTyP8kftGCpMDy/disputes"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR2DdZMC9Tsj9WZyS2T1BaxR/disputes"
         },
         "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
         },
         "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
         }
       }
     }, {
-      "id" : "TRfyFHEJ7UtCXSMaHCKvM78K",
+      "id" : "TRsFK6nU6xUKnvGQ6HqBN3T6",
       "amount" : 100,
       "tags" : { },
       "state" : "PENDING",
-      "trace_id" : "e3e9edf6-8a80-4cbd-83d2-d17282513f55",
+      "trace_id" : "442f1a46-8119-48df-bdc5-500ad5ec2a55",
       "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "destination" : "PIbpQk4JZiKNxTbYDMTJSs9D",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "source" : "PInQqESDuQkLQ3TwrcJH166t",
+      "destination" : "PIsWAgCjqrgp7w2eP4vP7uWj",
       "ready_to_settle_at" : null,
       "fee" : 0,
-      "statement_descriptor" : "SPN*POLLOS HERMANOS",
+      "statement_descriptor" : "SPN*ACME ANCHORS",
       "type" : "REVERSAL",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-09T23:55:23.88Z",
-      "updated_at" : "2016-09-09T23:55:24.16Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:43:35.74Z",
+      "updated_at" : "2016-10-04T23:43:36.04Z",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "_links" : {
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRfyFHEJ7UtCXSMaHCKvM78K"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRsFK6nU6xUKnvGQ6HqBN3T6"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRfyFHEJ7UtCXSMaHCKvM78K/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRsFK6nU6xUKnvGQ6HqBN3T6/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "parent" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA"
         },
         "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
         }
       }
     }, {
-      "id" : "TRkZCP6ttc8cgj8xRyNUy3jT",
-      "amount" : 387903,
+      "id" : "TR6kHzVAEsr2385j2mrRhjiz",
+      "amount" : 648873,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "PENDING",
-      "trace_id" : "8a2f7f63-99a6-43e6-bcbf-191438e14544",
+      "trace_id" : "f1e430ed-8e4b-4e03-8eee-92163e4f458e",
       "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "destination" : "PIj4XV1pSX9quEAedr7zrY5K",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "source" : "PIkpHPDjN9dgWn3Qe2vtNbW",
+      "destination" : "PInQqESDuQkLQ3TwrcJH166t",
       "ready_to_settle_at" : null,
-      "fee" : 38790,
-      "statement_descriptor" : "SPN*POLLOS HERMANOS",
+      "fee" : 64887,
+      "statement_descriptor" : "SPN*ACME ANCHORS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-09T23:55:20.59Z",
-      "updated_at" : "2016-09-09T23:55:20.87Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:43:32.52Z",
+      "updated_at" : "2016-10-04T23:43:32.80Z",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "_links" : {
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR6kHzVAEsr2385j2mrRhjiz"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR6kHzVAEsr2385j2mrRhjiz/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/reversals"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR6kHzVAEsr2385j2mrRhjiz/reversals"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRkZCP6ttc8cgj8xRyNUy3jT/disputes"
+          "href" : "https://api-staging.simonpayments.com/transfers/TR6kHzVAEsr2385j2mrRhjiz/disputes"
         },
         "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIkpHPDjN9dgWn3Qe2vtNbW"
         },
         "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
         }
       }
     }, {
-      "id" : "TRc32TLcCz1CNDoqx5vD5Qoe",
-      "amount" : 855768,
+      "id" : "TRnHSdBJQtdwZSoBmVqLgRjA",
+      "amount" : 434785,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "PENDING",
-      "trace_id" : "2fa8c16b-ad99-48bf-a76f-eafaa8acf8e7",
+      "trace_id" : "bd61c954-7825-4bd4-a6f4-58f9119ac522",
       "currency" : "USD",
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "source" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "destination" : "PIj4XV1pSX9quEAedr7zrY5K",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "source" : "PIsWAgCjqrgp7w2eP4vP7uWj",
+      "destination" : "PInQqESDuQkLQ3TwrcJH166t",
       "ready_to_settle_at" : null,
-      "fee" : 85577,
-      "statement_descriptor" : "SPN*POLLOS HERMANOS",
+      "fee" : 43479,
+      "statement_descriptor" : "SPN*ACME ANCHORS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-09-09T23:55:19.02Z",
-      "updated_at" : "2016-09-09T23:55:19.29Z",
-      "merchant_identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
+      "created_at" : "2016-10-04T23:43:30.97Z",
+      "updated_at" : "2016-10-04T23:43:31.27Z",
+      "merchant_identity" : "IDs3XCSAdBXoqMjtsTpMDrh5",
       "_links" : {
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         },
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRc32TLcCz1CNDoqx5vD5Qoe"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA"
         },
         "payment_instruments" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRc32TLcCz1CNDoqx5vD5Qoe/payment_instruments"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
+          "href" : "https://api-staging.simonpayments.com/identities/IDs3XCSAdBXoqMjtsTpMDrh5"
         },
         "reversals" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRc32TLcCz1CNDoqx5vD5Qoe/reversals"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/reversals"
         },
         "disputes" : {
-          "href" : "https://simonpay-staging.finix.io/transfers/TRc32TLcCz1CNDoqx5vD5Qoe/disputes"
+          "href" : "https://api-staging.simonpayments.com/transfers/TRnHSdBJQtdwZSoBmVqLgRjA/disputes"
         },
         "source" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PIsWAgCjqrgp7w2eP4vP7uWj"
         },
         "destination" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
+          "href" : "https://api-staging.simonpayments.com/payment_instruments/PInQqESDuQkLQ3TwrcJH166t"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/transfers?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.simonpayments.com/transfers?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
@@ -5595,7 +8040,7 @@ client.transfersClient().<Resources<Transfer>>resourcesIterator()
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/transfers`
+`GET https://api-staging.simonpayments.com/transfers`
 # Webhooks
 
 `Webhooks` allow you to build or set up integrations which subscribe to certain
@@ -5610,9 +8055,9 @@ listening for notifications of newly created `Disputes`.
 ## Create a Webhook
 ```shell
 
-curl https://simonpay-staging.finix.io/webhooks \
+curl https://api-staging.simonpayments.com/webhooks \
     -H "Content-Type: application/vnd.json+api" \
-    -u USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
+    -u USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092 \
     -d '
 	            {
 	            "url" : "http://requestb.in/1jb5zu11"
@@ -5624,7 +8069,7 @@ curl https://simonpay-staging.finix.io/webhooks \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -5652,18 +8097,18 @@ Webhook webhook = client.webhookClient().save(
 
 ```json
 {
-  "id" : "WHfWN3kPJU3JU55c8nMCCky3",
+  "id" : "WHbWPqwbEksFgcb5XF3FGKSZ",
   "url" : "http://requestb.in/1jb5zu11",
   "enabled" : true,
-  "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-  "created_at" : "2016-09-09T23:55:00.85Z",
-  "updated_at" : "2016-09-09T23:55:00.85Z",
+  "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+  "created_at" : "2016-10-04T23:43:09.93Z",
+  "updated_at" : "2016-10-04T23:43:09.93Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/webhooks/WHfWN3kPJU3JU55c8nMCCky3"
+      "href" : "https://api-staging.simonpayments.com/webhooks/WHbWPqwbEksFgcb5XF3FGKSZ"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -5671,7 +8116,7 @@ Webhook webhook = client.webhookClient().save(
 
 #### HTTP Request
 
-`POST https://simonpay-staging.finix.io/webhooks`
+`POST https://api-staging.simonpayments.com/webhooks`
 
 #### Request Arguments
 
@@ -5685,9 +8130,9 @@ url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be
 
 
 
-curl https://simonpay-staging.finix.io/webhooks/WHfWN3kPJU3JU55c8nMCCky3 \
+curl https://api-staging.simonpayments.com/webhooks/WHbWPqwbEksFgcb5XF3FGKSZ \
     -H "Content-Type: application/vnd.json+api" \
-    -u USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 
 ```
@@ -5695,13 +8140,13 @@ curl https://simonpay-staging.finix.io/webhooks/WHfWN3kPJU3JU55c8nMCCky3 \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
 use SimonPay\Resources\Webhook;
 
-$webhook = Webhook::retrieve('WHfWN3kPJU3JU55c8nMCCky3');
+$webhook = Webhook::retrieve('WHbWPqwbEksFgcb5XF3FGKSZ');
 
 
 
@@ -5710,25 +8155,25 @@ $webhook = Webhook::retrieve('WHfWN3kPJU3JU55c8nMCCky3');
 
 import io.simonpay.payments.processing.client.model.Webhook;
 
-Webhook webhook = client.webhookClient().fetch("WHfWN3kPJU3JU55c8nMCCky3");
+Webhook webhook = client.webhookClient().fetch("WHbWPqwbEksFgcb5XF3FGKSZ");
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "WHfWN3kPJU3JU55c8nMCCky3",
+  "id" : "WHbWPqwbEksFgcb5XF3FGKSZ",
   "url" : "http://requestb.in/1jb5zu11",
   "enabled" : true,
-  "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-  "created_at" : "2016-09-09T23:55:00.85Z",
-  "updated_at" : "2016-09-09T23:55:00.85Z",
+  "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+  "created_at" : "2016-10-04T23:43:09.93Z",
+  "updated_at" : "2016-10-04T23:43:09.93Z",
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/webhooks/WHfWN3kPJU3JU55c8nMCCky3"
+      "href" : "https://api-staging.simonpayments.com/webhooks/WHbWPqwbEksFgcb5XF3FGKSZ"
     },
     "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+      "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
     }
   }
 }
@@ -5736,7 +8181,7 @@ Webhook webhook = client.webhookClient().fetch("WHfWN3kPJU3JU55c8nMCCky3");
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/webhooks/:WEBHOOK_ID`
+`GET https://api-staging.simonpayments.com/webhooks/:WEBHOOK_ID`
 
 #### URL Parameters
 
@@ -5746,16 +8191,16 @@ Parameter | Description
 ## List all Webhooks
 
 ```shell
-curl https://simonpay-staging.finix.io/webhooks/ \
+curl https://api-staging.simonpayments.com/webhooks/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
+    -u  USubGCBT17WgSQ6muYS4fxpu:3123fde8-58cc-4620-99a2-e24b073e4092
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -5776,25 +8221,25 @@ client.webhookClient().<Resources<Webhook>>resourcesIterator()
 {
   "_embedded" : {
     "webhooks" : [ {
-      "id" : "WHfWN3kPJU3JU55c8nMCCky3",
+      "id" : "WHbWPqwbEksFgcb5XF3FGKSZ",
       "url" : "http://requestb.in/1jb5zu11",
       "enabled" : true,
-      "application" : "AP6ifJWv3Y3vhpdASRab5afL",
-      "created_at" : "2016-09-09T23:55:00.85Z",
-      "updated_at" : "2016-09-09T23:55:00.85Z",
+      "application" : "APdAAD1S6HYtHTVnrqFdPrsp",
+      "created_at" : "2016-10-04T23:43:09.93Z",
+      "updated_at" : "2016-10-04T23:43:09.93Z",
       "_links" : {
         "self" : {
-          "href" : "https://simonpay-staging.finix.io/webhooks/WHfWN3kPJU3JU55c8nMCCky3"
+          "href" : "https://api-staging.simonpayments.com/webhooks/WHbWPqwbEksFgcb5XF3FGKSZ"
         },
         "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
+          "href" : "https://api-staging.simonpayments.com/applications/APdAAD1S6HYtHTVnrqFdPrsp"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://simonpay-staging.finix.io/webhooks?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.simonpayments.com/webhooks?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
@@ -5807,7 +8252,7 @@ client.webhookClient().<Resources<Webhook>>resourcesIterator()
 
 #### HTTP Request
 
-`GET https://simonpay-staging.finix.io/webhooks`
+`GET https://api-staging.simonpayments.com/webhooks`
     
 
 ## Sample Payloads
@@ -5819,7 +8264,7 @@ client.webhookClient().<Resources<Webhook>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
+SimonPay\Settings::configure('https://api-staging.simonpayments.com', 'USubGCBT17WgSQ6muYS4fxpu', '3123fde8-58cc-4620-99a2-e24b073e4092');
 require(__DIR__ . '/src/SimonPay/Bootstrap.php');
 SimonPay\Bootstrap::init();
 
@@ -6075,1196 +8520,3 @@ SimonPay\Bootstrap::init();
   }
 }
 ```
-# Payment Instruments
-
-A `Payment Instrument` resource represents either a credit card or bank account.
-A `Payment Instrument` may be tokenized multiple times and each tokenization produces
-a unique ID. Each ID may only be associated one time and to only one `Identity`.
-Once associated, a `Payment Instrument` may not be disassociated from an
-`Identity`.
-
-
-## Create a Card
-```shell
-
-
-curl https://simonpay-staging.finix.io/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
-    -d '
-	{
-	    "name": "Sean Serna", 
-	    "expiration_year": 2020, 
-	    "tags": {
-	        "card name": "Business Card"
-	    }, 
-	    "number": "4242424242424242", 
-	    "expiration_month": 12, 
-	    "address": {
-	        "city": "San Mateo", 
-	        "country": "USA", 
-	        "region": "CA", 
-	        "line2": "Apartment 7", 
-	        "line1": "741 Douglass St", 
-	        "postal_code": "94114"
-	    }, 
-	    "security_code": "112", 
-	    "type": "PAYMENT_CARD", 
-	    "identity": "IDm7MPi8hrSEEaVc8qMHXpKk"
-	}'
-
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-use SimonPay\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument(
-	array(
-	    "name"=> "Sean Serna", 
-	    "expiration_year"=> 2020, 
-	    "tags"=> array(
-	        "card name"=> "Business Card"
-	    ), 
-	    "number"=> "4242424242424242", 
-	    "expiration_month"=> 12, 
-	    "address"=> array(
-	        "city"=> "San Mateo", 
-	        "country"=> "USA", 
-	        "region"=> "CA", 
-	        "line2"=> "Apartment 7", 
-	        "line1"=> "741 Douglass St", 
-	        "postal_code"=> "94114"
-	    ), 
-	    "security_code"=> "112", 
-	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDm7MPi8hrSEEaVc8qMHXpKk"
-	));
-$card = $card->save();
-
-
-```
-```java
-
-import io.simonpay.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .name("Joe-Doe")
-    .identity("ID572pSyFj71oVExp6XWiGRP")
-    .expirationMonth(12)
-    .expirationYear(2030)
-    .number("4111 1111 1111 1111")
-    .securityCode("231")
-    .build(); 
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-  "fingerprint" : "FPR806707623",
-  "tags" : { },
-  "expiration_month" : 12,
-  "expiration_year" : 2020,
-  "last_four" : "4242",
-  "brand" : "VISA",
-  "card_type" : "UNKNOWN",
-  "name" : "Sean Serna",
-  "address" : {
-    "line1" : "741 Douglass St",
-    "line2" : "Apartment 7",
-    "city" : "San Mateo",
-    "region" : "CA",
-    "postal_code" : "94114",
-    "country" : "USA"
-  },
-  "address_verification" : "UNKNOWN",
-  "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-09-09T23:55:17.70Z",
-  "updated_at" : "2016-09-09T23:55:17.70Z",
-  "instrument_type" : "PAYMENT_CARD",
-  "identity" : "IDm7MPi8hrSEEaVc8qMHXpKk",
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
-    },
-    "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/authorizations"
-    },
-    "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk"
-    },
-    "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/transfers"
-    },
-    "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/verifications"
-    },
-    "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-    },
-    "updates" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/updates"
-    }
-  }
-}
-```
-
-<aside class="warning">
-Please note that creating cards directly via the API should only be done for
-testing purposes. You must use the Tokenization iframe or javascript client
-to remain out of PCI scope.
-</aside>
-
-Please review our guide on how to tokenize cards via the [embedded tokenization
-form](#embedded-tokenization-using-iframe)
-
-#### HTTP Request
-
-`POST https://simonpay-staging.finix.io/payment_instruments`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-identity | *string*, **required** | ID of the `Identity` that the card should be associated
-type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
-number | *string*, **required** | Credit card account number
-security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
-expiration_year | *integer*, **required** | 4-digit expiration year
-name | *string*, **optional** | Full name of the registered card holder
-address | *object*, **optional** | Billing address (Full description of child attributes below)
-
-
-#### Address-object Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-line1 | *string*, **optional** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **optional** | City
-region | *string*, **optional** | State
-postal_code | *string*, **optional** | Zip or Postal code
-country | *string*, **optional** | 3-Letter Country code
-
-## Create a Bank Account
-```shell
-
-curl https://simonpay-staging.finix.io/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
-    -d '
-	{
-	    "account_type": "SAVINGS", 
-	    "name": "Fran Lemke", 
-	    "tags": {
-	        "Bank Account": "Company Account"
-	    }, 
-	    "country": "USA", 
-	    "bank_code": "123123123", 
-	    "account_number": "123123123", 
-	    "type": "BANK_ACCOUNT", 
-	    "identity": "ID4Soxr3Zeki8mUsucR8q4VR"
-	}'
-
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-use SimonPay\Resources\PaymentInstrument;
-
-$bank_account = new PaymentInstrument(
-	array(
-	    "account_type"=> "SAVINGS", 
-	    "name"=> "Fran Lemke", 
-	    "tags"=> array(
-	        "Bank Account"=> "Company Account"
-	    ), 
-	    "country"=> "USA", 
-	    "bank_code"=> "123123123", 
-	    "account_number"=> "123123123", 
-	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "ID4Soxr3Zeki8mUsucR8q4VR"
-	));
-$bank_account = $bank_account->save();
-
-
-```
-```java
-
-import io.simonpay.payments.processing.client.model.BankAccount;
-
-bankAccount = client.bankAccountsClient().save(
-    BankAccount.builder()
-      .name("Joe-Doe")
-      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
-      .accountNumber("84012312415")
-      .bankCode("840123124")
-      .accountType(BankAccountType.SAVINGS)
-      .companyName("company name")
-      .country("USA")
-      .currency("USD")
-      .build()
-);
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "PI8kwmQkFR5PxJ49oL6SS8gz",
-  "fingerprint" : "FPR966610431",
-  "tags" : { },
-  "bank_code" : "123123123",
-  "country" : "USA",
-  "masked_account_number" : "XXXXX3123",
-  "name" : "Fran Lemke",
-  "created_at" : "2016-09-09T23:55:12.67Z",
-  "updated_at" : "2016-09-09T23:55:12.67Z",
-  "instrument_type" : "BANK_ACCOUNT",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
-    },
-    "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/authorizations"
-    },
-    "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-    },
-    "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/transfers"
-    },
-    "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/verifications"
-    },
-    "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`POST https://simonpay-staging.finix.io/payment_instruments`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-account_number | *string*, **required** | Bank account number
-bank_code | *string*, **required** | Bank routing number
-type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
-identity | *string*, **required**| ID for the `Identity` resource which the account is associated
-account_type | *string*, **required** | Either CHECKING or SAVINGS
-name | *string*, **optional** | Account owner's full name
-## Tokenize Card with Embedded Iframe
-
-Our embedded tokenization form ensures you remain out of PCI scope, while providing
-your end-users with a sleek, and seamless checkout experience.
-
-With our form, sensitive card data never touches your servers and keeps you out
-of PCI scope by sending this info over SSL directly to SimonPay. For your
-convenience we've provided a [jsfiddle](https://jsfiddle.net/ne96gvxs/) as a live example.
-
-<aside class="notice">
-Note you must still use SSL on your servers for any actions related to financial
-transactions via the SimonPay API.
-</aside>
-
-### Step 1: Create a Button
-
-```html
-<!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <body>
-        <button id="show-form">Add Your Card</button>
-    </body>
-</html>
-```
-
-Before collecting the sensitive payment information, we will to add a button
-to the HTML where we'll be hosting the iframe so that end-users can input their
-details.
-
-We have provided a simple example to the right.
-
-
-### Step 2: Include library
-
-To use the iframe you will need to include the library on the webpage
-where you're hosting the aforementioned button. Please include the script as
-demonstrated to the right. Please refrain from hosting the iframe library locally
-as doing so prevents important updates.
-
-
-```html
-<script type="text/javascript" src="https://vgs-assets.s3.amazonaws.com/payline-1.latest.js"></script>
-```
-
-
-### Step 3: Configure the client
-
-```javascript
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function(event) {
-      document.getElementById('show-form').addEventListener('click', function() {
-        Payline.openTokenizeCardForm({
-          applicationName: 'Business Name',
-          applicationId: 'AP6ifJWv3Y3vhpdASRab5afL',
-        }, function (tokenizedResponse) {
-          // Define a callback to send your token to your back-end server
-        });
-      });
-    });
- </script>
-```
-
-Next we need to configure the client so that it associates the card with your `Application`.
-We will also need to register a click event that fires when our users click on the
-button, thereby rendering the iframe on the page. Then when the form is submitted
-you'll be returned a unique `Token` resource representing the submitted card
-details. We will also need to define a callback for handling that response.
-
-In the next step we'll show you how to claim the instrument via an authenticated
-HTTPS request on your back-end for future use.
-
-> Example Response:
-
-```json
-{
-  "id" : "TKxn9bDxdSmYCj3cBZVVANG7",
-  "fingerprint" : "FPR222704565",
-  "created_at" : "2016-09-09T23:55:28.85Z",
-  "updated_at" : "2016-09-09T23:55:28.85Z",
-  "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2016-09-10T23:55:28.85Z",
-  "_links" : {
-    "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-    }
-  }
-}
-```
-
-```shell
-curl https://simonpay-staging.finix.io/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
-    -d '
-	{
-	    "token": "TKxn9bDxdSmYCj3cBZVVANG7", 
-	    "type": "TOKEN", 
-	    "identity": "ID4Soxr3Zeki8mUsucR8q4VR"
-	}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-use SimonPay\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument(
-	{
-	    "token": "TKxn9bDxdSmYCj3cBZVVANG7", 
-	    "type": "TOKEN", 
-	    "identity": "ID4Soxr3Zeki8mUsucR8q4VR"
-	});
-$card = $card->save();
-
-```
-```java
-import io.simonpay.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .token("TKkvwumxCgq5E8uTKyq96dta")
-    .type("TOKEN")
-    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-
-```
-### Step 4: Associate to an Identity
-
-> Example Response:
-
-```json
-{
-  "id" : "PIxn9bDxdSmYCj3cBZVVANG7",
-  "fingerprint" : "FPR-752937284",
-  "tags" : { },
-  "expiration_month" : 12,
-  "expiration_year" : 2020,
-  "last_four" : "4242",
-  "brand" : "VISA",
-  "card_type" : "UNKNOWN",
-  "name" : null,
-  "address" : {
-    "line1" : "741 Douglass St",
-    "line2" : "Apartment 7",
-    "city" : "San Mateo",
-    "region" : "CA",
-    "postal_code" : "94114",
-    "country" : "USA"
-  },
-  "address_verification" : "UNKNOWN",
-  "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-09-09T23:55:29.68Z",
-  "updated_at" : "2016-09-09T23:55:29.68Z",
-  "instrument_type" : "PAYMENT_CARD",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7"
-    },
-    "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/authorizations"
-    },
-    "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-    },
-    "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/transfers"
-    },
-    "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/verifications"
-    },
-    "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-    },
-    "updates" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/updates"
-    }
-  }
-}
-```
-
-Before you can use the newly tokenized card you will need to associate it with
-an `Identity`. To do this you must make an authenticated `POST` request to the
-`/payment_instruments` endpoint with the relevant token and the buyer's
-`Identity` information.
-
-<aside class="warning">
-Tokens should be associated right away. Tokens not associated within 30 mins
-of creation will be invalidated.
-</aside>
-
-#### HTTP Request
-
-`POST https://simonpay-staging.finix.io/payment_instruments`
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-token | *string*, **required** | ID for the `Token` that was returned via the tokenization client
-type | *string*, **required** | Must pass TOKEN as the value
-identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
-
-## Associate a Token
-```shell
-curl https://simonpay-staging.finix.io/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
-    -d '
-	{
-	    "token": "TKxn9bDxdSmYCj3cBZVVANG7", 
-	    "type": "TOKEN", 
-	    "identity": "ID4Soxr3Zeki8mUsucR8q4VR"
-	}'
-
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-use SimonPay\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument(
-	{
-	    "token": "TKxn9bDxdSmYCj3cBZVVANG7", 
-	    "type": "TOKEN", 
-	    "identity": "ID4Soxr3Zeki8mUsucR8q4VR"
-	});
-$card = $card->save();
-
-```
-```java
-import io.simonpay.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .token("TKkvwumxCgq5E8uTKyq96dta")
-    .type("TOKEN")
-    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "PIxn9bDxdSmYCj3cBZVVANG7",
-  "fingerprint" : "FPR-752937284",
-  "tags" : { },
-  "expiration_month" : 12,
-  "expiration_year" : 2020,
-  "last_four" : "4242",
-  "brand" : "VISA",
-  "card_type" : "UNKNOWN",
-  "name" : null,
-  "address" : {
-    "line1" : "741 Douglass St",
-    "line2" : "Apartment 7",
-    "city" : "San Mateo",
-    "region" : "CA",
-    "postal_code" : "94114",
-    "country" : "USA"
-  },
-  "address_verification" : "UNKNOWN",
-  "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-09-09T23:55:29.68Z",
-  "updated_at" : "2016-09-09T23:55:29.68Z",
-  "instrument_type" : "PAYMENT_CARD",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7"
-    },
-    "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/authorizations"
-    },
-    "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-    },
-    "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/transfers"
-    },
-    "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/verifications"
-    },
-    "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-    },
-    "updates" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/updates"
-    }
-  }
-}
-```
-
-Associate the newly tokenized card or bank with the instrument owner's `Identity`.
-
-<aside class="warning">
-Tokens should be associated right away. Tokens not associated within 30 mins
-of creation will be invalidated.
-</aside>
-
-#### HTTP Request
-
-`POST https://simonpay-staging.finix.io/payment_instruments`
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-token | *string*, **required** | ID for the `Token` that was returned via the tokenization client or hosted iframe
-type | *string*, **required** | Must pass TOKEN as the value
-identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
-
-
-## Fetch a Payment Instrument
-
-```shell
-
-
-curl https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-use SimonPay\Resources\PaymentInstrument;
-
-$card = PaymentInstrument::retrieve('PI8kwmQkFR5PxJ49oL6SS8gz');
-
-```
-```java
-
-import io.simonpay.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = client.paymentCardsClient().fetch("PI8kwmQkFR5PxJ49oL6SS8gz")
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "PI8kwmQkFR5PxJ49oL6SS8gz",
-  "fingerprint" : "FPR966610431",
-  "tags" : {
-    "Display Name" : "Updated Field"
-  },
-  "bank_code" : "123123123",
-  "country" : "USA",
-  "masked_account_number" : "XXXXX3123",
-  "name" : "Fran Lemke",
-  "created_at" : "2016-09-09T23:55:12.58Z",
-  "updated_at" : "2016-09-09T23:55:13.67Z",
-  "instrument_type" : "BANK_ACCOUNT",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
-    },
-    "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/authorizations"
-    },
-    "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-    },
-    "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/transfers"
-    },
-    "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/verifications"
-    },
-    "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-    }
-  }
-}
-```
-
-Fetch a previously created `Payment Instrument`
-
-#### HTTP Request
-
-`GET https://simonpay-staging.finix.io/payment_instruments/:PAYMENT_INSTRUMENT_ID`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
-
-## Update a Payment Instrument
-```shell
-curl https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564 \
-    -X PUT \
-    -d '
-	{
-	    "tags": {
-	        "Display Name": "Updated Field"
-	    }
-	}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-
-```
-```java
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "PI8kwmQkFR5PxJ49oL6SS8gz",
-  "fingerprint" : "FPR966610431",
-  "tags" : {
-    "Display Name" : "Updated Field"
-  },
-  "bank_code" : "123123123",
-  "country" : "USA",
-  "masked_account_number" : "XXXXX3123",
-  "name" : "Fran Lemke",
-  "created_at" : "2016-09-09T23:55:12.58Z",
-  "updated_at" : "2016-09-09T23:55:13.67Z",
-  "instrument_type" : "BANK_ACCOUNT",
-  "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
-    },
-    "authorizations" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/authorizations"
-    },
-    "identity" : {
-      "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-    },
-    "transfers" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/transfers"
-    },
-    "verifications" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/verifications"
-    },
-    "application" : {
-      "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-    }
-  }
-}
-```
-
-Update a previously created `Payment Instrument`.
-
-<aside class="notice">
-Only the tags field can be updated. If it is required to update other fields,
-such as account information or expiration dates please retokenize the payment
-instrument.
-</aside>
-
-#### HTTP Request
-
-`PUT https://simonpay-staging.finix.io/payment_instruments/:PAYMENT_INSTRUMENT_ID`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-tags | *object*, **optional** | Single level key value pair for annotating custom meta data
-
-
-## List all Payment Instruments
-
-```shell
-curl https://simonpay-staging.finix.io/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USwxh8BTnmMBCK3TWyTnfuo9:05790d97-e7c9-477f-867c-b7d535ef9564
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/SimonPay/Settings.php');
-SimonPay\Settings::configure('https://simonpay-staging.finix.io', 'USwxh8BTnmMBCK3TWyTnfuo9', '05790d97-e7c9-477f-867c-b7d535ef9564');
-require(__DIR__ . '/src/SimonPay/Bootstrap.php');
-SimonPay\Bootstrap::init();
-
-
-```
-```java
-import io.simonpay.payments.processing.client.model.BankAccount;
-
-client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
-  .forEachRemaining(baPage -> {
-    Collection<BankAccount> bankAccounts = baPage.getContent();
-    //do something
-  });
-
-```
-> Example Response:
-
-```json
-{
-  "_embedded" : {
-    "payment_instruments" : [ {
-      "id" : "PIxn9bDxdSmYCj3cBZVVANG7",
-      "fingerprint" : "FPR-752937284",
-      "tags" : { },
-      "expiration_month" : 12,
-      "expiration_year" : 2020,
-      "last_four" : "4242",
-      "brand" : "VISA",
-      "card_type" : "UNKNOWN",
-      "name" : null,
-      "address" : {
-        "line1" : "741 Douglass St",
-        "line2" : "Apartment 7",
-        "city" : "San Mateo",
-        "region" : "CA",
-        "postal_code" : "94114",
-        "country" : "USA"
-      },
-      "address_verification" : "UNKNOWN",
-      "security_code_verification" : "UNKNOWN",
-      "created_at" : "2016-09-09T23:55:29.55Z",
-      "updated_at" : "2016-09-09T23:55:29.55Z",
-      "instrument_type" : "PAYMENT_CARD",
-      "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        },
-        "updates" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIxn9bDxdSmYCj3cBZVVANG7/updates"
-        }
-      }
-    }, {
-      "id" : "PIbpQk4JZiKNxTbYDMTJSs9D",
-      "fingerprint" : "FPR806707623",
-      "tags" : { },
-      "expiration_month" : 12,
-      "expiration_year" : 2020,
-      "last_four" : "4242",
-      "brand" : "VISA",
-      "card_type" : "UNKNOWN",
-      "name" : "Sean Serna",
-      "address" : {
-        "line1" : "741 Douglass St",
-        "line2" : "Apartment 7",
-        "city" : "San Mateo",
-        "region" : "CA",
-        "postal_code" : "94114",
-        "country" : "USA"
-      },
-      "address_verification" : "POSTAL_CODE_AND_STREET_MATCH",
-      "security_code_verification" : "MATCHED",
-      "created_at" : "2016-09-09T23:55:17.62Z",
-      "updated_at" : "2016-09-09T23:55:25.52Z",
-      "instrument_type" : "PAYMENT_CARD",
-      "identity" : "IDm7MPi8hrSEEaVc8qMHXpKk",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDm7MPi8hrSEEaVc8qMHXpKk"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        },
-        "updates" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIbpQk4JZiKNxTbYDMTJSs9D/updates"
-        }
-      }
-    }, {
-      "id" : "PIj4XV1pSX9quEAedr7zrY5K",
-      "fingerprint" : "FPR-1645745263",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-09-09T23:55:14.57Z",
-      "updated_at" : "2016-09-09T23:55:14.57Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIj4XV1pSX9quEAedr7zrY5K/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "PIeRPWsfw2SoTmYNjd4WiHSo",
-      "fingerprint" : "FPR-1383578548",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-09-09T23:55:14.57Z",
-      "updated_at" : "2016-09-09T23:55:14.57Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIeRPWsfw2SoTmYNjd4WiHSo"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIeRPWsfw2SoTmYNjd4WiHSo/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIeRPWsfw2SoTmYNjd4WiHSo/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIeRPWsfw2SoTmYNjd4WiHSo/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "PIpry5smA9atXVmsPUYcCNh3",
-      "fingerprint" : "FPR-2042121662",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-09-09T23:55:14.57Z",
-      "updated_at" : "2016-09-09T23:55:14.57Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIpry5smA9atXVmsPUYcCNh3"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIpry5smA9atXVmsPUYcCNh3/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIpry5smA9atXVmsPUYcCNh3/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIpry5smA9atXVmsPUYcCNh3/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "PI8kwmQkFR5PxJ49oL6SS8gz",
-      "fingerprint" : "FPR966610431",
-      "tags" : {
-        "Display Name" : "Updated Field"
-      },
-      "bank_code" : "123123123",
-      "country" : "USA",
-      "masked_account_number" : "XXXXX3123",
-      "name" : "Fran Lemke",
-      "created_at" : "2016-09-09T23:55:12.58Z",
-      "updated_at" : "2016-09-09T23:55:13.67Z",
-      "instrument_type" : "BANK_ACCOUNT",
-      "identity" : "ID4Soxr3Zeki8mUsucR8q4VR",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID4Soxr3Zeki8mUsucR8q4VR"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8kwmQkFR5PxJ49oL6SS8gz/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "PIoQTsBTKhNrNbvBimQst6qi",
-      "fingerprint" : "FPR-1645745263",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-09-09T23:54:55.02Z",
-      "updated_at" : "2016-09-09T23:54:55.02Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "IDwTMJwgEUEX3ydC2cS8VvUh",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIoQTsBTKhNrNbvBimQst6qi"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIoQTsBTKhNrNbvBimQst6qi/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIoQTsBTKhNrNbvBimQst6qi/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIoQTsBTKhNrNbvBimQst6qi/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "PI7drSCV9qqGY1BZxLyAhREE",
-      "fingerprint" : "FPR-2042121662",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-09-09T23:54:55.02Z",
-      "updated_at" : "2016-09-09T23:54:55.02Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "IDwTMJwgEUEX3ydC2cS8VvUh",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI7drSCV9qqGY1BZxLyAhREE"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI7drSCV9qqGY1BZxLyAhREE/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI7drSCV9qqGY1BZxLyAhREE/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI7drSCV9qqGY1BZxLyAhREE/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "PI8ouEuo81NA5sd5QHA6zHzZ",
-      "fingerprint" : "FPR-1383578548",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-09-09T23:54:55.02Z",
-      "updated_at" : "2016-09-09T23:54:55.02Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "IDwTMJwgEUEX3ydC2cS8VvUh",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8ouEuo81NA5sd5QHA6zHzZ"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8ouEuo81NA5sd5QHA6zHzZ/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/IDwTMJwgEUEX3ydC2cS8VvUh"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8ouEuo81NA5sd5QHA6zHzZ/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PI8ouEuo81NA5sd5QHA6zHzZ/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    }, {
-      "id" : "PIwGzvB2YDS3jX3ucpp97bYN",
-      "fingerprint" : "FPR-2042121662",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-09-09T23:54:55.02Z",
-      "updated_at" : "2016-09-09T23:54:55.02Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "ID2f67hZpBDEM1xBfKSp7LPD",
-      "_links" : {
-        "self" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIwGzvB2YDS3jX3ucpp97bYN"
-        },
-        "authorizations" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIwGzvB2YDS3jX3ucpp97bYN/authorizations"
-        },
-        "identity" : {
-          "href" : "https://simonpay-staging.finix.io/identities/ID2f67hZpBDEM1xBfKSp7LPD"
-        },
-        "transfers" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIwGzvB2YDS3jX3ucpp97bYN/transfers"
-        },
-        "verifications" : {
-          "href" : "https://simonpay-staging.finix.io/payment_instruments/PIwGzvB2YDS3jX3ucpp97bYN/verifications"
-        },
-        "application" : {
-          "href" : "https://simonpay-staging.finix.io/applications/AP6ifJWv3Y3vhpdASRab5afL"
-        }
-      }
-    } ]
-  },
-  "_links" : {
-    "self" : {
-      "href" : "https://simonpay-staging.finix.io/payment_instruments?offset=0&limit=20&sort=created_at,desc"
-    }
-  },
-  "page" : {
-    "offset" : 0,
-    "limit" : 20,
-    "count" : 10
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://simonpay-staging.finix.io/payment_instruments`
-

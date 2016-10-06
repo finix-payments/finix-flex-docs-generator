@@ -72,10 +72,15 @@ def create_app(config_values, application_owner_user_id, business_type):
 
 
 def associate_payment_processor(config_values, processor):
-    values = {
-        "type": processor,
-        "config": {"key1": "value-1", "key2": "value-2"}
-    }
+    if processor == "DUMMY_V1":
+        values = {
+            "type": processor,
+            "config": {"key1": "value-1", "key2": "value-2"}
+        }
+    else: 
+        values = {
+            "type": processor
+        }
     values = format_json(json.dumps(values))
     endpoint = config_values["base_url"] + '/applications/' + config_values["application"] + "/processors"
     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])
@@ -428,6 +433,23 @@ def create_debit(config_values, merchant_id, card_id, amount):
         "tags": {
             "order_number": "21DFASJSAKAS"
         },
+    }
+
+    values = format_json(json.dumps(values))
+    endpoint = config_values['base_url'] + '/transfers'
+    return formatted_response(endpoint, values, config_values['encoded_auth'])
+
+def create_push_to_card_transfer(config_values, recipient_identity_id, card_id, amount):
+    fee = int(round(amount * .1))
+    values =  {
+        "currency": "USD",
+        "processor": "VISA_V1",
+        "destination": card_id,
+        "merchant_identity": recipient_identity_id,
+        "amount": amount,
+        "tags": {
+            "order_number": "21DFASJSAKAS"
+            },
     }
 
     values = format_json(json.dumps(values))
