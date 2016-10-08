@@ -3,6 +3,8 @@ import string
 from client import *
 from configs import snippets_by_resource, resource_ordering, included_clients, \
     partner_configs, admin_snippets_by_resource, admin_resource_ordering
+from finix_configs import finix_snippets_by_resource, finix_resource_ordering, finix_included_clients, \
+    finix_partner_configs, finix_admin_snippets_by_resource, finix_admin_resource_ordering    
 
 class MyTemplate(string.Template):
     delimiter = '{{'
@@ -145,14 +147,29 @@ def make_client_specific_scenarios():
                 outfile.write("\n")
 
 def build_docs():
-    # this generates a new version of the template for Non-Admins
-    make_all_doc_scenarios(resource_ordering, snippets_by_resource, '/full_docs_template.md')
 
-    # this generates a new version of the template for Admins
-    make_all_doc_scenarios(admin_resource_ordering, admin_snippets_by_resource, '/full_admin_docs_template.md')
+    if not finix_partner_configs: 
+        # this generates a new version of the template for Non-Admins
+        make_all_doc_scenarios(resource_ordering, snippets_by_resource, '/full_docs_template.md')
 
-    # Create a set of docs for each Partner (i.e. finix customer)
+        # this generates a new version of the template for Admins
+        make_all_doc_scenarios(admin_resource_ordering, admin_snippets_by_resource, '/full_admin_docs_template.md')
+
+        # Create a set of docs for each Partner (i.e. finix customer)
     for api_configs in partner_configs:
+        print "Building Docs for " + api_configs["api_name"]
+        template_variables = generate_template_variables(api_configs)
+        create_branded_markdown_docs(template_variables, 'full_docs_template.md')
+        create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
+    else:    
+        # this generates a new version of the template for Non-Admins
+        make_all_doc_scenarios(finix_resource_ordering, finix_snippets_by_resource, '/full_docs_template.md')
+
+        # this generates a new version of the template for Admins
+        make_all_doc_scenarios(finix_admin_resource_ordering, finix_admin_snippets_by_resource, '/full_admin_docs_template.md')
+
+        # Create a set of docs for each Partner (i.e. finix customer)
+    for api_configs in finix_partner_configs:
         print "Building Docs for " + api_configs["api_name"]
         template_variables = generate_template_variables(api_configs)
         create_branded_markdown_docs(template_variables, 'full_docs_template.md')

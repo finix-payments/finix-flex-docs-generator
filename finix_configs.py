@@ -1,9 +1,9 @@
 import base64
 
-partner_configs = [
+finix_partner_configs = [
     {
-        'api_name': "CrossRiver",
-        'api_name_downcase': "crossriver",
+        'api_name': "Finix",
+        'api_name_downcase': "finix",
         'base_url': 'https://api-staging.finix.io',
         'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
@@ -22,54 +22,12 @@ partner_configs = [
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
         },
-    {
-        'api_name': "Payline",
-        'api_name_downcase': "payline",
-        'base_url': 'https://api-test.payline.io',
-        'admin_basic_auth_username': 'USkoFNY73WEiP8tYmZtPa6e4',
-        'admin_basic_auth_password': 'e28fe471-5b2c-4f20-9db9-0a3e5fd06110',
-        'platform_basic_auth_username': 'USjXwXbL7N1tp6UnCCqfogkP',
-        'platform_basic_auth_password': '8d745c00-1f4f-4d65-a92c-44dcf19e872e',
-        'platform_encoded_auth': base64.b64encode('USjXwXbL7N1tp6UnCCqfogkP:8d745c00-1f4f-4d65-a92c-44dcf19e872e'),
-        'payfac_username': "PAYLINEDATAMP",
-        'admin_encoded_auth': base64.b64encode('USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110'),
-        'basic_auth_username': None,
-        'basic_auth_password': None,
-        'encoded_auth': None,
-        'payment_processor': "DUMMY_V1",
-        'identity_verification_processor': "DUMMY_V1",
-        'application': None,
-        'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/",
-        'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
-        'embedded_iframe_jsfiddle': "https://jsfiddle.net/rserna2010/47kgeao9/",
-        },
-    {
-        'api_name': "SimonPay",
-        'api_name_downcase': "simonpay",
-        'base_url': 'https://api-staging.simonpayments.com',
-        'admin_basic_auth_username': 'USkq2yiDni9oFNpcuRNDMPmA',
-        'admin_basic_auth_password': 'b559b81b-5b6e-4e22-aba5-81fd12265314',
-        'admin_encoded_auth': base64.b64encode('USkq2yiDni9oFNpcuRNDMPmA:b559b81b-5b6e-4e22-aba5-81fd12265314'),
-        'platform_basic_auth_username': 'USkq2yiDni9oFNpcuRNDMPmA',
-        'platform_basic_auth_password': 'b559b81b-5b6e-4e22-aba5-81fd12265314',
-        'platform_encoded_auth': base64.b64encode('USkq2yiDni9oFNpcuRNDMPmA:b559b81b-5b6e-4e22-aba5-81fd12265314'),
-        'payfac_username': "SIMONPAY",
-        'basic_auth_username': None,
-        'basic_auth_password': None,
-        'encoded_auth': None,
-        'payment_processor': "DUMMY_V1",
-        'identity_verification_processor': "DUMMY_V1",
-        'application': None,
-        'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/",
-        'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
-        'embedded_iframe_jsfiddle': "https://jsfiddle.net/rserna2010/1626475h/",
-    },
 ]
 
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
-snippets_by_resource = {
+finix_snippets_by_resource = {
     "applications": [
         "definition",
         "create_application",
@@ -125,6 +83,12 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "send_to_recipient",
         ], 
     "identities": [
         "definition",
@@ -195,7 +159,7 @@ snippets_by_resource = {
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
-admin_snippets_by_resource = {
+finix_admin_snippets_by_resource = {
     "applications": [
         "definition",
         "fetch_application",
@@ -258,7 +222,13 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "send_to_recipient",
+        ],        
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -330,10 +300,11 @@ admin_snippets_by_resource = {
     }
 
 # This is the order that the directories / guides will be concatinated
-resource_ordering = [
+finix_resource_ordering = [
     "guide_general_overview",
     "guide_getting_started",
     "guide_iframe",
+    "guide_push_to_card",
     "authorizations",
     # "disputes",
     "identities",
@@ -346,11 +317,12 @@ resource_ordering = [
 
 ]
 
-admin_resource_ordering = [
+finix_admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
     "guide_iframe",
+    "guide_push_to_card",
     "guide_getting_started",
     "guide_admin_overview",
     "guide_create_application",
@@ -371,7 +343,7 @@ admin_resource_ordering = [
 
 
 # Determine which client libraries to include
-included_clients = [
+finix_included_clients = [
     "curl",
     "php",
     "java"
