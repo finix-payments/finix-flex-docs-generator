@@ -98,6 +98,10 @@ snippets_by_resource = {
     "guide_admin_overview": [
         "definition",
         ],
+    "guide_authentication": [
+        "definition",
+        "authentication",
+        ],
     "guide_create_application": [
         "definition",
         "create_owner_user",
@@ -332,6 +336,7 @@ admin_snippets_by_resource = {
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
     "guide_general_overview",
+    "guide_authentication",
     "guide_getting_started",
     "guide_iframe",
     "authorizations",

@@ -302,6 +302,7 @@ finix_admin_snippets_by_resource = {
 # This is the order that the directories / guides will be concatinated
 finix_resource_ordering = [
     "guide_general_overview",
+    "guide_authentication",
     "guide_getting_started",
     "guide_iframe",
     "guide_push_to_card",

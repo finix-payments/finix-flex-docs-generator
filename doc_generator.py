@@ -166,7 +166,7 @@ def build_docs():
         make_all_doc_scenarios(finix_resource_ordering, finix_snippets_by_resource, '/full_docs_template.md')
 
         # this generates a new version of the template for Admins
-        make_all_doc_scenarios(finix_admin_resource_ordering, finix_admin_snippets_by_resource, '/full_admin_docs_template.md')
+        make_all_doc_scenarios(finixcd ._admin_resource_ordering, finix_admin_snippets_by_resource, '/full_admin_docs_template.md')
 
         # Create a set of docs for each Partner (i.e. finix customer)
         for api_configs in finix_partner_configs:
