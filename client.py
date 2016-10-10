@@ -513,12 +513,9 @@ def create_webhook(config_values):
 
 
 def create_settlement(config_values, identity_id):
-
     time.sleep(400)
-
     values = {
         "currency": "USD",
-        "processor": config_values['payment_processor'],
         "tags": {
             "Internal Daily Settlement ID": "21DFASJSAKAS"
         }
