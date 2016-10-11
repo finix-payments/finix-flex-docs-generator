@@ -1,14 +1,15 @@
 import re
 import string
 from client import *
+# from config import *
 from config.crb_configs import crb_snippets_by_resource, crb_resource_ordering, crb_included_clients, \
     crb_partner_configs, crb_admin_snippets_by_resource, crb_admin_resource_ordering
-from config.payline_configs import payline_snippets_by_resource, payline_resource_ordering, payline_included_clients, \
-    payline_partner_configs, payline_admin_snippets_by_resource, payline_admin_resource_ordering
-from config.finix_configs import finix_snippets_by_resource, finix_resource_ordering, finix_included_clients, \
-    finix_partner_configs, finix_admin_snippets_by_resource, finix_admin_resource_ordering    
-from config.simonpayments_configs import simon_snippets_by_resource, simon_resource_ordering, simon_included_clients, \
-    simon_partner_configs, simon_admin_snippets_by_resource, simon_admin_resource_ordering
+# from config.payline_configs import payline_snippets_by_resource, payline_resource_ordering, payline_included_clients, \
+#     payline_partner_configs, payline_admin_snippets_by_resource, payline_admin_resource_ordering
+# from config.finix_configs import finix_snippets_by_resource, finix_resource_ordering, finix_included_clients, \
+#     finix_partner_configs, finix_admin_snippets_by_resource, finix_admin_resource_ordering    
+# from config.simonpayments_configs import simon_snippets_by_resource, simon_resource_ordering, simon_included_clients, \
+#     simon_partner_configs, simon_admin_snippets_by_resource, simon_admin_resource_ordering
 class MyTemplate(string.Template):
     delimiter = '{{'
     pattern = r'''
