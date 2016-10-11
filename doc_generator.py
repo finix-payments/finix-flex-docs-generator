@@ -1,11 +1,14 @@
 import re
 import string
 from client import *
-from configs import snippets_by_resource, resource_ordering, included_clients, \
-    partner_configs, admin_snippets_by_resource, admin_resource_ordering
-from finix_configs import finix_snippets_by_resource, finix_resource_ordering, finix_included_clients, \
+from config.crb_configs import crb_snippets_by_resource, crb_resource_ordering, crb_included_clients, \
+    crb_partner_configs, crb_admin_snippets_by_resource, crb_admin_resource_ordering
+from config.payline_configs import payline_snippets_by_resource, payline_resource_ordering, payline_included_clients, \
+    payline_partner_configs, payline_admin_snippets_by_resource, payline_admin_resource_ordering
+from config.finix_configs import finix_snippets_by_resource, finix_resource_ordering, finix_included_clients, \
     finix_partner_configs, finix_admin_snippets_by_resource, finix_admin_resource_ordering    
-
+from config.simonpayments_configs import simon_snippets_by_resource, simon_resource_ordering, simon_included_clients, \
+    simon_partner_configs, simon_admin_snippets_by_resource, simon_admin_resource_ordering
 class MyTemplate(string.Template):
     delimiter = '{{'
     pattern = r'''
@@ -147,29 +150,57 @@ def make_client_specific_scenarios():
                 outfile.write("\n")
 
 def build_docs():
-
-    if partner_configs: 
+    
+    if config.crb_configs: 
         # this generates a new version of the template for Non-Admins
-        make_all_doc_scenarios(resource_ordering, snippets_by_resource, '/full_docs_template.md')
+        make_all_doc_scenarios(crb_resource_ordering, crb_snippets_by_resource, '/full_docs_template.md')
 
         # this generates a new version of the template for Admins
-        make_all_doc_scenarios(admin_resource_ordering, admin_snippets_by_resource, '/full_admin_docs_template.md')
+        make_all_doc_scenarios(crb_admin_resource_ordering, crb_admin_snippets_by_resource, '/full_admin_docs_template.md')
 
         # Create a set of docs for each Partner (i.e. finix customer)
-        for api_configs in partner_configs:
+        for api_configs in crb_configs:
             print "Building Docs for " + api_configs["api_name"]
             template_variables = generate_template_variables(api_configs)
             create_branded_markdown_docs(template_variables, 'full_docs_template.md')
             create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
-    if finix_partner_configs:    
+    if config.payline_configs: 
+        # this generates a new version of the template for Non-Admins
+        make_all_doc_scenarios(payline_resource_ordering, payline_snippets_by_resource, '/full_docs_template.md')
+
+        # this generates a new version of the template for Admins
+        make_all_doc_scenarios(payline_admin_resource_ordering, payline_admin_snippets_by_resource, '/full_admin_docs_template.md')
+
+        # Create a set of docs for each Partner (i.e. finix customer)
+        for api_configs in payline_configs:
+            print "Building Docs for " + api_configs["api_name"]
+            template_variables = generate_template_variables(api_configs)
+            create_branded_markdown_docs(template_variables, 'full_docs_template.md')
+            create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
+
+    if config.simonpayments_configs: 
+        # this generates a new version of the template for Non-Admins
+        make_all_doc_scenarios(simon_resource_ordering, simon_snippets_by_resource, '/full_docs_template.md')
+
+        # this generates a new version of the template for Admins
+        make_all_doc_scenarios(simon_admin_resource_ordering, simon_admin_snippets_by_resource, '/full_admin_docs_template.md')
+
+        # Create a set of docs for each Partner (i.e. finix customer)
+        for api_configs in simon_configs:
+            print "Building Docs for " + api_configs["api_name"]
+            template_variables = generate_template_variables(api_configs)
+            create_branded_markdown_docs(template_variables, 'full_docs_template.md')
+            create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
+
+    if config.finix_configs:    
         # this generates a new version of the template for Non-Admins
         make_all_doc_scenarios(finix_resource_ordering, finix_snippets_by_resource, '/full_docs_template.md')
 
         # this generates a new version of the template for Admins
-        make_all_doc_scenarios(finixcd ._admin_resource_ordering, finix_admin_snippets_by_resource, '/full_admin_docs_template.md')
+        make_all_doc_scenarios(finix_admin_resource_ordering, finix_admin_snippets_by_resource, '/full_admin_docs_template.md')
 
         # Create a set of docs for each Partner (i.e. finix customer)
-        for api_configs in finix_partner_configs:
+        for api_configs in finix_configs:
             print "Building Docs for " + api_configs["api_name"]
             template_variables = generate_template_variables(api_configs)
             create_branded_markdown_docs(template_variables, 'full_docs_template.md')
