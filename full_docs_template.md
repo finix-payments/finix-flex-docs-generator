@@ -35,6 +35,52 @@ explains how to properly tokenize cards in production via our embedded iframe.
 4. [Push-to-Card Private [BETA]](#push-to-card-private-beta): This guide walks 
 through using the Visa Direct API to push payments to debit cards. With push-to-card
 funds are disbursed to a debit card within 30 minutes or less. 
+## Authentication
+
+
+
+```shell
+# With CURL, just supply your username as basic auth (-u) in the header of each request as follows:
+
+curl {{base_url}}/ \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+
+```
+```php
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+<?php
+require_once('vendor/autoload.php');
+require(__DIR__ . '/src/{{api_name}}/Settings.php');
+{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
+{{api_name}}\Bootstrap::init();
+
+```
+```java
+
+```
+To communicate with the {{api_name}} API you'll need to authenticate your requests
+via http basic access authentication with a `username` and `password`, which you
+can locate in your dashboard. If you do not have a dashboard feel free to test
+the API with the credentials below:
+
+- Username: `{{basic_auth_username}}`
+
+- Password: `{{basic_auth_password}}`
+
+- Application ID: `{{create_app_scenario_id}}`
+
+Your `Application` is a resource that represents your web app. In other words,
+any web service that connects buyers (i.e. customers) and sellers
+(i.e. merchants).
+
 ## Getting Started
 ### Step 1: Create an Identity for a Merchant
 
@@ -2854,7 +2900,7 @@ updated.
 
 #### HTTP Request
 
-`POST {{base_url}}/settlements/:SETTLEMENT_ID`
+`PUT {{base_url}}/settlements/:SETTLEMENT_ID`
 
 #### URL Parameters
 
