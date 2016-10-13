@@ -1,9 +1,8 @@
 import base64
 
-crb_configs = [
-    {
-        'api_name': "CrossRiver",
-        'api_name_downcase': "crossriver",
+partner_configs = {
+        'api_name': "Finix",
+        'api_name_downcase': "finix",
         'base_url': 'https://api-staging.finix.io',
         'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
@@ -21,13 +20,13 @@ crb_configs = [
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
-        },
-]
+        }
+
 
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
-crb_snippets_by_resource = {
+snippets_by_resource = {
     "applications": [
         "definition",
         "create_application",
@@ -87,6 +86,12 @@ crb_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "send_to_recipient",
         ], 
     "identities": [
         "definition",
@@ -157,7 +162,7 @@ crb_snippets_by_resource = {
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
-crb_admin_snippets_by_resource = {
+admin_snippets_by_resource = {
     "applications": [
         "definition",
         "fetch_application",
@@ -220,7 +225,13 @@ crb_admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "send_to_recipient",
+        ],        
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -292,11 +303,12 @@ crb_admin_snippets_by_resource = {
     }
 
 # This is the order that the directories / guides will be concatinated
-crb_resource_ordering = [
+resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
     "guide_iframe",
+    "guide_push_to_card",
     "authorizations",
     # "disputes",
     "identities",
@@ -309,11 +321,12 @@ crb_resource_ordering = [
 
 ]
 
-crb_admin_resource_ordering = [
+admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
     "guide_iframe",
+    "guide_push_to_card",
     "guide_getting_started",
     "guide_admin_overview",
     "guide_create_application",
@@ -334,7 +347,7 @@ crb_admin_resource_ordering = [
 
 
 # Determine which client libraries to include
-crb_included_clients = [
+included_clients = [
     "curl",
     "php",
     "java"

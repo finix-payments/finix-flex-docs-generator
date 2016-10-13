@@ -1,15 +1,8 @@
 import re
 import string
 from client import *
-# from config import *
-from config.crb_configs import crb_snippets_by_resource, crb_resource_ordering, crb_included_clients, \
-    crb_partner_configs, crb_admin_snippets_by_resource, crb_admin_resource_ordering
-# from config.payline_configs import payline_snippets_by_resource, payline_resource_ordering, payline_included_clients, \
-#     payline_partner_configs, payline_admin_snippets_by_resource, payline_admin_resource_ordering
-# from config.finix_configs import finix_snippets_by_resource, finix_resource_ordering, finix_included_clients, \
-#     finix_partner_configs, finix_admin_snippets_by_resource, finix_admin_resource_ordering    
-# from config.simonpayments_configs import simon_snippets_by_resource, simon_resource_ordering, simon_included_clients, \
-#     simon_partner_configs, simon_admin_snippets_by_resource, simon_admin_resource_ordering
+from configs import crb, finix, payline, simonpayments
+
 class MyTemplate(string.Template):
     delimiter = '{{'
     pattern = r'''
@@ -41,24 +34,24 @@ def create_branded_markdown_docs(template_vars, template_source_file):
     partner_doc_file = open(file_name, 'w')
     partner_doc_file.write(interpolated_file)
 
-def create_client_specific_templates(template_vars):
-    snippet_directory_location = os.getcwd()
-    for client in included_clients:
-        print 'WRITING ' + client + " client-specific request template and script"
-        template = open(os.getcwd() + '/client_specific_templates/' + client + '_template.md', 'r')
-        data = template.read()
-        t = MyTemplate(data)
-        interpolated_file = t.substitute(template_vars)
+# def create_client_specific_templates(template_vars):
+#     snippet_directory_location = os.getcwd()
+#     for client in included_clients:
+#         print 'WRITING ' + client + " client-specific request template and script"
+#         template = open(os.getcwd() + '/client_specific_templates/' + client + '_template.md', 'r')
+#         data = template.read()
+#         t = MyTemplate(data)
+#         interpolated_file = t.substitute(template_vars)
 
-        if client == "php":
-            partner_doc_file = open(snippet_directory_location + '/client_specific_templates/php_test.php', 'w')
-        elif client == "java":
-            partner_doc_file = open(snippet_directory_location + '/client_specific_templates/java_test.java', 'w')
-        elif client == "curl":
-            partner_doc_file = open(snippet_directory_location + '/client_specific_templates/curl_test.txt', 'w')
-        partner_doc_file.write(interpolated_file)
+#         if client == "php":
+#             partner_doc_file = open(snippet_directory_location + '/client_specific_templates/php_test.php', 'w')
+#         elif client == "java":
+#             partner_doc_file = open(snippet_directory_location + '/client_specific_templates/java_test.java', 'w')
+#         elif client == "curl":
+#             partner_doc_file = open(snippet_directory_location + '/client_specific_templates/curl_test.txt', 'w')
+#         partner_doc_file.write(interpolated_file)
 
-def make_all_doc_scenarios(resource_ordering, scenario_ordering, destination_file):
+def make_all_doc_scenarios(resource_ordering, scenario_ordering, included_clients, destination_file):
     outfile = os.getcwd() + destination_file
     f = open(outfile, 'r+')
     f.truncate()
@@ -100,7 +93,7 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, destination_fil
         snippet_directory_location  + "/sections/webhooks/sample_payloads/ruby_request.md"
     ]
 
-    with open(outfile, 'a') as outfile:
+    with open(outfile, 'a') as outfile: 
         outfile.truncate()
         for fname in file_ordering:
             if fname not in skip_client_scenarios:
@@ -114,102 +107,59 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, destination_fil
 
 # This method just takes all the snippet scenarios for a particular client language
 # and creates a file with just that languages specific requests
-def make_client_specific_scenarios():
+# def make_client_specific_scenarios():
 
-    for client in included_clients:
-        # all the file will be inserted into this array according to their ordering
-        file_ordering = []
-        snippet_directory_location = os.getcwd()
+#     for client in included_clients:
+#         # all the file will be inserted into this array according to their ordering
+#         file_ordering = []
+#         snippet_directory_location = os.getcwd()
 
-        outfile = os.getcwd() + '/client_specific_templates/' + client + '_template.md'
-        f = open(outfile, 'r+')
-        f.truncate()
+#         outfile = os.getcwd() + '/client_specific_templates/' + client + '_template.md'
+#         f = open(outfile, 'r+')
+#         f.truncate()
 
-        for resource in resource_ordering:
-            # iterate over the snippets in the resource directory
-            for snippet in snippets_by_resource[resource]:
+#         for resource in resource_ordering:
+#             # iterate over the snippets in the resource directory
+#             for snippet in snippets_by_resource[resource]:
 
-                if snippet == "definition":
-                    continue
-                else:
-                    file = snippet_directory_location  + "/sections/" + resource + "/" + snippet + "/" + client + "_request.md"
-                    file_ordering.append(file)
+#                 if snippet == "definition":
+#                     continue
+#                 else:
+#                     file = snippet_directory_location  + "/sections/" + resource + "/" + snippet + "/" + client + "_request.md"
+#                     file_ordering.append(file)
 
-        with open(outfile, 'a') as outfile:
-            outfile.truncate()
+#         with open(outfile, 'a') as outfile:
+#             outfile.truncate()
 
-            file = snippet_directory_location  + "/sections/client_header/" + client + ".md"
-            with open(file) as infile:
-                next(infile)
-                for line in infile:
-                    outfile.write
+#             file = snippet_directory_location  + "/sections/client_header/" + client + ".md"
+#             with open(file) as infile:
+#                 next(infile)
+#                 for line in infile:
+#                     outfile.write
 
-            for fname in file_ordering:
-                with open(fname) as infile:
-                    for line in infile:
-                        outfile.write(line)
-                outfile.write("\n")
+#             for fname in file_ordering:
+#                 with open(fname) as infile:
+#                     for line in infile:
+#                         outfile.write(line)
+#                 outfile.write("\n")
 
-def build_docs():
+def build_docs(config_file):
     
-    if config.crb_configs: 
-        # this generates a new version of the template for Non-Admins
-        make_all_doc_scenarios(crb_resource_ordering, crb_snippets_by_resource, '/full_docs_template.md')
+    # this generates a new version of the template for Non-Admins
+    make_all_doc_scenarios(config_file.resource_ordering, config_file.snippets_by_resource, config_file.included_clients, '/full_docs_template.md')
 
-        # this generates a new version of the template for Admins
-        make_all_doc_scenarios(crb_admin_resource_ordering, crb_admin_snippets_by_resource, '/full_admin_docs_template.md')
+    # this generates a new version of the template for Admins
+    make_all_doc_scenarios(config_file.admin_resource_ordering, config_file.admin_snippets_by_resource, config_file.included_clients, '/full_admin_docs_template.md')
 
-        # Create a set of docs for each Partner (i.e. finix customer)
-        for api_configs in crb_configs:
-            print "Building Docs for " + api_configs["api_name"]
-            template_variables = generate_template_variables(api_configs)
-            create_branded_markdown_docs(template_variables, 'full_docs_template.md')
-            create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
-    if config.payline_configs: 
-        # this generates a new version of the template for Non-Admins
-        make_all_doc_scenarios(payline_resource_ordering, payline_snippets_by_resource, '/full_docs_template.md')
-
-        # this generates a new version of the template for Admins
-        make_all_doc_scenarios(payline_admin_resource_ordering, payline_admin_snippets_by_resource, '/full_admin_docs_template.md')
-
-        # Create a set of docs for each Partner (i.e. finix customer)
-        for api_configs in payline_configs:
-            print "Building Docs for " + api_configs["api_name"]
-            template_variables = generate_template_variables(api_configs)
-            create_branded_markdown_docs(template_variables, 'full_docs_template.md')
-            create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
-
-    if config.simonpayments_configs: 
-        # this generates a new version of the template for Non-Admins
-        make_all_doc_scenarios(simon_resource_ordering, simon_snippets_by_resource, '/full_docs_template.md')
-
-        # this generates a new version of the template for Admins
-        make_all_doc_scenarios(simon_admin_resource_ordering, simon_admin_snippets_by_resource, '/full_admin_docs_template.md')
-
-        # Create a set of docs for each Partner (i.e. finix customer)
-        for api_configs in simon_configs:
-            print "Building Docs for " + api_configs["api_name"]
-            template_variables = generate_template_variables(api_configs)
-            create_branded_markdown_docs(template_variables, 'full_docs_template.md')
-            create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
-
-    if config.finix_configs:    
-        # this generates a new version of the template for Non-Admins
-        make_all_doc_scenarios(finix_resource_ordering, finix_snippets_by_resource, '/full_docs_template.md')
-
-        # this generates a new version of the template for Admins
-        make_all_doc_scenarios(finix_admin_resource_ordering, finix_admin_snippets_by_resource, '/full_admin_docs_template.md')
-
-        # Create a set of docs for each Partner (i.e. finix customer)
-        for api_configs in finix_configs:
-            print "Building Docs for " + api_configs["api_name"]
-            template_variables = generate_template_variables(api_configs)
-            create_branded_markdown_docs(template_variables, 'full_docs_template.md')
-            create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
-
-        # this generates the Client-library specific version of the snippets template which you can use to test the API calls
-        # make_client_specific_scenarios()
-        # create_client_specific_templates(template_variables)
+    # Create a set of docs for each Partner (i.e. finix customer)
+    # for api_configs in config_file.partner_configs:
+    print "Building Docs for " + config_file.partner_configs["api_name"]
+    template_variables = generate_template_variables(config_file.partner_configs)
+    create_branded_markdown_docs(template_variables, 'full_docs_template.md')
+    create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
+    # this generates the Client-library specific version of the snippets template which you can use to test the API calls
+    # make_client_specific_scenarios()
+    # create_client_specific_templates(template_variables)
 
 
 def generate_template_variables(config_values):
@@ -656,4 +606,7 @@ def generate_template_variables(config_values):
     return template_vars
 
 
-build_docs()
+build_docs(crb)
+build_docs(finix)
+build_docs(payline)
+build_docs(simonpayments)

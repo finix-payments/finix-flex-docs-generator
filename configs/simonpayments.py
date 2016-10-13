@@ -1,7 +1,6 @@
 import base64
 
-simon_configs = [
-    {
+partner_configs = {
         'api_name': "SimonPay",
         'api_name_downcase': "simonpay",
         'base_url': 'https://api-staging.simonpayments.com',
@@ -21,13 +20,13 @@ simon_configs = [
         'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/",
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/rserna2010/1626475h/",
-    },
-]
+    }
+
 
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
-simon_snippets_by_resource = {
+snippets_by_resource = {
     "applications": [
         "definition",
         "create_application",
@@ -157,7 +156,7 @@ simon_snippets_by_resource = {
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
-simon_admin_snippets_by_resource = {
+admin_snippets_by_resource = {
     "applications": [
         "definition",
         "fetch_application",
@@ -292,7 +291,7 @@ simon_admin_snippets_by_resource = {
     }
 
 # This is the order that the directories / guides will be concatinated
-simon_resource_ordering = [
+resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
@@ -309,7 +308,7 @@ simon_resource_ordering = [
 
 ]
 
-simon_admin_resource_ordering = [
+admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
@@ -334,8 +333,8 @@ simon_admin_resource_ordering = [
 
 
 # Determine which client libraries to include
-simon_included_clients = [
+included_clients = [
     "curl",
-    "php",
-    "java"
+    # "php",
+    # "java"
 ]
