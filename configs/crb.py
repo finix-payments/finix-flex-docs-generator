@@ -49,7 +49,7 @@ snippets_by_resource = {
         "definition",
         # "create_dispute",
         "fetch_dispute",
-        "list_disputes"
+        "list_disputes",
     ],
     "guide_admin_overview": [
         "definition",
@@ -119,7 +119,7 @@ snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        "fund_settlement",
+        # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -142,7 +142,7 @@ snippets_by_resource = {
         "create_merchant_user",
         "disable_user",
         "fetch_user",
-        "list_users"
+        "list_users",
     ],
     "webhooks": [
         "definition",
@@ -173,14 +173,14 @@ admin_snippets_by_resource = {
         "capture_authorization",
         "void_authorization",
         "fetch_authorization",
-        "list_authorizations"
+        "list_authorizations",
     ],
 
     "disputes": [
         "definition",
         # "create_dispute",
         "fetch_dispute",
-        "list_disputes"
+        "list_disputes",
     ],
     "guide_admin_overview": [
         "definition",

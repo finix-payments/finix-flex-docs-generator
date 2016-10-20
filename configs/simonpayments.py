@@ -18,8 +18,8 @@ partner_configs = {
         'identity_verification_processor': "DUMMY_V1",
         'application': None,
         'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/",
-        'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
-        'embedded_iframe_jsfiddle': "https://jsfiddle.net/rserna2010/1626475h/",
+        'embedded_iframe_src': "https://js.paymentsfnx.com/simon-payments/tokenize.js",
+        'embedded_iframe_jsfiddle': "https://jsfiddle.net/4urqd3tr/4/",
     }
 
 
@@ -120,7 +120,7 @@ snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        "fund_settlement",
+        # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -255,7 +255,7 @@ admin_snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        "fund_settlement",
+        # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
