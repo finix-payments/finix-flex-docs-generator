@@ -606,7 +606,12 @@ def generate_template_variables(config_values):
     return template_vars
 
 
-build_docs(crb)
-build_docs(finix)
-build_docs(payline)
-build_docs(simonpayments)
+# build_docs(crb)
+count = 0
+while (count < 20):
+   build_docs(finix)
+   count = count + 1
+
+
+# build_docs(payline)
+# build_docs(simonpayments)

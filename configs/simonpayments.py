@@ -80,7 +80,6 @@ snippets_by_resource = {
         "create_authorization",
         "capture_authorization",
         "create_batch_settlement",
-        # "fund_settlement",
         # "refund_debit"
     ],
     "guide_iframe": [
@@ -120,7 +119,7 @@ snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        # "fund_settlement",
+        "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -213,9 +212,8 @@ admin_snippets_by_resource = {
         "create_authorization",
         "capture_authorization",
         "create_batch_settlement",
-        # "fund_settlement",
         # "refund_debit"
-    ],
+        ],
     "guide_iframe": [
         "definition",
         "associate_token",
