@@ -85,7 +85,14 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "provision_merchant_account",
+        "send_to_recipient",
+        ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -218,6 +225,13 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "provision_merchant_account",
+        "send_to_recipient",
         ], 
     "identities": [
         "definition",
@@ -295,12 +309,13 @@ resource_ordering = [
     "guide_authentication",
     "guide_getting_started",
     "guide_iframe",
+    "guide_push_to_card",
     "authorizations",
     # "disputes",
     "identities",
     "merchants",
     "payment_instruments",
-    # # "identity_verifications",
+    # "identity_verifications",
     "settlements",
     "transfers",
     "webhooks",
@@ -312,6 +327,7 @@ admin_resource_ordering = [
     "guide_authentication",
     "guide_getting_started",
     "guide_iframe",
+    "guide_push_to_card",
     "guide_getting_started",
     "guide_admin_overview",
     "guide_create_application",

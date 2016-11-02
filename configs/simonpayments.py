@@ -1,8 +1,8 @@
 import base64
 
 partner_configs = {
-        'api_name': "SimonPay",
-        'api_name_downcase': "simonpay",
+        'api_name': "SimonPayments",
+        'api_name_downcase': "simonpayments",
         'base_url': 'https://api-staging.simonpayments.com',
         'admin_basic_auth_username': 'USkq2yiDni9oFNpcuRNDMPmA',
         'admin_basic_auth_password': 'b559b81b-5b6e-4e22-aba5-81fd12265314',
