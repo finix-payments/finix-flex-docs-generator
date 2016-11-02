@@ -169,7 +169,7 @@ def generate_template_variables(config_values):
     create_app_scenario = create_app(config_values, create_owner_user_scenario["response_id"], "LIMITED_LIABILITY_COMPANY")
     config_values["application"] = create_app_scenario["response_id"]
 
-    associate_dummyV1_payment_processor_scenario = associate_payment_processor(config_values, "DUMMY_V1")
+    # associate_dummyV1_payment_processor_scenario = associate_payment_processor(config_values, "DUMMY_V1")
     # associate_litleV1_payment_processor_scenario = associate_payment_processor(config_values, "LITLE_V1")
     # if config_values["payment_processor"] != "DUMMY_V1":
     #     associate_identity_verification_processor_scenario = associate_identity_verification_processor(config_values)
@@ -230,11 +230,11 @@ def generate_template_variables(config_values):
     fetch_webhook_scenario = fetch_webhook(config_values, create_webhook_scenario["response_id"])
 
     #Push-to-card Scenarios
-    associate_payment_processor_push_to_card_scenario = associate_payment_processor(config_values, "VISA_V1")    
-    create_recipient_identity_scenario = create_buyer_identity(config_values)
-    create_recipient_card_scenario = create_card(config_values, create_recipient_identity_scenario["response_id"])
-    create_recipient_push_to_card_transfer = create_push_to_card_transfer(config_values, create_recipient_identity_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
-    provision_merchant_account_scenario = provision_merchant(config_values, create_recipient_identity_scenario["response_id"])
+    # associate_payment_processor_push_to_card_scenario = associate_payment_processor(config_values, "VISA_V1")    
+    # create_recipient_identity_scenario = create_buyer_identity(config_values)
+    # create_recipient_card_scenario = create_card(config_values, create_recipient_identity_scenario["response_id"])
+    # create_recipient_push_to_card_transfer = create_push_to_card_transfer(config_values, create_recipient_identity_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
+
     # LIST
     list_authorizations_scenario = list_authorizations(config_values)
     list_disputes_scenario = list_disputes(config_values)
@@ -407,24 +407,20 @@ def generate_template_variables(config_values):
 
 
        #Push-to-card Scenarios
-       "create_recipient_identity_scenario_curl_request": create_recipient_identity_scenario["curl_request_body"],
-       "create_recipient_identity_scenario_php_request": create_recipient_identity_scenario["php_request_body"],
-       "create_recipient_identity_scenario_response": create_recipient_identity_scenario["response_body"],
-       "create_recipient_identity_scenario_id": create_recipient_identity_scenario["response_id"],
+       # "create_recipient_identity_scenario_curl_request": create_recipient_identity_scenario["curl_request_body"],
+       # "create_recipient_identity_scenario_php_request": create_recipient_identity_scenario["php_request_body"],
+       # "create_recipient_identity_scenario_response": create_recipient_identity_scenario["response_body"],
+       # "create_recipient_identity_scenario_id": create_recipient_identity_scenario["response_id"],
 
-       "create_recipient_card_scenario_curl_request": create_recipient_card_scenario["curl_request_body"],
-       "create_recipient_card_scenario_php_request": create_recipient_card_scenario["php_request_body"],
-       "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
-       "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
+       # "create_recipient_card_scenario_curl_request": create_recipient_card_scenario["curl_request_body"],
+       # "create_recipient_card_scenario_php_request": create_recipient_card_scenario["php_request_body"],
+       # "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
+       # "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
 
-       "provision_merchant_account_scenario_curl_request":  provision_merchant_account_scenario["curl_request_body"],
-       "provision_merchant_account_scenario_response": provision_merchant_account_scenario["response_body"],
-       "provision_merchant_account_scenario_id": provision_merchant_account_scenario["response_id"],
-       
-       "create_recipient_push_to_card_transfer_curl_request": create_recipient_push_to_card_transfer["curl_request_body"],
-       "create_recipient_push_to_card_transfer_php_request": create_recipient_push_to_card_transfer["php_request_body"],
-       "create_recipient_push_to_card_transfer_response": create_recipient_push_to_card_transfer["response_body"],
-       "create_recipient_push_to_card_transfer_id": create_recipient_push_to_card_transfer["response_id"],
+       # "create_recipient_push_to_card_transfer_curl_request": create_recipient_push_to_card_transfer["curl_request_body"],
+       # "create_recipient_push_to_card_transfer_php_request": create_recipient_push_to_card_transfer["php_request_body"],
+       # "create_recipient_push_to_card_transfer_response": create_recipient_push_to_card_transfer["response_body"],
+       # "create_recipient_push_to_card_transfer_id": create_recipient_push_to_card_transfer["response_id"],
 
         # TRANSFERS (Refunds) --------------------------------------------
 
@@ -610,5 +606,5 @@ def generate_template_variables(config_values):
     return template_vars
 
 
-build_docs(crb)
-build_docs(finix)
+
+build_docs(simonpayments)

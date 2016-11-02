@@ -1,8 +1,8 @@
 import base64
 
 partner_configs = {
-        'api_name': "SimonPay",
-        'api_name_downcase': "simonpay",
+        'api_name': "SimonPayments",
+        'api_name_downcase': "simonpayments",
         'base_url': 'https://api-staging.simonpayments.com',
         'admin_basic_auth_username': 'USkq2yiDni9oFNpcuRNDMPmA',
         'admin_basic_auth_password': 'b559b81b-5b6e-4e22-aba5-81fd12265314',
@@ -18,8 +18,8 @@ partner_configs = {
         'identity_verification_processor': "DUMMY_V1",
         'application': None,
         'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/",
-        'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
-        'embedded_iframe_jsfiddle': "https://jsfiddle.net/rserna2010/1626475h/",
+        'embedded_iframe_src': "https://js.paymentsfnx.com/simon-payments/tokenize.js",
+        'embedded_iframe_jsfiddle': "https://jsfiddle.net/4urqd3tr/4/",
     }
 
 
@@ -27,6 +27,9 @@ partner_configs = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
 snippets_by_resource = {
+    "api_endpoints_simon": [
+        "definition",
+    ],
     "applications": [
         "definition",
         "create_application",
@@ -80,7 +83,6 @@ snippets_by_resource = {
         "create_authorization",
         "capture_authorization",
         "create_batch_settlement",
-        # "fund_settlement",
         # "refund_debit"
     ],
     "guide_iframe": [
@@ -157,6 +159,9 @@ snippets_by_resource = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
 admin_snippets_by_resource = {
+    "api_endpoints_simon": [
+        "definition",
+    ],
     "applications": [
         "definition",
         "fetch_application",
@@ -213,9 +218,8 @@ admin_snippets_by_resource = {
         "create_authorization",
         "capture_authorization",
         "create_batch_settlement",
-        # "fund_settlement",
         # "refund_debit"
-    ],
+        ],
     "guide_iframe": [
         "definition",
         "associate_token",
@@ -255,7 +259,7 @@ admin_snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        "fund_settlement",
+        # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -295,6 +299,7 @@ resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints_simon",
     "guide_iframe",
     "authorizations",
     # "disputes",
@@ -312,6 +317,7 @@ admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints_simon",
     "guide_iframe",
     "guide_getting_started",
     "guide_admin_overview",

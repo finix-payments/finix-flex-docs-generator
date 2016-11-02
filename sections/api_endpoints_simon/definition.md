@@ -4,6 +4,6 @@ There are two different endpoints (base urls) that you can make API calls with. 
 
 The URLs are:
 
-Stage API: https://api-staging.finix.com/
+Stage API: https://api-staging.simonpayments.com/
 
-Production API: https://api.finix.com/
+Production API: https://simonpayments.com/

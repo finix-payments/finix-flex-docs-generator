@@ -26,6 +26,9 @@ partner_configs = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
 snippets_by_resource = {
+    "api_endpoints_crb":[
+        "definition",
+    ],
     "applications": [
         "definition",
         "create_application",
@@ -44,12 +47,11 @@ snippets_by_resource = {
         "fetch_authorization",
         "list_authorizations"
     ],
-
     "disputes": [
         "definition",
         # "create_dispute",
         "fetch_dispute",
-        "list_disputes"
+        "list_disputes",
     ],
     "guide_admin_overview": [
         "definition",
@@ -85,7 +87,14 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "provision_merchant_account",
+        "send_to_recipient",
+        ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -142,7 +151,7 @@ snippets_by_resource = {
         "create_merchant_user",
         "disable_user",
         "fetch_user",
-        "list_users"
+        "list_users",
     ],
     "webhooks": [
         "definition",
@@ -156,6 +165,9 @@ snippets_by_resource = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
 admin_snippets_by_resource = {
+    "api_endpoints_crb":[
+        "definition",
+    ],
     "applications": [
         "definition",
         "fetch_application",
@@ -173,14 +185,14 @@ admin_snippets_by_resource = {
         "capture_authorization",
         "void_authorization",
         "fetch_authorization",
-        "list_authorizations"
+        "list_authorizations",
     ],
 
     "disputes": [
         "definition",
         # "create_dispute",
         "fetch_dispute",
-        "list_disputes"
+        "list_disputes",
     ],
     "guide_admin_overview": [
         "definition",
@@ -218,6 +230,13 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "provision_merchant_account",
+        "send_to_recipient",
         ], 
     "identities": [
         "definition",
@@ -294,13 +313,15 @@ resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints_crb",
     "guide_iframe",
+    "guide_push_to_card",
     "authorizations",
     # "disputes",
     "identities",
     "merchants",
     "payment_instruments",
-    # # "identity_verifications",
+    # "identity_verifications",
     "settlements",
     "transfers",
     "webhooks",
@@ -311,7 +332,9 @@ admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints_crb",
     "guide_iframe",
+    "guide_push_to_card",
     "guide_getting_started",
     "guide_admin_overview",
     "guide_create_application",
