@@ -6,4 +6,4 @@ The URLs are:
 
 Stage API: https://api-staging.finix.com/
 
-Production API: https://finix.com/
+Production API: https://api.finix.com/
