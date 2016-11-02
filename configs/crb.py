@@ -26,6 +26,9 @@ partner_configs = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
 snippets_by_resource = {
+    "api_endpoints_crb":[
+        "definition",
+    ],
     "applications": [
         "definition",
         "create_application",
@@ -44,7 +47,6 @@ snippets_by_resource = {
         "fetch_authorization",
         "list_authorizations"
     ],
-
     "disputes": [
         "definition",
         # "create_dispute",
@@ -163,6 +165,9 @@ snippets_by_resource = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
 admin_snippets_by_resource = {
+    "api_endpoints_crb":[
+        "definition",
+    ],
     "applications": [
         "definition",
         "fetch_application",
@@ -308,6 +313,7 @@ resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints_crb",
     "guide_iframe",
     "guide_push_to_card",
     "authorizations",
@@ -326,6 +332,7 @@ admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints_crb",
     "guide_iframe",
     "guide_push_to_card",
     "guide_getting_started",
