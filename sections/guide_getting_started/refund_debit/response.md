@@ -10,7 +10,7 @@ the amount can be equal to or less than the original debit.
 
 #### HTTP Request
 
-`POST {{base_url}}/transfers/transfer_id/reversals`
+`POST {{staging_base_url}}/transfers/transfer_id/reversals`
 
 #### URL Parameters
 

@@ -8,7 +8,7 @@ Perform an identity verification check against a previously created Identity.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/identity_id/verifications`
+`POST {{staging_base_url}}/identities/identity_id/verifications`
 
 
 #### URL Parameters

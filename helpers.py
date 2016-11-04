@@ -7,7 +7,7 @@ import string
 import base64
 from urllib2 import Request, urlopen, HTTPError
 import json
-
+import finix
 
 def formatted_response(endpoint, values, encoded_auth, request_type=None):
     headers = {
@@ -34,6 +34,7 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
         return {'request_body': values,
                 'curl_request_body': values,
                 'php_request_body': format_php_request_body(values),
+                'python_request_body': format_python_request_body(values),
                 'response_body': response_body,
                 'response_id': response_id}
     else:
@@ -62,6 +63,13 @@ def format_php_request_body(string):
     string = string.replace(":", "=>")
     return string
 
+def format_python_request_body(string):
+    # import ipdb; ipdb.set_trace()
+    # string = string.replace("\"", "")
+    # string = string.replace("{", "")
+    # string = string.replace(": ", "= \"")
+    # string = string.replace("\n\t}", "\"")
+    return string
 
 def random_app_name():
     pay_facs = ["HyperWallet", "Venmo", "Square", "Paypal", "Dwolla", "WePay", "Facebook", "Google", "BrainTree"]

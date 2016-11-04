@@ -42,28 +42,16 @@ funds are disbursed to a debit card within 30 minutes or less.
 ```shell
 # With CURL, just supply your username as basic auth (-u) in the header of each request as follows:
 
-curl {{base_url}}/ \
+curl {{staging_base_url}}/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
 
-```
-```java
+from {{api_name_downcase}}.config import configure
+configure(root_url="{{staging_base_url}}", auth=("{{basic_auth_username}}", "{{basic_auth_password}}"))
 
 ```
 To communicate with the {{api_name}} API you'll need to authenticate your requests
@@ -85,80 +73,16 @@ any web service that connects buyers (i.e. customers) and sellers
 ### Step 1: Create an Identity for a Merchant
 
 ```shell
-curl {{base_url}}/identities \
+curl {{staging_base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_merchant_identity_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = new Identity({{create_merchant_identity_scenario_php_request}}
-);
-$identity = $identity->save();
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .businessName("business inc")
-        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
-        .doingBusinessAs("doingBusinessAs")
-        .phone("1234567890")
-        .businessPhone("+1 (408) 756-4497")
-        .taxId("123456789")
-        .businessTaxId("123456789")
-        .personalAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .businessAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .dob(DateOfBirth.builder()
-          .day(27)
-          .month(5)
-          .year(1978)
-          .build()
-        )
-        .settlementCurrency("USD")
-        .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1)
-        .mcc(7399)
-        .url("http://sample-entity.com")
-        .annualCardVolume(100)
-        .build()
-    )
-    .build()
-);
 ```
 > Example Response:
 
@@ -170,15 +94,15 @@ Before we can begin charging cards we'll need to provision a `Merchant` account 
 
 1. First, create an `Identity` resource with the merchant's underwriting and identity verification information
 
-    `POST {{base_url}}/identities/`
+    `POST {{staging_base_url}}/identities/`
 
 2. Second, create a `Payment Instrument` representing the merchant's bank account where processed funds will be settled (i.e. deposited)
 
-    `POST {{base_url}}/payment_instruments/`
+    `POST {{staging_base_url}}/payment_instruments/`
 
 3. Finally, provision the `Merchant` account
 
-    `POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+    `POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
 Let's start with the first step by creating an `Identity` resource. Each `Identity`
  represents either a `buyer` or a `merchant`. We use this resource to associate
@@ -192,7 +116,7 @@ reference later.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Business-specific Request Arguments
 
@@ -262,42 +186,15 @@ year | *integer*, **required** | Year of birth (4-digit)
 
 ### Step 2: Tokenize a Bank Account for Funding your Merchant
 ```shell
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_bank_account_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\PaymentInstrument;
-
-$bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
-$bank_account = $bank_account->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-bankAccount = client.bankAccountsClient().save(
-    BankAccount.builder()
-      .name("Joe-Doe")
-      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
-      .accountNumber("84012312415")
-      .bankCode("840123124")
-      .accountType(BankAccountType.SAVINGS)
-      .companyName("company name")
-      .country("USA")
-      .currency("USD")
-      .build()
-);
 
 
 ```
@@ -322,7 +219,7 @@ field to properly associate it with your merchant.
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 
@@ -337,30 +234,14 @@ name | *string*, **optional** | Account owner's full name
 ### Step 3: Provision Merchant Account
 
 ```shell
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
+curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{provision_merchant_scenario_curl_request}}'
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
-
-$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
-
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 
 ```
 > Example Response:
@@ -399,7 +280,7 @@ a Webhook to listen for the state change.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
 #### URL Parameters
 
@@ -410,42 +291,16 @@ Parameter | Description
 ### Step 4: Create an Identity for a Buyer
 ```shell
 
-curl {{base_url}}/identities \
+curl {{staging_base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_buyer_identity_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = new Identity({{create_buyer_identity_scenario_php_request}}
-);
-$identity = $identity->save();
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .build()
-    )
-    .build()
-);
 ```
 > Example Response:
 
@@ -467,7 +322,7 @@ with accounting, reconciliation, and chargebacks.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Request Arguments
 
@@ -495,41 +350,16 @@ country | *string*, **required** | 3-Letter Country code
 ```shell
 
 
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_card_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{create_card_scenario_php_request}});
-$card = $card->save();
+```python
 
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .name("Joe-Doe")
-    .identity("ID572pSyFj71oVExp6XWiGRP")
-    .expirationMonth(12)
-    .expirationYear(2030)
-    .number("4111 1111 1111 1111")
-    .securityCode("231")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -556,7 +386,7 @@ form](#embedded-tokenization-using-iframe)
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 
@@ -584,36 +414,15 @@ postal_code | *string*, **optional** | Zip or Postal code
 country | *string*, **optional** | 3-Letter Country code
 ### Step 6: Create an Authorization
 ```shell
-curl {{base_url}}/authorizations \
+curl {{staging_base_url}}/authorizations \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_authorization_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Authorization;
 
-$authorization = new Authorization({{create_authorization_scenario_php_request}});
-$authorization = $authorization->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().save(
-  Authorization.builder()
-    .amount(100L)
-    .merchantIdentity("IDrktKp2HNpogF3BWMmiSGrz")
-    .source("PIeffbMtvz2Hiy6dwBbaHhKq")
-    .build()
-);
 
 ```
 > Example Response:
@@ -656,7 +465,7 @@ If the transfer field of an Authorization is null it has not yet been captured.
 
 #### HTTP Request
 
-`POST {{base_url}}/authorizations`
+`POST {{staging_base_url}}/authorizations`
 
 #### Request Arguments
 
@@ -670,32 +479,15 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 
 ### Step 7: Capture the Authorization
 ```shell
-curl {{base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
+curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
     -d '{{capture_authorization_scenario_curl_request}}'
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Authorization;
 
-$authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-$authorization->capture_amount = 50;
-$authorization = $authorization->capture();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
-authorization = authorization.capture(50L);
 
 ```
 > Example Response:
@@ -724,7 +516,7 @@ Next we're going to show you how to settle out the funds to your merchant.
 
 #### HTTP Request
 
-`PUT {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`PUT {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -740,89 +532,18 @@ Field | Type | Description
 capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
 fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount
 
-### Step 8: Create a Batch Settlment
-```shell
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_settlement_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\Settlement;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$settlement = $identity->createSettlement({{create_settlement_scenario_php_request}});
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
-
-Settlement settlement = identity.createSettlement(
-  Settlement.builder()
-    .currency("USD")
-    .build()
-)
-
-```
-> Example Response:
-
-```json
-{{create_settlement_scenario_response}}
-```
-
-Awesome! Now you know how to charge a card. Next you need to settle out the
-funds to your merchant's bank account (i.e. issue an ACH Credit). To do so you
-will create a `Settlement` resource. A `Settlement` is a logical construct
-representing a collection (i.e. batch) of `Transfers` that are intended to be
-paid out to a specific `Merchant`.
-
-
-Each settlement is comprised of all the `Transfers` that have a SUCCEEDED `state` and
-that have not yet been previously settled out. In other words, if a merchant has a
-`Transfer` in the PENDING state it will not be included in the batch settlement.
-In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
-
-<aside class="notice">
-Once a batch Settlement has been created it will undergo review and typically
-paid out within 24 hours.
-</aside>
-
-Note, that for reconciliation purposes each `Settlement` contains a [transfers
-link](#list-transfers-in-a-settlement) which returns a list of all the
-`Transfers` that comprise the batch.
-
-#### HTTP Request
-
-`POST {{base_url}}/identities/:IDENTITY_ID/settlements`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
 ## API Endpoints
 
-There are two different endpoints (base urls) that you can make API calls with. "Stage" if you are testing, and "Production" for when your application is ready to go live.
+We provide two distinct base urls for making API requests depending on
+whether you would like to utilize the sandbox or production environments. These
+two environments are completely seperate and share no information, including
+API credentials. For testing please use the Staging API and when you are ready to
+ process live transactions use the Production endpoint.
 
-The URLs are:
+- **Staging API:** {{staging_base_url}}
 
-Stage API: https://api-staging.payline.com/
+- **Production API:** {{production_base_url}}
 
-Production API: https://payline.com/
 ## Embedded Tokenization Using Iframe
 
 Our embedded tokenization form ensures you remain out of PCI scope, while providing
@@ -902,36 +623,16 @@ HTTPS request on your back-end for future use.
 
 ### Step 4: Associate the Token
 ```shell
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{associate_token_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\PaymentInstrument;
 
-$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
-$card = $card->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .token("TKkvwumxCgq5E8uTKyq96dta")
-    .type("TOKEN")
-    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -949,7 +650,7 @@ of creation will be invalidated.
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 
 #### Request Arguments
@@ -961,84 +662,196 @@ type | *string*, **required** | Must pass TOKEN as the value
 identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
 
 
+## Push-to-Card [PRIVATE BETA]
+### Step 1: Register an Identity
+```shell
+curl {{staging_base_url}}/identities \
+    -H "Content-Type: application/vnd.json+api" \
+    -u {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_recipient_identity_scenario_curl_request}}'
+```
+```python
+
+
+
+```
+> Example Response:
+
+```json
+{{create_recipient_identity_scenario_response}}
+```
+
+Use the resulting ID of the newly created Identity to associate any transfers or payment instruments that are used. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/identities`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+first_name | *string*, **optional** | First name
+last_name | *string*, **optional** | Last name
+email | *string*, **optional** | Email
+phone | *string*, **optional** | Phone number
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+personal_address | *object*, **optional** | Customers shipping address or billing address (Full description of child attributes below)
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **required** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **required** | City
+region | *string*, **required** | State
+postal_code | *string*, **required** | Zip or Postal code
+country | *string*, **required** | 3-Letter Country code
+
+### Step 2:  Add a Payment Instrument
+
+```shell
+curl {{staging_base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_recipient_card_scenario_curl_request}}'
+```
+```python
+
+
+
+```
+> Example Response:
+
+```json
+{{create_recipient_card_scenario_response}}
+```
+
+<aside class="warning">
+Please note that creating cards directly via the API should only be done for
+testing purposes. You must use the Tokenization iframe or javascript client
+to remain out of PCI scope.
+</aside>
+
+Again, keep track of the ID of the newly created payment instrument. This is used to determine the destination of funds when sending money.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/payment_instruments`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+identity | *string*, **required** | ID of the `Identity` that the card should be associated
+type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | 4-digit expiration year
+name | *string*, **optional** | Full name of the registered card holder
+address | *object*, **optional** | Billing address (Full description of child attributes below)
+
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **optional** | First line of the address
+line2 | *string*, **optional** | Second line of the address
+city | *string*, **optional** | City
+region | *string*, **optional** | State
+postal_code | *string*, **optional** | Zip or Postal code
+country | *string*, **optional** | 3-Letter Country code
+
+### Step 3: Provision Merchant Account
+```shell
+curl https://api-staging.finix.io/identities/'{{provision_merchant_account_scenario_id}}'/merchants \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{provision_merchant_account_scenario_curl_request}}'
+```
+```python
+
+
+
+```
+> Example Response:
+
+```json
+{{create_recipient_push_to_card_transfer_response}}
+```
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/identities/identityID/merchants`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+processor| *string*, **optional** | Nmae of Processor
+
+
+### Step 4: Send Payout
+
+Once you have tokenized the payment card as above you can send funds to it at any time by simply calling the API
+
+
+```shell
+curl {{staging_base_url}}/transfers \
+    -H "Content-Type: application/vnd.json+api" \
+    -u {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_recipient_push_to_card_transfer_curl_request}}'
+
+```
+```python
+
+
+
+```
+> Example Response:
+
+```json
+{{create_recipient_push_to_card_transfer_response}}
+```
+
+Now that we have a new owner `User` let's create their `Application`. We'll be
+collecting the same basic KYC and underwrting information that we typically
+collect for provisioning a merchant account. You'll also be taking the ID for the
+`User` that you created in the previous step and passing it in the `user` field.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/transfers`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+destination | *string*, **required** | ID of the `Payment Instrument` where funds will be sent
+merchant_identity | *string*, **required** | `Identity` ID of the recipient of whom you're sending the money to
+amount | *integer*, **required** | The total amount that will be charged in cents (e.g. 100 cents to charge $1.00)
+currency | *string*, **required** | 3-letter ISO code designating the currency of the `Transfers` (e.g. USD)
+statement_descriptor | *string*, **required** | Description that will show up on card statement 
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+
+
 ## Getting Started
 ### Step 1: Create an Identity for a Merchant
 
 ```shell
-curl {{base_url}}/identities \
+curl {{staging_base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_merchant_identity_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = new Identity({{create_merchant_identity_scenario_php_request}}
-);
-$identity = $identity->save();
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .businessName("business inc")
-        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
-        .doingBusinessAs("doingBusinessAs")
-        .phone("1234567890")
-        .businessPhone("+1 (408) 756-4497")
-        .taxId("123456789")
-        .businessTaxId("123456789")
-        .personalAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .businessAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .dob(DateOfBirth.builder()
-          .day(27)
-          .month(5)
-          .year(1978)
-          .build()
-        )
-        .settlementCurrency("USD")
-        .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1)
-        .mcc(7399)
-        .url("http://sample-entity.com")
-        .annualCardVolume(100)
-        .build()
-    )
-    .build()
-);
 ```
 > Example Response:
 
@@ -1050,15 +863,15 @@ Before we can begin charging cards we'll need to provision a `Merchant` account 
 
 1. First, create an `Identity` resource with the merchant's underwriting and identity verification information
 
-    `POST {{base_url}}/identities/`
+    `POST {{staging_base_url}}/identities/`
 
 2. Second, create a `Payment Instrument` representing the merchant's bank account where processed funds will be settled (i.e. deposited)
 
-    `POST {{base_url}}/payment_instruments/`
+    `POST {{staging_base_url}}/payment_instruments/`
 
 3. Finally, provision the `Merchant` account
 
-    `POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+    `POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
 Let's start with the first step by creating an `Identity` resource. Each `Identity`
  represents either a `buyer` or a `merchant`. We use this resource to associate
@@ -1072,7 +885,7 @@ reference later.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Business-specific Request Arguments
 
@@ -1142,42 +955,15 @@ year | *integer*, **required** | Year of birth (4-digit)
 
 ### Step 2: Tokenize a Bank Account for Funding your Merchant
 ```shell
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_bank_account_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\PaymentInstrument;
-
-$bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
-$bank_account = $bank_account->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-bankAccount = client.bankAccountsClient().save(
-    BankAccount.builder()
-      .name("Joe-Doe")
-      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
-      .accountNumber("84012312415")
-      .bankCode("840123124")
-      .accountType(BankAccountType.SAVINGS)
-      .companyName("company name")
-      .country("USA")
-      .currency("USD")
-      .build()
-);
 
 
 ```
@@ -1202,7 +988,7 @@ field to properly associate it with your merchant.
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 
@@ -1217,30 +1003,14 @@ name | *string*, **optional** | Account owner's full name
 ### Step 3: Provision Merchant Account
 
 ```shell
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
+curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{provision_merchant_scenario_curl_request}}'
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
-
-$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
-
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 
 ```
 > Example Response:
@@ -1279,7 +1049,7 @@ a Webhook to listen for the state change.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
 #### URL Parameters
 
@@ -1290,42 +1060,16 @@ Parameter | Description
 ### Step 4: Create an Identity for a Buyer
 ```shell
 
-curl {{base_url}}/identities \
+curl {{staging_base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_buyer_identity_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = new Identity({{create_buyer_identity_scenario_php_request}}
-);
-$identity = $identity->save();
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .build()
-    )
-    .build()
-);
 ```
 > Example Response:
 
@@ -1347,7 +1091,7 @@ with accounting, reconciliation, and chargebacks.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Request Arguments
 
@@ -1375,41 +1119,16 @@ country | *string*, **required** | 3-Letter Country code
 ```shell
 
 
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_card_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{create_card_scenario_php_request}});
-$card = $card->save();
+```python
 
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .name("Joe-Doe")
-    .identity("ID572pSyFj71oVExp6XWiGRP")
-    .expirationMonth(12)
-    .expirationYear(2030)
-    .number("4111 1111 1111 1111")
-    .securityCode("231")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -1436,7 +1155,7 @@ form](#embedded-tokenization-using-iframe)
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 
@@ -1464,36 +1183,15 @@ postal_code | *string*, **optional** | Zip or Postal code
 country | *string*, **optional** | 3-Letter Country code
 ### Step 6: Create an Authorization
 ```shell
-curl {{base_url}}/authorizations \
+curl {{staging_base_url}}/authorizations \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_authorization_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Authorization;
 
-$authorization = new Authorization({{create_authorization_scenario_php_request}});
-$authorization = $authorization->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().save(
-  Authorization.builder()
-    .amount(100L)
-    .merchantIdentity("IDrktKp2HNpogF3BWMmiSGrz")
-    .source("PIeffbMtvz2Hiy6dwBbaHhKq")
-    .build()
-);
 
 ```
 > Example Response:
@@ -1536,7 +1234,7 @@ If the transfer field of an Authorization is null it has not yet been captured.
 
 #### HTTP Request
 
-`POST {{base_url}}/authorizations`
+`POST {{staging_base_url}}/authorizations`
 
 #### Request Arguments
 
@@ -1550,32 +1248,15 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 
 ### Step 7: Capture the Authorization
 ```shell
-curl {{base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
+curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
     -d '{{capture_authorization_scenario_curl_request}}'
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Authorization;
 
-$authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-$authorization->capture_amount = 50;
-$authorization = $authorization->capture();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
-authorization = authorization.capture(50L);
 
 ```
 > Example Response:
@@ -1604,7 +1285,7 @@ Next we're going to show you how to settle out the funds to your merchant.
 
 #### HTTP Request
 
-`PUT {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`PUT {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -1619,80 +1300,6 @@ Field | Type | Description
 ----- | ---- | -----------
 capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
 fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount
-
-### Step 8: Create a Batch Settlment
-```shell
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_settlement_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\Settlement;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$settlement = $identity->createSettlement({{create_settlement_scenario_php_request}});
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
-
-Settlement settlement = identity.createSettlement(
-  Settlement.builder()
-    .currency("USD")
-    .build()
-)
-
-```
-> Example Response:
-
-```json
-{{create_settlement_scenario_response}}
-```
-
-Awesome! Now you know how to charge a card. Next you need to settle out the
-funds to your merchant's bank account (i.e. issue an ACH Credit). To do so you
-will create a `Settlement` resource. A `Settlement` is a logical construct
-representing a collection (i.e. batch) of `Transfers` that are intended to be
-paid out to a specific `Merchant`.
-
-
-Each settlement is comprised of all the `Transfers` that have a SUCCEEDED `state` and
-that have not yet been previously settled out. In other words, if a merchant has a
-`Transfer` in the PENDING state it will not be included in the batch settlement.
-In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
-
-<aside class="notice">
-Once a batch Settlement has been created it will undergo review and typically
-paid out within 24 hours.
-</aside>
-
-Note, that for reconciliation purposes each `Settlement` contains a [transfers
-link](#list-transfers-in-a-settlement) which returns a list of all the
-`Transfers` that comprise the batch.
-
-#### HTTP Request
-
-`POST {{base_url}}/identities/:IDENTITY_ID/settlements`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
 # Admin Guides
 
@@ -1726,23 +1333,15 @@ Only a User with ROLE_PLATFORM level credentials can perform these requests.
 
 ### Step 1: Create a new User
 ```shell
-curl {{base_url}}/users \
+curl {{staging_base_url}}/users \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}} \
     -d '{{create_owner_user_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -1760,7 +1359,7 @@ The keys will be associated in the next step.
 
 #### HTTP Request
 
-`POST {{base_url}}/users`
+`POST {{staging_base_url}}/users`
 
 #### Request Arguments
 
@@ -1770,26 +1369,15 @@ role | *string*, **required** | Permission level of the user (use ROLE_PARTNER w
 
 ### Step 2: Create the Application
 ```shell
-curl {{base_url}}/applications/ \
+curl {{staging_base_url}}/applications/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}} \
     -d '{{create_app_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Application;
 
-$application = new Application({{create_app_scenario_php_request}});
-$application = $application->save();
-```
-```java
 
 ```
 > Example Response:
@@ -1811,7 +1399,7 @@ Only a User with ROLE_PLATFORM level credentials can create a new Application.
 
 #### HTTP Request
 
-`POST {{base_url}}/applications`
+`POST {{staging_base_url}}/applications`
 
 #### User-specific Request Arguments
 
@@ -1887,23 +1475,15 @@ month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
 ### Step 3: Enable a Processor
 ```shell
-curl {{base_url}}/applications/{{create_app_scenario_id}}/processors \
+curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/processors \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}} \
     -d '{{associate_dummyV1_payment_processor_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -1933,7 +1513,7 @@ The DUMMY_V1 processor should not be provisioned on production level Application
 
 #### HTTP Request
 
-`POST {{base_url}}/applications/:APPLICATION_ID/processors`
+`POST {{staging_base_url}}/applications/:APPLICATION_ID/processors`
 
 #### URL Parameters
 
@@ -1943,24 +1523,16 @@ Parameter | Description
 
 ### Step 4: Enable Processing Functionality
 ```shell
-curl {{base_url}}/applications/{{fetch_application_scenario_id}}/ \
+curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
     -X PUT \
     -d '{{toggle_on_application_processing_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -1976,7 +1548,7 @@ risk management.
 
 #### HTTP Request
 
-`PUT {{base_url}}/applications/:APPLICATION_ID`
+`PUT {{staging_base_url}}/applications/:APPLICATION_ID`
 
 #### URL Parameters
 
@@ -1992,24 +1564,16 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | True to enable
 ### Step 4: Enable Settlement Functionality
 ```shell
-curl {{base_url}}/applications/{{fetch_application_scenario_id}}/ \
+curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
     -X PUT \
     -d '{{toggle_on_application_settlements_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -2029,7 +1593,7 @@ request.
 
 #### HTTP Request
 
-`PUT {{base_url}}/applications/:APPLICATION_ID`
+`PUT {{staging_base_url}}/applications/:APPLICATION_ID`
 
 #### URL Parameters
 
@@ -2138,7 +1702,7 @@ Please refrain from hosting the tokenization.js library locally as doing so prev
 ```javascript
 var initTokenization = function() {
   Tokenization.init({
-    server: "{{base_url}}",
+    server: "{{staging_base_url}}",
     applicationId: "{{create_app_scenario_id}}",
     hosted_fields: {
       card: {
@@ -2271,35 +1835,15 @@ Great now that you have created a token you will want to store that ID to utiliz
 
 ### Step 6: Associate to an Identity
 ```shell
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{associate_token_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\PaymentInstrument;
 
-$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
-$card = $card->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .token("TKkvwumxCgq5E8uTKyq96dta")
-    .type("TOKEN")
-    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -2320,7 +1864,7 @@ of creation will be invalidated.
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 
 #### Request Arguments
@@ -2341,25 +1885,14 @@ customers) and sellers (i.e. merchants).
 
 ## Fetch an Application
 ```shell
-curl {{base_url}}/applications/{{fetch_application_scenario_id}} \
+curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Application;
 
-$application = Application::retrieve('{{fetch_application_scenario_id}}');
-
-```
-```java
 
 ```
 > Example Response:
@@ -2370,7 +1903,7 @@ $application = Application::retrieve('{{fetch_application_scenario_id}}');
 
 #### HTTP Request
 
-`GET {{base_url}}/applications/:APPLICATION_ID`
+`GET {{staging_base_url}}/applications/:APPLICATION_ID`
 
 #### URL Parameters
 
@@ -2380,27 +1913,15 @@ Parameter | Description
 
 
 ```shell
-curl {{base_url}}/applications/ \
+curl {{staging_base_url}}/applications/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}} \
     -d '{{create_app_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Application;
 
-$application = new Application({{create_app_scenario_php_request}});
-$application = $application->save();
-
-```
-```java
 
 ```
 > Example Response:
@@ -2415,7 +1936,7 @@ Only a User with ROLE_PLATFORM level credentials can create a new Application.
 
 #### HTTP Request
 
-`POST {{base_url}}/applications`
+`POST {{staging_base_url}}/applications`
 
 #### User-specific Request Arguments
 
@@ -2491,24 +2012,16 @@ month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
 ## Disable Processing Functionality
 ```shell
-curl {{base_url}}/applications/{{fetch_application_scenario_id}}/ \
+curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
     -X PUT \
     -d '{{toggle_application_processing_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -2521,7 +2034,7 @@ Disable an `Applications's` ability to create new `Transfers` and `Authorization
 
 #### HTTP Request
 
-`PUT {{base_url}}/applications/:APPLICATION_ID`
+`PUT {{staging_base_url}}/applications/:APPLICATION_ID`
 
 #### URL Parameters
 
@@ -2537,24 +2050,16 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | False to disable
 ## Disable Settlement Functionality
 ```shell
-curl {{base_url}}/applications/{{fetch_application_scenario_id}}/ \
+curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
     -X PUT \
     -d '{{toggle_application_settlements_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -2567,7 +2072,7 @@ Disable an `Applications's` ability to create new `Settlements`
 
 #### HTTP Request
 
-`PUT {{base_url}}/applications/:APPLICATION_ID`
+`PUT {{staging_base_url}}/applications/:APPLICATION_ID`
 
 #### URL Parameters
 
@@ -2582,23 +2087,15 @@ Field | Type | Description
 settlement_enabled | *boolean*, **required** | False to disable
 ## Create an Application User
 ```shell
-curl {{base_url}}/applications/{{create_app_scenario_id}}/users \
+curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/users \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -2618,7 +2115,7 @@ access to the API.
 
 #### HTTP Request
 
-`POST {{base_url}}/applications/:APPLICATION_ID/users`
+`POST {{staging_base_url}}/applications/:APPLICATION_ID/users`
 
 #### URL Parameters
 
@@ -2628,23 +2125,15 @@ Parameter | Description
 
 ## [ADMIN] Enable the Dummy Processor (i.e. Sandbox)
 ```shell
-curl {{base_url}}/applications/{{create_app_scenario_id}}/processors \
+curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/processors \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}} \
     -d '{{associate_dummyV1_payment_processor_scenario_curl_request}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -2669,7 +2158,7 @@ the example to the right.
 
 #### HTTP Request
 
-`POST {{base_url}}/applications/:APPLICATION_ID/processors`
+`POST {{staging_base_url}}/applications/:APPLICATION_ID/processors`
 
 #### URL Parameters
 
@@ -2679,22 +2168,14 @@ Parameter | Description
 
 ## [ADMIN] List all Applications
 ```shell
-curl {{base_url}}/applications/ \
+curl {{staging_base_url}}/applications/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -2705,7 +2186,7 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 #### HTTP Request
 
-`GET {{base_url}}/applications/`
+`GET {{staging_base_url}}/applications/`
 
 
 # Authorizations
@@ -2718,37 +2199,14 @@ When an `Authorization` is captured it produces a `Transfer` resource.
 
 
 ```shell
-curl {{base_url}}/authorizations \
+curl {{staging_base_url}}/authorizations \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_authorization_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Authorization;
-
-$authorization = new Authorization({{create_authorization_scenario_php_request}});
-$authorization = $authorization->save();
-
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().save(
-  Authorization.builder()
-    .amount(100L)
-    .merchantIdentity("IDrktKp2HNpogF3BWMmiSGrz")
-    .source("PIeffbMtvz2Hiy6dwBbaHhKq")
-    .build()
-);
 
 
 ```
@@ -2776,7 +2234,7 @@ If the transfer field of an Authorization is null it has not yet been captured.
 
 #### HTTP Request
 
-`POST {{base_url}}/authorizations`
+`POST {{staging_base_url}}/authorizations`
 
 #### Request Arguments
 
@@ -2789,33 +2247,16 @@ currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 ## Capture an Authorization
 ```shell
-curl {{base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
+curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
     -d '{{capture_authorization_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Authorization;
 
-$authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-$authorization->capture_amount = 50;
-$authorization = $authorization->capture();
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
-authorization = authorization.capture(50L);
 
 ```
 > Example Response:
@@ -2834,7 +2275,7 @@ the state of the `Transfer` will update to SUCCEEDED.
 
 #### HTTP Request
 
-`PUT {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`PUT {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -2853,24 +2294,16 @@ fee | *integer*, **optional** | Amount of the captured `Authorization` you would
 ## Void an Authorization
 ```shell
 
-curl {{base_url}}/authorizations/{{void_authorization_scenario_id}} \
+curl {{staging_base_url}}/authorizations/{{void_authorization_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
     -d '{{void_authorization_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -2884,7 +2317,7 @@ Cancels the `Authorization` thereby releasing the funds. After voiding an
 
 #### HTTP Request
 
-`PUT {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`PUT {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -2902,29 +2335,14 @@ void_me | *boolean*, **required** | Set to True to void the `Authorization`
 ## Retrieve an Authorization
 ```shell
 
-curl {{base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
+curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Authorization;
 
-$authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
 
 ```
 > Example Response:
@@ -2935,7 +2353,7 @@ Authorization authorization = client.authorizationsClient().fetch("{{fetch_autho
 
 #### HTTP Request
 
-`GET {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`GET {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 
@@ -2946,29 +2364,15 @@ Parameter | Description
 
 ## List all Authorizations
 ```shell
-curl {{base_url}}/authorizations/ \
+curl {{staging_base_url}}/authorizations/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
-import io.payline.payments.processing.client.model.Authorization;
 
-client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
-  .forEachRemaining(page-> {
-    Collection<Authorization> authorizations = page.getContent();
-    //do something
-  });
 ```
 > Example Response:
 
@@ -2978,7 +2382,7 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
 
 #### HTTP Request
 
-`GET {{base_url}}/authorizations/`
+`GET {{staging_base_url}}/authorizations/`
 
 # Identities
 
@@ -2997,42 +2401,15 @@ information for the business and its principal.
 ```shell
 
 
-curl {{base_url}}/identities \
+curl {{staging_base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_buyer_identity_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = new Identity({{create_buyer_identity_scenario_php_request}}
-);
-$identity = $identity->save();
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .build()
-    )
-    .build()
-);
 
 ```
 > Example Response:
@@ -3044,7 +2421,7 @@ All fields for a buyer's Identity are optional. However, a business_type field s
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Request Arguments
 
@@ -3066,81 +2443,15 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 ```shell
 
 
-curl {{base_url}}/identities \
+curl {{staging_base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_merchant_identity_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = new Identity({{create_merchant_identity_scenario_php_request}}
-);
-$identity = $identity->save();
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .businessName("business inc")
-        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
-        .doingBusinessAs("doingBusinessAs")
-        .phone("1234567890")
-        .businessPhone("+1 (408) 756-4497")
-        .taxId("123456789")
-        .businessTaxId("123456789")
-        .personalAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .businessAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .dob(DateOfBirth.builder()
-          .day(27)
-          .month(5)
-          .year(1978)
-          .build()
-        )
-        .settlementCurrency("USD")
-        .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1)
-        .mcc(7399)
-        .url("http://sample-entity.com")
-        .annualCardVolume(100)
-        .build()
-    )
-    .build()
-);
 
 ```
 > Example Response:
@@ -3165,7 +2476,7 @@ merchant's bank account where processed funds will be settled (i.e. deposited)
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Business-specific Request Arguments
 
@@ -3235,28 +2546,14 @@ year | *integer*, **required** | Year of birth (4-digit)
 ## Retrieve a Identity
 ```shell
 
-curl {{base_url}}/identities/{{fetch_identity_scenario_id}} \
+curl {{staging_base_url}}/identities/{{fetch_identity_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().fetch("{{fetch_identity_scenario_id}}");
 
 ```
 > Example Response:
@@ -3267,7 +2564,7 @@ Identity identity = client.identitiesClient().fetch("{{fetch_identity_scenario_i
 
 #### HTTP Request
 
-`GET {{base_url}}/identities/:IDENTITY_ID`
+`GET {{staging_base_url}}/identities/:IDENTITY_ID`
 
 #### URL Parameters
 
@@ -3277,24 +2574,16 @@ Parameter | Description
 
 ## Update an Identity
 ```shell
-curl {{base_url}}/identities/{{update_identity_scenario_id}} \
+curl {{staging_base_url}}/identities/{{update_identity_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
     -d '{{update_identity_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3317,7 +2606,7 @@ information on the underlying processor. To update the merchant's information
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Business-specific Request Arguments
 
@@ -3384,30 +2673,15 @@ month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
 ## List all Identities
 ```shell
-curl {{base_url}}/identities/ \
+curl {{staging_base_url}}/identities/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-client.identitiesClient().<Resources<Identity>>resourcesIterator()
-  .forEachRemaining(page -> {
-    Collection<Identity> identities = page.getContent();
-    //do something
-  });
 
 ```
 > Example Response:
@@ -3418,7 +2692,7 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
 
 #### HTTP Request
 
-`GET {{base_url}}/identities/`
+`GET {{staging_base_url}}/identities/`
 
 
 # Merchants
@@ -3428,31 +2702,15 @@ customers) and sellers (i.e. merchants).
 
 ## Provision a Merchant
 ```shell
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
+curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/merchants \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{provision_merchant_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Identity;
 
-$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
-
-$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
-
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 
 ```
 > Example Response:
@@ -3494,7 +2752,7 @@ Provisioning a `Merchant` account is an asynchronous request. We recommend creat
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
 #### URL Parameters
 
@@ -3504,28 +2762,14 @@ Parameter | Description
 
 ## Retrieve a Merchant
 ```shell
-curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}} \
+curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Merchant;
 
-$merchant = Merchant::retrieve('{{fetch_merchant_scenario_id}}');
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
-
-Merchant merchant = client.merchantsClient().fetch("{{fetch_merchant_scenario_id}}");
 
 ```
 > Example Response:
@@ -3536,7 +2780,7 @@ Merchant merchant = client.merchantsClient().fetch("{{fetch_merchant_scenario_id
 
 #### HTTP Request
 
-`GET {{base_url}}/merchants/:MERCHANT_ID`
+`GET {{staging_base_url}}/merchants/:MERCHANT_ID`
 
 #### URL Parameters
 
@@ -3546,23 +2790,15 @@ Parameter | Description
 
 ## Update Info on Processor
 ```shell
-curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
+curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3576,7 +2812,7 @@ on the underlying processor.
 
 #### HTTP Request
 
-`POST {{base_url}}/merchants/:MERCHANT_ID/verifications`
+`POST {{staging_base_url}}/merchants/:MERCHANT_ID/verifications`
 
 #### URL Parameters
 
@@ -3586,22 +2822,14 @@ Parameter | Description
 
 ## Reattempt Merchant Provisioning
 ```shell
-curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
+curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{}'
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3615,7 +2843,7 @@ returned a FAILED `onboarding_state`.
 
 #### HTTP Request
 
-`POST {{base_url}}/merchants/:MERCHANT_ID/verifications`
+`POST {{staging_base_url}}/merchants/:MERCHANT_ID/verifications`
 
 #### URL Parameters
 
@@ -3625,24 +2853,16 @@ Parameter | Description
 
 ## Disable Processing Functionality
 ```shell
-curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/ \
+curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}} \
     -X PUT \
     -d '{{toggle_merchant_processing_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3655,7 +2875,7 @@ Disable a `Merchant's` ability to create new `Transfers` and `Authorizations`
 
 #### HTTP Request
 
-`PUT {{base_url}}/merchants/:MERCHANT_ID`
+`PUT {{staging_base_url}}/merchants/:MERCHANT_ID`
 
 #### URL Parameters
 
@@ -3671,24 +2891,16 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | False to disable
 ## Disable Settlement Functionality
 ```shell
-curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/ \
+curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}} \
     -X PUT \
     -d '{{toggle_merchant_settlements_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3700,7 +2912,7 @@ Disable a `Merchant's` ability to create new `Settlements`
 
 #### HTTP Request
 
-`PUT {{base_url}}/merchants/:MERCHANT_ID`
+`PUT {{staging_base_url}}/merchants/:MERCHANT_ID`
 
 #### URL Parameters
 
@@ -3716,22 +2928,14 @@ Field | Type | Description
 settlement_enabled | *boolean*, **required** | False to disable
 ## List all Merchants
 ```shell
-curl {{base_url}}/merchants/ \
+curl {{staging_base_url}}/merchants/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3742,26 +2946,18 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 #### HTTP Request
 
-`GET {{base_url}}/merchants/`
+`GET {{staging_base_url}}/merchants/`
 
 ## List Merchant Verifications
 ```shell
-curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
+curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3774,7 +2970,7 @@ Retrieve all attempts to onboard (i.e. provision) a merchant onto a processor.
 
 #### HTTP Request
 
-`GET {{base_url}}/merchants/:MERCHANT_ID/verifications`
+`GET {{staging_base_url}}/merchants/:MERCHANT_ID/verifications`
 
 #### URL Parameters
 
@@ -3787,22 +2983,14 @@ Parameter | Description
 
 ## [ADMIN] List Merchant Verifications
 ```shell
-curl {{base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
+curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3819,7 +3007,7 @@ Only `Users` with ROLE_PLATFORM permissions can view the `message` and `raw`
 
 #### HTTP Request
 
-`GET {{base_url}}/merchants/:MERCHANT_ID/verifications`
+`GET {{staging_base_url}}/merchants/:MERCHANT_ID/verifications`
 
 #### URL Parameters
 
@@ -3830,23 +3018,15 @@ Parameter | Description
 
 ## Create a Merchant User
 ```shell
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/users \
+curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/users \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -3865,7 +3045,7 @@ access to the API.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/users`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/users`
 
 #### URL Parameters
 
@@ -3961,35 +3141,14 @@ HTTPS request on your back-end for future use.
 ```
 
 ```shell
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{associate_token_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
-$card = $card->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .token("TKkvwumxCgq5E8uTKyq96dta")
-    .type("TOKEN")
-    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
 
 
 ```
@@ -4013,7 +3172,7 @@ of creation will be invalidated.
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 
 #### Request Arguments
@@ -4026,36 +3185,16 @@ identity | *string*, **required**| ID for the `Identity` resource which the acco
 
 ## Associate a Token
 ```shell
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{associate_token_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\PaymentInstrument;
 
-$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
-$card = $card->save();
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .token("TKkvwumxCgq5E8uTKyq96dta")
-    .type("TOKEN")
-    .identity("IDrfDP7Mty3CL7hj3UaGWUih")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -4073,7 +3212,7 @@ of creation will be invalidated.
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 
 #### Request Arguments
@@ -4089,41 +3228,16 @@ identity | *string*, **required**| ID for the `Identity` resource which the acco
 ```shell
 
 
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_card_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{create_card_scenario_php_request}});
-$card = $card->save();
+```python
 
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .name("Joe-Doe")
-    .identity("ID572pSyFj71oVExp6XWiGRP")
-    .expirationMonth(12)
-    .expirationYear(2030)
-    .number("4111 1111 1111 1111")
-    .securityCode("231")
-    .build(); 
-paymentCard = client.paymentCardsClient().save(paymentCard);
 
 ```
 > Example Response:
@@ -4143,7 +3257,7 @@ form](#embedded-tokenization-using-iframe)
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 
@@ -4173,44 +3287,16 @@ country | *string*, **optional** | 3-Letter Country code
 ## Create a Bank Account
 ```shell
 
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_bank_account_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\PaymentInstrument;
-
-$bank_account = new PaymentInstrument({{create_bank_account_scenario_php_request}});
-$bank_account = $bank_account->save();
+```python
 
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-bankAccount = client.bankAccountsClient().save(
-    BankAccount.builder()
-      .name("Joe-Doe")
-      .identity("IDaAUrraYjDT4i2w1C2VGBpY")
-      .accountNumber("84012312415")
-      .bankCode("840123124")
-      .accountType(BankAccountType.SAVINGS)
-      .companyName("company name")
-      .country("USA")
-      .currency("USD")
-      .build()
-);
 
 ```
 > Example Response:
@@ -4221,7 +3307,7 @@ bankAccount = client.bankAccountsClient().save(
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 
@@ -4238,29 +3324,14 @@ name | *string*, **optional** | Account owner's full name
 ```shell
 
 
-curl {{base_url}}/payment_instruments/{{fetch_payment_instrument_scenario_id}} \
+curl {{staging_base_url}}/payment_instruments/{{fetch_payment_instrument_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\PaymentInstrument;
 
-$card = PaymentInstrument::retrieve('{{fetch_payment_instrument_scenario_id}}');
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = client.paymentCardsClient().fetch("{{fetch_payment_instrument_scenario_id}}")
 
 ```
 > Example Response:
@@ -4273,7 +3344,7 @@ Fetch a previously created `Payment Instrument`
 
 #### HTTP Request
 
-`GET {{base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
+`GET {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
 
 
 #### URL Parameters
@@ -4284,24 +3355,16 @@ Parameter | Description
 
 ## Update a Payment Instrument
 ```shell
-curl {{base_url}}/payment_instruments/{{update_payment_instrument_scenario_id}} \
+curl {{staging_base_url}}/payment_instruments/{{update_payment_instrument_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
     -d '{{update_payment_instrument_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -4320,7 +3383,7 @@ instrument.
 
 #### HTTP Request
 
-`PUT {{base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
+`PUT {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
 
 
 #### URL Parameters
@@ -4339,28 +3402,13 @@ tags | *object*, **optional** | Single level key value pair for annotating custo
 ## List all Payment Instruments
 
 ```shell
-curl {{base_url}}/payment_instruments \
+curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
-  .forEachRemaining(baPage -> {
-    Collection<BankAccount> bankAccounts = baPage.getContent();
-    //do something
-  });
 
 ```
 > Example Response:
@@ -4371,321 +3419,7 @@ client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
 
 #### HTTP Request
 
-`GET {{base_url}}/payment_instruments`
-
-# Settlements
-
-A `Settlement` is a logical construct representing a collection (i.e. batch) of
-`Transfers` that are intended to be paid out to a specific `Merchant`.
-
-## Create a Settlement
-```shell
-
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_settlement_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\Settlement;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$settlement = $identity->createSettlement({{create_settlement_scenario_php_request}});
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
-
-Settlement settlement = identity.createSettlement(
-  Settlement.builder()
-    .currency("USD")
-    .build()
-)
-
-```
-> Example Response:
-
-```json
-{{create_settlement_scenario_response}}
-```
-Each settlement is comprised of all the `Transfers` that have a SUCCEEDED state and
-that have not been previously settled out. In other words, if a merchant has a
-`Transfer` in the PENDING state it will not be included in the batch settlement.
-In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
-
-<aside class="notice">
-To view all the Transfers that were included in a Settlement you can make a
-request to the transfers link (i.e. POST {{base_url}}/settlements/:SETTLEMENT_ID/transfers
-</aside>
-
-
-#### HTTP Request
-
-`POST {{base_url}}/identities/:IDENTITY_ID/settlements`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:IDENTITY_ID | ID of the `Identity` for the merchant you wish to settle out
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
-
-## Retrieve a Settlement
-
-```shell
-
-
-curl {{base_url}}/settlements/{{fetch_settlement_scenario_id}} \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Settlement;
-
-$settlement = Settlement::retrieve('{{fetch_settlement_scenario_id}}');
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
-
-Settlement settlement = client.settlementsClient().fetch("{{fetch_settlement_scenario_id}}");
-
-```
-> Example Response:
-
-```json
-{{fetch_settlement_scenario_response}}
-```
-
-Fetch a previously created `Settlement`.
-
-#### HTTP Request
-
-`POST {{base_url}}/settlements/:SETTLEMENT_ID/`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the `Settlement`
-
-
-## Fund a Settlement
-```shell
-curl {{base_url}}/settlements/{{create_settlement_scenario_id}} \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}} \
-    -X PUT \
-    -d '{{fund_settlement_scenario_curl_request}}'
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-
-```
-> Example Response:
-
-```json
-{{fund_settlement_scenario_response}}
-```
-
-Issue funding instructions to pay out funds that are allocated in a previously
- created batch `Settlement` resource for a merchant.
-
-<aside class="warning">
-Once instructions have been issued to a particular destination it cannot be
-updated.
-</aside>
-
-
-#### HTTP Request
-
-`PUT {{base_url}}/settlements/:SETTLEMENT_ID`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the `Settlement`
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-destination | *string*, **required** | ID of the `Payment Instrument` where the funds should be deposited
-
-## List all Settlements
-```shell
-curl {{base_url}}/settlements/ \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
-```
-> Example Response:
-
-```json
-{{list_settlements_scenario_response}}
-```
-
-List the `Transfers` of type `CREDIT` that result from issuing funding instructions
-for the `Settlement`.
-
-#### HTTP Request
-
-`GET {{base_url}}/settlements/:SETTLEMENT_ID/funding_transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
-
-## List Funding Transfers
-```shell
-curl {{base_url}}/settlements/{{fetch_settlement_scenario_id}}/funding_transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
-```
-> Example Response:
-
-```json
-{{list_settlement_funding_transfers_scenario_response}}
-```
-
-List the `Transfers` of type `CREDIT` that result from issuing funding instructions
-for the `Settlement`.
-
-#### HTTP Request
-
-`GET {{base_url}}/settlements/:SETTLEMENT_ID/funding_transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
-
-## List Transfers in a Settlement
-```shell
-
-curl {{base_url}}/settlements/{{fetch_settlement_scenario_id}}/transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```java
-
-```
-> Example Response:
-
-```json
-{{list_settlement_transfers_scenario_response}}
-```
-
-List the batch of `Transfers` of type `DEBIT` and `REFUND` that comprise the net
- settled amount of a `Settlement`.
-
-#### HTTP Request
-
-`GET {{base_url}}/settlements/:SETTLEMENT_ID/transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
+`GET {{staging_base_url}}/payment_instruments`
 
 # Transfers
 
@@ -4714,42 +3448,16 @@ When an Authorization is captured a corresponding Transfer will also be created.
 ## Debit a Bank Account (ie eCheck) 
 
 ```shell
-curl {{base_url}}/transfers \
+curl {{staging_base_url}}/transfers \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_bank_debit_scenario_curl_request}}'
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Transfer;
 
-$debit = new Transfer({{create_debit_scenario_php_request}});
-$debit = $debit->save();
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
-
-Map<String, String> tags = new HashMap<>();
-tags.put("name", "sample-tag");
-
-Transfer transfer = client.transfersClient().save(
-    Transfer.builder()
-      .merchantIdentity("IDaAUrraYjDT4i2w1C2VGBpY")
-      .source("PIi98CoYWpQZi8w7ZimJxuJ")
-      .amount(888888)
-      .currency("USD")
-      .tags(tags)
-      .build()
-);
 
 ```
 
@@ -4766,7 +3474,7 @@ distinguished by their type which return DEBIT.
 
 #### HTTP Request
 
-`POST {{base_url}}/transfers`
+`POST {{staging_base_url}}/transfers`
 
 #### Request Arguments
 
@@ -4782,32 +3490,15 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 ## Retrieve a Transfer
 ```shell
 
-curl {{base_url}}/transfers/{{fetch_transfer_scenario_id}} \
+curl {{staging_base_url}}/transfers/{{fetch_transfer_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Transfer;
-
-$transfer = Transfer::retrieve('{{fetch_transfer_scenario_id}}');
+```python
 
 
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
-
-Transfer transfer = client.transfersClient().fetch("{{fetch_transfer_scenario_id}}");
 
 ```
 > Example Response:
@@ -4818,7 +3509,7 @@ Transfer transfer = client.transfersClient().fetch("{{fetch_transfer_scenario_id
 
 #### HTTP Request
 
-`GET {{base_url}}/transfers/:TRANSFER_ID`
+`GET {{staging_base_url}}/transfers/:TRANSFER_ID`
 
 #### URL Parameters
 
@@ -4829,30 +3520,15 @@ Parameter | Description
 ## Refund a Debit
 ```shell
 
-curl {{base_url}}/transfers/{{create_debit_scenario_id}}/reversals \
+curl {{staging_base_url}}/transfers/{{create_debit_scenario_id}}/reversals \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d  '{{create_refund_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-use {{api_name}}\Resources\Transfer;
 
-$debit = Transfer::retrieve('{{create_debit_scenario_id}}');
-$refund = $debit->reverse(50);
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Refund;
-
-Refund refund = transfer.reverse(100L);
 
 ```
 > Example Response:
@@ -4869,7 +3545,7 @@ their type which return REVERSAL.
 
 #### HTTP Request
 
-`POST {{base_url}}/transfers/:TRANSFER_ID/reversals`
+`POST {{staging_base_url}}/transfers/:TRANSFER_ID/reversals`
 
 #### URL Parameters
 
@@ -4886,29 +3562,14 @@ refund_amount | *integer*, **required** | The amount of the refund in cents (Mus
 
 ## List all Transfers
 ```shell
-curl {{base_url}}/transfers \
+curl {{staging_base_url}}/transfers \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
-
-client.transfersClient().<Resources<Transfer>>resourcesIterator()
-  .forEachRemaining(transfersPage -> {
-    Collection<Transfer> transfers = transfersPage.getContent();
-    //do something with `transfers`
-  });
 
 ```
 > Example Response:
@@ -4919,7 +3580,7 @@ client.transfersClient().<Resources<Transfer>>resourcesIterator()
 
 #### HTTP Request
 
-`GET {{base_url}}/transfers`
+`GET {{staging_base_url}}/transfers`
 # Users (API Keys)
 
 A `User` resource represents a pair of API keys which are used to perform
@@ -4947,23 +3608,15 @@ data (i.e. Merchant's created under this Application)
 3. **ROLE_MERCHANT:** Access to one Merchant data
 ## Create an Application User
 ```shell
-curl {{base_url}}/applications/{{create_app_scenario_id}}/users \
+curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/users \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -4983,7 +3636,7 @@ access to the API.
 
 #### HTTP Request
 
-`POST {{base_url}}/applications/:APPLICATION_ID/users`
+`POST {{staging_base_url}}/applications/:APPLICATION_ID/users`
 
 #### URL Parameters
 
@@ -4994,23 +3647,15 @@ Parameter | Description
 ## Create a Merchant User
 
 ```shell
-curl {{base_url}}/identities/{{create_merchant_identity_scenario_id}}/users \
+curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/users \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -5029,7 +3674,7 @@ access to the API.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/users`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/users`
 
 #### URL Parameters
 
@@ -5041,22 +3686,14 @@ Parameter | Description
 
 ## Retrieve a User
 ```shell
-curl {{base_url}}/users/{{fetch_transfer_scenario_id}} \
+curl {{staging_base_url}}/users/{{fetch_transfer_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{admin_basic_auth_username}}:{{admin_basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -5067,7 +3704,7 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 #### HTTP Request
 
-`GET {{base_url}}/users/user_id`
+`GET {{staging_base_url}}/users/user_id`
 
 #### URL Parameters
 
@@ -5077,24 +3714,16 @@ user_id | ID of the `User`
 
 ## Disable a User
 ```shell
-curl {{base_url}}/users/{{disable_user_scenario_id}} \
+curl {{staging_base_url}}/users/{{disable_user_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
     -d '{{disable_user_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -5113,7 +3742,7 @@ Only Users with ROLE_PLATFORM can disable another user.
 #### HTTP Request
 
 
-`PUT {{base_url}}/users/user_id`
+`PUT {{staging_base_url}}/users/user_id`
 
 #### URL Parameters
 
@@ -5123,22 +3752,14 @@ user_id | ID of the `User` you would like to disable
 
 ## List all Users
 ```shell
-curl {{base_url}}/users/ \
+curl {{staging_base_url}}/users/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
 
 ```
 > Example Response:
@@ -5149,7 +3770,7 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 #### HTTP Request
 
-`GET {{base_url}}/users`
+`GET {{staging_base_url}}/users`
 
 # Webhooks
 
@@ -5165,38 +3786,17 @@ listening for notifications of newly created `Disputes`.
 ## Create a Webhook
 ```shell
 
-curl {{base_url}}/webhooks \
+curl {{staging_base_url}}/webhooks \
     -H "Content-Type: application/vnd.json+api" \
     -u {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_webhook_scenario_curl_request}}'
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Webhook;
-
-$webhook = new Webhook('create_webhook_scenario_php_request');
-$webhook = $webhook->save();
+```python
 
 
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
-
-Webhook webhook = client.webhookClient().save(
-    Webhook.builder()
-      .url("https://tools.ietf.org/html/rfc2606#section-3")
-      .build()
-);
-
+from {{api_name_downcase}}.resources import Webhook
+webhook = Webhook(**{{create_webhook_scenario_python_request}}).save()
 
 ```
 > Example Response:
@@ -5207,7 +3807,7 @@ Webhook webhook = client.webhookClient().save(
 
 #### HTTP Request
 
-`POST {{base_url}}/webhooks`
+`POST {{staging_base_url}}/webhooks`
 
 #### Request Arguments
 
@@ -5221,32 +3821,15 @@ url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be
 
 
 
-curl {{base_url}}/webhooks/{{fetch_webhook_scenario_id}} \
+curl {{staging_base_url}}/webhooks/{{fetch_webhook_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u {{basic_auth_username}}:{{basic_auth_password}}
 
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Webhook;
-
-$webhook = Webhook::retrieve('{{fetch_webhook_scenario_id}}');
+```python
 
 
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
-
-Webhook webhook = client.webhookClient().fetch("{{fetch_webhook_scenario_id}}");
 
 ```
 > Example Response:
@@ -5257,7 +3840,7 @@ Webhook webhook = client.webhookClient().fetch("{{fetch_webhook_scenario_id}}");
 
 #### HTTP Request
 
-`GET {{base_url}}/webhooks/:WEBHOOK_ID`
+`GET {{staging_base_url}}/webhooks/:WEBHOOK_ID`
 
 #### URL Parameters
 
@@ -5267,29 +3850,15 @@ Parameter | Description
 ## List all Webhooks
 
 ```shell
-curl {{base_url}}/webhooks/ \
+curl {{staging_base_url}}/webhooks/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
 
-client.webhookClient().<Resources<Webhook>>resourcesIterator()
-  .forEachRemaining(webhookPage -> {
-    Collection<Webhook> webhooks = webhookPage.getContent();
-    //do something with `webhooks`
-  });
 ```
 > Example Response:
 
@@ -5299,7 +3868,7 @@ client.webhookClient().<Resources<Webhook>>resourcesIterator()
 
 #### HTTP Request
 
-`GET {{base_url}}/webhooks`
+`GET {{staging_base_url}}/webhooks`
     
 
 ## Sample Payloads
@@ -5307,16 +3876,9 @@ client.webhookClient().<Resources<Webhook>>resourcesIterator()
 
 ```shell
 ```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+```python
 
-```
-```java
+
 ```
 ### Created Authorization
 

@@ -7,7 +7,7 @@ All fields for a buyer's Identity are optional. However, a business_type field s
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Request Arguments
 

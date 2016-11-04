@@ -3,30 +3,29 @@ import base64
 partner_configs = {
         'api_name': "Payline",
         'api_name_downcase': "payline",
-        'base_url': 'https://api-test.payline.io',
         'admin_basic_auth_username': 'USkoFNY73WEiP8tYmZtPa6e4',
         'admin_basic_auth_password': 'e28fe471-5b2c-4f20-9db9-0a3e5fd06110',
         'platform_basic_auth_username': 'USjXwXbL7N1tp6UnCCqfogkP',
         'platform_basic_auth_password': '8d745c00-1f4f-4d65-a92c-44dcf19e872e',
         'platform_encoded_auth': base64.b64encode('USjXwXbL7N1tp6UnCCqfogkP:8d745c00-1f4f-4d65-a92c-44dcf19e872e'),
-        'payfac_username': "PAYLINEDATAMP",
         'admin_encoded_auth': base64.b64encode('USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110'),
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
         'payment_processor': "DUMMY_V1",
         'identity_verification_processor': "DUMMY_V1",
-        'application': None,
         'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/",
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/rserna2010/47kgeao9/",
+        'staging_base_url': "https://api-test.payline.io",
+        'production_base_url': "https://api.payline.io"
         }   
 
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
 snippets_by_resource = {
-    "api_endpoints_payline": [
+    "api_endpoints": [
         "definition",
         ],
     "applications": [
@@ -158,7 +157,7 @@ snippets_by_resource = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
 admin_snippets_by_resource = {
-    "api_endpoints_payline": [
+    "api_endpoints": [
         "definition",
         ],
     "applications": [
@@ -299,7 +298,7 @@ resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
-    "api_endpoints_payline",
+    "api_endpoints",
     "guide_iframe",
     "authorizations",
     # "disputes",
@@ -317,7 +316,7 @@ admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
-    "api_endpoints_payline",
+    "api_endpoints",
     "guide_iframe",
     "guide_getting_started",
     "guide_admin_overview",
@@ -343,5 +342,6 @@ admin_resource_ordering = [
 included_clients = [
     "curl",
     "php",
-    "java"
+    "java",
+    "python",
 ]

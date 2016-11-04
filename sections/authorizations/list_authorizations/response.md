@@ -6,4 +6,4 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/authorizations/`
+`GET {{staging_base_url}}/authorizations/`

@@ -8,7 +8,7 @@ Disable an `Applications's` ability to create new `Transfers` and `Authorization
 
 #### HTTP Request
 
-`PUT {{base_url}}/applications/:APPLICATION_ID`
+`PUT {{staging_base_url}}/applications/:APPLICATION_ID`
 
 #### URL Parameters
 

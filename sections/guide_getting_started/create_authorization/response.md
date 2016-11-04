@@ -38,7 +38,7 @@ If the transfer field of an Authorization is null it has not yet been captured.
 
 #### HTTP Request
 
-`POST {{base_url}}/authorizations`
+`POST {{staging_base_url}}/authorizations`
 
 #### Request Arguments
 

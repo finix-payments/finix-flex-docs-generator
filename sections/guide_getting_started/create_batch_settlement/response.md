@@ -30,7 +30,7 @@ link](#list-transfers-in-a-settlement) which returns a list of all the
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/settlements`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/settlements`
 
 #### Request Arguments
 

@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`GET {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 

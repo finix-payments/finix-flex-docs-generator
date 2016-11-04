@@ -20,7 +20,7 @@ the example to the right.
 
 #### HTTP Request
 
-`POST {{base_url}}/applications/:APPLICATION_ID/processors`
+`POST {{staging_base_url}}/applications/:APPLICATION_ID/processors`
 
 #### URL Parameters
 

@@ -6,4 +6,4 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/payment_instruments`
+`GET {{staging_base_url}}/payment_instruments`

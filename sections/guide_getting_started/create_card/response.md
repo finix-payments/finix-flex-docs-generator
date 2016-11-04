@@ -22,7 +22,7 @@ form](#embedded-tokenization-using-iframe)
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 

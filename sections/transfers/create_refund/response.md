@@ -12,7 +12,7 @@ their type which return REVERSAL.
 
 #### HTTP Request
 
-`POST {{base_url}}/transfers/:TRANSFER_ID/reversals`
+`POST {{staging_base_url}}/transfers/:TRANSFER_ID/reversals`
 
 #### URL Parameters
 

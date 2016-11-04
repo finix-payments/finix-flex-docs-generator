@@ -8,15 +8,15 @@ Before we can begin charging cards we'll need to provision a `Merchant` account 
 
 1. First, create an `Identity` resource with the merchant's underwriting and identity verification information
 
-    `POST {{base_url}}/identities/`
+    `POST {{staging_base_url}}/identities/`
 
 2. Second, create a `Payment Instrument` representing the merchant's bank account where processed funds will be settled (i.e. deposited)
 
-    `POST {{base_url}}/payment_instruments/`
+    `POST {{staging_base_url}}/payment_instruments/`
 
 3. Finally, provision the `Merchant` account
 
-    `POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+    `POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
 Let's start with the first step by creating an `Identity` resource. Each `Identity`
  represents either a `buyer` or a `merchant`. We use this resource to associate
@@ -30,7 +30,7 @@ reference later.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Business-specific Request Arguments
 

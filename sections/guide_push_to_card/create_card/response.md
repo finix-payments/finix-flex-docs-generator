@@ -14,7 +14,7 @@ Again, keep track of the ID of the newly created payment instrument. This is use
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 

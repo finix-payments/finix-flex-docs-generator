@@ -6,4 +6,4 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/merchants/`
+`GET {{staging_base_url}}/merchants/`

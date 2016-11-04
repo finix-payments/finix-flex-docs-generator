@@ -9,7 +9,7 @@ Cancels the `Authorization` thereby releasing the funds. After voiding an
 
 #### HTTP Request
 
-`PUT {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`PUT {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 

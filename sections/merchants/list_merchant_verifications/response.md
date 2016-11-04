@@ -8,7 +8,7 @@ Retrieve all attempts to onboard (i.e. provision) a merchant onto a processor.
 
 #### HTTP Request
 
-`GET {{base_url}}/merchants/:MERCHANT_ID/verifications`
+`GET {{staging_base_url}}/merchants/:MERCHANT_ID/verifications`
 
 #### URL Parameters
 

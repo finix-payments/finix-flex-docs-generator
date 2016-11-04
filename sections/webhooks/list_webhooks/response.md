@@ -6,5 +6,5 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/webhooks`
+`GET {{staging_base_url}}/webhooks`
     

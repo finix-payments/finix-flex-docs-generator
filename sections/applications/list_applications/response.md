@@ -6,5 +6,5 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/applications/`
+`GET {{staging_base_url}}/applications/`
 

@@ -12,7 +12,7 @@ distinguished by their type which return DEBIT.
 
 #### HTTP Request
 
-`POST {{base_url}}/transfers`
+`POST {{staging_base_url}}/transfers`
 
 #### Request Arguments
 

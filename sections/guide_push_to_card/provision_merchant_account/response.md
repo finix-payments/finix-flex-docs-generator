@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/identityID/merchants`
+`POST {{staging_base_url}}/identities/identityID/merchants`
 
 #### Request Arguments
 

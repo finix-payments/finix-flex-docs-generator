@@ -9,7 +9,7 @@ returned a FAILED `onboarding_state`.
 
 #### HTTP Request
 
-`POST {{base_url}}/merchants/:MERCHANT_ID/verifications`
+`POST {{staging_base_url}}/merchants/:MERCHANT_ID/verifications`
 
 #### URL Parameters
 

@@ -14,7 +14,7 @@ access to the API.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/users`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/users`
 
 #### URL Parameters
 

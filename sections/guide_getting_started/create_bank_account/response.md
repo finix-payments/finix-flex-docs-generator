@@ -19,7 +19,7 @@ field to properly associate it with your merchant.
 
 #### HTTP Request
 
-`POST {{base_url}}/payment_instruments`
+`POST {{staging_base_url}}/payment_instruments`
 
 #### Request Arguments
 

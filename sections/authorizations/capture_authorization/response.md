@@ -14,7 +14,7 @@ the state of the `Transfer` will update to SUCCEEDED.
 
 #### HTTP Request
 
-`PUT {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`PUT {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 

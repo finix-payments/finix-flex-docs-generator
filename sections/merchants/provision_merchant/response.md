@@ -37,7 +37,7 @@ Provisioning a `Merchant` account is an asynchronous request. We recommend creat
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
 #### URL Parameters
 

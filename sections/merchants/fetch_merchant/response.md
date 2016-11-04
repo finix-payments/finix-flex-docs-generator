@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/merchants/:MERCHANT_ID`
+`GET {{staging_base_url}}/merchants/:MERCHANT_ID`
 
 #### URL Parameters
 

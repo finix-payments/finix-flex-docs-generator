@@ -14,7 +14,7 @@ instrument.
 
 #### HTTP Request
 
-`PUT {{base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
+`PUT {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
 
 
 #### URL Parameters

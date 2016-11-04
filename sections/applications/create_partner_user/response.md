@@ -15,7 +15,7 @@ access to the API.
 
 #### HTTP Request
 
-`POST {{base_url}}/applications/:APPLICATION_ID/users`
+`POST {{staging_base_url}}/applications/:APPLICATION_ID/users`
 
 #### URL Parameters
 

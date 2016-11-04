@@ -25,7 +25,7 @@ The DUMMY_V1 processor should not be provisioned on production level Application
 
 #### HTTP Request
 
-`POST {{base_url}}/applications/:APPLICATION_ID/processors`
+`POST {{staging_base_url}}/applications/:APPLICATION_ID/processors`
 
 #### URL Parameters
 

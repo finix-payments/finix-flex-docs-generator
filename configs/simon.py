@@ -1,35 +1,34 @@
 import base64
 
 partner_configs = {
-        'api_name': "SimonPayments",
-        'api_name_downcase': "simonpayments",
-        'base_url': 'https://api-staging.simonpayments.com',
-        'admin_basic_auth_username': 'USkq2yiDni9oFNpcuRNDMPmA',
-        'admin_basic_auth_password': 'b559b81b-5b6e-4e22-aba5-81fd12265314',
-        'admin_encoded_auth': base64.b64encode('USkq2yiDni9oFNpcuRNDMPmA:b559b81b-5b6e-4e22-aba5-81fd12265314'),
-        'platform_basic_auth_username': 'USkq2yiDni9oFNpcuRNDMPmA',
-        'platform_basic_auth_password': 'b559b81b-5b6e-4e22-aba5-81fd12265314',
-        'platform_encoded_auth': base64.b64encode('USkq2yiDni9oFNpcuRNDMPmA:b559b81b-5b6e-4e22-aba5-81fd12265314'),
-        'payfac_username': "SIMONPAY",
-        'basic_auth_username': None,
-        'basic_auth_password': None,
-        'encoded_auth': None,
-        'payment_processor': "DUMMY_V1",
-        'identity_verification_processor': "DUMMY_V1",
-        'application': None,
-        'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/",
-        'embedded_iframe_src': "https://js.paymentsfnx.com/simon-payments/tokenize.js",
-        'embedded_iframe_jsfiddle': "https://jsfiddle.net/4urqd3tr/4/",
-    }
+    'api_name': "SimonPayments",
+    'api_name_downcase': "simonpayments",
+    'admin_basic_auth_username': 'USkq2yiDni9oFNpcuRNDMPmA',
+    'admin_basic_auth_password': 'b559b81b-5b6e-4e22-aba5-81fd12265314',
+    'admin_encoded_auth': base64.b64encode('USkq2yiDni9oFNpcuRNDMPmA:b559b81b-5b6e-4e22-aba5-81fd12265314'),
+    'platform_basic_auth_username': 'USkq2yiDni9oFNpcuRNDMPmA',
+    'platform_basic_auth_password': 'b559b81b-5b6e-4e22-aba5-81fd12265314',
+    'payfac_username': "SIMONPAY",
+    'basic_auth_username': None,
+    'basic_auth_password': None,
+    'encoded_auth': None,
+    'payment_processor': "DUMMY_V1",
+    'identity_verification_processor': "DUMMY_V1",
+    'jsfiddle': "http://jsfiddle.net/rserna2010/sab76Lne/",
+    'embedded_iframe_src': "https://js.paymentsfnx.com/simon-payments/tokenize.js",
+    'embedded_iframe_jsfiddle': "https://jsfiddle.net/4urqd3tr/4/",
+    'staging_base_url': "https://api-staging.simonpayments.com",
+    'production_base_url': "https://api.simonpayments.com"
+}
 
 
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
 snippets_by_resource = {
-    "api_endpoints_simon": [
+    "api_endpoints": [
         "definition",
-    ],
+        ],
     "applications": [
         "definition",
         "create_application",
@@ -88,7 +87,7 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -159,9 +158,9 @@ snippets_by_resource = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
 admin_snippets_by_resource = {
-    "api_endpoints_simon": [
+    "api_endpoints": [
         "definition",
-    ],
+        ],
     "applications": [
         "definition",
         "fetch_application",
@@ -219,11 +218,11 @@ admin_snippets_by_resource = {
         "capture_authorization",
         "create_batch_settlement",
         # "refund_debit"
-        ],
+    ],
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -299,7 +298,7 @@ resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
-    "api_endpoints_simon",
+    "api_endpoints",
     "guide_iframe",
     "authorizations",
     # "disputes",
@@ -311,13 +310,13 @@ resource_ordering = [
     "transfers",
     "webhooks",
 
-]
+    ]
 
 admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
-    "api_endpoints_simon",
+    "api_endpoints",
     "guide_iframe",
     "guide_getting_started",
     "guide_admin_overview",

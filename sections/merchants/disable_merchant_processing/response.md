@@ -8,7 +8,7 @@ Disable a `Merchant's` ability to create new `Transfers` and `Authorizations`
 
 #### HTTP Request
 
-`PUT {{base_url}}/merchants/:MERCHANT_ID`
+`PUT {{staging_base_url}}/merchants/:MERCHANT_ID`
 
 #### URL Parameters
 

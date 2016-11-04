@@ -20,7 +20,7 @@ merchant's bank account where processed funds will be settled (i.e. deposited)
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Business-specific Request Arguments
 
