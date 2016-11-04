@@ -51,7 +51,7 @@ as doing so prevents important updates.
       document.getElementById('show-form').addEventListener('click', function() {
         Payline.openTokenizeCardForm({
           applicationName: 'Business Name',
-          applicationId: '{{application}}',
+          applicationId: '{{create_app_scenario_id}}',
         }, function (tokenizedResponse) {
           // Define a callback to send your token to your back-end server
         });
