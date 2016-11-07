@@ -1,4 +1,3 @@
-use {{api_name}}\Resources\Transfer;
+from finix.resources import Merchant
 
-$debit = Transfer::retrieve('{{create_debit_scenario_id}}');
-$refund = $debit->reverse(50);
+refund = transfer.reverse(100L)
