@@ -18,7 +18,8 @@ partner_configs = {
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
         'staging_base_url': "https://api-staging.finix.io",
-        'production_base_url': "https://api.finix.io"
+        'production_base_url': "https://api.finix.io",
+        'python_client_resource_name': "finix",
         }
 
 

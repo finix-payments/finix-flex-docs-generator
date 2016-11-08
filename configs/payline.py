@@ -18,7 +18,8 @@ partner_configs = {
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/rserna2010/47kgeao9/",
         'staging_base_url': "https://api-test.payline.io",
-        'production_base_url': "https://api.payline.io"
+        'production_base_url': "https://api.payline.io",
+        'python_client_resource_name': "payline",
         }   
 
 

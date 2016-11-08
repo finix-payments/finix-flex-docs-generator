@@ -20,9 +20,7 @@ partner_configs = {
         'staging_base_url': "https://api-staging.finix.io",
         'production_base_url': "https://api.finix.io",
         'api_name_downcase': "crossriver",
-
-
-
+        'python_client_resource_name': "crossriver",
 }
 
 

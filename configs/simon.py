@@ -18,7 +18,8 @@ partner_configs = {
     'embedded_iframe_src': "https://js.paymentsfnx.com/simon-payments/tokenize.js",
     'embedded_iframe_jsfiddle': "https://jsfiddle.net/4urqd3tr/4/",
     'staging_base_url': "https://api-staging.simonpayments.com",
-    'production_base_url': "https://api.simonpayments.com"
+    'production_base_url': "https://api.simonpayments.com",
+    'python_client_resource_name': "simon",
 }
 
 
