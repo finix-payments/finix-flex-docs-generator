@@ -13,7 +13,7 @@ The keys will be associated in the next step.
 
 #### HTTP Request
 
-`POST {{base_url}}/users`
+`POST {{staging_base_url}}/users`
 
 #### Request Arguments
 

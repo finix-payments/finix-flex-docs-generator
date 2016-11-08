@@ -3,23 +3,23 @@ import base64
 partner_configs = {
         'api_name': "Finix",
         'api_name_downcase': "finix",
-        'base_url': 'https://api-staging.finix.io',
         'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
         'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
         'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
         'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
         'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
-        'payfac_username': "FINIXDATAMP",
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
         'payment_processor': "DUMMY_V1",
         'identity_verification_processor': "DUMMY_V1",
-        'application': None,
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
+        'staging_base_url': "https://api-staging.finix.io",
+        'production_base_url': "https://api.finix.io",
+        'python_client_resource_name': "finix",
         }
 
 
@@ -27,6 +27,9 @@ partner_configs = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
 snippets_by_resource = {
+    "api_endpoints": [
+        "definition",
+        ],
     "applications": [
         "definition",
         "create_application",
@@ -91,8 +94,9 @@ snippets_by_resource = {
         "definition",
         "create_recipient_identity",
         "create_card",
+        "provision_merchant_account",
         "send_to_recipient",
-        ], 
+        ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -163,6 +167,9 @@ snippets_by_resource = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
 admin_snippets_by_resource = {
+    "api_endpoints": [
+        "definition",
+        ],
     "applications": [
         "definition",
         "fetch_application",
@@ -230,8 +237,9 @@ admin_snippets_by_resource = {
         "definition",
         "create_recipient_identity",
         "create_card",
+        "provision_merchant_account",
         "send_to_recipient",
-        ],        
+        ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -267,7 +275,7 @@ admin_snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        "fund_settlement",
+        # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -307,6 +315,7 @@ resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints",
     "guide_iframe",
     "guide_push_to_card",
     "authorizations",
@@ -325,6 +334,7 @@ admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints",
     "guide_iframe",
     "guide_push_to_card",
     "guide_getting_started",
@@ -350,5 +360,6 @@ admin_resource_ordering = [
 included_clients = [
     "curl",
     "php",
+    "python",
     "java"
 ]

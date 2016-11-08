@@ -11,7 +11,7 @@ collect for provisioning a merchant account. You'll also be taking the ID for th
 
 #### HTTP Request
 
-`POST {{base_url}}/transfers`
+`POST {{staging_base_url}}/transfers`
 
 #### Request Arguments
 

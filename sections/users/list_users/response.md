@@ -6,4 +6,4 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/users`
+`GET {{staging_base_url}}/users`

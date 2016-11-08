@@ -9,7 +9,7 @@ List the batch of `Transfers` of type `DEBIT` and `REFUND` that comprise the net
 
 #### HTTP Request
 
-`GET {{base_url}}/settlements/:SETTLEMENT_ID/transfers`
+`GET {{staging_base_url}}/settlements/:SETTLEMENT_ID/transfers`
 
 
 #### URL Parameters

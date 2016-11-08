@@ -18,7 +18,7 @@ with accounting, reconciliation, and chargebacks.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Request Arguments
 

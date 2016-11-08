@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/webhooks/:WEBHOOK_ID`
+`GET {{staging_base_url}}/webhooks/:WEBHOOK_ID`
 
 #### URL Parameters
 

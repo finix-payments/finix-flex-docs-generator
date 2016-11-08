@@ -6,4 +6,4 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/transfers`
+`GET {{staging_base_url}}/transfers`

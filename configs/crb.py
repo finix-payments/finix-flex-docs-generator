@@ -3,29 +3,33 @@ import base64
 partner_configs = {
         'api_name': "CrossRiver",
         'api_name_downcase': "crossriver",
-        'base_url': 'https://api-staging.finix.io',
         'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
         'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
         'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
         'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
         'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
-        'payfac_username': "FINIXDATAMP",
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
         'payment_processor': "DUMMY_V1",
         'identity_verification_processor': "DUMMY_V1",
-        'application': None,
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
-        'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",       
+        'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
+        'staging_base_url': "https://api-staging.finix.io",
+        'production_base_url': "https://api.finix.io",
+        'api_name_downcase': "crossriver",
+        'python_client_resource_name': "crossriver",
 }
 
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
 snippets_by_resource = {
+    "api_endpoints":[
+        "definition",
+    ],
     "applications": [
         "definition",
         "create_application",
@@ -44,12 +48,11 @@ snippets_by_resource = {
         "fetch_authorization",
         "list_authorizations"
     ],
-
     "disputes": [
         "definition",
         # "create_dispute",
         "fetch_dispute",
-        "list_disputes"
+        "list_disputes",
     ],
     "guide_admin_overview": [
         "definition",
@@ -85,7 +88,14 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "provision_merchant_account",
+        "send_to_recipient",
+        ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -142,7 +152,7 @@ snippets_by_resource = {
         "create_merchant_user",
         "disable_user",
         "fetch_user",
-        "list_users"
+        "list_users",
     ],
     "webhooks": [
         "definition",
@@ -156,6 +166,9 @@ snippets_by_resource = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
 admin_snippets_by_resource = {
+    "api_endpoints":[
+        "definition",
+    ],
     "applications": [
         "definition",
         "fetch_application",
@@ -173,14 +186,14 @@ admin_snippets_by_resource = {
         "capture_authorization",
         "void_authorization",
         "fetch_authorization",
-        "list_authorizations"
+        "list_authorizations",
     ],
 
     "disputes": [
         "definition",
         # "create_dispute",
         "fetch_dispute",
-        "list_disputes"
+        "list_disputes",
     ],
     "guide_admin_overview": [
         "definition",
@@ -218,6 +231,13 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
+        ],
+    "guide_push_to_card": [
+        "definition",
+        "create_recipient_identity",
+        "create_card",
+        "provision_merchant_account",
+        "send_to_recipient",
         ], 
     "identities": [
         "definition",
@@ -294,13 +314,15 @@ resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints",
     "guide_iframe",
-    "authorizations",
+    "guide_push_to_card",
+    # "authorizations",
     # "disputes",
     "identities",
     "merchants",
     "payment_instruments",
-    # # "identity_verifications",
+    # "identity_verifications",
     "settlements",
     "transfers",
     "webhooks",
@@ -311,7 +333,9 @@ admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "guide_getting_started",
+    "api_endpoints",
     "guide_iframe",
+    "guide_push_to_card",
     "guide_getting_started",
     "guide_admin_overview",
     "guide_create_application",
@@ -335,5 +359,6 @@ admin_resource_ordering = [
 included_clients = [
     "curl",
     # "php",
+    "python",
     # "java"
 ]

@@ -34,7 +34,7 @@ a Webhook to listen for the state change.
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/merchants`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
 #### URL Parameters
 

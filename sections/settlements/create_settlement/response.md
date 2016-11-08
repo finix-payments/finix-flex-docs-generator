@@ -13,13 +13,13 @@ been deducted).
 
 <aside class="notice">
 To view all the Transfers that were included in a Settlement you can make a
-request to the transfers link (i.e. POST {{base_url}}/settlements/:SETTLEMENT_ID/transfers
+request to the transfers link (i.e. POST {{staging_base_url}}/settlements/:SETTLEMENT_ID/transfers
 </aside>
 
 
 #### HTTP Request
 
-`POST {{base_url}}/identities/:IDENTITY_ID/settlements`
+`POST {{staging_base_url}}/identities/:IDENTITY_ID/settlements`
 
 #### URL Parameters
 

@@ -29,7 +29,7 @@ merchant.
 
 #### HTTP Request
 
-`POST {{base_url}}/transfers`
+`POST {{staging_base_url}}/transfers`
 
 #### Request Arguments
 

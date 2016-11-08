@@ -17,7 +17,7 @@ def create_user(config_values, role):
         "role": role
     }
     values = format_json(json.dumps(values))
-    endpoint = config_values["base_url"] + '/users'
+    endpoint = config_values["staging_base_url"] + '/users'
     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])
 
 
@@ -64,7 +64,7 @@ def create_app(config_values, application_owner_user_id, company):
         }
     }
     values = format_json(json.dumps(values))
-    endpoint = config_values["base_url"] + '/applications'
+    endpoint = config_values["staging_base_url"] + '/applications'
     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])
 
 
@@ -117,7 +117,7 @@ def associate_payment_processor(config_values):
             }
         }
     values = format_json(json.dumps(values))
-    endpoint = config_values["base_url"] + '/applications/' + config_values["application"] + "/processors"
+    endpoint = config_values["staging_base_url"] + '/applications/' + config_values["application"] + "/processors"
     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])
 #
 # def associate_identity_verification_processor(config_values):
@@ -130,21 +130,21 @@ def associate_payment_processor(config_values):
 #             }
 #     }
 #     values = format_json(json.dumps(values))
-#     endpoint = config_values["base_url"] + '/applications/' + config_values["application"] + "/processors"
+#     endpoint = config_values["staging_base_url"] + '/applications/' + config_values["application"] + "/processors"
 #     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])
 
 # def create_user_merchant_role(config_values, identity_id):
 #     values = """
 #     {}
 #     """
-#     endpoint = config_values["base_url"] + '/identities/' + identity_id + '/users'
+#     endpoint = config_values["staging_base_url"] + '/identities/' + identity_id + '/users'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 def create_user_partner_role(config_values):
     values = """
     {}
     """
-    endpoint = config_values["base_url"] + '/applications/' + config_values["application"] + '/users'
+    endpoint = config_values["staging_base_url"] + '/applications/' + config_values["application"] + '/users'
     return formatted_response(endpoint, values, config_values['admin_encoded_auth'])
 
 def create_buyer_identity(config_values):
@@ -175,7 +175,7 @@ def create_buyer_identity(config_values):
 
     values = format_json(json.dumps(values))
 
-    endpoint = config_values['base_url'] + '/identities'
+    endpoint = config_values['staging_base_url'] + '/identities'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 # def create_merchant_identity(config_values, business_type):
@@ -234,7 +234,7 @@ def create_buyer_identity(config_values):
 #
 #     values = format_json(json.dumps(values))
 #
-#     endpoint = config_values['base_url'] + '/identities'
+#     endpoint = config_values['staging_base_url'] + '/identities'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 # def update_identity(config_values, identity_id):
@@ -278,7 +278,7 @@ def create_buyer_identity(config_values):
 # 	    }
 # 	  }
 # 	"""
-#     endpoint = config_values['base_url'] + '/identities/' + identity_id
+#     endpoint = config_values['staging_base_url'] + '/identities/' + identity_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 def provision_merchant(config_values, identity_id):
@@ -290,7 +290,7 @@ def provision_merchant(config_values, identity_id):
 	  }
 	"""
     # values = format_json(json.dumps({"processor": config_values["payment_processor"]}))
-    endpoint = config_values['base_url'] + '/identities/' + identity_id + '/merchants'
+    endpoint = config_values['staging_base_url'] + '/identities/' + identity_id + '/merchants'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 # def create_identity_verification(config_values, identity_id):
@@ -301,7 +301,7 @@ def provision_merchant(config_values, identity_id):
 #         "merchant": None,
 #         }
 #     values = format_json(json.dumps(values))
-#     endpoint = config_values['base_url'] + '/identities/' + identity_id + '/verifications'
+#     endpoint = config_values['staging_base_url'] + '/identities/' + identity_id + '/verifications'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 def create_card(config_values, identity_id):
@@ -323,7 +323,7 @@ def create_card(config_values, identity_id):
         "type": "PAYMENT_CARD"
     }
     values = format_json(json.dumps(values))
-    endpoint = config_values['base_url'] + '/payment_instruments'
+    endpoint = config_values['staging_base_url'] + '/payment_instruments'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 # def associate_token(config_values, identity_id, token):
@@ -334,7 +334,7 @@ def create_card(config_values, identity_id):
 #         }
 #     values = format_json(json.dumps(values))
 #
-#     endpoint = config_values['base_url'] + '/payment_instruments'
+#     endpoint = config_values['staging_base_url'] + '/payment_instruments'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -357,7 +357,7 @@ def create_card(config_values, identity_id):
 #     values = format_json(json.dumps(values))
 #
 #
-#     endpoint = config_values['base_url'] + "/applications/" + config_values["application"] + "/tokens"
+#     endpoint = config_values['staging_base_url'] + "/applications/" + config_values["application"] + "/tokens"
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -375,7 +375,7 @@ def create_card(config_values, identity_id):
 #     }
 #     values = format_json(json.dumps(values))
 #
-#     endpoint = config_values['base_url'] + '/payment_instruments'
+#     endpoint = config_values['staging_base_url'] + '/payment_instruments'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 
@@ -393,7 +393,7 @@ def create_debit(config_values, merchant_id, card_id, amount):
     }
 
     values = format_json(json.dumps(values))
-    endpoint = config_values['base_url'] + '/transfers'
+    endpoint = config_values['staging_base_url'] + '/transfers'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 # no longer allowing bank credits
@@ -414,7 +414,7 @@ def create_debit(config_values, merchant_id, card_id, amount):
 #         'Content-Type': 'application/vnd.json+api',
 #         'Authorization': 'Basic ' + config_values['encoded_auth']
 #     }
-#     endpoint = config_values['base_url'] + '/transfers'
+#     endpoint = config_values['staging_base_url'] + '/transfers'
 #     request = Request(endpoint, data=values, headers=headers)
 #     response_body = urlopen(request).read()
 #     response_body = format_json(response_body)
@@ -430,7 +430,7 @@ def create_debit(config_values, merchant_id, card_id, amount):
 # 	  "refund_amount" : 100
 #   	}
 # 	"""
-#     endpoint = config_values['base_url'] + '/transfers/' + transfer_id + '/reversals'
+#     endpoint = config_values['staging_base_url'] + '/transfers/' + transfer_id + '/reversals'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -440,7 +440,7 @@ def create_debit(config_values, merchant_id, card_id, amount):
 # 	            "url" : "http://requestb.in/vts8mpvt"
 # 	            }
 # 	        """
-#     endpoint = config_values['base_url'] + '/webhooks'
+#     endpoint = config_values['staging_base_url'] + '/webhooks'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 
@@ -453,14 +453,14 @@ def create_settlement(config_values, identity_id):
         "processor": config_values['payment_processor']
     }
     values = format_json(json.dumps(values))
-    endpoint = config_values['base_url'] + '/identities/' + identity_id + "/settlements"
+    endpoint = config_values['staging_base_url'] + '/identities/' + identity_id + "/settlements"
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
 
 # def fetch_settlement(config_values, settlement_id):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/settlements/' + settlement_id
+#     endpoint = config_values['staging_base_url'] + '/settlements/' + settlement_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -470,7 +470,7 @@ def create_settlement(config_values, identity_id):
 #         'Content-Type': 'application/vnd.json+api',
 #         'Authorization': 'Basic ' + config_values['encoded_auth']
 #     }
-#     endpoint = config_values['base_url'] + '/settlements/' + settlement_id + "/transfers"
+#     endpoint = config_values['staging_base_url'] + '/settlements/' + settlement_id + "/transfers"
 #     request = Request(endpoint, data=values, headers=headers)
 #     response_body = urlopen(request).read()
 #     response_body = format_json(response_body)
@@ -490,7 +490,7 @@ def create_dispute(config_values, merchant_id, card_id):
         'Authorization': 'Basic ' + config_values['encoded_auth']
     }
     # hit disputes index until transfers have a dispute link
-    endpoint = config_values['base_url'] + '/disputes/'
+    endpoint = config_values['staging_base_url'] + '/disputes/'
     request = Request(endpoint, headers=headers)
 
     response_body = urlopen(request).read()
@@ -515,7 +515,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 #     values = format_json(json.dumps(values))
 #
-#     endpoint = config_values['base_url'] + '/authorizations'
+#     endpoint = config_values['staging_base_url'] + '/authorizations'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -534,7 +534,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #         'Content-Type': 'application/vnd.json+api',
 #         'Authorization': 'Basic ' + config_values['encoded_auth']
 #     }
-#     endpoint = config_values['base_url'] + '/authorizations/' + auth_id
+#     endpoint = config_values['staging_base_url'] + '/authorizations/' + auth_id
 #     request = Request(endpoint, data=values, headers=headers)
 #     request.get_method = lambda: 'PUT'
 #     response_body = urlopen(request).read()
@@ -549,7 +549,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 # def fetch_authorization(config_values, auth_id):
 #     values = None
-#     endpoint = config_values['base_url'] + '/authorizations/' + auth_id
+#     endpoint = config_values['staging_base_url'] + '/authorizations/' + auth_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -557,7 +557,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 #     values = None
 #
-#     endpoint = config_values['base_url'] + '/disputes/' + dispute_id
+#     endpoint = config_values['staging_base_url'] + '/disputes/' + dispute_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -567,7 +567,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #     values = {'file': open("testfile.txt", "rb"), 'name': 'file'}
 #     datagen, headers = poster.encode.multipart_encode(values)
 #
-#     endpoint = config_values['base_url'] + '/disputes/' + dispute_id + "/evidence"
+#     endpoint = config_values['staging_base_url'] + '/disputes/' + dispute_id + "/evidence"
 #     request = Request(endpoint, datagen, headers)
 #     request.add_header('Authorization', 'Basic %s' % config_values['encoded_auth'] ) # Add Auth header to request
 #     response_body = urlopen(request).read()
@@ -582,7 +582,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 #     values = None
 #
-#     endpoint = config_values['base_url'] + '/identities/' + identity_id
+#     endpoint = config_values['staging_base_url'] + '/identities/' + identity_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -590,7 +590,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 #     values = None
 #
-#     endpoint = config_values['base_url'] + '/merchants/' + merchant_id
+#     endpoint = config_values['staging_base_url'] + '/merchants/' + merchant_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -598,7 +598,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 #     values = None
 #
-#     endpoint = config_values['base_url'] + '/payment_instruments/' + instrument_id
+#     endpoint = config_values['staging_base_url'] + '/payment_instruments/' + instrument_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -606,7 +606,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 #     values = None
 #
-#     endpoint = config_values['base_url'] + '/verifications/' + verification_id
+#     endpoint = config_values['staging_base_url'] + '/verifications/' + verification_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -614,7 +614,7 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 #     values = None
 #
-#     endpoint = config_values['base_url'] + '/transfers/' + transfer_id
+#     endpoint = config_values['staging_base_url'] + '/transfers/' + transfer_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
@@ -622,62 +622,62 @@ def create_dispute(config_values, merchant_id, card_id):
 #
 #     values = None
 #
-#     endpoint = config_values['base_url'] + '/webhooks/' + webhook_id
+#     endpoint = config_values['staging_base_url'] + '/webhooks/' + webhook_id
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
 # def list_authorizations(config_values):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/authorizations'
+#     endpoint = config_values['staging_base_url'] + '/authorizations'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
 # def list_disputes(config_values):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/disputes'
+#     endpoint = config_values['staging_base_url'] + '/disputes'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
 # def list_identities(config_values):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/identities'
+#     endpoint = config_values['staging_base_url'] + '/identities'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
 # def list_merchants(config_values):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/merchants'
+#     endpoint = config_values['staging_base_url'] + '/merchants'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
 # def list_payment_instruments(config_values):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/payment_instruments'
+#     endpoint = config_values['staging_base_url'] + '/payment_instruments'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
 # def list_identity_verifications(config_values):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/verifications'
+#     endpoint = config_values['staging_base_url'] + '/verifications'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
 # def list_transfers(config_values):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/transfers'
+#     endpoint = config_values['staging_base_url'] + '/transfers'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #
 #
 # def list_webhooks(config_values):
 #
 #     values = None
-#     endpoint = config_values['base_url'] + '/webhooks'
+#     endpoint = config_values['staging_base_url'] + '/webhooks'
 #     return formatted_response(endpoint, values, config_values['encoded_auth'])
 #

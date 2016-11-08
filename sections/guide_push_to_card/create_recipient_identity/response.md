@@ -8,7 +8,7 @@ Use the resulting ID of the newly created Identity to associate any transfers or
 
 #### HTTP Request
 
-`POST {{base_url}}/identities`
+`POST {{staging_base_url}}/identities`
 
 #### Request Arguments
 

@@ -92,7 +92,7 @@ Please refrain from hosting the tokenization.js library locally as doing so prev
 ```javascript
 var initTokenization = function() {
   Tokenization.init({
-    server: "{{base_url}}",
+    server: "{{staging_base_url}}",
     applicationId: "{{create_app_scenario_id}}",
     hosted_fields: {
       card: {

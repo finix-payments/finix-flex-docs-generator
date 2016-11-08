@@ -7,7 +7,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/verifications/verification_id`
+`GET {{staging_base_url}}/verifications/verification_id`
 
 #### URL Parameters
 

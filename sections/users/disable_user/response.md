@@ -14,7 +14,7 @@ Only Users with ROLE_PLATFORM can disable another user.
 #### HTTP Request
 
 
-`PUT {{base_url}}/users/user_id`
+`PUT {{staging_base_url}}/users/user_id`
 
 #### URL Parameters
 

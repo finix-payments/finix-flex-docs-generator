@@ -8,7 +8,7 @@ from configs import snippets_by_resource, resource_ordering, included_clients, \
 
 partner_configs = { 'api_name': "Finix",
         'api_name_downcase': "finix",
-        'base_url': 'https://api-staging.finix.io',
+        'staging_base_url': 'https://api-staging.finix.io',
         'basic_auth_username': "USssB2ix2pnSabNNTUkmELof",
         'basic_auth_password': "6b7881ed-704a-434f-89f1-0f461d7b91d7",
         'encoded_auth': base64.b64encode('USssB2ix2pnSabNNTUkmELof:6b7881ed-704a-434f-89f1-0f461d7b91d7'),

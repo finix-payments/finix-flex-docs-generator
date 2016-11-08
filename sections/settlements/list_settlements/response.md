@@ -9,7 +9,7 @@ for the `Settlement`.
 
 #### HTTP Request
 
-`GET {{base_url}}/settlements/:SETTLEMENT_ID/funding_transfers`
+`GET {{staging_base_url}}/settlements/:SETTLEMENT_ID/funding_transfers`
 
 
 #### URL Parameters

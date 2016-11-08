@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/identities/:IDENTITY_ID`
+`GET {{staging_base_url}}/identities/:IDENTITY_ID`
 
 #### URL Parameters
 

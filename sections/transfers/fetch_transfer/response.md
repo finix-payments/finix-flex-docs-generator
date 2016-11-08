@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/transfers/:TRANSFER_ID`
+`GET {{staging_base_url}}/transfers/:TRANSFER_ID`
 
 #### URL Parameters
 

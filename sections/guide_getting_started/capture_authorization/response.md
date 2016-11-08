@@ -24,7 +24,7 @@ Next we're going to show you how to settle out the funds to your merchant.
 
 #### HTTP Request
 
-`PUT {{base_url}}/authorizations/:AUTHORIZATION_ID`
+`PUT {{staging_base_url}}/authorizations/:AUTHORIZATION_ID`
 
 #### URL Parameters
 

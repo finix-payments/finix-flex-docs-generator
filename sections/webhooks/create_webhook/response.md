@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`POST {{base_url}}/webhooks`
+`POST {{staging_base_url}}/webhooks`
 
 #### Request Arguments
 

@@ -15,7 +15,7 @@ updated.
 
 #### HTTP Request
 
-`PUT {{base_url}}/settlements/:SETTLEMENT_ID`
+`PUT {{staging_base_url}}/settlements/:SETTLEMENT_ID`
 
 #### URL Parameters
 

@@ -17,7 +17,7 @@ Only a User with ROLE_PLATFORM level credentials can create a new Application.
 
 #### HTTP Request
 
-`POST {{base_url}}/applications`
+`POST {{staging_base_url}}/applications`
 
 #### User-specific Request Arguments
 

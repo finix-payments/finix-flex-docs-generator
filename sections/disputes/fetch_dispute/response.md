@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/disputes/:DISPUTE_ID`
+`GET {{staging_base_url}}/disputes/:DISPUTE_ID`
 
 #### URL Parameters
 

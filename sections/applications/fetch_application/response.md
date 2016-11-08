@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/applications/:APPLICATION_ID`
+`GET {{staging_base_url}}/applications/:APPLICATION_ID`
 
 #### URL Parameters
 

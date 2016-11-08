@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{base_url}}/users/user_id`
+`GET {{staging_base_url}}/users/user_id`
 
 #### URL Parameters
 

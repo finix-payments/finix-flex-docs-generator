@@ -8,7 +8,7 @@ Fetch a previously created `Settlement`.
 
 #### HTTP Request
 
-`POST {{base_url}}/settlements/:SETTLEMENT_ID/`
+`POST {{staging_base_url}}/settlements/:SETTLEMENT_ID/`
 
 
 #### URL Parameters
