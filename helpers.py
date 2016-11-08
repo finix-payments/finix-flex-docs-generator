@@ -64,12 +64,8 @@ def format_php_request_body(string):
     return string
 
 def format_python_request_body(string):
-    # import ipdb; ipdb.set_trace()
     string = string.replace("true", "True")
     string = string.replace("false", "False")
-    # string = string.replace("{", "")
-    # string = string.replace(": ", "= \"")
-    # string = string.replace("\n\t}", "\"")
     return string
 
 def random_app_name():
