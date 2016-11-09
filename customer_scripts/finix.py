@@ -2,6 +2,7 @@ import re
 import string
 from client import *
 from configs import finix
+from helpers import format_included_client_header
 
 class MyTemplate(string.Template):
     delimiter = '{{'
@@ -65,6 +66,7 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, included_client
 
                 # include all the requests for the specific libraries
                 for client in included_clients:
+                    client = client.lower()
                     file = snippet_directory_location  + "/sections/client_header/" + client + ".md"
                     file_ordering.append(file)
                     file = snippet_directory_location  + "/sections/" + resource + "/" + snippet + "/" + client + "_request.md"
@@ -107,6 +109,8 @@ def build_docs(config_file):
     # Create a set of docs for each Partner (i.e. finix customer)
     # for api_configs in config_file.partner_configs:
     print "Building Docs for " + config_file.partner_configs["api_name"]
+    included_clients = {"included_clients": format_included_client_header(config_file.included_clients)}
+    config_file.partner_configs.update(included_clients)
     template_variables = generate_template_variables(config_file.partner_configs)
     create_branded_markdown_docs(template_variables, 'full_docs_template.md')
     create_branded_markdown_docs(template_variables, 'full_admin_docs_template.md')
@@ -136,7 +140,9 @@ def generate_template_variables(config_values):
     associate_dummyV1_payment_processor_scenario = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])
     create_user_partner_role_scenario = api_client.create_user_partner_role(create_app_scenario["response_id"])
     api_client.basic_auth_username = create_owner_user_scenario["response_id"]
+    config_values["basic_auth_username"] = create_owner_user_scenario["response_id"]
     api_client.basic_auth_password = json.loads(create_owner_user_scenario["response_body"])['password']
+    config_values["basic_auth_password"] = json.loads(create_owner_user_scenario["response_body"])['password']
     api_client.encoded_auth = base64.b64encode(api_client.basic_auth_username + ':' + api_client.basic_auth_password)
     toggle_application_processing_scenario = api_client.toggle_application_processing(create_app_scenario["response_id"], True)
     toggle_application_settlements_scenario = api_client.toggle_application_settlements(create_app_scenario["response_id"], True)
@@ -195,7 +201,7 @@ def generate_template_variables(config_values):
     create_recipient_identity_scenario = api_client.create_buyer_identity()
     create_recipient_card_scenario = api_client.create_card(create_recipient_identity_scenario["response_id"])
     create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
-    provision_merchant_account_scenario = api_client.provision_merchant(create_recipient_identity_scenario["response_id"])
+    provision_push_merchant_scenario = api_client.provision_merchant(create_recipient_identity_scenario["response_id"])
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
     list_disputes_scenario = api_client.list_disputes()
@@ -398,9 +404,9 @@ def generate_template_variables(config_values):
             "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
             "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
 
-            "provision_merchant_account_scenario_curl_request":  provision_merchant_account_scenario["curl_request_body"],
-            "provision_merchant_account_scenario_response": provision_merchant_account_scenario["response_body"],
-            "provision_merchant_account_scenario_id": provision_merchant_account_scenario["response_id"],
+            "provision_push_merchant_scenario_curl_request":  provision_push_merchant_scenario["curl_request_body"],
+            "provision_push_merchant_scenario_response": provision_push_merchant_scenario["response_body"],
+            "provision_push_merchant_scenario_id": provision_push_merchant_scenario["response_id"],
 
             "create_recipient_push_to_card_transfer_curl_request": create_recipient_push_to_card_transfer["curl_request_body"],
             "create_recipient_push_to_card_transfer_php_request": create_recipient_push_to_card_transfer["php_request_body"],
@@ -765,9 +771,9 @@ def generate_template_variables(config_values):
             "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
             "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
 
-            "provision_merchant_account_scenario_curl_request":  provision_merchant_account_scenario["curl_request_body"],
-            "provision_merchant_account_scenario_response": provision_merchant_account_scenario["response_body"],
-            "provision_merchant_account_scenario_id": provision_merchant_account_scenario["response_id"],
+            "provision_push_merchant_scenario_curl_request":  provision_push_merchant_scenario["curl_request_body"],
+            "provision_push_merchant_scenario_response": provision_push_merchant_scenario["response_body"],
+            "provision_push_merchant_scenario_id": provision_push_merchant_scenario["response_id"],
 
             "create_recipient_push_to_card_transfer_curl_request": create_recipient_push_to_card_transfer["curl_request_body"],
             "create_recipient_push_to_card_transfer_php_request": create_recipient_push_to_card_transfer["php_request_body"],

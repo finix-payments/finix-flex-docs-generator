@@ -357,15 +357,16 @@ admin_resource_ordering = [
 
 
 # Determine which client libraries to include
+# https://github.com/lord/slate/wiki/Customizing-the-Language-Tabs
+# KEY: maps to the perferred tab name in the templates & filing naming convention
+#      structure for scenarios
+# VALUE: maps to the language_tab value in slate
+
 included_clients = {
-    "curl": "shell",
-    "php": "php",
-    "java": "java",
-    "python": "python"
+    "Python": "python",
+    "Java": "java",
+    "PHP": "php",
+    "cURL": "shell",
 }
 
-def format_included_client_header(included_clients):
-    string = ""
-    for client in included_clients:
-        string = string + "- " + client + ": " + included_clients[client] + "\n"
-    return string
+
