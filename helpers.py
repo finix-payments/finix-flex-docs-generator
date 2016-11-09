@@ -91,3 +91,8 @@ def random_last_name():
     return random.choice (names)
 
 
+def format_included_client_header(included_clients):
+    string = ""
+    for client in included_clients:
+        string = string + "- " + included_clients[client]  + ": " + client+ "\n"
+    return string

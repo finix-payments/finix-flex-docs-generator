@@ -1,7 +1,7 @@
 > Example Response:
 
 ```json
-{{create_recipient_push_to_card_transfer_response}}
+{{provision_push_merchant_scenario_response}}
 ```
 
 #### HTTP Request
