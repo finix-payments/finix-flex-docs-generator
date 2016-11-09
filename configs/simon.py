@@ -340,9 +340,8 @@ admin_resource_ordering = [
 
 # Determine which client libraries to include
 included_clients = {
-    "shell": "curl",
+    "curl": "shell",
 }
-
 def format_included_client_header(included_clients):
     string = ""
     for client in included_clients:

@@ -358,10 +358,10 @@ admin_resource_ordering = [
 
 # Determine which client libraries to include
 included_clients = {
-    "shell": "curl",
-    "php": "PHP",
-    "java": "Java",
-    "python": "Python"
+    "curl": "shell",
+    "php": "php",
+    "java": "java",
+    "python": "python"
 }
 
 def format_included_client_header(included_clients):
