@@ -223,7 +223,7 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -272,7 +272,7 @@ admin_snippets_by_resource = {
     "transfers": [
         "definition",
         # "create_debit",
-        "create_bank_debit",
+        # "create_bank_debit",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
@@ -339,10 +339,14 @@ admin_resource_ordering = [
 
 
 # Determine which client libraries to include
-
-included_clients = [
-    "curl",
-    "php",
-    "java",
-    "python",
-]
+included_clients = {
+    "curl": "shell",
+    "php": "php",
+    "java": "java",
+    "python": "python"
+}
+def format_included_client_header(included_clients):
+    string = ""
+    for client in included_clients:
+        string = string + "- " + client + ": " + included_clients[client] + "\n"
+    return string

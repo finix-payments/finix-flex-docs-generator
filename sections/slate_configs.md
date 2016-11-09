@@ -2,9 +2,7 @@
 title: {{api_name}} API Reference
 
 language_tabs:
-  - shell: cURL
-  - php: PHP
-  - java: Java
+format_included_client_header(included_clients)
 
 includes:
   - errors
