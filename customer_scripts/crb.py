@@ -402,6 +402,7 @@ def generate_template_variables(config_values):
             "create_recipient_card_scenario_php_request": create_recipient_card_scenario["php_request_body"],
             "create_recipient_card_scenario_python_request": create_recipient_card_scenario["python_request_body"],
             "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
+            "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
 
             "provision_push_merchant_scenario_curl_request":  provision_push_merchant_scenario["curl_request_body"],
             "provision_push_merchant_scenario_response": provision_push_merchant_scenario["response_body"],
@@ -769,6 +770,7 @@ def generate_template_variables(config_values):
             "create_recipient_card_scenario_php_request": create_recipient_card_scenario["php_request_body"],
             "create_recipient_card_scenario_python_request": create_recipient_card_scenario["python_request_body"],
             "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
+            "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
 
             "provision_push_merchant_scenario_curl_request":  provision_push_merchant_scenario["curl_request_body"],
             "provision_push_merchant_scenario_response": provision_push_merchant_scenario["response_body"],
