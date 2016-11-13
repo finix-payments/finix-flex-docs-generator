@@ -298,8 +298,8 @@ admin_snippets_by_resource = {
 resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
-    "guide_getting_started",
     "api_endpoints",
+    "guide_getting_started",
     "guide_iframe",
     "authorizations",
     # "disputes",
@@ -316,8 +316,8 @@ resource_ordering = [
 admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
-    "guide_getting_started",
     "api_endpoints",
+    "guide_getting_started",
     "guide_iframe",
     "guide_getting_started",
     "guide_admin_overview",

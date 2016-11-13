@@ -288,7 +288,7 @@ admin_snippets_by_resource = {
     "transfers": [
         "definition",
         # "create_debit",
-        "create_bank_debit",
+        # "create_bank_debit",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
@@ -314,8 +314,8 @@ admin_snippets_by_resource = {
 resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
-    "guide_getting_started",
     "api_endpoints",
+    "guide_getting_started",
     "guide_iframe",
     "guide_push_to_card",
     "authorizations",
@@ -333,8 +333,8 @@ resource_ordering = [
 admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
-    "guide_getting_started",
     "api_endpoints",
+    "guide_getting_started",
     "guide_iframe",
     "guide_push_to_card",
     "guide_getting_started",

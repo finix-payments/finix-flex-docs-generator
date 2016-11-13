@@ -92,7 +92,11 @@ def random_last_name():
 
 
 def format_included_client_header(included_clients):
-    string = ""
+    if "cURL" in included_clients:
+        string = "- " + included_clients["cURL"]  + ": " + "cURL" + "\n"
+        included_clients.pop('cURL', None)
+    else:
+        string = ""
     for client in included_clients:
         string = string + "- " + included_clients[client]  + ": " + client+ "\n"
     return string
