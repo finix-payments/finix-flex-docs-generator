@@ -1,4 +1,5 @@
 import base64
+from collections import OrderedDict
 
 partner_configs = {
         'api_name': "Finix",
@@ -318,6 +319,7 @@ resource_ordering = [
     "guide_getting_started",
     "guide_iframe",
     "guide_push_to_card",
+    "guide_tokenization_js",
     "authorizations",
     # "disputes",
     "identities",
@@ -362,11 +364,9 @@ admin_resource_ordering = [
 #      structure for scenarios
 # VALUE: maps to the language_tab value in slate
 
-included_clients = {
-    "Python": "python",
-    "Java": "java",
-    "PHP": "php",
-    "cURL": "shell",
-}
-
-
+included_clients = OrderedDict([
+    ("cURL", "shell"),
+    ("Java", "java"),
+    ("PHP", "php"),
+    ("Python", "python"),
+])
