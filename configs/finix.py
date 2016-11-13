@@ -319,7 +319,7 @@ resource_ordering = [
     "guide_getting_started",
     "guide_iframe",
     "guide_push_to_card",
-    "guide_tokenization_js"
+    "guide_tokenization_js",
     "authorizations",
     # "disputes",
     "identities",

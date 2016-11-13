@@ -12,5 +12,5 @@
 
 Field | Type | Description
 ----- | ---- | -----------
-processor| *string*, **optional** | Nmae of Processor
+processor| *string*, **optional** | Name of Processor
 
