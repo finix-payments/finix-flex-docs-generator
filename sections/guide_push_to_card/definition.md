@@ -1,1 +1,1 @@
-## Push-to-Card [PRIVATE BETA]
+## Push-to-Card
