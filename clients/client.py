@@ -474,13 +474,12 @@ def create_debit(config_values, merchant_id, card_id, amount):
     endpoint = config_values['staging_base_url'] + '/transfers'
     return formatted_response(endpoint, values, config_values['encoded_auth'])
 
-def create_push_to_card_transfer(config_values, recipient_identity_id, card_id, amount):
+def create_push_to_card_transfer(config_values, card_id, amount):
     fee = int(round(amount * .1))
     values =  {
         "currency": "USD",
         "processor": "VISA_V1",
         "destination": card_id,
-        "merchant_identity": recipient_identity_id,
         "amount": amount,
         "tags": {
             "order_number": "21DFASJSAKAS"
