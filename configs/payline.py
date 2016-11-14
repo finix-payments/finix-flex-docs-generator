@@ -321,7 +321,6 @@ admin_resource_ordering = [
     "api_endpoints",
     "guide_getting_started",
     "guide_iframe",
-    "guide_getting_started",
     "guide_admin_overview",
     "guide_create_application",
     "guide_tokenization_js",
