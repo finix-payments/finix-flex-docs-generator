@@ -198,9 +198,10 @@ def generate_template_variables(config_values):
     #Push-to-card Scenarios
     associate_payment_processor_push_to_card_scenario = api_client.associate_payment_processor("VISA_V1", create_app_scenario["response_id"])
     create_recipient_identity_scenario = api_client.create_buyer_identity()
+    provision_push_merchant_scenario = api_client.provision_merchant(create_recipient_identity_scenario["response_id"])
     create_recipient_card_scenario = api_client.create_card(create_recipient_identity_scenario["response_id"])
     create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
-    provision_push_merchant_scenario = api_client.provision_merchant(create_recipient_identity_scenario["response_id"])
+
 
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
@@ -233,7 +234,7 @@ def generate_template_variables(config_values):
         fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
         list_settlement_transfers_scenario = api_client.list_settlement_transfers(create_settlement_scenario["response_id"])
         list_settlement_funding_transfers_scenario = api_client.list_settlement_funding_transfers(fund_settlement_scenario["response_id"])
-        list_settlements_scenario = list_settlements()
+        list_settlements_scenario = api_client.list_settlements()
 
     toggle_merchant_processing_scenario = api_client.toggle_merchant_processing(provision_merchant_scenario["response_id"], False)
     toggle_merchant_settlements_scenario = api_client.toggle_merchant_settlements(provision_merchant_scenario["response_id"], False)

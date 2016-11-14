@@ -16,7 +16,7 @@ class MyTemplate(string.Template):
     '''
 
 # toggle to skip the settlements bc they always be breaking
-TOGGLE_OFF_SETTLEMENTS = True
+TOGGLE_OFF_SETTLEMENTS = False
 
 def create_branded_markdown_docs(template_vars, template_source_file):
     # open up template
@@ -233,7 +233,7 @@ def generate_template_variables(config_values):
         fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
         list_settlement_transfers_scenario = api_client.list_settlement_transfers(create_settlement_scenario["response_id"])
         list_settlement_funding_transfers_scenario = api_client.list_settlement_funding_transfers(fund_settlement_scenario["response_id"])
-        list_settlements_scenario = list_settlements()
+        list_settlements_scenario = api_client.list_settlements()
 
     toggle_merchant_processing_scenario = api_client.toggle_merchant_processing(provision_merchant_scenario["response_id"], False)
     toggle_merchant_settlements_scenario = api_client.toggle_merchant_settlements(provision_merchant_scenario["response_id"], False)

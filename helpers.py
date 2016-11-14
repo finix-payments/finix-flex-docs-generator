@@ -5,7 +5,7 @@ import time
 import random
 import string
 import base64
-from urllib2 import Request, urlopen, HTTPError
+from urllib2 import Request, urlopen, HTTPError, URLError, build_opener, HTTPHandler
 import json
 import finix
 
@@ -14,14 +14,17 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
         'Content-Type': 'application/vnd.json+api',
         'Authorization': 'Basic ' + encoded_auth
     }
+
     request = Request(endpoint, data=values, headers=headers)
+    opener = build_opener(HTTPHandler(debuglevel=1))
 
     # Check if a PUT request
     if request_type is not None:
         request.get_method = lambda: 'PUT'
     try:
-        response_body = urlopen(request).read()
-    except HTTPError as e:
+        response_body = opener.open(request).read()
+    except URLError as e:
+
         import ipdb; ipdb.set_trace()
         json.loads(e.read())
 
