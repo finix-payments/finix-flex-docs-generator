@@ -317,8 +317,8 @@ resource_ordering = [
     "guide_authentication",
     "api_endpoints",
     "guide_getting_started",
-    "guide_iframe",
     "guide_push_to_card",
+    "guide_iframe",
     "guide_tokenization_js",
     "authorizations",
     # "disputes",
@@ -337,8 +337,8 @@ admin_resource_ordering = [
     "guide_authentication",
     "api_endpoints",
     "guide_getting_started",
-    "guide_iframe",
     "guide_push_to_card",
+    "guide_iframe",
     "guide_tokenization_js",
     "guide_admin_overview",
     "guide_create_application",
@@ -354,6 +354,9 @@ admin_resource_ordering = [
     "users",
     "webhooks",
     ]
+
+
+
 
 
 
