@@ -23,3 +23,4 @@ Users have 3 potential roles which provide different levels of access to the API
 data (i.e. Merchant's created under this Application)
 
 3. **ROLE_MERCHANT:** Access to one Merchant data
+
