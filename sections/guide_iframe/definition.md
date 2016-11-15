@@ -1,4 +1,4 @@
-## Embedded Tokenization Using Iframe
+## Embedded Tokenization
 
 Our embedded tokenization form ensures you remain out of PCI scope, while providing
 your end-users with a sleek, and seamless checkout experience.
