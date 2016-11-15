@@ -339,7 +339,6 @@ admin_resource_ordering = [
     "guide_getting_started",
     "guide_iframe",
     "guide_push_to_card",
-    "guide_getting_started",
     "guide_admin_overview",
     "guide_create_application",
     "guide_tokenization_js",

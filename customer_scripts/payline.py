@@ -16,7 +16,7 @@ class MyTemplate(string.Template):
     '''
 
 # toggle to skip the settlements bc they always be breaking
-TOGGLE_OFF_SETTLEMENTS = True
+TOGGLE_OFF_SETTLEMENTS = False
 
 def create_branded_markdown_docs(template_vars, template_source_file):
     # open up template

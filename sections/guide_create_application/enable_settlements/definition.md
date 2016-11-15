@@ -1,1 +1,1 @@
-### Step 4: Enable Settlement Functionality
+### Step 5: Enable Settlement Functionality
