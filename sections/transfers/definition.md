@@ -13,8 +13,10 @@ to complete the transaction
 
 - **SUCCEEDED:** Funds captured and available for settlement (i.e. disbursement
 via ACH Credit)
-
+        
 - **FAILED:** Authorization attempt failed
+
+- **CANCELED:** Created, and then reversed before transfer has transitioned to succeeded
 
 By default, `Transfers` will be in a PENDING state and will eventually (typically
 within an hour) update to SUCCEEDED.
