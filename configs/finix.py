@@ -21,6 +21,7 @@ partner_configs = {
         'staging_base_url': "https://api-staging.finix.io",
         'production_base_url': "https://api.finix.io",
         'python_client_resource_name': "finix",
+        'php_client_repo': "https://github.com/finix-payments/processing-php-client"
         }
 
 

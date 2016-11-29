@@ -21,6 +21,7 @@ partner_configs = {
         'staging_base_url': "https://api-test.payline.io",
         'production_base_url': "https://api.payline.io",
         'python_client_resource_name': "payline",
+        'php_client_repo': "https://github.com/Payline/payline-php"
         }   
 
 

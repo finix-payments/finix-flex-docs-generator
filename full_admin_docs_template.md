@@ -55,14 +55,32 @@ curl {{staging_base_url}}/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
+```php
 <?php
+
+// Download the PHP Client here: {{php_client_repo}}
+
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -174,7 +192,14 @@ Identity identity = client.identitiesClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -324,7 +349,14 @@ bankAccount = client.bankAccountsClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -393,7 +425,14 @@ Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -486,7 +525,14 @@ Identity identity = client.identitiesClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -579,7 +625,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -671,7 +724,14 @@ Authorization authorization = client.authorizationsClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -759,7 +819,14 @@ authorization = authorization.capture(50L);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -843,7 +910,14 @@ Settlement settlement = identity.createSettlement(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -920,7 +994,14 @@ curl {{staging_base_url}}/identities \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -980,7 +1061,14 @@ curl {{staging_base_url}}/payment_instruments \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1051,7 +1139,14 @@ curl https://api-staging.finix.io/identities/{{create_recipient_identity_scenari
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1098,7 +1193,14 @@ curl {{staging_base_url}}/transfers \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1239,7 +1341,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1534,7 +1643,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1627,7 +1743,14 @@ curl {{staging_base_url}}/users \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1676,7 +1799,14 @@ curl {{staging_base_url}}/applications/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1798,7 +1928,14 @@ curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/processors \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1860,7 +1997,14 @@ curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1914,7 +2058,14 @@ curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -1975,7 +2126,14 @@ curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}} \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2022,7 +2180,14 @@ curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/users \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2073,7 +2238,14 @@ curl {{staging_base_url}}/applications/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2192,7 +2364,14 @@ curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2243,7 +2422,14 @@ curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2292,7 +2478,14 @@ curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/processors \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2347,7 +2540,14 @@ curl {{staging_base_url}}/applications/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2404,7 +2604,14 @@ Authorization authorization = client.authorizationsClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2478,7 +2685,14 @@ authorization = authorization.capture(50L);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2546,7 +2760,14 @@ curl {{staging_base_url}}/authorizations/{{void_authorization_scenario_id}} \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2606,7 +2827,14 @@ Authorization authorization = client.authorizationsClient().fetch("{{fetch_autho
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2659,7 +2887,14 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2726,7 +2961,14 @@ Identity identity = client.identitiesClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2841,7 +3083,14 @@ Identity identity = client.identitiesClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -2967,7 +3216,14 @@ Identity identity = client.identitiesClient().fetch("{{fetch_identity_scenario_i
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3014,7 +3270,14 @@ curl {{staging_base_url}}/identities/{{update_identity_scenario_id}} \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3132,7 +3395,14 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3179,7 +3449,14 @@ Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3264,7 +3541,14 @@ Merchant merchant = client.merchantsClient().fetch("{{fetch_merchant_scenario_id
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3311,7 +3595,14 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3355,7 +3646,14 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3401,7 +3699,14 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3452,7 +3757,14 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3500,7 +3812,14 @@ curl {{staging_base_url}}/merchants/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3537,7 +3856,14 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3583,7 +3909,14 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3632,7 +3965,14 @@ curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/us
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3777,7 +4117,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3847,7 +4194,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -3921,7 +4275,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4015,7 +4376,14 @@ bankAccount = client.bankAccountsClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4074,7 +4442,14 @@ PaymentCard paymentCard = client.paymentCardsClient().fetch("{{fetch_payment_ins
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4123,7 +4498,14 @@ curl {{staging_base_url}}/payment_instruments/{{update_payment_instrument_scenar
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4187,7 +4569,14 @@ client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4237,7 +4626,14 @@ Settlement settlement = identity.createSettlement(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4317,7 +4713,14 @@ Settlement settlement = client.settlementsClient().fetch("{{fetch_settlement_sce
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4369,7 +4772,14 @@ client.settlementsClient().<Resources<Settlement>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4421,7 +4831,14 @@ client.settlementsClient().<Resources<Settlement>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4468,7 +4885,14 @@ curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}}/transfers
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4544,7 +4968,14 @@ Transfer transfer = client.transfersClient().fetch("{{fetch_transfer_scenario_id
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4598,7 +5029,14 @@ Refund refund = transfer.reverse(100L);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4665,7 +5103,14 @@ client.transfersClient().<Resources<Transfer>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4729,7 +5174,14 @@ curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/users \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4781,7 +5233,14 @@ curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/us
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4832,7 +5291,14 @@ curl {{staging_base_url}}/users/{{fetch_transfer_scenario_id}} \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4877,7 +5343,14 @@ curl {{staging_base_url}}/users/{{disable_user_scenario_id}} \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4926,7 +5399,14 @@ curl {{staging_base_url}}/users/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -4985,7 +5465,14 @@ Webhook webhook = client.webhookClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -5043,7 +5530,14 @@ Webhook webhook = client.webhookClient().fetch("{{fetch_webhook_scenario_id}}");
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -5097,7 +5591,14 @@ client.webhookClient().<Resources<Webhook>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -5132,7 +5633,14 @@ webhooks = Webhook.get()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/{{api_name}}/Settings.php');
-{{api_name}}\Settings::configure('{{staging_base_url}}', '{{basic_auth_username}}', '{{basic_auth_password}}');
+
+{{api_name}}\Settings::configure([
+	"root_url" => '{{staging_base_url}}',
+	"username" => '{{basic_auth_username}}',
+	"password" => '{{basic_auth_password}}']
+	);
+
+
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
