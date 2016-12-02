@@ -23,4 +23,4 @@ within an hour) update to SUCCEEDED.
 
 <aside class="notice">
 When an Authorization is captured a corresponding Transfer will also be created.
-</aside>
+</puthon 
