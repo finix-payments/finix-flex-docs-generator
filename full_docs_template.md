@@ -80,7 +80,6 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 	"password" => '{{basic_auth_password}}']
 	);
 
-
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
@@ -979,267 +978,6 @@ Field | Type | Description
 currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
-## Push-to-Card
-### Step 1: Register an Identity
-```shell
-curl {{staging_base_url}}/identities \
-    -H "Content-Type: application/vnd.json+api" \
-    -u {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_recipient_identity_scenario_curl_request}}'
-```
-```java
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-
-{{api_name}}\Settings::configure([
-	"root_url" => '{{staging_base_url}}',
-	"username" => '{{basic_auth_username}}',
-	"password" => '{{basic_auth_password}}']
-	);
-
-
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```python
-
-
-
-```
-> Example Response:
-
-```json
-{{create_recipient_identity_scenario_response}}
-```
-
-Use the resulting ID of the newly created Identity to associate any transfers or payment instruments that are used. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/identities`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-first_name | *string*, **optional** | First name
-last_name | *string*, **optional** | Last name
-email | *string*, **optional** | Email
-phone | *string*, **optional** | Phone number
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-personal_address | *object*, **optional** | Customers shipping address or billing address (Full description of child attributes below)
-
-#### Address-object Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-line1 | *string*, **required** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **required** | City
-region | *string*, **required** | State
-postal_code | *string*, **required** | Zip or Postal code
-country | *string*, **required** | 3-Letter Country code
-
-### Step 2:  Add a Payment Instrument
-
-```shell
-curl {{staging_base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_recipient_card_scenario_curl_request}}'
-```
-```java
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-
-{{api_name}}\Settings::configure([
-	"root_url" => '{{staging_base_url}}',
-	"username" => '{{basic_auth_username}}',
-	"password" => '{{basic_auth_password}}']
-	);
-
-
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Application;
-
-$application = new Application({{create_app_scenario_php_request}});
-$application = $application->save();
-```
-```python
-
-
-
-```
-> Example Response:
-
-```json
-{{create_recipient_card_scenario_response}}
-```
-
-<aside class="warning">
-Please note that creating cards directly via the API should only be done for
-testing purposes. You must use the Tokenization iframe or javascript client
-to remain out of PCI scope.
-</aside>
-
-Again, keep track of the ID of the newly created payment instrument. This is used to determine the destination of funds when sending money.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/payment_instruments`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-identity | *string*, **required** | ID of the `Identity` that the card should be associated
-type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
-number | *string*, **required** | Credit card account number
-security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
-expiration_year | *integer*, **required** | 4-digit expiration year
-name | *string*, **optional** | Full name of the registered card holder
-address | *object*, **optional** | Billing address (Full description of child attributes below)
-
-
-#### Address-object Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-line1 | *string*, **optional** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **optional** | City
-region | *string*, **optional** | State
-postal_code | *string*, **optional** | Zip or Postal code
-country | *string*, **optional** | 3-Letter Country code
-
-### Step 3: Provision Merchant Account
-```shell
-curl https://api-staging.finix.io/identities/{{create_recipient_identity_scenario_id}}/merchants \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{provision_push_merchant_scenario_curl_request}}'
-```
-```java
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-
-{{api_name}}\Settings::configure([
-	"root_url" => '{{staging_base_url}}',
-	"username" => '{{basic_auth_username}}',
-	"password" => '{{basic_auth_password}}']
-	);
-
-
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-
-```
-```python
-
-
-
-```
-> Example Response:
-
-```json
-{{provision_push_merchant_scenario_response}}
-```
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/identities/identityID/merchants`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-processor| *string*, **optional** | Name of Processor
-
-
-### Step 4: Send Payout
-
-Once you have tokenized the payment card as above you can send funds to it at any time by simply calling the API
-
-
-```shell
-curl {{staging_base_url}}/transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_recipient_push_to_card_transfer_curl_request}}'
-
-```
-```java
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-
-{{api_name}}\Settings::configure([
-	"root_url" => '{{staging_base_url}}',
-	"username" => '{{basic_auth_username}}',
-	"password" => '{{basic_auth_password}}']
-	);
-
-
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-use {{api_name}}\Resources\Application;
-
-$application = new Application({{create_app_scenario_php_request}});
-$application = $application->save();
-```
-```python
-
-
-
-```
-> Example Response:
-
-```json
-{{create_recipient_push_to_card_transfer_response}}
-```
-
-Now that we have a new owner `User` let's create their `Application`. We'll be
-collecting the same basic KYC and underwrting information that we typically
-collect for provisioning a merchant account. You'll also be taking the ID for the
-`User` that you created in the previous step and passing it in the `user` field.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/transfers`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-destination | *string*, **required** | ID of the `Payment Instrument` where funds will be sent
-amount | *integer*, **required** | The total amount that will be charged in cents (e.g. 100 cents to charge $1.00)
-currency | *string*, **required** | 3-letter ISO code designating the currency of the `Transfers` (e.g. USD)
-statement_descriptor | *string*, **required** | Description that will show up on card statement 
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
-
 ## Embedded Tokenization
 
 Our embedded tokenization form ensures you remain out of PCI scope, while providing
@@ -1826,8 +1564,8 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 use {{api_name}}\Resources\Authorization;
 
 $authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-$authorization->capture_amount = 50;
-$authorization = $authorization->capture();
+$authorization = $authorization->capture(50, 10);
+
 ```
 ```python
 
@@ -1897,6 +1635,15 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\Authorization;
+
+$authorization = new Authorization({{create_authorization_scenario_php_request}});
+$authorization = $authorization->save();
+
+$authorization = Authorization::retrieve('{{create_authorization_scenario_id}}');
+$authorization->void(true);
+$authorization = $authorization->save();
 
 
 ```
@@ -2024,6 +1771,10 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\Authorization;
+
+$authorizations = Authorization::getPagination("/authorizations");
 
 
 ```
@@ -2414,6 +2165,10 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
+use {{api_name}}\Resources\Identity;
+
+$identities= Identity::getPagination("/identities");
+
 
 ```
 ```python
@@ -2678,11 +2433,16 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
 use {{api_name}}\Resources\Identity;
+use {{api_name}}\Resources\Merchant;
 
 $identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
 
-$merchant = $identity->provisionMerchantOn({{provision_merchant_scenario_php_request}});
+$merchant = $identity->provisionMerchantOn(new Merchant(["processor" => "DUMMY_V1"]));
 
+
+
+
+    
 ```
 ```python
 
@@ -2982,6 +2742,10 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\Merchant;
+
+$merchants = Merchant::getPagination("/merchants");
 
 
 ```
@@ -3430,7 +3194,7 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 use {{api_name}}\Resources\PaymentInstrument;
 
-$card = new PaymentInstrument({{associate_token_scenario_curl_request}});
+$card = new PaymentInstrument({{associate_token_scenario_php_request}});
 $card = $card->save();
 
 ```
@@ -3626,6 +3390,10 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\PaymentInstrument;
+
+$paymentinstruments = PaymentInstrument::getPagination("/payment_instruments");
 
 
 ```
@@ -4052,15 +3820,17 @@ to complete the transaction
 
 - **SUCCEEDED:** Funds captured and available for settlement (i.e. disbursement
 via ACH Credit)
-
+        
 - **FAILED:** Authorization attempt failed
+
+- **CANCELED:** Created, and then reversed before transfer has transitioned to succeeded
 
 By default, `Transfers` will be in a PENDING state and will eventually (typically
 within an hour) update to SUCCEEDED.
 
 <aside class="notice">
 When an Authorization is captured a corresponding Transfer will also be created.
-</aside>
+</aside> 
 ## Retrieve a Transfer
 ```shell
 
@@ -4156,7 +3926,7 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 use {{api_name}}\Resources\Transfer;
 
 $debit = Transfer::retrieve('{{create_debit_scenario_id}}');
-$refund = $debit->reverse(50);
+$refund = $debit->reverse(11);
 ```
 ```python
 
@@ -4227,6 +3997,10 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
 
+use {{api_name}}\Resources\Transfer;
+
+$transfers = Transfer::getPagination("/transfers");
+
 
 ```
 ```python
@@ -4294,7 +4068,7 @@ require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 
 use {{api_name}}\Resources\Webhook;
 
-$webhook = new Webhook('create_webhook_scenario_php_request');
+$webhook = new Webhook(array("url"=>"http://requestb.in/1jb5zu11"));
 $webhook = $webhook->save();
 
 
@@ -4417,6 +4191,10 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 
 require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
 {{api_name}}\Bootstrap::init();
+
+use {{api_name}}\Resources\Webhook;
+
+$webhooks = Webhook::getPagination("/webhooks");
 
 
 ```

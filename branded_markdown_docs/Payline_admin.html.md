@@ -49,7 +49,7 @@ explains how to properly tokenize cards in production via our embedded iframe.
 
 curl https://api-test.payline.io/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
@@ -59,14 +59,31 @@ curl https://api-test.payline.io/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
+```php
 <?php
+
+// Download the PHP Client here: https://github.com/Payline/payline-php
+
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -80,7 +97,7 @@ Payline\Bootstrap::init();
 import payline
 
 from payline.config import configure
-configure(root_url="https://api-test.payline.io", auth=("USfQ9LCUotNchB31PKbXdqir", "30141a9e-5338-4848-a24a-3ad12085e3dd"))
+configure(root_url="https://api-test.payline.io", auth=("USmAQ8t77QraWU17YWM6jjjQ", "a41df9e6-2dce-4ad9-87ce-1da2d794db44"))
 
 ```
 To communicate with the Payline API you'll need to authenticate your requests
@@ -88,11 +105,11 @@ via http basic access authentication with a `username` and `password`, which you
 can locate in your dashboard. If you do not have a dashboard feel free to test
 the API with the credentials below:
 
-- Username: `USfQ9LCUotNchB31PKbXdqir`
+- Username: `USmAQ8t77QraWU17YWM6jjjQ`
 
-- Password: `30141a9e-5338-4848-a24a-3ad12085e3dd`
+- Password: `a41df9e6-2dce-4ad9-87ce-1da2d794db44`
 
-- Application ID: `APvFU1J7hgZjmewU9fkeUh8i`
+- Application ID: `APmE1ycLBmsgMx4gXoToVnLL`
 
 Your `Application` is a resource that represents your web app. In other words,
 any web service that connects buyers (i.e. customers) and sellers
@@ -116,7 +133,7 @@ API credentials. For testing please use the Staging API and when you are ready t
 ```shell
 curl https://api-test.payline.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
 	    "tags": {
@@ -127,7 +144,7 @@ curl https://api-test.payline.io/identities \
 	        "amex_mid": "12345678910", 
 	        "max_transaction_amount": 120000, 
 	        "has_accepted_credit_cards_previously": true, 
-	        "default_statement_descriptor": "Golds Gym", 
+	        "default_statement_descriptor": "Petes Coffee", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -152,12 +169,12 @@ curl https://api-test.payline.io/identities \
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Golds Gym", 
+	        "doing_business_as": "Petes Coffee", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Golds Gym", 
+	        "business_name": "Petes Coffee", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -166,7 +183,7 @@ curl https://api-test.payline.io/identities \
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.GoldsGym.com", 
+	        "url": "www.PetesCoffee.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}'
@@ -230,7 +247,14 @@ Identity identity = client.identitiesClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -246,7 +270,7 @@ $identity = new Identity(
 	        "amex_mid"=> "12345678910", 
 	        "max_transaction_amount"=> 120000, 
 	        "has_accepted_credit_cards_previously"=> true, 
-	        "default_statement_descriptor"=> "Golds Gym", 
+	        "default_statement_descriptor"=> "Petes Coffee", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -271,12 +295,12 @@ $identity = new Identity(
 	        "first_name"=> "dwayne", 
 	        "title"=> "CEO", 
 	        "business_tax_id"=> "123456789", 
-	        "doing_business_as"=> "Golds Gym", 
+	        "doing_business_as"=> "Petes Coffee", 
 	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
 	        "mcc"=> "0742", 
 	        "phone"=> "1234567890", 
-	        "business_name"=> "Golds Gym", 
+	        "business_name"=> "Petes Coffee", 
 	        "tax_id"=> "123456789", 
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -285,7 +309,7 @@ $identity = new Identity(
 	            "day"=> 27, 
 	            "month"=> 6
 	        ), 
-	        "url"=> "www.GoldsGym.com", 
+	        "url"=> "www.PetesCoffee.com", 
 	        "annual_card_volume"=> 12000000
 	    )
 	)
@@ -308,7 +332,7 @@ identity = Identity(**
 	        "amex_mid": "12345678910", 
 	        "max_transaction_amount": 120000, 
 	        "has_accepted_credit_cards_previously": True, 
-	        "default_statement_descriptor": "Golds Gym", 
+	        "default_statement_descriptor": "Petes Coffee", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -333,12 +357,12 @@ identity = Identity(**
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Golds Gym", 
+	        "doing_business_as": "Petes Coffee", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Golds Gym", 
+	        "business_name": "Petes Coffee", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -347,7 +371,7 @@ identity = Identity(**
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.GoldsGym.com", 
+	        "url": "www.PetesCoffee.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}).save()
@@ -357,15 +381,15 @@ identity = Identity(**
 
 ```json
 {
-  "id" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Golds Gym",
+    "business_name" : "Petes Coffee",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Golds Gym",
+    "doing_business_as" : "Petes Coffee",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -393,7 +417,7 @@ identity = Identity(**
     "max_transaction_amount" : 120000,
     "amex_mid" : "12345678910",
     "discover_mid" : null,
-    "url" : "www.GoldsGym.com",
+    "url" : "www.PetesCoffee.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -405,40 +429,40 @@ identity = Identity(**
     "short_business_name" : null,
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Golds Gym"
+    "default_statement_descriptor" : "Petes Coffee"
   },
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-11-15T03:40:22.38Z",
-  "updated_at" : "2016-11-15T03:40:22.38Z",
+  "created_at" : "2016-11-29T22:56:05.17Z",
+  "updated_at" : "2016-11-29T22:56:05.17Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/verifications"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/verifications"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/authorizations"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/transfers"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/payment_instruments"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/disputes"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/disputes"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -542,7 +566,7 @@ year | *integer*, **required** | Year of birth (4-digit)
 ```shell
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
 	    "account_type": "SAVINGS", 
@@ -554,7 +578,7 @@ curl https://api-test.payline.io/payment_instruments \
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}'
 
 
@@ -581,7 +605,14 @@ bankAccount = client.bankAccountsClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -598,7 +629,7 @@ $bank_account = new PaymentInstrument(
 	    "bank_code"=> "123123123", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity"=> "IDci9dFHHcUcfUCs4Gn72cRN"
 	));
 $bank_account = $bank_account->save();
 
@@ -619,7 +650,7 @@ bank_account = BankAccount(**
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}).save()
 
 ```
@@ -627,36 +658,36 @@ bank_account = BankAccount(**
 
 ```json
 {
-  "id" : "PI485mr7uuJWRyTMVS8qpnBL",
+  "id" : "PI7oLHdpoK2U6bvoU5BRu761",
   "fingerprint" : "FPR-1215770130",
   "tags" : { },
   "bank_code" : "123123123",
   "country" : "USA",
   "masked_account_number" : "XXXXX3123",
   "name" : "Fran Lemke",
-  "created_at" : "2016-11-15T03:40:31.74Z",
-  "updated_at" : "2016-11-15T03:40:31.74Z",
+  "created_at" : "2016-11-29T22:56:16.98Z",
+  "updated_at" : "2016-11-29T22:56:16.98Z",
   "instrument_type" : "BANK_ACCOUNT",
   "currency" : "USD",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -692,9 +723,9 @@ name | *string*, **optional** | Account owner's full name
 ### Step 3: Provision Merchant Account
 
 ```shell
-curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants \
+curl https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
           {
             "tags": {
@@ -713,13 +744,20 @@ Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDaotf83HNxER4mu5gXAxJPV');
+$identity = Identity::retrieve('IDci9dFHHcUcfUCs4Gn72cRN');
 
 $merchant = $identity->provisionMerchantOn(
           array(
@@ -736,42 +774,42 @@ $merchant = $identity->provisionMerchantOn(
 from payline.resources import Identity
 from payline.resources import Merchant
 
-identity = Identity.get(id="IDaotf83HNxER4mu5gXAxJPV")
+identity = Identity.get(id="IDci9dFHHcUcfUCs4Gn72cRN")
 merchant = identity.provision_merchant_on(Merchant())
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "MUmkS68nR9tbaksv35SYMkQs",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
-  "verification" : "VIjap1EF2Kao7zYjd8wJybvg",
-  "merchant_profile" : "MPsW9zxb7VANE2N1pF5kNPUX",
+  "id" : "MUnes7LTRELFtHq3a4JC21Ao",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
+  "verification" : "VInbqsrBcJbWC1sxsxHMPVyo",
+  "merchant_profile" : "MPbT7hyqtvS5CiWhC2NmkpzY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:33.10Z",
-  "updated_at" : "2016-11-15T03:40:33.10Z",
+  "created_at" : "2016-11-29T22:56:30.98Z",
+  "updated_at" : "2016-11-29T22:56:30.98Z",
   "onboarding_state" : "PROVISIONING",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-test.payline.io/merchant_profiles/MPsW9zxb7VANE2N1pF5kNPUX"
+      "href" : "https://api-test.payline.io/merchant_profiles/MPbT7hyqtvS5CiWhC2NmkpzY"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "verification" : {
-      "href" : "https://api-test.payline.io/verifications/VIjap1EF2Kao7zYjd8wJybvg"
+      "href" : "https://api-test.payline.io/verifications/VInbqsrBcJbWC1sxsxHMPVyo"
     }
   }
 }
@@ -820,7 +858,7 @@ Parameter | Description
 
 curl https://api-test.payline.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
 	    "tags": {
@@ -829,7 +867,7 @@ curl https://api-test.payline.io/identities \
 	    "entity": {
 	        "phone": "7145677613", 
 	        "first_name": "Step", 
-	        "last_name": "Green", 
+	        "last_name": "White", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -863,7 +901,14 @@ Identity identity = client.identitiesClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -877,7 +922,7 @@ $identity = new Identity(
 	    "entity"=> array(
 	        "phone"=> "7145677613", 
 	        "first_name"=> "Step", 
-	        "last_name"=> "Green", 
+	        "last_name"=> "White", 
 	        "email"=> "therock@gmail.com", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
@@ -906,7 +951,7 @@ identity = Identity(**
 	    "entity": {
 	        "phone": "7145677613", 
 	        "first_name": "Step", 
-	        "last_name": "Green", 
+	        "last_name": "White", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -924,11 +969,11 @@ identity = Identity(**
 
 ```json
 {
-  "id" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+  "id" : "IDvBmWTYJSrWDKwZuPnUFV2j",
   "entity" : {
     "title" : null,
     "first_name" : "Step",
-    "last_name" : "Green",
+    "last_name" : "White",
     "email" : "therock@gmail.com",
     "business_name" : null,
     "business_type" : null,
@@ -962,35 +1007,35 @@ identity = Identity(**
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-11-15T03:40:34.51Z",
-  "updated_at" : "2016-11-15T03:40:34.51Z",
+  "created_at" : "2016-11-29T22:56:35.28Z",
+  "updated_at" : "2016-11-29T22:56:35.28Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/verifications"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/verifications"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/merchants"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/merchants"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/settlements"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/authorizations"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/transfers"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/payment_instruments"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/disputes"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/disputes"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -1040,10 +1085,10 @@ country | *string*, **required** | 3-Letter Country code
 
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
-	    "name": "Bob Henderson", 
+	    "name": "Walter Sterling", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card name": "Business Card"
@@ -1060,7 +1105,7 @@ curl https://api-test.payline.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID9n1NEjjjCeurMoqLgwF8Nv"
+	    "identity": "IDvBmWTYJSrWDKwZuPnUFV2j"
 	}'
 
 
@@ -1084,7 +1129,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -1092,7 +1144,7 @@ use Payline\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "name"=> "Bob Henderson", 
+	    "name"=> "Walter Sterling", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> array(
 	        "card name"=> "Business Card"
@@ -1109,7 +1161,7 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "ID9n1NEjjjCeurMoqLgwF8Nv"
+	    "identity"=> "IDvBmWTYJSrWDKwZuPnUFV2j"
 	));
 $card = $card->save();
 
@@ -1122,7 +1174,7 @@ from payline.resources import PaymentCard
 
 card = PaymentCard(**
 	{
-	    "name": "Bob Henderson", 
+	    "name": "Walter Sterling", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card name": "Business Card"
@@ -1139,22 +1191,22 @@ card = PaymentCard(**
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID9n1NEjjjCeurMoqLgwF8Nv"
+	    "identity": "IDvBmWTYJSrWDKwZuPnUFV2j"
 	}).save()
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "fingerprint" : "FPR-1778475544",
+  "id" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "fingerprint" : "FPR1798353012",
   "tags" : { },
   "expiration_month" : 12,
   "expiration_year" : 2020,
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Bob Henderson",
+  "name" : "Walter Sterling",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -1165,32 +1217,32 @@ card = PaymentCard(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-11-15T03:40:35.02Z",
-  "updated_at" : "2016-11-15T03:40:35.02Z",
+  "created_at" : "2016-11-29T22:56:36.14Z",
+  "updated_at" : "2016-11-29T22:56:36.14Z",
   "instrument_type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+  "identity" : "IDvBmWTYJSrWDKwZuPnUFV2j",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "updates" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/updates"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/updates"
     }
   }
 }
@@ -1244,13 +1296,13 @@ country | *string*, **optional** | 3-Letter Country code
 ```shell
 curl https://api-test.payline.io/authorizations \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
-	    "merchant_identity": "IDaotf83HNxER4mu5gXAxJPV", 
+	    "merchant_identity": "IDci9dFHHcUcfUCs4Gn72cRN", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PIrNo8zuHEZoatYMcCPvkypT", 
+	    "source": "PIh1Y21TC9DY7fG1t2juRL2x", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -1273,7 +1325,14 @@ Authorization authorization = client.authorizationsClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -1281,10 +1340,10 @@ use Payline\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "IDaotf83HNxER4mu5gXAxJPV", 
+	    "merchant_identity"=> "IDci9dFHHcUcfUCs4Gn72cRN", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
-	    "source"=> "PIrNo8zuHEZoatYMcCPvkypT", 
+	    "source"=> "PIh1Y21TC9DY7fG1t2juRL2x", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -1298,10 +1357,10 @@ $authorization = $authorization->save();
 from payline.resources import Authorization
 authorization = Authorization(**
 	{
-	    "merchant_identity": "IDaotf83HNxER4mu5gXAxJPV", 
+	    "merchant_identity": "IDci9dFHHcUcfUCs4Gn72cRN", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PIrNo8zuHEZoatYMcCPvkypT", 
+	    "source": "PIh1Y21TC9DY7fG1t2juRL2x", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -1312,7 +1371,7 @@ authorization = Authorization(**
 
 ```json
 {
-  "id" : "AUtK245svn13rbnyQG2oYWQq",
+  "id" : "AUfaL57h9QgPrgZvNhscNHpD",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -1322,22 +1381,22 @@ authorization = Authorization(**
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-11-15T03:40:40.60Z",
-  "updated_at" : "2016-11-15T03:40:40.61Z",
-  "trace_id" : "63eaf2c9-c57c-4f86-8966-eb5e4481620f",
-  "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "created_at" : "2016-11-29T22:56:47.36Z",
+  "updated_at" : "2016-11-29T22:56:47.55Z",
+  "trace_id" : "8a3dc180-7a1a-47b3-9076-a750067efc4a",
+  "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "is_void" : false,
-  "expires_at" : "2016-11-22T03:40:40.60Z",
+  "expires_at" : "2016-12-06T22:56:47.36Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq"
+      "href" : "https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "merchant_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     }
   }
 }
@@ -1391,9 +1450,9 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 
 ### Step 7: Capture the Authorization
 ```shell
-curl https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq \
+curl https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -X PUT \
     -d '
 	{
@@ -1404,7 +1463,7 @@ curl https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq \
 ```java
 import io.payline.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AUtK245svn13rbnyQG2oYWQq");
+Authorization authorization = client.authorizationsClient().fetch("AUfaL57h9QgPrgZvNhscNHpD");
 authorization = authorization.capture(50L);
 
 ```
@@ -1412,13 +1471,20 @@ authorization = authorization.capture(50L);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUtK245svn13rbnyQG2oYWQq');
+$authorization = Authorization::retrieve('AUfaL57h9QgPrgZvNhscNHpD');
 $authorization->capture_amount = 50;
 $authorization = $authorization->capture();
 
@@ -1428,7 +1494,7 @@ $authorization = $authorization->capture();
 
 from payline.resources import Authorization
 
-authorization = Authorization.get(id="AUtK245svn13rbnyQG2oYWQq")
+authorization = Authorization.get(id="AUfaL57h9QgPrgZvNhscNHpD")
 authorization.capture(**
 	{
 	    "fee": "10", 
@@ -1440,35 +1506,35 @@ authorization.capture(**
 
 ```json
 {
-  "id" : "AUtK245svn13rbnyQG2oYWQq",
+  "id" : "AUfaL57h9QgPrgZvNhscNHpD",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TR9STEP4F5uZeQJrXFUnwPjw",
+  "transfer" : "TR28iRVdxQhvvhWPHT1qfUJN",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-11-15T03:40:40.45Z",
-  "updated_at" : "2016-11-15T03:40:41.42Z",
-  "trace_id" : "63eaf2c9-c57c-4f86-8966-eb5e4481620f",
-  "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "created_at" : "2016-11-29T22:56:47.28Z",
+  "updated_at" : "2016-11-29T22:56:49.70Z",
+  "trace_id" : "8a3dc180-7a1a-47b3-9076-a750067efc4a",
+  "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "is_void" : false,
-  "expires_at" : "2016-11-22T03:40:40.45Z",
+  "expires_at" : "2016-12-06T22:56:47.28Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq"
+      "href" : "https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "transfer" : {
-      "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw"
+      "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN"
     },
     "merchant_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     }
   }
 }
@@ -1510,153 +1576,7 @@ Field | Type | Description
 capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
 fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount
 
-### Step 8: Create a Batch Settlment
-```shell
-curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
-    -d '
-	{
-	    "currency": "USD", 
-	    "tags": {
-	        "Internal Daily Settlement ID": "21DFASJSAKAS"
-	    }
-	}'
-
-```
-```java
-import io.payline.payments.processing.client.model.Settlement;
-
-Settlement settlement = identity.createSettlement(
-  Settlement.builder()
-    .currency("USD")
-    .build()
-)
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
-require(__DIR__ . '/src/Payline/Bootstrap.php');
-Payline\Bootstrap::init();
-
-use Payline\Resources\Identity;
-use Payline\Resources\Settlement;
-
-$identity = Identity::retrieve('IDaotf83HNxER4mu5gXAxJPV');
-$settlement = $identity->createSettlement(
-	array(
-	    "currency"=> "USD", 
-	    "tags"=> array(
-	        "Internal Daily Settlement ID"=> "21DFASJSAKAS"
-	    )
-	));
-
-```
-```python
-
-
-from payline.resources import Identity
-from payline.resources import Settlement
-
-identity = Identity.get(id="IDaotf83HNxER4mu5gXAxJPV")
-settlement = Settlement(**
-	{
-	    "currency": "USD", 
-	    "tags": {
-	        "Internal Daily Settlement ID": "21DFASJSAKAS"
-	    }
-	})
-identity.create_settlement(settlement)
-```
-> Example Response:
-
-```json
-{
-  "id" : "STjT9iJhUzeJjjABXHPc9WB3",
-  "tags" : {
-    "Internal Daily Settlement ID" : "21DFASJSAKAS"
-  },
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
-  "currency" : "USD",
-  "created_at" : "2016-11-15T03:47:41.34Z",
-  "updated_at" : "2016-11-15T03:47:41.35Z",
-  "processor" : "DUMMY_V1",
-  "total_amount" : 100,
-  "total_fees" : 11,
-  "total_fee" : 11,
-  "net_amount" : 89,
-  "destination" : null,
-  "_links" : {
-    "self" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3"
-    },
-    "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-    },
-    "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
-    },
-    "funding_transfers" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/funding_transfers"
-    },
-    "transfers" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers"
-    },
-    "fees" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=fee"
-    },
-    "reversals" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=reverse"
-    },
-    "credits" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=credit"
-    },
-    "debits" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=debit"
-    }
-  }
-}
-```
-
-Awesome! Now you know how to charge a card. Next you need to settle out the
-funds to your merchant's bank account (i.e. issue an ACH Credit). To do so you
-will create a `Settlement` resource. A `Settlement` is a logical construct
-representing a collection (i.e. batch) of `Transfers` that are intended to be
-paid out to a specific `Merchant`.
-
-
-Each settlement is comprised of all the `Transfers` that have a SUCCEEDED `state` and
-that have not yet been previously settled out. In other words, if a merchant has a
-`Transfer` in the PENDING state it will not be included in the batch settlement.
-In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
-
-<aside class="notice">
-Once a batch Settlement has been created it will undergo review and typically
-paid out within 24 hours.
-</aside>
-
-Note, that for reconciliation purposes each `Settlement` contains a [transfers
-link](#list-transfers-in-a-settlement) which returns a list of all the
-`Transfers` that comprise the batch.
-
-#### HTTP Request
-
-`POST https://api-test.payline.io/identities/:IDENTITY_ID/settlements`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
-## Embedded Tokenization Using Iframe
+## Embedded Tokenization
 
 Our embedded tokenization form ensures you remain out of PCI scope, while providing
 your end-users with a sleek, and seamless checkout experience.
@@ -1709,7 +1629,7 @@ as doing so prevents important updates.
       document.getElementById('show-form').addEventListener('click', function() {
         Payline.openTokenizeCardForm({
           applicationName: 'Business Name',
-          applicationId: 'APvFU1J7hgZjmewU9fkeUh8i',
+          applicationId: 'APmE1ycLBmsgMx4gXoToVnLL',
         }, function (tokenizedResponse) {
           // Define a callback to send your token to your back-end server
         });
@@ -1731,16 +1651,16 @@ HTTPS request on your back-end for future use.
 
 ```json
 {
-  "id" : "TK9E43itbiWv7TyGX3PFbvKc",
+  "id" : "TK8vDGkdBrAnc6LnZcwP7KJp",
   "fingerprint" : "FPR284253560",
-  "created_at" : "2016-11-15T03:40:42.77Z",
-  "updated_at" : "2016-11-15T03:40:42.77Z",
+  "created_at" : "2016-11-29T22:56:53.72Z",
+  "updated_at" : "2016-11-29T22:56:53.72Z",
   "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2016-11-16T03:40:42.77Z",
+  "expires_at" : "2016-11-30T22:56:53.72Z",
   "currency" : "USD",
   "_links" : {
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -1750,12 +1670,12 @@ HTTPS request on your back-end for future use.
 ```shell
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}'
 
 
@@ -1775,7 +1695,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -1783,9 +1710,9 @@ use Payline\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	});
 $card = $card->save();
 
@@ -1797,9 +1724,9 @@ from payline.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}).save()
 
 ```
@@ -1807,7 +1734,7 @@ payment_instrument = PaymentInstrument(**
 
 ```json
 {
-  "id" : "PI9E43itbiWv7TyGX3PFbvKc",
+  "id" : "PI8vDGkdBrAnc6LnZcwP7KJp",
   "fingerprint" : "FPR-1132692079",
   "tags" : { },
   "expiration_month" : 12,
@@ -1826,32 +1753,32 @@ payment_instrument = PaymentInstrument(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-11-15T03:40:43.28Z",
-  "updated_at" : "2016-11-15T03:40:43.28Z",
+  "created_at" : "2016-11-29T22:56:54.39Z",
+  "updated_at" : "2016-11-29T22:56:54.39Z",
   "instrument_type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "updates" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/updates"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/updates"
     }
   }
 }
@@ -1926,7 +1853,14 @@ curl https://api-test.payline.io/users \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -1941,17 +1875,17 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "USfQ9LCUotNchB31PKbXdqir",
-  "password" : "30141a9e-5338-4848-a24a-3ad12085e3dd",
+  "id" : "USmAQ8t77QraWU17YWM6jjjQ",
+  "password" : "a41df9e6-2dce-4ad9-87ce-1da2d794db44",
   "identity" : null,
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:18.72Z",
-  "updated_at" : "2016-11-15T03:40:18.72Z",
+  "created_at" : "2016-11-29T22:55:56.99Z",
+  "updated_at" : "2016-11-29T22:55:56.99Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/users/USfQ9LCUotNchB31PKbXdqir"
+      "href" : "https://api-test.payline.io/users/USmAQ8t77QraWU17YWM6jjjQ"
     },
     "applications" : {
       "href" : "https://api-test.payline.io/applications"
@@ -1985,9 +1919,9 @@ curl https://api-test.payline.io/applications/ \
     -d '
 	{
 	    "tags": {
-	        "application_name": "Facebook"
+	        "application_name": "Square"
 	    }, 
-	    "user": "USfQ9LCUotNchB31PKbXdqir", 
+	    "user": "USmAQ8t77QraWU17YWM6jjjQ", 
 	    "entity": {
 	        "business_type": "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -2009,7 +1943,7 @@ curl https://api-test.payline.io/applications/ \
 	        }, 
 	        "max_transaction_amount": 12000, 
 	        "phone": "1234567890", 
-	        "doing_business_as": "Facebook", 
+	        "doing_business_as": "Square", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -2018,7 +1952,7 @@ curl https://api-test.payline.io/applications/ \
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "Facebook", 
+	        "business_name": "Square", 
 	        "business_tax_id": "123456789", 
 	        "email": "user@example.org", 
 	        "tax_id": "5779"
@@ -2033,7 +1967,14 @@ curl https://api-test.payline.io/applications/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -2042,9 +1983,9 @@ use Payline\Resources\Application;
 $application = new Application(
 	array(
 	    "tags"=> array(
-	        "application_name"=> "Facebook"
+	        "application_name"=> "Square"
 	    ), 
-	    "user"=> "USfQ9LCUotNchB31PKbXdqir", 
+	    "user"=> "USmAQ8t77QraWU17YWM6jjjQ", 
 	    "entity"=> array(
 	        "business_type"=> "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -2066,7 +2007,7 @@ $application = new Application(
 	        ), 
 	        "max_transaction_amount"=> 12000, 
 	        "phone"=> "1234567890", 
-	        "doing_business_as"=> "Facebook", 
+	        "doing_business_as"=> "Square", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -2075,7 +2016,7 @@ $application = new Application(
 	            "line1"=> "741 Douglass St", 
 	            "postal_code"=> "94114"
 	        ), 
-	        "business_name"=> "Facebook", 
+	        "business_name"=> "Square", 
 	        "business_tax_id"=> "123456789", 
 	        "email"=> "user@example.org", 
 	        "tax_id"=> "5779"
@@ -2092,52 +2033,55 @@ $application = $application->save();
 
 ```json
 {
-  "id" : "APvFU1J7hgZjmewU9fkeUh8i",
+  "id" : "APmE1ycLBmsgMx4gXoToVnLL",
   "enabled" : true,
   "tags" : {
-    "application_name" : "Facebook"
+    "application_name" : "Square"
   },
-  "owner" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "owner" : "IDiEqfWMGveafDrekHKiuxPo",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2016-11-15T03:40:19.20Z",
-  "updated_at" : "2016-11-15T03:40:19.20Z",
+  "created_at" : "2016-11-29T22:55:58.45Z",
+  "updated_at" : "2016-11-29T22:55:58.45Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "processors" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors"
     },
     "users" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users"
     },
     "owner_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+      "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/transfers"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/transfers"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/disputes"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/authorizations"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/settlements"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/settlements"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/merchants"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/merchants"
     },
     "identities" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/identities"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/identities"
     },
     "webhooks" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/webhooks"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/reversals"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/reversals"
+    },
+    "tokens" : {
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/tokens"
     }
   }
 }
@@ -2232,7 +2176,7 @@ month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
 ### Step 3: Enable a Processor
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors \
     -H "Content-Type: application/vnd.json+api" \
     -u  USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110 \
     -d '
@@ -2252,7 +2196,14 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processor
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -2267,11 +2218,11 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "PR78xwFpU6rn2eNGAyLWb6BB",
-  "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-  "default_merchant_profile" : "MPsW9zxb7VANE2N1pF5kNPUX",
-  "created_at" : "2016-11-15T03:40:19.98Z",
-  "updated_at" : "2016-11-15T03:40:19.98Z",
+  "id" : "PRj7S8cE7K3XKjmYn5RK24dB",
+  "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+  "default_merchant_profile" : "MPbT7hyqtvS5CiWhC2NmkpzY",
+  "created_at" : "2016-11-29T22:55:59.99Z",
+  "updated_at" : "2016-11-29T22:55:59.99Z",
   "processor" : "DUMMY_V1",
   "config" : {
     "key1" : "value-1",
@@ -2280,10 +2231,10 @@ Payline\Bootstrap::init();
   "enabled" : true,
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors/PR78xwFpU6rn2eNGAyLWb6BB"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors/PRj7S8cE7K3XKjmYn5RK24dB"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -2320,7 +2271,7 @@ Parameter | Description
 
 ### Step 4: Enable Processing Functionality
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/ \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  USjXwXbL7N1tp6UnCCqfogkP:8d745c00-1f4f-4d65-a92c-44dcf19e872e \
     -X PUT \
@@ -2337,7 +2288,14 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -2352,52 +2310,55 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "APvFU1J7hgZjmewU9fkeUh8i",
+  "id" : "APmE1ycLBmsgMx4gXoToVnLL",
   "enabled" : true,
   "tags" : {
-    "application_name" : "Facebook"
+    "application_name" : "Square"
   },
-  "owner" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "owner" : "IDiEqfWMGveafDrekHKiuxPo",
   "processing_enabled" : true,
   "settlement_enabled" : false,
-  "created_at" : "2016-11-15T03:40:19.15Z",
-  "updated_at" : "2016-11-15T03:47:51.82Z",
+  "created_at" : "2016-11-29T22:55:58.41Z",
+  "updated_at" : "2016-11-29T22:57:27.00Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "processors" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors"
     },
     "users" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users"
     },
     "owner_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+      "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/transfers"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/transfers"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/disputes"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/authorizations"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/settlements"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/settlements"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/merchants"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/merchants"
     },
     "identities" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/identities"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/identities"
     },
     "webhooks" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/webhooks"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/reversals"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/reversals"
+    },
+    "tokens" : {
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/tokens"
     }
   }
 }
@@ -2426,7 +2387,7 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | True to enable
 ### Step 5: Enable Settlement Functionality
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/ \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  USjXwXbL7N1tp6UnCCqfogkP:8d745c00-1f4f-4d65-a92c-44dcf19e872e \
     -X PUT \
@@ -2443,7 +2404,14 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -2458,52 +2426,55 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "APvFU1J7hgZjmewU9fkeUh8i",
+  "id" : "APmE1ycLBmsgMx4gXoToVnLL",
   "enabled" : true,
   "tags" : {
-    "application_name" : "Facebook"
+    "application_name" : "Square"
   },
-  "owner" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "owner" : "IDiEqfWMGveafDrekHKiuxPo",
   "processing_enabled" : true,
   "settlement_enabled" : true,
-  "created_at" : "2016-11-15T03:40:19.15Z",
-  "updated_at" : "2016-11-15T03:47:52.48Z",
+  "created_at" : "2016-11-29T22:55:58.41Z",
+  "updated_at" : "2016-11-29T22:57:28.09Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "processors" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors"
     },
     "users" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users"
     },
     "owner_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+      "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/transfers"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/transfers"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/disputes"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/authorizations"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/settlements"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/settlements"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/merchants"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/merchants"
     },
     "identities" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/identities"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/identities"
     },
     "webhooks" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/webhooks"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/reversals"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/reversals"
+    },
+    "tokens" : {
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/tokens"
     }
   }
 }
@@ -2630,7 +2601,7 @@ Please refrain from hosting the tokenization.js library locally as doing so prev
 var initTokenization = function() {
   Tokenization.init({
     server: "https://api-test.payline.io",
-    applicationId: "APvFU1J7hgZjmewU9fkeUh8i",
+    applicationId: "APmE1ycLBmsgMx4gXoToVnLL",
     hosted_fields: {
       card: {
         number: {
@@ -2735,16 +2706,16 @@ $('#ba-submit').click(function(e) {
 
 ```json
 {
-  "id" : "TK9E43itbiWv7TyGX3PFbvKc",
+  "id" : "TK8vDGkdBrAnc6LnZcwP7KJp",
   "fingerprint" : "FPR284253560",
-  "created_at" : "2016-11-15T03:40:42.77Z",
-  "updated_at" : "2016-11-15T03:40:42.77Z",
+  "created_at" : "2016-11-29T22:56:53.72Z",
+  "updated_at" : "2016-11-29T22:56:53.72Z",
   "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2016-11-16T03:40:42.77Z",
+  "expires_at" : "2016-11-30T22:56:53.72Z",
   "currency" : "USD",
   "_links" : {
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -2777,12 +2748,12 @@ Great now that you have created a token you will want to store that ID to utiliz
 ```shell
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}'
 
 ```
@@ -2801,7 +2772,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -2809,9 +2787,9 @@ use Payline\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	});
 $card = $card->save();
 
@@ -2823,9 +2801,9 @@ from payline.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}).save()
 
 ```
@@ -2833,7 +2811,7 @@ payment_instrument = PaymentInstrument(**
 
 ```json
 {
-  "id" : "PI9E43itbiWv7TyGX3PFbvKc",
+  "id" : "PI8vDGkdBrAnc6LnZcwP7KJp",
   "fingerprint" : "FPR-1132692079",
   "tags" : { },
   "expiration_month" : 12,
@@ -2852,32 +2830,32 @@ payment_instrument = PaymentInstrument(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-11-15T03:40:43.28Z",
-  "updated_at" : "2016-11-15T03:40:43.28Z",
+  "created_at" : "2016-11-29T22:56:54.39Z",
+  "updated_at" : "2016-11-29T22:56:54.39Z",
   "instrument_type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "updates" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/updates"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/updates"
     }
   }
 }
@@ -2915,7 +2893,7 @@ customers) and sellers (i.e. merchants).
 
 ## Fetch an Application
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL \
     -H "Content-Type: application/vnd.json+api" \
     -u  USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110
 
@@ -2927,13 +2905,20 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Application;
 
-$application = Application::retrieve('APvFU1J7hgZjmewU9fkeUh8i');
+$application = Application::retrieve('APmE1ycLBmsgMx4gXoToVnLL');
 
 ```
 ```python
@@ -2941,58 +2926,61 @@ $application = Application::retrieve('APvFU1J7hgZjmewU9fkeUh8i');
 
 from payline.resources import Application
 
-application = Application.get(id="APvFU1J7hgZjmewU9fkeUh8i")
+application = Application.get(id="APmE1ycLBmsgMx4gXoToVnLL")
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "APvFU1J7hgZjmewU9fkeUh8i",
+  "id" : "APmE1ycLBmsgMx4gXoToVnLL",
   "enabled" : true,
   "tags" : {
-    "application_name" : "Facebook"
+    "application_name" : "Square"
   },
-  "owner" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "owner" : "IDiEqfWMGveafDrekHKiuxPo",
   "processing_enabled" : true,
   "settlement_enabled" : true,
-  "created_at" : "2016-11-15T03:40:19.15Z",
-  "updated_at" : "2016-11-15T03:40:21.54Z",
+  "created_at" : "2016-11-29T22:55:58.41Z",
+  "updated_at" : "2016-11-29T22:56:03.77Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "processors" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors"
     },
     "users" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users"
     },
     "owner_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+      "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/transfers"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/transfers"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/disputes"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/authorizations"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/settlements"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/settlements"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/merchants"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/merchants"
     },
     "identities" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/identities"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/identities"
     },
     "webhooks" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/webhooks"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/reversals"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/reversals"
+    },
+    "tokens" : {
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/tokens"
     }
   }
 }
@@ -3016,9 +3004,9 @@ curl https://api-test.payline.io/applications/ \
     -d '
 	{
 	    "tags": {
-	        "application_name": "Facebook"
+	        "application_name": "Square"
 	    }, 
-	    "user": "USfQ9LCUotNchB31PKbXdqir", 
+	    "user": "USmAQ8t77QraWU17YWM6jjjQ", 
 	    "entity": {
 	        "business_type": "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -3040,7 +3028,7 @@ curl https://api-test.payline.io/applications/ \
 	        }, 
 	        "max_transaction_amount": 12000, 
 	        "phone": "1234567890", 
-	        "doing_business_as": "Facebook", 
+	        "doing_business_as": "Square", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -3049,7 +3037,7 @@ curl https://api-test.payline.io/applications/ \
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "Facebook", 
+	        "business_name": "Square", 
 	        "business_tax_id": "123456789", 
 	        "email": "user@example.org", 
 	        "tax_id": "5779"
@@ -3064,7 +3052,14 @@ curl https://api-test.payline.io/applications/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -3073,9 +3068,9 @@ use Payline\Resources\Application;
 $application = new Application(
 	array(
 	    "tags"=> array(
-	        "application_name"=> "Facebook"
+	        "application_name"=> "Square"
 	    ), 
-	    "user"=> "USfQ9LCUotNchB31PKbXdqir", 
+	    "user"=> "USmAQ8t77QraWU17YWM6jjjQ", 
 	    "entity"=> array(
 	        "business_type"=> "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -3097,7 +3092,7 @@ $application = new Application(
 	        ), 
 	        "max_transaction_amount"=> 12000, 
 	        "phone"=> "1234567890", 
-	        "doing_business_as"=> "Facebook", 
+	        "doing_business_as"=> "Square", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -3106,7 +3101,7 @@ $application = new Application(
 	            "line1"=> "741 Douglass St", 
 	            "postal_code"=> "94114"
 	        ), 
-	        "business_name"=> "Facebook", 
+	        "business_name"=> "Square", 
 	        "business_tax_id"=> "123456789", 
 	        "email"=> "user@example.org", 
 	        "tax_id"=> "5779"
@@ -3123,9 +3118,9 @@ from payline.resources import Application
 application = Application(**
 	{
 	    "tags": {
-	        "application_name": "Facebook"
+	        "application_name": "Square"
 	    }, 
-	    "user": "USfQ9LCUotNchB31PKbXdqir", 
+	    "user": "USmAQ8t77QraWU17YWM6jjjQ", 
 	    "entity": {
 	        "business_type": "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -3147,7 +3142,7 @@ application = Application(**
 	        }, 
 	        "max_transaction_amount": 12000, 
 	        "phone": "1234567890", 
-	        "doing_business_as": "Facebook", 
+	        "doing_business_as": "Square", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -3156,7 +3151,7 @@ application = Application(**
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "Facebook", 
+	        "business_name": "Square", 
 	        "business_tax_id": "123456789", 
 	        "email": "user@example.org", 
 	        "tax_id": "5779"
@@ -3167,52 +3162,55 @@ application = Application(**
 
 ```json
 {
-  "id" : "APvFU1J7hgZjmewU9fkeUh8i",
+  "id" : "APmE1ycLBmsgMx4gXoToVnLL",
   "enabled" : true,
   "tags" : {
-    "application_name" : "Facebook"
+    "application_name" : "Square"
   },
-  "owner" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "owner" : "IDiEqfWMGveafDrekHKiuxPo",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2016-11-15T03:40:19.20Z",
-  "updated_at" : "2016-11-15T03:40:19.20Z",
+  "created_at" : "2016-11-29T22:55:58.45Z",
+  "updated_at" : "2016-11-29T22:55:58.45Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "processors" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors"
     },
     "users" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users"
     },
     "owner_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+      "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/transfers"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/transfers"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/disputes"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/authorizations"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/settlements"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/settlements"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/merchants"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/merchants"
     },
     "identities" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/identities"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/identities"
     },
     "webhooks" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/webhooks"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/reversals"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/reversals"
+    },
+    "tokens" : {
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/tokens"
     }
   }
 }
@@ -3300,7 +3298,7 @@ month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
 ## [ADMIN] Disable Processing Functionality
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/ \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  USjXwXbL7N1tp6UnCCqfogkP:8d745c00-1f4f-4d65-a92c-44dcf19e872e \
     -X PUT \
@@ -3317,7 +3315,14 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -3332,52 +3337,55 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "APvFU1J7hgZjmewU9fkeUh8i",
+  "id" : "APmE1ycLBmsgMx4gXoToVnLL",
   "enabled" : true,
   "tags" : {
-    "application_name" : "Facebook"
+    "application_name" : "Square"
   },
-  "owner" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "owner" : "IDiEqfWMGveafDrekHKiuxPo",
   "processing_enabled" : false,
   "settlement_enabled" : true,
-  "created_at" : "2016-11-15T03:40:19.15Z",
-  "updated_at" : "2016-11-15T03:47:49.47Z",
+  "created_at" : "2016-11-29T22:55:58.41Z",
+  "updated_at" : "2016-11-29T22:57:22.63Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "processors" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors"
     },
     "users" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users"
     },
     "owner_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+      "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/transfers"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/transfers"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/disputes"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/authorizations"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/settlements"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/settlements"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/merchants"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/merchants"
     },
     "identities" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/identities"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/identities"
     },
     "webhooks" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/webhooks"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/reversals"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/reversals"
+    },
+    "tokens" : {
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/tokens"
     }
   }
 }
@@ -3403,7 +3411,7 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | False to disable
 ## [ADMIN] Disable Settlement Functionality
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/ \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  USjXwXbL7N1tp6UnCCqfogkP:8d745c00-1f4f-4d65-a92c-44dcf19e872e \
     -X PUT \
@@ -3420,7 +3428,14 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -3435,52 +3450,55 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "APvFU1J7hgZjmewU9fkeUh8i",
+  "id" : "APmE1ycLBmsgMx4gXoToVnLL",
   "enabled" : true,
   "tags" : {
-    "application_name" : "Facebook"
+    "application_name" : "Square"
   },
-  "owner" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "owner" : "IDiEqfWMGveafDrekHKiuxPo",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2016-11-15T03:40:19.15Z",
-  "updated_at" : "2016-11-15T03:47:50.06Z",
+  "created_at" : "2016-11-29T22:55:58.41Z",
+  "updated_at" : "2016-11-29T22:57:23.86Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "processors" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors"
     },
     "users" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users"
     },
     "owner_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+      "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/transfers"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/transfers"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/disputes"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/authorizations"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/settlements"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/settlements"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/merchants"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/merchants"
     },
     "identities" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/identities"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/identities"
     },
     "webhooks" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/webhooks"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/reversals"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/reversals"
+    },
+    "tokens" : {
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/tokens"
     }
   }
 }
@@ -3505,9 +3523,9 @@ Field | Type | Description
 settlement_enabled | *boolean*, **required** | False to disable
 ## Create an Application User
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '{}'
 
 ```
@@ -3518,7 +3536,14 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -3533,23 +3558,23 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "USnGBDnaDbNbneVMPBb2Pg3d",
-  "password" : "6e1d294c-e947-4608-bdf0-8e6920841388",
-  "identity" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "id" : "USdWnpNuJ9P2R4L15iBNZUor",
+  "password" : "5b97ab3e-c29a-4365-a088-72bf30c8b611",
+  "identity" : "IDiEqfWMGveafDrekHKiuxPo",
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:20.58Z",
-  "updated_at" : "2016-11-15T03:40:20.58Z",
+  "created_at" : "2016-11-29T22:56:01.99Z",
+  "updated_at" : "2016-11-29T22:56:01.99Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/users/USnGBDnaDbNbneVMPBb2Pg3d"
+      "href" : "https://api-test.payline.io/users/USdWnpNuJ9P2R4L15iBNZUor"
     },
     "applications" : {
       "href" : "https://api-test.payline.io/applications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -3576,7 +3601,7 @@ Parameter | Description
 
 ## [ADMIN] Enable the Dummy Processor (i.e. Sandbox)
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors \
     -H "Content-Type: application/vnd.json+api" \
     -u  USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110 \
     -d '
@@ -3596,7 +3621,14 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processor
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -3611,11 +3643,11 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "PR78xwFpU6rn2eNGAyLWb6BB",
-  "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-  "default_merchant_profile" : "MPsW9zxb7VANE2N1pF5kNPUX",
-  "created_at" : "2016-11-15T03:40:19.98Z",
-  "updated_at" : "2016-11-15T03:40:19.98Z",
+  "id" : "PRj7S8cE7K3XKjmYn5RK24dB",
+  "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+  "default_merchant_profile" : "MPbT7hyqtvS5CiWhC2NmkpzY",
+  "created_at" : "2016-11-29T22:55:59.99Z",
+  "updated_at" : "2016-11-29T22:55:59.99Z",
   "processor" : "DUMMY_V1",
   "config" : {
     "key1" : "value-1",
@@ -3624,10 +3656,10 @@ Payline\Bootstrap::init();
   "enabled" : true,
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors/PR78xwFpU6rn2eNGAyLWb6BB"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors/PRj7S8cE7K3XKjmYn5RK24dB"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -3661,7 +3693,7 @@ Parameter | Description
 ```shell
 curl https://api-test.payline.io/applications/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
@@ -3671,7 +3703,14 @@ curl https://api-test.payline.io/applications/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -3690,52 +3729,55 @@ application = Application.get()
 {
   "_embedded" : {
     "applications" : [ {
-      "id" : "APvFU1J7hgZjmewU9fkeUh8i",
+      "id" : "APmE1ycLBmsgMx4gXoToVnLL",
       "enabled" : true,
       "tags" : {
-        "application_name" : "Facebook"
+        "application_name" : "Square"
       },
-      "owner" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+      "owner" : "IDiEqfWMGveafDrekHKiuxPo",
       "processing_enabled" : true,
       "settlement_enabled" : true,
-      "created_at" : "2016-11-15T03:40:19.15Z",
-      "updated_at" : "2016-11-15T03:40:21.54Z",
+      "created_at" : "2016-11-29T22:55:58.41Z",
+      "updated_at" : "2016-11-29T22:56:03.77Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         },
         "processors" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/processors"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/processors"
         },
         "users" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users"
         },
         "owner_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/transfers"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/transfers"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/disputes"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/disputes"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/authorizations"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/authorizations"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/settlements"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/settlements"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/merchants"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/merchants"
         },
         "identities" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/identities"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/identities"
         },
         "webhooks" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/webhooks"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/webhooks"
         },
         "reversals" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/reversals"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/reversals"
+        },
+        "tokens" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/tokens"
         }
       }
     } ]
@@ -3770,13 +3812,13 @@ When an `Authorization` is captured it produces a `Transfer` resource.
 ```shell
 curl https://api-test.payline.io/authorizations \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
-	    "merchant_identity": "IDaotf83HNxER4mu5gXAxJPV", 
+	    "merchant_identity": "IDci9dFHHcUcfUCs4Gn72cRN", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PIrNo8zuHEZoatYMcCPvkypT", 
+	    "source": "PIh1Y21TC9DY7fG1t2juRL2x", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -3800,7 +3842,14 @@ Authorization authorization = client.authorizationsClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -3808,10 +3857,10 @@ use Payline\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "IDaotf83HNxER4mu5gXAxJPV", 
+	    "merchant_identity"=> "IDci9dFHHcUcfUCs4Gn72cRN", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
-	    "source"=> "PIrNo8zuHEZoatYMcCPvkypT", 
+	    "source"=> "PIh1Y21TC9DY7fG1t2juRL2x", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -3827,10 +3876,10 @@ from payline.resources import Authorization
 
 authorization = Authorization(**
 	{
-	    "merchant_identity": "IDaotf83HNxER4mu5gXAxJPV", 
+	    "merchant_identity": "IDci9dFHHcUcfUCs4Gn72cRN", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PIrNo8zuHEZoatYMcCPvkypT", 
+	    "source": "PIh1Y21TC9DY7fG1t2juRL2x", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -3840,7 +3889,7 @@ authorization = Authorization(**
 
 ```json
 {
-  "id" : "AUtK245svn13rbnyQG2oYWQq",
+  "id" : "AUfaL57h9QgPrgZvNhscNHpD",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -3850,22 +3899,22 @@ authorization = Authorization(**
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-11-15T03:40:40.60Z",
-  "updated_at" : "2016-11-15T03:40:40.61Z",
-  "trace_id" : "63eaf2c9-c57c-4f86-8966-eb5e4481620f",
-  "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "created_at" : "2016-11-29T22:56:47.36Z",
+  "updated_at" : "2016-11-29T22:56:47.55Z",
+  "trace_id" : "8a3dc180-7a1a-47b3-9076-a750067efc4a",
+  "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "is_void" : false,
-  "expires_at" : "2016-11-22T03:40:40.60Z",
+  "expires_at" : "2016-12-06T22:56:47.36Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq"
+      "href" : "https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "merchant_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     }
   }
 }
@@ -3902,9 +3951,9 @@ currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 ## Capture an Authorization
 ```shell
-curl https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq \
+curl https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -X PUT \
     -d '
 	{
@@ -3917,7 +3966,7 @@ curl https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq \
 
 import io.payline.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AUtK245svn13rbnyQG2oYWQq");
+Authorization authorization = client.authorizationsClient().fetch("AUfaL57h9QgPrgZvNhscNHpD");
 authorization = authorization.capture(50L);
 
 ```
@@ -3925,13 +3974,20 @@ authorization = authorization.capture(50L);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUtK245svn13rbnyQG2oYWQq');
+$authorization = Authorization::retrieve('AUfaL57h9QgPrgZvNhscNHpD');
 $authorization->capture_amount = 50;
 $authorization = $authorization->capture();
 ```
@@ -3940,7 +3996,7 @@ $authorization = $authorization->capture();
 
 from payline.resources import Authorization
 
-authorization = Authorization.get(id="AUtK245svn13rbnyQG2oYWQq")
+authorization = Authorization.get(id="AUfaL57h9QgPrgZvNhscNHpD")
 authorization.capture(**
 	{
 	    "fee": "10", 
@@ -3952,35 +4008,35 @@ authorization.capture(**
 
 ```json
 {
-  "id" : "AUtK245svn13rbnyQG2oYWQq",
+  "id" : "AUfaL57h9QgPrgZvNhscNHpD",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TR9STEP4F5uZeQJrXFUnwPjw",
+  "transfer" : "TR28iRVdxQhvvhWPHT1qfUJN",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-11-15T03:40:40.45Z",
-  "updated_at" : "2016-11-15T03:40:41.42Z",
-  "trace_id" : "63eaf2c9-c57c-4f86-8966-eb5e4481620f",
-  "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "created_at" : "2016-11-29T22:56:47.28Z",
+  "updated_at" : "2016-11-29T22:56:49.70Z",
+  "trace_id" : "8a3dc180-7a1a-47b3-9076-a750067efc4a",
+  "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "is_void" : false,
-  "expires_at" : "2016-11-22T03:40:40.45Z",
+  "expires_at" : "2016-12-06T22:56:47.28Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq"
+      "href" : "https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "transfer" : {
-      "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw"
+      "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN"
     },
     "merchant_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     }
   }
 }
@@ -4015,9 +4071,9 @@ fee | *integer*, **optional** | Amount of the captured `Authorization` you would
 ## Void an Authorization
 ```shell
 
-curl https://api-test.payline.io/authorizations/AUn75LL2B6KbTcqX8HrByWNj \
+curl https://api-test.payline.io/authorizations/AU68aiydDJXfcMsG32GbvQzQ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -X PUT \
     -d '
 	{
@@ -4032,7 +4088,14 @@ curl https://api-test.payline.io/authorizations/AUn75LL2B6KbTcqX8HrByWNj \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -4043,7 +4106,7 @@ Payline\Bootstrap::init();
 
 from payline.resources import Authorization
 
-authorization = Authorization.get(id="AUtK245svn13rbnyQG2oYWQq")
+authorization = Authorization.get(id="AUfaL57h9QgPrgZvNhscNHpD")
 authorization.void()
 
 ```
@@ -4051,7 +4114,7 @@ authorization.void()
 
 ```json
 {
-  "id" : "AUn75LL2B6KbTcqX8HrByWNj",
+  "id" : "AU68aiydDJXfcMsG32GbvQzQ",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -4061,22 +4124,22 @@ authorization.void()
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-11-15T03:40:45.26Z",
-  "updated_at" : "2016-11-15T03:40:46.04Z",
-  "trace_id" : "eb55947e-968e-4b20-a76d-a84e22053235",
-  "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "created_at" : "2016-11-29T22:56:56.50Z",
+  "updated_at" : "2016-11-29T22:56:58.19Z",
+  "trace_id" : "54ec4b9f-7563-4fe1-a83b-542f2530b83e",
+  "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "is_void" : true,
-  "expires_at" : "2016-11-22T03:40:45.26Z",
+  "expires_at" : "2016-12-06T22:56:56.50Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/authorizations/AUn75LL2B6KbTcqX8HrByWNj"
+      "href" : "https://api-test.payline.io/authorizations/AU68aiydDJXfcMsG32GbvQzQ"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "merchant_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     }
   }
 }
@@ -4105,29 +4168,36 @@ void_me | *boolean*, **required** | Set to True to void the `Authorization`
 ## Retrieve an Authorization
 ```shell
 
-curl https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq \
+curl https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
 
 import io.payline.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AUtK245svn13rbnyQG2oYWQq");
+Authorization authorization = client.authorizationsClient().fetch("AUfaL57h9QgPrgZvNhscNHpD");
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AUtK245svn13rbnyQG2oYWQq');
+$authorization = Authorization::retrieve('AUfaL57h9QgPrgZvNhscNHpD');
 
 ```
 ```python
@@ -4135,41 +4205,41 @@ $authorization = Authorization::retrieve('AUtK245svn13rbnyQG2oYWQq');
 
 from payline.resources import Authorization
 
-authorization = Authorization.get(id="AUtK245svn13rbnyQG2oYWQq")
+authorization = Authorization.get(id="AUfaL57h9QgPrgZvNhscNHpD")
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "AUtK245svn13rbnyQG2oYWQq",
+  "id" : "AUfaL57h9QgPrgZvNhscNHpD",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TR9STEP4F5uZeQJrXFUnwPjw",
+  "transfer" : "TR28iRVdxQhvvhWPHT1qfUJN",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-11-15T03:40:40.45Z",
-  "updated_at" : "2016-11-15T03:40:41.42Z",
-  "trace_id" : "63eaf2c9-c57c-4f86-8966-eb5e4481620f",
-  "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "created_at" : "2016-11-29T22:56:47.28Z",
+  "updated_at" : "2016-11-29T22:56:49.70Z",
+  "trace_id" : "8a3dc180-7a1a-47b3-9076-a750067efc4a",
+  "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "is_void" : false,
-  "expires_at" : "2016-11-22T03:40:40.45Z",
+  "expires_at" : "2016-12-06T22:56:47.28Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq"
+      "href" : "https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "transfer" : {
-      "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw"
+      "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN"
     },
     "merchant_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     }
   }
 }
@@ -4190,7 +4260,7 @@ Parameter | Description
 ```shell
 curl https://api-test.payline.io/authorizations/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
@@ -4206,7 +4276,14 @@ client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -4225,7 +4302,7 @@ authorization = Authorization.get()
 {
   "_embedded" : {
     "authorizations" : [ {
-      "id" : "AUn75LL2B6KbTcqX8HrByWNj",
+      "id" : "AU68aiydDJXfcMsG32GbvQzQ",
       "amount" : 100,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
@@ -4235,54 +4312,54 @@ authorization = Authorization.get()
       "transfer" : null,
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-11-15T03:40:45.26Z",
-      "updated_at" : "2016-11-15T03:40:46.04Z",
-      "trace_id" : "eb55947e-968e-4b20-a76d-a84e22053235",
-      "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-      "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "created_at" : "2016-11-29T22:56:56.50Z",
+      "updated_at" : "2016-11-29T22:56:58.19Z",
+      "trace_id" : "54ec4b9f-7563-4fe1-a83b-542f2530b83e",
+      "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+      "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "is_void" : true,
-      "expires_at" : "2016-11-22T03:40:45.26Z",
+      "expires_at" : "2016-12-06T22:56:56.50Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/authorizations/AUn75LL2B6KbTcqX8HrByWNj"
+          "href" : "https://api-test.payline.io/authorizations/AU68aiydDJXfcMsG32GbvQzQ"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         },
         "merchant_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         }
       }
     }, {
-      "id" : "AUtK245svn13rbnyQG2oYWQq",
+      "id" : "AUfaL57h9QgPrgZvNhscNHpD",
       "amount" : 100,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "SUCCEEDED",
       "currency" : "USD",
-      "transfer" : "TR9STEP4F5uZeQJrXFUnwPjw",
+      "transfer" : "TR28iRVdxQhvvhWPHT1qfUJN",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-11-15T03:40:40.45Z",
-      "updated_at" : "2016-11-15T03:40:41.42Z",
-      "trace_id" : "63eaf2c9-c57c-4f86-8966-eb5e4481620f",
-      "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-      "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "created_at" : "2016-11-29T22:56:47.28Z",
+      "updated_at" : "2016-11-29T22:56:49.70Z",
+      "trace_id" : "8a3dc180-7a1a-47b3-9076-a750067efc4a",
+      "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+      "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "is_void" : false,
-      "expires_at" : "2016-11-22T03:40:40.45Z",
+      "expires_at" : "2016-12-06T22:56:47.28Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/authorizations/AUtK245svn13rbnyQG2oYWQq"
+          "href" : "https://api-test.payline.io/authorizations/AUfaL57h9QgPrgZvNhscNHpD"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         },
         "transfer" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw"
+          "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN"
         },
         "merchant_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         }
       }
     } ]
@@ -4323,7 +4400,7 @@ information for the business and its principal.
 
 curl https://api-test.payline.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
 	    "tags": {
@@ -4332,7 +4409,7 @@ curl https://api-test.payline.io/identities \
 	    "entity": {
 	        "phone": "7145677613", 
 	        "first_name": "Step", 
-	        "last_name": "Green", 
+	        "last_name": "White", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -4367,7 +4444,14 @@ Identity identity = client.identitiesClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -4381,7 +4465,7 @@ $identity = new Identity(
 	    "entity"=> array(
 	        "phone"=> "7145677613", 
 	        "first_name"=> "Step", 
-	        "last_name"=> "Green", 
+	        "last_name"=> "White", 
 	        "email"=> "therock@gmail.com", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
@@ -4410,7 +4494,7 @@ identity = Identity(**
 	    "entity": {
 	        "phone": "7145677613", 
 	        "first_name": "Step", 
-	        "last_name": "Green", 
+	        "last_name": "White", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -4427,11 +4511,11 @@ identity = Identity(**
 
 ```json
 {
-  "id" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+  "id" : "IDvBmWTYJSrWDKwZuPnUFV2j",
   "entity" : {
     "title" : null,
     "first_name" : "Step",
-    "last_name" : "Green",
+    "last_name" : "White",
     "email" : "therock@gmail.com",
     "business_name" : null,
     "business_type" : null,
@@ -4465,35 +4549,35 @@ identity = Identity(**
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-11-15T03:40:34.51Z",
-  "updated_at" : "2016-11-15T03:40:34.51Z",
+  "created_at" : "2016-11-29T22:56:35.28Z",
+  "updated_at" : "2016-11-29T22:56:35.28Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/verifications"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/verifications"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/merchants"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/merchants"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/settlements"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/authorizations"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/transfers"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/payment_instruments"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/disputes"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/disputes"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -4526,7 +4610,7 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 
 curl https://api-test.payline.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
 	    "tags": {
@@ -4537,7 +4621,7 @@ curl https://api-test.payline.io/identities \
 	        "amex_mid": "12345678910", 
 	        "max_transaction_amount": 120000, 
 	        "has_accepted_credit_cards_previously": true, 
-	        "default_statement_descriptor": "Golds Gym", 
+	        "default_statement_descriptor": "Petes Coffee", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -4562,12 +4646,12 @@ curl https://api-test.payline.io/identities \
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Golds Gym", 
+	        "doing_business_as": "Petes Coffee", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Golds Gym", 
+	        "business_name": "Petes Coffee", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -4576,7 +4660,7 @@ curl https://api-test.payline.io/identities \
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.GoldsGym.com", 
+	        "url": "www.PetesCoffee.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}'
@@ -4642,7 +4726,14 @@ Identity identity = client.identitiesClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -4658,7 +4749,7 @@ $identity = new Identity(
 	        "amex_mid"=> "12345678910", 
 	        "max_transaction_amount"=> 120000, 
 	        "has_accepted_credit_cards_previously"=> true, 
-	        "default_statement_descriptor"=> "Golds Gym", 
+	        "default_statement_descriptor"=> "Petes Coffee", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -4683,12 +4774,12 @@ $identity = new Identity(
 	        "first_name"=> "dwayne", 
 	        "title"=> "CEO", 
 	        "business_tax_id"=> "123456789", 
-	        "doing_business_as"=> "Golds Gym", 
+	        "doing_business_as"=> "Petes Coffee", 
 	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
 	        "mcc"=> "0742", 
 	        "phone"=> "1234567890", 
-	        "business_name"=> "Golds Gym", 
+	        "business_name"=> "Petes Coffee", 
 	        "tax_id"=> "123456789", 
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -4697,7 +4788,7 @@ $identity = new Identity(
 	            "day"=> 27, 
 	            "month"=> 6
 	        ), 
-	        "url"=> "www.GoldsGym.com", 
+	        "url"=> "www.PetesCoffee.com", 
 	        "annual_card_volume"=> 12000000
 	    )
 	)
@@ -4720,7 +4811,7 @@ identity = Identity(**
 	        "amex_mid": "12345678910", 
 	        "max_transaction_amount": 120000, 
 	        "has_accepted_credit_cards_previously": True, 
-	        "default_statement_descriptor": "Golds Gym", 
+	        "default_statement_descriptor": "Petes Coffee", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -4745,12 +4836,12 @@ identity = Identity(**
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Golds Gym", 
+	        "doing_business_as": "Petes Coffee", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Golds Gym", 
+	        "business_name": "Petes Coffee", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -4759,7 +4850,7 @@ identity = Identity(**
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.GoldsGym.com", 
+	        "url": "www.PetesCoffee.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}).save()
@@ -4768,15 +4859,15 @@ identity = Identity(**
 
 ```json
 {
-  "id" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Golds Gym",
+    "business_name" : "Petes Coffee",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Golds Gym",
+    "doing_business_as" : "Petes Coffee",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -4804,7 +4895,7 @@ identity = Identity(**
     "max_transaction_amount" : 120000,
     "amex_mid" : "12345678910",
     "discover_mid" : null,
-    "url" : "www.GoldsGym.com",
+    "url" : "www.PetesCoffee.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -4816,40 +4907,40 @@ identity = Identity(**
     "short_business_name" : null,
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Golds Gym"
+    "default_statement_descriptor" : "Petes Coffee"
   },
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-11-15T03:40:22.38Z",
-  "updated_at" : "2016-11-15T03:40:22.38Z",
+  "created_at" : "2016-11-29T22:56:05.17Z",
+  "updated_at" : "2016-11-29T22:56:05.17Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/verifications"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/verifications"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/authorizations"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/transfers"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/payment_instruments"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/disputes"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/disputes"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -4941,50 +5032,57 @@ year | *integer*, **required** | Year of birth (4-digit)
 ## Retrieve a Identity
 ```shell
 
-curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV \
+curl https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
 
 import io.payline.payments.processing.client.model.Identity;
 
-Identity identity = client.identitiesClient().fetch("IDaotf83HNxER4mu5gXAxJPV");
+Identity identity = client.identitiesClient().fetch("IDci9dFHHcUcfUCs4Gn72cRN");
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDaotf83HNxER4mu5gXAxJPV');
+$identity = Identity::retrieve('IDci9dFHHcUcfUCs4Gn72cRN');
 ```
 ```python
 
 
 from payline.resources import Identity
-identity = Identity.get(id="IDaotf83HNxER4mu5gXAxJPV")
+identity = Identity.get(id="IDci9dFHHcUcfUCs4Gn72cRN")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Golds Gym",
+    "business_name" : "Petes Coffee",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Golds Gym",
+    "doing_business_as" : "Petes Coffee",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -5012,7 +5110,7 @@ identity = Identity.get(id="IDaotf83HNxER4mu5gXAxJPV")
     "max_transaction_amount" : 120000,
     "amex_mid" : "12345678910",
     "discover_mid" : null,
-    "url" : "www.GoldsGym.com",
+    "url" : "www.PetesCoffee.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -5024,40 +5122,40 @@ identity = Identity.get(id="IDaotf83HNxER4mu5gXAxJPV")
     "short_business_name" : null,
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Golds Gym"
+    "default_statement_descriptor" : "Petes Coffee"
   },
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2016-11-15T03:40:22.32Z",
-  "updated_at" : "2016-11-15T03:40:22.32Z",
+  "created_at" : "2016-11-29T22:56:05.16Z",
+  "updated_at" : "2016-11-29T22:56:05.16Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/verifications"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/verifications"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/authorizations"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/transfers"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/payment_instruments"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/disputes"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/disputes"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -5075,9 +5173,9 @@ Parameter | Description
 
 ## Update an Identity
 ```shell
-curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV \
+curl https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -X PUT \
     -d '
 	{
@@ -5086,8 +5184,8 @@ curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV \
 	    }, 
 	    "entity": {
 	        "business_phone": "+1 (408) 756-4497", 
-	        "first_name": "Step", 
-	        "last_name": "Le", 
+	        "first_name": "Walter", 
+	        "last_name": "Jones", 
 	        "amex_mid": "12345678910", 
 	        "title": "CTO", 
 	        "dob": {
@@ -5101,11 +5199,11 @@ curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV \
 	        "business_tax_id": "123456789", 
 	        "max_transaction_amount": 120000, 
 	        "principal_percentage_ownership": 50, 
-	        "doing_business_as": "Golds Gym", 
+	        "doing_business_as": "ACME Anchors", 
 	        "annual_card_volume": 12000000, 
-	        "default_statement_descriptor": "Golds Gym", 
-	        "url": "www.GoldsGym.com", 
-	        "business_name": "Golds Gym", 
+	        "default_statement_descriptor": "ACME Anchors", 
+	        "url": "www.ACMEAnchors.com", 
+	        "business_name": "ACME Anchors", 
 	        "personal_address": {
 	            "city": "San Diego", 
 	            "country": "USA", 
@@ -5127,7 +5225,14 @@ curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -5142,15 +5247,15 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "entity" : {
     "title" : "CTO",
-    "first_name" : "Step",
-    "last_name" : "Le",
+    "first_name" : "Walter",
+    "last_name" : "Jones",
     "email" : "user@example.org",
-    "business_name" : "Golds Gym",
+    "business_name" : "ACME Anchors",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Golds Gym",
+    "doing_business_as" : "ACME Anchors",
     "phone" : "7144177878",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -5178,7 +5283,7 @@ Payline\Bootstrap::init();
     "max_transaction_amount" : 120000,
     "amex_mid" : "12345678910",
     "discover_mid" : null,
-    "url" : "www.GoldsGym.com",
+    "url" : "www.ACMEAnchors.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -5190,40 +5295,40 @@ Payline\Bootstrap::init();
     "short_business_name" : null,
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Golds Gym"
+    "default_statement_descriptor" : "ACME Anchors"
   },
   "tags" : {
     "key" : "value_2"
   },
-  "created_at" : "2016-11-15T03:40:22.32Z",
-  "updated_at" : "2016-11-15T03:40:59.73Z",
+  "created_at" : "2016-11-29T22:56:05.16Z",
+  "updated_at" : "2016-11-29T22:57:17.97Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/verifications"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/verifications"
     },
     "merchants" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants"
     },
     "settlements" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/authorizations"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/transfers"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/payment_instruments"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/disputes"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/disputes"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -5312,7 +5417,7 @@ year | *integer*, **required** | Year of birth (4-digit)
 ```shell
 curl https://api-test.payline.io/identities/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 
 ```
@@ -5330,7 +5435,14 @@ client.identitiesClient().<Resources<Identity>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -5349,11 +5461,11 @@ identity = Identity.get()
 {
   "_embedded" : {
     "identities" : [ {
-      "id" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+      "id" : "IDvBmWTYJSrWDKwZuPnUFV2j",
       "entity" : {
         "title" : null,
         "first_name" : "Step",
-        "last_name" : "Green",
+        "last_name" : "White",
         "email" : "therock@gmail.com",
         "business_name" : null,
         "business_type" : null,
@@ -5387,47 +5499,47 @@ identity = Identity.get()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:34.45Z",
-      "updated_at" : "2016-11-15T03:40:34.45Z",
+      "created_at" : "2016-11-29T22:56:35.25Z",
+      "updated_at" : "2016-11-29T22:56:35.25Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/verifications"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/merchants"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/settlements"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/transfers"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/disputes"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDkgfS8dSwZnTyXYG9FHzeQZ",
+      "id" : "IDqF6bUM8pziC6SLPXnUNqqV",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
+        "business_name" : "Pawny City Hall",
         "business_type" : "GOVERNMENT_AGENCY",
-        "doing_business_as" : "Dunder Mifflin",
+        "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -5455,7 +5567,7 @@ identity = Identity.get()
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
+        "url" : "www.PawnyCityHall.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -5467,221 +5579,51 @@ identity = Identity.get()
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
+        "default_statement_descriptor" : "Pawny City Hall"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:31.03Z",
-      "updated_at" : "2016-11-15T03:40:31.03Z",
+      "created_at" : "2016-11-29T22:56:15.35Z",
+      "updated_at" : "2016-11-29T22:56:15.35Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/verifications"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/merchants"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/settlements"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/transfers"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/disputes"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "ID25hwCpAsx5DGEAXapSscKw",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
-        "business_type" : "INTERNATIONAL_ORGANIZATION",
-        "doing_business_as" : "Dunder Mifflin",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:30.10Z",
-      "updated_at" : "2016-11-15T03:40:30.10Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "IDAtrxVDLvpxHEBvjRBDRRo",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "ACME Anchors",
-        "business_type" : "TAX_EXEMPT_ORGANIZATION",
-        "doing_business_as" : "ACME Anchors",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.ACMEAnchors.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "ACME Anchors"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:29.55Z",
-      "updated_at" : "2016-11-15T03:40:29.55Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID2VQxr4AoEDY4BN5yZp2Mk2",
+      "id" : "IDpj2iEJ1UiSXrwjBCmkVby6",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Prestige World Wide",
-        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "business_type" : "INTERNATIONAL_ORGANIZATION",
         "doing_business_as" : "Prestige World Wide",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -5727,46 +5669,46 @@ identity = Identity.get()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:27.96Z",
-      "updated_at" : "2016-11-15T03:40:27.96Z",
+      "created_at" : "2016-11-29T22:56:14.39Z",
+      "updated_at" : "2016-11-29T22:56:14.39Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/verifications"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/merchants"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/settlements"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/transfers"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/disputes"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDuk1qbkqjrmJihXfur6L4WE",
+      "id" : "IDbkwPTHMQmmNuufe2adCu6L",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Pollos Hermanos",
-        "business_type" : "GENERAL_PARTNERSHIP",
+        "business_type" : "TAX_EXEMPT_ORGANIZATION",
         "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -5812,39 +5754,209 @@ identity = Identity.get()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:27.28Z",
-      "updated_at" : "2016-11-15T03:40:27.28Z",
+      "created_at" : "2016-11-29T22:56:13.51Z",
+      "updated_at" : "2016-11-29T22:56:13.51Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/verifications"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/merchants"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/settlements"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/transfers"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/disputes"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDhS7v5XG48WfBW5FyeC5eqM",
+      "id" : "IDqq2DMWfrdjVdbT7CmgGZZc",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Lees Sandwiches",
+        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "doing_business_as" : "Lees Sandwiches",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.LeesSandwiches.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Lees Sandwiches"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:11.55Z",
+      "updated_at" : "2016-11-29T22:56:11.55Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDhoQ8znpRhLsMtbQyd6BKAB",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Dunder Mifflin",
+        "business_type" : "GENERAL_PARTNERSHIP",
+        "doing_business_as" : "Dunder Mifflin",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.DunderMifflin.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Dunder Mifflin"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:10.71Z",
+      "updated_at" : "2016-11-29T22:56:10.71Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDhnmpJQpUFV6QiTcNcWNjCv",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
@@ -5897,216 +6009,46 @@ identity = Identity.get()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:26.72Z",
-      "updated_at" : "2016-11-15T03:40:26.72Z",
+      "created_at" : "2016-11-29T22:56:09.78Z",
+      "updated_at" : "2016-11-29T22:56:09.78Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/verifications"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/merchants"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/settlements"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/transfers"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/disputes"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDmBajumGWviwd3iWrwgq3G7",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
-        "business_type" : "PARTNERSHIP",
-        "doing_business_as" : "Lees Sandwiches",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:25.96Z",
-      "updated_at" : "2016-11-15T03:40:25.96Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID9NU6Mg3T2EuqNS2FzdV11m",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Prestige World Wide",
-        "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "Prestige World Wide",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.PrestigeWorldWide.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Prestige World Wide"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:23.95Z",
-      "updated_at" : "2016-11-15T03:40:23.95Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID9U9pWN6iKJbmnb2Uu9n8A9",
+      "id" : "IDpzgQpQanAXpJzaLzkyfZUr",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Pawny City Hall",
-        "business_type" : "CORPORATION",
+        "business_type" : "PARTNERSHIP",
         "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -6152,47 +6094,47 @@ identity = Identity.get()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:23.35Z",
-      "updated_at" : "2016-11-15T03:40:23.35Z",
+      "created_at" : "2016-11-29T22:56:08.80Z",
+      "updated_at" : "2016-11-29T22:56:08.80Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/verifications"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/merchants"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/settlements"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/transfers"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/disputes"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDaotf83HNxER4mu5gXAxJPV",
+      "id" : "ID7d8hhUfV9XCAAEmZd5Sekp",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-        "doing_business_as" : "Golds Gym",
+        "business_name" : "ACME Anchors",
+        "business_type" : "LIMITED_LIABILITY_COMPANY",
+        "doing_business_as" : "ACME Anchors",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -6220,7 +6162,7 @@ identity = Identity.get()
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
+        "url" : "www.ACMEAnchors.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -6232,52 +6174,222 @@ identity = Identity.get()
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
+        "default_statement_descriptor" : "ACME Anchors"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:22.32Z",
-      "updated_at" : "2016-11-15T03:40:22.32Z",
+      "created_at" : "2016-11-29T22:56:07.29Z",
+      "updated_at" : "2016-11-29T22:56:07.29Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/verifications"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/authorizations"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/transfers"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/disputes"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+      "id" : "ID8AH94icAePiPQnBxxn7LMF",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Dunder Mifflin",
+        "business_type" : "CORPORATION",
+        "doing_business_as" : "Dunder Mifflin",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.DunderMifflin.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Dunder Mifflin"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:06.23Z",
+      "updated_at" : "2016-11-29T22:56:06.23Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDci9dFHHcUcfUCs4Gn72cRN",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Petes Coffee",
+        "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
+        "doing_business_as" : "Petes Coffee",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PetesCoffee.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Petes Coffee"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:05.16Z",
+      "updated_at" : "2016-11-29T22:56:05.16Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDiEqfWMGveafDrekHKiuxPo",
       "entity" : {
         "title" : null,
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Facebook",
+        "business_name" : "Square",
         "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "Facebook",
+        "doing_business_as" : "Square",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -6316,37 +6428,37 @@ identity = Identity.get()
         "default_statement_descriptor" : null
       },
       "tags" : {
-        "application_name" : "Facebook"
+        "application_name" : "Square"
       },
-      "created_at" : "2016-11-15T03:40:19.15Z",
-      "updated_at" : "2016-11-15T03:40:19.21Z",
+      "created_at" : "2016-11-29T22:55:58.41Z",
+      "updated_at" : "2016-11-29T22:55:58.46Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/verifications"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/merchants"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/settlements"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/transfers"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/disputes"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     } ]
@@ -6376,9 +6488,9 @@ customers) and sellers (i.e. merchants).
 
 ## Provision a Merchant
 ```shell
-curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants \
+curl https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
           {
             "tags": {
@@ -6398,13 +6510,20 @@ Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Identity;
 
-$identity = Identity::retrieve('IDaotf83HNxER4mu5gXAxJPV');
+$identity = Identity::retrieve('IDci9dFHHcUcfUCs4Gn72cRN');
 
 $merchant = $identity->provisionMerchantOn(
           array(
@@ -6421,7 +6540,7 @@ $merchant = $identity->provisionMerchantOn(
 from payline.resources import Identity
 from payline.resources import Merchant
 
-identity = Identity.get(id="IDaotf83HNxER4mu5gXAxJPV")
+identity = Identity.get(id="IDci9dFHHcUcfUCs4Gn72cRN")
 merchant = identity.provision_merchant_on(Merchant())
 
 ```
@@ -6429,35 +6548,35 @@ merchant = identity.provision_merchant_on(Merchant())
 
 ```json
 {
-  "id" : "MUmkS68nR9tbaksv35SYMkQs",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
-  "verification" : "VIjap1EF2Kao7zYjd8wJybvg",
-  "merchant_profile" : "MPsW9zxb7VANE2N1pF5kNPUX",
+  "id" : "MUnes7LTRELFtHq3a4JC21Ao",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
+  "verification" : "VInbqsrBcJbWC1sxsxHMPVyo",
+  "merchant_profile" : "MPbT7hyqtvS5CiWhC2NmkpzY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:33.10Z",
-  "updated_at" : "2016-11-15T03:40:33.10Z",
+  "created_at" : "2016-11-29T22:56:30.98Z",
+  "updated_at" : "2016-11-29T22:56:30.98Z",
   "onboarding_state" : "PROVISIONING",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-test.payline.io/merchant_profiles/MPsW9zxb7VANE2N1pF5kNPUX"
+      "href" : "https://api-test.payline.io/merchant_profiles/MPbT7hyqtvS5CiWhC2NmkpzY"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "verification" : {
-      "href" : "https://api-test.payline.io/verifications/VIjap1EF2Kao7zYjd8wJybvg"
+      "href" : "https://api-test.payline.io/verifications/VInbqsrBcJbWC1sxsxHMPVyo"
     }
   }
 }
@@ -6506,67 +6625,74 @@ Parameter | Description
 
 ## Retrieve a Merchant
 ```shell
-curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs \
+curl https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
 import io.payline.payments.processing.client.model.Merchant;
 
-Merchant merchant = client.merchantsClient().fetch("MUmkS68nR9tbaksv35SYMkQs");
+Merchant merchant = client.merchantsClient().fetch("MUnes7LTRELFtHq3a4JC21Ao");
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Merchant;
 
-$merchant = Merchant::retrieve('MUmkS68nR9tbaksv35SYMkQs');
+$merchant = Merchant::retrieve('MUnes7LTRELFtHq3a4JC21Ao');
 
 ```
 ```python
 
 
 from payline.resources import Merchant
-merchant = Merchant.get(id="MUmkS68nR9tbaksv35SYMkQs")
+merchant = Merchant.get(id="MUnes7LTRELFtHq3a4JC21Ao")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "MUmkS68nR9tbaksv35SYMkQs",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "MUnes7LTRELFtHq3a4JC21Ao",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "verification" : null,
-  "merchant_profile" : "MPsW9zxb7VANE2N1pF5kNPUX",
+  "merchant_profile" : "MPbT7hyqtvS5CiWhC2NmkpzY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : true,
   "settlement_enabled" : true,
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:32.99Z",
-  "updated_at" : "2016-11-15T03:40:33.22Z",
+  "created_at" : "2016-11-29T22:56:30.89Z",
+  "updated_at" : "2016-11-29T22:56:31.53Z",
   "onboarding_state" : "APPROVED",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-test.payline.io/merchant_profiles/MPsW9zxb7VANE2N1pF5kNPUX"
+      "href" : "https://api-test.payline.io/merchant_profiles/MPbT7hyqtvS5CiWhC2NmkpzY"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -6584,9 +6710,9 @@ Parameter | Description
 
 ## Update Info on Processor
 ```shell
-curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications \
+curl https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '{}'
 
 ```
@@ -6597,7 +6723,14 @@ curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verification
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -6612,27 +6745,28 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "VI35Fo212j4cFYKAi13nAW6w",
-  "external_trace_id" : "b2c01a92-b6e6-49d2-bb97-2df2863d66c2",
+  "id" : "VIjHkgXvgSLVZ1AsQkp7sLov",
+  "external_trace_id" : "f0cf7b68-e058-4146-9df7-ef1a8edfd49e",
   "tags" : { },
   "messages" : [ ],
   "raw" : null,
   "processor" : "DUMMY_V1",
   "state" : "PENDING",
-  "created_at" : "2016-11-15T03:41:00.61Z",
-  "updated_at" : "2016-11-15T03:41:00.63Z",
+  "created_at" : "2016-11-29T22:57:19.20Z",
+  "updated_at" : "2016-11-29T22:57:19.22Z",
+  "trace_id" : "f0cf7b68-e058-4146-9df7-ef1a8edfd49e",
   "payment_instrument" : null,
-  "merchant" : "MUmkS68nR9tbaksv35SYMkQs",
+  "merchant" : "MUnes7LTRELFtHq3a4JC21Ao",
   "identity" : null,
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/verifications/VI35Fo212j4cFYKAi13nAW6w"
+      "href" : "https://api-test.payline.io/verifications/VIjHkgXvgSLVZ1AsQkp7sLov"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "merchant" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao"
     }
   }
 }
@@ -6653,9 +6787,9 @@ Parameter | Description
 
 ## Reattempt Merchant Provisioning
 ```shell
-curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications \
+curl https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '{}'
 ```
 ```java
@@ -6665,7 +6799,14 @@ curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verification
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -6680,27 +6821,28 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "VI35Fo212j4cFYKAi13nAW6w",
-  "external_trace_id" : "b2c01a92-b6e6-49d2-bb97-2df2863d66c2",
+  "id" : "VIjHkgXvgSLVZ1AsQkp7sLov",
+  "external_trace_id" : "f0cf7b68-e058-4146-9df7-ef1a8edfd49e",
   "tags" : { },
   "messages" : [ ],
   "raw" : null,
   "processor" : "DUMMY_V1",
   "state" : "PENDING",
-  "created_at" : "2016-11-15T03:41:00.61Z",
-  "updated_at" : "2016-11-15T03:41:00.63Z",
+  "created_at" : "2016-11-29T22:57:19.20Z",
+  "updated_at" : "2016-11-29T22:57:19.22Z",
+  "trace_id" : "f0cf7b68-e058-4146-9df7-ef1a8edfd49e",
   "payment_instrument" : null,
-  "merchant" : "MUmkS68nR9tbaksv35SYMkQs",
+  "merchant" : "MUnes7LTRELFtHq3a4JC21Ao",
   "identity" : null,
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/verifications/VI35Fo212j4cFYKAi13nAW6w"
+      "href" : "https://api-test.payline.io/verifications/VIjHkgXvgSLVZ1AsQkp7sLov"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "merchant" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao"
     }
   }
 }
@@ -6721,7 +6863,7 @@ Parameter | Description
 
 ## Disable Processing Functionality
 ```shell
-curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/ \
+curl https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110 \
     -X PUT \
@@ -6738,7 +6880,14 @@ curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -6753,32 +6902,32 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "MUmkS68nR9tbaksv35SYMkQs",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "MUnes7LTRELFtHq3a4JC21Ao",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "verification" : null,
-  "merchant_profile" : "MPsW9zxb7VANE2N1pF5kNPUX",
+  "merchant_profile" : "MPbT7hyqtvS5CiWhC2NmkpzY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : true,
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:32.99Z",
-  "updated_at" : "2016-11-15T03:47:47.67Z",
+  "created_at" : "2016-11-29T22:56:30.89Z",
+  "updated_at" : "2016-11-29T22:57:20.06Z",
   "onboarding_state" : "APPROVED",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-test.payline.io/merchant_profiles/MPsW9zxb7VANE2N1pF5kNPUX"
+      "href" : "https://api-test.payline.io/merchant_profiles/MPbT7hyqtvS5CiWhC2NmkpzY"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -6804,7 +6953,7 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | False to disable
 ## Disable Settlement Functionality
 ```shell
-curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/ \
+curl https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110 \
     -X PUT \
@@ -6821,7 +6970,14 @@ curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -6836,32 +6992,32 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "MUmkS68nR9tbaksv35SYMkQs",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "MUnes7LTRELFtHq3a4JC21Ao",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "verification" : null,
-  "merchant_profile" : "MPsW9zxb7VANE2N1pF5kNPUX",
+  "merchant_profile" : "MPbT7hyqtvS5CiWhC2NmkpzY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:32.99Z",
-  "updated_at" : "2016-11-15T03:47:48.80Z",
+  "created_at" : "2016-11-29T22:56:30.89Z",
+  "updated_at" : "2016-11-29T22:57:21.23Z",
   "onboarding_state" : "APPROVED",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications"
+      "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-test.payline.io/merchant_profiles/MPsW9zxb7VANE2N1pF5kNPUX"
+      "href" : "https://api-test.payline.io/merchant_profiles/MPbT7hyqtvS5CiWhC2NmkpzY"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -6888,7 +7044,7 @@ settlement_enabled | *boolean*, **required** | False to disable
 ```shell
 curl https://api-test.payline.io/merchants/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
@@ -6898,7 +7054,14 @@ curl https://api-test.payline.io/merchants/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -6917,32 +7080,32 @@ merchant = Merchant.get()
 {
   "_embedded" : {
     "merchants" : [ {
-      "id" : "MUmkS68nR9tbaksv35SYMkQs",
-      "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "id" : "MUnes7LTRELFtHq3a4JC21Ao",
+      "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "verification" : null,
-      "merchant_profile" : "MPsW9zxb7VANE2N1pF5kNPUX",
+      "merchant_profile" : "MPbT7hyqtvS5CiWhC2NmkpzY",
       "processor" : "DUMMY_V1",
       "processing_enabled" : true,
       "settlement_enabled" : true,
       "tags" : { },
-      "created_at" : "2016-11-15T03:40:32.99Z",
-      "updated_at" : "2016-11-15T03:40:33.22Z",
+      "created_at" : "2016-11-29T22:56:30.89Z",
+      "updated_at" : "2016-11-29T22:56:31.53Z",
       "onboarding_state" : "APPROVED",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs"
+          "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications"
+          "href" : "https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications"
         },
         "merchant_profile" : {
-          "href" : "https://api-test.payline.io/merchant_profiles/MPsW9zxb7VANE2N1pF5kNPUX"
+          "href" : "https://api-test.payline.io/merchant_profiles/MPbT7hyqtvS5CiWhC2NmkpzY"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     } ]
@@ -6966,9 +7129,9 @@ merchant = Merchant.get()
 
 ## List Merchant Verifications
 ```shell
-curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications \
+curl https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
@@ -6978,7 +7141,14 @@ curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verification
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -6995,11 +7165,11 @@ Payline\Bootstrap::init();
 {
   "_embedded" : {
     "identities" : [ {
-      "id" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+      "id" : "IDvBmWTYJSrWDKwZuPnUFV2j",
       "entity" : {
         "title" : null,
         "first_name" : "Step",
-        "last_name" : "Green",
+        "last_name" : "White",
         "email" : "therock@gmail.com",
         "business_name" : null,
         "business_type" : null,
@@ -7033,47 +7203,47 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:34.45Z",
-      "updated_at" : "2016-11-15T03:40:34.45Z",
+      "created_at" : "2016-11-29T22:56:35.25Z",
+      "updated_at" : "2016-11-29T22:56:35.25Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/verifications"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/merchants"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/settlements"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/transfers"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/disputes"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDkgfS8dSwZnTyXYG9FHzeQZ",
+      "id" : "IDqF6bUM8pziC6SLPXnUNqqV",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
+        "business_name" : "Pawny City Hall",
         "business_type" : "GOVERNMENT_AGENCY",
-        "doing_business_as" : "Dunder Mifflin",
+        "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -7101,7 +7271,7 @@ Payline\Bootstrap::init();
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
+        "url" : "www.PawnyCityHall.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -7113,221 +7283,51 @@ Payline\Bootstrap::init();
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
+        "default_statement_descriptor" : "Pawny City Hall"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:31.03Z",
-      "updated_at" : "2016-11-15T03:40:31.03Z",
+      "created_at" : "2016-11-29T22:56:15.35Z",
+      "updated_at" : "2016-11-29T22:56:15.35Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/verifications"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/merchants"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/settlements"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/transfers"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/disputes"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "ID25hwCpAsx5DGEAXapSscKw",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
-        "business_type" : "INTERNATIONAL_ORGANIZATION",
-        "doing_business_as" : "Dunder Mifflin",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:30.10Z",
-      "updated_at" : "2016-11-15T03:40:30.10Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "IDAtrxVDLvpxHEBvjRBDRRo",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "ACME Anchors",
-        "business_type" : "TAX_EXEMPT_ORGANIZATION",
-        "doing_business_as" : "ACME Anchors",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.ACMEAnchors.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "ACME Anchors"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:29.55Z",
-      "updated_at" : "2016-11-15T03:40:29.55Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID2VQxr4AoEDY4BN5yZp2Mk2",
+      "id" : "IDpj2iEJ1UiSXrwjBCmkVby6",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Prestige World Wide",
-        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "business_type" : "INTERNATIONAL_ORGANIZATION",
         "doing_business_as" : "Prestige World Wide",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -7373,46 +7373,46 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:27.96Z",
-      "updated_at" : "2016-11-15T03:40:27.96Z",
+      "created_at" : "2016-11-29T22:56:14.39Z",
+      "updated_at" : "2016-11-29T22:56:14.39Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/verifications"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/merchants"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/settlements"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/transfers"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/disputes"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDuk1qbkqjrmJihXfur6L4WE",
+      "id" : "IDbkwPTHMQmmNuufe2adCu6L",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Pollos Hermanos",
-        "business_type" : "GENERAL_PARTNERSHIP",
+        "business_type" : "TAX_EXEMPT_ORGANIZATION",
         "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -7458,39 +7458,209 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:27.28Z",
-      "updated_at" : "2016-11-15T03:40:27.28Z",
+      "created_at" : "2016-11-29T22:56:13.51Z",
+      "updated_at" : "2016-11-29T22:56:13.51Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/verifications"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/merchants"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/settlements"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/transfers"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/disputes"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDhS7v5XG48WfBW5FyeC5eqM",
+      "id" : "IDqq2DMWfrdjVdbT7CmgGZZc",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Lees Sandwiches",
+        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "doing_business_as" : "Lees Sandwiches",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.LeesSandwiches.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Lees Sandwiches"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:11.55Z",
+      "updated_at" : "2016-11-29T22:56:11.55Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDhoQ8znpRhLsMtbQyd6BKAB",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Dunder Mifflin",
+        "business_type" : "GENERAL_PARTNERSHIP",
+        "doing_business_as" : "Dunder Mifflin",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.DunderMifflin.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Dunder Mifflin"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:10.71Z",
+      "updated_at" : "2016-11-29T22:56:10.71Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDhnmpJQpUFV6QiTcNcWNjCv",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
@@ -7543,216 +7713,46 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:26.72Z",
-      "updated_at" : "2016-11-15T03:40:26.72Z",
+      "created_at" : "2016-11-29T22:56:09.78Z",
+      "updated_at" : "2016-11-29T22:56:09.78Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/verifications"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/merchants"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/settlements"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/transfers"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/disputes"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDmBajumGWviwd3iWrwgq3G7",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
-        "business_type" : "PARTNERSHIP",
-        "doing_business_as" : "Lees Sandwiches",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:25.96Z",
-      "updated_at" : "2016-11-15T03:40:25.96Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID9NU6Mg3T2EuqNS2FzdV11m",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Prestige World Wide",
-        "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "Prestige World Wide",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.PrestigeWorldWide.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Prestige World Wide"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:23.95Z",
-      "updated_at" : "2016-11-15T03:40:23.95Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID9U9pWN6iKJbmnb2Uu9n8A9",
+      "id" : "IDpzgQpQanAXpJzaLzkyfZUr",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Pawny City Hall",
-        "business_type" : "CORPORATION",
+        "business_type" : "PARTNERSHIP",
         "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -7798,47 +7798,47 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:23.35Z",
-      "updated_at" : "2016-11-15T03:40:23.35Z",
+      "created_at" : "2016-11-29T22:56:08.80Z",
+      "updated_at" : "2016-11-29T22:56:08.80Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/verifications"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/merchants"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/settlements"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/transfers"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/disputes"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDaotf83HNxER4mu5gXAxJPV",
+      "id" : "ID7d8hhUfV9XCAAEmZd5Sekp",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-        "doing_business_as" : "Golds Gym",
+        "business_name" : "ACME Anchors",
+        "business_type" : "LIMITED_LIABILITY_COMPANY",
+        "doing_business_as" : "ACME Anchors",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -7866,7 +7866,7 @@ Payline\Bootstrap::init();
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
+        "url" : "www.ACMEAnchors.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -7878,52 +7878,222 @@ Payline\Bootstrap::init();
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
+        "default_statement_descriptor" : "ACME Anchors"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:22.32Z",
-      "updated_at" : "2016-11-15T03:40:22.32Z",
+      "created_at" : "2016-11-29T22:56:07.29Z",
+      "updated_at" : "2016-11-29T22:56:07.29Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/verifications"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/authorizations"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/transfers"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/disputes"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+      "id" : "ID8AH94icAePiPQnBxxn7LMF",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Dunder Mifflin",
+        "business_type" : "CORPORATION",
+        "doing_business_as" : "Dunder Mifflin",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.DunderMifflin.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Dunder Mifflin"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:06.23Z",
+      "updated_at" : "2016-11-29T22:56:06.23Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDci9dFHHcUcfUCs4Gn72cRN",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Petes Coffee",
+        "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
+        "doing_business_as" : "Petes Coffee",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PetesCoffee.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Petes Coffee"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:05.16Z",
+      "updated_at" : "2016-11-29T22:56:05.16Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDiEqfWMGveafDrekHKiuxPo",
       "entity" : {
         "title" : null,
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Facebook",
+        "business_name" : "Square",
         "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "Facebook",
+        "doing_business_as" : "Square",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -7962,37 +8132,37 @@ Payline\Bootstrap::init();
         "default_statement_descriptor" : null
       },
       "tags" : {
-        "application_name" : "Facebook"
+        "application_name" : "Square"
       },
-      "created_at" : "2016-11-15T03:40:19.15Z",
-      "updated_at" : "2016-11-15T03:40:19.21Z",
+      "created_at" : "2016-11-29T22:55:58.41Z",
+      "updated_at" : "2016-11-29T22:55:58.46Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/verifications"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/merchants"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/settlements"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/transfers"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/disputes"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     } ]
@@ -8027,7 +8197,7 @@ Parameter | Description
 
 ## [ADMIN] List Merchant Verifications
 ```shell
-curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verifications \
+curl https://api-test.payline.io/merchants/MUnes7LTRELFtHq3a4JC21Ao/verifications \
     -H "Content-Type: application/vnd.json+api" \
     -u  USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110
 
@@ -8039,7 +8209,14 @@ curl https://api-test.payline.io/merchants/MUmkS68nR9tbaksv35SYMkQs/verification
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -8056,11 +8233,11 @@ Payline\Bootstrap::init();
 {
   "_embedded" : {
     "identities" : [ {
-      "id" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+      "id" : "IDvBmWTYJSrWDKwZuPnUFV2j",
       "entity" : {
         "title" : null,
         "first_name" : "Step",
-        "last_name" : "Green",
+        "last_name" : "White",
         "email" : "therock@gmail.com",
         "business_name" : null,
         "business_type" : null,
@@ -8094,47 +8271,47 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:34.45Z",
-      "updated_at" : "2016-11-15T03:40:34.45Z",
+      "created_at" : "2016-11-29T22:56:35.25Z",
+      "updated_at" : "2016-11-29T22:56:35.25Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/verifications"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/merchants"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/settlements"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/transfers"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv/disputes"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDkgfS8dSwZnTyXYG9FHzeQZ",
+      "id" : "IDqF6bUM8pziC6SLPXnUNqqV",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
+        "business_name" : "Pawny City Hall",
         "business_type" : "GOVERNMENT_AGENCY",
-        "doing_business_as" : "Dunder Mifflin",
+        "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -8162,7 +8339,7 @@ Payline\Bootstrap::init();
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
+        "url" : "www.PawnyCityHall.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -8174,221 +8351,51 @@ Payline\Bootstrap::init();
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
+        "default_statement_descriptor" : "Pawny City Hall"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:31.03Z",
-      "updated_at" : "2016-11-15T03:40:31.03Z",
+      "created_at" : "2016-11-29T22:56:15.35Z",
+      "updated_at" : "2016-11-29T22:56:15.35Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/verifications"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/merchants"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/settlements"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/transfers"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDkgfS8dSwZnTyXYG9FHzeQZ/disputes"
+          "href" : "https://api-test.payline.io/identities/IDqF6bUM8pziC6SLPXnUNqqV/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "ID25hwCpAsx5DGEAXapSscKw",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
-        "business_type" : "INTERNATIONAL_ORGANIZATION",
-        "doing_business_as" : "Dunder Mifflin",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:30.10Z",
-      "updated_at" : "2016-11-15T03:40:30.10Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID25hwCpAsx5DGEAXapSscKw/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "IDAtrxVDLvpxHEBvjRBDRRo",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "ACME Anchors",
-        "business_type" : "TAX_EXEMPT_ORGANIZATION",
-        "doing_business_as" : "ACME Anchors",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.ACMEAnchors.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "ACME Anchors"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:29.55Z",
-      "updated_at" : "2016-11-15T03:40:29.55Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDAtrxVDLvpxHEBvjRBDRRo/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID2VQxr4AoEDY4BN5yZp2Mk2",
+      "id" : "IDpj2iEJ1UiSXrwjBCmkVby6",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Prestige World Wide",
-        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "business_type" : "INTERNATIONAL_ORGANIZATION",
         "doing_business_as" : "Prestige World Wide",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -8434,46 +8441,46 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:27.96Z",
-      "updated_at" : "2016-11-15T03:40:27.96Z",
+      "created_at" : "2016-11-29T22:56:14.39Z",
+      "updated_at" : "2016-11-29T22:56:14.39Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/verifications"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/merchants"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/settlements"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/transfers"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID2VQxr4AoEDY4BN5yZp2Mk2/disputes"
+          "href" : "https://api-test.payline.io/identities/IDpj2iEJ1UiSXrwjBCmkVby6/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDuk1qbkqjrmJihXfur6L4WE",
+      "id" : "IDbkwPTHMQmmNuufe2adCu6L",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Pollos Hermanos",
-        "business_type" : "GENERAL_PARTNERSHIP",
+        "business_type" : "TAX_EXEMPT_ORGANIZATION",
         "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -8519,39 +8526,209 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:27.28Z",
-      "updated_at" : "2016-11-15T03:40:27.28Z",
+      "created_at" : "2016-11-29T22:56:13.51Z",
+      "updated_at" : "2016-11-29T22:56:13.51Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/verifications"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/merchants"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/settlements"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/transfers"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDuk1qbkqjrmJihXfur6L4WE/disputes"
+          "href" : "https://api-test.payline.io/identities/IDbkwPTHMQmmNuufe2adCu6L/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDhS7v5XG48WfBW5FyeC5eqM",
+      "id" : "IDqq2DMWfrdjVdbT7CmgGZZc",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Lees Sandwiches",
+        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "doing_business_as" : "Lees Sandwiches",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.LeesSandwiches.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Lees Sandwiches"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:11.55Z",
+      "updated_at" : "2016-11-29T22:56:11.55Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDqq2DMWfrdjVdbT7CmgGZZc/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDhoQ8znpRhLsMtbQyd6BKAB",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Dunder Mifflin",
+        "business_type" : "GENERAL_PARTNERSHIP",
+        "doing_business_as" : "Dunder Mifflin",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.DunderMifflin.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Dunder Mifflin"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:10.71Z",
+      "updated_at" : "2016-11-29T22:56:10.71Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDhoQ8znpRhLsMtbQyd6BKAB/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDhnmpJQpUFV6QiTcNcWNjCv",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
@@ -8604,216 +8781,46 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:26.72Z",
-      "updated_at" : "2016-11-15T03:40:26.72Z",
+      "created_at" : "2016-11-29T22:56:09.78Z",
+      "updated_at" : "2016-11-29T22:56:09.78Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/verifications"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/merchants"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/settlements"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/transfers"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDhS7v5XG48WfBW5FyeC5eqM/disputes"
+          "href" : "https://api-test.payline.io/identities/IDhnmpJQpUFV6QiTcNcWNjCv/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDmBajumGWviwd3iWrwgq3G7",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
-        "business_type" : "PARTNERSHIP",
-        "doing_business_as" : "Lees Sandwiches",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:25.96Z",
-      "updated_at" : "2016-11-15T03:40:25.96Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDmBajumGWviwd3iWrwgq3G7/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID9NU6Mg3T2EuqNS2FzdV11m",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Prestige World Wide",
-        "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "Prestige World Wide",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : 742,
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 120000,
-        "amex_mid" : "12345678910",
-        "discover_mid" : null,
-        "url" : "www.PrestigeWorldWide.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Prestige World Wide"
-      },
-      "tags" : {
-        "key" : "value"
-      },
-      "created_at" : "2016-11-15T03:40:23.95Z",
-      "updated_at" : "2016-11-15T03:40:23.95Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9NU6Mg3T2EuqNS2FzdV11m/disputes"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "ID9U9pWN6iKJbmnb2Uu9n8A9",
+      "id" : "IDpzgQpQanAXpJzaLzkyfZUr",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "Pawny City Hall",
-        "business_type" : "CORPORATION",
+        "business_type" : "PARTNERSHIP",
         "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -8859,47 +8866,47 @@ Payline\Bootstrap::init();
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:23.35Z",
-      "updated_at" : "2016-11-15T03:40:23.35Z",
+      "created_at" : "2016-11-29T22:56:08.80Z",
+      "updated_at" : "2016-11-29T22:56:08.80Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/verifications"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/merchants"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/settlements"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/transfers"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/ID9U9pWN6iKJbmnb2Uu9n8A9/disputes"
+          "href" : "https://api-test.payline.io/identities/IDpzgQpQanAXpJzaLzkyfZUr/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDaotf83HNxER4mu5gXAxJPV",
+      "id" : "ID7d8hhUfV9XCAAEmZd5Sekp",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-        "doing_business_as" : "Golds Gym",
+        "business_name" : "ACME Anchors",
+        "business_type" : "LIMITED_LIABILITY_COMPANY",
+        "doing_business_as" : "ACME Anchors",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -8927,7 +8934,7 @@ Payline\Bootstrap::init();
         "max_transaction_amount" : 120000,
         "amex_mid" : "12345678910",
         "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
+        "url" : "www.ACMEAnchors.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -8939,52 +8946,222 @@ Payline\Bootstrap::init();
         "short_business_name" : null,
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
+        "default_statement_descriptor" : "ACME Anchors"
       },
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2016-11-15T03:40:22.32Z",
-      "updated_at" : "2016-11-15T03:40:22.32Z",
+      "created_at" : "2016-11-29T22:56:07.29Z",
+      "updated_at" : "2016-11-29T22:56:07.29Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/verifications"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/merchants"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/authorizations"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/transfers"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/disputes"
+          "href" : "https://api-test.payline.io/identities/ID7d8hhUfV9XCAAEmZd5Sekp/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+      "id" : "ID8AH94icAePiPQnBxxn7LMF",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Dunder Mifflin",
+        "business_type" : "CORPORATION",
+        "doing_business_as" : "Dunder Mifflin",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.DunderMifflin.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Dunder Mifflin"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:06.23Z",
+      "updated_at" : "2016-11-29T22:56:06.23Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/ID8AH94icAePiPQnBxxn7LMF/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDci9dFHHcUcfUCs4Gn72cRN",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Petes Coffee",
+        "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
+        "doing_business_as" : "Petes Coffee",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : 742,
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 120000,
+        "amex_mid" : "12345678910",
+        "discover_mid" : null,
+        "url" : "www.PetesCoffee.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Petes Coffee"
+      },
+      "tags" : {
+        "key" : "value"
+      },
+      "created_at" : "2016-11-29T22:56:05.16Z",
+      "updated_at" : "2016-11-29T22:56:05.16Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/disputes"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "IDiEqfWMGveafDrekHKiuxPo",
       "entity" : {
         "title" : null,
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Facebook",
+        "business_name" : "Square",
         "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "Facebook",
+        "doing_business_as" : "Square",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -9023,37 +9200,37 @@ Payline\Bootstrap::init();
         "default_statement_descriptor" : null
       },
       "tags" : {
-        "application_name" : "Facebook"
+        "application_name" : "Square"
       },
-      "created_at" : "2016-11-15T03:40:19.15Z",
-      "updated_at" : "2016-11-15T03:40:19.21Z",
+      "created_at" : "2016-11-29T22:55:58.41Z",
+      "updated_at" : "2016-11-29T22:55:58.46Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/verifications"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/verifications"
         },
         "merchants" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/merchants"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/merchants"
         },
         "settlements" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/settlements"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/authorizations"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/transfers"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/payment_instruments"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB/disputes"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo/disputes"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     } ]
@@ -9090,9 +9267,9 @@ Parameter | Description
 
 ## Create a Merchant User
 ```shell
-curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/users \
+curl https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '{}'
 
 ```
@@ -9103,7 +9280,14 @@ curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/users \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -9118,23 +9302,23 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "USbFvxAoWyFT2C821tBSuLWw",
-  "password" : "6cb5575f-8067-467b-bad3-e1dce2c542db",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "USdmayET4q4W5qUKPqARDFox",
+  "password" : "7ac94379-eacc-4d39-8c61-f89b40fe2427",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "enabled" : true,
   "role" : "ROLE_MERCHANT",
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:37.68Z",
-  "updated_at" : "2016-11-15T03:40:37.68Z",
+  "created_at" : "2016-11-29T22:56:40.64Z",
+  "updated_at" : "2016-11-29T22:56:40.64Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/users/USbFvxAoWyFT2C821tBSuLWw"
+      "href" : "https://api-test.payline.io/users/USdmayET4q4W5qUKPqARDFox"
     },
     "applications" : {
       "href" : "https://api-test.payline.io/applications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -9221,7 +9405,7 @@ as doing so prevents important updates.
       document.getElementById('show-form').addEventListener('click', function() {
         Payline.openTokenizeCardForm({
           applicationName: 'Business Name',
-          applicationId: 'APvFU1J7hgZjmewU9fkeUh8i',
+          applicationId: 'APmE1ycLBmsgMx4gXoToVnLL',
         }, function (tokenizedResponse) {
           // Define a callback to send your token to your back-end server
         });
@@ -9243,16 +9427,16 @@ HTTPS request on your back-end for future use.
 
 ```json
 {
-  "id" : "TK9E43itbiWv7TyGX3PFbvKc",
+  "id" : "TK8vDGkdBrAnc6LnZcwP7KJp",
   "fingerprint" : "FPR284253560",
-  "created_at" : "2016-11-15T03:40:42.77Z",
-  "updated_at" : "2016-11-15T03:40:42.77Z",
+  "created_at" : "2016-11-29T22:56:53.72Z",
+  "updated_at" : "2016-11-29T22:56:53.72Z",
   "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2016-11-16T03:40:42.77Z",
+  "expires_at" : "2016-11-30T22:56:53.72Z",
   "currency" : "USD",
   "_links" : {
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -9261,12 +9445,12 @@ HTTPS request on your back-end for future use.
 ```shell
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}'
 
 ```
@@ -9286,7 +9470,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -9294,9 +9485,9 @@ use Payline\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	});
 $card = $card->save();
 
@@ -9312,7 +9503,7 @@ $card = $card->save();
 
 ```json
 {
-  "id" : "PI9E43itbiWv7TyGX3PFbvKc",
+  "id" : "PI8vDGkdBrAnc6LnZcwP7KJp",
   "fingerprint" : "FPR-1132692079",
   "tags" : { },
   "expiration_month" : 12,
@@ -9331,32 +9522,32 @@ $card = $card->save();
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-11-15T03:40:43.28Z",
-  "updated_at" : "2016-11-15T03:40:43.28Z",
+  "created_at" : "2016-11-29T22:56:54.39Z",
+  "updated_at" : "2016-11-29T22:56:54.39Z",
   "instrument_type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "updates" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/updates"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/updates"
     }
   }
 }
@@ -9389,12 +9580,12 @@ identity | *string*, **required**| ID for the `Identity` resource which the acco
 ```shell
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}'
 
 
@@ -9414,7 +9605,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -9422,9 +9620,9 @@ use Payline\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	});
 $card = $card->save();
 
@@ -9436,16 +9634,16 @@ from payline.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TK9E43itbiWv7TyGX3PFbvKc", 
+	    "token": "TK8vDGkdBrAnc6LnZcwP7KJp", 
 	    "type": "TOKEN", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}).save()
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PI9E43itbiWv7TyGX3PFbvKc",
+  "id" : "PI8vDGkdBrAnc6LnZcwP7KJp",
   "fingerprint" : "FPR-1132692079",
   "tags" : { },
   "expiration_month" : 12,
@@ -9464,32 +9662,32 @@ payment_instrument = PaymentInstrument(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-11-15T03:40:43.28Z",
-  "updated_at" : "2016-11-15T03:40:43.28Z",
+  "created_at" : "2016-11-29T22:56:54.39Z",
+  "updated_at" : "2016-11-29T22:56:54.39Z",
   "instrument_type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "updates" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/updates"
+      "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/updates"
     }
   }
 }
@@ -9522,10 +9720,10 @@ identity | *string*, **required**| ID for the `Identity` resource which the acco
 
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
-	    "name": "Bob Henderson", 
+	    "name": "Walter Sterling", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card name": "Business Card"
@@ -9542,7 +9740,7 @@ curl https://api-test.payline.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID9n1NEjjjCeurMoqLgwF8Nv"
+	    "identity": "IDvBmWTYJSrWDKwZuPnUFV2j"
 	}'
 
 
@@ -9566,7 +9764,14 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -9574,7 +9779,7 @@ use Payline\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "name"=> "Bob Henderson", 
+	    "name"=> "Walter Sterling", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> array(
 	        "card name"=> "Business Card"
@@ -9591,7 +9796,7 @@ $card = new PaymentInstrument(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "ID9n1NEjjjCeurMoqLgwF8Nv"
+	    "identity"=> "IDvBmWTYJSrWDKwZuPnUFV2j"
 	));
 $card = $card->save();
 
@@ -9604,7 +9809,7 @@ from payline.resources import PaymentCard
 
 card = PaymentCard(**
 	{
-	    "name": "Bob Henderson", 
+	    "name": "Walter Sterling", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card name": "Business Card"
@@ -9621,22 +9826,22 @@ card = PaymentCard(**
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID9n1NEjjjCeurMoqLgwF8Nv"
+	    "identity": "IDvBmWTYJSrWDKwZuPnUFV2j"
 	}).save()
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "fingerprint" : "FPR-1778475544",
+  "id" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "fingerprint" : "FPR1798353012",
   "tags" : { },
   "expiration_month" : 12,
   "expiration_year" : 2020,
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Bob Henderson",
+  "name" : "Walter Sterling",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -9647,32 +9852,32 @@ card = PaymentCard(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2016-11-15T03:40:35.02Z",
-  "updated_at" : "2016-11-15T03:40:35.02Z",
+  "created_at" : "2016-11-29T22:56:36.14Z",
+  "updated_at" : "2016-11-29T22:56:36.14Z",
   "instrument_type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+  "identity" : "IDvBmWTYJSrWDKwZuPnUFV2j",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+      "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "updates" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/updates"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/updates"
     }
   }
 }
@@ -9721,7 +9926,7 @@ country | *string*, **optional** | 3-Letter Country code
 
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
 	{
 	    "account_type": "SAVINGS", 
@@ -9733,7 +9938,7 @@ curl https://api-test.payline.io/payment_instruments \
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}'
 
 
@@ -9760,7 +9965,14 @@ bankAccount = client.bankAccountsClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -9777,7 +9989,7 @@ $bank_account = new PaymentInstrument(
 	    "bank_code"=> "123123123", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity"=> "IDci9dFHHcUcfUCs4Gn72cRN"
 	));
 $bank_account = $bank_account->save();
 
@@ -9799,43 +10011,43 @@ bank_account = BankAccount(**
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "IDaotf83HNxER4mu5gXAxJPV"
+	    "identity": "IDci9dFHHcUcfUCs4Gn72cRN"
 	}).save()
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PI485mr7uuJWRyTMVS8qpnBL",
+  "id" : "PI7oLHdpoK2U6bvoU5BRu761",
   "fingerprint" : "FPR-1215770130",
   "tags" : { },
   "bank_code" : "123123123",
   "country" : "USA",
   "masked_account_number" : "XXXXX3123",
   "name" : "Fran Lemke",
-  "created_at" : "2016-11-15T03:40:31.74Z",
-  "updated_at" : "2016-11-15T03:40:31.74Z",
+  "created_at" : "2016-11-29T22:56:16.98Z",
+  "updated_at" : "2016-11-29T22:56:16.98Z",
   "instrument_type" : "BANK_ACCOUNT",
   "currency" : "USD",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -9860,29 +10072,36 @@ name | *string*, **optional** | Account owner's full name
 ```shell
 
 
-curl https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL \
+curl https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
 
 ```
 ```java
 
 import io.payline.payments.processing.client.model.PaymentCard;
 
-PaymentCard paymentCard = client.paymentCardsClient().fetch("PI485mr7uuJWRyTMVS8qpnBL")
+PaymentCard paymentCard = client.paymentCardsClient().fetch("PI7oLHdpoK2U6bvoU5BRu761")
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\PaymentInstrument;
 
-$card = PaymentInstrument::retrieve('PI485mr7uuJWRyTMVS8qpnBL');
+$card = PaymentInstrument::retrieve('PI7oLHdpoK2U6bvoU5BRu761');
 
 ```
 ```python
@@ -9894,7 +10113,7 @@ $card = PaymentInstrument::retrieve('PI485mr7uuJWRyTMVS8qpnBL');
 
 ```json
 {
-  "id" : "PI485mr7uuJWRyTMVS8qpnBL",
+  "id" : "PI7oLHdpoK2U6bvoU5BRu761",
   "fingerprint" : "FPR-1215770130",
   "tags" : {
     "Display Name" : "Updated Field"
@@ -9903,29 +10122,29 @@ $card = PaymentInstrument::retrieve('PI485mr7uuJWRyTMVS8qpnBL');
   "country" : "USA",
   "masked_account_number" : "XXXXX3123",
   "name" : "Fran Lemke",
-  "created_at" : "2016-11-15T03:40:31.65Z",
-  "updated_at" : "2016-11-15T03:40:32.37Z",
+  "created_at" : "2016-11-29T22:56:16.92Z",
+  "updated_at" : "2016-11-29T22:56:17.90Z",
   "instrument_type" : "BANK_ACCOUNT",
   "currency" : "USD",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -9946,9 +10165,9 @@ Parameter | Description
 
 ## Update a Payment Instrument
 ```shell
-curl https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL \
+curl https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -X PUT \
     -d '
 	{
@@ -9965,7 +10184,14 @@ curl https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -9980,7 +10206,7 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "PI485mr7uuJWRyTMVS8qpnBL",
+  "id" : "PI7oLHdpoK2U6bvoU5BRu761",
   "fingerprint" : "FPR-1215770130",
   "tags" : {
     "Display Name" : "Updated Field"
@@ -9989,29 +10215,29 @@ Payline\Bootstrap::init();
   "country" : "USA",
   "masked_account_number" : "XXXXX3123",
   "name" : "Fran Lemke",
-  "created_at" : "2016-11-15T03:40:31.65Z",
-  "updated_at" : "2016-11-15T03:40:32.37Z",
+  "created_at" : "2016-11-29T22:56:16.92Z",
+  "updated_at" : "2016-11-29T22:56:17.90Z",
   "instrument_type" : "BANK_ACCOUNT",
   "currency" : "USD",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761"
     },
     "authorizations" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/authorizations"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/authorizations"
     },
     "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "transfers" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/transfers"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/transfers"
     },
     "verifications" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/verifications"
+      "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/verifications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -10048,7 +10274,7 @@ tags | *object*, **optional** | Single level key value pair for annotating custo
 ```shell
 curl https://api-test.payline.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 ```
 ```java
 import io.payline.payments.processing.client.model.BankAccount;
@@ -10064,7 +10290,14 @@ client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -10081,7 +10314,7 @@ Payline\Bootstrap::init();
 {
   "_embedded" : {
     "payment_instruments" : [ {
-      "id" : "PI9E43itbiWv7TyGX3PFbvKc",
+      "id" : "PI8vDGkdBrAnc6LnZcwP7KJp",
       "fingerprint" : "FPR-1132692079",
       "tags" : { },
       "expiration_month" : 12,
@@ -10100,77 +10333,77 @@ Payline\Bootstrap::init();
       },
       "address_verification" : "UNKNOWN",
       "security_code_verification" : "UNKNOWN",
-      "created_at" : "2016-11-15T03:40:43.15Z",
-      "updated_at" : "2016-11-15T03:40:43.15Z",
+      "created_at" : "2016-11-29T22:56:54.30Z",
+      "updated_at" : "2016-11-29T22:56:54.30Z",
       "instrument_type" : "PAYMENT_CARD",
       "currency" : "USD",
-      "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/authorizations"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         },
         "updates" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI9E43itbiWv7TyGX3PFbvKc/updates"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8vDGkdBrAnc6LnZcwP7KJp/updates"
         }
       }
     }, {
-      "id" : "PI3fSDf8RY5H2Hm7Sxuq65km",
+      "id" : "PI8dKi6KgUmd5EcxdUEEwZad",
       "fingerprint" : "FPR-1215770130",
       "tags" : { },
       "bank_code" : "123123123",
       "country" : "USA",
       "masked_account_number" : "XXXXX3123",
       "name" : "Fran Lemke",
-      "created_at" : "2016-11-15T03:40:35.62Z",
-      "updated_at" : "2016-11-15T03:40:35.62Z",
+      "created_at" : "2016-11-29T22:56:37.07Z",
+      "updated_at" : "2016-11-29T22:56:37.07Z",
       "instrument_type" : "BANK_ACCOUNT",
       "currency" : "USD",
-      "identity" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+      "identity" : "IDvBmWTYJSrWDKwZuPnUFV2j",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI3fSDf8RY5H2Hm7Sxuq65km"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8dKi6KgUmd5EcxdUEEwZad"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI3fSDf8RY5H2Hm7Sxuq65km/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8dKi6KgUmd5EcxdUEEwZad/authorizations"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI3fSDf8RY5H2Hm7Sxuq65km/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8dKi6KgUmd5EcxdUEEwZad/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI3fSDf8RY5H2Hm7Sxuq65km/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PI8dKi6KgUmd5EcxdUEEwZad/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "PIrNo8zuHEZoatYMcCPvkypT",
-      "fingerprint" : "FPR-1778475544",
+      "id" : "PIh1Y21TC9DY7fG1t2juRL2x",
+      "fingerprint" : "FPR1798353012",
       "tags" : { },
       "expiration_month" : 12,
       "expiration_year" : 2020,
       "last_four" : "0454",
       "brand" : "VISA",
       "card_type" : "UNKNOWN",
-      "name" : "Bob Henderson",
+      "name" : "Walter Sterling",
       "address" : {
         "line1" : "741 Douglass St",
         "line2" : "Apartment 7",
@@ -10181,126 +10414,126 @@ Payline\Bootstrap::init();
       },
       "address_verification" : "POSTAL_CODE_AND_STREET_MATCH",
       "security_code_verification" : "MATCHED",
-      "created_at" : "2016-11-15T03:40:34.94Z",
-      "updated_at" : "2016-11-15T03:40:40.61Z",
+      "created_at" : "2016-11-29T22:56:36.09Z",
+      "updated_at" : "2016-11-29T22:56:47.46Z",
       "instrument_type" : "PAYMENT_CARD",
       "currency" : "USD",
-      "identity" : "ID9n1NEjjjCeurMoqLgwF8Nv",
+      "identity" : "IDvBmWTYJSrWDKwZuPnUFV2j",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
+          "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/authorizations"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/ID9n1NEjjjCeurMoqLgwF8Nv"
+          "href" : "https://api-test.payline.io/identities/IDvBmWTYJSrWDKwZuPnUFV2j"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         },
         "updates" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT/updates"
+          "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x/updates"
         }
       }
     }, {
-      "id" : "PI4MZrhJo5pYthKZP8XZb1G2",
-      "fingerprint" : "FPR-1645745263",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-11-15T03:40:32.99Z",
-      "updated_at" : "2016-11-15T03:40:32.99Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "IDaotf83HNxER4mu5gXAxJPV",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2/authorizations"
-        },
-        "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2/transfers"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2/verifications"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "PI2tvvUTfN9aphBRjNxJLS7R",
+      "id" : "PIfyxirv1pPN7yNr91o7ScRf",
       "fingerprint" : "FPR-1383578548",
       "tags" : { },
       "name" : null,
-      "created_at" : "2016-11-15T03:40:32.99Z",
-      "updated_at" : "2016-11-15T03:40:32.99Z",
+      "created_at" : "2016-11-29T22:56:30.89Z",
+      "updated_at" : "2016-11-29T22:56:30.89Z",
       "instrument_type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI2tvvUTfN9aphBRjNxJLS7R"
+          "href" : "https://api-test.payline.io/payment_instruments/PIfyxirv1pPN7yNr91o7ScRf"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI2tvvUTfN9aphBRjNxJLS7R/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PIfyxirv1pPN7yNr91o7ScRf/authorizations"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI2tvvUTfN9aphBRjNxJLS7R/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PIfyxirv1pPN7yNr91o7ScRf/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI2tvvUTfN9aphBRjNxJLS7R/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PIfyxirv1pPN7yNr91o7ScRf/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "PIDMZjyb6nLswUXy2o51aj4",
+      "id" : "PIjS4d6Az8v9yRFHgpQ6Pbje",
       "fingerprint" : "FPR-2042121662",
       "tags" : { },
       "name" : null,
-      "created_at" : "2016-11-15T03:40:32.99Z",
-      "updated_at" : "2016-11-15T03:40:32.99Z",
+      "created_at" : "2016-11-29T22:56:30.89Z",
+      "updated_at" : "2016-11-29T22:56:30.89Z",
       "instrument_type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIDMZjyb6nLswUXy2o51aj4"
+          "href" : "https://api-test.payline.io/payment_instruments/PIjS4d6Az8v9yRFHgpQ6Pbje"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIDMZjyb6nLswUXy2o51aj4/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PIjS4d6Az8v9yRFHgpQ6Pbje/authorizations"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIDMZjyb6nLswUXy2o51aj4/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PIjS4d6Az8v9yRFHgpQ6Pbje/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIDMZjyb6nLswUXy2o51aj4/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PIjS4d6Az8v9yRFHgpQ6Pbje/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "PI485mr7uuJWRyTMVS8qpnBL",
+      "id" : "PIjX6hxC7gzBAED2qqMw1m1U",
+      "fingerprint" : "FPR-1645745263",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-11-29T22:56:30.89Z",
+      "updated_at" : "2016-11-29T22:56:30.89Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/payment_instruments/PIjX6hxC7gzBAED2qqMw1m1U"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/payment_instruments/PIjX6hxC7gzBAED2qqMw1m1U/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/payment_instruments/PIjX6hxC7gzBAED2qqMw1m1U/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/payment_instruments/PIjX6hxC7gzBAED2qqMw1m1U/verifications"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "PI7oLHdpoK2U6bvoU5BRu761",
       "fingerprint" : "FPR-1215770130",
       "tags" : {
         "Display Name" : "Updated Field"
@@ -10309,149 +10542,149 @@ Payline\Bootstrap::init();
       "country" : "USA",
       "masked_account_number" : "XXXXX3123",
       "name" : "Fran Lemke",
-      "created_at" : "2016-11-15T03:40:31.65Z",
-      "updated_at" : "2016-11-15T03:40:32.37Z",
+      "created_at" : "2016-11-29T22:56:16.92Z",
+      "updated_at" : "2016-11-29T22:56:17.90Z",
       "instrument_type" : "BANK_ACCOUNT",
       "currency" : "USD",
-      "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL"
+          "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/authorizations"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PI7oLHdpoK2U6bvoU5BRu761/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "PIbg6nJazoE73h8fwcHPaAzm",
+      "id" : "PIxwnTLsyfurCvTjYDDKFkLC",
+      "fingerprint" : "FPR-1645745263",
+      "tags" : { },
+      "name" : null,
+      "created_at" : "2016-11-29T22:55:59.89Z",
+      "updated_at" : "2016-11-29T22:55:59.89Z",
+      "instrument_type" : "VIRTUAL",
+      "currency" : "USD",
+      "identity" : "IDiEqfWMGveafDrekHKiuxPo",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-test.payline.io/payment_instruments/PIxwnTLsyfurCvTjYDDKFkLC"
+        },
+        "authorizations" : {
+          "href" : "https://api-test.payline.io/payment_instruments/PIxwnTLsyfurCvTjYDDKFkLC/authorizations"
+        },
+        "identity" : {
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
+        },
+        "transfers" : {
+          "href" : "https://api-test.payline.io/payment_instruments/PIxwnTLsyfurCvTjYDDKFkLC/transfers"
+        },
+        "verifications" : {
+          "href" : "https://api-test.payline.io/payment_instruments/PIxwnTLsyfurCvTjYDDKFkLC/verifications"
+        },
+        "application" : {
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
+        }
+      }
+    }, {
+      "id" : "PIoNQ73RG79nuzQQHcv3fuFD",
       "fingerprint" : "FPR-2042121662",
       "tags" : { },
       "name" : null,
-      "created_at" : "2016-11-15T03:40:19.90Z",
-      "updated_at" : "2016-11-15T03:40:19.90Z",
+      "created_at" : "2016-11-29T22:55:59.89Z",
+      "updated_at" : "2016-11-29T22:55:59.89Z",
       "instrument_type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+      "identity" : "IDiEqfWMGveafDrekHKiuxPo",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIbg6nJazoE73h8fwcHPaAzm"
+          "href" : "https://api-test.payline.io/payment_instruments/PIoNQ73RG79nuzQQHcv3fuFD"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIbg6nJazoE73h8fwcHPaAzm/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PIoNQ73RG79nuzQQHcv3fuFD/authorizations"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIbg6nJazoE73h8fwcHPaAzm/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PIoNQ73RG79nuzQQHcv3fuFD/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIbg6nJazoE73h8fwcHPaAzm/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PIoNQ73RG79nuzQQHcv3fuFD/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "PIp3MQD1bkT2r1vvXjwzKphN",
-      "fingerprint" : "FPR-1383578548",
-      "tags" : { },
-      "name" : null,
-      "created_at" : "2016-11-15T03:40:19.90Z",
-      "updated_at" : "2016-11-15T03:40:19.90Z",
-      "instrument_type" : "VIRTUAL",
-      "currency" : "USD",
-      "identity" : "IDiWXJgvQmEiiEqEvJgG4xgB",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIp3MQD1bkT2r1vvXjwzKphN"
-        },
-        "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIp3MQD1bkT2r1vvXjwzKphN/authorizations"
-        },
-        "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIp3MQD1bkT2r1vvXjwzKphN/transfers"
-        },
-        "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIp3MQD1bkT2r1vvXjwzKphN/verifications"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        }
-      }
-    }, {
-      "id" : "PIcfre4PYgX7Bz7u1ha6PxMn",
+      "id" : "PIx1PaKMab1AzFM7zvihAA4V",
       "fingerprint" : "FPR-2042121662",
       "tags" : { },
       "name" : null,
-      "created_at" : "2016-11-15T03:40:19.90Z",
-      "updated_at" : "2016-11-15T03:40:19.90Z",
+      "created_at" : "2016-11-29T22:55:59.89Z",
+      "updated_at" : "2016-11-29T22:55:59.89Z",
       "instrument_type" : "VIRTUAL",
       "currency" : "USD",
       "identity" : "IDjFtXt19dt59nd6jyyF7VuF",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIcfre4PYgX7Bz7u1ha6PxMn"
+          "href" : "https://api-test.payline.io/payment_instruments/PIx1PaKMab1AzFM7zvihAA4V"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIcfre4PYgX7Bz7u1ha6PxMn/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PIx1PaKMab1AzFM7zvihAA4V/authorizations"
         },
         "identity" : {
           "href" : "https://api-test.payline.io/identities/IDjFtXt19dt59nd6jyyF7VuF"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIcfre4PYgX7Bz7u1ha6PxMn/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PIx1PaKMab1AzFM7zvihAA4V/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIcfre4PYgX7Bz7u1ha6PxMn/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PIx1PaKMab1AzFM7zvihAA4V/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "PIiu6oRpry65d5xTo3DyZ3Xb",
-      "fingerprint" : "FPR-1645745263",
+      "id" : "PIuJsfRcQLqGvCR2byRhsNLQ",
+      "fingerprint" : "FPR-1383578548",
       "tags" : { },
       "name" : null,
-      "created_at" : "2016-11-15T03:40:19.90Z",
-      "updated_at" : "2016-11-15T03:40:19.90Z",
+      "created_at" : "2016-11-29T22:55:59.89Z",
+      "updated_at" : "2016-11-29T22:55:59.89Z",
       "instrument_type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+      "identity" : "IDiEqfWMGveafDrekHKiuxPo",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIiu6oRpry65d5xTo3DyZ3Xb"
+          "href" : "https://api-test.payline.io/payment_instruments/PIuJsfRcQLqGvCR2byRhsNLQ"
         },
         "authorizations" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIiu6oRpry65d5xTo3DyZ3Xb/authorizations"
+          "href" : "https://api-test.payline.io/payment_instruments/PIuJsfRcQLqGvCR2byRhsNLQ/authorizations"
         },
         "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDiWXJgvQmEiiEqEvJgG4xgB"
+          "href" : "https://api-test.payline.io/identities/IDiEqfWMGveafDrekHKiuxPo"
         },
         "transfers" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIiu6oRpry65d5xTo3DyZ3Xb/transfers"
+          "href" : "https://api-test.payline.io/payment_instruments/PIuJsfRcQLqGvCR2byRhsNLQ/transfers"
         },
         "verifications" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIiu6oRpry65d5xTo3DyZ3Xb/verifications"
+          "href" : "https://api-test.payline.io/payment_instruments/PIuJsfRcQLqGvCR2byRhsNLQ/verifications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     } ]
@@ -10473,742 +10706,6 @@ Payline\Bootstrap::init();
 
 `GET https://api-test.payline.io/payment_instruments`
 
-# Settlements
-
-A `Settlement` is a logical construct representing a collection (i.e. batch) of
-`Transfers` that are intended to be paid out to a specific `Merchant`.
-
-## Create a Settlement
-```shell
-
-curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/settlements \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
-    -d '
-	{
-	    "currency": "USD", 
-	    "tags": {
-	        "Internal Daily Settlement ID": "21DFASJSAKAS"
-	    }
-	}'
-
-```
-```java
-
-import io.payline.payments.processing.client.model.Settlement;
-
-Settlement settlement = identity.createSettlement(
-  Settlement.builder()
-    .currency("USD")
-    .build()
-)
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
-require(__DIR__ . '/src/Payline/Bootstrap.php');
-Payline\Bootstrap::init();
-
-use Payline\Resources\Identity;
-use Payline\Resources\Settlement;
-
-$identity = Identity::retrieve('IDaotf83HNxER4mu5gXAxJPV');
-$settlement = $identity->createSettlement(
-	array(
-	    "currency"=> "USD", 
-	    "tags"=> array(
-	        "Internal Daily Settlement ID"=> "21DFASJSAKAS"
-	    )
-	));
-
-```
-```python
-
-
-from payline.resources import Identity
-from payline.resources import Settlement
-
-identity = Identity.get(id="IDaotf83HNxER4mu5gXAxJPV")
-settlement = Settlement(**
-	{
-	    "currency": "USD", 
-	    "tags": {
-	        "Internal Daily Settlement ID": "21DFASJSAKAS"
-	    }
-	})
-identity.create_settlement(settlement)
-```
-> Example Response:
-
-```json
-{
-  "id" : "STjT9iJhUzeJjjABXHPc9WB3",
-  "tags" : {
-    "Internal Daily Settlement ID" : "21DFASJSAKAS"
-  },
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
-  "currency" : "USD",
-  "created_at" : "2016-11-15T03:47:41.34Z",
-  "updated_at" : "2016-11-15T03:47:41.35Z",
-  "processor" : "DUMMY_V1",
-  "total_amount" : 100,
-  "total_fees" : 11,
-  "total_fee" : 11,
-  "net_amount" : 89,
-  "destination" : null,
-  "_links" : {
-    "self" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3"
-    },
-    "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-    },
-    "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
-    },
-    "funding_transfers" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/funding_transfers"
-    },
-    "transfers" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers"
-    },
-    "fees" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=fee"
-    },
-    "reversals" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=reverse"
-    },
-    "credits" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=credit"
-    },
-    "debits" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=debit"
-    }
-  }
-}
-```
-Each settlement is comprised of all the `Transfers` that have a SUCCEEDED state and
-that have not been previously settled out. In other words, if a merchant has a
-`Transfer` in the PENDING state it will not be included in the batch settlement.
-In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
-
-<aside class="notice">
-To view all the Transfers that were included in a Settlement you can make a
-request to the transfers link (i.e. POST https://api-test.payline.io/settlements/:SETTLEMENT_ID/transfers
-</aside>
-
-
-#### HTTP Request
-
-`POST https://api-test.payline.io/identities/:IDENTITY_ID/settlements`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:IDENTITY_ID | ID of the `Identity` for the merchant you wish to settle out
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
-
-## Retrieve a Settlement
-
-```shell
-
-
-curl https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3 \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
-
-```
-```java
-
-import io.payline.payments.processing.client.model.Settlement;
-
-Settlement settlement = client.settlementsClient().fetch("STjT9iJhUzeJjjABXHPc9WB3");
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
-require(__DIR__ . '/src/Payline/Bootstrap.php');
-Payline\Bootstrap::init();
-
-use Payline\Resources\Settlement;
-
-$settlement = Settlement::retrieve('STjT9iJhUzeJjjABXHPc9WB3');
-
-```
-```python
-
-
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "STjT9iJhUzeJjjABXHPc9WB3",
-  "tags" : {
-    "Internal Daily Settlement ID" : "21DFASJSAKAS"
-  },
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
-  "currency" : "USD",
-  "created_at" : "2016-11-15T03:47:41.23Z",
-  "updated_at" : "2016-11-15T03:47:42.86Z",
-  "processor" : "DUMMY_V1",
-  "total_amount" : 100,
-  "total_fees" : 11,
-  "total_fee" : 11,
-  "net_amount" : 89,
-  "destination" : "PI485mr7uuJWRyTMVS8qpnBL",
-  "_links" : {
-    "self" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3"
-    },
-    "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-    },
-    "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
-    },
-    "funding_transfers" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/funding_transfers"
-    },
-    "transfers" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers"
-    },
-    "fees" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=fee"
-    },
-    "reversals" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=reverse"
-    },
-    "credits" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=credit"
-    },
-    "debits" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=debit"
-    }
-  }
-}
-```
-
-Fetch a previously created `Settlement`.
-
-#### HTTP Request
-
-`POST https://api-test.payline.io/settlements/:SETTLEMENT_ID/`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the `Settlement`
-
-
-## Fund a Settlement
-```shell
-curl https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3 \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110 \
-    -X PUT \
-    -d '
-	{
-	    "destination": "PI485mr7uuJWRyTMVS8qpnBL"
-	}'
-
-```
-```java
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
-require(__DIR__ . '/src/Payline/Bootstrap.php');
-Payline\Bootstrap::init();
-
-
-```
-```python
-
-
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "STjT9iJhUzeJjjABXHPc9WB3",
-  "tags" : {
-    "Internal Daily Settlement ID" : "21DFASJSAKAS"
-  },
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
-  "currency" : "USD",
-  "created_at" : "2016-11-15T03:47:41.23Z",
-  "updated_at" : "2016-11-15T03:47:42.86Z",
-  "processor" : "DUMMY_V1",
-  "total_amount" : 100,
-  "total_fees" : 11,
-  "total_fee" : 11,
-  "net_amount" : 89,
-  "destination" : "PI485mr7uuJWRyTMVS8qpnBL",
-  "_links" : {
-    "self" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3"
-    },
-    "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-    },
-    "identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
-    },
-    "funding_transfers" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/funding_transfers"
-    },
-    "transfers" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers"
-    },
-    "fees" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=fee"
-    },
-    "reversals" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=reverse"
-    },
-    "credits" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=credit"
-    },
-    "debits" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=debit"
-    }
-  }
-}
-```
-
-Issue funding instructions to pay out funds that are allocated in a previously
- created batch `Settlement` resource for a merchant.
-
-<aside class="warning">
-Once instructions have been issued to a particular destination it cannot be
-updated.
-</aside>
-
-
-#### HTTP Request
-
-`PUT https://api-test.payline.io/settlements/:SETTLEMENT_ID`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the `Settlement`
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-destination | *string*, **required** | ID of the `Payment Instrument` where the funds should be deposited
-
-## List all Settlements
-```shell
-curl https://api-test.payline.io/settlements/ \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
-
-```
-```java
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
-require(__DIR__ . '/src/Payline/Bootstrap.php');
-Payline\Bootstrap::init();
-
-
-```
-```python
-
-
-from payline.resources import Settlement
-settlements = Settlement.get()
-
-```
-> Example Response:
-
-```json
-{
-  "_embedded" : {
-    "settlements" : [ {
-      "id" : "STjT9iJhUzeJjjABXHPc9WB3",
-      "tags" : {
-        "Internal Daily Settlement ID" : "21DFASJSAKAS"
-      },
-      "identity" : "IDaotf83HNxER4mu5gXAxJPV",
-      "currency" : "USD",
-      "created_at" : "2016-11-15T03:47:41.23Z",
-      "updated_at" : "2016-11-15T03:47:42.86Z",
-      "processor" : "DUMMY_V1",
-      "total_amount" : 100,
-      "total_fees" : 11,
-      "total_fee" : 11,
-      "net_amount" : 89,
-      "destination" : "PI485mr7uuJWRyTMVS8qpnBL",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3"
-        },
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        },
-        "identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
-        },
-        "funding_transfers" : {
-          "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/funding_transfers"
-        },
-        "transfers" : {
-          "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers"
-        },
-        "fees" : {
-          "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=fee"
-        },
-        "reversals" : {
-          "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=reverse"
-        },
-        "credits" : {
-          "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=credit"
-        },
-        "debits" : {
-          "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?type=debit"
-        }
-      }
-    } ]
-  },
-  "_links" : {
-    "self" : {
-      "href" : "https://api-test.payline.io/settlements?offset=0&limit=20&sort=created_at,desc"
-    }
-  },
-  "page" : {
-    "offset" : 0,
-    "limit" : 20,
-    "count" : 1
-  }
-}
-```
-
-List the `Transfers` of type `CREDIT` that result from issuing funding instructions
-for the `Settlement`.
-
-#### HTTP Request
-
-`GET https://api-test.payline.io/settlements/:SETTLEMENT_ID/funding_transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
-
-## List Funding Transfers
-```shell
-curl https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/funding_transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
-
-```
-```java
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
-require(__DIR__ . '/src/Payline/Bootstrap.php');
-Payline\Bootstrap::init();
-
-
-```
-```python
-
-
-
-```
-> Example Response:
-
-```json
-{
-  "_embedded" : {
-    "transfers" : [ {
-      "id" : "TRtHL2VTs5CRjfeTSeY8ojJt",
-      "amount" : 89,
-      "tags" : {
-        "Internal Daily Settlement ID" : "21DFASJSAKAS"
-      },
-      "state" : "PENDING",
-      "trace_id" : "83c52155-74a0-4392-8adb-812075bd6d5b",
-      "currency" : "USD",
-      "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-      "source" : "PI4MZrhJo5pYthKZP8XZb1G2",
-      "destination" : "PI485mr7uuJWRyTMVS8qpnBL",
-      "ready_to_settle_at" : null,
-      "fee" : 0,
-      "statement_descriptor" : null,
-      "type" : "CREDIT",
-      "messages" : [ ],
-      "raw" : null,
-      "created_at" : "2016-11-15T03:47:42.56Z",
-      "updated_at" : "2016-11-15T03:47:42.74Z",
-      "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
-      "_links" : {
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        },
-        "self" : {
-          "href" : "https://api-test.payline.io/transfers/TRtHL2VTs5CRjfeTSeY8ojJt"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/transfers/TRtHL2VTs5CRjfeTSeY8ojJt/payment_instruments"
-        },
-        "merchant_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
-        },
-        "reversals" : {
-          "href" : "https://api-test.payline.io/transfers/TRtHL2VTs5CRjfeTSeY8ojJt/reversals"
-        },
-        "fees" : {
-          "href" : "https://api-test.payline.io/transfers/TRtHL2VTs5CRjfeTSeY8ojJt/fees"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/transfers/TRtHL2VTs5CRjfeTSeY8ojJt/disputes"
-        },
-        "source" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2"
-        },
-        "destination" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI485mr7uuJWRyTMVS8qpnBL"
-        }
-      }
-    } ]
-  },
-  "_links" : {
-    "self" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/funding_transfers?offset=0&limit=20&sort=created_at,desc"
-    }
-  },
-  "page" : {
-    "offset" : 0,
-    "limit" : 20,
-    "count" : 1
-  }
-}
-```
-
-List the `Transfers` of type `CREDIT` that result from issuing funding instructions
-for the `Settlement`.
-
-#### HTTP Request
-
-`GET https://api-test.payline.io/settlements/:SETTLEMENT_ID/funding_transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
-
-## List Transfers in a Settlement
-```shell
-
-curl https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
-
-```
-```java
-
-```
-```php
-<?php
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
-require(__DIR__ . '/src/Payline/Bootstrap.php');
-Payline\Bootstrap::init();
-
-
-```
-```python
-
-
-
-```
-> Example Response:
-
-```json
-{
-  "_embedded" : {
-    "transfers" : [ {
-      "id" : "TRsbUZh2TTv3AqcmzWWrsXNc",
-      "amount" : 11,
-      "tags" : { },
-      "state" : "SUCCEEDED",
-      "trace_id" : "b84d0129-c5db-4ce8-ae47-d2d37ba3f4ff",
-      "currency" : "USD",
-      "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-      "source" : "PI4MZrhJo5pYthKZP8XZb1G2",
-      "destination" : "PIcfre4PYgX7Bz7u1ha6PxMn",
-      "ready_to_settle_at" : "2016-11-15T03:42:30.93Z",
-      "fee" : 0,
-      "statement_descriptor" : null,
-      "type" : "FEE",
-      "messages" : [ ],
-      "raw" : null,
-      "created_at" : "2016-11-15T03:42:31.10Z",
-      "updated_at" : "2016-11-15T03:42:31.44Z",
-      "merchant_identity" : "IDjFtXt19dt59nd6jyyF7VuF",
-      "_links" : {
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        },
-        "self" : {
-          "href" : "https://api-test.payline.io/transfers/TRsbUZh2TTv3AqcmzWWrsXNc"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/transfers/TRsbUZh2TTv3AqcmzWWrsXNc/payment_instruments"
-        },
-        "merchant_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDjFtXt19dt59nd6jyyF7VuF"
-        },
-        "reversals" : {
-          "href" : "https://api-test.payline.io/transfers/TRsbUZh2TTv3AqcmzWWrsXNc/reversals"
-        },
-        "fees" : {
-          "href" : "https://api-test.payline.io/transfers/TRsbUZh2TTv3AqcmzWWrsXNc/fees"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/transfers/TRsbUZh2TTv3AqcmzWWrsXNc/disputes"
-        },
-        "source" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2"
-        },
-        "destination" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIcfre4PYgX7Bz7u1ha6PxMn"
-        }
-      }
-    }, {
-      "id" : "TR9STEP4F5uZeQJrXFUnwPjw",
-      "amount" : 100,
-      "tags" : { },
-      "state" : "SUCCEEDED",
-      "trace_id" : "63eaf2c9-c57c-4f86-8966-eb5e4481620f",
-      "currency" : "USD",
-      "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-      "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-      "destination" : "PI4MZrhJo5pYthKZP8XZb1G2",
-      "ready_to_settle_at" : "2016-11-15T03:42:30.93Z",
-      "fee" : 10,
-      "statement_descriptor" : "PLD*GOLDS GYM",
-      "type" : "DEBIT",
-      "messages" : [ ],
-      "raw" : null,
-      "created_at" : "2016-11-15T03:40:41.20Z",
-      "updated_at" : "2016-11-15T03:41:01.30Z",
-      "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
-      "_links" : {
-        "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
-        },
-        "self" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw/payment_instruments"
-        },
-        "merchant_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
-        },
-        "reversals" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw/reversals"
-        },
-        "fees" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw/fees"
-        },
-        "disputes" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw/disputes"
-        },
-        "source" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
-        },
-        "destination" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2"
-        }
-      }
-    } ]
-  },
-  "_links" : {
-    "self" : {
-      "href" : "https://api-test.payline.io/settlements/STjT9iJhUzeJjjABXHPc9WB3/transfers?offset=0&limit=20&sort=created_at,desc"
-    }
-  },
-  "page" : {
-    "offset" : 0,
-    "limit" : 20,
-    "count" : 2
-  }
-}
-```
-
-List the batch of `Transfers` of type `DEBIT` and `REFUND` that comprise the net
- settled amount of a `Settlement`.
-
-#### HTTP Request
-
-`GET https://api-test.payline.io/settlements/:SETTLEMENT_ID/transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
-
 # Transfers
 
 A `Transfer` represents any flow of funds either to or from a `Payment Instrument`.
@@ -11224,21 +10721,23 @@ to complete the transaction
 
 - **SUCCEEDED:** Funds captured and available for settlement (i.e. disbursement
 via ACH Credit)
-
+        
 - **FAILED:** Authorization attempt failed
+
+- **CANCELED:** Created, and then reversed before transfer has transitioned to succeeded
 
 By default, `Transfers` will be in a PENDING state and will eventually (typically
 within an hour) update to SUCCEEDED.
 
 <aside class="notice">
 When an Authorization is captured a corresponding Transfer will also be created.
-</aside>
+</puthon 
 ## Retrieve a Transfer
 ```shell
 
-curl https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc \
+curl https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 
 ```
@@ -11246,20 +10745,27 @@ curl https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc \
 
 import io.payline.payments.processing.client.model.Transfer;
 
-Transfer transfer = client.transfersClient().fetch("TRnyz63K5sRmDax8AiHdsBLc");
+Transfer transfer = client.transfersClient().fetch("TR6HE8ayfENdtk6qqnbWqLfA");
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Transfer;
 
-$transfer = Transfer::retrieve('TRnyz63K5sRmDax8AiHdsBLc');
+$transfer = Transfer::retrieve('TR6HE8ayfENdtk6qqnbWqLfA');
 
 
 
@@ -11268,60 +10774,60 @@ $transfer = Transfer::retrieve('TRnyz63K5sRmDax8AiHdsBLc');
 
 
 from payline.resources import Transfer
-transfer = Transfer.get(id="TRnyz63K5sRmDax8AiHdsBLc")
+transfer = Transfer.get(id="TR6HE8ayfENdtk6qqnbWqLfA")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "TRnyz63K5sRmDax8AiHdsBLc",
-  "amount" : 229829,
+  "id" : "TR6HE8ayfENdtk6qqnbWqLfA",
+  "amount" : 182430,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "CANCELED",
-  "trace_id" : "1438c674-9f49-4895-9133-1aacac2df139",
+  "trace_id" : "6f8a36ad-8ef4-4358-92e2-3fe9c7f442f4",
   "currency" : "USD",
-  "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-  "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-  "destination" : "PI4MZrhJo5pYthKZP8XZb1G2",
+  "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+  "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+  "destination" : "PIjX6hxC7gzBAED2qqMw1m1U",
   "ready_to_settle_at" : null,
-  "fee" : 22983,
-  "statement_descriptor" : "PLD*GOLDS GYM",
+  "fee" : 18243,
+  "statement_descriptor" : "PLD*PETES COFFEE",
   "type" : "DEBIT",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-11-15T03:40:36.41Z",
-  "updated_at" : "2016-11-15T03:40:39.50Z",
-  "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "created_at" : "2016-11-29T22:56:38.05Z",
+  "updated_at" : "2016-11-29T22:56:43.68Z",
+  "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "self" : {
-      "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc"
+      "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA"
     },
     "payment_instruments" : {
-      "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/payment_instruments"
+      "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/payment_instruments"
     },
     "merchant_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "reversals" : {
-      "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/reversals"
+      "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/reversals"
     },
     "fees" : {
-      "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/fees"
+      "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/fees"
     },
     "disputes" : {
-      "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/disputes"
+      "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/disputes"
     },
     "source" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x"
     },
     "destination" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2"
+      "href" : "https://api-test.payline.io/payment_instruments/PIjX6hxC7gzBAED2qqMw1m1U"
     }
   }
 }
@@ -11340,9 +10846,9 @@ Parameter | Description
 ## Refund a Debit
 ```shell
 
-curl https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/reversals \
+curl https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/reversals \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d  '
           {
           "refund_amount" : 100
@@ -11361,13 +10867,20 @@ Refund refund = transfer.reverse(100L);
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Transfer;
 
-$debit = Transfer::retrieve('TRnyz63K5sRmDax8AiHdsBLc');
+$debit = Transfer::retrieve('TR6HE8ayfENdtk6qqnbWqLfA');
 $refund = $debit->reverse(50);
 ```
 ```python
@@ -11375,7 +10888,7 @@ $refund = $debit->reverse(50);
 
 from payline.resources import Transfer
 
-transfer = Transfer.get(id="TRnyz63K5sRmDax8AiHdsBLc")
+transfer = Transfer.get(id="TR6HE8ayfENdtk6qqnbWqLfA")
 transfer.reverse(**
           {
           "refund_amount" : 100
@@ -11386,42 +10899,42 @@ transfer.reverse(**
 
 ```json
 {
-  "id" : "TRwfk4NmFPTaJi18LyodtADh",
-  "amount" : 100,
+  "id" : "TR3jjomfs3gcRvwNBq8qb9VJ",
+  "amount" : 182430,
   "tags" : { },
   "state" : "SUCCEEDED",
-  "trace_id" : "f4f25276-1395-4ae8-a8ff-2b1ef33182f2",
+  "trace_id" : "12c0fedb-d6d4-47ab-8258-2c5d49bcd73c",
   "currency" : "USD",
-  "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-  "source" : "PI4MZrhJo5pYthKZP8XZb1G2",
-  "destination" : "PIrNo8zuHEZoatYMcCPvkypT",
+  "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+  "source" : "PIjX6hxC7gzBAED2qqMw1m1U",
+  "destination" : "PIh1Y21TC9DY7fG1t2juRL2x",
   "ready_to_settle_at" : null,
-  "fee" : 0,
-  "statement_descriptor" : "PLD*GOLDS GYM",
+  "fee" : 18243,
+  "statement_descriptor" : "PLD*PETES COFFEE",
   "type" : "REVERSAL",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2016-11-15T03:40:39.55Z",
-  "updated_at" : "2016-11-15T03:40:39.63Z",
-  "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "created_at" : "2016-11-29T22:56:44.40Z",
+  "updated_at" : "2016-11-29T22:56:45.00Z",
+  "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "_links" : {
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     },
     "self" : {
-      "href" : "https://api-test.payline.io/transfers/TRwfk4NmFPTaJi18LyodtADh"
+      "href" : "https://api-test.payline.io/transfers/TR3jjomfs3gcRvwNBq8qb9VJ"
     },
     "parent" : {
-      "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc"
+      "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA"
     },
     "destination" : {
-      "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
+      "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x"
     },
     "merchant_identity" : {
-      "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+      "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
     },
     "payment_instruments" : {
-      "href" : "https://api-test.payline.io/transfers/TRwfk4NmFPTaJi18LyodtADh/payment_instruments"
+      "href" : "https://api-test.payline.io/transfers/TR3jjomfs3gcRvwNBq8qb9VJ/payment_instruments"
     }
   }
 }
@@ -11454,7 +10967,7 @@ refund_amount | *integer*, **required** | The amount of the refund in cents (Mus
 ```shell
 curl https://api-test.payline.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
@@ -11471,7 +10984,14 @@ client.transfersClient().<Resources<Transfer>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -11490,140 +11010,140 @@ transfer = Transfer.get()
 {
   "_embedded" : {
     "transfers" : [ {
-      "id" : "TR9STEP4F5uZeQJrXFUnwPjw",
+      "id" : "TR28iRVdxQhvvhWPHT1qfUJN",
       "amount" : 100,
       "tags" : { },
       "state" : "PENDING",
-      "trace_id" : "63eaf2c9-c57c-4f86-8966-eb5e4481620f",
+      "trace_id" : "8a3dc180-7a1a-47b3-9076-a750067efc4a",
       "currency" : "USD",
-      "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-      "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-      "destination" : "PI4MZrhJo5pYthKZP8XZb1G2",
+      "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+      "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+      "destination" : "PIjX6hxC7gzBAED2qqMw1m1U",
       "ready_to_settle_at" : null,
       "fee" : 10,
-      "statement_descriptor" : "PLD*GOLDS GYM",
+      "statement_descriptor" : "PLD*PETES COFFEE",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-11-15T03:40:41.20Z",
-      "updated_at" : "2016-11-15T03:40:41.42Z",
-      "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "created_at" : "2016-11-29T22:56:48.90Z",
+      "updated_at" : "2016-11-29T22:56:49.70Z",
+      "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "_links" : {
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         },
         "self" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw"
+          "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw/payment_instruments"
+          "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         },
         "reversals" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw/reversals"
+          "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN/reversals"
         },
         "fees" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw/fees"
+          "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN/fees"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/transfers/TR9STEP4F5uZeQJrXFUnwPjw/disputes"
+          "href" : "https://api-test.payline.io/transfers/TR28iRVdxQhvvhWPHT1qfUJN/disputes"
         },
         "source" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
+          "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x"
         },
         "destination" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2"
+          "href" : "https://api-test.payline.io/payment_instruments/PIjX6hxC7gzBAED2qqMw1m1U"
         }
       }
     }, {
-      "id" : "TRwfk4NmFPTaJi18LyodtADh",
-      "amount" : 100,
+      "id" : "TR3jjomfs3gcRvwNBq8qb9VJ",
+      "amount" : 182430,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "6d5fb97b-c66c-4692-b9be-6d96e8bcc771",
+      "trace_id" : "6bd09e09-f9a4-4e92-bdb6-304ca06eefeb",
       "currency" : "USD",
-      "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-      "source" : "PI4MZrhJo5pYthKZP8XZb1G2",
-      "destination" : "PIrNo8zuHEZoatYMcCPvkypT",
+      "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+      "source" : "PIjX6hxC7gzBAED2qqMw1m1U",
+      "destination" : "PIh1Y21TC9DY7fG1t2juRL2x",
       "ready_to_settle_at" : null,
-      "fee" : 0,
-      "statement_descriptor" : "PLD*GOLDS GYM",
+      "fee" : 18243,
+      "statement_descriptor" : "PLD*PETES COFFEE",
       "type" : "REVERSAL",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-11-15T03:40:39.31Z",
-      "updated_at" : "2016-11-15T03:40:39.63Z",
-      "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "created_at" : "2016-11-29T22:56:43.14Z",
+      "updated_at" : "2016-11-29T22:56:45.00Z",
+      "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "_links" : {
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         },
         "self" : {
-          "href" : "https://api-test.payline.io/transfers/TRwfk4NmFPTaJi18LyodtADh"
+          "href" : "https://api-test.payline.io/transfers/TR3jjomfs3gcRvwNBq8qb9VJ"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/transfers/TRwfk4NmFPTaJi18LyodtADh/payment_instruments"
+          "href" : "https://api-test.payline.io/transfers/TR3jjomfs3gcRvwNBq8qb9VJ/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         },
         "parent" : {
-          "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc"
+          "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA"
         },
         "destination" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
+          "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x"
         }
       }
     }, {
-      "id" : "TRnyz63K5sRmDax8AiHdsBLc",
-      "amount" : 229829,
+      "id" : "TR6HE8ayfENdtk6qqnbWqLfA",
+      "amount" : 182430,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "CANCELED",
-      "trace_id" : "1438c674-9f49-4895-9133-1aacac2df139",
+      "trace_id" : "6f8a36ad-8ef4-4358-92e2-3fe9c7f442f4",
       "currency" : "USD",
-      "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-      "source" : "PIrNo8zuHEZoatYMcCPvkypT",
-      "destination" : "PI4MZrhJo5pYthKZP8XZb1G2",
+      "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+      "source" : "PIh1Y21TC9DY7fG1t2juRL2x",
+      "destination" : "PIjX6hxC7gzBAED2qqMw1m1U",
       "ready_to_settle_at" : null,
-      "fee" : 22983,
-      "statement_descriptor" : "PLD*GOLDS GYM",
+      "fee" : 18243,
+      "statement_descriptor" : "PLD*PETES COFFEE",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2016-11-15T03:40:36.41Z",
-      "updated_at" : "2016-11-15T03:40:39.50Z",
-      "merchant_identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "created_at" : "2016-11-29T22:56:38.05Z",
+      "updated_at" : "2016-11-29T22:56:43.68Z",
+      "merchant_identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "_links" : {
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         },
         "self" : {
-          "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc"
+          "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA"
         },
         "payment_instruments" : {
-          "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/payment_instruments"
+          "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV"
+          "href" : "https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN"
         },
         "reversals" : {
-          "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/reversals"
+          "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/reversals"
         },
         "fees" : {
-          "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/fees"
+          "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/fees"
         },
         "disputes" : {
-          "href" : "https://api-test.payline.io/transfers/TRnyz63K5sRmDax8AiHdsBLc/disputes"
+          "href" : "https://api-test.payline.io/transfers/TR6HE8ayfENdtk6qqnbWqLfA/disputes"
         },
         "source" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PIrNo8zuHEZoatYMcCPvkypT"
+          "href" : "https://api-test.payline.io/payment_instruments/PIh1Y21TC9DY7fG1t2juRL2x"
         },
         "destination" : {
-          "href" : "https://api-test.payline.io/payment_instruments/PI4MZrhJo5pYthKZP8XZb1G2"
+          "href" : "https://api-test.payline.io/payment_instruments/PIjX6hxC7gzBAED2qqMw1m1U"
         }
       }
     } ]
@@ -11673,9 +11193,9 @@ data (i.e. Merchant's created under this Application)
 
 ## Create an Application User
 ```shell
-curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users \
+curl https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '{}'
 
 ```
@@ -11686,7 +11206,14 @@ curl https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i/users \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -11701,23 +11228,23 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "USnGBDnaDbNbneVMPBb2Pg3d",
-  "password" : "6e1d294c-e947-4608-bdf0-8e6920841388",
-  "identity" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "id" : "USdWnpNuJ9P2R4L15iBNZUor",
+  "password" : "5b97ab3e-c29a-4365-a088-72bf30c8b611",
+  "identity" : "IDiEqfWMGveafDrekHKiuxPo",
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:20.58Z",
-  "updated_at" : "2016-11-15T03:40:20.58Z",
+  "created_at" : "2016-11-29T22:56:01.99Z",
+  "updated_at" : "2016-11-29T22:56:01.99Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/users/USnGBDnaDbNbneVMPBb2Pg3d"
+      "href" : "https://api-test.payline.io/users/USdWnpNuJ9P2R4L15iBNZUor"
     },
     "applications" : {
       "href" : "https://api-test.payline.io/applications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -11745,9 +11272,9 @@ Parameter | Description
 ## Create a Merchant User
 
 ```shell
-curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/users \
+curl https://api-test.payline.io/identities/IDci9dFHHcUcfUCs4Gn72cRN/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '{}'
 
 ```
@@ -11758,7 +11285,14 @@ curl https://api-test.payline.io/identities/IDaotf83HNxER4mu5gXAxJPV/users \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -11773,23 +11307,23 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "USbFvxAoWyFT2C821tBSuLWw",
-  "password" : "6cb5575f-8067-467b-bad3-e1dce2c542db",
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "id" : "USdmayET4q4W5qUKPqARDFox",
+  "password" : "7ac94379-eacc-4d39-8c61-f89b40fe2427",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "enabled" : true,
   "role" : "ROLE_MERCHANT",
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:37.68Z",
-  "updated_at" : "2016-11-15T03:40:37.68Z",
+  "created_at" : "2016-11-29T22:56:40.64Z",
+  "updated_at" : "2016-11-29T22:56:40.64Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/users/USbFvxAoWyFT2C821tBSuLWw"
+      "href" : "https://api-test.payline.io/users/USdmayET4q4W5qUKPqARDFox"
     },
     "applications" : {
       "href" : "https://api-test.payline.io/applications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -11817,7 +11351,7 @@ Parameter | Description
 
 ## Retrieve a User
 ```shell
-curl https://api-test.payline.io/users/TRnyz63K5sRmDax8AiHdsBLc \
+curl https://api-test.payline.io/users/TR6HE8ayfENdtk6qqnbWqLfA \
     -H "Content-Type: application/vnd.json+api" \
     -u  USkoFNY73WEiP8tYmZtPa6e4:e28fe471-5b2c-4f20-9db9-0a3e5fd06110
 
@@ -11829,7 +11363,14 @@ curl https://api-test.payline.io/users/TRnyz63K5sRmDax8AiHdsBLc \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -11839,30 +11380,30 @@ Payline\Bootstrap::init();
 
 
 from payline.resources import User
-user = User.get(id="USfQ9LCUotNchB31PKbXdqir")
+user = User.get(id="USmAQ8t77QraWU17YWM6jjjQ")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "USfQ9LCUotNchB31PKbXdqir",
+  "id" : "USmAQ8t77QraWU17YWM6jjjQ",
   "password" : null,
-  "identity" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+  "identity" : "IDiEqfWMGveafDrekHKiuxPo",
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:18.72Z",
-  "updated_at" : "2016-11-15T03:40:19.21Z",
+  "created_at" : "2016-11-29T22:55:56.98Z",
+  "updated_at" : "2016-11-29T22:55:58.46Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/users/USfQ9LCUotNchB31PKbXdqir"
+      "href" : "https://api-test.payline.io/users/USmAQ8t77QraWU17YWM6jjjQ"
     },
     "applications" : {
       "href" : "https://api-test.payline.io/applications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -11880,9 +11421,9 @@ user_id | ID of the `User`
 
 ## Disable a User
 ```shell
-curl https://api-test.payline.io/users/USbFvxAoWyFT2C821tBSuLWw \
+curl https://api-test.payline.io/users/USdmayET4q4W5qUKPqARDFox \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -X PUT \
     -d '
 	{
@@ -11897,7 +11438,14 @@ curl https://api-test.payline.io/users/USbFvxAoWyFT2C821tBSuLWw \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -11912,23 +11460,23 @@ Payline\Bootstrap::init();
 
 ```json
 {
-  "id" : "USbFvxAoWyFT2C821tBSuLWw",
+  "id" : "USdmayET4q4W5qUKPqARDFox",
   "password" : null,
-  "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+  "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
   "enabled" : false,
   "role" : "ROLE_MERCHANT",
   "tags" : { },
-  "created_at" : "2016-11-15T03:40:37.58Z",
-  "updated_at" : "2016-11-15T03:40:38.18Z",
+  "created_at" : "2016-11-29T22:56:40.58Z",
+  "updated_at" : "2016-11-29T22:56:41.42Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/users/USbFvxAoWyFT2C821tBSuLWw"
+      "href" : "https://api-test.payline.io/users/USdmayET4q4W5qUKPqARDFox"
     },
     "applications" : {
       "href" : "https://api-test.payline.io/applications"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -11956,7 +11504,7 @@ user_id | ID of the `User` you would like to disable
 ```shell
 curl https://api-test.payline.io/users/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
@@ -11966,7 +11514,14 @@ curl https://api-test.payline.io/users/ \
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -11985,63 +11540,63 @@ users = User.get()
 {
   "_embedded" : {
     "users" : [ {
-      "id" : "USbFvxAoWyFT2C821tBSuLWw",
+      "id" : "USdmayET4q4W5qUKPqARDFox",
       "password" : null,
-      "identity" : "IDaotf83HNxER4mu5gXAxJPV",
+      "identity" : "IDci9dFHHcUcfUCs4Gn72cRN",
       "enabled" : true,
       "role" : "ROLE_MERCHANT",
       "tags" : { },
-      "created_at" : "2016-11-15T03:40:37.58Z",
-      "updated_at" : "2016-11-15T03:40:38.75Z",
+      "created_at" : "2016-11-29T22:56:40.58Z",
+      "updated_at" : "2016-11-29T22:56:42.36Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/users/USbFvxAoWyFT2C821tBSuLWw"
+          "href" : "https://api-test.payline.io/users/USdmayET4q4W5qUKPqARDFox"
         },
         "applications" : {
           "href" : "https://api-test.payline.io/applications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "USnGBDnaDbNbneVMPBb2Pg3d",
+      "id" : "USdWnpNuJ9P2R4L15iBNZUor",
       "password" : null,
-      "identity" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+      "identity" : "IDiEqfWMGveafDrekHKiuxPo",
       "enabled" : true,
       "role" : "ROLE_PARTNER",
       "tags" : { },
-      "created_at" : "2016-11-15T03:40:20.51Z",
-      "updated_at" : "2016-11-15T03:40:20.51Z",
+      "created_at" : "2016-11-29T22:56:01.95Z",
+      "updated_at" : "2016-11-29T22:56:01.95Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/users/USnGBDnaDbNbneVMPBb2Pg3d"
+          "href" : "https://api-test.payline.io/users/USdWnpNuJ9P2R4L15iBNZUor"
         },
         "applications" : {
           "href" : "https://api-test.payline.io/applications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     }, {
-      "id" : "USfQ9LCUotNchB31PKbXdqir",
+      "id" : "USmAQ8t77QraWU17YWM6jjjQ",
       "password" : null,
-      "identity" : "IDiWXJgvQmEiiEqEvJgG4xgB",
+      "identity" : "IDiEqfWMGveafDrekHKiuxPo",
       "enabled" : true,
       "role" : "ROLE_PARTNER",
       "tags" : { },
-      "created_at" : "2016-11-15T03:40:18.72Z",
-      "updated_at" : "2016-11-15T03:40:19.21Z",
+      "created_at" : "2016-11-29T22:55:56.98Z",
+      "updated_at" : "2016-11-29T22:55:58.46Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/users/USfQ9LCUotNchB31PKbXdqir"
+          "href" : "https://api-test.payline.io/users/USmAQ8t77QraWU17YWM6jjjQ"
         },
         "applications" : {
           "href" : "https://api-test.payline.io/applications"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     } ]
@@ -12079,7 +11634,7 @@ listening for notifications of newly created `Disputes`.
 
 curl https://api-test.payline.io/webhooks \
     -H "Content-Type: application/vnd.json+api" \
-    -u USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd \
+    -u USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44 \
     -d '
                     {
                     "url" : "http://requestb.in/1jb5zu11"
@@ -12103,7 +11658,14 @@ Webhook webhook = client.webhookClient().save(
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -12130,18 +11692,18 @@ webhook = Webhook(**
 
 ```json
 {
-  "id" : "WHrPWX4WQ2WR6tar1SDQvovM",
+  "id" : "WH8K7uvtQnBSq3k7AJcisxJW",
   "url" : "http://requestb.in/1jb5zu11",
   "enabled" : true,
-  "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-  "created_at" : "2016-11-15T03:40:21.97Z",
-  "updated_at" : "2016-11-15T03:40:21.97Z",
+  "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+  "created_at" : "2016-11-29T22:56:04.66Z",
+  "updated_at" : "2016-11-29T22:56:04.66Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/webhooks/WHrPWX4WQ2WR6tar1SDQvovM"
+      "href" : "https://api-test.payline.io/webhooks/WH8K7uvtQnBSq3k7AJcisxJW"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -12163,9 +11725,9 @@ url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be
 
 
 
-curl https://api-test.payline.io/webhooks/WHrPWX4WQ2WR6tar1SDQvovM \
+curl https://api-test.payline.io/webhooks/WH8K7uvtQnBSq3k7AJcisxJW \
     -H "Content-Type: application/vnd.json+api" \
-    -u USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 
 ```
@@ -12173,20 +11735,27 @@ curl https://api-test.payline.io/webhooks/WHrPWX4WQ2WR6tar1SDQvovM \
 
 import io.payline.payments.processing.client.model.Webhook;
 
-Webhook webhook = client.webhookClient().fetch("WHrPWX4WQ2WR6tar1SDQvovM");
+Webhook webhook = client.webhookClient().fetch("WH8K7uvtQnBSq3k7AJcisxJW");
 
 ```
 ```php
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
 use Payline\Resources\Webhook;
 
-$webhook = Webhook::retrieve('WHrPWX4WQ2WR6tar1SDQvovM');
+$webhook = Webhook::retrieve('WH8K7uvtQnBSq3k7AJcisxJW');
 
 
 
@@ -12195,25 +11764,25 @@ $webhook = Webhook::retrieve('WHrPWX4WQ2WR6tar1SDQvovM');
 
 
 from payline.resources import Webhook
-webhook = Webhook.get(id="WHrPWX4WQ2WR6tar1SDQvovM")
+webhook = Webhook.get(id="WH8K7uvtQnBSq3k7AJcisxJW")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "WHrPWX4WQ2WR6tar1SDQvovM",
+  "id" : "WH8K7uvtQnBSq3k7AJcisxJW",
   "url" : "http://requestb.in/1jb5zu11",
   "enabled" : true,
-  "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-  "created_at" : "2016-11-15T03:40:21.97Z",
-  "updated_at" : "2016-11-15T03:40:21.97Z",
+  "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+  "created_at" : "2016-11-29T22:56:04.68Z",
+  "updated_at" : "2016-11-29T22:56:04.68Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-test.payline.io/webhooks/WHrPWX4WQ2WR6tar1SDQvovM"
+      "href" : "https://api-test.payline.io/webhooks/WH8K7uvtQnBSq3k7AJcisxJW"
     },
     "application" : {
-      "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+      "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
     }
   }
 }
@@ -12233,7 +11802,7 @@ Parameter | Description
 ```shell
 curl https://api-test.payline.io/webhooks/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  USfQ9LCUotNchB31PKbXdqir:30141a9e-5338-4848-a24a-3ad12085e3dd
+    -u  USmAQ8t77QraWU17YWM6jjjQ:a41df9e6-2dce-4ad9-87ce-1da2d794db44
 
 ```
 ```java
@@ -12249,7 +11818,14 @@ client.webhookClient().<Resources<Webhook>>resourcesIterator()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
@@ -12268,18 +11844,18 @@ webhooks = Webhook.get()
 {
   "_embedded" : {
     "webhooks" : [ {
-      "id" : "WHrPWX4WQ2WR6tar1SDQvovM",
+      "id" : "WH8K7uvtQnBSq3k7AJcisxJW",
       "url" : "http://requestb.in/1jb5zu11",
       "enabled" : true,
-      "application" : "APvFU1J7hgZjmewU9fkeUh8i",
-      "created_at" : "2016-11-15T03:40:21.97Z",
-      "updated_at" : "2016-11-15T03:40:21.97Z",
+      "application" : "APmE1ycLBmsgMx4gXoToVnLL",
+      "created_at" : "2016-11-29T22:56:04.68Z",
+      "updated_at" : "2016-11-29T22:56:04.68Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-test.payline.io/webhooks/WHrPWX4WQ2WR6tar1SDQvovM"
+          "href" : "https://api-test.payline.io/webhooks/WH8K7uvtQnBSq3k7AJcisxJW"
         },
         "application" : {
-          "href" : "https://api-test.payline.io/applications/APvFU1J7hgZjmewU9fkeUh8i"
+          "href" : "https://api-test.payline.io/applications/APmE1ycLBmsgMx4gXoToVnLL"
         }
       }
     } ]
@@ -12313,7 +11889,14 @@ webhooks = Webhook.get()
 <?php
 require_once('vendor/autoload.php');
 require(__DIR__ . '/src/Payline/Settings.php');
-Payline\Settings::configure('https://api-test.payline.io', 'USfQ9LCUotNchB31PKbXdqir', '30141a9e-5338-4848-a24a-3ad12085e3dd');
+
+Payline\Settings::configure([
+	"root_url" => 'https://api-test.payline.io',
+	"username" => 'USmAQ8t77QraWU17YWM6jjjQ',
+	"password" => 'a41df9e6-2dce-4ad9-87ce-1da2d794db44']
+	);
+
+
 require(__DIR__ . '/src/Payline/Bootstrap.php');
 Payline\Bootstrap::init();
 
