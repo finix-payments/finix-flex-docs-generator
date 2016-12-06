@@ -4,14 +4,15 @@ import os
 import base64
 import json
 import pprint
-from urllib2 import Request, urlopen, HTTPError
+from urllib2 import Request, urlopen, HTTPError, URLError, build_opener, HTTPHandler
 import poster
 import time
 import random
 
 from helpers import formatted_response, format_json, format_curl_request_body, \
     format_php_request_body, random_business_name, random_last_name, \
-    random_first_name, random_app_name
+    random_first_name, random_app_name, transfer_ready_to_settle, \
+    stringified_elapsed_time, message_slack
 
 
 class Client(object):
@@ -95,7 +96,7 @@ class Client(object):
                 "business_tax_id": "123456789",
                 "doing_business_as": company,
                 "email": "user@example.org",
-                "max_transaction_amount": 12000,
+                "max_transaction_amount": 1200000,
                 "settlement_bank_account": "CORPORATE"
             }
         }
@@ -216,7 +217,7 @@ class Client(object):
                 "business_tax_id": "123456789",
                 "mcc": "0742",
                 "default_statement_descriptor": company,
-                "max_transaction_amount": 120000,
+                "max_transaction_amount": 12000000,
                 "amex_mid": "12345678910",
                 "annual_card_volume": 12000000,
                 "url": "www." + company + ".com",
@@ -276,7 +277,7 @@ class Client(object):
                 "business_tax_id": "123456789",
                 "mcc": "0742",
                 "default_statement_descriptor": company,
-                "max_transaction_amount": 120000,
+                "max_transaction_amount": 12000000,
                 "amex_mid": "12345678910",
                 "annual_card_volume": 12000000,
                 "url": "www." + company + ".com",
@@ -545,8 +546,25 @@ class Client(object):
         return formatted_response(endpoint, values, self.encoded_auth)
 
 
-    def create_settlement(self, identity_id):
-        time.sleep(400)
+    def create_settlement(self, identity_id, transfer_id):
+        # transfer_id is the ID of a recently created debit transfer. Here we're
+        # checking  to see if its ready to settle, typically waiting period
+        # should be 3600 milliseconds before
+        # field changes
+        start = time.time()
+        minutes = 5
+        endpoint = self.staging_base_url + '/transfers/' + transfer_id
+        while not transfer_ready_to_settle(endpoint, self.encoded_auth):
+            elapsed_time = time.time() - start
+            if (elapsed_time // 60) % minutes == 0 and elapsed_time > 60:
+                transfer_response = self.fetch_transfer(transfer_id)
+                minutes = minutes + 10
+                counter = stringified_elapsed_time(start)
+                channel = '#fnx-dev'
+                # This is the full response body
+                # message = '*Transfer Reconciliation Latency Alert*\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\n```' + transfer_response['response_body'] + '```'
+                message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
+                message_slack(channel, message)
         values = {
             "currency": "USD",
             "tags": {

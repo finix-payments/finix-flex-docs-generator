@@ -8,6 +8,8 @@ import base64
 from urllib2 import Request, urlopen, HTTPError, URLError, build_opener, HTTPHandler
 import json
 import finix
+import time
+from slacker import Slacker
 
 def formatted_response(endpoint, values, encoded_auth, request_type=None):
     headers = {
@@ -45,7 +47,6 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
                 'response_body': response_body,
                 'response_id': response_id}
 
-
 def format_json(response):
     response_body = json.loads(response)
     response_body = json.dumps(response_body, indent=4, sort_keys=False)
@@ -56,9 +57,30 @@ def format_json(response):
 
 
 def format_curl_request_body(string):
-
     return string
 
+def transfer_ready_to_settle(endpoint, encoded_auth):
+    values = None
+
+    headers = {
+        'Content-Type': 'application/vnd.json+api',
+        'Authorization': 'Basic ' + encoded_auth
+    }
+    request = Request(endpoint, data=values, headers=headers)
+    opener = build_opener(HTTPHandler(debuglevel=1))
+    response_body = opener.open(request).read()
+    return json.loads(response_body)['ready_to_settle_at'] is not None
+
+def message_slack(channel, message):
+    slack = Slacker('xoxb-110626438564-4f5m7EukMeEdcPcRdQkTgln3')
+    # Send a message to #general channel
+    slack.chat.post_message(channel, message, as_user="richies_revenge")
+
+
+def stringified_elapsed_time(start_time):
+    m, s = divmod(time.time() - start_time, 60)
+    h, m = divmod(m, 60)
+    return "%d:%02d:%02d" % (h, m, s)
 
 def format_php_request_body(string):
     string = string.replace("{", "array(")
