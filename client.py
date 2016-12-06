@@ -278,6 +278,7 @@ class Client(object):
                 "mcc": "0742",
                 "default_statement_descriptor": company,
                 "max_transaction_amount": 12000000,
+                "max_transaction_amount": 1200000,
                 "amex_mid": "12345678910",
                 "annual_card_volume": 12000000,
                 "url": "www." + company + ".com",
