@@ -95,7 +95,7 @@ class Client(object):
                 "business_tax_id": "123456789",
                 "doing_business_as": company,
                 "email": "user@example.org",
-                "max_transaction_amount": 12000,
+                "max_transaction_amount": 1200000,
                 "settlement_bank_account": "CORPORATE"
             }
         }
@@ -216,7 +216,7 @@ class Client(object):
                 "business_tax_id": "123456789",
                 "mcc": "0742",
                 "default_statement_descriptor": company,
-                "max_transaction_amount": 120000,
+                "max_transaction_amount": 12000000,
                 "amex_mid": "12345678910",
                 "annual_card_volume": 12000000,
                 "url": "www." + company + ".com",
@@ -276,7 +276,7 @@ class Client(object):
                 "business_tax_id": "123456789",
                 "mcc": "0742",
                 "default_statement_descriptor": company,
-                "max_transaction_amount": 120000,
+                "max_transaction_amount": 1200000,
                 "amex_mid": "12345678910",
                 "annual_card_volume": 12000000,
                 "url": "www." + company + ".com",
