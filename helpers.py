@@ -40,6 +40,7 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
                 'curl_request_body': values,
                 'php_request_body': format_php_request_body(values),
                 'python_request_body': format_python_request_body(values),
+                'ruby_request_body': format_ruby_request_body(values),
                 'response_body': response_body,
                 'response_id': response_id}
     else:
@@ -91,6 +92,10 @@ def format_php_request_body(string):
 def format_python_request_body(string):
     string = string.replace("true", "True")
     string = string.replace("false", "False")
+    return string
+
+def format_ruby_request_body(string):
+    string = string.replace(":", "=>")
     return string
 
 def random_app_name():

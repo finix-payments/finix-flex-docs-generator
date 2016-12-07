@@ -22,7 +22,8 @@ partner_configs = {
         'production_base_url': "https://api.finix.io",
         'api_name_downcase': "crossriver",
         'python_client_resource_name': "crossriver",
-        'php_client_repo': "https://github.com/finix-payments/processing-php-client"
+        'php_client_repo': "https://github.com/finix-payments/processing-php-client",
+        'ruby_client_resource_name': "CrossRiver"
 }
 
 

@@ -20,7 +20,8 @@ partner_configs = {
     'staging_base_url': "https://api-staging.simonpayments.com",
     'production_base_url': "https://api.simonpayments.com",
     'python_client_resource_name': "simon",
-    'php_client_repo': "https://github.com/finix-payments/processing-php-client"
+    'php_client_repo': "https://github.com/finix-payments/processing-php-client",
+    'ruby_client_resource_name': "Simon"
 }
 
 
