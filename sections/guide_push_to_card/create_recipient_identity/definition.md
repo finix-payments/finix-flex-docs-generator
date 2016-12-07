@@ -1,1 +1,1 @@
-### Step 1: Register an Identity
+### Step 1: Create an Identity

@@ -1,4 +1,4 @@
-use {{api_name}}\Resources\Application;
+use {{api_name}}\Resources\Transfer;
 
-$application = new Application({{create_app_scenario_php_request}});
-$application = $application->save();
+$transfer = new Transfer({{create_recipient_push_to_card_transfer_php_request}});
+$transfer = $transfer->save();

@@ -1,6 +1,3 @@
-```php
-<?php
-
 // Download the PHP Client here: {{php_client_repo}}
 
 require_once('vendor/autoload.php');

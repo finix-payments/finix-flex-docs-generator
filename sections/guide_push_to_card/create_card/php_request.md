@@ -1,4 +1,6 @@
-use {{api_name}}\Resources\Application;
+use {{api_name}}\Resources\PaymentCard;
+use {{api_name}}\Resources\Identity;
 
-$application = new Application({{create_app_scenario_php_request}});
-$application = $application->save();
+$identity = Identity::retrieve('{{create_recipient_identity_scenario_id}}');
+$card = new PaymentCard({{create_recipient_card_scenario_php_request}});
+$card = $identity->createPaymentCard($card);

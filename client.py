@@ -335,7 +335,7 @@ class Client(object):
             "security_code": "112",
             "type": "PAYMENT_CARD",
             "tags": {
-            "card name": "Business Card"
+            "card_name": "Business Card"
             }
         }
         values = format_json(json.dumps(values))

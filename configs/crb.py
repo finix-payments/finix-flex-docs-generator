@@ -111,7 +111,7 @@ snippets_by_resource = {
         "definition",
         "provision_merchant",
         "fetch_merchant",
-        "create_merchant_user",
+        # "create_merchant_user",
         "reattempt_merchant_provision",
         "update_merchant_on_processor",
         "list_merchants",
