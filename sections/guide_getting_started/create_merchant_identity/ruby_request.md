@@ -1,1 +1,1 @@
-{{ruby_client_resource_name}}::Identity.new({{create_merchant_identity_scenario_ruby_request}}).save
+identity = {{ruby_client_resource_name}}::Identity.new({{create_merchant_identity_scenario_ruby_request}}).save

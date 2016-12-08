@@ -1,0 +1,1 @@
+{{ruby_client_resource_name}}::BankAccount.new({{create_bank_account_scenario_php_request}}).save
