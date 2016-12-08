@@ -1,0 +1,1 @@
+{{ruby_client_resource_name}}::Settlement.new({{create_settlement_scenario_ruby_request}}).save

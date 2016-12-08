@@ -1,0 +1,1 @@
+{{ruby_client_resource_name}}::.new({{create_card_scenario_ruby_request}}).savePaymentCard
