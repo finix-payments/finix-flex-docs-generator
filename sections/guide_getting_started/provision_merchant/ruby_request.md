@@ -1,2 +1,3 @@
-identity = Identity::retrieve('IDxeMRXrtBvbW1V3b485Xc8D');
-merchant = identity.provisionMerchantOn(new Merchant());
+identity = {{ruby_client_resource_name}}::Identity('{{create_merchant_identity_scenario_id}}');
+
+merchant = identity.provision_merchant_on()

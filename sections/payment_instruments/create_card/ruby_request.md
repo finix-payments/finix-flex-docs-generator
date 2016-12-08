@@ -1,0 +1,1 @@
+{{ruby_client_resource_name}}::BankAccount.new({{create_card_scenario_ruby_request}}).save
