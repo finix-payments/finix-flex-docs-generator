@@ -176,7 +176,8 @@ def generate_template_variables(config_values):
     enable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], True)
     # print create_user_merchant_role_scenario
     # create_identity_verification_scenario = create_identity_verification(create_identity_individual_sole_proprietorship_scenario["response_id"])
-    create_refund_scenario = api_client.create_refund(create_debit_scenario['response_id'])
+    create_debit_for_refund_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))
+    create_refund_scenario = api_client.create_refund(create_debit_for_refund_scenario['response_id'])
     create_authorization_scenario = api_client.create_authorization(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
     capture_authorization_scenario = api_client.capture_authorization(create_authorization_scenario["response_id"])
     fetch_authorization_scenario = api_client.fetch_authorization(create_authorization_scenario["response_id"])
@@ -196,13 +197,7 @@ def generate_template_variables(config_values):
     fetch_transfer_scenario = api_client.fetch_transfer(create_debit_scenario["response_id"])
     fetch_webhook_scenario = api_client.fetch_webhook(create_webhook_scenario["response_id"])
 
-    #Push-to-card Scenarios
-    # associate_payment_processor_push_to_card_scenario = api_client.associate_payment_processor("VISA_V1", create_app_scenario["response_id"])
-    # create_recipient_identity_scenario = api_client.create_buyer_identity()
-    # create_recipient_card_scenario = api_client.create_card(create_recipient_identity_scenario["response_id"])
-    # create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
-    # provision_merchant_account_scenario = api_client.provision_merchant(create_recipient_identity_scenario["response_id"])
-    # # # LIST
+    # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
     list_disputes_scenario = api_client.list_disputes()
     list_identities_scenario = api_client.list_identities()
@@ -227,7 +222,7 @@ def generate_template_variables(config_values):
     # fetch_dispute_scenario = fetch_dispute(create_dispute_scenario["response_id"])
     # upload_dispute_file_scenario = upload_dispute_file(fetch_dispute_scenario["response_id"])
     if TOGGLE_OFF_SETTLEMENTS == False:
-        create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'])
+        create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_debit_scenario['response_id'])
         fund_settlement_scenario = api_client.fund_settlement(create_settlement_scenario["response_id"], create_bank_account_scenario["response_id"])
         fetch_settlement_scenario = api_client.fetch_settlement(create_settlement_scenario['response_id'])
         fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
