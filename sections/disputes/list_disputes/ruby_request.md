@@ -1,0 +1,1 @@
+disputes = {{ruby_client_resource_name}}::Dispute.find(:id => "{{fetch_dispute_scenario_id}}")

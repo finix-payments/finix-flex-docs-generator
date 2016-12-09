@@ -1,1 +1,1 @@
-authorizations = Finix::Authorization.fetch
+authorizations = {{ruby_client_resource_name}}::Authorization.find

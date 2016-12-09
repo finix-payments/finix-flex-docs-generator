@@ -1,1 +1,2 @@
-identities = Finix::Identity.fetch
+identities = {{ruby_client_resource_name}}::Identity.find
+

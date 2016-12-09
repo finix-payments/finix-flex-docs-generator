@@ -1,1 +1,1 @@
-merchants = Finix::Merchant.fetch
+merchants = {{ruby_client_resource_name}}::Merchant.find

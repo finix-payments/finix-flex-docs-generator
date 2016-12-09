@@ -430,6 +430,7 @@ def generate_template_variables(config_values):
             "create_recipient_push_to_card_transfer_curl_request": create_recipient_push_to_card_transfer["curl_request_body"],
             "create_recipient_push_to_card_transfer_php_request": create_recipient_push_to_card_transfer["php_request_body"],
             "create_recipient_push_to_card_transfer_python_request": create_recipient_push_to_card_transfer["python_request_body"],
+            "create_recipient_push_to_card_transfer_ruby_request": create_recipient_push_to_card_transfer["ruby_request_body"],
             "create_recipient_push_to_card_transfer_response": create_recipient_push_to_card_transfer["response_body"],
             "create_recipient_push_to_card_transfer_id": create_recipient_push_to_card_transfer["response_id"],
 

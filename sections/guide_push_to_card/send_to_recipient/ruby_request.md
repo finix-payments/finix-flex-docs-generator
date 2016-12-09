@@ -1,0 +1,1 @@
+transfer = {{ruby_client_resource_name}}::Transfer.new({{create_recipient_push_to_card_transfer_php_request}}).save
