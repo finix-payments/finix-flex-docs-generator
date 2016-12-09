@@ -1,2 +1,2 @@
-identities = {{ruby_client_resource_name}}::Identity.find
+identities = {{ruby_client_resource_name}}::Identity.fetch
 
