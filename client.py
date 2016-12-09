@@ -241,7 +241,7 @@ class Client(object):
                 "key": "value_2"
             },
             "entity": {
-                "first_name": random_first_name(),
+                "first_name": "Bernard",
                 "last_name": random_last_name(),
                 "title": "CTO",
                 "phone": "7144177878",
