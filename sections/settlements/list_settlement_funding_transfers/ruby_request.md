@@ -1,1 +1,0 @@
-settlements = Finix::Settlement.fetch
