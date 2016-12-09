@@ -1,0 +1,1 @@
+webhooks = Finix::Webhook.fetch
