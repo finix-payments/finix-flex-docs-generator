@@ -1,0 +1,1 @@
+transfers = Finix::Transfer.fetch
