@@ -23,7 +23,9 @@ partner_configs = {
         'api_name_downcase': "crossriver",
         'python_client_resource_name': "crossriver",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",
-        'ruby_client_resource_name': "CrossRiver"
+        'ruby_client_resource_name': "CrossRiver",
+        'ruby_gem': "finix",
+        'ruby_require_statement': "finix",
 }
 
 
@@ -122,7 +124,6 @@ snippets_by_resource = {
         "definition",
         "create_card",
         "create_bank_account",
-        "tokenize_card_iframe",
         "associate_token",
         "fetch_payment_instrument",
         "update_payment_instrument",
@@ -265,7 +266,6 @@ admin_snippets_by_resource = {
         ],
     "payment_instruments": [
         "definition",
-        "tokenize_card_iframe",
         "associate_token",
         "create_card",
         "create_bank_account",

@@ -22,7 +22,9 @@ partner_configs = {
         'production_base_url': "https://api.payline.io",
         'python_client_resource_name': "payline",
         'php_client_repo': "https://github.com/Payline/payline-php",
-        'ruby_client_resource_name': "Payline"
+        'ruby_client_resource_name': "Payline",
+        'ruby_gem': "payline-data",
+        'ruby_require_statement': "payline",
         }   
 
 
@@ -114,10 +116,9 @@ snippets_by_resource = {
         "definition",
         "create_card",
         "create_bank_account",
-        "tokenize_card_iframe",
         "associate_token",
         "fetch_payment_instrument",
-        "update_payment_instrument",
+        # "update_payment_instrument",
         "list_payment_instruments",
         ],
     "settlements": [
@@ -250,12 +251,11 @@ admin_snippets_by_resource = {
         ],
     "payment_instruments": [
         "definition",
-        "tokenize_card_iframe",
         "associate_token",
         "create_card",
         "create_bank_account",
         "fetch_payment_instrument",
-        "update_payment_instrument",
+        # "update_payment_instrument",
         "list_payment_instruments",
         ],
     "settlements": [
@@ -352,4 +352,5 @@ included_clients = OrderedDict([
     ("Java", "java"),
     ("PHP", "php"),
     ("Python", "python"),
+    ("Ruby", "ruby"),
 ])

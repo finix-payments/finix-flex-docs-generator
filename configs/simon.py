@@ -21,7 +21,9 @@ partner_configs = {
     'production_base_url': "https://api.simonpayments.com",
     'python_client_resource_name': "simon",
     'php_client_repo': "https://github.com/finix-payments/processing-php-client",
-    'ruby_client_resource_name': "Simon"
+    'ruby_client_resource_name': "Simon",
+    'ruby_gem': "simon-payments",
+    'ruby_require_statement': "simonpayments",
 }
 
 
@@ -114,10 +116,9 @@ snippets_by_resource = {
         "definition",
         "create_card",
         "create_bank_account",
-        "tokenize_card_iframe",
         "associate_token",
         "fetch_payment_instrument",
-        "update_payment_instrument",
+        # "update_payment_instrument",
         "list_payment_instruments",
         ],
     "settlements": [
@@ -249,12 +250,11 @@ admin_snippets_by_resource = {
         ],
     "payment_instruments": [
         "definition",
-        "tokenize_card_iframe",
         "associate_token",
         "create_card",
         "create_bank_account",
         "fetch_payment_instrument",
-        "update_payment_instrument",
+        # "update_payment_instrument",
         "list_payment_instruments",
         ],
     "settlements": [
