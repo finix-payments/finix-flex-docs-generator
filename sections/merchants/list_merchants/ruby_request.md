@@ -1,1 +1,1 @@
-merchants = {{ruby_client_resource_name}}::Merchant.find
+merchants = {{ruby_client_resource_name}}::Merchant.retrieve

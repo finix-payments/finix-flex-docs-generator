@@ -1,1 +1,1 @@
-transfers = Finix::Transfer.fetch
+transfers = Finix::Transfer.retrieve

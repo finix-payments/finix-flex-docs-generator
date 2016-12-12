@@ -1,1 +1,1 @@
-disputes = {{ruby_client_resource_name}}::Dispute.find
+disputes = {{ruby_client_resource_name}}::Dispute.retrieve

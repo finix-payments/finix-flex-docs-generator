@@ -1,1 +1,1 @@
-webhooks = Finix::Webhook.fetch
+webhooks = Finix::Webhook.retrieve

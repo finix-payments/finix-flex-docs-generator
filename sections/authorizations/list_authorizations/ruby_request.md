@@ -1,1 +1,1 @@
-authorizations = {{ruby_client_resource_name}}::Authorization.find
+authorizations = {{ruby_client_resource_name}}::Authorization.retrieve

@@ -6,6 +6,6 @@ two environments are completely seperate and share no information, including
 API credentials. For testing please use the Staging API and when you are ready to
  process live transactions use the Production endpoint.
 
-- **Staging API:** {{staging_base_url}}
+- **Staging API:** `{{staging_base_url}}`
 
-- **Production API:** {{production_base_url}}
+- **Production API:** `{{production_base_url}}`

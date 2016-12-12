@@ -1,1 +1,1 @@
-payment_instruments = {{ruby_client_resource_name}}::PaymentInstruments.find
+payment_instruments = {{ruby_client_resource_name}}::PaymentInstruments.retrieve
