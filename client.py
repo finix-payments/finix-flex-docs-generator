@@ -352,6 +352,15 @@ class Client(object):
         endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
+    def update_card(self, merchant_id, payment_instrument_id):
+        values = {
+            "merchant": merchant_id
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id
+        return formatted_response(endpoint, values, self.encoded_auth, "POST")
+
+
     def disable_user(self, user_id, toggle_boolean):
         values = {
             "enabled": toggle_boolean

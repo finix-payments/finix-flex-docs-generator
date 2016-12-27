@@ -187,6 +187,11 @@ def generate_template_variables(config_values):
     create_authorization_for_voiding_scenario = api_client.create_authorization(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
     void_authorization_scenario = api_client.void_authorization(create_authorization_for_voiding_scenario["response_id"])
 
+
+    #check for card update
+    check_for_card_updates_scenario = api_client.update_card(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+
+
     # FETCH
     fetch_user_scenario = api_client.fetch_user(create_owner_user_scenario["response_id"])
     fetch_application_scenario = api_client.fetch_application(create_app_scenario["response_id"])
@@ -354,6 +359,14 @@ def generate_template_variables(config_values):
             "update_payment_instrument_scenario_python_request": update_payment_instrument_scenario["python_request_body"],
             "update_payment_instrument_scenario_response": update_payment_instrument_scenario["response_body"],
             "update_payment_instrument_scenario_id": update_payment_instrument_scenario["response_id"],
+
+            "check_for_card_updates_scenario_curl_request": check_for_card_updates_scenario["curl_request_body"],
+            "check_for_card_updates_scenario_php_request": check_for_card_updates_scenario["php_request_body"],
+            "check_for_card_updates_scenario_ruby_request": check_for_card_updates_scenario["ruby_request_body"],
+            "check_for_card_updates_scenario_python_request": check_for_card_updates_scenario["python_request_body"],
+            "check_for_card_updates_scenario_response": check_for_card_updates_scenario["response_body"],
+            "check_for_card_updates_scenario_id": check_for_card_updates_scenario["response_id"],
+
 
             # "account_updater_scenario_curl_request": account_updater_scenario["curl_request_body"],
             # "account_updater_scenario_php_request": account_updater_scenario["php_request_body"],
@@ -760,6 +773,13 @@ def generate_template_variables(config_values):
             "update_payment_instrument_scenario_python_request": update_payment_instrument_scenario["python_request_body"],
             "update_payment_instrument_scenario_response": update_payment_instrument_scenario["response_body"],
             "update_payment_instrument_scenario_id": update_payment_instrument_scenario["response_id"],
+
+            "check_for_card_updates_scenario_curl_request": check_for_card_updates_scenario["curl_request_body"],
+            "check_for_card_updates_scenario_php_request": check_for_card_updates_scenario["php_request_body"],
+            "check_for_card_updates_scenario_ruby_request": check_for_card_updates_scenario["ruby_request_body"],
+            "check_for_card_updates_scenario_python_request": check_for_card_updates_scenario["python_request_body"],
+            "check_for_card_updates_scenario_response": check_for_card_updates_scenario["response_body"],
+            "check_for_card_updates_scenario_id": check_for_card_updates_scenario["response_id"],
 
             # "account_updater_scenario_curl_request": account_updater_scenario["curl_request_body"],
             # "account_updater_scenario_php_request": account_updater_scenario["php_request_body"],

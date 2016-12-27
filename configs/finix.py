@@ -128,6 +128,7 @@ snippets_by_resource = {
         "associate_token",
         "fetch_payment_instrument",
         # "update_payment_instrument",
+        "check_for_card_updates",
         "list_payment_instruments",
         ],
     "settlements": [
@@ -272,6 +273,7 @@ admin_snippets_by_resource = {
         "create_bank_account",
         "fetch_payment_instrument",
         # "update_payment_instrument",
+        "check_for_card_updates",
         "list_payment_instruments",
         ],
     "settlements": [
@@ -331,7 +333,6 @@ resource_ordering = [
     "settlements",
     "transfers",
     "webhooks",
-
 ]
 
 admin_resource_ordering = [
