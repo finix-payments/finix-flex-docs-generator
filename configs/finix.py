@@ -128,7 +128,7 @@ snippets_by_resource = {
         "associate_token",
         "fetch_payment_instrument",
         # "update_payment_instrument",
-        "check_for_card_updates",
+        "check_card_updater",
         "list_payment_instruments",
         ],
     "settlements": [
@@ -273,7 +273,7 @@ admin_snippets_by_resource = {
         "create_bank_account",
         "fetch_payment_instrument",
         # "update_payment_instrument",
-        "check_for_card_updates",
+        "check_card_updater",
         "list_payment_instruments",
         ],
     "settlements": [

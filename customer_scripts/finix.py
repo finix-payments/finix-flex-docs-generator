@@ -189,7 +189,7 @@ def generate_template_variables(config_values):
 
 
     #check for card update
-    check_for_card_updates_scenario = api_client.update_card(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+    check_for_card_updates_scenario = api_client.check_card_updater(provision_merchant_scenario["response_id"], create_card_scenario["response_id"])
 
 
     # FETCH

@@ -11,7 +11,7 @@ to remain out of PCI scope.
 </aside>
 
 Please review our guide on how to tokenize cards via the [embedded tokenization
-form](#embedded-tokenization-using-iframe)
+form](#embedded-tokenization)
 
 #### HTTP Request
 
