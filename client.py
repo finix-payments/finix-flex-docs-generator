@@ -352,7 +352,7 @@ class Client(object):
         endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
-    def check_card_updater(self, merchant_id, payment_instrument_id):
+    def check_card_updater_fn(self, merchant_id, payment_instrument_id):
         values = {
             "merchant": merchant_id
         }

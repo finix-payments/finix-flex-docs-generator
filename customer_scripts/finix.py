@@ -188,8 +188,8 @@ def generate_template_variables(config_values):
     void_authorization_scenario = api_client.void_authorization(create_authorization_for_voiding_scenario["response_id"])
 
 
-    #check for card update
-    check_for_card_updates_scenario = api_client.check_card_updater(provision_merchant_scenario["response_id"], create_card_scenario["response_id"])
+    #check card updater
+    check_card_updater_scenario = api_client.check_card_updater_fn(provision_merchant_scenario["response_id"], create_card_scenario["response_id"])
 
 
     # FETCH
@@ -360,13 +360,12 @@ def generate_template_variables(config_values):
             "update_payment_instrument_scenario_response": update_payment_instrument_scenario["response_body"],
             "update_payment_instrument_scenario_id": update_payment_instrument_scenario["response_id"],
 
-            "check_for_card_updates_scenario_curl_request": check_for_card_updates_scenario["curl_request_body"],
-            "check_for_card_updates_scenario_php_request": check_for_card_updates_scenario["php_request_body"],
-            "check_for_card_updates_scenario_ruby_request": check_for_card_updates_scenario["ruby_request_body"],
-            "check_for_card_updates_scenario_python_request": check_for_card_updates_scenario["python_request_body"],
-            "check_for_card_updates_scenario_response": check_for_card_updates_scenario["response_body"],
-            "check_for_card_updates_scenario_id": check_for_card_updates_scenario["response_id"],
-
+            "check_card_updater_scenario_curl_request": check_card_updater_scenario["curl_request_body"],
+            "check_card_updater_scenario_php_request": check_card_updater_scenario["php_request_body"],
+            "check_card_updater_scenario_ruby_request": check_card_updater_scenario["ruby_request_body"],
+            "check_card_updater_scenario_python_request":check_card_updater_scenario["python_request_body"],
+            "check_card_updater_scenario_response": check_card_updater_scenario["response_body"],
+            "check_card_updater_scenario_id": check_card_updater_scenario["response_id"],
 
             # "account_updater_scenario_curl_request": account_updater_scenario["curl_request_body"],
             # "account_updater_scenario_php_request": account_updater_scenario["php_request_body"],
@@ -774,13 +773,12 @@ def generate_template_variables(config_values):
             "update_payment_instrument_scenario_response": update_payment_instrument_scenario["response_body"],
             "update_payment_instrument_scenario_id": update_payment_instrument_scenario["response_id"],
 
-            "check_for_card_updates_scenario_curl_request": check_for_card_updates_scenario["curl_request_body"],
-            "check_for_card_updates_scenario_php_request": check_for_card_updates_scenario["php_request_body"],
-            "check_for_card_updates_scenario_ruby_request": check_for_card_updates_scenario["ruby_request_body"],
-            "check_for_card_updates_scenario_python_request": check_for_card_updates_scenario["python_request_body"],
-            "check_for_card_updates_scenario_response": check_for_card_updates_scenario["response_body"],
-            "check_for_card_updates_scenario_id": check_for_card_updates_scenario["response_id"],
-
+            "check_card_updater_scenario_curl_request": check_card_updater_scenario["curl_request_body"],
+            "check_card_updater_scenario_php_request": check_card_updater_scenario["php_request_body"],
+            "check_card_updater_scenario_ruby_request": check_card_updater_scenario["ruby_request_body"],
+            "check_card_updater_scenario_python_request": check_card_updater_scenario["python_request_body"],
+            "check_card_updater_scenario_response": check_card_updater_scenario["response_body"],
+            "check_card_updater_scenario_id": check_card_updater_scenario["response_id"],
             # "account_updater_scenario_curl_request": account_updater_scenario["curl_request_body"],
             # "account_updater_scenario_php_request": account_updater_scenario["php_request_body"],
             # "account_updater_scenario_ruby_request": account_updater_scenario["ruby_request_body"],
