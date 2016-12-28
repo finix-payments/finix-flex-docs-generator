@@ -1,10 +1,10 @@
 > Example Response:
 
 ```json
-{{fetch_payment_instrument_scenario_response}}
+{{fetch_credit_card_scenario_response}}
 ```
 
-Fetch a previously created `Payment Instrument`
+Fetch a previously created `Payment Instrument` that is of type `PAYMENT_CARD`
 
 #### HTTP Request
 

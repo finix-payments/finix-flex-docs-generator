@@ -187,12 +187,16 @@ def generate_template_variables(config_values):
     create_authorization_for_voiding_scenario = api_client.create_authorization(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
     void_authorization_scenario = api_client.void_authorization(create_authorization_for_voiding_scenario["response_id"])
 
+    #check card updater
+    check_card_updater_scenario = api_client.check_card_updater(provision_merchant_scenario["response_id"], create_card_scenario["response_id"])
+
     # FETCH
     fetch_user_scenario = api_client.fetch_user(create_owner_user_scenario["response_id"])
     fetch_application_scenario = api_client.fetch_application(create_app_scenario["response_id"])
     fetch_identity_scenario = api_client.fetch_identity(create_identity_individual_sole_proprietorship_scenario["response_id"])
     fetch_merchant_scenario = api_client.fetch_merchant(provision_merchant_scenario["response_id"])
-    fetch_payment_instrument_scenario = api_client.fetch_payment_instrument(create_bank_account_scenario["response_id"])
+    fetch_bank_account_scenario = api_client.fetch_bank_account(create_bank_account_scenario["response_id"])
+    fetch_credit_card_scenario = api_client.fetch_credit_card(create_card_scenario["response_id"])
     # fetch_identity_verification_scenario = fetch_identity_verification(create_identity_verification_scenario["response_id"])
     fetch_transfer_scenario = api_client.fetch_transfer(create_debit_scenario["response_id"])
     fetch_webhook_scenario = api_client.fetch_webhook(create_webhook_scenario["response_id"])
@@ -355,6 +359,13 @@ def generate_template_variables(config_values):
             "update_payment_instrument_scenario_response": update_payment_instrument_scenario["response_body"],
             "update_payment_instrument_scenario_id": update_payment_instrument_scenario["response_id"],
 
+            "check_card_updater_scenario_curl_request": check_card_updater_scenario["curl_request_body"],
+            "check_card_updater_scenario_php_request": check_card_updater_scenario["php_request_body"],
+            "check_card_updater_scenario_ruby_request": check_card_updater_scenario["ruby_request_body"],
+            "check_card_updater_scenario_python_request":check_card_updater_scenario["python_request_body"],
+            "check_card_updater_scenario_response": check_card_updater_scenario["response_body"],
+            "check_card_updater_scenario_id": check_card_updater_scenario["response_id"],
+
             # "account_updater_scenario_curl_request": account_updater_scenario["curl_request_body"],
             # "account_updater_scenario_php_request": account_updater_scenario["php_request_body"],
             # "account_updater_scenario_ruby_request": account_updater_scenario["ruby_request_body"],
@@ -362,9 +373,11 @@ def generate_template_variables(config_values):
             # "account_updater_scenario_response": account_updater_scenario["response_body"],
             # "account_updater_scenario_id": account_updater_scenario["response_id"],
 
+            "fetch_bank_account_scenario_response": fetch_bank_account_scenario["response_body"],
+            "fetch_bank_account_scenario_id": fetch_bank_account_scenario["response_id"],
 
-            "fetch_payment_instrument_scenario_response": fetch_payment_instrument_scenario["response_body"],
-            "fetch_payment_instrument_scenario_id": fetch_payment_instrument_scenario["response_id"],
+            "fetch_credit_card_scenario_response": fetch_credit_card_scenario["response_body"],
+            "fetch_credit_card_scenario_id": fetch_credit_card_scenario["response_id"],
 
             "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
 
@@ -761,6 +774,12 @@ def generate_template_variables(config_values):
             "update_payment_instrument_scenario_response": update_payment_instrument_scenario["response_body"],
             "update_payment_instrument_scenario_id": update_payment_instrument_scenario["response_id"],
 
+            "check_card_updater_scenario_curl_request": check_card_updater_scenario["curl_request_body"],
+            "check_card_updater_scenario_php_request": check_card_updater_scenario["php_request_body"],
+            "check_card_updater_scenario_ruby_request": check_card_updater_scenario["ruby_request_body"],
+            "check_card_updater_scenario_python_request": check_card_updater_scenario["python_request_body"],
+            "check_card_updater_scenario_response": check_card_updater_scenario["response_body"],
+            "check_card_updater_scenario_id": check_card_updater_scenario["response_id"],
             # "account_updater_scenario_curl_request": account_updater_scenario["curl_request_body"],
             # "account_updater_scenario_php_request": account_updater_scenario["php_request_body"],
             # "account_updater_scenario_ruby_request": account_updater_scenario["ruby_request_body"],
@@ -769,8 +788,11 @@ def generate_template_variables(config_values):
             # "account_updater_scenario_id": account_updater_scenario["response_id"],
 
 
-            "fetch_payment_instrument_scenario_response": fetch_payment_instrument_scenario["response_body"],
-            "fetch_payment_instrument_scenario_id": fetch_payment_instrument_scenario["response_id"],
+            "fetch_bank_account_scenario_response": fetch_bank_account_scenario["response_body"],
+            "fetch_bank_account_scenario_id": fetch_bank_account_scenario["response_id"],
+
+            "fetch_credit_card_scenario_response": fetch_credit_card_scenario["response_body"],
+            "fetch_credit_card_scenario_id": fetch_credit_card_scenario["response_id"],
 
             "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
 

@@ -352,6 +352,15 @@ class Client(object):
         endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
+    def check_card_updater(self, merchant_id, payment_instrument_id):
+        values = {
+            "merchant": merchant_id
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id + '/updates'
+        return formatted_response(endpoint, values, self.encoded_auth, "POST")
+
+
     def disable_user(self, user_id, toggle_boolean):
         values = {
             "enabled": toggle_boolean
@@ -725,7 +734,14 @@ class Client(object):
         return formatted_response(endpoint, values, self.encoded_auth)
 
 
-    def fetch_payment_instrument(self, instrument_id):
+    def fetch_bank_account(self, instrument_id):
+
+        values = None
+
+        endpoint = self.staging_base_url + '/payment_instruments/' + instrument_id
+        return formatted_response(endpoint, values, self.encoded_auth)
+
+    def fetch_credit_card(self, instrument_id):
 
         values = None
 
