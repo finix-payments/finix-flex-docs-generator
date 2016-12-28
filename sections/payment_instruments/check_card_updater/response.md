@@ -1,7 +1,7 @@
 > Example Response:
 
 ```json
-{{check_for_card_updates_scenario_response}}
+{{check_card_updater_scenario_response}}
 ```
 
 #### HTTP Request

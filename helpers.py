@@ -21,12 +21,11 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
     opener = build_opener(HTTPHandler(debuglevel=1))
 
     # Check if a PUT request
-    if request_type is not None:
+    if request_type == "PUT":
         request.get_method = lambda: 'PUT'
     try:
         response_body = opener.open(request).read()
     except URLError as e:
-
         import ipdb; ipdb.set_trace()
         json.loads(e.read())
 

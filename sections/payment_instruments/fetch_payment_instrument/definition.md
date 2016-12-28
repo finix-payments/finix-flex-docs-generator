@@ -1,1 +1,0 @@
-## Fetch a Payment Instrument
