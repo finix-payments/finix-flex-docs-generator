@@ -224,7 +224,8 @@ class Client(object):
                 "principal_percentage_ownership": 50,
                 "url": "www." + company.replace(" ", "") + ".com",
                 "doing_business_as": company,
-                "email": "user@example.org"
+                "email": "user@example.org",
+                "ownership_type": "PRIVATE"
             }
         }
 
@@ -285,7 +286,8 @@ class Client(object):
                 "principal_percentage_ownership": 50,
                 "url": "www." + company.replace(" ", "") + ".com",
                 "doing_business_as": company,
-                "email": "user@example.org"
+                "email": "user@example.org",
+                "ownership_type": "PRIVATE"
             }
         }
 

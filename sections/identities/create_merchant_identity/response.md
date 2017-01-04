@@ -34,6 +34,7 @@ url | *string*, **required** | Merchant's publicly available website
 business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
+ownership_type | *string*, **required** | Values can be either PUBLIC to indicate a publicly traded company or PRIVATE for privately held businesses
 
 #### Principal-specific Request Arguments
 (i.e. authorized representative or primary contact responsible for the account)
