@@ -2,7 +2,7 @@
 import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
 
 PaymentCard paymentCard = PaymentCard.builder()
-    .name("Joe-Doe")
+    .name(Name.parse("Joe Doe"))
     .identity("ID572pSyFj71oVExp6XWiGRP")
     .expirationMonth(12)
     .expirationYear(2030)
