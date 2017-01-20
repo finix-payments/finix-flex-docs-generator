@@ -491,7 +491,6 @@ class Client(object):
             "currency": "USD",
             "processor": "VISA_V1",
             "destination": card_id,
-            "merchant_identity": recipient_identity_id,
             "amount": amount,
             "tags": {
                 "order_number": "21DFASJSAKAS"
