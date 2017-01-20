@@ -21,6 +21,11 @@ via ACH Credit)
 By default, `Transfers` will be in a PENDING state and will eventually (typically
 within an hour) update to SUCCEEDED.
 
+`ready_to_settle_at` field can have 2 possible values:
+
+1. `null`: Funds have been captured, but are not yet ready to be paid out
+2. `TIMESTAMP`: A UTC timestamp that confirms that the funds have been paid out
+
 <aside class="notice">
 When an Authorization is captured a corresponding Transfer will also be created.
 </aside> 

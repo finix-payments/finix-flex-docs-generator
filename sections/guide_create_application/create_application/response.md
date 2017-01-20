@@ -47,7 +47,7 @@ Field | Type | Description
 first_name | *string*, **required** | Full legal first name of the merchant's principal representative
 last_name | *string*, **required** | Full legal last name of the merchant's principal representative
 title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
-principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
+principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal (If business type is INDIVIDUAL_SOLE_PROPRIETORSHIP, please input 100) 
 tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
 dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
 phone | *string*, **required** | Principal's phone number

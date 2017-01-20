@@ -1,1 +1,1 @@
-### Step 1: Create an Identity
+### Step 1: Create a Recipient Identity
