@@ -568,7 +568,7 @@ class Client(object):
             elapsed_time = time.time() - start
             if (elapsed_time // 60) % minutes == 0 and elapsed_time > 60:
                 transfer_response = self.fetch_transfer(transfer_id)
-                minutes = minutes + 10
+                minutes = minutes + 20
                 counter = stringified_elapsed_time(start)
                 channel = '#fnx-dev'
                 # This is the full response body

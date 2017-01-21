@@ -278,8 +278,8 @@ def generate_template_variables(config_values):
             "list_identities_scenario_response": list_identities_scenario["response_body"],
 
             # MERCHANT VERIFICATIONS
-            "list_merchant_verifications_scenario_response": list_identities_scenario["response_body"],
-            "list_merchant_verifications_platform_user_scenario_response": list_identities_scenario["response_body"],
+            "list_merchant_verifications_scenario_response": list_merchant_verifications_scenario["response_body"],
+            "list_merchant_verifications_platform_user_scenario_response": list_merchant_verifications_scenario["response_body"],
 
 
             # MERCHANTS --------------------------------------------
@@ -692,8 +692,8 @@ def generate_template_variables(config_values):
             "list_identities_scenario_response": list_identities_scenario["response_body"],
 
             # MERCHANT VERIFICATIONS
-            "list_merchant_verifications_scenario_response": list_identities_scenario["response_body"],
-            "list_merchant_verifications_platform_user_scenario_response": list_identities_scenario["response_body"],
+            "list_merchant_verifications_scenario_response": list_merchant_verifications_scenario["response_body"],
+            "list_merchant_verifications_platform_user_scenario_response": list_merchant_verifications_scenario["response_body"],
 
 
             # MERCHANTS --------------------------------------------

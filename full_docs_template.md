@@ -32,7 +32,7 @@ payout) those funds out to your merchants.
 through using the Visa Direct API to push payments to debit cards. With push-to-card
 funds are disbursed to a debit card within 30 minutes or less. 
 
-4. [Embedded Tokenization](#embedded-tokenization-using-iframe): This guide
+4. [Embedded Tokenization](#embedded-tokenization): This guide
 explains how to properly tokenize cards in production via our embedded iframe.
 
 
@@ -1338,7 +1338,7 @@ to remain out of PCI scope.
 </aside>
 
 Please review our guide on how to tokenize cards via the [embedded tokenization
-form](#embedded-tokenization-using-iframe)
+form](#embedded-tokenization)
 
 #### HTTP Request
 
@@ -1435,12 +1435,10 @@ type | *string*, **required** | Must pass TOKEN as the value
 identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
 
 
-## Fetch a Payment Instrument
+## Fetch a Bank Account
 
 ```shell
-
-
-curl {{staging_base_url}}/payment_instruments/{{fetch_payment_instrument_scenario_id}} \
+curl {{staging_base_url}}/payment_instruments/{{fetch_bank_account_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
 
@@ -1448,10 +1446,36 @@ curl {{staging_base_url}}/payment_instruments/{{fetch_payment_instrument_scenari
 > Example Response:
 
 ```json
-{{fetch_payment_instrument_scenario_response}}
+{{fetch_bank_account_scenario_response}}
 ```
 
-Fetch a previously created `Payment Instrument`
+Fetch a previously created `Payment Instrument` that is of type `BANK_ACCOUNT`
+
+#### HTTP Request
+
+`GET {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID`
+
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
+## Fetch a Credit Card
+```shell
+curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+
+```
+> Example Response:
+
+```json
+{{fetch_credit_card_scenario_response}}
+```
+
+Fetch a previously created `Payment Instrument` that is of type `PAYMENT_CARD`
 
 #### HTTP Request
 
