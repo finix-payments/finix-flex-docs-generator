@@ -76,7 +76,7 @@ data.
 ### Step 2: Include library
 
 To use tokenization.js you will first need to include the library on the webpage
-where you're hosting your form. Please include the script ta as demonstrated
+where you're hosting your form. Please include the script tag as demonstrated
 to the right.
 
 <aside class="notice">

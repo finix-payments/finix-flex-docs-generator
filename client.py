@@ -224,7 +224,8 @@ class Client(object):
                 "principal_percentage_ownership": 50,
                 "url": "www." + company.replace(" ", "") + ".com",
                 "doing_business_as": company,
-                "email": "user@example.org"
+                "email": "user@example.org",
+                "ownership_type": "PRIVATE"
             }
         }
 
@@ -285,7 +286,8 @@ class Client(object):
                 "principal_percentage_ownership": 50,
                 "url": "www." + company.replace(" ", "") + ".com",
                 "doing_business_as": company,
-                "email": "user@example.org"
+                "email": "user@example.org",
+                "ownership_type": "PRIVATE"
             }
         }
 
@@ -489,7 +491,6 @@ class Client(object):
             "currency": "USD",
             "processor": "VISA_V1",
             "destination": card_id,
-            "merchant_identity": recipient_identity_id,
             "amount": amount,
             "tags": {
                 "order_number": "21DFASJSAKAS"

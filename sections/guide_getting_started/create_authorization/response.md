@@ -44,7 +44,7 @@ If the transfer field of an Authorization is null it has not yet been captured.
 
 Field | Type | Description
 ----- | ---- | -----------
-source | *string*, **required** | The `Payment Instrument` that you will be performing the authorization
+source | *string*, **required** | The buyer's `Payment Instrument` ID that you will be performing the authorization
 merchant_identity | *string*, **required** | The ID of the `Identity` for the merchant that you are transacting on behalf of
 amount | *integer*, **required** | The amount of the authorization in cents
 currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org/wiki/ISO_4217) designating the currency (e.g. USD)

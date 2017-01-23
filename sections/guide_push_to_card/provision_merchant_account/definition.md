@@ -1,1 +1,1 @@
-### Step 3: Provision Merchant Account
+### Step 3: Provision Sender Account
