@@ -26,6 +26,7 @@ partner_configs = {
         'ruby_client_resource_name': "CrossRiver",
         'ruby_gem': "finix",
         'ruby_require_statement': "finix",
+        'java_artifact_id': "finix",
 }
 
 

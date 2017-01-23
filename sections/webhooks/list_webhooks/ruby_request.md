@@ -1,1 +1,1 @@
-webhooks = Finix::Webhook.retrieve
+webhooks = {{ruby_client_resource_name}}::Webhook.retrieve

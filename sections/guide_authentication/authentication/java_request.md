@@ -3,7 +3,7 @@ Add the following to your pom.xml (Maven file):
 
 <dependency>
   <groupId>io.{{api_name_downcase}}.payments.processing.client</groupId>
-  <artifactId>{{api_name_downcase}}</artifactId>
+  <artifactId>{{java_artifact_id}}</artifactId>
   <version>${version}</version>
 </dependency>
 
@@ -22,7 +22,7 @@ Add the following to your pom.xml (Maven file):
 */
 
 import io.{{api_name_downcase}}.payments.processing.client.ProcessingClient;
-import io.{{api_name_downcase}}.processing.client.model.*;
+import io.{{api_name_downcase}}.payments.processing.client.model.*;
 
 //...
 

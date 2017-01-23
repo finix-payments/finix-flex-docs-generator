@@ -25,6 +25,7 @@ partner_configs = {
         'ruby_client_resource_name': "Payline",
         'ruby_gem': "payline-data",
         'ruby_require_statement': "payline",
+        'java_artifact_id': "payline-data",
         }   
 
 
@@ -140,6 +141,7 @@ snippets_by_resource = {
     "transfers": [
         "definition",
         # "create_debit",
+        "create_bank_debit",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
@@ -279,7 +281,7 @@ admin_snippets_by_resource = {
     "transfers": [
         "definition",
         # "create_debit",
-        # "create_bank_debit",
+        "create_bank_debit",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
