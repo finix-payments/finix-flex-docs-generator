@@ -5,4 +5,4 @@ Settlement settlement = identity.createSettlement(
   Settlement.builder()
     .currency("USD")
     .build()
-)
+);

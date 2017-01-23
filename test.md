@@ -586,7 +586,7 @@ $merchant = $identity->provisionMerchantOn(
 
 import io.payline.payments.processing.client.model.Merchant;
 
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build())
+Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build());
 ```
 
 > Example Response:
