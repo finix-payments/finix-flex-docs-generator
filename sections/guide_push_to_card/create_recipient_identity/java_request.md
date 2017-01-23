@@ -35,7 +35,7 @@ Identity identity = client.identitiesClient().save(
             .country("USA")
             .build()
         )
-        .dob(DateOfBirth.builder()
+        .dob(Date.builder()
           .day(27)
           .month(5)
           .year(1978)
