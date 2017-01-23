@@ -2,8 +2,8 @@
 Add the following to your pom.xml (Maven file):
 
 <dependency>
-  <groupId>io.finix.payments.processing.client</groupId>
-  <artifactId>finix</artifactId>
+  <groupId>io.{{api_name_downcase}}.payments.processing.client</groupId>
+  <artifactId>{{api_name_downcase}}</artifactId>
   <version>${version}</version>
 </dependency>
 
@@ -21,8 +21,8 @@ Add the following to your pom.xml (Maven file):
 
 */
 
-import io.finix.payments.processing.client.ProcessingClient;
-import io.finix.payments.processing.client.model.*;
+import io.{{api_name_downcase}}.payments.processing.client.ProcessingClient;
+import io.{{api_name_downcase}}.processing.client.model.*;
 
 //...
 
