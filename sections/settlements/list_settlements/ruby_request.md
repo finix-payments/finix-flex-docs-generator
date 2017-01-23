@@ -1,1 +1,1 @@
-settlements = Finix::Settlement.retrieve
+settlements = {{ruby_client_resource_name}}::Settlement.retrieve

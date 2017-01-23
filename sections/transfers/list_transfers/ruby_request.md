@@ -1,1 +1,1 @@
-transfers = Finix::Transfer.retrieve
+transfers = {{ruby_client_resource_name}}::Transfer.retrieve

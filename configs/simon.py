@@ -24,6 +24,7 @@ partner_configs = {
     'ruby_client_resource_name': "Simon",
     'ruby_gem': "simon-payments",
     'ruby_require_statement': "simonpayments",
+    'java_artifact_id': "finix",
 }
 
 
