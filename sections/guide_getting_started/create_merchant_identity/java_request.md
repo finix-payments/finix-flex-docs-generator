@@ -1,3 +1,9 @@
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Address;
+import io.{{api_name_downcase}}.payments.processing.client.model.BankAccountType;
+import io.{{api_name_downcase}}.payments.processing.client.model.BusinessType;
+import io.{{api_name_downcase}}.payments.processing.client.model.Date;
+import io.{{api_name_downcase}}.payments.processing.client.model.Entity;
 import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
 
 Identity identity = client.identitiesClient().save(
@@ -42,10 +48,18 @@ Identity identity = client.identitiesClient().save(
         )
         .settlementCurrency("USD")
         .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1)
+        .maxTransactionAmount(1000l)
         .mcc(7399)
         .url("http://sample-entity.com")
         .annualCardVolume(100)
+        .defaultStatementDescriptor("Business Inc")
+        .incorporationDate(Date.builder()
+          .day(1)
+          .month(12)
+          .year(2012)
+          .build()
+        )
+        .principalPercentageOwnership(51)
         .build()
     )
     .build()

@@ -1,10 +1,11 @@
 
 import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+import io.{{api_name_downcase}}.payments.processing.client.model.Name;
 
 BankAccount bankAccount = client.bankAccountsClient().save(
   BankAccount.builder()
     .name(Name.parse("Billy Bob Thorton III"))
-    .identity("IDaAUrraYjDT4i2w1C2VGBpY")
+    .identity("{{fetch_identity_scenario_id}}")
     .accountNumber("84012312415")
     .bankCode("840123124")
     .accountType(BankAccountType.SAVINGS)
