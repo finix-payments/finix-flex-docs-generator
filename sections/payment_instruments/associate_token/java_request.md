@@ -1,8 +1,10 @@
 import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCardToken;
 
-PaymentCard paymentCard = PaymentCard.builder()
+PaymentCard paymentCard = client.paymentCardsClient().save(
+  PaymentCardToken.builder()
     .type("TOKEN")
     .token("{{associate_token_scenario_id}}")
     .identity("{{fetch_identity_scenario_id}}")
     .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
+);
