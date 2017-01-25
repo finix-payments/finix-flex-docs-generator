@@ -329,7 +329,7 @@ resource_ordering = [
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "test_data"
+    "test_data",
     # "authorizations",
     # "disputes",
     "identities",
