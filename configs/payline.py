@@ -93,7 +93,10 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ], 
+        ],
+    "test_data": [
+        "definition"
+    ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -277,7 +280,9 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
         ],
-
+    "test_data": [
+        "definition"
+    ],
     "transfers": [
         "definition",
         # "create_debit",
@@ -311,6 +316,7 @@ resource_ordering = [
     "guide_getting_started",
     "guide_iframe",
     "guide_tokenization_js",
+    "test_data",
     "authorizations",
     # "disputes",
     "identities",
@@ -332,6 +338,7 @@ admin_resource_ordering = [
     "guide_admin_overview",
     "guide_create_application",
     "guide_tokenization_js",
+    "test_data",
     "applications",
     "authorizations",
     # "disputes",
