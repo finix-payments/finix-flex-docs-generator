@@ -3,7 +3,7 @@ Add the following to your pom.xml (Maven file):
 
 <dependency>
   <groupId>io.{{api_name_downcase}}.payments.processing.client</groupId>
-  <artifactId>{{java_artifact_id}}</artifactId>
+  <artifactId>{{api_name_downcase}}-java</artifactId>
   <version>${version}</version>
 </dependency>
 
