@@ -6,8 +6,8 @@ tags.put("name", "sample-tag");
 
 Transfer transfer = client.transfersClient().save(
     Transfer.builder()
-      .merchantIdentity("IDaAUrraYjDT4i2w1C2VGBpY")
-      .source("PIi98CoYWpQZi8w7ZimJxuJ")
+      .merchantIdentity("{{create_merchant_identity_scenario_id}}")
+      .source("{{create_card_scenario_id}}")
       .amount(888888)
       .currency("USD")
       .tags(tags)
