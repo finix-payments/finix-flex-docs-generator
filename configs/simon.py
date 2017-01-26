@@ -94,6 +94,9 @@ snippets_by_resource = {
         "definition",
         "associate_token",
         ],
+    "test_data": [
+        "definition"
+    ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -229,6 +232,9 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
         ],
+    "test_data": [
+        "definition"
+    ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -306,6 +312,7 @@ resource_ordering = [
     "api_endpoints",
     "guide_getting_started",
     "guide_iframe",
+    "test_data",
     "authorizations",
     # "disputes",
     "identities",
@@ -327,6 +334,7 @@ admin_resource_ordering = [
     "guide_admin_overview",
     "guide_create_application",
     "guide_tokenization_js",
+    "test_data",
     "applications",
     "authorizations",
     # "disputes",

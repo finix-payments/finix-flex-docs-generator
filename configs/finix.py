@@ -103,6 +103,9 @@ snippets_by_resource = {
         "provision_merchant_account",
         "send_to_recipient",
         ],
+    "test_data": [
+        "definition"
+    ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -292,7 +295,9 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
         ],
-
+    "test_data": [
+        "definition"
+    ],
     "transfers": [
         "definition",
         # "create_debit",
@@ -327,6 +332,7 @@ resource_ordering = [
     "guide_push_to_card",
     "guide_iframe",
     "guide_tokenization_js",
+    "test_data",
     "authorizations",
     # "disputes",
     "identities",
@@ -346,6 +352,7 @@ admin_resource_ordering = [
     "guide_push_to_card",
     "guide_iframe",
     "guide_tokenization_js",
+    "test_data",
     "guide_admin_overview",
     "guide_create_application",
     "applications",

@@ -176,6 +176,11 @@ class Client(object):
         return formatted_response(endpoint, values, self.encoded_auth)
 
     def create_merchant_identity(self, business_type):
+        if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
+            ownership_type = "PUBLIC"
+        else:
+            ownership_type = "PRIVATE"
+
         company = random_business_name()
         values = {
             "tags": {
@@ -228,7 +233,7 @@ class Client(object):
                 "url": "www." + company.replace(" ", "") + ".com",
                 "doing_business_as": company,
                 "email": "user@example.org",
-                "ownership_type": "PRIVATE"
+                "ownership_type": ownership_type
             }
         }
 

@@ -4,7 +4,7 @@ import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCardToke
 PaymentCard paymentCard = client.paymentCardsClient().save(
   PaymentCardToken.builder()
     .type("TOKEN")
-    .token("{{create_token_scenario}}")
+    .token("{{create_token_scenario_id}}")
     .identity("{{fetch_identity_scenario_id}}")
     .build()
 );
