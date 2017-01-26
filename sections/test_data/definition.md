@@ -18,5 +18,5 @@ Amount| Description
 
 Card| Description
 ----- | -----------
- "4000000000000036" | Payment card AVS total failure
- "4000000000000127” | Payment card CVC failure 
+ 4000000000000036 | Payment card AVS total failure
+ 4000000000000127 | Payment card CVC failure 
