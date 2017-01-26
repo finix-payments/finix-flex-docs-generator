@@ -109,7 +109,10 @@ class Client(object):
         if processor == "DUMMY_V1":
             values = {
                 "type": processor,
-                "config": {"key1": "value-1", "key2": "value-2"}
+                "config": {"key1": "value-1",
+                           "key2": "value-2",
+                           "canDebitBankAccount": True
+                }
             }
         else: 
             values = {
