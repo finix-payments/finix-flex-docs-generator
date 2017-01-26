@@ -134,7 +134,7 @@ def generate_template_variables(config_values):
     create_owner_user_scenario = api_client.create_user("ROLE_PARTNER")
 
 
-    create_app_scenario = api_client.create_app(create_owner_user_scenario["response_id"], "LIMITED_LIABILITY_COMPANY")
+    create_app_scenario = api_client.create_app(create_owner_user_scenario["response_id"], "INDIVIDUAL_SOLE_PROPRIETORSHIP")
     # config_values["application"] = create_app_scenario["response_id"]
 
     associate_dummyV1_payment_processor_scenario = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])

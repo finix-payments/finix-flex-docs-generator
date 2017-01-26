@@ -94,6 +94,10 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, included_client
                 #     import ipdb; ipdb.set_trace()
                 with open(fname) as infile:
                     for line in infile:
+                        if all(ord(char) < 128 for char in line) == False:
+                            print "WARNING MOFO: You introduced a non-ascii element to the docs. This will result in an error."
+                            print "Please correct the following lines:"
+                            print line
                         outfile.write(line)
                 outfile.write("\n")
 
@@ -157,8 +161,8 @@ def generate_template_variables(config_values):
     create_identity_limited_partnership_scenario = api_client.create_merchant_identity("LIMITED_PARTNERSHIP")
     create_identity_general_partnership_scenario = api_client.create_merchant_identity("GENERAL_PARTNERSHIP")
     create_identity_association_estate_trust_scenario = api_client.create_merchant_identity("ASSOCIATION_ESTATE_TRUST")
-    create_identity_tax_exempt_organization_scenario = api_client.create_merchant_identity("TAX_EXEMPT_ORGANIZATION")
     create_identity_international_organization_scenario = api_client.create_merchant_identity("INTERNATIONAL_ORGANIZATION")
+    create_identity_tax_exempt_organization_scenario = api_client.create_merchant_identity("TAX_EXEMPT_ORGANIZATION")
     create_identity_government_agency_scenario = api_client.create_merchant_identity("GOVERNMENT_AGENCY")
 
     create_bank_account_scenario = api_client.create_bank_account(create_identity_individual_sole_proprietorship_scenario["response_id"])
