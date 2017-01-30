@@ -149,6 +149,7 @@ class Client(object):
         endpoint = self.staging_base_url + '/applications/' + application_id + '/users'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
+
     def create_buyer_identity(self):
         values = {
             "tags": {

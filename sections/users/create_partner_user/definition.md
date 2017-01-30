@@ -1,1 +1,1 @@
-## Create an Application User
+## Create ROLE_MERCHANT User
