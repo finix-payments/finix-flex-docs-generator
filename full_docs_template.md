@@ -48,84 +48,6 @@ curl {{staging_base_url}}/ \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```java
-/*
-Add the following to your pom.xml (Maven file):
-
-<dependency>
-  <groupId>io.{{api_name_downcase}}.payments.processing.client</groupId>
-  <artifactId>{{java_artifact_id}}</artifactId>
-  <version>${version}</version>
-</dependency>
-
-...
-
-<repositories>
-  <repository>
-    <id>oss-snapshots</id>
-    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    <snapshots>
-      <enabled>true</enabled>
-    </snapshots>
-  </repository>
-</repositories>
-
-*/
-
-import io.{{api_name_downcase}}.payments.processing.client.ProcessingClient;
-import io.{{api_name_downcase}}.payments.processing.client.model.*;
-
-//...
-
-public static void main(String[] args) {
-
-  ProcessingClient client = new ProcessingClient("{{staging_base_url}}");
-  client.setupUserIdAndPassword("{{basic_auth_username}}", "{{basic_auth_password}}");
-
-//...
-
-```
-```php
-<?php
-// Download the PHP Client here: {{php_client_repo}}
-
-require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
-
-{{api_name}}\Settings::configure([
-	"root_url" => '{{staging_base_url}}',
-	"username" => '{{basic_auth_username}}',
-	"password" => '{{basic_auth_password}}']
-	);
-
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
-
-```
-```python
-
-
-# To install the python client run the command below from your terminal:
-# pip install {{python_client_resource_name}}
-
-import {{python_client_resource_name}}
-
-from {{api_name_downcase}}.config import configure
-configure(root_url="{{staging_base_url}}", auth=("{{basic_auth_username}}", "{{basic_auth_password}}"))
-
-```
-```ruby
-# To download the Ruby gem:
-# gem install {{ruby_gem}}
-
-require '{{ruby_require_statement}}'
-
-{{ruby_client_resource_name}}.configure(
-    :root_url => '{{staging_base_url}}',
-    :user=>'{{basic_auth_username}}',
-    :password => '{{basic_auth_password}}'
-)
-```
 To communicate with the {{api_name}} API you'll need to authenticate your requests
 via http basic access authentication with a `username` and `password`, which you
 can locate in your dashboard. If you do not have a dashboard feel free to test
@@ -162,94 +84,6 @@ curl {{staging_base_url}}/identities \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_merchant_identity_scenario_curl_request}}'
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Address;
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccountType;
-import io.{{api_name_downcase}}.payments.processing.client.model.BusinessType;
-import io.{{api_name_downcase}}.payments.processing.client.model.Date;
-import io.{{api_name_downcase}}.payments.processing.client.model.Entity;
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .businessName("business inc")
-        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
-        .doingBusinessAs("doingBusinessAs")
-        .phone("1234567890")
-        .businessPhone("+1 (408) 756-4497")
-        .taxId("123456789")
-        .businessTaxId("123456789")
-        .personalAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .businessAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .dob(Date.builder()
-          .day(27)
-          .month(5)
-          .year(1978)
-          .build()
-        )
-        .settlementCurrency("USD")
-        .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1000l)
-        .mcc(7399)
-        .url("http://sample-entity.com")
-        .annualCardVolume(100)
-        .defaultStatementDescriptor("Business Inc")
-        .incorporationDate(Date.builder()
-          .day(1)
-          .month(12)
-          .year(2012)
-          .build()
-        )
-        .principalPercentageOwnership(51)
-        .build()
-    )
-    .build()
-);
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-
-$identity = new Identity({{create_merchant_identity_scenario_php_request}}
-);
-$identity = $identity->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-
-identity = Identity(**{{create_merchant_identity_scenario_python_request}}).save()
-
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.new({{create_merchant_identity_scenario_ruby_request}}).save
 ```
 > Example Response:
 
@@ -297,6 +131,7 @@ url | *string*, **required** | Merchant's publicly available website
 business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
+ownership_type | *string*, **required** | Values can be either PUBLIC to indicate a publicly traded company or PRIVATE for privately held businesses
 
 #### Principal-specific Request Arguments
 (i.e. authorized representative or primary contact responsible for the account)
@@ -360,46 +195,6 @@ curl {{staging_base_url}}/payment_instruments \
 
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-import io.{{api_name_downcase}}.payments.processing.client.model.Name;
-
-BankAccount bankAccount = client.bankAccountsClient().save(
-    BankAccount.builder()
-      .name(Name.parse("Joe Doe"))
-      .identity(identity.getId())  //  or use "{{fetch_identity_scenario_id}}"
-      .accountNumber("84012312415")
-      .bankCode("840123124")
-      .accountType(BankAccountType.SAVINGS)
-      .companyName("company name")
-      .country("USA")
-      .currency("USD")
-      .build()
-);
-
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\BankAccount;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$bank_account = new BankAccount({{create_bank_account_scenario_php_request}});
-$bank_account = $identity->createBankAccount($bank_account);
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import BankAccount
-
-bank_account = BankAccount(**{{create_bank_account_scenario_python_request}}).save()
-
-```
-```ruby
-bank_account = {{ruby_client_resource_name}}::BankAccount.new({{create_bank_account_scenario_ruby_request}}).save
-```
 > Example Response:
 
 ```json
@@ -440,34 +235,6 @@ curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/me
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{provision_merchant_scenario_curl_request}}'
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
-
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build());
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\Merchant;
-
-$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
-$merchant = $identity->provisionMerchantOn(new Merchant());
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-from {{python_client_resource_name}}.resources import Merchant
-
-identity = Identity.get(id="{{fetch_identity_scenario_id}}")
-merchant = identity.provision_merchant_on(Merchant())
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.retrieve(:id=>"{{create_merchant_identity_scenario_id}}")
-
-merchant = identity.provision_merchant
 ```
 > Example Response:
 
@@ -520,42 +287,6 @@ curl {{staging_base_url}}/identities \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_buyer_identity_scenario_curl_request}}'
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity buyerIdentity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .build()
-    )
-    .build()
-);
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-
-$identity = new Identity({{create_buyer_identity_scenario_php_request}});
-$identity = $identity->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-
-identity = Identity(**{{create_buyer_identity_scenario_python_request}}).save()
-
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.new({{create_buyer_identity_scenario_ruby_request}}).save
 
 ```
 > Example Response:
@@ -612,41 +343,6 @@ curl {{staging_base_url}}/payment_instruments \
     -d '{{create_card_scenario_curl_request}}'
 
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .name(Name.parse("Joe Doe"))
-    .identity("{{fetch_identity_scenario_id}}")
-    .expirationMonth(12)
-    .expirationYear(2030)
-    .number("4111 1111 1111 1111")
-    .securityCode("231")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\PaymentCard;
-use {{api_name}}\Resources\Identity;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$card = new PaymentCard({{create_card_scenario_php_request}});
-$card = $identity->createPaymentCard($card);
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import PaymentCard
-
-card = PaymentCard(**{{create_card_scenario_python_request}}).save()
-```
-```ruby
-card = {{ruby_client_resource_name}}::PaymentCard.new({{create_card_scenario_ruby_request}}).save
 ```
 > Example Response:
 
@@ -706,36 +402,6 @@ curl {{staging_base_url}}/authorizations \
     -d '{{create_authorization_scenario_curl_request}}'
 
 ```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().save(
-  Authorization.builder()
-    .amount(100L)
-    .merchantIdentity("{{provision_merchant_scenario_id}}")
-    .source("{{create_card_scenario_id}}")
-    .build()
-);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Authorization;
-
-$authorization = new Authorization({{create_authorization_scenario_php_request}});
-$authorization = $authorization->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Authorization
-authorization = Authorization(**{{create_authorization_scenario_python_request}}).save()
-
-```
-```ruby
-authorization = {{ruby_client_resource_name}}::Authorization.new({{create_authorization_scenario_ruby_request}}).save
-```
 > Example Response:
 
 ```json
@@ -782,7 +448,7 @@ If the transfer field of an Authorization is null it has not yet been captured.
 
 Field | Type | Description
 ----- | ---- | -----------
-source | *string*, **required** | The `Payment Instrument` that you will be performing the authorization
+source | *string*, **required** | The buyer's `Payment Instrument` ID that you will be performing the authorization
 merchant_identity | *string*, **required** | The ID of the `Identity` for the merchant that you are transacting on behalf of
 amount | *integer*, **required** | The amount of the authorization in cents
 currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org/wiki/ISO_4217) designating the currency (e.g. USD)
@@ -795,37 +461,6 @@ curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -X PUT \
     -d '{{capture_authorization_scenario_curl_request}}'
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
-authorization = authorization.capture(50L);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Authorization;
-
-$authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-$authorization = $authorization->capture(50, 10);
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Authorization
-
-authorization = Authorization.get(id="{{fetch_authorization_scenario_id}}")
-authorization.capture(**{{capture_authorization_scenario_python_request}})
-
-```
-```ruby
-authorization = {{ruby_client_resource_name}}::Authorization.retrieve(:id=>"{{fetch_authorization_scenario_id}}")
-authorization = authorization.capture({{capture_authorization_scenario_ruby_request}})
-
-
-
 ```
 > Example Response:
 
@@ -868,89 +503,6 @@ Field | Type | Description
 ----- | ---- | -----------
 capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
 fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount
-
-### Step 8: Create a Batch Settlment
-```shell
-curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_settlement_scenario_curl_request}}'
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
-
-Settlement settlement = identity.createSettlement(
-  Settlement.builder()
-    .currency("USD")
-    .build()
-);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\Settlement;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$settlement = new Settlement({{create_settlement_scenario_php_request}});
-$settlement = $identity->createSettlement($settlement);
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-from {{python_client_resource_name}}.resources import Settlement
-
-identity = Identity.get(id="{{fetch_identity_scenario_id}}")
-settlement = Settlement(**{{create_settlement_scenario_python_request}})
-identity.create_settlement(settlement)
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.retrieve(:id=>"{{create_merchant_identity_scenario_id}}")
-settlement = identity.create_settlement({{create_settlement_scenario_ruby_request}})
-```
-> Example Response:
-
-```json
-{{create_settlement_scenario_response}}
-```
-
-Awesome! Now you know how to charge a card. Next you need to settle out the
-funds to your merchant's bank account (i.e. issue an ACH Credit). To do so you
-will create a `Settlement` resource. A `Settlement` is a logical construct
-representing a collection (i.e. batch) of `Transfers` that are intended to be
-paid out to a specific `Merchant`.
-
-
-Each settlement is comprised of all the `Transfers` that have a SUCCEEDED `state` and
-that have not yet been previously settled out. In other words, if a merchant has a
-`Transfer` in the PENDING state it will not be included in the batch settlement.
-In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
-
-<aside class="notice">
-Once a batch Settlement has been created it will undergo review and typically
-paid out within 24 hours.
-</aside>
-
-Note, that for reconciliation purposes each `Settlement` contains a [transfers
-link](#list-transfers-in-a-settlement) which returns a list of all the
-`Transfers` that comprise the batch.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/identities/:IDENTITY_ID/settlements`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
 ## Embedded Tokenization
 
@@ -1038,36 +590,6 @@ curl {{staging_base_url}}/payment_instruments \
 
 
 ```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .type("TOKEN")
-    .token("{{associate_token_scenario_id}}")
-    .identity("{{fetch_identity_scenario_id}}")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{associate_token_scenario_php_request}});
-$card = $card->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import PaymentInstrument
-
-payment_instrument = PaymentInstrument(**{{associate_token_scenario_python_request}}).save()
-
-```
-```ruby
-card = {{ruby_client_resource_name}}::PaymentInstrument.new({{associate_token_scenario_ruby_request}}).save
-```
 > Example Response:
 
 ```json
@@ -1095,301 +617,27 @@ type | *string*, **required** | Must pass TOKEN as the value
 identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
 
 
-## Tokenization.js
-
-To ensure that you remain PCI compliant, please use tokenization.js to tokenize cards and bank accounts. Tokenization.js ensures sensitive card data never touches your servers and keeps you out of PCI scope by sending this info over SSL directly to {{api_name}}.
-
-For a complete example of how to use tokenization.js please refer to this [jsFiddle example]({{jsfiddle}}).
-
-<aside class="warning">
-Creating payment instruments directly via the API should only be done for testing purposes.
-</aside>
-
-<aside class="notice">
-Note you must still use SSL on your servers for any actions related to financial transactions via the {{api_name}} API.
-</aside>
-
-
-### Step 1: Create a form
-
-```html
-<!--This is an example for for Cards-->
-<form role="form" class="form-horizontal">
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Card Number</label>
-    <div class="col-lg-5">
-      <input type="text" id="cc-number" class="form-control" autocomplete="off" placeholder="4111111111111111" maxlength="16" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Expiration</label>
-    <div class="col-lg-2">
-      <input type="text" id="cc-ex-month" class="form-control" autocomplete="off" placeholder="01" maxlength="2" />
-    </div>
-    <div class="col-lg-2">
-      <input type="text" id="cc-ex-year" class="form-control" autocomplete="off" placeholder="2013" maxlength="4" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Security Code (CVV)</label>
-    <div class="col-lg-2">
-      <input type="text" id="cc-cvv" class="form-control" autocomplete="off" placeholder="453" maxlength="4" />
-    </div>
-  </div>
-  <a id="cc-submit" class="btn btn-large btn-primary pull-right">Tokenize</a>
-</form>
-
-<!--This is an example for for Bank Accounts-->
-<form role="form" class="form-horizontal">
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Account Holder's Name</label>
-    <div class="col-lg-6">
-      <input type="text" id="ba-name" class="form-control" autocomplete="off" placeholder="John Doe" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Routing Number</label>
-    <div class="col-lg-6">
-      <input type="text" id="ba-routing" class="form-control" autocomplete="off" placeholder="322271627" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Account Number</label>
-    <div class="col-lg-6">
-      <input type="text" id="ba-number" class="form-control" autocomplete="off" placeholder="8887776665555" />
-    </div>
-  </div>
-  <a id="ba-submit" class="btn btn-large btn-primary pull-right">Tokenize</a>
-</form>
-```
-
-Before collecting the sensitive payment information, we will need to construct
-an HTML form for users to input their data.
-
-We have provided a simple example to the right for capturing Payment Instrument
-data.
-
-
-### Step 2: Include library
-
-To use tokenization.js you will first need to include the library on the webpage
-where you're hosting your form. Please include the script ta as demonstrated
-to the right.
-
-<aside class="notice">
-Please refrain from hosting the tokenization.js library locally as doing so prevents important updates.
-</aside>
-
-
-```html
-<script type="text/javascript" src="https://js.verygoodproxy.com/tokenization.1-latest.js"></script>
-```
-
-
-### Step 3: Configure and initialize
-
-```javascript
-var initTokenization = function() {
-  Tokenization.init({
-    server: "{{staging_base_url}}",
-    applicationId: "{{create_app_scenario_id}}",
-    hosted_fields: {
-      card: {
-        number: {
-          selector: "#cc-number"
-        },
-        expiration_month: {
-          selector: "#cc-ex-month"
-        },
-        expiration_year: {
-          selector: "#cc-ex-year"
-        },
-        security_code: {
-          selector: "#cc-cvv"
-        }
-      },
-
-      bankAccount: {
-        account_type: "SAVINGS",
-        account_number: {
-          selector: "#ba-number"
-        },
-        bank_code: {
-          selector: "#ba-routing"
-        },
-        full_name: {
-          selector: "#ba-name"
-        }
-      }
-    }
-  });
-};
-```
-
-
-
-Now we need to configure the client so that it `POSTs` to the correct endpoint and
-associates the `Payment Instrument` to your application. We'll also use the JQuery
-selector method to capture the form data during the initialization.
-
-#### Initialization Fields
-Field | Type | Description
------ | ---- | -----------
-server | *string*, **required** |  The base url for the {{api_name}} API
-applicationId | *string*, **required** | The ID for your `Application`
-hosted_fields | *object*, **required** | An object containing the `Payment Instrument`information collected from your form
-
-#### hosted_fields object for card
-Field | Type | Description
------ | ---- | -----------
-number | *string*, **required** | Credit card account number
-security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
-expiration_year | *integer*, **required** | Expiration year
-
-#### hosted_fields object for bankAccount
-Field | Type | Description
------ | ---- | -----------
-full_name | *string*, **optional** | Customer's full name on card
-account_number | *string*, **required** | Bank account number
-bank_code | *string*, **required** | Bank routing number
-account_type | *string*, **required** | Either CHECKING or SAVINGS
-
-### Step 4: Submit payload and handle response
-
-```javascript
-// Register "Click" event for the Card form
-$('#cc-submit').click(function(e) {
-    e.preventDefault();
-
-    // Initialize the client to capture form data
-    initTokenization();
-
-    // Tokenization.card.create to submit the payload and include a callback to capture the response
-    Tokenization.card.create({
-
-      // callback for handling response
-      callback: function(errorThrown, response) {
-
-      }
-    });
-});
-
-// Register "Click" event for the Bank Account form
-$('#ba-submit').click(function(e) {
-    e.preventDefault();
-
-    // Initialize the client to capture form data
-    initTokenization();
-
-    // Tokenization.bankAccount.create to submit the payload and include a callback to capture the response
-    Tokenization.bankAccount.create({
-
-      // callback for handling response
-      callback: function(errorThrown, response) {
-
-      }
-    });
-});
-```
-
-> Example Response:
-
-```json
-{{create_token_scenario_response}}
-```
-
-Finally we will need to register a click event that fires when our users submit the form and define a callback for handling the tokenization.js response.
-
-### Step 5: Send token to your back-end server for storing
-
-```javascript
-callback: function(errorThrown, response) {
-    // POST to your back-end server
-    jQuery.post("PATH TO YOUR BACK END", {
-        uri: response.id
-        }, function(r) {
-            // Inspect HTTP response
-            if (r.status === 201) {
-                // Logic if successful response
-            } else {
-                // Logic if failed response
-            }
-    });
-}
-
-```
-Great now that you have created a token you will want to store that ID to utilize the token in the future. To do this you will need to send the ID from your front-end client to your back-end server, which you'll do by expanding on the callback that you created in the previous step.
-
-
-### Step 6: Associate to an Identity
-```shell
-curl {{staging_base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{associate_token_scenario_curl_request}}'
-
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .type("TOKEN")
-    .token("{{associate_token_scenario_id}}")
-    .identity("{{fetch_identity_scenario_id}}")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{associate_token_scenario_php_request}});
-$card = $card->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import PaymentInstrument
-
-payment_instrument = PaymentInstrument(**{{associate_token_scenario_python_request}}).save()
-
-```
-```ruby
-card = {{ruby_client_resource_name}}::PaymentInstrument.new({{associate_token_scenario_ruby_request}}).save
-```
-> Example Response:
-
-```json
-{{associate_token_scenario_response}}
-```
-
-Before you can use the newly tokenized card or bank account you will need to
-associate it with an `Identity`. To do this you must make an authenticated
-`POST` request to the `/payment_instruments` endpoint with the relevant token
-and `Identity` information.
-
-<aside class="warning">
-Tokens should be associated right away. Tokens not associated within 30 mins
-of creation will be invalidated. 
-</aside>
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/payment_instruments`
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-token | *string*, **required** | ID for the `Token` that was returned via the tokenization client
-type | *string*, **required** | Must pass TOKEN as the value
-identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
-
-
+## Testing for specific responses and errors
+
+Before taking your integration to production, use the information below to test it thoroughly.
+
+Amount| Description
+----- | -----------
+`100` | Success amount
+`102` | Failed amount
+`103` | Canceled amount
+`104` | Exception amount
+`888888` | Disputed amount
+`193` | Insufficient funds amount
+`194` | Invalid card number amount
+`889986` | AVS total failure amount 
+`889987` | CVC failure amount
+`889988` | Risk amount canceled amount
+
+Card| Description
+----- | -----------
+ `4000000000000036` | Payment card AVS total failure
+ `4000000000000127` | Payment card CVC failure 
 # Authorizations
 
 An `Authorization` (also known as a card hold) reserves a specific amount on a
@@ -1405,38 +653,6 @@ curl {{staging_base_url}}/authorizations \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_authorization_scenario_curl_request}}'
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().save(
-  Authorization.builder()
-    .amount(100L)
-    .merchantIdentity("{{provision_merchant_scenario_id}}")
-    .source("{{create_card_scenario_id}}")
-    .build()
-);
-
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Authorization;
-
-$authorization = new Authorization({{create_authorization_scenario_php_request}});
-$authorization = $authorization->save();
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Authorization
-
-authorization = Authorization(**{{create_authorization_scenario_python_request}}).save()
-```
-```ruby
-authorization = {{ruby_client_resource_name}}::Authorization.new({{create_authorization_scenario_ruby_request}}).save
 ```
 > Example Response:
 
@@ -1482,38 +698,6 @@ curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -d '{{capture_authorization_scenario_curl_request}}'
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
-authorization = authorization.capture(50L);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Authorization;
-
-$authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-$authorization = $authorization->capture(50, 10);
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Authorization
-
-authorization = Authorization.get(id="{{fetch_authorization_scenario_id}}")
-authorization.capture(**{{capture_authorization_scenario_python_request}})
-
-```
-```ruby
-authorization = {{ruby_client_resource_name}}::Authorization.retrieve(:id=>"{{fetch_authorization_scenario_id}}")
-authorization = authorization.capture({{capture_authorization_scenario_ruby_request}})
-
-
-
-```
 > Example Response:
 
 ```json
@@ -1556,34 +740,6 @@ curl {{staging_base_url}}/authorizations/{{void_authorization_scenario_id}} \
     -d '{{void_authorization_scenario_curl_request}}'
 
 ```
-```java
-Authorization authorization = client.authorizationsClient().fetch(authorization.getId());
-authorization.voidMe(true);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Authorization;
-
-$authorization = Authorization::retrieve('{{create_authorization_scenario_id}}');
-$authorization->void(true);
-$authorization = $authorization->save();
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Authorization
-
-authorization = Authorization.get(id="{{fetch_authorization_scenario_id}}")
-authorization.void()
-
-```
-```ruby
-authorization = {{ruby_client_resource_name}}::Authorization.retrieve(:id=>"{{fetch_authorization_scenario_id}}")
-authorization = authorization.void
-```
 > Example Response:
 
 ```json
@@ -1618,32 +774,6 @@ curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Authorization;
-
-$authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Authorization
-
-authorization = Authorization.get(id="{{fetch_authorization_scenario_id}}")
-```
-```ruby
-authorization = {{ruby_client_resource_name}}::Authorization.retrieve(:id=>"{{fetch_authorization_scenario_id}}")
-
-
-```
 > Example Response:
 
 ```json
@@ -1667,33 +797,6 @@ curl {{staging_base_url}}/authorizations/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
-```
-```java
-import io.payline.payments.processing.client.model.Authorization;
-
-client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
-  .forEachRemaining(page-> {
-    Collection<Authorization> authorizations = page.getContent();
-    //do something
-  });
-```
-```php
-<?php
-use {{api_name}}\Resources\Authorization;
-
-$authorizations = Authorization::getPagination("/authorizations");
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Authorization
-
-authorization = Authorization.get()
-```
-```ruby
-authorizations = {{ruby_client_resource_name}}::Authorization.retrieve
 ```
 > Example Response:
 
@@ -1727,41 +830,6 @@ curl {{staging_base_url}}/identities \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{create_buyer_identity_scenario_curl_request}}'
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .build()
-    )
-    .build()
-);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-
-$identity = new Identity({{create_buyer_identity_scenario_php_request}});
-$identity = $identity->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-
-identity = Identity(**{{create_buyer_identity_scenario_python_request}}).save()
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.new({{create_buyer_identity_scenario_ruby_request}}).save
 ```
 > Example Response:
 
@@ -1800,94 +868,6 @@ curl {{staging_base_url}}/identities \
     -d '{{create_merchant_identity_scenario_curl_request}}'
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Address;
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccountType;
-import io.{{api_name_downcase}}.payments.processing.client.model.BusinessType;
-import io.{{api_name_downcase}}.payments.processing.client.model.Date;
-import io.{{api_name_downcase}}.payments.processing.client.model.Entity;
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .businessName("business inc")
-        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
-        .doingBusinessAs("doingBusinessAs")
-        .phone("1234567890")
-        .businessPhone("+1 (408) 756-4497")
-        .taxId("123456789")
-        .businessTaxId("123456789")
-        .personalAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .businessAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .dob(Date.builder()
-          .day(27)
-          .month(5)
-          .year(1978)
-          .build()
-        )
-        .settlementCurrency("USD")
-        .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1000l)
-        .mcc(7399)
-        .url("http://sample-entity.com")
-        .annualCardVolume(100)
-        .defaultStatementDescriptor("Business Inc")
-        .incorporationDate(Date.builder()
-          .day(1)
-          .month(12)
-          .year(2012)
-          .build()
-        )
-        .principalPercentageOwnership(51)
-        .build()
-    )
-    .build()
-);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-
-$identity = new Identity({{create_merchant_identity_scenario_php_request}}
-);
-$identity = $identity->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-
-identity = Identity(**{{create_merchant_identity_scenario_python_request}}).save()
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.new({{create_merchant_identity_scenario_ruby_request}}).save
-```
 > Example Response:
 
 ```json
@@ -1924,6 +904,7 @@ url | *string*, **required** | Merchant's publicly available website
 business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
+ownership_type | *string*, **required** | Values can be either PUBLIC to indicate a publicly traded company or PRIVATE for privately held businesses
 
 #### Principal-specific Request Arguments
 (i.e. authorized representative or primary contact responsible for the account)
@@ -1985,31 +966,6 @@ curl {{staging_base_url}}/identities/{{fetch_identity_scenario_id}} \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-Identity identity = client.identitiesClient().fetch("{{fetch_identity_scenario_id}}");
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-identity = Identity.get(id="{{fetch_identity_scenario_id}}")
-
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.retrieve(:id=>"{{fetch_identity_scenario_id}}")
-
-
-```
 > Example Response:
 
 ```json
@@ -2034,36 +990,6 @@ curl {{staging_base_url}}/identities/ \
 
 
 ```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
-
-client.identitiesClient().<Resources<Identity>>resourcesIterator()
-  .forEachRemaining(page -> {
-    Collection<Identity> identities = page.getContent();
-    //do something
-  });
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-
-$identities= Identity::getPagination("/identities");
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-identity = Identity.get()
-
-```
-```ruby
-identities = {{ruby_client_resource_name}}::Identity.retrieve
-
-
-```
 > Example Response:
 
 ```json
@@ -2083,24 +1009,6 @@ curl {{staging_base_url}}/identities/{{update_identity_scenario_id}} \
     -X PUT \
     -d '{{update_identity_scenario_curl_request}}'
 
-```
-```java
-
-```
-```php
-<?php
-
-```
-```python
-
-
-
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.retrieve(:id=>"{{fetch_identity_scenario_id}}")
-
-identity.entity["first_name"] = "Bernard"
-identity.save
 ```
 > Example Response:
 
@@ -2135,6 +1043,7 @@ url | *string*, **required** | Merchant's publicly available website
 business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
+ownership_type | *string*, **required** | Values can be either PUBLIC to indicate a publicly traded company or PRIVATE for privately held businesses
 
 #### Principal-specific Request Arguments
 (i.e. authorized representative or primary contact responsible for the account)
@@ -2198,38 +1107,6 @@ curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/me
 
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
-
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build());
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\Merchant;
-
-$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
-
-$merchant = $identity->provisionMerchantOn(new Merchant());
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-from {{python_client_resource_name}}.resources import Merchant
-
-identity = Identity.get(id="{{fetch_identity_scenario_id}}")
-merchant = identity.provision_merchant_on(Merchant())
-
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.retrieve(:id=>"{{create_merchant_identity_scenario_id}}")
-
-merchant = identity.provision_merchant
-```
 
 > Example Response:
 
@@ -2283,37 +1160,6 @@ curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/me
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{{provision_merchant_scenario_curl_request}}'
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
-
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build());
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\Merchant;
-
-$identity = Identity::retrieve('{{create_merchant_identity_scenario_id}}');
-
-$merchant = $identity->provisionMerchantOn(new Merchant());
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-from {{python_client_resource_name}}.resources import Merchant
-
-identity = Identity.get(id="{{fetch_identity_scenario_id}}")
-merchant = identity.provision_merchant_on(Merchant())
-
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.retrieve(:id => "{{fetch_merchant_scenario_id}}")
-
-merchant = identity.provision_merchant
 ```
 > Example Response:
 
@@ -2369,30 +1215,6 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}} \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
-
-Merchant merchant = client.merchantsClient().fetch("{{fetch_merchant_scenario_id}}");
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Merchant;
-
-$merchant = Merchant::retrieve('{{fetch_merchant_scenario_id}}');
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Merchant
-merchant = Merchant.get(id="{{fetch_merchant_scenario_id}}")
-
-```
-```ruby
-merchant = {{ruby_client_resource_name}}::Merchant.retrieve(:id => "{{fetch_merchant_scenario_id}}")
-
-```
 > Example Response:
 
 ```json
@@ -2415,31 +1237,6 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d '{}'
-```
-```java
-Merchant merchant = client.merchantsClient().fetch("{{fetch_merchant_scenario_id}}");
-Verification verification = merchant.verify(
-  Verification.builder().build()
-);
-```
-```php
-<?php
-use {{api_name}}\Resources\Merchant;
-use {{api_name}}\Resources\Verification;
-
-$merchant = Merchant::retrieve('{{fetch_merchant_scenario_id}}');
-$verification = new Verification();
-$verification = $merchant->verifyOn($verification);
-```
-```python
-
-
-
-```
-```ruby
-merchant = {{ruby_client_resource_name}}::Merchant.retrieve(:id => "{{fetch_merchant_scenario_id}}")
-
-verification = merchant.verify
 ```
 > Example Response:
 
@@ -2468,28 +1265,6 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications
     -d '{}'
 
 ```
-```java
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Merchant;
-use {{api_name}}\Resources\Verification;
-
-$merchant = Merchant::retrieve('{{fetch_merchant_scenario_id}}');
-$verification = new Verification();
-$verification = $merchant->verifyOn($verification);
-```
-```python
-
-
-
-```
-```ruby
-merchant = {{ruby_client_resource_name}}::Merchant.retrieve(:id => "{{fetch_merchant_scenario_id}}")
-
-verification = merchant.verify
-```
 > Example Response:
 
 ```json
@@ -2516,27 +1291,6 @@ curl {{staging_base_url}}/merchants/ \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```java
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Merchant;
-
-$merchants = Merchant::getPagination("/merchants");
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Merchant
-merchant = Merchant.get()
-
-```
-```ruby
-merchants = {{ruby_client_resource_name}}::Merchant.retrieve
-```
 > Example Response:
 
 ```json
@@ -2553,28 +1307,6 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
-```
-```java
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Merchant;
-use {{api_name}}\Resources\Verification;
-
-$merchant = Merchant::retrieve('{{fetch_merchant_scenario_id}}');
-$verifications = Verification::getPagination($merchant->getHref("verifications"));
-
-
-```
-```python
-
-
-
-```
-```ruby
-merchant = {{ruby_client_resource_name}}::Merchant.retrieve(:id => "{{fetch_merchant_scenario_id}}")
-verifications = merchant.verifications
 ```
 > Example Response:
 
@@ -2616,41 +1348,6 @@ curl {{staging_base_url}}/payment_instruments \
     -d '{{create_card_scenario_curl_request}}'
 
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .name(Name.parse("Joe Doe"))
-    .identity("{{fetch_identity_scenario_id}}")
-    .expirationMonth(12)
-    .expirationYear(2030)
-    .number("4111 1111 1111 1111")
-    .securityCode("231")
-    .build(); 
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\PaymentCard;
-use {{api_name}}\Resources\Identity;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$card = new PaymentCard({{create_card_scenario_php_request}});
-$card = $identity->createPaymentCard($card);
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import PaymentCard
-
-card = PaymentCard(**{{create_card_scenario_python_request}}).save()
-```
-```ruby
-card = {{ruby_client_resource_name}}::PaymentCard.new({{create_card_scenario_ruby_request}}).save
 ```
 > Example Response:
 
@@ -2706,44 +1403,6 @@ curl {{staging_base_url}}/payment_instruments \
 
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-import io.{{api_name_downcase}}.payments.processing.client.model.Name;
-
-BankAccount bankAccount = client.bankAccountsClient().save(
-  BankAccount.builder()
-    .name(Name.parse("Billy Bob Thorton III"))
-    .identity("{{fetch_identity_scenario_id}}")
-    .accountNumber("84012312415")
-    .bankCode("840123124")
-    .accountType(BankAccountType.SAVINGS)
-    .companyName("company name")
-    .country("USA")
-    .currency("USD")
-    .build()
-);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\BankAccount;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$bank_account = new BankAccount({{create_bank_account_scenario_php_request}});
-$bank_account = $identity->createBankAccount($bank_account);
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import BankAccount
-
-bank_account = BankAccount(**{{create_bank_account_scenario_python_request}}).save()
-```
-```ruby
-bank_account = {{ruby_client_resource_name}}::BankAccount.new({{create_bank_account_scenario_ruby_request}}).save
-```
 > Example Response:
 
 ```json
@@ -2772,37 +1431,6 @@ curl {{staging_base_url}}/payment_instruments \
     -d '{{associate_token_scenario_curl_request}}'
 
 
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCardToken;
-
-PaymentCard paymentCard = client.paymentCardsClient().save(
-  PaymentCardToken.builder()
-    .type("TOKEN")
-    .token("{{associate_token_scenario_id}}")
-    .identity("{{fetch_identity_scenario_id}}")
-    .build();
-);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = new PaymentInstrument({{associate_token_scenario_php_request}});
-$card = $card->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import PaymentInstrument
-
-payment_instrument = PaymentInstrument(**{{associate_token_scenario_python_request}}).save()
-```
-```ruby
-card = {{ruby_client_resource_name}}::PaymentInstrument.new({{associate_token_scenario_ruby_request}}).save
 ```
 > Example Response:
 
@@ -2839,29 +1467,6 @@ curl {{staging_base_url}}/payment_instruments/{{fetch_bank_account_scenario_id}}
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-BankAccount bankAccount = client.bankAccountsClient().fetch("{{fetch_bank_account_scenario_id}}")
-
-```
-```php
-<?php
-use {{api_name}}\Resources\PaymentInstrument;
-
-$bank_account = PaymentInstrument::retrieve('{{fetch_bank_account_scenario_id}}');
-
-```
-```python
-
-
-
-```
-```ruby
-bank_account = {{ruby_client_resource_name}}::BankAccount.retrieve(:id=> "{{fetch_bank_account_scenario_id}}")
-
-```
 > Example Response:
 
 ```json
@@ -2888,30 +1493,6 @@ curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}} 
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = client.paymentCardsClient().fetch("{{fetch_credit_card_scenario_id}}")
-
-```
-```php
-<?php
-use {{api_name}}\Resources\PaymentInstrument;
-
-$card = PaymentInstrument::retrieve('{{fetch_credit_card_scenario_id}}');
-
-```
-```python
-
-
-
-```
-```ruby
-card = {{ruby_client_resource_name}}::PaymentCard.retrieve(:id=> "{{fetch_credit_card_scenario_id}}")
-
-
-```
 > Example Response:
 
 ```json
@@ -2931,83 +1512,12 @@ Parameter | Description
 --------- | -------------------------------------------------------------------
 :PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
 
-## Check for Card Updates
-
-```shell
-curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}}/updates \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{check_card_updater_scenario_curl_request}}'
-
-```
-```java
-
-```
-```php
-<?php
-
-```
-```python
-
-
-
-```
-```ruby
-
-```
-> Example Response:
-
-```json
-{{check_card_updater_scenario_response}}
-```
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID/updates/`
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-:MERCHANT_ID | *string*, **required** | ID of the `Merchant` 
-:PAYMENT_INSTRUMENT_ID | *string*, **required** | ID of the `Payment Instrument`
-
-
-
-
 ## List all Payment Instruments
 
 ```shell
 curl {{staging_base_url}}/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
-```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-
-client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
-  .forEachRemaining(baPage -> {
-    Collection<BankAccount> bankAccounts = baPage.getContent();
-    //do something
-  });
-
-```
-```php
-<?php
-use {{api_name}}\Resources\PaymentInstrument;
-
-$paymentinstruments = PaymentInstrument::getPagination("/payment_instruments");
-
-
-```
-```python
-
-
-
-```
-```ruby
-payment_instruments = {{ruby_client_resource_name}}::PaymentInstruments.retrieve
 ```
 > Example Response:
 
@@ -3018,300 +1528,6 @@ payment_instruments = {{ruby_client_resource_name}}::PaymentInstruments.retrieve
 #### HTTP Request
 
 `GET {{staging_base_url}}/payment_instruments`
-
-# Settlements
-
-A `Settlement` is a logical construct representing a collection (i.e. batch) of
-`Transfers` that are intended to be paid out to a specific `Merchant`.
-
-## Create a Settlement
-```shell
-
-curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_settlement_scenario_curl_request}}'
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
-
-Settlement settlement = identity.createSettlement(
-  Settlement.builder()
-    .currency("USD")
-    .build()
-);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Identity;
-use {{api_name}}\Resources\Settlement;
-
-$identity = Identity::retrieve('{{fetch_identity_scenario_id}}');
-$settlement = new Settlement({{create_settlement_scenario_php_request}});
-$settlement = $identity->createSettlement($settlement);
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-from {{python_client_resource_name}}.resources import Settlement
-
-identity = Identity.get(id="{{fetch_identity_scenario_id}}")
-settlement = Settlement(**{{create_settlement_scenario_python_request}})
-identity.create_settlement(settlement)
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.retrieve(:id=>"{{create_merchant_identity_scenario_id}}")
-settlement = identity.create_settlement({{create_settlement_scenario_ruby_request}})
-```
-> Example Response:
-
-```json
-{{create_settlement_scenario_response}}
-```
-Each settlement is comprised of all the `Transfers` that have a SUCCEEDED state and
-that have not been previously settled out. In other words, if a merchant has a
-`Transfer` in the PENDING state it will not be included in the batch settlement.
-In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
-
-<aside class="notice">
-To view all the Transfers that were included in a Settlement you can make a
-request to the transfers link (i.e. POST {{staging_base_url}}/settlements/:SETTLEMENT_ID/transfers
-</aside>
-
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/identities/:IDENTITY_ID/settlements`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:IDENTITY_ID | ID of the `Identity` for the merchant you wish to settle out
-
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
-
-## Retrieve a Settlement
-
-```shell
-
-
-curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}} \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
-
-Settlement settlement = client.settlementsClient().fetch("{{fetch_settlement_scenario_id}}");
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Settlement;
-
-$settlement = Settlement::retrieve('{{fetch_settlement_scenario_id}}');
-
-```
-```python
-
-
-
-```
-```ruby
-settlement = {{ruby_client_resource_name}}::Settlement.retrieve(:id=>"{{fetch_settlement_scenario_id}}")
-
-```
-> Example Response:
-
-```json
-{{fetch_settlement_scenario_response}}
-```
-
-Fetch a previously created `Settlement`.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/settlements/:SETTLEMENT_ID/`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the `Settlement`
-
-
-## List all Settlements
-```shell
-curl {{staging_base_url}}/settlements/ \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-```
-```java
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
-```
-```php
-<?php
-use {{api_name}}\Resources\Settlement;
-
-$settlements = Settlement::getPagination("/settlements");
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Settlement
-settlements = Settlement.get()
-
-```
-```ruby
-settlements = {{ruby_client_resource_name}}::Settlement.retrieve
-```
-> Example Response:
-
-```json
-{{list_settlements_scenario_response}}
-```
-
-List the `Transfers` of type `CREDIT` that result from issuing funding instructions
-for the `Settlement`.
-
-#### HTTP Request
-
-`GET {{staging_base_url}}/settlements/:SETTLEMENT_ID/funding_transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
-
-## List Funding Transfers
-```shell
-curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}}/funding_transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-```
-```java
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
-```
-```php
-<?php
-use {{api_name}}\Resources\Settlement;
-
-$settlement = Settlement::retrieve('{{fetch_settlement_scenario_id}}');
-$settlements = Settlement::getPagination($settlement->getHref("funding_transfers"));
-
-```
-```python
-
-
-
-```
-```ruby
-settlement = {{ruby_client_resource_name}}::Settlement.retrieve(:id=>"{{fetch_settlement_scenario_id}}")
-transfers = settlement.funding_transfers
-```
-> Example Response:
-
-```json
-{{list_settlement_funding_transfers_scenario_response}}
-```
-
-List the `Transfers` of type `CREDIT` that result from issuing funding instructions
-for the `Settlement`.
-
-#### HTTP Request
-
-`GET {{staging_base_url}}/settlements/:SETTLEMENT_ID/funding_transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
-
-## List Transfers in a Settlement
-```shell
-
-curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}}/transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}}
-
-```
-```java
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Settlement;
-
-$settlement = Settlement::retrieve('{{fetch_settlement_scenario_id}}');
-$settlements = Settlement::getPagination($settlement->getHref("transfers"));
-
-```
-```python
-
-
-
-```
-```ruby
-settlement = {{ruby_client_resource_name}}::Settlement.retrieve(:id=>"{{fetch_settlement_scenario_id}}")
-transfers = settlement.transfers
-```
-> Example Response:
-
-```json
-{{list_settlement_transfers_scenario_response}}
-```
-
-List the batch of `Transfers` of type `DEBIT` and `REFUND` that comprise the net
- settled amount of a `Settlement`.
-
-#### HTTP Request
-
-`GET {{staging_base_url}}/settlements/:SETTLEMENT_ID/transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
 
 # Transfers
 
@@ -3336,79 +1552,14 @@ via ACH Credit)
 By default, `Transfers` will be in a PENDING state and will eventually (typically
 within an hour) update to SUCCEEDED.
 
+`ready_to_settle_at` field can have 2 possible values:
+
+1. `null`: Funds have been captured, but are not yet ready to be paid out
+2. `TIMESTAMP`: A UTC timestamp that specifies when the funds will be available to be payout out. Once in the past, the Transfer will be eligible for inclusion in a batch Settlement.
+
 <aside class="notice">
 When an Authorization is captured a corresponding Transfer will also be created.
 </aside> 
-## Debit a Bank Account (ie eCheck) 
-
-```shell
-curl {{staging_base_url}}/transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_bank_debit_scenario_curl_request}}'
-
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
-
-Map<String, String> tags = new HashMap<>();
-tags.put("name", "sample-tag");
-
-Transfer transfer = client.transfersClient().save(
-    Transfer.builder()
-      .merchantIdentity("IDaAUrraYjDT4i2w1C2VGBpY")
-      .source("PIi98CoYWpQZi8w7ZimJxuJ")
-      .amount(888888)
-      .currency("USD")
-      .tags(tags)
-      .build()
-);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Transfer;
-
-$debit = new Transfer({{create_debit_scenario_php_request}});
-$debit = $debit->save();
-```
-```python
-
-
-
-```
-```ruby
-{{ruby_client_resource_name}}::Transfer.new({{create_bank_debit_scenario_ruby_request}}}).save
-```
-
-
-> Example Response:
-
-```json
-{{create_bank_debit_scenario_response}}
-```
-
-A `Transfer` representing a customer payment where funds are obtained from a
-bank account (i.e. ACH Debit, eCheck). These specific `Transfers` are
-distinguished by their type which return DEBIT.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/transfers`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-source | *string*, **required** | ID of the `Payment Instrument` that will be debited
-merchant_identity | *string*, **required** | `Identity` ID of the merchant whom you're charging on behalf of
-amount | *integer*, **required** | The total amount that will be debited in cents (e.g. 100 cents to debit $1.00)
-fee | *integer*, **optional** | The amount of the `Transfer` you would like to collect as your fee in cents. Defaults to zero (Must be less than or equal to the amount)
-currency | *string*, **required** | 3-letter ISO code designating the currency of the `Transfers` (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
 ## Retrieve a Transfer
 ```shell
 
@@ -3416,33 +1567,6 @@ curl {{staging_base_url}}/transfers/{{fetch_transfer_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
-
-Transfer transfer = client.transfersClient().fetch("{{fetch_transfer_scenario_id}}");
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Transfer;
-
-$transfer = Transfer::retrieve('{{fetch_transfer_scenario_id}}');
-
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Transfer
-transfer = Transfer.get(id="{{fetch_transfer_scenario_id}}")
-
-```
-```ruby
-transfer = {{ruby_client_resource_name}}::Transfer.retrieve(:id=> "{{fetch_transfer_scenario_id}}")
 
 ```
 > Example Response:
@@ -3469,33 +1593,6 @@ curl {{staging_base_url}}/transfers/{{create_debit_scenario_id}}/reversals \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d  '{{create_refund_scenario_curl_request}}'
 
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Refund;
-
-Refund refund = transfer.reverse(100L);
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Transfer;
-
-$debit = Transfer::retrieve('{{create_debit_scenario_id}}');
-$refund = $debit->reverse(11);
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Transfer
-
-transfer = Transfer.get(id="{{fetch_transfer_scenario_id}}")
-transfer.reverse(**{{create_refund_scenario_python_request}})
-```
-```ruby
-transfer = {{ruby_client_resource_name}}::Transfer.retrieve(:id=> "{{fetch_transfer_scenario_id}}")
-
-refund = {{ruby_client_resource_name}}::Transfer.reverse({{create_refund_scenario_ruby_request}}).save
 ```
 > Example Response:
 
@@ -3533,34 +1630,6 @@ curl {{staging_base_url}}/transfers \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
-
-client.transfersClient().<Resources<Transfer>>resourcesIterator()
-  .forEachRemaining(transfersPage -> {
-    Collection<Transfer> transfers = transfersPage.getContent();
-    //do something with `transfers`
-  });
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Transfer;
-
-$transfers = Transfer::getPagination("/transfers");
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Transfer
-transfer = Transfer.get()
-
-```
-```ruby
-transfers = {{ruby_client_resource_name}}::Transfer.retrieve
-```
 > Example Response:
 
 ```json
@@ -3590,36 +1659,6 @@ curl {{staging_base_url}}/webhooks \
     -d '{{create_webhook_scenario_curl_request}}'
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
-
-Webhook webhook = client.webhookClient().save(
-    Webhook.builder()
-      .url("https://tools.ietf.org/html/rfc2606#section-3")
-      .build()
-);
-
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Webhook;
-
-$webhook = new Webhook({{create_webhook_scenario_php_request}});
-$webhook = $webhook->save();
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Webhook
-webhook = Webhook(**{{create_webhook_scenario_python_request}}).save()
-
-```
-```ruby
-webhook = {{ruby_client_resource_name}}::Webhook.new({{create_webhook_scenario_ruby_request}}).save
-```
 > Example Response:
 
 ```json
@@ -3648,34 +1687,6 @@ curl {{staging_base_url}}/webhooks/{{fetch_webhook_scenario_id}} \
 
 
 ```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
-
-Webhook webhook = client.webhookClient().fetch("{{fetch_webhook_scenario_id}}");
-
-```
-```php
-<?php
-use {{api_name}}\Resources\Webhook;
-
-$webhook = Webhook::retrieve('{{fetch_webhook_scenario_id}}');
-
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Webhook
-webhook = Webhook.get(id="{{fetch_webhook_scenario_id}}")
-
-```
-```ruby
-webhook = {{ruby_client_resource_name}}::Webhook.retrieve(:id=> "{{fetch_webhook_scenario_id}}")
-
-
-```
 > Example Response:
 
 ```json
@@ -3699,33 +1710,6 @@ curl {{staging_base_url}}/webhooks/ \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 
 ```
-```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
-
-client.webhookClient().<Resources<Webhook>>resourcesIterator()
-  .forEachRemaining(webhookPage -> {
-    Collection<Webhook> webhooks = webhookPage.getContent();
-    //do something with `webhooks`
-  });
-```
-```php
-<?php
-use {{api_name}}\Resources\Webhook;
-
-$webhooks = Webhook::getPagination("/webhooks");
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Webhook
-webhooks = Webhook.get()
-
-```
-```ruby
-webhooks = {{ruby_client_resource_name}}::Webhook.retrieve
-```
 > Example Response:
 
 ```json
@@ -3741,17 +1725,6 @@ webhooks = {{ruby_client_resource_name}}::Webhook.retrieve
 
 
 ```shell
-```
-```java
-```
-```php
-<?php
-```
-```python
-
-
-```
-```ruby
 ```
 ### Created Authorization
 
