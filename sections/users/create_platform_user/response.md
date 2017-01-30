@@ -4,6 +4,7 @@
 {{create_user_platform_role_scenario_response}}
 ```
 
+
 This is the equivalent of provisioning API keys (i.e. credentials) for a Platform.
 
 <aside class="notice">
