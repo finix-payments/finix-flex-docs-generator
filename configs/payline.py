@@ -25,7 +25,7 @@ partner_configs = {
         'ruby_client_resource_name': "Payline",
         'ruby_gem': "payline-data",
         'ruby_require_statement': "payline",
-        'java_artifact_id': "payline-data",
+        'java_artifact_id': "payline-java",
         }   
 
 
