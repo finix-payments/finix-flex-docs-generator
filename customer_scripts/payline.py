@@ -640,7 +640,7 @@ def generate_template_variables(config_values):
             "create_user_platform_role_scenario_python_request": create_user_platform_role_scenario['python_request_body'],
             "create_user_platform_role_scenario_response": create_user_platform_role_scenario["response_body"],
             "create_user_platform_role_scenario_id": create_user_platform_role_scenario["response_id"],
-            "create_user_platform_role_scenario_password": json.loads('create_user_platform_role_scenario'["response_body"])['password'],
+            "create_user_platform_role_scenario_password": json.loads(create_user_platform_role_scenario["response_body"])['password'],
 
             "disable_user_scenario_curl_request": disable_user_scenario["curl_request_body"],
             "disable_user_scenario_php_request": disable_user_scenario["php_request_body"],
@@ -1063,7 +1063,7 @@ def generate_template_variables(config_values):
             "create_user_platform_role_scenario_python_request": create_user_platform_role_scenario['python_request_body'],
             "create_user_platform_role_scenario_response": create_user_platform_role_scenario["response_body"],
             "create_user_platform_role_scenario_id": create_user_platform_role_scenario["response_id"],
-            "create_user_platform_role_scenario_password": json.loads('create_user_platform_role_scenario'["response_body"])['password'],
+            "create_user_platform_role_scenario_password": json.loads(create_user_platform_role_scenario["response_body"])['password'],
 
             "disable_user_scenario_curl_request": disable_user_scenario["curl_request_body"],
             "disable_user_scenario_php_request": disable_user_scenario["php_request_body"],
