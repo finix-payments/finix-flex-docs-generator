@@ -222,7 +222,6 @@ def create_buyer_identity(config_values):
 #             "mcc": "0742",
 #             "default_statement_descriptor": company,
 #             "max_transaction_amount": 120000,
-#             "amex_mid": "12345678910",
 #             "annual_card_volume": 12000000,
 #             "url": "www." + company + ".com",
 #             "principal_percentage_ownership": 50,

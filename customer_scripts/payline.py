@@ -793,9 +793,11 @@ def generate_template_variables(config_values):
             # "account_updater_scenario_response": account_updater_scenario["response_body"],
             # "account_updater_scenario_id": account_updater_scenario["response_id"],
 
+            "fetch_bank_account_scenario_response": fetch_bank_account_scenario["response_body"],
+            "fetch_bank_account_scenario_id": fetch_bank_account_scenario["response_id"],
 
-            "fetch_payment_instrument_scenario_response": fetch_payment_instrument_scenario["response_body"],
-            "fetch_payment_instrument_scenario_id": fetch_payment_instrument_scenario["response_id"],
+            "fetch_credit_card_scenario_response": fetch_credit_card_scenario["response_body"],
+            "fetch_credit_card_scenario_id": fetch_credit_card_scenario["response_id"],
 
             "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
 

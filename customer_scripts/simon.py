@@ -386,13 +386,6 @@ def generate_template_variables(config_values):
 
             # TRANSFERS (Debits) --------------------------------------------
 
-            "create_debit_scenario_curl_request": create_debit_scenario["curl_request_body"],
-            "create_debit_scenario_php_request": create_debit_scenario["php_request_body"],
-            "create_debit_scenario_ruby_request": create_debit_scenario["ruby_request_body"],
-            "create_debit_scenario_python_request": create_debit_scenario["python_request_body"],
-            "create_debit_scenario_response": create_debit_scenario["response_body"],
-            "create_debit_scenario_id": create_debit_scenario["response_id"],
-
             "fetch_transfer_scenario_response": fetch_transfer_scenario["response_body"],
             "fetch_transfer_scenario_id": fetch_transfer_scenario["response_id"],
 
@@ -413,7 +406,6 @@ def generate_template_variables(config_values):
             # "create_bank_debit_scenario_python_request": create_bank_debit_scenario["python_request_body"],
             # "create_bank_debit_scenario_response": create_bank_debit_scenario["response_body"],
             # "create_bank_debit_scenario_id": create_bank_debit_scenario["response_id"],
-
 
             #Push-to-card Scenarios
             # "create_recipient_identity_scenario_curl_request": create_recipient_identity_scenario["curl_request_body"],
@@ -789,9 +781,11 @@ def generate_template_variables(config_values):
             # "account_updater_scenario_response": account_updater_scenario["response_body"],
             # "account_updater_scenario_id": account_updater_scenario["response_id"],
 
+            "fetch_bank_account_scenario_response": fetch_bank_account_scenario["response_body"],
+            "fetch_bank_account_scenario_id": fetch_bank_account_scenario["response_id"],
 
-            "fetch_payment_instrument_scenario_response": fetch_payment_instrument_scenario["response_body"],
-            "fetch_payment_instrument_scenario_id": fetch_payment_instrument_scenario["response_id"],
+            "fetch_credit_card_scenario_response": fetch_credit_card_scenario["response_body"],
+            "fetch_credit_card_scenario_id": fetch_credit_card_scenario["response_id"],
 
             "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
 
@@ -807,6 +801,9 @@ def generate_template_variables(config_values):
 
             # TRANSFERS (Debits) --------------------------------------------
 
+            "fetch_transfer_scenario_response": fetch_transfer_scenario["response_body"],
+            "fetch_transfer_scenario_id": fetch_transfer_scenario["response_id"],
+
             "create_debit_scenario_curl_request": create_debit_scenario["curl_request_body"],
             "create_debit_scenario_php_request": create_debit_scenario["php_request_body"],
             "create_debit_scenario_ruby_request": create_debit_scenario["ruby_request_body"],
@@ -821,6 +818,7 @@ def generate_template_variables(config_values):
 
             "list_transfers_scenario_response": list_transfers_scenario["response_body"],
 
+
             # # TRANSFERS (Credits) --------------------------------------------
 
             # "create_credit_scenario_curl_request": create_credit_scenario["curl_request_body"],
@@ -830,12 +828,12 @@ def generate_template_variables(config_values):
             # "create_credit_scenario_response": create_credit_scenario["response_body"],
             # "create_credit_scenario_id": create_credit_scenario["response_id"],
 
-            # "create_bank_debit_scenario_curl_request": create_bank_debit_scenario["curl_request_body"],
-            # "create_bank_debit_scenario_php_request": create_bank_debit_scenario["php_request_body"],
-            # "create_bank_debit_scenario_ruby_request": create_bank_debit_scenario["ruby_request_body"],
-            # "create_bank_debit_scenario_python_request": create_bank_debit_scenario["python_request_body"],
-            # "create_bank_debit_scenario_response": create_bank_debit_scenario["response_body"],
-            # "create_bank_debit_scenario_id": create_bank_debit_scenario["response_id"],
+            "create_bank_debit_scenario_curl_request": create_bank_debit_scenario["curl_request_body"],
+            "create_bank_debit_scenario_php_request": create_bank_debit_scenario["php_request_body"],
+            "create_bank_debit_scenario_ruby_request": create_bank_debit_scenario["ruby_request_body"],
+            "create_bank_debit_scenario_python_request": create_bank_debit_scenario["python_request_body"],
+            "create_bank_debit_scenario_response": create_bank_debit_scenario["response_body"],
+            "create_bank_debit_scenario_id": create_bank_debit_scenario["response_id"],
 
 
             #Push-to-card Scenarios
