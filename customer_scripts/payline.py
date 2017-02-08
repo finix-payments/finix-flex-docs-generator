@@ -143,6 +143,7 @@ def generate_template_variables(config_values):
 
     associate_dummyV1_payment_processor_scenario = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])
     create_user_partner_role_scenario = api_client.create_user_partner_role(create_app_scenario["response_id"])
+    create_user_platform_role_scenario = api_client.create_user('ROLE_PLATFORM')
     api_client.basic_auth_username = create_owner_user_scenario["response_id"]
     config_values["basic_auth_username"] = create_owner_user_scenario["response_id"]
     api_client.basic_auth_password = json.loads(create_owner_user_scenario["response_body"])['password']
@@ -633,6 +634,14 @@ def generate_template_variables(config_values):
             "create_user_merchant_role_scenario_id": create_user_merchant_role_scenario["response_id"],
             "create_user_merchant_role_scenario_password": json.loads(create_user_merchant_role_scenario["response_body"])['password'],
 
+            "create_user_platform_role_scenario_curl_request": create_user_platform_role_scenario['curl_request_body'],
+            "create_user_platform_role_scenario_php_request": create_user_platform_role_scenario['php_request_body'],
+            "create_user_platform_role_scenario_ruby_request": create_user_platform_role_scenario['ruby_request_body'],
+            "create_user_platform_role_scenario_python_request": create_user_platform_role_scenario['python_request_body'],
+            "create_user_platform_role_scenario_response": create_user_platform_role_scenario["response_body"],
+            "create_user_platform_role_scenario_id": create_user_platform_role_scenario["response_id"],
+            "create_user_platform_role_scenario_password": json.loads(create_user_platform_role_scenario["response_body"])['password'],
+
             "disable_user_scenario_curl_request": disable_user_scenario["curl_request_body"],
             "disable_user_scenario_php_request": disable_user_scenario["php_request_body"],
             "disable_user_scenario_ruby_request": disable_user_scenario["ruby_request_body"],
@@ -784,9 +793,11 @@ def generate_template_variables(config_values):
             # "account_updater_scenario_response": account_updater_scenario["response_body"],
             # "account_updater_scenario_id": account_updater_scenario["response_id"],
 
+            "fetch_bank_account_scenario_response": fetch_bank_account_scenario["response_body"],
+            "fetch_bank_account_scenario_id": fetch_bank_account_scenario["response_id"],
 
-            "fetch_payment_instrument_scenario_response": fetch_payment_instrument_scenario["response_body"],
-            "fetch_payment_instrument_scenario_id": fetch_payment_instrument_scenario["response_id"],
+            "fetch_credit_card_scenario_response": fetch_credit_card_scenario["response_body"],
+            "fetch_credit_card_scenario_id": fetch_credit_card_scenario["response_id"],
 
             "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
 
@@ -1047,6 +1058,14 @@ def generate_template_variables(config_values):
             "create_user_merchant_role_scenario_response": create_user_merchant_role_scenario["response_body"],
             "create_user_merchant_role_scenario_id": create_user_merchant_role_scenario["response_id"],
             "create_user_merchant_role_scenario_password": json.loads(create_user_merchant_role_scenario["response_body"])['password'],
+
+            "create_user_platform_role_scenario_curl_request": create_user_platform_role_scenario['curl_request_body'],
+            "create_user_platform_role_scenario_php_request": create_user_platform_role_scenario['php_request_body'],
+            "create_user_platform_role_scenario_ruby_request": create_user_platform_role_scenario['ruby_request_body'],
+            "create_user_platform_role_scenario_python_request": create_user_platform_role_scenario['python_request_body'],
+            "create_user_platform_role_scenario_response": create_user_platform_role_scenario["response_body"],
+            "create_user_platform_role_scenario_id": create_user_platform_role_scenario["response_id"],
+            "create_user_platform_role_scenario_password": json.loads(create_user_platform_role_scenario["response_body"])['password'],
 
             "disable_user_scenario_curl_request": disable_user_scenario["curl_request_body"],
             "disable_user_scenario_php_request": disable_user_scenario["php_request_body"],

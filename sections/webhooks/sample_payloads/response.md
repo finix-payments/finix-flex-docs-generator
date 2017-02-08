@@ -153,7 +153,6 @@
           "month" : 6,
           "year" : 1978
         },
-        "amex_mid" : "12345678910",
         "discover_mid" : null,
         "url" : "www.BobsBurgers.com",
         "annual_card_volume" : 12000000,

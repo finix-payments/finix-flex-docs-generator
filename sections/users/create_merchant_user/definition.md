@@ -1,1 +1,1 @@
-## Create a Merchant User
+## Create ROLE_MERCHANT User

@@ -149,6 +149,7 @@ class Client(object):
         endpoint = self.staging_base_url + '/applications/' + application_id + '/users'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
+
     def create_buyer_identity(self):
         values = {
             "tags": {
@@ -225,7 +226,6 @@ class Client(object):
                 "mcc": "0742",
                 "default_statement_descriptor": company,
                 "max_transaction_amount": 12000000,
-                "amex_mid": "12345678910",
                 "annual_card_volume": 12000000,
                 "url": "www." + company + ".com",
                 "has_accepted_credit_cards_previously": True,
@@ -287,7 +287,6 @@ class Client(object):
                 "default_statement_descriptor": company,
                 "max_transaction_amount": 12000000,
                 "max_transaction_amount": 1200000,
-                "amex_mid": "12345678910",
                 "annual_card_volume": 12000000,
                 "url": "www." + company + ".com",
                 "has_accepted_credit_cards_previously": True,

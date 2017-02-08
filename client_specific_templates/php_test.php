@@ -8,8 +8,7 @@ $identity = new Identity(
 	    ), 
 	    "entity"=> array(
 	        "last_name"=> "Sunkhronos", 
-	        "amex_mid"=> "12345678910", 
-	        "max_transaction_amount"=> 120000, 
+	        "max_transaction_amount"=> 120000,
 	        "default_statement_descriptor"=> "Pawny City Hall", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 

@@ -308,6 +308,7 @@ admin_snippets_by_resource = {
         ],
     "users": [
         "definition",
+        "create_platform_user",
         "create_partner_user",
         "create_merchant_user",
         "fetch_user",
