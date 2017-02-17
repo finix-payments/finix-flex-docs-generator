@@ -172,6 +172,9 @@ snippets_by_resource = {
         "list_webhooks",
         "sample_payloads",
         ],
+    "fees": [
+        "definition"
+    ]
     }
 
 # this provides the ordering for the docs by section and individual snippet
@@ -322,6 +325,9 @@ admin_snippets_by_resource = {
         "list_webhooks",
         "sample_payloads",
         ],
+    "fees": [
+        "definition"
+    ]
     }
 
 # This is the order that the directories / guides will be concatinated
@@ -333,6 +339,7 @@ resource_ordering = [
     "guide_push_to_card",
     "guide_iframe",
     "guide_tokenization_js",
+    "fees",
     "test_data",
     "authorizations",
     # "disputes",
@@ -354,6 +361,7 @@ admin_resource_ordering = [
     "guide_iframe",
     "guide_tokenization_js",
     "test_data",
+    "fees",
     "guide_admin_overview",
     "guide_create_application",
     "applications",

@@ -246,8 +246,7 @@ curl https://api-test.payline.io/identities \
 	    }, 
 	    "entity": {
 	        "last_name": "Sunkhronos", 
-	        "amex_mid": "12345678910", 
-	        "max_transaction_amount": 120000, 
+	        "max_transaction_amount": 120000,
 	        "default_statement_descriptor": "Pawny City Hall", 
 	        "personal_address": {
 	            "city": "San Mateo", 
