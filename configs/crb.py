@@ -46,14 +46,6 @@ snippets_by_resource = {
         "create_partner_user",
         "list_applications",
         ],
-    "authorizations": [
-        "definition",
-        "create_authorization",
-        "capture_authorization",
-        "void_authorization",
-        "fetch_authorization",
-        "list_authorizations"
-    ],
     "disputes": [
         "definition",
         # "create_dispute",
@@ -76,21 +68,6 @@ snippets_by_resource = {
     "guide_general_overview": [
         "definition",
         ],
-    "guide_getting_started": [
-        "definition",
-        "create_merchant_identity",
-        "create_bank_account",
-        # "perform_identity_verification",
-        "provision_merchant",
-        "create_buyer_identity",
-        "create_card",
-        # "create_card_debit",
-        "create_authorization",
-        "capture_authorization",
-        "create_batch_settlement",
-        # "fund_settlement",
-        # "refund_debit"
-    ],
     "guide_iframe": [
         "definition",
         "associate_token",
@@ -114,43 +91,21 @@ snippets_by_resource = {
         "update_identity",
         "provision_merchant",
         ],
-    "merchants": [
-        "definition",
-        "provision_merchant",
-        "fetch_merchant",
-        # "create_merchant_user",
-        "reattempt_merchant_provision",
-        "update_merchant_on_processor",
-        "list_merchants",
-        "list_merchant_verifications",
-        ],
     "payment_instruments": [
         "definition",
         "create_card",
-        "create_bank_account",
         "associate_token",
-        "fetch_bank_account",
         "fetch_credit_card",
         "update_payment_instrument",
         "list_payment_instruments",
-        ],
-    "settlements": [
-        "definition",
-        "create_settlement",
-        "fetch_settlement",
-        "fund_settlement",
-        "list_settlements",
-        "list_settlement_funding_transfers",
-        "list_settlement_transfers",
         ],
     "guide_tokenization_js": [
         "definition",
         "associate_token",
         ],
-
-    "transfers": [
+    "payouts": [
         "definition",
-        # "create_debit",
+        "create_debit",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
@@ -189,15 +144,6 @@ admin_snippets_by_resource = {
         # "enable_litle_processor",
         "list_applications",
         ],
-    "authorizations": [
-        "definition",
-        "create_authorization",
-        "capture_authorization",
-        "void_authorization",
-        "fetch_authorization",
-        "list_authorizations",
-    ],
-
     "disputes": [
         "definition",
         # "create_dispute",
@@ -222,21 +168,6 @@ admin_snippets_by_resource = {
     "guide_general_overview": [
         "definition",
         ],
-    "guide_getting_started": [
-        "definition",
-        "create_merchant_identity",
-        "create_bank_account",
-        # "perform_identity_verification",
-        "provision_merchant",
-        "create_buyer_identity",
-        "create_card",
-        # "create_card_debit",
-        "create_authorization",
-        "capture_authorization",
-        "create_batch_settlement",
-        # "fund_settlement",
-        # "refund_debit"
-    ],
     "guide_iframe": [
         "definition",
         "associate_token",
@@ -259,47 +190,21 @@ admin_snippets_by_resource = {
         "update_identity",
         "list_identities",
         ],
-    "merchants": [
-        "definition",
-        "provision_merchant",
-        "fetch_merchant",
-        "update_merchant_on_processor",
-        "reattempt_merchant_provision",
-        "disable_merchant_processing",
-        "disable_merchant_settlements",
-        "list_merchants",
-        "list_merchant_verifications",
-        "list_merchant_verifications_platform_user",
-        "create_merchant_user",
-        ],
     "payment_instruments": [
         "definition",
         "associate_token",
         "create_card",
-        "create_bank_account",
-        "fetch_bank_account",
         "fetch_credit_card",
         "update_payment_instrument",
         "list_payment_instruments",
-        ],
-    "settlements": [
-        "definition",
-        "create_settlement",
-        "fetch_settlement",
-        "fund_settlement",
-        "list_settlements",
-        "list_settlement_funding_transfers",
-        "list_settlement_transfers",
         ],
     "guide_tokenization_js": [
         "definition",
         "associate_token",
         ],
-
-    "transfers": [
+    "payouts": [
         "definition",
-        # "create_debit",
-        # "create_bank_debit",
+        "create_debit",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
@@ -327,27 +232,21 @@ resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "api_endpoints",
-    "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
     "test_data",
-    # "authorizations",
     # "disputes",
     "identities",
-    "merchants",
     "payment_instruments",
     # "identity_verifications",
-    "settlements",
-    "transfers",
+    "payouts",
     "webhooks",
-
 ]
 
 admin_resource_ordering = [
     "guide_general_overview",
     "guide_authentication",
     "api_endpoints",
-    "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
     "guide_tokenization_js",
@@ -355,17 +254,14 @@ admin_resource_ordering = [
     "guide_admin_overview",
     "guide_create_application",
     "applications",
-    "authorizations",
     # "disputes",
     "identities",
-    # # "identity_verifications",
-    "merchants",
+     # "identity_verifications",
     "payment_instruments",
-    "settlements",
-    "transfers",
+    "payouts",
     "users",
     "webhooks",
-    ]
+]
 
 
 
