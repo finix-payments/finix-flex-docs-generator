@@ -307,6 +307,9 @@ admin_snippets_by_resource = {
         "list_webhooks",
         "sample_payloads",
         ],
+    "fees": [
+        "definition"
+    ],
     }
 
 # This is the order that the directories / guides will be concatinated
@@ -338,6 +341,7 @@ admin_resource_ordering = [
     "guide_iframe",
     "guide_admin_overview",
     "guide_create_application",
+    "fees",
     "guide_tokenization_js",
     "test_data",
     "applications",

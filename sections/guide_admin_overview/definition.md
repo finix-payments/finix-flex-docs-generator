@@ -11,3 +11,5 @@ restricted requests not exposed to general users.
 tokenize cards in production via our javascript client. Utilization of the
 Tokenization.js client is an advanced feature that should only be exposed to
 end-users that are PCI compliant.
+
+3. [Fees](#fees): A guide describing the four different pricing tiers 
