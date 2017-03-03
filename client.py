@@ -104,6 +104,53 @@ class Client(object):
         endpoint = self.staging_base_url + '/applications'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
+    def create_payouts_app(self, application_owner_user_id, business_type):
+        company = random_app_name()
+
+        values = {
+            "tags": {
+                "application_name": company
+            },
+            "user": application_owner_user_id,
+            "entity": {
+                "last_name": "Sunkhronos",
+                "phone": "1234567890",
+                "personal_address": {
+                    "city": "San Mateo",
+                    "country": "USA",
+                    "region": "CA",
+                    "line2": "Apartment 7",
+                    "line1": "741 Douglass St",
+                    "postal_code": "94114"
+                },
+                "business_name": company,
+                "business_address": {
+                    "city": "San Mateo",
+                    "country": "USA",
+                    "region": "CA",
+                    "line2": "Apartment 8",
+                    "line1": "741 Douglass St",
+                    "postal_code": "94114"
+                },
+                "tax_id": "5779",
+                "business_type": business_type,
+                "business_phone": "+1 (408) 756-4497",
+                "first_name": "dwayne",
+                "dob": {
+                    "year": 1978,
+                    "day": 27,
+                    "month": 5
+                },
+                "business_tax_id": "123456789",
+                "doing_business_as": company,
+                "email": "user@example.org",
+                "max_transaction_amount": 1200000,
+                "settlement_bank_account": "CORPORATE"
+            }
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/applications'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def associate_payment_processor(self, processor, application_id):
         if processor == "DUMMY_V1":
@@ -176,7 +223,102 @@ class Client(object):
         endpoint = self.staging_base_url + '/identities'
         return formatted_response(endpoint, values, self.encoded_auth)
 
+
+    def create_recipient_identity(self):
+        first = random_first_name()
+        values = {
+            "tags": {
+                "key": "value"
+            },
+            "entity": {
+                "last_name": random_last_name(),
+                "first_name": first,
+                "email": first + "@gmail.com",
+                "phone": "7145677613",
+                "personal_address": {
+                    "city": "San Mateo",
+                    "country": "USA",
+                    "region": "CA",
+                    "line2": "Apartment 7",
+                    "line1": "741 Douglass St",
+                    "postal_code": "94114"
+                }
+            }
+        }
+
+        values = format_json(json.dumps(values))
+
+        endpoint = self.staging_base_url + '/identities'
+        return formatted_response(endpoint, values, self.encoded_auth)
+
+
     def create_merchant_identity(self, business_type):
+        if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
+            ownership_type = "PUBLIC"
+        else:
+            ownership_type = "PRIVATE"
+
+        company = random_business_name()
+        values = {
+            "tags": {
+                "Studio Rating": "4.7"
+            },
+            "entity": {
+                "first_name": "dwayne",
+                "last_name": "Sunkhronos",
+                "title": "CEO",
+                "phone": "1234567890",
+                "personal_address": {
+                    "city": "San Mateo",
+                    "country": "USA",
+                    "region": "CA",
+                    "line2": "Apartment 7",
+                    "line1": "741 Douglass St",
+                    "postal_code": "94114"
+                },
+                "business_name": company,
+                "business_address": {
+                    "city": "San Mateo",
+                    "country": "USA",
+                    "region": "CA",
+                    "line2": "Apartment 8",
+                    "line1": "741 Douglass St",
+                    "postal_code": "94114"
+                },
+                "tax_id": "123456789",
+                "business_type": business_type,
+                "business_phone": "+1 (408) 756-4497",
+                "dob": {
+                    "year": 1978,
+                    "day": 27,
+                    "month": 6
+                },
+                "incorporation_date": {
+                    "year": 1978,
+                    "day": 27,
+                    "month": 6
+                },
+                "business_tax_id": "123456789",
+                "mcc": "0742",
+                "default_statement_descriptor": company,
+                "max_transaction_amount": 12000000,
+                "annual_card_volume": 12000000,
+                "url": "www." + company + ".com",
+                "has_accepted_credit_cards_previously": True,
+                "principal_percentage_ownership": 50,
+                "url": "www." + company.replace(" ", "") + ".com",
+                "doing_business_as": company,
+                "email": "user@example.org",
+                "ownership_type": ownership_type
+            }
+        }
+
+        values = format_json(json.dumps(values))
+
+        endpoint = self.staging_base_url + '/identities'
+        return formatted_response(endpoint, values, self.encoded_auth)
+
+    def create_sender_identity(self, business_type):
         if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
             ownership_type = "PUBLIC"
         else:
@@ -303,6 +445,19 @@ class Client(object):
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
     def provision_merchant(self, identity_id, processor=None):
+        values = {
+            "tags": {
+              "key_2": "value_2"
+            },
+            "processor": processor
+          }
+
+        values = format_json(json.dumps(values))
+
+        endpoint = self.staging_base_url + '/identities/' + identity_id + '/merchants'
+        return formatted_response(endpoint, values, self.encoded_auth)
+
+    def provision_sender(self, identity_id, processor=None):
         values = {
             "tags": {
               "key_2": "value_2"
@@ -865,4 +1020,3 @@ class Client(object):
         values = None
         endpoint = self.staging_base_url + '/webhooks'
         return formatted_response(endpoint, values, self.encoded_auth)
-

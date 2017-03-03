@@ -133,10 +133,14 @@ def generate_template_variables(config_values):
     ## create new user and app
     create_owner_user_scenario = api_client.create_user("ROLE_PARTNER")
 
+    create_owner_user_payouts_scenario = api_client.create_user("ROLE_PARTNER")
+
 
     create_app_scenario = api_client.create_app(create_owner_user_scenario["response_id"], "LIMITED_LIABILITY_COMPANY")
+    create_payouts_app_scenario = api_client.create_payouts_app(create_owner_user_payouts_scenario["response_id"], "LIMITED_LIABILITY_COMPANY")
     # config_values["application"] = create_app_scenario["response_id"]
     associate_dummyV1_payment_processor_scenario = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])
+    associate_visaV1_payment_processor_scenario = api_client.associate_payment_processor("VISA_V1",create_payouts_app_scenario["response_id"])
     create_user_partner_role_scenario = api_client.create_user_partner_role(create_app_scenario["response_id"])
     create_user_platform_role_scenario = api_client.create_user('ROLE_PLATFORM')
     api_client.basic_auth_username = create_owner_user_scenario["response_id"]
@@ -151,6 +155,7 @@ def generate_template_variables(config_values):
     # FIRST RUN SCENARIOS
     create_webhook_scenario = api_client.create_webhook()
     create_identity_individual_sole_proprietorship_scenario = api_client.create_merchant_identity("INDIVIDUAL_SOLE_PROPRIETORSHIP")
+    create_identity_individual_sole_proprietorship_payouts_scenario = api_client.create_sender_identity("INDIVIDUAL_SOLE_PROPRIETORSHIP")
     create_identity_corporation_scenario = api_client.create_merchant_identity("CORPORATION")
     create_identity_limited_liability_company_scenario = api_client.create_merchant_identity("LIMITED_LIABILITY_COMPANY")
     create_identity_partnership_scenario = api_client.create_merchant_identity("PARTNERSHIP")
@@ -164,8 +169,11 @@ def generate_template_variables(config_values):
     create_bank_account_scenario = api_client.create_bank_account(create_identity_individual_sole_proprietorship_scenario["response_id"])
     update_payment_instrument_scenario = api_client.update_payment_instrument(create_bank_account_scenario["response_id"])
     provision_merchant_scenario = api_client.provision_merchant(create_identity_individual_sole_proprietorship_scenario["response_id"])
+    provision_sender_scenario = api_client.provision_sender(create_identity_individual_sole_proprietorship_payouts_scenario["response_id"])
     create_buyer_identity_scenario = api_client.create_buyer_identity()
+    create_recipient_identity_scenario = api_client.create_recipient_identity()
     create_card_scenario = api_client.create_card(create_buyer_identity_scenario["response_id"])
+    create_payouts_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"])
     create_buyer_bank_account_scenario = api_client.create_bank_account(create_buyer_identity_scenario["response_id"])
     # account_updater_scenario = account_updater(create_card_scenario["response_id"], provision_merchant_scenario["response_id"])
     create_debit_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))
@@ -174,7 +182,7 @@ def generate_template_variables(config_values):
     create_user_merchant_role_scenario = api_client.create_user_merchant_role(create_identity_individual_sole_proprietorship_scenario["response_id"])
     disable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], False)
     enable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], True)
-    # print create_user_merchant_role_scenario
+
     # create_identity_verification_scenario = create_identity_verification(create_identity_individual_sole_proprietorship_scenario["response_id"])
     create_debit_for_refund_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))
     create_refund_scenario = api_client.create_refund(create_debit_for_refund_scenario['response_id'])
@@ -182,6 +190,7 @@ def generate_template_variables(config_values):
     capture_authorization_scenario = api_client.capture_authorization(create_authorization_scenario["response_id"])
     fetch_authorization_scenario = api_client.fetch_authorization(create_authorization_scenario["response_id"])
     create_token_scenario = api_client.create_token(create_app_scenario["response_id"])
+    create_payouts_token_scenario = api_client.create_token(create_payouts_app_scenario["response_id"])
     associate_token_scenario = api_client.associate_token(create_identity_individual_sole_proprietorship_scenario["response_id"], create_token_scenario["response_id"])
 
     create_authorization_for_voiding_scenario = api_client.create_authorization(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
@@ -202,11 +211,11 @@ def generate_template_variables(config_values):
     fetch_webhook_scenario = api_client.fetch_webhook(create_webhook_scenario["response_id"])
 
     #Push-to-card Scenarios
-    associate_payment_processor_push_to_card_scenario = api_client.associate_payment_processor("VISA_V1", create_app_scenario["response_id"])
-    create_recipient_identity_scenario = api_client.create_buyer_identity()
-    create_recipient_card_scenario = api_client.create_card(create_recipient_identity_scenario["response_id"])
-    provision_push_merchant_scenario = api_client.provision_merchant(create_recipient_identity_scenario["response_id"], "VISA_V1")
-    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
+    associate_payment_processor_push_to_card_scenario = api_client.associate_payment_processor("VISA_V1", create_payouts_app_scenario["response_id"])
+    create_recipient_identity_scenario = api_client.create_recipient_identity()
+    create_recipient_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"])
+    provision_push_merchant_scenario = api_client.provision_merchant(create_recipient_identity_payouts_scenario["response_id"], "VISA_V1")
+    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_payouts_scenario["response_id"], create_recipient_card_payouts_scenario["response_id"], 10000)
 
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
@@ -270,6 +279,13 @@ def generate_template_variables(config_values):
             "create_buyer_identity_scenario_python_request": create_buyer_identity_scenario["python_request_body"],
             "create_buyer_identity_scenario_response": create_buyer_identity_scenario["response_body"],
             "create_buyer_identity_scenario_id": create_buyer_identity_scenario["response_id"],
+
+            "create_recipient_identity_payouts_scenario_curl_request": create_recipient_identity_payouts_scenario["curl_request_body"],
+            "create_recipient_identity_payouts_scenario_php_request": create_recipient_identity_payouts_scenario["php_request_body"],
+            "create_recipient_identity_payouts_scenario_ruby_request": create_recipient_identity_payouts_scenario["ruby_request_body"],
+            "create_recipient_identity_payouts_scenario_python_request": create_recipient_identity_payouts_scenario["python_request_body"],
+            "create_recipient_identity_payouts_scenario_response": create_recipient_identity_payouts_scenario["response_body"],
+            "create_recipient_identity_payouts_scenario_id": create_recipient_identity_payouts_scenario["response_id"],
 
             "update_identity_scenario_curl_request": update_identity_scenario["curl_request_body"],
             "update_identity_scenario_php_request": update_identity_scenario["php_request_body"],
@@ -351,6 +367,13 @@ def generate_template_variables(config_values):
             "create_card_scenario_python_request": create_card_scenario["python_request_body"],
             "create_card_scenario_response": create_card_scenario["response_body"],
             "create_card_scenario_id": create_card_scenario["response_id"],
+
+            "create_payouts_card_scenario_curl_request": create_payouts_card_scenario["curl_request_body"],
+            "create_payouts_card_scenario_php_request": create_payouts_card_scenario["php_request_body"],
+            "create_payouts_card_scenario_ruby_request": create_payouts_card_scenario["ruby_request_body"],
+            "create_payouts_card_scenario_python_request": create_payouts_card_scenario["python_request_body"],
+            "create_payouts_card_scenario_response": create_payouts_card_scenario["response_body"],
+            "create_payouts_card_scenario_id": create_payouts_card_scenario["response_id"],
 
             "update_payment_instrument_scenario_curl_request": update_payment_instrument_scenario["curl_request_body"],
             "update_payment_instrument_scenario_php_request": update_payment_instrument_scenario["php_request_body"],
@@ -552,6 +575,17 @@ def generate_template_variables(config_values):
             "associate_dummyV1_payment_processor_scenario_response": associate_dummyV1_payment_processor_scenario["response_body"],
             "associate_dummyV1_payment_processor_scenario_id": associate_dummyV1_payment_processor_scenario["response_id"],
 
+            "associate_dummyV1_payment_processor_scenario_curl_request": associate_dummyV1_payment_processor_scenario["curl_request_body"],
+            "associate_dummyV1_payment_processor_scenario_php_request": associate_dummyV1_payment_processor_scenario["php_request_body"],
+            "associate_dummyV1_payment_processor_scenario_ruby_request": associate_dummyV1_payment_processor_scenario["ruby_request_body"],
+            "associate_dummyV1_payment_processor_scenario_python_request": associate_dummyV1_payment_processor_scenario["python_request_body"],
+            "associate_dummyV1_payment_processor_scenario_response": associate_dummyV1_payment_processor_scenario["response_body"],
+
+            "associate_visaV1_payment_processor_scenario_curl_request": associate_visaV1_payment_processor_scenario["curl_request_body"],
+            "associate_visaV1_payment_processor_scenario_php_request": associate_visaV1_payment_processor_scenario["php_request_body"],
+            "associate_visaV1_payment_processor_scenario_ruby_request": associate_visaV1_payment_processor_scenario["ruby_request_body"],
+            "associate_visaV1_payment_processor_scenario_python_request": associate_visaV1_payment_processor_scenario["python_request_body"],
+
             # "associate_litleV1_payment_processor_scenario_curl_request": associate_litleV1_payment_processor_scenario["curl_request_body"],
             # "associate_litleV1_payment_processor_scenario_php_request": associate_litleV1_payment_processor_scenario["php_request_body"],
             # "associate_litleV1_payment_processor_scenario_ruby_request": associate_litleV1_payment_processor_scenario["ruby_request_body"],
@@ -597,6 +631,13 @@ def generate_template_variables(config_values):
             "create_app_scenario_python_request": create_app_scenario["python_request_body"],
             "create_app_scenario_response": create_app_scenario["response_body"],
             "create_app_scenario_id": create_app_scenario["response_id"],
+
+            "create_payouts_app_scenario_curl_request": create_payouts_scenario["curl_request_body"],
+            "create_payouts_app_scenario_php_request": create_payouts_app_scenario["php_request_body"],
+            "create_payouts_app_scenario_ruby_request": create_payouts_app_scenario["ruby_request_body"],
+            "create_payouts_app_scenario_python_request": create_payouts_app_scenario["python_request_body"],
+            "create_payouts_app_scenario_response": create_payouts_app_scenario["response_body"],
+            "create_payouts_app_scenario_id": create_payouts_app_scenario["response_id"],
 
             "list_applications_scenario_response": list_applications_scenario["response_body"],
 
@@ -694,6 +735,12 @@ def generate_template_variables(config_values):
             "create_buyer_identity_scenario_response": create_buyer_identity_scenario["response_body"],
             "create_buyer_identity_scenario_id": create_buyer_identity_scenario["response_id"],
 
+            "create_recipient_identity_payouts_scenario_curl_request": create_recipient_identity_payouts_scenario["curl_request_body"],
+            "create_recipient_identity_payouts_scenario_php_request": create_recipient_identity_payouts_scenario["php_request_body"],
+            "create_recipient_identity_payouts_scenario_ruby_request": create_recipient_identity_payouts_scenario["ruby_request_body"],
+            "create_recipient_identity_payouts_scenario_python_request": create_recipient_identity_payouts_scenario["python_request_body"],
+            "create_recipient_identity_payouts_scenario_response": create_recipient_identity_payouts_scenario["response_body"],
+
             "update_identity_scenario_curl_request": update_identity_scenario["curl_request_body"],
             "update_identity_scenario_php_request": update_identity_scenario["php_request_body"],
             "update_identity_scenario_ruby_request": update_identity_scenario["ruby_request_body"],
@@ -774,6 +821,13 @@ def generate_template_variables(config_values):
             "create_card_scenario_python_request": create_card_scenario["python_request_body"],
             "create_card_scenario_response": create_card_scenario["response_body"],
             "create_card_scenario_id": create_card_scenario["response_id"],
+
+            "create_paypouts_card_scenario_curl_request": create_payouts_card_scenario["curl_request_body"],
+            "create_paypouts_card_scenario_php_request": create_payouts_card_scenario["php_request_body"],
+            "create_paypouts_card_scenario_ruby_request": create_payouts_card_scenario["ruby_request_body"],
+            "create_paypouts_card_scenario_python_request": create_payouts_card_scenario["python_request_body"],
+            "create_paypouts_card_scenario_response": create_payouts_card_scenario["response_body"],
+            "create_paypouts_card_scenario_id": create_payouts_card_scenario["response_id"],
 
             "update_payment_instrument_scenario_curl_request": update_payment_instrument_scenario["curl_request_body"],
             "update_payment_instrument_scenario_php_request": update_payment_instrument_scenario["php_request_body"],
@@ -974,6 +1028,13 @@ def generate_template_variables(config_values):
             "associate_dummyV1_payment_processor_scenario_response": associate_dummyV1_payment_processor_scenario["response_body"],
             "associate_dummyV1_payment_processor_scenario_id": associate_dummyV1_payment_processor_scenario["response_id"],
 
+            "associate_visaV1_payment_processor_scenario_curl_request": associate_visaV1_payment_processor_scenario["curl_request_body"],
+            "associate_visaV1_payment_processor_scenario_php_request": associate_visaV1_payment_processor_scenario["php_request_body"],
+            "associate_visaV1_payment_processor_scenario_ruby_request": associate_visaV1_payment_processor_scenario["ruby_request_body"],
+            "associate_visaV1_payment_processor_scenario_python_request": associate_visaV1_payment_processor_scenario["python_request_body"],
+            "associate_visaV1_payment_processor_scenario_response": associate_visaV1_payment_processor_scenario["response_body"],
+            "associate_visaV1_payment_processor_scenario_id": associate_visaV1_payment_processor_scenario["response_id"],
+
             # "associate_litleV1_payment_processor_scenario_curl_request": associate_litleV1_payment_processor_scenario["curl_request_body"],
             # "associate_litleV1_payment_processor_scenario_php_request": associate_litleV1_payment_processor_scenario["php_request_body"],
             # "associate_litleV1_payment_processor_scenario_ruby_request": associate_litleV1_payment_processor_scenario["ruby_request_body"],
@@ -1019,6 +1080,13 @@ def generate_template_variables(config_values):
             "create_app_scenario_python_request": create_app_scenario["python_request_body"],
             "create_app_scenario_response": create_app_scenario["response_body"],
             "create_app_scenario_id": create_app_scenario["response_id"],
+
+            "create_app_app_scenario_curl_request": create_payouts_app_scenario["curl_request_body"],
+            "create_app_app_scenario_php_request": create_payouts_app_scenario["php_request_body"],
+            "create_app_app_scenario_ruby_request": create_payouts_app_scenario["ruby_request_body"],
+            "create_app_app_scenario_python_request": create_payouts_app_scenario["python_request_body"],
+            "create_app_app_scenario_response": create_payouts_app_scenario["response_body"],
+            "create_app_app_scenario_id": create_payouts_app_scenario["response_id"],
 
             "list_applications_scenario_response": list_applications_scenario["response_body"],
 
