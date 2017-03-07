@@ -365,7 +365,6 @@ admin_resource_ordering = [
     "test_data",
     "guide_admin_overview",
     "guide_create_application",
-    "fees",
     "applications",
     "authorizations",
     # "disputes",

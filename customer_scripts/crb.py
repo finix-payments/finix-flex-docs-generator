@@ -433,12 +433,6 @@ def generate_template_variables(config_values):
 
 
             #Push-to-card Scenarios
-            "create_recipient_identity_scenario_curl_request": create_recipient_identity_scenario["curl_request_body"],
-            "create_recipient_identity_scenario_php_request": create_recipient_identity_scenario["php_request_body"],
-            "create_recipient_identity_scenario_ruby_request": create_recipient_identity_scenario["ruby_request_body"],
-            "create_recipient_identity_scenario_python_request": create_recipient_identity_scenario["python_request_body"],
-            "create_recipient_identity_scenario_response": create_recipient_identity_scenario["response_body"],
-            "create_recipient_identity_scenario_id": create_recipient_identity_scenario["response_id"],
 
             "create_recipient_card_scenario_curl_request": create_recipient_card_scenario["curl_request_body"],
             "create_recipient_card_scenario_php_request": create_recipient_card_scenario["php_request_body"],
@@ -855,12 +849,13 @@ def generate_template_variables(config_values):
 
 
             #Push-to-card Scenarios
-            "create_recipient_identity_scenario_curl_request": create_recipient_identity_scenario["curl_request_body"],
-            "create_recipient_identity_scenario_php_request": create_recipient_identity_scenario["php_request_body"],
-            "create_recipient_identity_scenario_ruby_request": create_recipient_identity_scenario["ruby_request_body"],
-            "create_recipient_identity_scenario_python_request": create_recipient_identity_scenario["python_request_body"],
-            "create_recipient_identity_scenario_response": create_recipient_identity_scenario["response_body"],
-            "create_recipient_identity_scenario_id": create_recipient_identity_scenario["response_id"],
+
+            "create_recipient_identity_payouts_scenario_curl_request": create_recipient_identity_payouts_scenario["curl_request_body"],
+            "create_recipient_identity_payouts_scenario_php_request": create_recipient_identity_payouts_scenario["php_request_body"],
+            "create_recipient_identity_payouts_scenario_ruby_request": create_recipient_identity_payouts_scenario["ruby_request_body"],
+            "create_recipient_identity_payouts_scenario_python_request": create_recipient_identity_payouts_scenario["python_request_body"],
+            "create_recipient_identity_payouts_scenario_response": create_recipient_identity_payouts_scenario["response_body"],
+            "create_recipient_identity_payouts_scenario_id": create_recipient_identity_payouts_scenario["response_id"],
 
             "create_recipient_card_scenario_curl_request": create_recipient_card_scenario["curl_request_body"],
             "create_recipient_card_scenario_php_request": create_recipient_card_scenario["php_request_body"],

@@ -651,7 +651,6 @@ class Client(object):
         # field changes
         start = time.time()
         minutes = 5
-        print "create settlement fn encoded auth " +  self.encoded_auth
         endpoint = self.staging_base_url + '/transfers/' + transfer_id
         while not transfer_ready_to_settle(endpoint, self.encoded_auth):
             elapsed_time = time.time() - start
