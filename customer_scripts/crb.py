@@ -126,7 +126,10 @@ def generate_template_variables(config_values):
                         platform_basic_auth_username = config_values["platform_basic_auth_username"],
                         platform_basic_auth_password = config_values["platform_basic_auth_password"],
                         basic_auth_username = "",
-                        basic_auth_password = "")
+                        basic_auth_password = "",
+                        basic_auth_username_payouts=config_values["basic_auth_username_payouts"],
+                        basic_auth_password_payouts=config_values["basic_auth_password_payouts"]
+                        )
 
     ## create new user and app
     create_owner_user_scenario = api_client.create_user("ROLE_PARTNER")
@@ -200,12 +203,21 @@ def generate_template_variables(config_values):
     fetch_transfer_scenario = api_client.fetch_transfer(create_debit_scenario["response_id"])
     fetch_webhook_scenario = api_client.fetch_webhook(create_webhook_scenario["response_id"])
 
-    #Push-to-card Scenarios
-    associate_payment_processor_push_to_card_scenario = api_client.associate_payment_processor("VISA_V1", create_app_scenario["response_id"])
-    create_recipient_identity_scenario = api_client.create_buyer_identity()
-    create_recipient_card_scenario = api_client.create_card(create_recipient_identity_scenario["response_id"])
-    provision_push_merchant_scenario = api_client.provision_merchant(create_recipient_identity_scenario["response_id"], "VISA_V1")
-    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
+    # Push-to-card Scenarios
+
+    create_owner_user_payouts_scenario = api_client.create_user("ROLE_PARTNER", 'payout')
+    create_payouts_app_scenario = api_client.create_app(create_owner_user_payouts_scenario["response_id"], "INDIVIDUAL_SOLE_PROPRIETORSHIP", 'payout')
+    associate_visaV1_payment_processor_scenario = api_client.associate_payment_processor("VISA_V1", create_payouts_app_scenario["response_id"])
+    api_client.basic_auth_username_payouts = create_owner_user_payouts_scenario["response_id"]
+    config_values["basic_auth_username"] = create_owner_user_payouts_scenario["response_id"]
+    api_client.basic_auth_password_payouts = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
+    config_values["basic_auth_password"] = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
+    api_client.encoded_auth_payouts = base64.b64encode(api_client.basic_auth_username_payouts + ':' + api_client.basic_auth_password_payouts)
+    toggle_application_processing_payouts_scenario = api_client.toggle_application_processing(create_payouts_app_scenario["response_id"], True)
+    create_recipient_identity_payouts_scenario = api_client.create_recipient_identity()
+    create_recipient_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"],'payout')
+    provision_push_merchant_scenario = api_client.provision_sender(create_recipient_identity_payouts_scenario["response_id"], "VISA_V1")
+    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_payouts_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
 
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
