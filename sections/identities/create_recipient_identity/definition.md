@@ -1,2 +1,2 @@
-## Create an Identity for a Buyer
+## Create an Identity for a Recipient
 

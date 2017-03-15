@@ -67,7 +67,7 @@ snippets_by_resource = {
         "definition",
         "create_owner_user",
         "create_application",
-        "enable_dummy_processor",
+        # "enable_dummy_processor",
         ],
     "guide_general_overview": [
         "definition",
@@ -88,8 +88,8 @@ snippets_by_resource = {
     ],
     "identities": [
         "definition",
-        "create_buyer_identity",
-        "create_merchant_identity",
+        "create_recipient_identity",
+        "create_sender_identity",
         "fetch_identity",
         "list_identities",
         "update_identity",
@@ -97,11 +97,9 @@ snippets_by_resource = {
         ],
     "payment_instruments": [
         "definition",
-        "create_card",
         "associate_token",
+        "create_card",
         "fetch_credit_card",
-        "update_payment_instrument",
-        "list_payment_instruments",
         ],
     "guide_tokenization_js": [
         "definition",
@@ -111,23 +109,7 @@ snippets_by_resource = {
         "definition",
         "create_payout",
         "fetch_transfer",
-        "create_refund",
         "list_transfers",
-        ],
-    "users": [
-        "definition",
-        "create_partner_user",
-        "create_merchant_user",
-        "disable_user",
-        "fetch_user",
-        "list_users",
-    ],
-    "webhooks": [
-        "definition",
-        "create_webhook",
-        "fetch_webhook",
-        "list_webhooks",
-        "sample_payloads",
         ],
     }
 
@@ -188,8 +170,8 @@ admin_snippets_by_resource = {
     ],
     "identities": [
         "definition",
-        "create_buyer_identity",
-        "create_merchant_identity",
+        "create_recipient_identity",
+        "create_sender_identity",
         "fetch_identity",
         "update_identity",
         "list_identities",
@@ -199,8 +181,6 @@ admin_snippets_by_resource = {
         "associate_token",
         "create_card",
         "fetch_credit_card",
-        "update_payment_instrument",
-        "list_payment_instruments",
         ],
     "guide_tokenization_js": [
         "definition",
@@ -210,24 +190,7 @@ admin_snippets_by_resource = {
         "definition",
         "create_payout",
         "fetch_transfer",
-        "create_refund",
         "list_transfers",
-        ],
-    "users": [
-        "definition",
-        "create_platform_user",
-        "create_partner_user",
-        "create_merchant_user",
-        "fetch_user",
-        "disable_user",
-        "list_users"
-    ],
-    "webhooks": [
-        "definition",
-        "create_webhook",
-        "fetch_webhook",
-        "list_webhooks",
-        "sample_payloads",
         ],
     }
 
@@ -238,13 +201,13 @@ resource_ordering = [
     "api_endpoints",
     "guide_push_to_card",
     "guide_iframe",
-    "test_data",
+    "guide_create_application",
+    "applications",
     # "disputes",
     "identities",
     "payment_instruments",
     # "identity_verifications",
     "payouts",
-    "webhooks",
 ]
 
 admin_resource_ordering = [
@@ -263,8 +226,6 @@ admin_resource_ordering = [
      # "identity_verifications",
     "payment_instruments",
     "payouts",
-    "users",
-    "webhooks",
 ]
 
 
