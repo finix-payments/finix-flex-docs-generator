@@ -7,15 +7,13 @@
 Before we can begin charging cards we'll need to provision a `Merchant` account
 for your seller. This requires 3-steps:
 
-1. Create an `Identity` resource with the merchant's underwriting and identity
+1. Create an `Identity` resource with the sender's underwriting and identity
 verification information (API request to the right)
 
 
-2. [Create a Payment Instrument](#create-a-bank-account) representing the
-merchant's bank account where processed funds will be settled (i.e. deposited)
+2. [Create a Payment Instrument](#create-a-card) representing the
+sender's bank account where processed funds will be settled (i.e. deposited)
 
-
-3. [Provision the Merchant account](##provision-a-merchant)
 
 
 #### HTTP Request
