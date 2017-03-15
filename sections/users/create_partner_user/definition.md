@@ -1,1 +1,1 @@
-## Create ROLE_MERCHANT User
+## Create ROLE_PARTNER User
