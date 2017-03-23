@@ -18,12 +18,7 @@ Before we can begin charging cards we'll need to provision a `Merchant` account 
 
     `POST {{staging_base_url}}/identities/:IDENTITY_ID/merchants`
 
-Let's start with the first step by creating an `Identity` resource. Each `Identity`
- represents either a `buyer` or a `merchant`. We use this resource to associate
- cards, bank accounts, and transactions. This structure makes it simple to
- manage and reconcile a merchant's associated bank accounts, transaction
- history, and payouts. Additionally, for merchants, the `Identity` resource is
- used to collect underwriting information for the business and its principal.
+Let's start with the first step by creating an `Identity` resource. Each `Identity` represents either a person or a business. We use this resource to associate cards and payouts. This structure makes it simple to manage and reconcile payment instruments and payout history. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds. Additionally, the Identity resource is optionally used to collect KYC information.
 
 You'll want to store the ID of the newly created `Identity` resource for
 reference later.
