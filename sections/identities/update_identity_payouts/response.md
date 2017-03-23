@@ -1,18 +1,12 @@
 > Example Response:
 
 ```json
-{{create_merchant_identity_scenario_response}}
+{{update_identity_scenario_response}}
 ```
-
-Before we can begin charging cards we'll need to provision a `Merchant` account
-for your seller. This requires 3-steps:
-
-1. Create an `Identity` resource with the sender's underwriting and identity
-verification information (API request to the right)
-
-
-2. [Create a Payment Instrument](#create-a-card) representing the
-sender's bank account where processed funds will be settled (i.e. deposited)
+<aside class="notice">
+tax_id and business_tax_id are not updatable. If either field was input incorrectly,
+please create a new Identity resource.
+</aside>
 
 
 
@@ -27,7 +21,6 @@ Field | Type | Description
 business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial)
 doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
 business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
-business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
 url | *string*, **required** | Merchant's publicly available website
 business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
@@ -43,7 +36,6 @@ first_name | *string*, **required** | Full legal first name of the merchant's pr
 last_name | *string*, **required** | Full legal last name of the merchant's principal representative
 title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
 principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
-tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
 dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
 phone | *string*, **required** | Principal's phone number
 email | *string*, **required** | Principal's email address where they can be reached

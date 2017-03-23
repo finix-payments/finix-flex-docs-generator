@@ -2,8 +2,8 @@ import base64
 from collections import OrderedDict
 
 partner_configs = {
-        'api_name': "CrossRiver",
-        'api_name_downcase': "crossriver",
+        'api_name': "CRB",
+        'api_name_downcase': "crb",
         'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
         'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
@@ -40,16 +40,6 @@ snippets_by_resource = {
     "api_endpoints":[
         "definition",
     ],
-    "applications": [
-        "definition",
-        "create_application",
-        "fetch_application",
-        # "enable_dummy_processor",
-        # "enable_litle_processor",
-        # "disable_application",
-        "create_partner_user",
-        "list_applications",
-        ],
     "disputes": [
         "definition",
         # "create_dispute",
@@ -63,14 +53,8 @@ snippets_by_resource = {
         "definition",
         "authentication",
         ],
-    "guide_create_application": [
-        "definition",
-        "create_owner_user",
-        "create_application",
-        # "enable_dummy_processor",
-        ],
     "guide_general_overview": [
-        "definition",
+        "definition-payouts",
         ],
     "guide_iframe": [
         "definition",
@@ -87,16 +71,14 @@ snippets_by_resource = {
         "definition"
     ],
     "identities": [
-        "definition",
+        "definition-payouts",
         "create_recipient_identity",
-        "create_sender_identity",
         "fetch_identity",
         "list_identities",
-        "update_identity",
-        "provision_merchant",
+        "update_identity_payouts",
         ],
     "payment_instruments": [
-        "definition",
+        "definition-payouts",
         "associate_token",
         "create_card",
         "fetch_credit_card",
@@ -143,16 +125,8 @@ admin_snippets_by_resource = {
         "definition",
         "authentication",
         ],
-    "guide_create_application": [
-        "definition",
-        "create_owner_user",
-        "create_application",
-        "enable_dummy_processor",
-        "enable_processing",
-        "enable_settlements",
-        ],
     "guide_general_overview": [
-        "definition",
+        "definition-payouts",
         ],
     "guide_iframe": [
         "definition",
@@ -169,9 +143,8 @@ admin_snippets_by_resource = {
         "definition"
     ],
     "identities": [
-        "definition",
+        "definition-payouts",
         "create_recipient_identity",
-        "create_sender_identity",
         "fetch_identity",
         "update_identity",
         "list_identities",
@@ -201,8 +174,6 @@ resource_ordering = [
     "api_endpoints",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_create_application",
-    "applications",
     # "disputes",
     "identities",
     "payment_instruments",
@@ -219,7 +190,6 @@ admin_resource_ordering = [
     "guide_tokenization_js",
     "test_data",
     "guide_admin_overview",
-    "guide_create_application",
     "applications",
     # "disputes",
     "identities",
