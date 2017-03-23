@@ -53,8 +53,8 @@ snippets_by_resource = {
         "definition",
         "authentication",
         ],
-    "guide_general_overview": [
-        "definition-payouts",
+    "guide_general_overview_payouts": [
+        "definition",
         ],
     "guide_iframe": [
         "definition",
@@ -70,15 +70,15 @@ snippets_by_resource = {
     "test_data": [
         "definition"
     ],
-    "identities": [
-        "definition-payouts",
+    "identities_payouts": [
+        "definition",
         "create_recipient_identity",
         "fetch_identity",
         "list_identities",
         "update_identity_payouts",
         ],
-    "payment_instruments": [
-        "definition-payouts",
+    "payment_instruments_payouts": [
+        "definition",
         "associate_token",
         "create_card",
         "fetch_credit_card",
@@ -125,8 +125,8 @@ admin_snippets_by_resource = {
         "definition",
         "authentication",
         ],
-    "guide_general_overview": [
-        "definition-payouts",
+    "guide_general_overview_payouts": [
+        "definition",
         ],
     "guide_iframe": [
         "definition",
@@ -142,14 +142,14 @@ admin_snippets_by_resource = {
     "test_data": [
         "definition"
     ],
-    "identities": [
-        "definition-payouts",
+    "identities_payouts": [
+        "definition",
         "create_recipient_identity",
         "fetch_identity",
         "update_identity",
         "list_identities",
         ],
-    "payment_instruments": [
+    "payment_instruments_payouts": [
         "definition",
         "associate_token",
         "create_card",
@@ -169,20 +169,20 @@ admin_snippets_by_resource = {
 
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
-    "guide_general_overview",
+    "guide_general_overview_payouts",
     "guide_authentication",
     "api_endpoints",
     "guide_push_to_card",
     "guide_iframe",
     # "disputes",
     "identities",
-    "payment_instruments",
+    "payment_instruments_payouts",
     # "identity_verifications",
     "payouts",
 ]
 
 admin_resource_ordering = [
-    "guide_general_overview",
+    "guide_general_overview_payouts",
     "guide_authentication",
     "api_endpoints",
     "guide_push_to_card",
@@ -194,7 +194,7 @@ admin_resource_ordering = [
     # "disputes",
     "identities",
      # "identity_verifications",
-    "payment_instruments",
+    "payment_instruments_payouts",
     "payouts",
 ]
 

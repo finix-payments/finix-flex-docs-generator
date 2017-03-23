@@ -59,7 +59,7 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, included_client
                 file_ordering.append(file)
             else:
                 # add the definition for the specific snippet
-                file = snippet_directory_location  + "/sections/" + resource + "/" + snippet + "/definition.md"
+                file = snippet_directory_location + "/sections/" + resource + "/" + snippet + "/definition.md"
                 file_ordering.append(file)
 
                 # include all the requests for the specific libraries
@@ -465,7 +465,7 @@ def generate_template_variables(config_values):
             "capture_authorization_scenario_curl_request": capture_authorization_scenario["curl_request_body"],
             "capture_authorization_scenario_php_request": capture_authorization_scenario["php_request_body"],
             "capture_authorization_scenario_ruby_request": capture_authorization_scenario["ruby_request_body"],
-            "capture_authorization_scenario_python_request": capture_authorization_scenario["python_request_body"],
+            "capture_authorization_scen`ario_python_request": capture_authorization_scenario["python_request_body"],
             "capture_authorization_scenario_response": capture_authorization_scenario["response_body"],
             "capture_authorization_scenario_id": capture_authorization_scenario["response_id"],
 
