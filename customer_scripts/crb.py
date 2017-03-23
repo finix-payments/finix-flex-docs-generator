@@ -89,12 +89,15 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, included_client
         for fname in file_ordering:
             if fname not in skip_client_scenarios:
                 # if fname == "/Users/richardserna2/code/very_good/doc-template-builder/sections/webhooks/sample_payloads/curl_request.md":
-
+                #     import ipdb; ipdb.set_trace()
                 with open(fname) as infile:
                     for line in infile:
+                        if all(ord(char) < 128 for char in line) == False:
+                            print "WARNING MOFO: You introduced a non-ascii element to the docs. This will result in an error."
+                            print "Please correct the following lines:"
+                            print line
                         outfile.write(line)
                 outfile.write("\n")
-
 
 
 def build_docs(config_file):
