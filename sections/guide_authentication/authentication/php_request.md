@@ -1,7 +1,7 @@
 // Download the PHP Client here: {{php_client_repo}}
 
 require_once('vendor/autoload.php');
-require(__DIR__ . '/src/{{api_name}}/Settings.php');
+require(__DIR__ . '/src/{{php_client_resource_name}}/Settings.php');
 
 {{api_name}}\Settings::configure([
 	"root_url" => '{{staging_base_url}}',
@@ -9,5 +9,5 @@ require(__DIR__ . '/src/{{api_name}}/Settings.php');
 	"password" => '{{basic_auth_password}}']
 	);
 
-require(__DIR__ . '/src/{{api_name}}/Bootstrap.php');
-{{api_name}}\Bootstrap::init();
+require(__DIR__ . '/src/{{php_client_resource_name}}/Bootstrap.php');
+{{php_client_resource_name}}\Bootstrap::init();

@@ -1,4 +1,4 @@
-use {{api_name}}\Resources\Transfer;
+use {{php_client_resource_name}}\Resources\Transfer;
 
 $transfers = Transfer::getPagination("/transfers");
 
