@@ -109,7 +109,7 @@ snippets_by_resource = {
         ],
     "payouts": [
         "definition",
-        "create_debit",
+        "create_payout",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
@@ -208,7 +208,7 @@ admin_snippets_by_resource = {
         ],
     "payouts": [
         "definition",
-        "create_debit",
+        "create_payout",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
