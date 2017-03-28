@@ -13,6 +13,9 @@ partner_configs = {
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
+        'basic_auth_username_payouts': None,
+        'basic_auth_password_payouts': None,
+        'encoded_auth_payouts': None,
         'payment_processor': "DUMMY_V1",
         'identity_verification_processor': "DUMMY_V1",
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
@@ -26,6 +29,7 @@ partner_configs = {
         'ruby_gem': "finix",
         'ruby_require_statement': "finix",
         'java_artifact_id': "finix",
+        'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/finix.js",
         }
 
 
@@ -172,6 +176,9 @@ snippets_by_resource = {
         "list_webhooks",
         "sample_payloads",
         ],
+    "fees": [
+        "definition"
+    ]
     }
 
 # this provides the ordering for the docs by section and individual snippet
@@ -322,6 +329,9 @@ admin_snippets_by_resource = {
         "list_webhooks",
         "sample_payloads",
         ],
+    "fees": [
+        "definition"
+    ]
     }
 
 # This is the order that the directories / guides will be concatinated

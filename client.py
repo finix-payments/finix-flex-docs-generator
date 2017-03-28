@@ -24,6 +24,8 @@ class Client(object):
     platform_basic_auth_password = ""
     basic_auth_username = ""
     basic_auth_password = ""
+    basic_auth_username_payouts = ""
+    basic_auth_password_payouts = ""
 
 
     def __init__(self,
@@ -33,7 +35,10 @@ class Client(object):
                  platform_basic_auth_username = "",
                  platform_basic_auth_password = "",
                  basic_auth_username = "",
-                 basic_auth_password = ""):
+                 basic_auth_password = "",
+                 basic_auth_username_payouts = "",
+                 basic_auth_password_payouts = ""):
+        # type: (object, object, object, object, object, object, object) -> object
         self.staging_base_url = staging_base_url
         self.admin_basic_auth_username = admin_basic_auth_username
         self.admin_basic_auth_password = admin_basic_auth_password
@@ -47,6 +52,10 @@ class Client(object):
         self.basic_auth_password = basic_auth_password
         self.encoded_auth = base64.b64encode(self.basic_auth_username + ':' + self.basic_auth_password)
 
+        self.basic_auth_username_payouts = basic_auth_username_payouts
+        self.basic_auth_password_payouts = basic_auth_password_payouts
+        self.encoded_auth_payouts = base64.b64encode(self.basic_auth_username_payouts + ':' + self.basic_auth_password_payouts)
+
     def create_user(self, role):
         values = {
             "role": role
@@ -54,7 +63,6 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/users'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
-
 
     def create_app(self, application_owner_user_id, business_type):
         company = random_app_name()
@@ -103,7 +111,6 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/applications'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
-
 
     def associate_payment_processor(self, processor, application_id):
         if processor == "DUMMY_V1":
@@ -176,6 +183,35 @@ class Client(object):
         endpoint = self.staging_base_url + '/identities'
         return formatted_response(endpoint, values, self.encoded_auth)
 
+
+    def create_recipient_identity(self):
+        first = random_first_name()
+        values = {
+            "tags": {
+                "key": "value"
+            },
+            "entity": {
+                "last_name": random_last_name(),
+                "first_name": first,
+                "email": first + "@gmail.com",
+                "phone": "7145677612",
+                "personal_address": {
+                    "city": "San Mateo",
+                    "country": "USA",
+                    "region": "CA",
+                    "line2": "Apartment 7",
+                    "line1": "741 Douglass St",
+                    "postal_code": "94114"
+                }
+            }
+        }
+
+        values = format_json(json.dumps(values))
+
+        endpoint = self.staging_base_url + '/identities'
+        return formatted_response(endpoint, values, self.encoded_auth_payouts)
+
+
     def create_merchant_identity(self, business_type):
         if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
             ownership_type = "PUBLIC"
@@ -234,6 +270,25 @@ class Client(object):
                 "doing_business_as": company,
                 "email": "user@example.org",
                 "ownership_type": ownership_type
+            }
+        }
+
+        values = format_json(json.dumps(values))
+
+        endpoint = self.staging_base_url + '/identities'
+        return formatted_response(endpoint, values, self.encoded_auth)
+
+    def create_sender_identity(self, business_type):
+        if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
+            ownership_type = "PUBLIC"
+        else:
+            ownership_type = "PRIVATE"
+
+        company = random_business_name()
+        values = {
+            "processor": "VISA_V1",
+            "tags": {
+                "key_2": "value_2"
             }
         }
 
@@ -315,6 +370,19 @@ class Client(object):
         endpoint = self.staging_base_url + '/identities/' + identity_id + '/merchants'
         return formatted_response(endpoint, values, self.encoded_auth)
 
+    def provision_sender(self, identity_id, processor):
+        values = {
+            "tags": {
+              "key_2": "value_2"
+            },
+            "processor": processor
+          }
+
+        values = format_json(json.dumps(values))
+
+        endpoint = self.staging_base_url + '/identities/' + identity_id + '/merchants'
+        return formatted_response(endpoint, values, self.encoded_auth_payouts)
+
     def create_identity_verification(self, identity_id, identity_verification_processor):
         values = {
             "processor": identity_verification_processor,
@@ -326,7 +394,7 @@ class Client(object):
         endpoint = self.staging_base_url + '/identities/' + identity_id + '/verifications'
         return formatted_response(endpoint, values, self.encoded_auth)
 
-    def create_card(self, identity_id):
+    def create_card(self, identity_id, payout=None):
         values = {
             "identity": identity_id,
             "expiration_year": 2020,
@@ -349,7 +417,10 @@ class Client(object):
         }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/payment_instruments'
-        return formatted_response(endpoint, values, self.encoded_auth)
+        if payout==None:
+            return formatted_response(endpoint, values, self.encoded_auth)
+        else:
+            return formatted_response(endpoint, values, self.encoded_auth_payouts)
 
     def update_payment_instrument(self, payment_instrument_id):
         values = {
@@ -496,7 +567,6 @@ class Client(object):
         fee = int(round(amount * .1))
         values =  {
             "currency": "USD",
-            "processor": "VISA_V1",
             "destination": card_id,
             "amount": amount,
             "tags": {
@@ -506,7 +576,7 @@ class Client(object):
 
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/transfers'
-        return formatted_response(endpoint, values, self.encoded_auth)
+        return formatted_response(endpoint, values, self.encoded_auth_payouts)
 
     # no longer allowing bank credits
     # def create_credit(self, merchant_id, bank_account_id):
@@ -865,4 +935,3 @@ class Client(object):
         values = None
         endpoint = self.staging_base_url + '/webhooks'
         return formatted_response(endpoint, values, self.encoded_auth)
-

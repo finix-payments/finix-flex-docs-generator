@@ -1,7 +1,7 @@
 > Example Response:
 
 ```json
-{{create_recipient_identity_scenario_response}}
+{{create_recipient_identity_payouts_scenario_response}}
 ```
 
 Use the resulting ID of the newly created Recipient Identity to associate any payouts or payment instruments that are used. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds.
