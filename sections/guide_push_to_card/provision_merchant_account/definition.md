@@ -1,1 +1,1 @@
-### Step 3: Provision Sender Account
+### Step 3: Provision Recipient Account

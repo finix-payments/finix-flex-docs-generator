@@ -59,7 +59,7 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, included_client
                 file_ordering.append(file)
             else:
                 # add the definition for the specific snippet
-                file = snippet_directory_location  + "/sections/" + resource + "/" + snippet + "/definition.md"
+                file = snippet_directory_location + "/sections/" + resource + "/" + snippet + "/definition.md"
                 file_ordering.append(file)
 
                 # include all the requests for the specific libraries
@@ -89,12 +89,14 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, included_client
         for fname in file_ordering:
             if fname not in skip_client_scenarios:
                 # if fname == "/Users/richardserna2/code/very_good/doc-template-builder/sections/webhooks/sample_payloads/curl_request.md":
-
                 with open(fname) as infile:
                     for line in infile:
+                        if all(ord(char) < 128 for char in line) == False:
+                            print "WARNING MOFO: You introduced a non-ascii element to the docs. This will result in an error."
+                            print "Please correct the following lines:"
+                            print line
                         outfile.write(line)
                 outfile.write("\n")
-
 
 
 def build_docs(config_file):

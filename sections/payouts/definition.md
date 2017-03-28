@@ -1,16 +1,11 @@
-# Payouts
+# Transfer
 
-A `Payout` represents any flow of funds either to or from a `Payment Instrument`.
-For example, a `Payout` can be either a [debit to a card](#debit-a-card), a
-credit to a bank account, or a [refund to a card](#refund-a-debit) depending on
-the request.
+A `Transfer` represents any payout to a card
 
-`Payouts` can have three possible states values: PENDING, SUCCEEDED, or FAILED.
+Payouts can have two possible states values: SUCCEEDED or FAILED.
 
-- **SUCCEEDED:** Funds captured and available for settlement (i.e. disbursement
-via ACH Credit)
+- **SUCCEEDED:**  Funds have been disbursed.
         
-- **FAILED:** Authorization attempt failed
+- **FAILED:** Attempt to disburse has failed
 
-By default, `Payouts` will be in a PENDING state and will eventually (typically
-within an hour) update to SUCCEEDED.
+

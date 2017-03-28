@@ -10,7 +10,11 @@ testing purposes. You must use the Tokenization iframe or javascript client
 to remain out of PCI scope.
 </aside>
 
-Again, keep track of the ID of the newly created payment instrument. This is used to determine the destination of funds when sending money.
+Now that we've created an `Identity` for our recipient, we'll need to tokenize a credit card where funds will be disbursed.
+
+In the API, credit cards are represented by the `Payment Instrument` resource.
+
+To classify the `Payment Instrument` as a credit card you'll need to pass `PAYMENT_CARD` in the type field of your request, and you'll also want to pass the ID of the `Identity` that you created in the last step via the identity field to properly associate it with your recipient.
 
 #### HTTP Request
 
