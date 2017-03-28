@@ -31,6 +31,7 @@ partner_configs = {
         'ruby_require_statement': "finix",
         'java_artifact_id': "finix",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/finix.js",
+        'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/Ls101sou/",
         }
 
 

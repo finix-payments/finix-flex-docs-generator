@@ -28,6 +28,7 @@ partner_configs = {
     'ruby_require_statement': "simonpayments",
     'java_artifact_id': "finix",
     'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/simon-payments.js",
+    'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/0ouyja68/",
 }
 
 
