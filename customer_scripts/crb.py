@@ -89,7 +89,6 @@ def make_all_doc_scenarios(resource_ordering, scenario_ordering, included_client
         for fname in file_ordering:
             if fname not in skip_client_scenarios:
                 # if fname == "/Users/richardserna2/code/very_good/doc-template-builder/sections/webhooks/sample_payloads/curl_request.md":
-                #     import ipdb; ipdb.set_trace()
                 with open(fname) as infile:
                     for line in infile:
                         if all(ord(char) < 128 for char in line) == False:
@@ -468,7 +467,7 @@ def generate_template_variables(config_values):
             "capture_authorization_scenario_curl_request": capture_authorization_scenario["curl_request_body"],
             "capture_authorization_scenario_php_request": capture_authorization_scenario["php_request_body"],
             "capture_authorization_scenario_ruby_request": capture_authorization_scenario["ruby_request_body"],
-            "capture_authorization_scen`ario_python_request": capture_authorization_scenario["python_request_body"],
+            "capture_authorization_scenario_python_request": capture_authorization_scenario["python_request_body"],
             "capture_authorization_scenario_response": capture_authorization_scenario["response_body"],
             "capture_authorization_scenario_id": capture_authorization_scenario["response_id"],
 
