@@ -28,6 +28,7 @@ partner_configs = {
     'ruby_require_statement': "simonpayments",
     'java_artifact_id': "finix",
     'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/simon-payments.js",
+    'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/0ouyja68/",
 }
 
 
@@ -96,7 +97,11 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ],
+    ],
+    "guide_hosted_fields": [
+        "definition",
+        "associate_token",
+    ],
     "test_data": [
         "definition"
     ],
@@ -234,7 +239,11 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ],
+    ],
+    "guide_hosted_fields": [
+        "definition",
+        "associate_token",
+    ],
     "test_data": [
         "definition"
     ],
@@ -319,6 +328,7 @@ resource_ordering = [
     "api_endpoints",
     "guide_getting_started",
     "guide_iframe",
+    "guide_hosted_fields",
     "test_data",
     "authorizations",
     # "disputes",
@@ -338,10 +348,10 @@ admin_resource_ordering = [
     "api_endpoints",
     "guide_getting_started",
     "guide_iframe",
+    "guide_hosted_fields",
     "guide_admin_overview",
     "guide_create_application",
     "fees",
-    "guide_tokenization_js",
     "test_data",
     "applications",
     "authorizations",

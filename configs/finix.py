@@ -31,6 +31,7 @@ partner_configs = {
         'ruby_require_statement': "finix",
         'java_artifact_id': "finix",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/finix.js",
+        'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/Ls101sou/",
         }
 
 
@@ -100,7 +101,11 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ],
+    ],
+    "guide_hosted_fields": [
+        "definition",
+        "associate_token",
+    ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
@@ -250,7 +255,11 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ],
+    ],
+    "guide_hosted_fields": [
+        "definition",
+        "associate_token",
+    ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
@@ -343,7 +352,7 @@ resource_ordering = [
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_tokenization_js",
+    "guide_hosted_fields",
     "test_data",
     "authorizations",
     # "disputes",
@@ -363,7 +372,7 @@ admin_resource_ordering = [
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_tokenization_js",
+    "guide_hosted_fields",
     "test_data",
     "guide_admin_overview",
     "guide_create_application",

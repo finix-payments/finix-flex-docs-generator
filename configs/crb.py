@@ -23,7 +23,9 @@ partner_configs = {
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
         'staging_base_url': "https://api-staging.finix.io",
         'production_base_url': "https://api.finix.io",
-        'api_name_downcase': "crossriver",
+        'python_client_resource_name': "CRB",
+        'php_client_repo': "https://github.com/finix-payments/processing-php-client",
+        'php_client_resource_name': "CRB",
         'python_client_resource_name': "crossriver",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",
         'ruby_client_resource_name': "CrossRiver",
@@ -31,6 +33,7 @@ partner_configs = {
         'ruby_require_statement': "finix",
         'java_artifact_id': "finix",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/crb.js",
+        'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/Ls101sou/",
 }
 
 
@@ -59,7 +62,11 @@ snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ],
+    ],
+    "guide_hosted_fields": [
+        "definition",
+        "associate_token",
+    ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
@@ -108,7 +115,7 @@ admin_snippets_by_resource = {
         "disable_application_processing",
         "disable_application_settlements",
         "create_partner_user",
-        "enable_dummy_processor",
+        # "enable_dummy_processor",
         # "enable_litle_processor",
         "list_applications",
         ],
@@ -131,7 +138,11 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ],
+    ],
+    "guide_hosted_fields": [
+        "definition",
+        "associate_token",
+    ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
@@ -174,6 +185,7 @@ resource_ordering = [
     "api_endpoints",
     "guide_push_to_card",
     "guide_iframe",
+    "guide_hosted_fields",
     # "disputes",
     "identities_payouts",
     "payment_instruments_payouts",
@@ -187,7 +199,7 @@ admin_resource_ordering = [
     "api_endpoints",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_tokenization_js",
+    "guide_hosted_fields",
     "test_data",
     "guide_admin_overview",
     "applications",

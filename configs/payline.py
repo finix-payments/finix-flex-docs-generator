@@ -22,6 +22,7 @@ partner_configs = {
         'production_base_url': "https://api.payline.io",
         'python_client_resource_name': "payline",
         'php_client_repo': "https://github.com/Payline/payline-php",
+        'php_client_resource_name': "Payline",
         'ruby_client_resource_name': "Payline",
         'ruby_gem': "payline-data",
         'ruby_require_statement': "payline",
@@ -240,7 +241,11 @@ admin_snippets_by_resource = {
     "guide_iframe": [
         "definition",
         "associate_token",
-        ],
+    ],
+    "guide_hosted_fields": [
+        "definition",
+        "associate_token",
+    ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -346,6 +351,7 @@ admin_resource_ordering = [
     "api_endpoints",
     "guide_getting_started",
     "guide_iframe",
+    "guide_hosted_fields",
     "guide_admin_overview",
     "guide_create_application",
     "fees",
