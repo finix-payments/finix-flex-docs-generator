@@ -26,6 +26,9 @@ partner_configs = {
         'ruby_gem': "payline-data",
         'ruby_require_statement': "payline",
         'java_artifact_id': "payline-data",
+        'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
+        'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
+
         }   
 
 
@@ -91,6 +94,10 @@ snippets_by_resource = {
         # "refund_debit"
     ],
     "guide_iframe": [
+        "definition",
+        "associate_token",
+        ],
+    "guide_hosted_fields": [
         "definition",
         "associate_token",
         ],
@@ -319,7 +326,8 @@ resource_ordering = [
     "api_endpoints",
     "guide_getting_started",
     "guide_iframe",
-    "guide_tokenization_js",
+    "guide_hosted_fields",
+    # "guide_tokenization_js",
     "test_data",
     "authorizations",
     # "disputes",

@@ -25,6 +25,7 @@ partner_configs = {
     'ruby_gem': "simon-payments",
     'ruby_require_statement': "simonpayments",
     'java_artifact_id': "finix",
+    'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/simon-payments.js",
 }
 
 

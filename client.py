@@ -56,18 +56,15 @@ class Client(object):
         self.basic_auth_password_payouts = basic_auth_password_payouts
         self.encoded_auth_payouts = base64.b64encode(self.basic_auth_username_payouts + ':' + self.basic_auth_password_payouts)
 
-    def create_user(self, role, payout=None):
+    def create_user(self, role):
         values = {
             "role": role
         }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/users'
-        if payout=="payout":
-            return formatted_response(endpoint, values, self.encoded_auth_payouts)
-        else:
-            return formatted_response(endpoint, values, self.platform_encoded_auth)
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-    def create_app(self, application_owner_user_id, business_type, payout=None):
+    def create_app(self, application_owner_user_id, business_type):
         company = random_app_name()
     
         values = {
@@ -113,10 +110,7 @@ class Client(object):
         }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/applications'
-        if payout == "payout":
-            return formatted_response(endpoint, values, self.encoded_auth_payouts)
-        else:
-            return formatted_response(endpoint, values, self.platform_encoded_auth)
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def associate_payment_processor(self, processor, application_id):
         if processor == "DUMMY_V1":
@@ -133,10 +127,7 @@ class Client(object):
             }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/applications/' + application_id + "/processors"
-        if processor == "VISA_V1":
-            return formatted_response(endpoint, values, self.encoded_auth_payouts)
-        else:
-            return formatted_response(endpoint, values, self.platform_encoded_auth)
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def associate_identity_verification_processor(self, identity_verification_processor):
         values = {
@@ -576,7 +567,6 @@ class Client(object):
         fee = int(round(amount * .1))
         values =  {
             "currency": "USD",
-            "processor": "VISA_V1",
             "destination": card_id,
             "amount": amount,
             "tags": {

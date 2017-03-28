@@ -1,0 +1,1 @@
+card = {{ruby_client_resource_name}}::PaymentInstrument.new({{associate_token_scenario_ruby_request}}).save
