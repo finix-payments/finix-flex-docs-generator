@@ -1,7 +1,7 @@
 > Example Response:
 
 ```json
-{{create_buyer_identity_scenario_response}}
+{{create_recipient_identity_payouts_scenario_response}}
 ```
 
 #### HTTP Request

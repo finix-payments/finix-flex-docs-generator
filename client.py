@@ -209,7 +209,7 @@ class Client(object):
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/identities'
-        return formatted_response(endpoint, values, self.encoded_auth_payouts)
+        return formatted_response(endpoint, values, self.encoded_auth)
 
 
     def create_merchant_identity(self, business_type):
@@ -357,6 +357,34 @@ class Client(object):
         endpoint = self.staging_base_url + '/identities/' + identity_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
+    def update_identity_payouts(self, identity_id):
+        company = random_business_name()
+        values = {
+            "tags": {
+                "key": "value"
+            },
+            "entity": {
+                "last_name": random_last_name(),
+                "first_name": random_first_name(),
+                "email": random_first_name() + "@gmail.com",
+                "phone": "7145677612",
+                "personal_address": {
+                    "city": "San Mateo",
+                    "country": "USA",
+                    "region": "CA",
+                    "line2": "Apartment 7",
+                    "line1": "741 Douglass St",
+                    "postal_code": "94114"
+                }
+            }
+        }
+
+
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/identities/' + identity_id
+        return formatted_response(endpoint, values, self.encoded_auth, "PUT")
+
+
     def provision_merchant(self, identity_id, processor=None):
         values = {
             "tags": {
@@ -381,7 +409,7 @@ class Client(object):
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/identities/' + identity_id + '/merchants'
-        return formatted_response(endpoint, values, self.encoded_auth_payouts)
+        return formatted_response(endpoint, values, self.encoded_auth)
 
     def create_identity_verification(self, identity_id, identity_verification_processor):
         values = {
@@ -394,7 +422,7 @@ class Client(object):
         endpoint = self.staging_base_url + '/identities/' + identity_id + '/verifications'
         return formatted_response(endpoint, values, self.encoded_auth)
 
-    def create_card(self, identity_id, payout=None):
+    def create_card(self, identity_id):
         values = {
             "identity": identity_id,
             "expiration_year": 2020,
@@ -417,10 +445,7 @@ class Client(object):
         }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/payment_instruments'
-        if payout==None:
-            return formatted_response(endpoint, values, self.encoded_auth)
-        else:
-            return formatted_response(endpoint, values, self.encoded_auth_payouts)
+        return formatted_response(endpoint, values, self.encoded_auth)
 
     def update_payment_instrument(self, payment_instrument_id):
         values = {
@@ -576,7 +601,7 @@ class Client(object):
 
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/transfers'
-        return formatted_response(endpoint, values, self.encoded_auth_payouts)
+        return formatted_response(endpoint, values, self.encoded_auth)
 
     # no longer allowing bank credits
     # def create_credit(self, merchant_id, bank_account_id):
