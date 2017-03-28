@@ -1,4 +1,5 @@
 import base64
+from collections import OrderedDict
 
 partner_configs = {
     'api_name': "SimonPayments",
@@ -21,6 +22,7 @@ partner_configs = {
     'production_base_url': "https://api.simonpayments.com",
     'python_client_resource_name': "simon",
     'php_client_repo': "https://github.com/finix-payments/processing-php-client",
+    'php_client_resource_name': "Simon",
     'ruby_client_resource_name': "Simon",
     'ruby_gem': "simon-payments",
     'ruby_require_statement': "simonpayments",
@@ -74,7 +76,7 @@ snippets_by_resource = {
         "create_application",
         "enable_dummy_processor",
         ],
-    "guide_general_overview": [
+    "guide_general_overview_no_payouts": [
         "definition",
         ],
     "guide_getting_started": [
@@ -212,7 +214,7 @@ admin_snippets_by_resource = {
         "enable_processing",
         "enable_settlements",
         ],
-    "guide_general_overview": [
+    "guide_general_overview_no_payouts": [
         "definition",
         ],
     "guide_getting_started": [
@@ -312,7 +314,7 @@ admin_snippets_by_resource = {
 
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
-    "guide_general_overview",
+    "guide_general_overview_no_payouts",
     "guide_authentication",
     "api_endpoints",
     "guide_getting_started",
@@ -331,7 +333,7 @@ resource_ordering = [
     ]
 
 admin_resource_ordering = [
-    "guide_general_overview",
+    "guide_general_overview_no_payouts",
     "guide_authentication",
     "api_endpoints",
     "guide_getting_started",
@@ -362,8 +364,10 @@ admin_resource_ordering = [
 #      structure for scenarios
 # VALUE: maps to the language_tab value in slate
 
-included_clients = {
-    "cURL": "shell"
-}
+
+included_clients = OrderedDict([
+    ("cURL", "shell"),
+    ("PHP", "php")
+])
 
 

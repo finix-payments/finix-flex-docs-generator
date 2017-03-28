@@ -25,6 +25,7 @@ partner_configs = {
         'production_base_url': "https://api.finix.io",
         'python_client_resource_name': "finix",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",
+        'php_client_resource_name': "Finix",
         'ruby_client_resource_name': "Finix",
         'ruby_gem': "finix",
         'ruby_require_statement': "finix",
