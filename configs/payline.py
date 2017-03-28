@@ -28,7 +28,6 @@ partner_configs = {
         'java_artifact_id': "payline-data",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
-
         }   
 
 
