@@ -75,7 +75,7 @@ snippets_by_resource = {
         "create_application",
         "enable_dummy_processor",
         ],
-    "guide_general_overview": [
+    "guide_general_overview_no_payouts": [
         "definition",
         ],
     "guide_getting_started": [
@@ -220,7 +220,7 @@ admin_snippets_by_resource = {
         "enable_processing",
         "enable_settlements",
         ],
-    "guide_general_overview": [
+    "guide_general_overview_no_payouts": [
         "definition",
         ],
     "guide_getting_started": [
@@ -325,7 +325,7 @@ admin_snippets_by_resource = {
 
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
-    "guide_general_overview",
+    "guide_general_overview_no_payouts",
     "guide_authentication",
     "api_endpoints",
     "guide_getting_started",
@@ -346,7 +346,7 @@ resource_ordering = [
 ]
 
 admin_resource_ordering = [
-    "guide_general_overview",
+    "guide_general_overview_no_payouts",
     "guide_authentication",
     "api_endpoints",
     "guide_getting_started",
