@@ -1,5 +1,9 @@
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
+Settlement settlement = client.settlementsClient().fetch("{{fetch_settlement_scenario_id}}");
+  settlement.fundingTransfersClient().<Resources<Transfer>>resourcesIterator()
+    .forEachRemaining(page -> {
+      Collection<Transfer> transfers = page.getContent();
+      transfers.forEach(transfer ->
+     // do something
+      );
+    });
+}
