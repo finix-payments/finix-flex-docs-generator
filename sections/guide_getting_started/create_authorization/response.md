@@ -17,7 +17,7 @@ as the source field and the seller's `Identity` ID in the merchant_identity fiel
 Note that the `amount` field is in cents.
 
 Simple enough, right? You'll also want to store the ID from that `Authorization`
-for your records and so that we can capture those funds in the next step.
+for your records so that we can capture those funds in the next step.
 
 
 `Authorizations` have two possible states SUCCEEDED and FAILED. If the `Authorization`
