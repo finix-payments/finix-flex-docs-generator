@@ -18,7 +18,7 @@ To do this we'll supply the buyer's `Payment Instrument` ID as the source field
 and the seller's `Identity` ID in the merchant_identity field. Note that the
 amount field is in cents. The `fee` field is the amount in cents you would like to
 keep before settling out to the merchant. For example, if you're charging the
- buyer $100 on behalf of your merchant, and you're taking a %10 service fee
+ buyer $100 on behalf of your merchant, and you're taking a 10% service fee
 you'll want to pass 10000 as the amount and 1000 as the fee. This way when the
 funds are eventually settled out only $90 will be disbursed to your merchant.
 

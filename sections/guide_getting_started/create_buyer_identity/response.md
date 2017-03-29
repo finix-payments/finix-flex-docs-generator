@@ -5,7 +5,7 @@
 ```
 
 Now that we have successfully provisioned a `Merchant` we'll need to create an
-`Identity` that represents your buyer. Don't worry tho you won't need to capture
+`Identity` that represents your buyer. Don't worry though you won't need to capture
 the same amount of information from your buyer. **So long as you
 don't pass a business_type field all the fields are optional.**
 

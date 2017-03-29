@@ -20,11 +20,11 @@ that will be deposited into your merchant's bank account after your fees have
 been deducted).
 
 <aside class="notice">
-Once a batch Settlement has been created it will undergo review and typically
+Once a batch Settlement has been created it will undergo review and typically be
 paid out within 24 hours.
 </aside>
 
-Note, that for reconciliation purposes each `Settlement` contains a [transfers
+Note that for reconciliation purposes each `Settlement` contains a [transfers
 link](#list-transfers-in-a-settlement) which returns a list of all the
 `Transfers` that comprise the batch.
 

@@ -23,7 +23,7 @@ transactions via the {{api_name}} API.
 </html>
 ```
 
-Before collecting the sensitive payment information, we will to add a button
+Before collecting the sensitive payment information, we will need to add a button
 to the HTML where we'll be hosting the iframe so that end-users can input their
 details.
 

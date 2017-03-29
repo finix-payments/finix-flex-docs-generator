@@ -5,7 +5,7 @@ For example, a `Transfer` can be either a [debit to a card](#debit-a-card), a
 credit to a bank account, or a [refund to a card](#refund-a-debit) depending on
 the request.
 
-`Transfers` can have three possible states values: PENDING, SUCCEEDED, or FAILED.
+`Transfers` can have four possible states values: PENDING, SUCCEEDED, FAILED, or CANCELED.
 
 - **PENDING:** Authorization on `Payment Instrument` successfully created (i.e.
 funds are being held), but awaiting system to batch submit the capture request

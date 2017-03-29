@@ -11,7 +11,7 @@ Note you can capture any amount less than or equal to the `amount` of the origin
  `Authorization`. You will also want to pass a `fee`. The `fee` field is the amount
  in cents you would like to keep before settling out to the merchant. For example,
  if you're charging the buyer $100 on behalf of your merchant, and you're taking
- a %10 service fee you'll want to pass 1000 as the fee. This way when the
+ a 10% service fee you'll want to pass 1000 as the fee. This way when the
  funds are eventually settled out only $90 will be disbursed to your merchant.
 
 Once successfully captured the `transfer` field of the `Authorization` will
