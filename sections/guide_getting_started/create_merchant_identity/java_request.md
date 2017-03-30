@@ -10,6 +10,7 @@ Identity identity = client.identitiesClient().save(
   Identity.builder()
     .entity(
       Entity.builder()
+        .title("CEO")
         .firstName("dwayne")
         .lastName("Sunkhronos")
         .email("user@example.org")
@@ -60,6 +61,8 @@ Identity identity = client.identitiesClient().save(
           .build()
         )
         .principalPercentageOwnership(51)
+        .ownershipType("PRIVATE")
+        .hasAcceptedCreditCardsPreviously(false)
         .build()
     )
     .build()
