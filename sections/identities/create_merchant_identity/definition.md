@@ -1,1 +1,1 @@
-## Create an Identity for a Sender
+## Create an Identity for a Merchant
