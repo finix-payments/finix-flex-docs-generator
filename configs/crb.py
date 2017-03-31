@@ -21,7 +21,7 @@ partner_configs = {
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
-        'staging_base_url': "https://api-staging.finix.io",
+        'staging_base_url': "https://api-staging.crbpay.io",
         'production_base_url': "https://api.finix.io",
         'python_client_resource_name': "CRB",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",
@@ -55,7 +55,6 @@ snippets_by_resource = {
     "guide_authentication": [
         "definition",
         "authentication",
-        ],
     "guide_general_overview_payouts": [
         "definition",
         ],

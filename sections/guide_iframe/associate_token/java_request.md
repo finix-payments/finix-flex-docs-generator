@@ -1,7 +1,5 @@
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
-
-PaymentCard paymentCard = PaymentCard.builder()
-    .type("TOKEN")
+PaymentCardToken paymentCard = PaymentCardToken.builder()
+    .type(TOKEN)
     .token("{{create_token_scenario_id}}")
     .identity("{{fetch_identity_scenario_id}}")
     .build();
