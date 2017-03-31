@@ -55,6 +55,7 @@ snippets_by_resource = {
     "guide_authentication": [
         "definition",
         "authentication",
+        ],
     "guide_general_overview_payouts": [
         "definition",
         ],
