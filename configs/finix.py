@@ -381,7 +381,7 @@ admin_resource_ordering = [
     # "disputes",
     "identities",
     # # "identity_verifications",
-    "merchants",
+    "merchan
     "payment_instruments",
     "settlements",
     "transfers",
