@@ -383,7 +383,7 @@ admin_resource_ordering = [
     # # "identity_verifications",
     "merchants",
     "payment_instruments",
-    "settlements",gs
+    "settlements",
     "transfers",
     "users",
     "webhooks",
