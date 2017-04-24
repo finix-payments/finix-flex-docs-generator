@@ -17,4 +17,4 @@ bank_code | *string*, **required** | Bank routing number
 type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
 identity | *string*, **required**| ID for the `Identity` resource which the account is associated
 account_type | *string*, **required** | Either CHECKING or SAVINGS
-name | *string*, **optional** | Account owner's full name
+name | *string*, **required** | Account owner's full name (max 40 characters)
