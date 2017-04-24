@@ -151,7 +151,7 @@ expiration_year | *integer*, **required** | Expiration year
 #### hosted_fields object for bankAccount
 Field | Type | Description
 ----- | ---- | -----------
-full_name | *string*, **optional** | Customer's full name on card
+name | *string*, **optional** | Customer's full name on card
 account_number | *string*, **required** | Bank account number
 bank_code | *string*, **required** | Bank routing number
 account_type | *string*, **required** | Either CHECKING or SAVINGS

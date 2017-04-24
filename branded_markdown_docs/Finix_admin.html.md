@@ -29,7 +29,7 @@ the dark area to the right.
 authenticate and interface with the API.
 
 2. [Getting Started](#getting-started): A step-by-step guide demonstrating the basic workflow
-of charing a card. This guide will walk you through provisioning merchant
+of charging a card. This guide will walk you through provisioning merchant
 accounts, tokenizing cards, charging those cards, and finally settling (i.e.
 payout) those funds out to your merchants.
 
@@ -50,7 +50,7 @@ explains how to properly tokenize cards in production via our embedded iframe.
 
 curl https://api-staging.finix.io/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -85,7 +85,7 @@ import io.finix.payments.processing.client.model.*;
 public static void main(String[] args) {
 
   ProcessingClient client = new ProcessingClient("https://api-staging.finix.io");
-  client.setupUserIdAndPassword("UScrRBEbdXh6eXUnME9c1MYF", "dfee4bb1-595c-40b8-888b-7efae106f0ce");
+  client.setupUserIdAndPassword("US7WwPZ8N8nGwt48GdeCmqoG", "09539f06-cdc1-43d2-beb6-4d58c9a0fc92");
 
 //...
 
@@ -99,8 +99,8 @@ require(__DIR__ . '/src/Finix/Settings.php');
 
 Finix\Settings::configure([
 	"root_url" => 'https://api-staging.finix.io',
-	"username" => 'UScrRBEbdXh6eXUnME9c1MYF',
-	"password" => 'dfee4bb1-595c-40b8-888b-7efae106f0ce']
+	"username" => 'US7WwPZ8N8nGwt48GdeCmqoG',
+	"password" => '09539f06-cdc1-43d2-beb6-4d58c9a0fc92']
 	);
 
 require(__DIR__ . '/src/Finix/Bootstrap.php');
@@ -116,7 +116,7 @@ Finix\Bootstrap::init();
 import finix
 
 from finix.config import configure
-configure(root_url="https://api-staging.finix.io", auth=("UScrRBEbdXh6eXUnME9c1MYF", "dfee4bb1-595c-40b8-888b-7efae106f0ce"))
+configure(root_url="https://api-staging.finix.io", auth=("US7WwPZ8N8nGwt48GdeCmqoG", "09539f06-cdc1-43d2-beb6-4d58c9a0fc92"))
 
 ```
 ```ruby
@@ -127,8 +127,8 @@ require 'finix'
 
 Finix.configure(
     :root_url => 'https://api-staging.finix.io',
-    :user=>'UScrRBEbdXh6eXUnME9c1MYF',
-    :password => 'dfee4bb1-595c-40b8-888b-7efae106f0ce'
+    :user=>'US7WwPZ8N8nGwt48GdeCmqoG',
+    :password => '09539f06-cdc1-43d2-beb6-4d58c9a0fc92'
 )
 ```
 To communicate with the Finix API you'll need to authenticate your requests
@@ -136,11 +136,11 @@ via http basic access authentication with a `username` and `password`, which you
 can locate in your dashboard. If you do not have a dashboard feel free to test
 the API with the credentials below:
 
-- Username: `UScrRBEbdXh6eXUnME9c1MYF`
+- Username: `US7WwPZ8N8nGwt48GdeCmqoG`
 
-- Password: `dfee4bb1-595c-40b8-888b-7efae106f0ce`
+- Password: `09539f06-cdc1-43d2-beb6-4d58c9a0fc92`
 
-- Application ID: `AP4GcWbztqRvJnJ9TydudDAF`
+- Application ID: `AP22AGPHEqD1fwgycz9DaTYk`
 
 Your `Application` is a resource that represents your web app. In other words,
 any web service that connects buyers (i.e. customers) and sellers
@@ -164,7 +164,7 @@ API credentials. For testing please use the Staging API and when you are ready t
 ```shell
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "tags": {
@@ -174,7 +174,7 @@ curl https://api-staging.finix.io/identities \
 	        "last_name": "Sunkhronos", 
 	        "max_transaction_amount": 12000000, 
 	        "has_accepted_credit_cards_previously": true, 
-	        "default_statement_descriptor": "Lees Sandwiches", 
+	        "default_statement_descriptor": "Bobs Burgers", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -200,12 +200,12 @@ curl https://api-staging.finix.io/identities \
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Lees Sandwiches", 
+	        "doing_business_as": "Bobs Burgers", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Lees Sandwiches", 
+	        "business_name": "Bobs Burgers", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -214,7 +214,7 @@ curl https://api-staging.finix.io/identities \
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.LeesSandwiches.com", 
+	        "url": "www.BobsBurgers.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}'
@@ -233,6 +233,7 @@ Identity identity = client.identitiesClient().save(
   Identity.builder()
     .entity(
       Entity.builder()
+        .title("CEO")
         .firstName("dwayne")
         .lastName("Sunkhronos")
         .email("user@example.org")
@@ -283,10 +284,13 @@ Identity identity = client.identitiesClient().save(
           .build()
         )
         .principalPercentageOwnership(51)
+        .ownershipType("PRIVATE")
+        .hasAcceptedCreditCardsPreviously(false)
         .build()
     )
     .build()
 );
+
 ```
 ```php
 <?php
@@ -301,7 +305,7 @@ $identity = new Identity(
 	        "last_name"=> "Sunkhronos", 
 	        "max_transaction_amount"=> 12000000, 
 	        "has_accepted_credit_cards_previously"=> true, 
-	        "default_statement_descriptor"=> "Lees Sandwiches", 
+	        "default_statement_descriptor"=> "Bobs Burgers", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -327,12 +331,12 @@ $identity = new Identity(
 	        "first_name"=> "dwayne", 
 	        "title"=> "CEO", 
 	        "business_tax_id"=> "123456789", 
-	        "doing_business_as"=> "Lees Sandwiches", 
+	        "doing_business_as"=> "Bobs Burgers", 
 	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
 	        "mcc"=> "0742", 
 	        "phone"=> "1234567890", 
-	        "business_name"=> "Lees Sandwiches", 
+	        "business_name"=> "Bobs Burgers", 
 	        "tax_id"=> "123456789", 
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -341,7 +345,7 @@ $identity = new Identity(
 	            "day"=> 27, 
 	            "month"=> 6
 	        ), 
-	        "url"=> "www.LeesSandwiches.com", 
+	        "url"=> "www.BobsBurgers.com", 
 	        "annual_card_volume"=> 12000000
 	    )
 	)
@@ -363,7 +367,7 @@ identity = Identity(**
 	        "last_name": "Sunkhronos", 
 	        "max_transaction_amount": 12000000, 
 	        "has_accepted_credit_cards_previously": True, 
-	        "default_statement_descriptor": "Lees Sandwiches", 
+	        "default_statement_descriptor": "Bobs Burgers", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -389,12 +393,12 @@ identity = Identity(**
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Lees Sandwiches", 
+	        "doing_business_as": "Bobs Burgers", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Lees Sandwiches", 
+	        "business_name": "Bobs Burgers", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -403,7 +407,7 @@ identity = Identity(**
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.LeesSandwiches.com", 
+	        "url": "www.BobsBurgers.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}).save()
@@ -419,7 +423,7 @@ identity = Finix::Identity.new(
 	        "last_name"=> "Sunkhronos", 
 	        "max_transaction_amount"=> 12000000, 
 	        "has_accepted_credit_cards_previously"=> true, 
-	        "default_statement_descriptor"=> "Lees Sandwiches", 
+	        "default_statement_descriptor"=> "Bobs Burgers", 
 	        "personal_address"=> {
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -445,12 +449,12 @@ identity = Finix::Identity.new(
 	        "first_name"=> "dwayne", 
 	        "title"=> "CEO", 
 	        "business_tax_id"=> "123456789", 
-	        "doing_business_as"=> "Lees Sandwiches", 
+	        "doing_business_as"=> "Bobs Burgers", 
 	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
 	        "mcc"=> "0742", 
 	        "phone"=> "1234567890", 
-	        "business_name"=> "Lees Sandwiches", 
+	        "business_name"=> "Bobs Burgers", 
 	        "tax_id"=> "123456789", 
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -459,7 +463,7 @@ identity = Finix::Identity.new(
 	            "day"=> 27, 
 	            "month"=> 6
 	        }, 
-	        "url"=> "www.LeesSandwiches.com", 
+	        "url"=> "www.BobsBurgers.com", 
 	        "annual_card_volume"=> 12000000
 	    }
 	}).save
@@ -468,15 +472,15 @@ identity = Finix::Identity.new(
 
 ```json
 {
-  "id" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "IDfNKgun2WNruSqAPBFYXaXz",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Lees Sandwiches",
+    "business_name" : "Bobs Burgers",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Lees Sandwiches",
+    "doing_business_as" : "Bobs Burgers",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -504,7 +508,7 @@ identity = Finix::Identity.new(
     "max_transaction_amount" : 12000000,
     "amex_mid" : null,
     "discover_mid" : null,
-    "url" : "www.LeesSandwiches.com",
+    "url" : "www.BobsBurgers.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -517,40 +521,40 @@ identity = Finix::Identity.new(
     "ownership_type" : "PRIVATE",
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Lees Sandwiches"
+    "default_statement_descriptor" : "Bobs Burgers"
   },
   "tags" : {
     "Studio Rating" : "4.7"
   },
-  "created_at" : "2017-03-28T18:55:23.49Z",
-  "updated_at" : "2017-03-28T18:55:23.49Z",
+  "created_at" : "2017-04-17T23:48:38.85Z",
+  "updated_at" : "2017-04-17T23:48:38.85Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/verifications"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/authorizations"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/transfers"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/payment_instruments"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/disputes"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -570,12 +574,7 @@ Before we can begin charging cards we'll need to provision a `Merchant` account 
 
     `POST https://api-staging.finix.io/identities/:IDENTITY_ID/merchants`
 
-Let's start with the first step by creating an `Identity` resource. Each `Identity`
- represents either a `buyer` or a `merchant`. We use this resource to associate
- cards, bank accounts, and transactions. This structure makes it simple to
- manage and reconcile a merchant's associated bank accounts, transaction
- history, and payouts. Additionally, for merchants, the `Identity` resource is
- used to collect underwriting information for the business and its principal.
+Let's start with the first step by creating an `Identity` resource. Each `Identity` represents either a person or a business. We use this resource to associate cards and payouts. This structure makes it simple to manage and reconcile payment instruments and payout history. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds. Additionally, the Identity resource is optionally used to collect KYC information.
 
 You'll want to store the ID of the newly created `Identity` resource for
 reference later.
@@ -588,12 +587,12 @@ reference later.
 
 Field | Type | Description
 ----- | ---- | -----------
-business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial)
-doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
+business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial; max 120 characters)
+doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name (max 60 characters)
 business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
 business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
-url | *string*, **required** | Merchant's publicly available website
-business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
+url | *string*, **required** | Merchant's publicly available website (max 100 characters)
+business_phone | *string*, **required** | Customer service phone number where the merchant can be reached (max 10 characters)
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
 ownership_type | *string*, **required** | Values can be either PUBLIC to indicate a publicly traded company or PRIVATE for privately held businesses
@@ -603,14 +602,14 @@ ownership_type | *string*, **required** | Values can be either PUBLIC to indicat
 
 Field | Type | Description
 ----- | ---- | -----------
-first_name | *string*, **required** | Full legal first name of the merchant's principal representative
-last_name | *string*, **required** | Full legal last name of the merchant's principal representative
-title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
-principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
+first_name | *string*, **required** | Full legal first name of the merchant's principal representative (max 20 characters)
+last_name | *string*, **required** | Full legal last name of the merchant's principal representative (max 20 characters)
+title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.; max 60 characters)
+principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal (min 0; max 100)
 tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
 dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
-phone | *string*, **required** | Principal's phone number
-email | *string*, **required** | Principal's email address where they can be reached
+phone | *string*, **required** | Principal's phone number (max 10 characters)
+email | *string*, **required** | Principal's email address where they can be reached (max 100 characters)
 personal_address | *object*, **required** | Principal's personal home address. This field is used for identity verification purposes (Full description of child attributes below)
 
 #### Processing-specific Request Arguments
@@ -618,8 +617,8 @@ personal_address | *object*, **required** | Principal's personal home address. T
 Field | Type | Description
 ----- | ---- | -----------
 default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
-annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant
-max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents
+annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant (max 23 characters)
+max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents (max 12 characters)
 mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under
 has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
 
@@ -627,11 +626,11 @@ has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to fal
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **required** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **required** | City
-region | *string*, **required** | State
-postal_code | *string*, **required** | Zip or Postal code
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
 country | *string*, **required** | 3-Letter Country code
 
 #### Incorporation Date-object Request Arguments
@@ -655,7 +654,7 @@ year | *integer*, **required** | Year of birth (4-digit)
 ```shell
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "account_type": "SAVINGS", 
@@ -667,7 +666,7 @@ curl https://api-staging.finix.io/payment_instruments \
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}'
 
 
@@ -680,7 +679,7 @@ import io.finix.payments.processing.client.model.Name;
 BankAccount bankAccount = client.bankAccountsClient().save(
     BankAccount.builder()
       .name(Name.parse("Joe Doe"))
-      .identity(identity.getId())  //  or use "ID6HTbvJWaQb7TUVSR2KpiqX"
+      .identity(identity.getId())  //  or use "IDfNKgun2WNruSqAPBFYXaXz"
       .accountNumber("84012312415")
       .bankCode("840123124")
       .accountType(BankAccountType.SAVINGS)
@@ -697,7 +696,7 @@ BankAccount bankAccount = client.bankAccountsClient().save(
 use Finix\Resources\Identity;
 use Finix\Resources\BankAccount;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 $bank_account = new BankAccount(
 	array(
 	    "account_type"=> "SAVINGS", 
@@ -709,7 +708,7 @@ $bank_account = new BankAccount(
 	    "bank_code"=> "123123123", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	));
 $bank_account = $identity->createBankAccount($bank_account);
 ```
@@ -729,7 +728,7 @@ bank_account = BankAccount(**
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save()
 
 ```
@@ -745,14 +744,14 @@ bank_account = Finix::BankAccount.new(
 	    "bank_code"=> "123123123", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIgtzh7EvFDiSnynkwnsgr3z",
+  "id" : "PIcgLj6AecVH1XbMpZpCF4Td",
   "fingerprint" : "FPR-1215770130",
   "tags" : {
     "Bank Account" : "Company Account"
@@ -762,30 +761,30 @@ bank_account = Finix::BankAccount.new(
   "masked_account_number" : "XXXXX3123",
   "name" : "Fran Lemke",
   "account_type" : "SAVINGS",
-  "created_at" : "2017-03-28T18:55:27.69Z",
-  "updated_at" : "2017-03-28T18:55:27.69Z",
+  "created_at" : "2017-04-17T23:48:42.65Z",
+  "updated_at" : "2017-04-17T23:48:42.65Z",
   "instrument_type" : "BANK_ACCOUNT",
   "type" : "BANK_ACCOUNT",
   "currency" : "USD",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -817,13 +816,13 @@ bank_code | *string*, **required** | Bank routing number
 type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
 identity | *string*, **required**| ID for the `Identity` resource which the account is associated
 account_type | *string*, **required** | Either CHECKING or SAVINGS
-name | *string*, **optional** | Account owner's full name
+name | *string*, **required** | Account owner's full name (max 40 characters)
 ### Step 3: Provision Merchant Account
 
 ```shell
-curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants \
+curl https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "processor": null, 
@@ -843,7 +842,7 @@ Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build());
 use Finix\Resources\Identity;
 use Finix\Resources\Merchant;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 $merchant = $identity->provisionMerchantOn(new Merchant());
 ```
 ```python
@@ -852,11 +851,11 @@ $merchant = $identity->provisionMerchantOn(new Merchant());
 from finix.resources import Identity
 from finix.resources import Merchant
 
-identity = Identity.get(id="ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Identity.get(id="IDfNKgun2WNruSqAPBFYXaXz")
 merchant = identity.provision_merchant_on(Merchant())
 ```
 ```ruby
-identity = Finix::Identity.retrieve(:id=>"ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Finix::Identity.retrieve(:id=>"IDfNKgun2WNruSqAPBFYXaXz")
 
 merchant = identity.provision_merchant
 ```
@@ -864,35 +863,35 @@ merchant = identity.provision_merchant
 
 ```json
 {
-  "id" : "MUzL5f3UkAwvK79iZGa8UhQ",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
-  "verification" : "VIqsxrFKTjNTiyMEtpkfJPGS",
-  "merchant_profile" : "MPg32sgckPhfindCMvLFCpP1",
+  "id" : "MUnv85XMcN6G7FchWRm1epEx",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
+  "verification" : "VI5fgYrVj3pNEFyBsUVqhS45",
+  "merchant_profile" : "MP7oRterYoyXdfgbXwVgL3ZY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:28.62Z",
-  "updated_at" : "2017-03-28T18:55:28.62Z",
+  "created_at" : "2017-04-17T23:48:43.69Z",
+  "updated_at" : "2017-04-17T23:48:43.69Z",
   "onboarding_state" : "PROVISIONING",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-staging.finix.io/merchant_profiles/MPg32sgckPhfindCMvLFCpP1"
+      "href" : "https://api-staging.finix.io/merchant_profiles/MP7oRterYoyXdfgbXwVgL3ZY"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "verification" : {
-      "href" : "https://api-staging.finix.io/verifications/VIqsxrFKTjNTiyMEtpkfJPGS"
+      "href" : "https://api-staging.finix.io/verifications/VI5fgYrVj3pNEFyBsUVqhS45"
     }
   }
 }
@@ -941,7 +940,7 @@ Parameter | Description
 
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "tags": {
@@ -949,8 +948,8 @@ curl https://api-staging.finix.io/identities \
 	    }, 
 	    "entity": {
 	        "phone": "7145677613", 
-	        "first_name": "Bob", 
-	        "last_name": "White", 
+	        "first_name": "Ayisha", 
+	        "last_name": "Le", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -991,8 +990,8 @@ $identity = new Identity(
 	    ), 
 	    "entity"=> array(
 	        "phone"=> "7145677613", 
-	        "first_name"=> "Bob", 
-	        "last_name"=> "White", 
+	        "first_name"=> "Ayisha", 
+	        "last_name"=> "Le", 
 	        "email"=> "therock@gmail.com", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
@@ -1019,8 +1018,8 @@ identity = Identity(**
 	    }, 
 	    "entity": {
 	        "phone": "7145677613", 
-	        "first_name": "Bob", 
-	        "last_name": "White", 
+	        "first_name": "Ayisha", 
+	        "last_name": "Le", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -1042,8 +1041,8 @@ identity = Finix::Identity.new(
 	    }, 
 	    "entity"=> {
 	        "phone"=> "7145677613", 
-	        "first_name"=> "Bob", 
-	        "last_name"=> "White", 
+	        "first_name"=> "Ayisha", 
+	        "last_name"=> "Le", 
 	        "email"=> "therock@gmail.com", 
 	        "personal_address"=> {
 	            "city"=> "San Mateo", 
@@ -1061,11 +1060,11 @@ identity = Finix::Identity.new(
 
 ```json
 {
-  "id" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+  "id" : "ID3xkAW9p2qaQRdCvNo8cchE",
   "entity" : {
     "title" : null,
-    "first_name" : "Bob",
-    "last_name" : "White",
+    "first_name" : "Ayisha",
+    "last_name" : "Le",
     "email" : "therock@gmail.com",
     "business_name" : null,
     "business_type" : null,
@@ -1100,42 +1099,42 @@ identity = Finix::Identity.new(
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2017-03-28T18:55:29.37Z",
-  "updated_at" : "2017-03-28T18:55:29.37Z",
+  "created_at" : "2017-04-17T23:48:44.45Z",
+  "updated_at" : "2017-04-17T23:48:44.45Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/verifications"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/merchants"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/settlements"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/authorizations"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/transfers"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/payment_instruments"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/disputes"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
 ```
 
 Now that we have successfully provisioned a `Merchant` we'll need to create an
-`Identity` that represents your buyer. Don't worry tho you won't need to capture
+`Identity` that represents your buyer. Don't worry though you won't need to capture
 the same amount of information from your buyer. **So long as you
 don't pass a business_type field all the fields are optional.**
 
@@ -1165,11 +1164,11 @@ personal_address | *object*, **optional** | Customers shipping address or billin
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **required** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **required** | City
-region | *string*, **required** | State
-postal_code | *string*, **required** | Zip or Postal code
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
 country | *string*, **required** | 3-Letter Country code
 
 ### Step 5: Tokenize a Card
@@ -1178,10 +1177,10 @@ country | *string*, **required** | 3-Letter Country code
 
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "name": "Jessie Sterling", 
+	    "name": "Walter Henderson", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card_name": "Business Card"
@@ -1198,7 +1197,7 @@ curl https://api-staging.finix.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID2YRE5PQEHtBTqoAAhJo2T3"
+	    "identity": "ID3xkAW9p2qaQRdCvNo8cchE"
 	}'
 
 
@@ -1209,7 +1208,7 @@ import io.finix.payments.processing.client.model.PaymentCard;
 
 PaymentCard paymentCard = PaymentCard.builder()
     .name("Joe Doe")
-    .identity("ID6HTbvJWaQb7TUVSR2KpiqX")
+    .identity("IDfNKgun2WNruSqAPBFYXaXz")
     .expirationMonth(12)
     .expirationYear(2030)
     .number("4111 1111 1111 1111")
@@ -1223,10 +1222,10 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 use Finix\Resources\PaymentCard;
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 $card = new PaymentCard(
 	array(
-	    "name"=> "Jessie Sterling", 
+	    "name"=> "Walter Henderson", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> array(
 	        "card_name"=> "Business Card"
@@ -1243,7 +1242,7 @@ $card = new PaymentCard(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "ID2YRE5PQEHtBTqoAAhJo2T3"
+	    "identity"=> "ID3xkAW9p2qaQRdCvNo8cchE"
 	));
 $card = $identity->createPaymentCard($card);
 
@@ -1255,7 +1254,7 @@ from finix.resources import PaymentCard
 
 card = PaymentCard(**
 	{
-	    "name": "Jessie Sterling", 
+	    "name": "Walter Henderson", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card_name": "Business Card"
@@ -1272,13 +1271,13 @@ card = PaymentCard(**
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID2YRE5PQEHtBTqoAAhJo2T3"
+	    "identity": "ID3xkAW9p2qaQRdCvNo8cchE"
 	}).save()
 ```
 ```ruby
 card = Finix::PaymentCard.new(
 	{
-	    "name"=> "Jessie Sterling", 
+	    "name"=> "Walter Henderson", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> {
 	        "card_name"=> "Business Card"
@@ -1295,15 +1294,15 @@ card = Finix::PaymentCard.new(
 	    }, 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "ID2YRE5PQEHtBTqoAAhJo2T3"
+	    "identity"=> "ID3xkAW9p2qaQRdCvNo8cchE"
 	}).save
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "fingerprint" : "FPR1412414468",
+  "id" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "fingerprint" : "FPR739722504",
   "tags" : {
     "card_name" : "Business Card"
   },
@@ -1312,7 +1311,7 @@ card = Finix::PaymentCard.new(
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Jessie Sterling",
+  "name" : "Walter Henderson",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -1323,33 +1322,33 @@ card = Finix::PaymentCard.new(
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-03-28T18:55:29.91Z",
-  "updated_at" : "2017-03-28T18:55:29.91Z",
+  "created_at" : "2017-04-17T23:48:44.85Z",
+  "updated_at" : "2017-04-17T23:48:44.85Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+  "identity" : "ID3xkAW9p2qaQRdCvNo8cchE",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "updates" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/updates"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/updates"
     }
   }
 }
@@ -1393,23 +1392,24 @@ address | *object*, **optional** | Billing address (Full description of child at
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **optional** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **optional** | City
-region | *string*, **optional** | State
-postal_code | *string*, **optional** | Zip or Postal code
-country | *string*, **optional** | 3-Letter Country code
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
+country | *string*, **required** | 3-Letter Country code
+
 ### Step 6: Create an Authorization
 ```shell
 curl https://api-staging.finix.io/authorizations \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "merchant_identity": "ID6HTbvJWaQb7TUVSR2KpiqX", 
+	    "merchant_identity": "IDfNKgun2WNruSqAPBFYXaXz", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PI7jjWoR9uGsiXetvjLnavUY", 
+	    "source": "PIw9KSQJAEiBMCdkeiYHm4kx", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -1422,8 +1422,8 @@ import io.finix.payments.processing.client.model.Authorization;
 Authorization authorization = client.authorizationsClient().save(
   Authorization.builder()
     .amount(100L)
-    .merchantIdentity("ID6HTbvJWaQb7TUVSR2KpiqX")
-    .source("PI7jjWoR9uGsiXetvjLnavUY")
+    .merchantIdentity("IDfNKgun2WNruSqAPBFYXaXz")
+    .source("PIw9KSQJAEiBMCdkeiYHm4kx")
     .build()
 );
 
@@ -1434,10 +1434,10 @@ use Finix\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX", 
+	    "merchant_identity"=> "IDfNKgun2WNruSqAPBFYXaXz", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
-	    "source"=> "PI7jjWoR9uGsiXetvjLnavUY", 
+	    "source"=> "PIw9KSQJAEiBMCdkeiYHm4kx", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -1451,10 +1451,10 @@ $authorization = $authorization->save();
 from finix.resources import Authorization
 authorization = Authorization(**
 	{
-	    "merchant_identity": "ID6HTbvJWaQb7TUVSR2KpiqX", 
+	    "merchant_identity": "IDfNKgun2WNruSqAPBFYXaXz", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PI7jjWoR9uGsiXetvjLnavUY", 
+	    "source": "PIw9KSQJAEiBMCdkeiYHm4kx", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -1464,10 +1464,10 @@ authorization = Authorization(**
 ```ruby
 authorization = Finix::Authorization.new(
 	{
-	    "merchant_identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX", 
+	    "merchant_identity"=> "IDfNKgun2WNruSqAPBFYXaXz", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
-	    "source"=> "PI7jjWoR9uGsiXetvjLnavUY", 
+	    "source"=> "PIw9KSQJAEiBMCdkeiYHm4kx", 
 	    "tags"=> {
 	        "order_number"=> "21DFASJSAKAS"
 	    }
@@ -1477,7 +1477,7 @@ authorization = Finix::Authorization.new(
 
 ```json
 {
-  "id" : "AU4VUHqAeFV46K9b1nrC9c1U",
+  "id" : "AUnmDrd5efjNpyrovvwb6PZn",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -1487,22 +1487,22 @@ authorization = Finix::Authorization.new(
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:55:34.79Z",
-  "updated_at" : "2017-03-28T18:55:34.84Z",
-  "trace_id" : "79225bf1-e422-490b-874e-ddfb05e1b271",
-  "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "created_at" : "2017-04-17T23:48:50.71Z",
+  "updated_at" : "2017-04-17T23:48:50.77Z",
+  "trace_id" : "aabe5af9-a702-4874-9efb-85e7cc104967",
+  "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "is_void" : false,
-  "expires_at" : "2017-04-04T18:55:34.79Z",
+  "expires_at" : "2017-04-24T23:48:50.71Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U"
+      "href" : "https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     }
   }
 }
@@ -1521,7 +1521,7 @@ as the source field and the seller's `Identity` ID in the merchant_identity fiel
 Note that the `amount` field is in cents.
 
 Simple enough, right? You'll also want to store the ID from that `Authorization`
-for your records and so that we can capture those funds in the next step.
+for your records so that we can capture those funds in the next step.
 
 
 `Authorizations` have two possible states SUCCEEDED and FAILED. If the `Authorization`
@@ -1556,9 +1556,9 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 
 ### Step 7: Capture the Authorization
 ```shell
-curl https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U \
+curl https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -X PUT \
     -d '
 	{
@@ -1569,7 +1569,7 @@ curl https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U \
 ```java
 import io.finix.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AU4VUHqAeFV46K9b1nrC9c1U");
+Authorization authorization = client.authorizationsClient().fetch("AUnmDrd5efjNpyrovvwb6PZn");
 authorization = authorization.capture(50L);
 
 ```
@@ -1577,7 +1577,7 @@ authorization = authorization.capture(50L);
 <?php
 use Finix\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AU4VUHqAeFV46K9b1nrC9c1U');
+$authorization = Authorization::retrieve('AUnmDrd5efjNpyrovvwb6PZn');
 $authorization = $authorization->capture(50, 10);
 
 ```
@@ -1586,7 +1586,7 @@ $authorization = $authorization->capture(50, 10);
 
 from finix.resources import Authorization
 
-authorization = Authorization.get(id="AU4VUHqAeFV46K9b1nrC9c1U")
+authorization = Authorization.get(id="AUnmDrd5efjNpyrovvwb6PZn")
 authorization.capture(**
 	{
 	    "fee": "10", 
@@ -1595,7 +1595,7 @@ authorization.capture(**
 
 ```
 ```ruby
-authorization = Finix::Authorization.retrieve(:id=>"AU4VUHqAeFV46K9b1nrC9c1U")
+authorization = Finix::Authorization.retrieve(:id=>"AUnmDrd5efjNpyrovvwb6PZn")
 authorization = authorization.capture(
 	{
 	    "fee"=> "10", 
@@ -1609,35 +1609,35 @@ authorization = authorization.capture(
 
 ```json
 {
-  "id" : "AU4VUHqAeFV46K9b1nrC9c1U",
+  "id" : "AUnmDrd5efjNpyrovvwb6PZn",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TRtE4ScbPV8nMnAQKLoZuy9F",
+  "transfer" : "TR7hEkZRcxzuCSiAAV6WCcUh",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:55:34.73Z",
-  "updated_at" : "2017-03-28T18:55:35.33Z",
-  "trace_id" : "79225bf1-e422-490b-874e-ddfb05e1b271",
-  "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "created_at" : "2017-04-17T23:48:50.66Z",
+  "updated_at" : "2017-04-17T23:48:51.52Z",
+  "trace_id" : "aabe5af9-a702-4874-9efb-85e7cc104967",
+  "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "is_void" : false,
-  "expires_at" : "2017-04-04T18:55:34.73Z",
+  "expires_at" : "2017-04-24T23:48:50.66Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U"
+      "href" : "https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "transfer" : {
-      "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F"
+      "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     }
   }
 }
@@ -1650,7 +1650,7 @@ Note you can capture any amount less than or equal to the `amount` of the origin
  `Authorization`. You will also want to pass a `fee`. The `fee` field is the amount
  in cents you would like to keep before settling out to the merchant. For example,
  if you're charging the buyer $100 on behalf of your merchant, and you're taking
- a %10 service fee you'll want to pass 1000 as the fee. This way when the
+ a 10% service fee you'll want to pass 1000 as the fee. This way when the
  funds are eventually settled out only $90 will be disbursed to your merchant.
 
 Once successfully captured the `transfer` field of the `Authorization` will
@@ -1679,11 +1679,11 @@ Field | Type | Description
 capture_amount | *integer*, **required** | The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the amount of the `Authorization`
 fee | *integer*, **optional** | Amount of the captured `Authorization` you would like to collect as your fee. Must be less than or equal to the amount
 
-### Step 8: Create a Batch Settlment
+### Step 8: Create a Batch Settlement
 ```shell
-curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements \
+curl https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "currency": "USD", 
@@ -1708,7 +1708,7 @@ Settlement settlement = identity.createSettlement(
 use Finix\Resources\Identity;
 use Finix\Resources\Settlement;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 $settlement = new Settlement(
 	array(
 	    "currency"=> "USD", 
@@ -1725,7 +1725,7 @@ $settlement = $identity->createSettlement($settlement);
 from finix.resources import Identity
 from finix.resources import Settlement
 
-identity = Identity.get(id="ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Identity.get(id="IDfNKgun2WNruSqAPBFYXaXz")
 settlement = Settlement(**
 	{
 	    "currency": "USD", 
@@ -1736,7 +1736,7 @@ settlement = Settlement(**
 identity.create_settlement(settlement)
 ```
 ```ruby
-identity = Finix::Identity.retrieve(:id=>"ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Finix::Identity.retrieve(:id=>"IDfNKgun2WNruSqAPBFYXaXz")
 settlement = identity.create_settlement(
 	{
 	    "currency"=> "USD", 
@@ -1749,47 +1749,47 @@ settlement = identity.create_settlement(
 
 ```json
 {
-  "id" : "STrXDzTso6jYd83jvQS9yoVL",
+  "id" : "SThZK4ge46CJV27dV3LDbyF4",
   "tags" : {
     "Internal Daily Settlement ID" : "21DFASJSAKAS"
   },
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "currency" : "USD",
-  "created_at" : "2017-03-28T18:58:11.14Z",
-  "updated_at" : "2017-03-28T18:58:11.18Z",
+  "created_at" : "2017-04-17T23:52:11.62Z",
+  "updated_at" : "2017-04-17T23:52:11.67Z",
   "processor" : "DUMMY_V1",
-  "total_amount" : 1389672,
-  "total_fees" : 138969,
-  "total_fee" : 138969,
-  "net_amount" : 1250703,
+  "total_amount" : 1209845,
+  "total_fees" : 120985,
+  "total_fee" : 120985,
+  "net_amount" : 1088860,
   "destination" : null,
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "funding_transfers" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/funding_transfers"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/funding_transfers"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers"
     },
     "fees" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=fee"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=fee"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=reverse"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=reverse"
     },
     "credits" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=credit"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=credit"
     },
     "debits" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=debit"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=debit"
     }
   }
 }
@@ -1811,11 +1811,11 @@ that will be deposited into your merchant's bank account after your fees have
 been deducted).
 
 <aside class="notice">
-Once a batch Settlement has been created it will undergo review and typically
+Once a batch Settlement has been created it will undergo review and typically be
 paid out within 24 hours.
 </aside>
 
-Note, that for reconciliation purposes each `Settlement` contains a [transfers
+Note that for reconciliation purposes each `Settlement` contains a [transfers
 link](#list-transfers-in-a-settlement) which returns a list of all the
 `Transfers` that comprise the batch.
 
@@ -1835,7 +1835,7 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 ```shell
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "tags": {
@@ -1843,9 +1843,9 @@ curl https://api-staging.finix.io/identities \
 	    }, 
 	    "entity": {
 	        "phone": "7145677612", 
-	        "first_name": "Daphne", 
-	        "last_name": "Curry", 
-	        "email": "Daphne@gmail.com", 
+	        "first_name": "Michae", 
+	        "last_name": "Chang", 
+	        "email": "Michae@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -1932,7 +1932,7 @@ Identity identity = client.identitiesClient().save(
 <?php
 use Finix\Resources\Identity;
 
-$identity = new Identity(ID9gNYGtmx8XqF4NuAqK1oyn);
+$identity = new Identity(IDwicRDJNVwHEwkmrX3CBJYj);
 $identity = $identity->save();
 
 
@@ -1941,7 +1941,28 @@ $identity = $identity->save();
 ```python
 
 
+from finix.resources import Identity
 
+identity = Identity(**
+	{
+	    "tags": {
+	        "key": "value"
+	    }, 
+	    "entity": {
+	        "phone": "7145677612", 
+	        "first_name": "Michae", 
+	        "last_name": "Chang", 
+	        "email": "Michae@gmail.com", 
+	        "personal_address": {
+	            "city": "San Mateo", 
+	            "country": "USA", 
+	            "region": "CA", 
+	            "line2": "Apartment 7", 
+	            "line1": "741 Douglass St", 
+	            "postal_code": "94114"
+	        }
+	    }
+	}).save()
 ```
 ```ruby
 identity = Finix::Identity.new(
@@ -1951,9 +1972,9 @@ identity = Finix::Identity.new(
 	    }, 
 	    "entity"=> {
 	        "phone"=> "7145677612", 
-	        "first_name"=> "Daphne", 
-	        "last_name"=> "Curry", 
-	        "email"=> "Daphne@gmail.com", 
+	        "first_name"=> "Michae", 
+	        "last_name"=> "Chang", 
+	        "email"=> "Michae@gmail.com", 
 	        "personal_address"=> {
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -1971,12 +1992,12 @@ identity = Finix::Identity.new(
 
 ```json
 {
-  "id" : "ID9gNYGtmx8XqF4NuAqK1oyn",
+  "id" : "IDwicRDJNVwHEwkmrX3CBJYj",
   "entity" : {
     "title" : null,
-    "first_name" : "Daphne",
-    "last_name" : "Curry",
-    "email" : "Daphne@gmail.com",
+    "first_name" : "Michae",
+    "last_name" : "Chang",
+    "email" : "Michae@gmail.com",
     "business_name" : null,
     "business_type" : null,
     "doing_business_as" : null,
@@ -2010,41 +2031,41 @@ identity = Finix::Identity.new(
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2017-03-28T18:58:20.06Z",
-  "updated_at" : "2017-03-28T18:58:20.06Z",
+  "created_at" : "2017-04-17T23:52:21.93Z",
+  "updated_at" : "2017-04-17T23:52:21.93Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/verifications"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/merchants"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/settlements"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/authorizations"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/transfers"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/payment_instruments"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/disputes"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP8RsF6wsQ8iYkXccfaSRkjV"
+      "href" : "https://api-staging.finix.io/applications/APj7nxdkKFmjnNZUwWLnSUhX"
     }
   }
 }
 ```
 
-Use the resulting ID of the newly created Recipient Identity to associate any payouts or payment instruments that are used. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds.
+Let's start with the first step by creating an `Identity` resource. Each `Identity` represents either a person or a business. We use this resource to associate cards and payouts. This structure makes it simple to manage and reconcile payment instruments and payout history. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds. Additionally, the Identity resource is optionally used to collect KYC information.
 
 #### HTTP Request
 
@@ -2065,11 +2086,11 @@ personal_address | *object*, **optional** | Customers shipping address or billin
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **required** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **required** | City
-region | *string*, **required** | State
-postal_code | *string*, **required** | Zip or Postal code
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
 country | *string*, **required** | 3-Letter Country code
 
 ### Step 2:  Add a Payment Instrument for the Recipient 
@@ -2077,10 +2098,10 @@ country | *string*, **required** | 3-Letter Country code
 ```shell
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "name": "Jessie Henderson", 
+	    "name": "Laura Jones", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card_name": "Business Card"
@@ -2097,7 +2118,7 @@ curl https://api-staging.finix.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID9gNYGtmx8XqF4NuAqK1oyn"
+	    "identity": "IDwicRDJNVwHEwkmrX3CBJYj"
 	}'
 
 
@@ -2107,7 +2128,7 @@ import io.finix.payments.processing.client.model.PaymentCard;
 
 PaymentCard paymentCard = PaymentCard.builder()
     .name("Joe Doe")
-    .identity("ID6HTbvJWaQb7TUVSR2KpiqX")
+    .identity("IDfNKgun2WNruSqAPBFYXaXz")
     .expirationMonth(12)
     .expirationYear(2030)
     .number("4111 1111 1111 1111")
@@ -2121,10 +2142,10 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 use Finix\Resources\PaymentCard;
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('ID9gNYGtmx8XqF4NuAqK1oyn');
+$identity = Identity::retrieve('IDwicRDJNVwHEwkmrX3CBJYj');
 $card = new PaymentCard(
 	array(
-	    "name"=> "Jessie Henderson", 
+	    "name"=> "Laura Jones", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> array(
 	        "card_name"=> "Business Card"
@@ -2141,7 +2162,7 @@ $card = new PaymentCard(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "ID9gNYGtmx8XqF4NuAqK1oyn"
+	    "identity"=> "IDwicRDJNVwHEwkmrX3CBJYj"
 	));
 $card = $identity->createPaymentCard($card);
 
@@ -2154,7 +2175,7 @@ $card = $identity->createPaymentCard($card);
 ```ruby
 card = Finix::PaymentCard.new(
 	{
-	    "name"=> "Jessie Henderson", 
+	    "name"=> "Laura Jones", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> {
 	        "card_name"=> "Business Card"
@@ -2171,15 +2192,15 @@ card = Finix::PaymentCard.new(
 	    }, 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "ID9gNYGtmx8XqF4NuAqK1oyn"
+	    "identity"=> "IDwicRDJNVwHEwkmrX3CBJYj"
 	}).save
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIiHLAm5NxMBbm9bubHb9N7q",
-  "fingerprint" : "FPR767043592",
+  "id" : "PI2H7t8Wkr9VDW3uJz6yatSR",
+  "fingerprint" : "FPR738669030",
   "tags" : {
     "card_name" : "Business Card"
   },
@@ -2188,7 +2209,7 @@ card = Finix::PaymentCard.new(
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Jessie Henderson",
+  "name" : "Laura Jones",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -2199,33 +2220,33 @@ card = Finix::PaymentCard.new(
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-03-28T18:58:20.41Z",
-  "updated_at" : "2017-03-28T18:58:20.41Z",
+  "created_at" : "2017-04-17T23:52:22.32Z",
+  "updated_at" : "2017-04-17T23:52:22.32Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID9gNYGtmx8XqF4NuAqK1oyn",
+  "identity" : "IDwicRDJNVwHEwkmrX3CBJYj",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIiHLAm5NxMBbm9bubHb9N7q"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI2H7t8Wkr9VDW3uJz6yatSR"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIiHLAm5NxMBbm9bubHb9N7q/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI2H7t8Wkr9VDW3uJz6yatSR/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIiHLAm5NxMBbm9bubHb9N7q/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI2H7t8Wkr9VDW3uJz6yatSR/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIiHLAm5NxMBbm9bubHb9N7q/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI2H7t8Wkr9VDW3uJz6yatSR/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP8RsF6wsQ8iYkXccfaSRkjV"
+      "href" : "https://api-staging.finix.io/applications/APj7nxdkKFmjnNZUwWLnSUhX"
     },
     "updates" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIiHLAm5NxMBbm9bubHb9N7q/updates"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI2H7t8Wkr9VDW3uJz6yatSR/updates"
     }
   }
 }
@@ -2237,7 +2258,11 @@ testing purposes. You must use the Tokenization iframe or javascript client
 to remain out of PCI scope.
 </aside>
 
-Again, keep track of the ID of the newly created payment instrument. This is used to determine the destination of funds when sending money.
+Now that we've created an `Identity` for our recipient, we'll need to tokenize a credit card where funds will be disbursed.
+
+In the API, credit cards are represented by the `Payment Instrument` resource.
+
+To classify the `Payment Instrument` as a credit card you'll need to pass `PAYMENT_CARD` in the type field of your request, and you'll also want to pass the ID of the `Identity` that you created in the last step via the identity field to properly associate it with your recipient.
 
 #### HTTP Request
 
@@ -2261,18 +2286,18 @@ address | *object*, **optional** | Billing address (Full description of child at
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **optional** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **optional** | City
-region | *string*, **optional** | State
-postal_code | *string*, **optional** | Zip or Postal code
-country | *string*, **optional** | 3-Letter Country code
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
+country | *string*, **required** | 3-Letter Country code
 
-### Step 3: Provision Sender Account
+### Step 3: Provision Recipient Account
 ```shell
-curl https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/merchants \
+curl https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "processor": "VISA_V1", 
@@ -2284,7 +2309,7 @@ curl https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn/merchants 
 
 ```
 ```java
-Identity identity = client.identitiesClient().fetchResource("ID9gNYGtmx8XqF4NuAqK1oyn");
+Identity identity = client.identitiesClient().fetchResource("IDwicRDJNVwHEwkmrX3CBJYj");
 identity.provisionMerchantOn(Merchant.builder().build());
 ```
 ```php
@@ -2292,7 +2317,7 @@ identity.provisionMerchantOn(Merchant.builder().build());
 use Finix\Resources\Identity;
 use Finix\Resources\Merchant;
 
-$identity = Identity::retrieve('ID9gNYGtmx8XqF4NuAqK1oyn');
+$identity = Identity::retrieve('IDwicRDJNVwHEwkmrX3CBJYj');
 
 $merchant = $identity->provisionMerchantOn(new Merchant());
 
@@ -2303,7 +2328,7 @@ $merchant = $identity->provisionMerchantOn(new Merchant());
 
 ```
 ```ruby
-identity = Finix::Identity.retrieve(:id=>"ID9gNYGtmx8XqF4NuAqK1oyn")
+identity = Finix::Identity.retrieve(:id=>"IDwicRDJNVwHEwkmrX3CBJYj")
 
 merchant = identity.provision_merchant
 ```
@@ -2311,39 +2336,41 @@ merchant = identity.provision_merchant
 
 ```json
 {
-  "id" : "MUgsnd2xbvgVBEDHuNSgqjVe",
-  "identity" : "ID9gNYGtmx8XqF4NuAqK1oyn",
-  "verification" : "VIktfjWVDALWfPcesBcHe9Pq",
-  "merchant_profile" : "MPwjEoRqbDHKUsNFCu7UF7pq",
+  "id" : "MUuirVRYErDX1MCbJPA7r7pE",
+  "identity" : "IDwicRDJNVwHEwkmrX3CBJYj",
+  "verification" : "VIvHRAcBR7SHFMrUtUFuEgrH",
+  "merchant_profile" : "MPpA2nAAoQGTfrgkZY2H82ti",
   "processor" : "VISA_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2017-03-28T18:58:21.05Z",
-  "updated_at" : "2017-03-28T18:58:21.05Z",
+  "created_at" : "2017-04-17T23:52:22.73Z",
+  "updated_at" : "2017-04-17T23:52:22.73Z",
   "onboarding_state" : "PROVISIONING",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/merchants/MUgsnd2xbvgVBEDHuNSgqjVe"
+      "href" : "https://api-staging.finix.io/merchants/MUuirVRYErDX1MCbJPA7r7pE"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/merchants/MUgsnd2xbvgVBEDHuNSgqjVe/verifications"
+      "href" : "https://api-staging.finix.io/merchants/MUuirVRYErDX1MCbJPA7r7pE/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-staging.finix.io/merchant_profiles/MPwjEoRqbDHKUsNFCu7UF7pq"
+      "href" : "https://api-staging.finix.io/merchant_profiles/MPpA2nAAoQGTfrgkZY2H82ti"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP8RsF6wsQ8iYkXccfaSRkjV"
+      "href" : "https://api-staging.finix.io/applications/APj7nxdkKFmjnNZUwWLnSUhX"
     },
     "verification" : {
-      "href" : "https://api-staging.finix.io/verifications/VIktfjWVDALWfPcesBcHe9Pq"
+      "href" : "https://api-staging.finix.io/verifications/VIvHRAcBR7SHFMrUtUFuEgrH"
     }
   }
 }
 ```
+
+Now that we've associated a Payment Instrument with our recipient's `Identity` we're ready to provision a Recipient account. This is the last step before you can begin paying out an Identity. Luckily you've already done most of the heavy lifting. Just make one final POST request, and you'll be returned a `Merchant` resource.
 
 #### HTTP Request
 
@@ -2358,18 +2385,18 @@ processor| *string*, **optional** | Name of Processor
 
 ### Step 4: Send Payout
 
-Once you have tokenized the payment card as above you can send funds to it at any time by simply calling the API
+
 
 
 ```shell
 curl https://api-staging.finix.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "currency": "USD", 
 	    "amount": 10000, 
-	    "destination": "PIiHLAm5NxMBbm9bubHb9N7q", 
+	    "destination": "PI2H7t8Wkr9VDW3uJz6yatSR", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -2400,7 +2427,7 @@ $transfer = new Transfer(
 	array(
 	    "currency"=> "USD", 
 	    "amount"=> 10000, 
-	    "destination"=> "PIiHLAm5NxMBbm9bubHb9N7q", 
+	    "destination"=> "PI2H7t8Wkr9VDW3uJz6yatSR", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -2417,7 +2444,7 @@ transfer = Finix::Transfer.new(
 	{
 	    "currency"=> "USD", 
 	    "amount"=> 10000, 
-	    "destination"=> "PIiHLAm5NxMBbm9bubHb9N7q", 
+	    "destination"=> "PI2H7t8Wkr9VDW3uJz6yatSR", 
 	    "tags"=> {
 	        "order_number"=> "21DFASJSAKAS"
 	    }
@@ -2427,62 +2454,67 @@ transfer = Finix::Transfer.new(
 
 ```json
 {
-  "id" : "TR3AhfeF7z7rNvcr9gshsy6Q",
+  "id" : "TRdVmy8Hjb3zJpfGazVnGw8P",
   "amount" : 10000,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
-  "trace_id" : "190767",
+  "trace_id" : "190855",
   "currency" : "USD",
-  "application" : "AP8RsF6wsQ8iYkXccfaSRkjV",
-  "source" : "PId6XFWo33YhbFH1FtKAUsuK",
-  "destination" : "PIiHLAm5NxMBbm9bubHb9N7q",
+  "application" : "APj7nxdkKFmjnNZUwWLnSUhX",
+  "source" : "PIewCnhiuZZcJjSLACCs4jk5",
+  "destination" : "PI2H7t8Wkr9VDW3uJz6yatSR",
   "ready_to_settle_at" : null,
   "fee" : 0,
   "statement_descriptor" : "FIN*FINIXPAYMENTS",
   "type" : "CREDIT",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:58:22.03Z",
-  "updated_at" : "2017-03-28T18:58:23.58Z",
-  "merchant_identity" : "ID9gNYGtmx8XqF4NuAqK1oyn",
+  "created_at" : "2017-04-17T23:52:23.95Z",
+  "updated_at" : "2017-04-17T23:52:26.42Z",
+  "merchant_identity" : "IDwicRDJNVwHEwkmrX3CBJYj",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP8RsF6wsQ8iYkXccfaSRkjV"
+      "href" : "https://api-staging.finix.io/applications/APj7nxdkKFmjnNZUwWLnSUhX"
     },
     "self" : {
-      "href" : "https://api-staging.finix.io/transfers/TR3AhfeF7z7rNvcr9gshsy6Q"
+      "href" : "https://api-staging.finix.io/transfers/TRdVmy8Hjb3zJpfGazVnGw8P"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/transfers/TR3AhfeF7z7rNvcr9gshsy6Q/payment_instruments"
+      "href" : "https://api-staging.finix.io/transfers/TRdVmy8Hjb3zJpfGazVnGw8P/payment_instruments"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID9gNYGtmx8XqF4NuAqK1oyn"
+      "href" : "https://api-staging.finix.io/identities/IDwicRDJNVwHEwkmrX3CBJYj"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/transfers/TR3AhfeF7z7rNvcr9gshsy6Q/reversals"
+      "href" : "https://api-staging.finix.io/transfers/TRdVmy8Hjb3zJpfGazVnGw8P/reversals"
     },
     "fees" : {
-      "href" : "https://api-staging.finix.io/transfers/TR3AhfeF7z7rNvcr9gshsy6Q/fees"
+      "href" : "https://api-staging.finix.io/transfers/TRdVmy8Hjb3zJpfGazVnGw8P/fees"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/transfers/TR3AhfeF7z7rNvcr9gshsy6Q/disputes"
+      "href" : "https://api-staging.finix.io/transfers/TRdVmy8Hjb3zJpfGazVnGw8P/disputes"
     },
     "source" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PId6XFWo33YhbFH1FtKAUsuK"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIewCnhiuZZcJjSLACCs4jk5"
     },
     "destination" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIiHLAm5NxMBbm9bubHb9N7q"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI2H7t8Wkr9VDW3uJz6yatSR"
     }
   }
 }
 ```
 
-Now that we have a new owner `User` let's create their `Application`. We'll be
-collecting the same basic KYC and underwrting information that we typically
-collect for provisioning a merchant account. You'll also be taking the ID for the
-`User` that you created in the previous step and passing it in the `user` field.
+
+Now the final step - time to payout the recipient!
+
+Next you'll need to create a `Transfer`.  What's a `Transfer`? Glad you asked! A `Transfer` represents any flow of funds either to or from a Payment Instrument. In this case a Payout to a card.
+
+To create a `Transfer` we'll simply supply the Payment Instrument ID of the previously tokenized card as the destination field. Also, be sure to note that the amount field is in cents.
+
+Simple enough, right? You'll also want to store the ID from that `Transfer` for your records. `Transfers` can have two possible states SUCCEEDED and FAILED.
+
 
 #### HTTP Request
 
@@ -2524,7 +2556,7 @@ transactions via the Finix API.
 </html>
 ```
 
-Before collecting the sensitive payment information, we will to add a button
+Before collecting the sensitive payment information, we will need to add a button
 to the HTML where we'll be hosting the iframe so that end-users can input their
 details.
 
@@ -2552,7 +2584,7 @@ as doing so prevents important updates.
       document.getElementById('show-form').addEventListener('click', function() {
         Payline.openTokenizeCardForm({
           applicationName: 'Business Name',
-          applicationId: 'AP4GcWbztqRvJnJ9TydudDAF',
+          applicationId: 'AP22AGPHEqD1fwgycz9DaTYk',
         }, function (tokenizedResponse) {
           // Define a callback to send your token to your back-end server
         });
@@ -2574,16 +2606,16 @@ HTTPS request on your back-end for future use.
 
 ```json
 {
-  "id" : "TKgNmLTEk6oCcDERZqCX7w2m",
+  "id" : "TK7ci8PhpqSGXsLKmi6ZeM21",
   "fingerprint" : "FPR-1132692079",
-  "created_at" : "2017-03-28T18:55:36.28Z",
-  "updated_at" : "2017-03-28T18:55:36.28Z",
+  "created_at" : "2017-04-17T23:48:52.96Z",
+  "updated_at" : "2017-04-17T23:48:52.96Z",
   "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2017-03-29T18:55:36.28Z",
+  "expires_at" : "2017-04-18T23:48:52.96Z",
   "currency" : "USD",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -2593,26 +2625,26 @@ HTTPS request on your back-end for future use.
 ```shell
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "token": "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token": "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type": "TOKEN", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}'
 
 
 ```
 ```java
 import io.finix.payments.processing.client.model.PaymentCard;
+import io.finix.payments.processing.client.model.PaymentCardToken;
 
-PaymentCard paymentCard = PaymentCard.builder()
-    .type("TOKEN")
-    .token("TKgNmLTEk6oCcDERZqCX7w2m")
-    .identity("ID6HTbvJWaQb7TUVSR2KpiqX")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
+PaymentCard card = client.paymentCardsClient().associateToken(
+    PaymentCardToken.builder()
+            .token("TK7ci8PhpqSGXsLKmi6ZeM21")
+            .identity("IDfNKgun2WNruSqAPBFYXaXz")
+    .build()
+);
 ```
 ```php
 <?php
@@ -2620,9 +2652,9 @@ use Finix\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "token"=> "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token"=> "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	));
 $card = $card->save();
 
@@ -2634,25 +2666,25 @@ from finix.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token": "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type": "TOKEN", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save()
 
 ```
 ```ruby
 card = Finix::PaymentInstrument.new(
 	{
-	    "token"=> "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token"=> "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIgNmLTEk6oCcDERZqCX7w2m",
+  "id" : "PI7ci8PhpqSGXsLKmi6ZeM21",
   "fingerprint" : "FPR-1132692079",
   "tags" : { },
   "expiration_month" : 12,
@@ -2671,33 +2703,33 @@ card = Finix::PaymentInstrument.new(
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-03-28T18:55:36.64Z",
-  "updated_at" : "2017-03-28T18:55:36.64Z",
+  "created_at" : "2017-04-17T23:48:53.48Z",
+  "updated_at" : "2017-04-17T23:48:53.48Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "updates" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/updates"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/updates"
     }
   }
 }
@@ -2724,269 +2756,238 @@ type | *string*, **required** | Must pass TOKEN as the value
 identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
 
 
-## Tokenization.js
+## Tokenization with Hosted Fields
 
-To ensure that you remain PCI compliant, please use tokenization.js to tokenize cards and bank accounts. Tokenization.js ensures sensitive card data never touches your servers and keeps you out of PCI scope by sending this info over SSL directly to Finix.
+### Library summary
 
-For a complete example of how to use tokenization.js please refer to this [jsFiddle example](http://jsfiddle.net/rserna2010/2hxnjL0q/).
+The `SecureForm` library is a javascript library that allows you to integrate
+secure fields with non-secure fields in your page. The secure fields behave like
+traditional input fields while preventing access to the unsecured data.
 
-<aside class="warning">
-Creating payment instruments directly via the API should only be done for testing purposes.
-</aside>
+Once the fields are initialized the library communicates the state of the fields
+through a JavaScript callback. The state object includes information about the
+validity, focused value and if the user has entered information in the field.
 
-<aside class="notice">
-Note you must still use SSL on your servers for any actions related to financial transactions via the Finix API.
-</aside>
+For a complete example of how to use the library please refer to this
+[jsFiddle example](https://jsfiddle.net/rserna2010/Ls101sou/).
 
-
-### Step 1: Create a form
-
-```html
-<!--This is an example for for Cards-->
-<form role="form" class="form-horizontal">
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Card Number</label>
-    <div class="col-lg-5">
-      <input type="text" id="cc-number" class="form-control" autocomplete="off" placeholder="4111111111111111" maxlength="16" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Expiration</label>
-    <div class="col-lg-2">
-      <input type="text" id="cc-ex-month" class="form-control" autocomplete="off" placeholder="01" maxlength="2" />
-    </div>
-    <div class="col-lg-2">
-      <input type="text" id="cc-ex-year" class="form-control" autocomplete="off" placeholder="2013" maxlength="4" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Security Code (CVV)</label>
-    <div class="col-lg-2">
-      <input type="text" id="cc-cvv" class="form-control" autocomplete="off" placeholder="453" maxlength="4" />
-    </div>
-  </div>
-  <a id="cc-submit" class="btn btn-large btn-primary pull-right">Tokenize</a>
-</form>
-
-<!--This is an example for for Bank Accounts-->
-<form role="form" class="form-horizontal">
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Account Holder's Name</label>
-    <div class="col-lg-6">
-      <input type="text" id="ba-name" class="form-control" autocomplete="off" placeholder="John Doe" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Routing Number</label>
-    <div class="col-lg-6">
-      <input type="text" id="ba-routing" class="form-control" autocomplete="off" placeholder="322271627" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-5 control-label">Account Number</label>
-    <div class="col-lg-6">
-      <input type="text" id="ba-number" class="form-control" autocomplete="off" placeholder="8887776665555" />
-    </div>
-  </div>
-  <a id="ba-submit" class="btn btn-large btn-primary pull-right">Tokenize</a>
-</form>
-```
-
-Before collecting the sensitive payment information, we will need to construct
-an HTML form for users to input their data.
-
-We have provided a simple example to the right for capturing Payment Instrument
-data.
-
-
-### Step 2: Include library
-
-To use tokenization.js you will first need to include the library on the webpage
-where you're hosting your form. Please include the script tag as demonstrated
-to the right.
-
-<aside class="notice">
-Please refrain from hosting the tokenization.js library locally as doing so prevents important updates.
-</aside>
-
+### Step 1: Include library
 
 ```html
-<script type="text/javascript" src="https://js.verygoodproxy.com/tokenization.1-latest.js"></script>
+ <script type="text/javascript" src="https://js.verygoodvault.com/js-vgfield-2/finix.js"></script>
 ```
 
+First we'll need to include the library on the webpage where you're hosting your
+form. Please include the script as demonstrated to the right.
 
-### Step 3: Configure and initialize
+
+### Step 2: Initialize the secure form
+
+`SecureForm.create(environment, onUpdateCallback)-> Form`
 
 ```javascript
-var initTokenization = function() {
-  Tokenization.init({
-    server: "https://api-staging.finix.io",
-    applicationId: "AP4GcWbztqRvJnJ9TydudDAF",
-    hosted_fields: {
-      card: {
-        number: {
-          selector: "#cc-number"
-        },
-        expiration_month: {
-          selector: "#cc-ex-month"
-        },
-        expiration_year: {
-          selector: "#cc-ex-year"
-        },
-        security_code: {
-          selector: "#cc-cvv"
-        }
-      },
 
-      bankAccount: {
-        account_type: "SAVINGS",
-        account_number: {
-          selector: "#ba-number"
-        },
-        bank_code: {
-          selector: "#ba-routing"
-        },
-        full_name: {
-          selector: "#ba-name"
-        }
-      }
-    }
-  });
-};
+/*
+SecureForm.create(environment, onUpdateCallback)-> Form
+*/
+
+const secureForm = SecureForm.create('sandbox', function(state) {
+   // Logic for interacting with form's potential states
+ });
 ```
 
+The next step is to configure the library. This method is the single entry point into the library.
+It initializes and returns a `Form` object representing the secured form.
 
 
-Now we need to configure the client so that it `POSTs` to the correct endpoint and
-associates the `Payment Instrument` to your application. We'll also use the JQuery
-selector method to capture the form data during the initialization.
-
-#### Initialization Fields
+#### Arguments
 Field | Type | Description
 ----- | ---- | -----------
-server | *string*, **required** |  The base url for the Finix API
-applicationId | *string*, **required** | The ID for your `Application`
-hosted_fields | *object*, **required** | An object containing the `Payment Instrument`information collected from your form
+environment | *string*, **required** |  `sandbox` for testing and `live` for production
+onUpdateCallback | *function*, **required** | Callback that will be called whenever the form state changes. It receives the state object representing the current state.
 
-#### hosted_fields object for card
+### Step 3: Configure the form fields
+
+`Form#field(selector, properties)-> Field`
+
+```javascript
+
+/*
+Form#field(selector, properties)-> Field
+*/
+
+secureForm.field('#my-cool-parent', {
+    'successColor': '#3c763d',
+    'errorColor': '#a94442',
+    'lineHeight': '1.5rem',
+    'fontSize': '24px',
+    'fontFamily': 'Comic Sans',
+    'color': '#31708f',
+    'placeholder': 'Card number',
+    'name': 'cc-number',
+    'type': 'card-number',
+    'validations': [],
+});
+
+```
+
+Now that we have a `Form` object we'll want to style it and add any validations.
+
+#### Arguments
 Field | Type | Description
 ----- | ---- | -----------
-number | *string*, **required** | Credit card account number
-security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
-expiration_year | *integer*, **required** | Expiration year
+selector | *string*, **required** | CSS Selector that points to the element where the field will be added
 
-#### hosted_fields object for bankAccount
+#### Properties Object
 Field | Type | Description
 ----- | ---- | -----------
-full_name | *string*, **optional** | Customer's full name on card
-account_number | *string*, **required** | Bank account number
-bank_code | *string*, **required** | Bank routing number
-account_type | *string*, **required** | Either CHECKING or SAVINGS
+name | *string*, **required** | Name of the input field. Will be used when submitting the data.
+type | *string*, **required** | Type of the input field (`card-number`, `card-security-code`, `card-expiration-date`, `text`, `password`, `number`, `zip-code`)
+validations | *array*, **optional** |  Array of validations that will be used to calculate the `isValid` state (`required`, `validCardExpirationDate`, `validCardNumber`, `validCardSecurityCode`)
+placeholder | *string*, **optional** | Text displayed when the field is empty
+successColor | *string*, **optional** | Text color when the field is valid
+errorColor | *string*, **optional** | Text color when the field is invalid
+color | *string*, **optional** | Text color
+lineHeight | *string*, **optional** | Line height value
+fontSize | *string*, **optional** | Size of text
+fontFamily | *string*, **optional** | Font family used in the text.
+
+> Example Response:
+
+```javascript
+{
+  "number": {
+    "isDirty": false,
+    "isFocused": false,
+    "errorMessages": [
+      "is required",
+      "is not a valid card number"
+    ],
+    "isValid": false,
+    "name": "number"
+  },
+  "security_code": {
+    "isDirty": false,
+    "isFocused": false,
+    "errorMessages": [
+      "is required",
+      "is not a valid security code"
+    ],
+    "isValid": false,
+    "name": "security_code"
+  },
+  "expiration_month": {
+    "isDirty": false,
+    "isFocused": false,
+    "errorMessages": [
+      "is required"
+    ],
+    "isValid": false,
+    "name": "expiration_month"
+  },
+  "expiration_year": {
+    "isDirty": false,
+    "isFocused": false,
+    "errorMessages": [
+      "is required"
+    ],
+    "isValid": false,
+    "name": "expiration_year"
+  }
+}
+```
 
 ### Step 4: Submit payload and handle response
 
+
+`Form#submit(path, options, callback) -> Form
+`
+
+
 ```javascript
-// Register "Click" event for the Card form
-$('#cc-submit').click(function(e) {
+
+/*
+Form#submit(path, options, callback)-> Form
+*/
+
+document.getElementById('cc-form')
+  .addEventListener('submit', function(e) {
     e.preventDefault();
-
-    // Initialize the client to capture form data
-    initTokenization();
-
-    // Tokenization.card.create to submit the payload and include a callback to capture the response
-    Tokenization.card.create({
-
-      // callback for handling response
-      callback: function(errorThrown, response) {
-
-      }
+    secureForm.submit('/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens', {
+        data: {
+            type: 'PAYMENT_CARD',
+        },
+    }, function(status, response) {
+        // callback for handling response and sending token to back-end server
+        console.log("Response has been received", status, response);
     });
-});
+}, false);
 
-// Register "Click" event for the Bank Account form
-$('#ba-submit').click(function(e) {
-    e.preventDefault();
-
-    // Initialize the client to capture form data
-    initTokenization();
-
-    // Tokenization.bankAccount.create to submit the payload and include a callback to capture the response
-    Tokenization.bankAccount.create({
-
-      // callback for handling response
-      callback: function(errorThrown, response) {
-
-      }
-    });
-});
 ```
 
 > Example Response:
 
 ```json
 {
-  "id" : "TKgNmLTEk6oCcDERZqCX7w2m",
+  "id" : "TK7ci8PhpqSGXsLKmi6ZeM21",
   "fingerprint" : "FPR-1132692079",
-  "created_at" : "2017-03-28T18:55:36.28Z",
-  "updated_at" : "2017-03-28T18:55:36.28Z",
+  "created_at" : "2017-04-17T23:48:52.96Z",
+  "updated_at" : "2017-04-17T23:48:52.96Z",
   "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2017-03-29T18:55:36.28Z",
+  "expires_at" : "2017-04-18T23:48:52.96Z",
   "currency" : "USD",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
 ```
 
-Finally we will need to register a click event that fires when our users submit the form and define a callback for handling the tokenization.js response.
 
-### Step 5: Send token to your back-end server for storing
+Finally we will need to register a click event that fires when our users submit
+the form and define a callback for handling the response.
 
-```javascript
-callback: function(errorThrown, response) {
-    // POST to your back-end server
-    jQuery.post("PATH TO YOUR BACK END", {
-        uri: response.id
-        }, function(r) {
-            // Inspect HTTP response
-            if (r.status === 201) {
-                // Logic if successful response
-            } else {
-                // Logic if failed response
-            }
-    });
-}
+Next, configure the library to your specific `Application` where all of the form
+fields will be submitted during the executed `POST` request. We'll also want to
+register a click event that fires when our users submit the form and define a
+callback for handling the response.
 
-```
-Great now that you have created a token you will want to store that ID to utilize the token in the future. To do this you will need to send the ID from your front-end client to your back-end server, which you'll do by expanding on the callback that you created in the previous step.
+Once you've handled the response you will want to store that ID to utilize
+the token in the future. To do this you will need to send the ID from your
+front-end client to your back-end server.
 
 
-### Step 6: Associate to an Identity
+#### Arguments
+Field | Type | Description
+----- | ---- | -----------
+path | *string*, **required** | Path to your `Application's` tokens endpoint
+options | *object*, **required** | Options object that can include additional `data`, such as the type of Payment Instrument
+callback | *function*, **required** | Callback that will be executed when the HTTPRequest is finished. The callback receives the HTTP status code and the data as two arguments.
+
+### Step 5: Associate to an Identity
 ```shell
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "token": "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token": "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type": "TOKEN", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}'
 
 ```
 ```java
 import io.finix.payments.processing.client.model.PaymentCard;
+import io.finix.payments.processing.client.model.PaymentCardToken;
 
-PaymentCard paymentCard = PaymentCard.builder()
-    .type("TOKEN")
-    .token("TKgNmLTEk6oCcDERZqCX7w2m")
-    .identity("ID6HTbvJWaQb7TUVSR2KpiqX")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
-
+PaymentCard card = client.paymentCardsClient().associateToken(
+    PaymentCardToken.builder()
+            .token("TK7ci8PhpqSGXsLKmi6ZeM21")
+            .identity("IDfNKgun2WNruSqAPBFYXaXz")
+    .build()
+);
 ```
 ```php
 <?php
@@ -2994,9 +2995,9 @@ use Finix\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "token"=> "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token"=> "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	));
 $card = $card->save();
 
@@ -3008,25 +3009,25 @@ from finix.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token": "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type": "TOKEN", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save()
 
 ```
 ```ruby
 card = Finix::PaymentInstrument.new(
 	{
-	    "token"=> "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token"=> "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIgNmLTEk6oCcDERZqCX7w2m",
+  "id" : "PI7ci8PhpqSGXsLKmi6ZeM21",
   "fingerprint" : "FPR-1132692079",
   "tags" : { },
   "expiration_month" : 12,
@@ -3045,33 +3046,33 @@ card = Finix::PaymentInstrument.new(
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-03-28T18:55:36.64Z",
-  "updated_at" : "2017-03-28T18:55:36.64Z",
+  "created_at" : "2017-04-17T23:48:53.48Z",
+  "updated_at" : "2017-04-17T23:48:53.48Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "updates" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/updates"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/updates"
     }
   }
 }
@@ -3231,17 +3232,17 @@ curl https://api-staging.finix.io/users \
 
 ```json
 {
-  "id" : "USbmMvBuHkJZQGt6YsojxiB3",
-  "password" : "391a65d9-bfb1-461c-9b75-ba5c31897826",
+  "id" : "UShascJpYqtfe9fxa9KSUHTP",
+  "password" : "29b4afd7-055d-40c4-8442-3342cefe763a",
   "identity" : null,
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:19.17Z",
-  "updated_at" : "2017-03-28T18:55:19.17Z",
+  "created_at" : "2017-04-17T23:48:34.63Z",
+  "updated_at" : "2017-04-17T23:48:34.63Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/users/USbmMvBuHkJZQGt6YsojxiB3"
+      "href" : "https://api-staging.finix.io/users/UShascJpYqtfe9fxa9KSUHTP"
     },
     "applications" : {
       "href" : "https://api-staging.finix.io/applications"
@@ -3275,9 +3276,9 @@ curl https://api-staging.finix.io/applications/ \
     -d '
 	{
 	    "tags": {
-	        "application_name": "HyperWallet"
+	        "application_name": "WePay"
 	    }, 
-	    "user": "USbmMvBuHkJZQGt6YsojxiB3", 
+	    "user": "UShascJpYqtfe9fxa9KSUHTP", 
 	    "entity": {
 	        "business_type": "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -3299,7 +3300,7 @@ curl https://api-staging.finix.io/applications/ \
 	        }, 
 	        "max_transaction_amount": 1200000, 
 	        "phone": "1234567890", 
-	        "doing_business_as": "HyperWallet", 
+	        "doing_business_as": "WePay", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -3308,7 +3309,7 @@ curl https://api-staging.finix.io/applications/ \
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "HyperWallet", 
+	        "business_name": "WePay", 
 	        "business_tax_id": "123456789", 
 	        "email": "user@example.org", 
 	        "tax_id": "5779"
@@ -3326,9 +3327,9 @@ use Finix\Resources\Application;
 $application = new Application(
 	array(
 	    "tags"=> array(
-	        "application_name"=> "HyperWallet"
+	        "application_name"=> "WePay"
 	    ), 
-	    "user"=> "USbmMvBuHkJZQGt6YsojxiB3", 
+	    "user"=> "UShascJpYqtfe9fxa9KSUHTP", 
 	    "entity"=> array(
 	        "business_type"=> "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -3350,7 +3351,7 @@ $application = new Application(
 	        ), 
 	        "max_transaction_amount"=> 1200000, 
 	        "phone"=> "1234567890", 
-	        "doing_business_as"=> "HyperWallet", 
+	        "doing_business_as"=> "WePay", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -3359,7 +3360,7 @@ $application = new Application(
 	            "line1"=> "741 Douglass St", 
 	            "postal_code"=> "94114"
 	        ), 
-	        "business_name"=> "HyperWallet", 
+	        "business_name"=> "WePay", 
 	        "business_tax_id"=> "123456789", 
 	        "email"=> "user@example.org", 
 	        "tax_id"=> "5779"
@@ -3379,58 +3380,58 @@ $application = $application->save();
 
 ```json
 {
-  "id" : "AP4GcWbztqRvJnJ9TydudDAF",
+  "id" : "AP22AGPHEqD1fwgycz9DaTYk",
   "enabled" : true,
   "tags" : {
-    "application_name" : "HyperWallet"
+    "application_name" : "WePay"
   },
-  "owner" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "owner" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2017-03-28T18:55:19.61Z",
-  "updated_at" : "2017-03-28T18:55:19.61Z",
+  "created_at" : "2017-04-17T23:48:35.68Z",
+  "updated_at" : "2017-04-17T23:48:35.68Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "processors" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors"
     },
     "users" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+      "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/transfers"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/disputes"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/authorizations"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/settlements"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/merchants"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/identities"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/webhooks"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/reversals"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/tokens"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/application_profile"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/application_profile"
     }
   }
 }
@@ -3462,12 +3463,12 @@ user | *string*, **required** | User ID for the owner of the `Application`
 
 Field | Type | Description
 ----- | ---- | -----------
-business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial)
-doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
+business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial; max 120 characters)
+doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name (max 60 characters)
 business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
 business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
-url | *string*, **required** | Merchant's publicly available website
-business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
+url | *string*, **required** | Merchant's publicly available website (max 100 characters)
+business_phone | *string*, **required** | Customer service phone number where the merchant can be reached (max 10 characters)
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
 
@@ -3476,14 +3477,14 @@ business_address | *object*, **required** | Primary address for the legal entity
 
 Field | Type | Description
 ----- | ---- | -----------
-first_name | *string*, **required** | Full legal first name of the merchant's principal representative
-last_name | *string*, **required** | Full legal last name of the merchant's principal representative
-title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
-principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal (If business type is INDIVIDUAL_SOLE_PROPRIETORSHIP, please input 100) 
+first_name | *string*, **required** | Full legal first name of the merchant's principal representative (max 20 characters)
+last_name | *string*, **required** | Full legal last name of the merchant's principal representative (max 20 characters)
+title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.; max 60 characters)
+principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal (min 0; max 100)
 tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
 dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
-phone | *string*, **required** | Principal's phone number
-email | *string*, **required** | Principal's email address where they can be reached
+phone | *string*, **required** | Principal's phone number (max 10 characters)
+email | *string*, **required** | Principal's email address where they can be reached (max 100 characters)
 personal_address | *object*, **required** | Principal's personal home address. This field is used for identity verification purposes (Full description of child attributes below)
 
 #### Processing-specific Request Arguments
@@ -3491,8 +3492,8 @@ personal_address | *object*, **required** | Principal's personal home address. T
 Field | Type | Description
 ----- | ---- | -----------
 default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
-annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant
-max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents
+annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant (max 23 characters)
+max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents (max 12 characters)
 mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under
 has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
 
@@ -3500,11 +3501,11 @@ has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to fal
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **required** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **required** | City
-region | *string*, **required** | State
-postal_code | *string*, **required** | Zip or Postal code
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
 country | *string*, **required** | 3-Letter Country code
 
 #### Incorporation Date-object Request Arguments
@@ -3525,7 +3526,7 @@ month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
 ### Step 3: Enable a Processor
 ```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors \
     -H "Content-Type: application/vnd.json+api" \
     -u  US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8 \
     -d '
@@ -3558,11 +3559,11 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processo
 
 ```json
 {
-  "id" : "PRnkxsjrVow3tNuXKTt3HduN",
-  "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-  "default_merchant_profile" : "MPg32sgckPhfindCMvLFCpP1",
-  "created_at" : "2017-03-28T18:55:20.68Z",
-  "updated_at" : "2017-03-28T18:55:20.68Z",
+  "id" : "PRbU3B5GZywdusHJLycNH7VG",
+  "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+  "default_merchant_profile" : "MP7oRterYoyXdfgbXwVgL3ZY",
+  "created_at" : "2017-04-17T23:48:36.22Z",
+  "updated_at" : "2017-04-17T23:48:36.22Z",
   "processor" : "DUMMY_V1",
   "config" : {
     "canDebitBankAccount" : true,
@@ -3572,10 +3573,10 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processo
   "enabled" : true,
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors/PRnkxsjrVow3tNuXKTt3HduN"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors/PRbU3B5GZywdusHJLycNH7VG"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -3612,7 +3613,7 @@ Parameter | Description
 
 ### Step 4: Enable Processing Functionality
 ```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/ \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834 \
     -X PUT \
@@ -3641,58 +3642,58 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/ \
 
 ```json
 {
-  "id" : "AP4GcWbztqRvJnJ9TydudDAF",
+  "id" : "AP22AGPHEqD1fwgycz9DaTYk",
   "enabled" : true,
   "tags" : {
-    "application_name" : "HyperWallet"
+    "application_name" : "WePay"
   },
-  "owner" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "owner" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "processing_enabled" : true,
   "settlement_enabled" : false,
-  "created_at" : "2017-03-28T18:55:19.60Z",
-  "updated_at" : "2017-03-28T18:58:17.33Z",
+  "created_at" : "2017-04-17T23:48:35.68Z",
+  "updated_at" : "2017-04-17T23:52:18.95Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "processors" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors"
     },
     "users" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+      "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/transfers"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/disputes"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/authorizations"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/settlements"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/merchants"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/identities"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/webhooks"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/reversals"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/tokens"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/application_profile"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/application_profile"
     }
   }
 }
@@ -3721,7 +3722,7 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | True to enable
 ### Step 5: Enable Settlement Functionality
 ```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/ \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834 \
     -X PUT \
@@ -3750,58 +3751,58 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/ \
 
 ```json
 {
-  "id" : "AP4GcWbztqRvJnJ9TydudDAF",
+  "id" : "AP22AGPHEqD1fwgycz9DaTYk",
   "enabled" : true,
   "tags" : {
-    "application_name" : "HyperWallet"
+    "application_name" : "WePay"
   },
-  "owner" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "owner" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "processing_enabled" : true,
   "settlement_enabled" : true,
-  "created_at" : "2017-03-28T18:55:19.60Z",
-  "updated_at" : "2017-03-28T18:58:17.73Z",
+  "created_at" : "2017-04-17T23:48:35.68Z",
+  "updated_at" : "2017-04-17T23:52:19.35Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "processors" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors"
     },
     "users" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+      "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/transfers"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/disputes"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/authorizations"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/settlements"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/merchants"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/identities"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/webhooks"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/reversals"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/tokens"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/application_profile"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/application_profile"
     }
   }
 }
@@ -3839,7 +3840,7 @@ customers) and sellers (i.e. merchants).
 
 ## Fetch an Application
 ```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk \
     -H "Content-Type: application/vnd.json+api" \
     -u  US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8
 
@@ -3851,7 +3852,7 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF \
 <?php
 use Finix\Resources\Application;
 
-$application = Application::retrieve('AP4GcWbztqRvJnJ9TydudDAF');
+$application = Application::retrieve('AP22AGPHEqD1fwgycz9DaTYk');
 
 ```
 ```python
@@ -3859,7 +3860,7 @@ $application = Application::retrieve('AP4GcWbztqRvJnJ9TydudDAF');
 
 from finix.resources import Application
 
-application = Application.get(id="AP4GcWbztqRvJnJ9TydudDAF")
+application = Application.get(id="AP22AGPHEqD1fwgycz9DaTYk")
 ```
 ```ruby
 
@@ -3868,58 +3869,58 @@ application = Application.get(id="AP4GcWbztqRvJnJ9TydudDAF")
 
 ```json
 {
-  "id" : "AP4GcWbztqRvJnJ9TydudDAF",
+  "id" : "AP22AGPHEqD1fwgycz9DaTYk",
   "enabled" : true,
   "tags" : {
-    "application_name" : "HyperWallet"
+    "application_name" : "WePay"
   },
-  "owner" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "owner" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "processing_enabled" : true,
   "settlement_enabled" : true,
-  "created_at" : "2017-03-28T18:55:19.60Z",
-  "updated_at" : "2017-03-28T18:55:22.79Z",
+  "created_at" : "2017-04-17T23:48:35.68Z",
+  "updated_at" : "2017-04-17T23:48:37.89Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "processors" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors"
     },
     "users" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+      "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/transfers"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/disputes"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/authorizations"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/settlements"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/merchants"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/identities"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/webhooks"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/reversals"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/tokens"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/application_profile"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/application_profile"
     }
   }
 }
@@ -3937,9 +3938,9 @@ Parameter | Description
 
 ## Create an Application User
 ```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '{}'
 
 ```
@@ -3962,23 +3963,23 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users \
 
 ```json
 {
-  "id" : "USoMNHFZYrRHrLHXZUPbWt6E",
-  "password" : "7be396c6-6324-4738-b6de-d50f33769b2d",
-  "identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "id" : "USuT2XqryENsxHKtrQrBK5n2",
+  "password" : "097c33df-7ca5-4cdb-9db9-537951084929",
+  "identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:21.50Z",
-  "updated_at" : "2017-03-28T18:55:21.50Z",
+  "created_at" : "2017-04-17T23:48:36.90Z",
+  "updated_at" : "2017-04-17T23:48:36.90Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/users/USoMNHFZYrRHrLHXZUPbWt6E"
+      "href" : "https://api-staging.finix.io/users/USuT2XqryENsxHKtrQrBK5n2"
     },
     "applications" : {
       "href" : "https://api-staging.finix.io/applications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -4011,9 +4012,9 @@ curl https://api-staging.finix.io/applications/ \
     -d '
 	{
 	    "tags": {
-	        "application_name": "HyperWallet"
+	        "application_name": "WePay"
 	    }, 
-	    "user": "USbmMvBuHkJZQGt6YsojxiB3", 
+	    "user": "UShascJpYqtfe9fxa9KSUHTP", 
 	    "entity": {
 	        "business_type": "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -4035,7 +4036,7 @@ curl https://api-staging.finix.io/applications/ \
 	        }, 
 	        "max_transaction_amount": 1200000, 
 	        "phone": "1234567890", 
-	        "doing_business_as": "HyperWallet", 
+	        "doing_business_as": "WePay", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -4044,7 +4045,7 @@ curl https://api-staging.finix.io/applications/ \
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "HyperWallet", 
+	        "business_name": "WePay", 
 	        "business_tax_id": "123456789", 
 	        "email": "user@example.org", 
 	        "tax_id": "5779"
@@ -4062,9 +4063,9 @@ use Finix\Resources\Application;
 $application = new Application(
 	array(
 	    "tags"=> array(
-	        "application_name"=> "HyperWallet"
+	        "application_name"=> "WePay"
 	    ), 
-	    "user"=> "USbmMvBuHkJZQGt6YsojxiB3", 
+	    "user"=> "UShascJpYqtfe9fxa9KSUHTP", 
 	    "entity"=> array(
 	        "business_type"=> "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -4086,7 +4087,7 @@ $application = new Application(
 	        ), 
 	        "max_transaction_amount"=> 1200000, 
 	        "phone"=> "1234567890", 
-	        "doing_business_as"=> "HyperWallet", 
+	        "doing_business_as"=> "WePay", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -4095,7 +4096,7 @@ $application = new Application(
 	            "line1"=> "741 Douglass St", 
 	            "postal_code"=> "94114"
 	        ), 
-	        "business_name"=> "HyperWallet", 
+	        "business_name"=> "WePay", 
 	        "business_tax_id"=> "123456789", 
 	        "email"=> "user@example.org", 
 	        "tax_id"=> "5779"
@@ -4112,9 +4113,9 @@ from finix.resources import Application
 application = Application(**
 	{
 	    "tags": {
-	        "application_name": "HyperWallet"
+	        "application_name": "WePay"
 	    }, 
-	    "user": "USbmMvBuHkJZQGt6YsojxiB3", 
+	    "user": "UShascJpYqtfe9fxa9KSUHTP", 
 	    "entity": {
 	        "business_type": "LIMITED_LIABILITY_COMPANY", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -4136,7 +4137,7 @@ application = Application(**
 	        }, 
 	        "max_transaction_amount": 1200000, 
 	        "phone": "1234567890", 
-	        "doing_business_as": "HyperWallet", 
+	        "doing_business_as": "WePay", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -4145,7 +4146,7 @@ application = Application(**
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "HyperWallet", 
+	        "business_name": "WePay", 
 	        "business_tax_id": "123456789", 
 	        "email": "user@example.org", 
 	        "tax_id": "5779"
@@ -4159,58 +4160,58 @@ application = Application(**
 
 ```json
 {
-  "id" : "AP4GcWbztqRvJnJ9TydudDAF",
+  "id" : "AP22AGPHEqD1fwgycz9DaTYk",
   "enabled" : true,
   "tags" : {
-    "application_name" : "HyperWallet"
+    "application_name" : "WePay"
   },
-  "owner" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "owner" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2017-03-28T18:55:19.61Z",
-  "updated_at" : "2017-03-28T18:55:19.61Z",
+  "created_at" : "2017-04-17T23:48:35.68Z",
+  "updated_at" : "2017-04-17T23:48:35.68Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "processors" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors"
     },
     "users" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+      "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/transfers"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/disputes"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/authorizations"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/settlements"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/merchants"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/identities"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/webhooks"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/reversals"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/tokens"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/application_profile"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/application_profile"
     }
   }
 }
@@ -4235,12 +4236,12 @@ user | *string*, **required** | User ID for the owner of the `Application`
 
 Field | Type | Description
 ----- | ---- | -----------
-business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial)
-doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
+business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial; max 120 characters)
+doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name (max 60 characters)
 business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
 business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
-url | *string*, **required** | Merchant's publicly available website
-business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
+url | *string*, **required** | Merchant's publicly available website (max 100 characters)
+business_phone | *string*, **required** | Customer service phone number where the merchant can be reached (max 10 characters)
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
 
@@ -4249,14 +4250,14 @@ business_address | *object*, **required** | Primary address for the legal entity
 
 Field | Type | Description
 ----- | ---- | -----------
-first_name | *string*, **required** | Full legal first name of the merchant's principal representative
-last_name | *string*, **required** | Full legal last name of the merchant's principal representative
-title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
-principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
+first_name | *string*, **required** | Full legal first name of the merchant's principal representative (max 20 characters)
+last_name | *string*, **required** | Full legal last name of the merchant's principal representative (max 20 characters)
+title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.; max 60 characters)
+principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal (min 0; max 100)
 tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
 dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
-phone | *string*, **required** | Principal's phone number
-email | *string*, **required** | Principal's email address where they can be reached
+phone | *string*, **required** | Principal's phone number (max 10 characters)
+email | *string*, **required** | Principal's email address where they can be reached (max 100 characters)
 personal_address | *object*, **required** | Principal's personal home address. This field is used for identity verification purposes (Full description of child attributes below)
 
 #### Processing-specific Request Arguments
@@ -4264,8 +4265,8 @@ personal_address | *object*, **required** | Principal's personal home address. T
 Field | Type | Description
 ----- | ---- | -----------
 default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
-annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant
-max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents
+annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant (max 23 characters)
+max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents (max 12 characters)
 mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under
 has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
 
@@ -4273,12 +4274,12 @@ has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to fal
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **required** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **required** | City
-region | *string*, **required** | State
-postal_code | *string*, **required** | Zip or Postal code
-country | *string*, **required** | 3-Letter Country code
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
+country | *string*, **required** | 3-Letter Country code 
 
 #### Incorporation Date-object Request Arguments
 
@@ -4298,7 +4299,7 @@ month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
 ## [ADMIN] Disable Processing Functionality
 ```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/ \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834 \
     -X PUT \
@@ -4327,58 +4328,58 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/ \
 
 ```json
 {
-  "id" : "AP4GcWbztqRvJnJ9TydudDAF",
+  "id" : "AP22AGPHEqD1fwgycz9DaTYk",
   "enabled" : true,
   "tags" : {
-    "application_name" : "HyperWallet"
+    "application_name" : "WePay"
   },
-  "owner" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "owner" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "processing_enabled" : false,
   "settlement_enabled" : true,
-  "created_at" : "2017-03-28T18:55:19.60Z",
-  "updated_at" : "2017-03-28T18:58:15.66Z",
+  "created_at" : "2017-04-17T23:48:35.68Z",
+  "updated_at" : "2017-04-17T23:52:17.27Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "processors" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors"
     },
     "users" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+      "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/transfers"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/disputes"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/authorizations"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/settlements"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/merchants"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/identities"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/webhooks"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/reversals"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/tokens"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/application_profile"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/application_profile"
     }
   }
 }
@@ -4404,7 +4405,7 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | False to disable
 ## [ADMIN] Disable Settlement Functionality
 ```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/ \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834 \
     -X PUT \
@@ -4433,58 +4434,58 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/ \
 
 ```json
 {
-  "id" : "AP4GcWbztqRvJnJ9TydudDAF",
+  "id" : "AP22AGPHEqD1fwgycz9DaTYk",
   "enabled" : true,
   "tags" : {
-    "application_name" : "HyperWallet"
+    "application_name" : "WePay"
   },
-  "owner" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "owner" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2017-03-28T18:55:19.60Z",
-  "updated_at" : "2017-03-28T18:58:16.11Z",
+  "created_at" : "2017-04-17T23:48:35.68Z",
+  "updated_at" : "2017-04-17T23:52:17.68Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "processors" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors"
     },
     "users" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+      "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/transfers"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/disputes"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/authorizations"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/settlements"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/merchants"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/identities"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/webhooks"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/reversals"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/tokens"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/application_profile"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/application_profile"
     }
   }
 }
@@ -4509,7 +4510,7 @@ Field | Type | Description
 settlement_enabled | *boolean*, **required** | False to disable
 ## [ADMIN] Enable the Dummy Processor (i.e. Sandbox)
 ```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors \
     -H "Content-Type: application/vnd.json+api" \
     -u  US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8 \
     -d '
@@ -4542,11 +4543,11 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processo
 
 ```json
 {
-  "id" : "PRnkxsjrVow3tNuXKTt3HduN",
-  "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-  "default_merchant_profile" : "MPg32sgckPhfindCMvLFCpP1",
-  "created_at" : "2017-03-28T18:55:20.68Z",
-  "updated_at" : "2017-03-28T18:55:20.68Z",
+  "id" : "PRbU3B5GZywdusHJLycNH7VG",
+  "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+  "default_merchant_profile" : "MP7oRterYoyXdfgbXwVgL3ZY",
+  "created_at" : "2017-04-17T23:48:36.22Z",
+  "updated_at" : "2017-04-17T23:48:36.22Z",
   "processor" : "DUMMY_V1",
   "config" : {
     "canDebitBankAccount" : true,
@@ -4556,10 +4557,10 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processo
   "enabled" : true,
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors/PRnkxsjrVow3tNuXKTt3HduN"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors/PRbU3B5GZywdusHJLycNH7VG"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -4593,7 +4594,7 @@ Parameter | Description
 ```shell
 curl https://api-staging.finix.io/applications/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -4619,58 +4620,58 @@ application = Application.get()
 {
   "_embedded" : {
     "applications" : [ {
-      "id" : "AP4GcWbztqRvJnJ9TydudDAF",
+      "id" : "AP22AGPHEqD1fwgycz9DaTYk",
       "enabled" : true,
       "tags" : {
-        "application_name" : "HyperWallet"
+        "application_name" : "WePay"
       },
-      "owner" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "owner" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "processing_enabled" : true,
       "settlement_enabled" : true,
-      "created_at" : "2017-03-28T18:55:19.60Z",
-      "updated_at" : "2017-03-28T18:55:22.79Z",
+      "created_at" : "2017-04-17T23:48:35.68Z",
+      "updated_at" : "2017-04-17T23:48:37.89Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "processors" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/processors"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/processors"
         },
         "users" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users"
         },
         "owner_identity" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/transfers"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/transfers"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/disputes"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/disputes"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/authorizations"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/authorizations"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/settlements"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/settlements"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/merchants"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/merchants"
         },
         "identities" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/identities"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/identities"
         },
         "webhooks" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/webhooks"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/webhooks"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/reversals"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/reversals"
         },
         "tokens" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/tokens"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/tokens"
         },
         "application_profile" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/application_profile"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/application_profile"
         }
       }
     } ]
@@ -4705,13 +4706,13 @@ When an `Authorization` is captured it produces a `Transfer` resource.
 ```shell
 curl https://api-staging.finix.io/authorizations \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "merchant_identity": "ID6HTbvJWaQb7TUVSR2KpiqX", 
+	    "merchant_identity": "IDfNKgun2WNruSqAPBFYXaXz", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PI7jjWoR9uGsiXetvjLnavUY", 
+	    "source": "PIw9KSQJAEiBMCdkeiYHm4kx", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -4724,8 +4725,8 @@ import io.finix.payments.processing.client.model.Authorization;
 Authorization authorization = client.authorizationsClient().save(
   Authorization.builder()
     .amount(100L)
-    .merchantIdentity("ID6HTbvJWaQb7TUVSR2KpiqX")
-    .source("PI7jjWoR9uGsiXetvjLnavUY")
+    .merchantIdentity("IDfNKgun2WNruSqAPBFYXaXz")
+    .source("PIw9KSQJAEiBMCdkeiYHm4kx")
     .build()
 );
 
@@ -4737,10 +4738,10 @@ use Finix\Resources\Authorization;
 
 $authorization = new Authorization(
 	array(
-	    "merchant_identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX", 
+	    "merchant_identity"=> "IDfNKgun2WNruSqAPBFYXaXz", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
-	    "source"=> "PI7jjWoR9uGsiXetvjLnavUY", 
+	    "source"=> "PIw9KSQJAEiBMCdkeiYHm4kx", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -4756,10 +4757,10 @@ from finix.resources import Authorization
 
 authorization = Authorization(**
 	{
-	    "merchant_identity": "ID6HTbvJWaQb7TUVSR2KpiqX", 
+	    "merchant_identity": "IDfNKgun2WNruSqAPBFYXaXz", 
 	    "currency": "USD", 
 	    "amount": 100, 
-	    "source": "PI7jjWoR9uGsiXetvjLnavUY", 
+	    "source": "PIw9KSQJAEiBMCdkeiYHm4kx", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -4768,10 +4769,10 @@ authorization = Authorization(**
 ```ruby
 authorization = Finix::Authorization.new(
 	{
-	    "merchant_identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX", 
+	    "merchant_identity"=> "IDfNKgun2WNruSqAPBFYXaXz", 
 	    "currency"=> "USD", 
 	    "amount"=> 100, 
-	    "source"=> "PI7jjWoR9uGsiXetvjLnavUY", 
+	    "source"=> "PIw9KSQJAEiBMCdkeiYHm4kx", 
 	    "tags"=> {
 	        "order_number"=> "21DFASJSAKAS"
 	    }
@@ -4781,7 +4782,7 @@ authorization = Finix::Authorization.new(
 
 ```json
 {
-  "id" : "AU4VUHqAeFV46K9b1nrC9c1U",
+  "id" : "AUnmDrd5efjNpyrovvwb6PZn",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -4791,22 +4792,22 @@ authorization = Finix::Authorization.new(
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:55:34.79Z",
-  "updated_at" : "2017-03-28T18:55:34.84Z",
-  "trace_id" : "79225bf1-e422-490b-874e-ddfb05e1b271",
-  "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "created_at" : "2017-04-17T23:48:50.71Z",
+  "updated_at" : "2017-04-17T23:48:50.77Z",
+  "trace_id" : "aabe5af9-a702-4874-9efb-85e7cc104967",
+  "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "is_void" : false,
-  "expires_at" : "2017-04-04T18:55:34.79Z",
+  "expires_at" : "2017-04-24T23:48:50.71Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U"
+      "href" : "https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     }
   }
 }
@@ -4843,9 +4844,9 @@ currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 ## Capture an Authorization
 ```shell
-curl https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U \
+curl https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -X PUT \
     -d '
 	{
@@ -4858,15 +4859,17 @@ curl https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U \
 
 import io.finix.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AU4VUHqAeFV46K9b1nrC9c1U");
-authorization = authorization.capture(50L);
+Authorization authorization = client.authorizationsClient().fetch("AUnmDrd5efjNpyrovvwb6PZn");
+Long captureAmount = 50L;
+Long feeAmount = 10L;
+authorization = authorization.capture(captureAmount, feeAmount);
 
 ```
 ```php
 <?php
 use Finix\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AU4VUHqAeFV46K9b1nrC9c1U');
+$authorization = Authorization::retrieve('AUnmDrd5efjNpyrovvwb6PZn');
 $authorization = $authorization->capture(50, 10);
 
 ```
@@ -4875,7 +4878,7 @@ $authorization = $authorization->capture(50, 10);
 
 from finix.resources import Authorization
 
-authorization = Authorization.get(id="AU4VUHqAeFV46K9b1nrC9c1U")
+authorization = Authorization.get(id="AUnmDrd5efjNpyrovvwb6PZn")
 authorization.capture(**
 	{
 	    "fee": "10", 
@@ -4884,7 +4887,7 @@ authorization.capture(**
 
 ```
 ```ruby
-authorization = Finix::Authorization.retrieve(:id=>"AU4VUHqAeFV46K9b1nrC9c1U")
+authorization = Finix::Authorization.retrieve(:id=>"AUnmDrd5efjNpyrovvwb6PZn")
 authorization = authorization.capture(
 	{
 	    "fee"=> "10", 
@@ -4898,35 +4901,35 @@ authorization = authorization.capture(
 
 ```json
 {
-  "id" : "AU4VUHqAeFV46K9b1nrC9c1U",
+  "id" : "AUnmDrd5efjNpyrovvwb6PZn",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TRtE4ScbPV8nMnAQKLoZuy9F",
+  "transfer" : "TR7hEkZRcxzuCSiAAV6WCcUh",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:55:34.73Z",
-  "updated_at" : "2017-03-28T18:55:35.33Z",
-  "trace_id" : "79225bf1-e422-490b-874e-ddfb05e1b271",
-  "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "created_at" : "2017-04-17T23:48:50.66Z",
+  "updated_at" : "2017-04-17T23:48:51.52Z",
+  "trace_id" : "aabe5af9-a702-4874-9efb-85e7cc104967",
+  "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "is_void" : false,
-  "expires_at" : "2017-04-04T18:55:34.73Z",
+  "expires_at" : "2017-04-24T23:48:50.66Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U"
+      "href" : "https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "transfer" : {
-      "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F"
+      "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     }
   }
 }
@@ -4961,9 +4964,9 @@ fee | *integer*, **optional** | Amount of the captured `Authorization` you would
 ## Void an Authorization
 ```shell
 
-curl https://api-staging.finix.io/authorizations/AU9JYUSVPv3Za8jyqLA54MMx \
+curl https://api-staging.finix.io/authorizations/AU6CPYo3hiizZUcXCsbR4vKz \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -X PUT \
     -d '
 	{
@@ -4980,7 +4983,7 @@ authorization.voidMe(true);
 <?php
 use Finix\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AU4VUHqAeFV46K9b1nrC9c1U');
+$authorization = Authorization::retrieve('AUnmDrd5efjNpyrovvwb6PZn');
 $authorization->void(true);
 $authorization = $authorization->save();
 
@@ -4991,19 +4994,19 @@ $authorization = $authorization->save();
 
 from finix.resources import Authorization
 
-authorization = Authorization.get(id="AU4VUHqAeFV46K9b1nrC9c1U")
+authorization = Authorization.get(id="AUnmDrd5efjNpyrovvwb6PZn")
 authorization.void()
 
 ```
 ```ruby
-authorization = Finix::Authorization.retrieve(:id=>"AU4VUHqAeFV46K9b1nrC9c1U")
+authorization = Finix::Authorization.retrieve(:id=>"AUnmDrd5efjNpyrovvwb6PZn")
 authorization = authorization.void
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "AU9JYUSVPv3Za8jyqLA54MMx",
+  "id" : "AU6CPYo3hiizZUcXCsbR4vKz",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
@@ -5013,22 +5016,22 @@ authorization = authorization.void
   "transfer" : null,
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:55:37.17Z",
-  "updated_at" : "2017-03-28T18:55:38.10Z",
-  "trace_id" : "998d1f17-8532-48d4-a8b5-5aa1c2871557",
-  "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "created_at" : "2017-04-17T23:48:54.37Z",
+  "updated_at" : "2017-04-17T23:48:55.17Z",
+  "trace_id" : "57b9de0e-8ff8-4244-aecc-08e045a9ae0e",
+  "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "is_void" : true,
-  "expires_at" : "2017-04-04T18:55:37.17Z",
+  "expires_at" : "2017-04-24T23:48:54.37Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/authorizations/AU9JYUSVPv3Za8jyqLA54MMx"
+      "href" : "https://api-staging.finix.io/authorizations/AU6CPYo3hiizZUcXCsbR4vKz"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     }
   }
 }
@@ -5057,23 +5060,23 @@ void_me | *boolean*, **required** | Set to True to void the `Authorization`
 ## Retrieve an Authorization
 ```shell
 
-curl https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U \
+curl https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
 
 import io.finix.payments.processing.client.model.Authorization;
 
-Authorization authorization = client.authorizationsClient().fetch("AU4VUHqAeFV46K9b1nrC9c1U");
+Authorization authorization = client.authorizationsClient().fetch("AUnmDrd5efjNpyrovvwb6PZn");
 
 ```
 ```php
 <?php
 use Finix\Resources\Authorization;
 
-$authorization = Authorization::retrieve('AU4VUHqAeFV46K9b1nrC9c1U');
+$authorization = Authorization::retrieve('AUnmDrd5efjNpyrovvwb6PZn');
 
 ```
 ```python
@@ -5081,10 +5084,10 @@ $authorization = Authorization::retrieve('AU4VUHqAeFV46K9b1nrC9c1U');
 
 from finix.resources import Authorization
 
-authorization = Authorization.get(id="AU4VUHqAeFV46K9b1nrC9c1U")
+authorization = Authorization.get(id="AUnmDrd5efjNpyrovvwb6PZn")
 ```
 ```ruby
-authorization = Finix::Authorization.retrieve(:id=>"AU4VUHqAeFV46K9b1nrC9c1U")
+authorization = Finix::Authorization.retrieve(:id=>"AUnmDrd5efjNpyrovvwb6PZn")
 
 
 ```
@@ -5092,35 +5095,35 @@ authorization = Finix::Authorization.retrieve(:id=>"AU4VUHqAeFV46K9b1nrC9c1U")
 
 ```json
 {
-  "id" : "AU4VUHqAeFV46K9b1nrC9c1U",
+  "id" : "AUnmDrd5efjNpyrovvwb6PZn",
   "amount" : 100,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
   "currency" : "USD",
-  "transfer" : "TRtE4ScbPV8nMnAQKLoZuy9F",
+  "transfer" : "TR7hEkZRcxzuCSiAAV6WCcUh",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:55:34.73Z",
-  "updated_at" : "2017-03-28T18:55:35.33Z",
-  "trace_id" : "79225bf1-e422-490b-874e-ddfb05e1b271",
-  "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "created_at" : "2017-04-17T23:48:50.66Z",
+  "updated_at" : "2017-04-17T23:48:51.52Z",
+  "trace_id" : "aabe5af9-a702-4874-9efb-85e7cc104967",
+  "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "is_void" : false,
-  "expires_at" : "2017-04-04T18:55:34.73Z",
+  "expires_at" : "2017-04-24T23:48:50.66Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U"
+      "href" : "https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "transfer" : {
-      "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F"
+      "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     }
   }
 }
@@ -5141,7 +5144,7 @@ Parameter | Description
 ```shell
 curl https://api-staging.finix.io/authorizations/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -5177,7 +5180,7 @@ authorizations = Finix::Authorization.retrieve
 {
   "_embedded" : {
     "authorizations" : [ {
-      "id" : "AU9JYUSVPv3Za8jyqLA54MMx",
+      "id" : "AU6CPYo3hiizZUcXCsbR4vKz",
       "amount" : 100,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
@@ -5187,54 +5190,54 @@ authorizations = Finix::Authorization.retrieve
       "transfer" : null,
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:37.17Z",
-      "updated_at" : "2017-03-28T18:55:38.10Z",
-      "trace_id" : "998d1f17-8532-48d4-a8b5-5aa1c2871557",
-      "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:54.37Z",
+      "updated_at" : "2017-04-17T23:48:55.17Z",
+      "trace_id" : "57b9de0e-8ff8-4244-aecc-08e045a9ae0e",
+      "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "is_void" : true,
-      "expires_at" : "2017-04-04T18:55:37.17Z",
+      "expires_at" : "2017-04-24T23:48:54.37Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/authorizations/AU9JYUSVPv3Za8jyqLA54MMx"
+          "href" : "https://api-staging.finix.io/authorizations/AU6CPYo3hiizZUcXCsbR4vKz"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         }
       }
     }, {
-      "id" : "AU4VUHqAeFV46K9b1nrC9c1U",
+      "id" : "AUnmDrd5efjNpyrovvwb6PZn",
       "amount" : 100,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "SUCCEEDED",
       "currency" : "USD",
-      "transfer" : "TRtE4ScbPV8nMnAQKLoZuy9F",
+      "transfer" : "TR7hEkZRcxzuCSiAAV6WCcUh",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:34.73Z",
-      "updated_at" : "2017-03-28T18:55:35.33Z",
-      "trace_id" : "79225bf1-e422-490b-874e-ddfb05e1b271",
-      "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:50.66Z",
+      "updated_at" : "2017-04-17T23:48:51.52Z",
+      "trace_id" : "aabe5af9-a702-4874-9efb-85e7cc104967",
+      "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "is_void" : false,
-      "expires_at" : "2017-04-04T18:55:34.73Z",
+      "expires_at" : "2017-04-24T23:48:50.66Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/authorizations/AU4VUHqAeFV46K9b1nrC9c1U"
+          "href" : "https://api-staging.finix.io/authorizations/AUnmDrd5efjNpyrovvwb6PZn"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "transfer" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         }
       }
     } ]
@@ -5258,14 +5261,10 @@ authorizations = Finix::Authorization.retrieve
 
 # Identities
 
-An `Identity` resource represents either a buyer or a merchant and is in many
-ways the centerpiece of the payment API's architecture. `Transfers` and
-`Payment Instruments` must be associated with an `Identity`. For both buyers
-and merchants this structure makes it easy to manage and reconcile their
-associated bank accounts, transaction history, and payouts.
-
-For merchants, the `Identity` resource is used to collect underwriting
-information for the business and its principal.
+An `Identity` resource represents either a buyer or a merchant and is in a many ways the 
+centerpiece of the payment API's architecture. `Transfers` and `Payment Instruments` must 
+be associated with an `Identity`. For both buyers ans merchants this structure makes it easy 
+to manage and reconcile their associated banks accounts, transaction history, and payouts.
 
 ## Create an Identity for a Buyer
 
@@ -5275,7 +5274,7 @@ information for the business and its principal.
 
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "tags": {
@@ -5283,8 +5282,8 @@ curl https://api-staging.finix.io/identities \
 	    }, 
 	    "entity": {
 	        "phone": "7145677613", 
-	        "first_name": "Bob", 
-	        "last_name": "White", 
+	        "first_name": "Ayisha", 
+	        "last_name": "Le", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -5326,8 +5325,8 @@ $identity = new Identity(
 	    ), 
 	    "entity"=> array(
 	        "phone"=> "7145677613", 
-	        "first_name"=> "Bob", 
-	        "last_name"=> "White", 
+	        "first_name"=> "Ayisha", 
+	        "last_name"=> "Le", 
 	        "email"=> "therock@gmail.com", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
@@ -5354,8 +5353,8 @@ identity = Identity(**
 	    }, 
 	    "entity": {
 	        "phone": "7145677613", 
-	        "first_name": "Bob", 
-	        "last_name": "White", 
+	        "first_name": "Ayisha", 
+	        "last_name": "Le", 
 	        "email": "therock@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
@@ -5376,8 +5375,8 @@ identity = Finix::Identity.new(
 	    }, 
 	    "entity"=> {
 	        "phone"=> "7145677613", 
-	        "first_name"=> "Bob", 
-	        "last_name"=> "White", 
+	        "first_name"=> "Ayisha", 
+	        "last_name"=> "Le", 
 	        "email"=> "therock@gmail.com", 
 	        "personal_address"=> {
 	            "city"=> "San Mateo", 
@@ -5394,11 +5393,11 @@ identity = Finix::Identity.new(
 
 ```json
 {
-  "id" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+  "id" : "ID3xkAW9p2qaQRdCvNo8cchE",
   "entity" : {
     "title" : null,
-    "first_name" : "Bob",
-    "last_name" : "White",
+    "first_name" : "Ayisha",
+    "last_name" : "Le",
     "email" : "therock@gmail.com",
     "business_name" : null,
     "business_type" : null,
@@ -5433,35 +5432,35 @@ identity = Finix::Identity.new(
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2017-03-28T18:55:29.37Z",
-  "updated_at" : "2017-03-28T18:55:29.37Z",
+  "created_at" : "2017-04-17T23:48:44.45Z",
+  "updated_at" : "2017-04-17T23:48:44.45Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/verifications"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/merchants"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/settlements"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/authorizations"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/transfers"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/payment_instruments"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/disputes"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -5480,21 +5479,21 @@ first_name | *string*, **optional** | First name
 last_name | *string*, **optional** | Last name
 phone | *string*, **optional** | Phone number
 email | *string*, **optional** | Email address
-line1 | *string*, **optional** | Street address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **optional** | City
-region | *string*, **optional** | State
-postal_code | *string*, **optional** | Postal code
-country | *string*, **optional** | Country
+line1 | *string*, **optional** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **optional** | City (max 20 characters)
+region | *string*, **optional** | 2-letter State code
+postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)
+country | *string*, **optional** | 3-Letter Country code
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
-## Create an Identity for a Merchant
+## Create an Identity for a Sender
 ```shell
 
 
 curl https://api-staging.finix.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "tags": {
@@ -5504,7 +5503,7 @@ curl https://api-staging.finix.io/identities \
 	        "last_name": "Sunkhronos", 
 	        "max_transaction_amount": 12000000, 
 	        "has_accepted_credit_cards_previously": true, 
-	        "default_statement_descriptor": "Lees Sandwiches", 
+	        "default_statement_descriptor": "Bobs Burgers", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -5530,12 +5529,12 @@ curl https://api-staging.finix.io/identities \
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Lees Sandwiches", 
+	        "doing_business_as": "Bobs Burgers", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Lees Sandwiches", 
+	        "business_name": "Bobs Burgers", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -5544,7 +5543,7 @@ curl https://api-staging.finix.io/identities \
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.LeesSandwiches.com", 
+	        "url": "www.BobsBurgers.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}'
@@ -5563,6 +5562,7 @@ Identity identity = client.identitiesClient().save(
   Identity.builder()
     .entity(
       Entity.builder()
+        .title("CEO")
         .firstName("dwayne")
         .lastName("Sunkhronos")
         .email("user@example.org")
@@ -5613,6 +5613,8 @@ Identity identity = client.identitiesClient().save(
           .build()
         )
         .principalPercentageOwnership(51)
+        .ownershipType("PRIVATE")
+        .hasAcceptedCreditCardsPreviously(false)
         .build()
     )
     .build()
@@ -5632,7 +5634,7 @@ $identity = new Identity(
 	        "last_name"=> "Sunkhronos", 
 	        "max_transaction_amount"=> 12000000, 
 	        "has_accepted_credit_cards_previously"=> true, 
-	        "default_statement_descriptor"=> "Lees Sandwiches", 
+	        "default_statement_descriptor"=> "Bobs Burgers", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -5658,12 +5660,12 @@ $identity = new Identity(
 	        "first_name"=> "dwayne", 
 	        "title"=> "CEO", 
 	        "business_tax_id"=> "123456789", 
-	        "doing_business_as"=> "Lees Sandwiches", 
+	        "doing_business_as"=> "Bobs Burgers", 
 	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
 	        "mcc"=> "0742", 
 	        "phone"=> "1234567890", 
-	        "business_name"=> "Lees Sandwiches", 
+	        "business_name"=> "Bobs Burgers", 
 	        "tax_id"=> "123456789", 
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -5672,7 +5674,7 @@ $identity = new Identity(
 	            "day"=> 27, 
 	            "month"=> 6
 	        ), 
-	        "url"=> "www.LeesSandwiches.com", 
+	        "url"=> "www.BobsBurgers.com", 
 	        "annual_card_volume"=> 12000000
 	    )
 	)
@@ -5694,7 +5696,7 @@ identity = Identity(**
 	        "last_name": "Sunkhronos", 
 	        "max_transaction_amount": 12000000, 
 	        "has_accepted_credit_cards_previously": True, 
-	        "default_statement_descriptor": "Lees Sandwiches", 
+	        "default_statement_descriptor": "Bobs Burgers", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -5720,12 +5722,12 @@ identity = Identity(**
 	        "first_name": "dwayne", 
 	        "title": "CEO", 
 	        "business_tax_id": "123456789", 
-	        "doing_business_as": "Lees Sandwiches", 
+	        "doing_business_as": "Bobs Burgers", 
 	        "principal_percentage_ownership": 50, 
 	        "email": "user@example.org", 
 	        "mcc": "0742", 
 	        "phone": "1234567890", 
-	        "business_name": "Lees Sandwiches", 
+	        "business_name": "Bobs Burgers", 
 	        "tax_id": "123456789", 
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -5734,7 +5736,7 @@ identity = Identity(**
 	            "day": 27, 
 	            "month": 6
 	        }, 
-	        "url": "www.LeesSandwiches.com", 
+	        "url": "www.BobsBurgers.com", 
 	        "annual_card_volume": 12000000
 	    }
 	}).save()
@@ -5749,7 +5751,7 @@ identity = Finix::Identity.new(
 	        "last_name"=> "Sunkhronos", 
 	        "max_transaction_amount"=> 12000000, 
 	        "has_accepted_credit_cards_previously"=> true, 
-	        "default_statement_descriptor"=> "Lees Sandwiches", 
+	        "default_statement_descriptor"=> "Bobs Burgers", 
 	        "personal_address"=> {
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -5775,12 +5777,12 @@ identity = Finix::Identity.new(
 	        "first_name"=> "dwayne", 
 	        "title"=> "CEO", 
 	        "business_tax_id"=> "123456789", 
-	        "doing_business_as"=> "Lees Sandwiches", 
+	        "doing_business_as"=> "Bobs Burgers", 
 	        "principal_percentage_ownership"=> 50, 
 	        "email"=> "user@example.org", 
 	        "mcc"=> "0742", 
 	        "phone"=> "1234567890", 
-	        "business_name"=> "Lees Sandwiches", 
+	        "business_name"=> "Bobs Burgers", 
 	        "tax_id"=> "123456789", 
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -5789,7 +5791,7 @@ identity = Finix::Identity.new(
 	            "day"=> 27, 
 	            "month"=> 6
 	        }, 
-	        "url"=> "www.LeesSandwiches.com", 
+	        "url"=> "www.BobsBurgers.com", 
 	        "annual_card_volume"=> 12000000
 	    }
 	}).save
@@ -5798,15 +5800,15 @@ identity = Finix::Identity.new(
 
 ```json
 {
-  "id" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "IDfNKgun2WNruSqAPBFYXaXz",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Lees Sandwiches",
+    "business_name" : "Bobs Burgers",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Lees Sandwiches",
+    "doing_business_as" : "Bobs Burgers",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -5834,7 +5836,7 @@ identity = Finix::Identity.new(
     "max_transaction_amount" : 12000000,
     "amex_mid" : null,
     "discover_mid" : null,
-    "url" : "www.LeesSandwiches.com",
+    "url" : "www.BobsBurgers.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -5847,40 +5849,40 @@ identity = Finix::Identity.new(
     "ownership_type" : "PRIVATE",
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Lees Sandwiches"
+    "default_statement_descriptor" : "Bobs Burgers"
   },
   "tags" : {
     "Studio Rating" : "4.7"
   },
-  "created_at" : "2017-03-28T18:55:23.49Z",
-  "updated_at" : "2017-03-28T18:55:23.49Z",
+  "created_at" : "2017-04-17T23:48:38.85Z",
+  "updated_at" : "2017-04-17T23:48:38.85Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/verifications"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/authorizations"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/transfers"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/payment_instruments"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/disputes"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -5889,15 +5891,13 @@ identity = Finix::Identity.new(
 Before we can begin charging cards we'll need to provision a `Merchant` account
 for your seller. This requires 3-steps:
 
-1. Create an `Identity` resource with the merchant's underwriting and identity
+1. Create an `Identity` resource with the sender's underwriting and identity
 verification information (API request to the right)
 
 
-2. [Create a Payment Instrument](#create-a-bank-account) representing the
-merchant's bank account where processed funds will be settled (i.e. deposited)
+2. [Create a Payment Instrument](#create-a-card) representing the
+sender's bank account where processed funds will be settled (i.e. deposited)
 
-
-3. [Provision the Merchant account](##provision-a-merchant)
 
 
 #### HTTP Request
@@ -5908,12 +5908,12 @@ merchant's bank account where processed funds will be settled (i.e. deposited)
 
 Field | Type | Description
 ----- | ---- | -----------
-business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial)
-doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
+business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial; max 120 characters)
+doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name (max 60 characters)
 business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
 business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
-url | *string*, **required** | Merchant's publicly available website
-business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
+url | *string*, **required** | Merchant's publicly available website (max 100 characters)
+business_phone | *string*, **required** | Customer service phone number where the merchant can be reached (max 10 characters)
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
 ownership_type | *string*, **required** | Values can be either PUBLIC to indicate a publicly traded company or PRIVATE for privately held businesses
@@ -5923,14 +5923,14 @@ ownership_type | *string*, **required** | Values can be either PUBLIC to indicat
 
 Field | Type | Description
 ----- | ---- | -----------
-first_name | *string*, **required** | Full legal first name of the merchant's principal representative
-last_name | *string*, **required** | Full legal last name of the merchant's principal representative
-title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
-principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
+first_name | *string*, **required** | Full legal first name of the merchant's principal representative (max 20 characters)
+last_name | *string*, **required** | Full legal last name of the merchant's principal representative (max 20 characters)
+title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.; max 60 characters)
+principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal (min 0; max 100)
 tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
 dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
-phone | *string*, **required** | Principal's phone number
-email | *string*, **required** | Principal's email address where they can be reached
+phone | *string*, **required** | Principal's phone number (max 10 characters)
+email | *string*, **required** | Principal's email address where they can be reached (max 100 characters)
 personal_address | *object*, **required** | Principal's personal home address. This field is used for identity verification purposes (Full description of child attributes below)
 
 #### Processing-specific Request Arguments
@@ -5938,8 +5938,8 @@ personal_address | *object*, **required** | Principal's personal home address. T
 Field | Type | Description
 ----- | ---- | -----------
 default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
-annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant
-max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents
+annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant (max 23 characters)
+max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents (max 12 characters)
 mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under
 has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
 
@@ -5947,11 +5947,11 @@ has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to fal
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **required** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **required** | City
-region | *string*, **required** | State
-postal_code | *string*, **required** | Zip or Postal code
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
 country | *string*, **required** | 3-Letter Country code
 
 #### Incorporation Date-object Request Arguments
@@ -5973,33 +5973,33 @@ year | *integer*, **required** | Year of birth (4-digit)
 ## Retrieve a Identity
 ```shell
 
-curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX \
+curl https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
 
 import io.finix.payments.processing.client.model.Identity;
 
-Identity identity = client.identitiesClient().fetch("ID6HTbvJWaQb7TUVSR2KpiqX");
+Identity identity = client.identitiesClient().fetch("IDfNKgun2WNruSqAPBFYXaXz");
 
 ```
 ```php
 <?php
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 ```
 ```python
 
 
 from finix.resources import Identity
-identity = Identity.get(id="ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Identity.get(id="IDfNKgun2WNruSqAPBFYXaXz")
 
 ```
 ```ruby
-identity = Finix::Identity.retrieve(:id=>"ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Finix::Identity.retrieve(:id=>"IDfNKgun2WNruSqAPBFYXaXz")
 
 
 ```
@@ -6007,15 +6007,15 @@ identity = Finix::Identity.retrieve(:id=>"ID6HTbvJWaQb7TUVSR2KpiqX")
 
 ```json
 {
-  "id" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "IDfNKgun2WNruSqAPBFYXaXz",
   "entity" : {
     "title" : "CEO",
     "first_name" : "dwayne",
     "last_name" : "Sunkhronos",
     "email" : "user@example.org",
-    "business_name" : "Lees Sandwiches",
+    "business_name" : "Bobs Burgers",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Lees Sandwiches",
+    "doing_business_as" : "Bobs Burgers",
     "phone" : "1234567890",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -6043,7 +6043,7 @@ identity = Finix::Identity.retrieve(:id=>"ID6HTbvJWaQb7TUVSR2KpiqX")
     "max_transaction_amount" : 12000000,
     "amex_mid" : null,
     "discover_mid" : null,
-    "url" : "www.LeesSandwiches.com",
+    "url" : "www.BobsBurgers.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -6056,40 +6056,40 @@ identity = Finix::Identity.retrieve(:id=>"ID6HTbvJWaQb7TUVSR2KpiqX")
     "ownership_type" : "PRIVATE",
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Lees Sandwiches"
+    "default_statement_descriptor" : "Bobs Burgers"
   },
   "tags" : {
     "Studio Rating" : "4.7"
   },
-  "created_at" : "2017-03-28T18:55:23.47Z",
-  "updated_at" : "2017-03-28T18:55:23.47Z",
+  "created_at" : "2017-04-17T23:48:38.84Z",
+  "updated_at" : "2017-04-17T23:48:38.84Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/verifications"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/authorizations"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/transfers"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/payment_instruments"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/disputes"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -6107,9 +6107,9 @@ Parameter | Description
 
 ## Update an Identity
 ```shell
-curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX \
+curl https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -X PUT \
     -d '
 	{
@@ -6119,7 +6119,7 @@ curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX \
 	    "entity": {
 	        "business_phone": "+1 (408) 756-4497", 
 	        "first_name": "Bernard", 
-	        "last_name": "Sterling", 
+	        "last_name": "Green", 
 	        "title": "CTO", 
 	        "dob": {
 	            "year": 1988, 
@@ -6133,11 +6133,11 @@ curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX \
 	        "business_tax_id": "123456789", 
 	        "max_transaction_amount": 1200000, 
 	        "principal_percentage_ownership": 50, 
-	        "doing_business_as": "Pawny City Hall", 
+	        "doing_business_as": "Prestige World Wide", 
 	        "annual_card_volume": 12000000, 
-	        "default_statement_descriptor": "Pawny City Hall", 
-	        "url": "www.PawnyCityHall.com", 
-	        "business_name": "Pawny City Hall", 
+	        "default_statement_descriptor": "Prestige World Wide", 
+	        "url": "www.PrestigeWorldWide.com", 
+	        "business_name": "Prestige World Wide", 
 	        "personal_address": {
 	            "city": "San Diego", 
 	            "country": "USA", 
@@ -6165,7 +6165,7 @@ curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX \
 
 ```
 ```ruby
-identity = Finix::Identity.retrieve(:id=>"ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Finix::Identity.retrieve(:id=>"IDfNKgun2WNruSqAPBFYXaXz")
 
 identity.entity["first_name"] = "Bernard"
 identity.save
@@ -6174,15 +6174,15 @@ identity.save
 
 ```json
 {
-  "id" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "IDfNKgun2WNruSqAPBFYXaXz",
   "entity" : {
     "title" : "CTO",
     "first_name" : "Bernard",
-    "last_name" : "Sterling",
+    "last_name" : "Green",
     "email" : "user@example.org",
-    "business_name" : "Pawny City Hall",
+    "business_name" : "Prestige World Wide",
     "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-    "doing_business_as" : "Pawny City Hall",
+    "doing_business_as" : "Prestige World Wide",
     "phone" : "7144177878",
     "business_phone" : "+1 (408) 756-4497",
     "personal_address" : {
@@ -6210,7 +6210,7 @@ identity.save
     "max_transaction_amount" : 1200000,
     "amex_mid" : null,
     "discover_mid" : null,
-    "url" : "www.PawnyCityHall.com",
+    "url" : "www.PrestigeWorldWide.com",
     "annual_card_volume" : 12000000,
     "has_accepted_credit_cards_previously" : true,
     "incorporation_date" : {
@@ -6223,40 +6223,40 @@ identity.save
     "ownership_type" : "PRIVATE",
     "tax_id_provided" : true,
     "business_tax_id_provided" : true,
-    "default_statement_descriptor" : "Pawny City Hall"
+    "default_statement_descriptor" : "Prestige World Wide"
   },
   "tags" : {
     "key" : "value_2"
   },
-  "created_at" : "2017-03-28T18:55:23.47Z",
-  "updated_at" : "2017-03-28T18:55:46.37Z",
+  "created_at" : "2017-04-17T23:48:38.84Z",
+  "updated_at" : "2017-04-17T23:49:04.11Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/verifications"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/authorizations"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/transfers"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/payment_instruments"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/disputes"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -6282,11 +6282,12 @@ information on the underlying processor. To update the merchant's information
 
 Field | Type | Description
 ----- | ---- | -----------
-business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial)
-doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name
+business_name | *string*, **required** | Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial; max 120 characters)
+doing_business_as | *string*, **required** | Alternate name of the business. If no other name is used please use the same value for business_name (max 60 characters)
 business_type | *string*, **required** | Please select one of the following values: INDIVIDUAL_SOLE_PROPRIETORSHIP, CORPORATION, LIMITED_LIABILITY_COMPANY, PARTNERSHIP, ASSOCIATION_ESTATE_TRUST, TAX_EXEMPT_ORGANIZATION, INTERNATIONAL_ORGANIZATION, GOVERNMENT_AGENCY
-url | *string*, **required** | Merchant's publicly available website
-business_phone | *string*, **required** | Customer service phone number where the merchant can be reached
+business_tax_id | *string*, **required** | Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN) or if the business_type is INDIVIDUAL_SOLE_PROPRIETORSHIP and a Tax ID is not available, the principal's Social Security Number (SSN)
+url | *string*, **required** | Merchant's publicly available website (max 100 characters)
+business_phone | *string*, **required** | Customer service phone number where the merchant can be reached (max 10 characters)
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
 ownership_type | *string*, **required** | Values can be either PUBLIC to indicate a publicly traded company or PRIVATE for privately held businesses
@@ -6296,13 +6297,14 @@ ownership_type | *string*, **required** | Values can be either PUBLIC to indicat
 
 Field | Type | Description
 ----- | ---- | -----------
-first_name | *string*, **required** | Full legal first name of the merchant's principal representative
-last_name | *string*, **required** | Full legal last name of the merchant's principal representative
-title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.)
-principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal
+first_name | *string*, **required** | Full legal first name of the merchant's principal representative (max 20 characters)
+last_name | *string*, **required** | Full legal last name of the merchant's principal representative (max 20 characters)
+title | *string*, **required** | Principal's corporate title or role (i.e. Chief Executive Officer, CFO, etc.; max 60 characters)
+principal_percentage_ownership | *integer*, **required** | Percentage of company owned by the principal (min 0; max 100)
+tax_id | *string*, **required** | Nine digit Social Security Number (SSN) for the principal
 dob | *object*, **required** | Principal's date of birth (Full description of child attributes below)
-phone | *string*, **required** | Principal's phone number
-email | *string*, **required** | Principal's email address where they can be reached
+phone | *string*, **required** | Principal's phone number (max 10 characters)
+email | *string*, **required** | Principal's email address where they can be reached (max 100 characters)
 personal_address | *object*, **required** | Principal's personal home address. This field is used for identity verification purposes (Full description of child attributes below)
 
 #### Processing-specific Request Arguments
@@ -6310,8 +6312,8 @@ personal_address | *object*, **required** | Principal's personal home address. T
 Field | Type | Description
 ----- | ---- | -----------
 default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
-annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant
-max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents
+annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant (max 23 characters)
+max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents (max 12 characters)
 mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under
 has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
 
@@ -6319,12 +6321,13 @@ has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to fal
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **required** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **required** | City
-region | *string*, **required** | State
-postal_code | *string*, **required** | Zip or Postal code
-country | *string*, **required** | 3-Letter Country code
+line1 | *string*, **optional** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **optional** | 2-letter State code
+postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)
+country | *string*, **optional** | 3-Letter Country code
+
 
 #### Incorporation Date-object Request Arguments
 
@@ -6346,7 +6349,7 @@ year | *integer*, **required** | Year of birth (4-digit)
 ```shell
 curl https://api-staging.finix.io/identities/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 
 ```
@@ -6386,11 +6389,11 @@ identities = Finix::Identity.retrieve
 {
   "_embedded" : {
     "identities" : [ {
-      "id" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+      "id" : "ID3xkAW9p2qaQRdCvNo8cchE",
       "entity" : {
         "title" : null,
-        "first_name" : "Bob",
-        "last_name" : "White",
+        "first_name" : "Ayisha",
+        "last_name" : "Le",
         "email" : "therock@gmail.com",
         "business_name" : null,
         "business_type" : null,
@@ -6425,47 +6428,47 @@ identities = Finix::Identity.retrieve
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2017-03-28T18:55:29.36Z",
-      "updated_at" : "2017-03-28T18:55:29.36Z",
+      "created_at" : "2017-04-17T23:48:44.43Z",
+      "updated_at" : "2017-04-17T23:48:44.43Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/verifications"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/merchants"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/settlements"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/authorizations"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/transfers"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/disputes"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDf8ppQpPnhuscMRrzBvions",
+      "id" : "IDfMPhBzN1X7Wok1FUU6LUWK",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
+        "business_name" : "Pollos Hermanos",
         "business_type" : "GOVERNMENT_AGENCY",
-        "doing_business_as" : "Dunder Mifflin",
+        "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -6493,7 +6496,7 @@ identities = Finix::Identity.retrieve
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
+        "url" : "www.PollosHermanos.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -6506,52 +6509,52 @@ identities = Finix::Identity.retrieve
         "ownership_type" : "PUBLIC",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
+        "default_statement_descriptor" : "Pollos Hermanos"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:27.30Z",
-      "updated_at" : "2017-03-28T18:55:27.30Z",
+      "created_at" : "2017-04-17T23:48:42.08Z",
+      "updated_at" : "2017-04-17T23:48:42.08Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID69Zgg9iiRNYKSr2AHj6vdb",
+      "id" : "IDpPdjLcgGFHseoWLkT5NNrq",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Pollos Hermanos",
         "business_type" : "INTERNATIONAL_ORGANIZATION",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -6579,7 +6582,7 @@ identities = Finix::Identity.retrieve
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.PollosHermanos.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -6592,309 +6595,51 @@ identities = Finix::Identity.retrieve
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Pollos Hermanos"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:26.94Z",
-      "updated_at" : "2017-03-28T18:55:26.94Z",
+      "created_at" : "2017-04-17T23:48:41.69Z",
+      "updated_at" : "2017-04-17T23:48:41.69Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID96ASpo53x7KRhGPmTR5hTi",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Prestige World Wide",
-        "business_type" : "TAX_EXEMPT_ORGANIZATION",
-        "doing_business_as" : "Prestige World Wide",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.PrestigeWorldWide.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PUBLIC",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Prestige World Wide"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:26.29Z",
-      "updated_at" : "2017-03-28T18:55:26.29Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "ID26rb9jU6WZrHKwrVp2kNtz",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "ASSOCIATION_ESTATE_TRUST",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:25.91Z",
-      "updated_at" : "2017-03-28T18:55:25.91Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "ID4d2yXxTHo1p25G5yiTQnEd",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "GENERAL_PARTNERSHIP",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:25.53Z",
-      "updated_at" : "2017-03-28T18:55:25.53Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "IDkdK7Td1cSVwzdLqtzTZ87C",
+      "id" : "ID6AKxLcQQXR7aRRkydXPX5F",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "ACME Anchors",
-        "business_type" : "LIMITED_PARTNERSHIP",
+        "business_type" : "TAX_EXEMPT_ORGANIZATION",
         "doing_business_as" : "ACME Anchors",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -6933,7 +6678,7 @@ identities = Finix::Identity.retrieve
         },
         "principal_percentage_ownership" : 50,
         "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
+        "ownership_type" : "PUBLIC",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
         "default_statement_descriptor" : "ACME Anchors"
@@ -6941,47 +6686,47 @@ identities = Finix::Identity.retrieve
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:25.18Z",
-      "updated_at" : "2017-03-28T18:55:25.18Z",
+      "created_at" : "2017-04-17T23:48:41.07Z",
+      "updated_at" : "2017-04-17T23:48:41.07Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/verifications"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/merchants"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/settlements"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/authorizations"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/transfers"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/disputes"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDpP8ScaAHxrsF4EAhTebdVt",
+      "id" : "IDqEso4JwpiqtrXAx4axTw5M",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "PARTNERSHIP",
-        "doing_business_as" : "Golds Gym",
+        "business_name" : "Bobs Burgers",
+        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "doing_business_as" : "Bobs Burgers",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -7009,7 +6754,7 @@ identities = Finix::Identity.retrieve
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
+        "url" : "www.BobsBurgers.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -7022,44 +6767,130 @@ identities = Finix::Identity.retrieve
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
+        "default_statement_descriptor" : "Bobs Burgers"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:24.81Z",
-      "updated_at" : "2017-03-28T18:55:24.81Z",
+      "created_at" : "2017-04-17T23:48:40.56Z",
+      "updated_at" : "2017-04-17T23:48:40.56Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDrt8ZVtJZyoUbBxDtRhF4Av",
+      "id" : "ID48Z5ZCKnn44Mu1StZbfenp",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Pollos Hermanos",
+        "business_type" : "PARTNERSHIP",
+        "doing_business_as" : "Pollos Hermanos",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : "0742",
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 12000000,
+        "amex_mid" : null,
+        "discover_mid" : null,
+        "url" : "www.PollosHermanos.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "ownership_type" : "PRIVATE",
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Pollos Hermanos"
+      },
+      "tags" : {
+        "Studio Rating" : "4.7"
+      },
+      "created_at" : "2017-04-17T23:48:40.10Z",
+      "updated_at" : "2017-04-17T23:48:40.10Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
+        }
+      }
+    }, {
+      "id" : "IDqJ6qXLxDg5sCw21e6wEPxr",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
@@ -7113,47 +6944,47 @@ identities = Finix::Identity.retrieve
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:24.41Z",
-      "updated_at" : "2017-03-28T18:55:24.41Z",
+      "created_at" : "2017-04-17T23:48:39.68Z",
+      "updated_at" : "2017-04-17T23:48:39.68Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDts5Jx2YdP5wMdFGhhrdbbQ",
+      "id" : "IDvzSm8Wi7qDtCYfM9HbjiBi",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Pawny City Hall",
         "business_type" : "CORPORATION",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -7181,7 +7012,7 @@ identities = Finix::Identity.retrieve
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.PawnyCityHall.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -7194,52 +7025,52 @@ identities = Finix::Identity.retrieve
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Pawny City Hall"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:23.87Z",
-      "updated_at" : "2017-03-28T18:55:23.87Z",
+      "created_at" : "2017-04-17T23:48:39.27Z",
+      "updated_at" : "2017-04-17T23:48:39.27Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "id" : "IDfNKgun2WNruSqAPBFYXaXz",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Bobs Burgers",
         "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Bobs Burgers",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -7267,7 +7098,7 @@ identities = Finix::Identity.retrieve
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.BobsBurgers.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -7280,52 +7111,52 @@ identities = Finix::Identity.retrieve
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Bobs Burgers"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:23.47Z",
-      "updated_at" : "2017-03-28T18:55:23.47Z",
+      "created_at" : "2017-04-17T23:48:38.84Z",
+      "updated_at" : "2017-04-17T23:48:38.84Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "id" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "entity" : {
         "title" : null,
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "HyperWallet",
+        "business_name" : "WePay",
         "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "HyperWallet",
+        "doing_business_as" : "WePay",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -7365,37 +7196,37 @@ identities = Finix::Identity.retrieve
         "default_statement_descriptor" : null
       },
       "tags" : {
-        "application_name" : "HyperWallet"
+        "application_name" : "WePay"
       },
-      "created_at" : "2017-03-28T18:55:19.60Z",
-      "updated_at" : "2017-03-28T18:55:19.61Z",
+      "created_at" : "2017-04-17T23:48:35.68Z",
+      "updated_at" : "2017-04-17T23:48:35.69Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     } ]
@@ -7408,7 +7239,7 @@ identities = Finix::Identity.retrieve
   "page" : {
     "offset" : 0,
     "limit" : 20,
-    "count" : 12
+    "count" : 10
   }
 }
 ```
@@ -7425,9 +7256,9 @@ customers) and sellers (i.e. merchants).
 
 ## Provision a Merchant
 ```shell
-curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants \
+curl https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "processor": null, 
@@ -7448,7 +7279,7 @@ Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build());
 use Finix\Resources\Identity;
 use Finix\Resources\Merchant;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 
 $merchant = $identity->provisionMerchantOn(new Merchant());
 
@@ -7459,12 +7290,12 @@ $merchant = $identity->provisionMerchantOn(new Merchant());
 from finix.resources import Identity
 from finix.resources import Merchant
 
-identity = Identity.get(id="ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Identity.get(id="IDfNKgun2WNruSqAPBFYXaXz")
 merchant = identity.provision_merchant_on(Merchant())
 
 ```
 ```ruby
-identity = Finix::Identity.retrieve(:id => "MUzL5f3UkAwvK79iZGa8UhQ")
+identity = Finix::Identity.retrieve(:id => "MUnv85XMcN6G7FchWRm1epEx")
 
 merchant = identity.provision_merchant
 ```
@@ -7472,35 +7303,35 @@ merchant = identity.provision_merchant
 
 ```json
 {
-  "id" : "MUzL5f3UkAwvK79iZGa8UhQ",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
-  "verification" : "VIqsxrFKTjNTiyMEtpkfJPGS",
-  "merchant_profile" : "MPg32sgckPhfindCMvLFCpP1",
+  "id" : "MUnv85XMcN6G7FchWRm1epEx",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
+  "verification" : "VI5fgYrVj3pNEFyBsUVqhS45",
+  "merchant_profile" : "MP7oRterYoyXdfgbXwVgL3ZY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:28.62Z",
-  "updated_at" : "2017-03-28T18:55:28.62Z",
+  "created_at" : "2017-04-17T23:48:43.69Z",
+  "updated_at" : "2017-04-17T23:48:43.69Z",
   "onboarding_state" : "PROVISIONING",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-staging.finix.io/merchant_profiles/MPg32sgckPhfindCMvLFCpP1"
+      "href" : "https://api-staging.finix.io/merchant_profiles/MP7oRterYoyXdfgbXwVgL3ZY"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "verification" : {
-      "href" : "https://api-staging.finix.io/verifications/VIqsxrFKTjNTiyMEtpkfJPGS"
+      "href" : "https://api-staging.finix.io/verifications/VI5fgYrVj3pNEFyBsUVqhS45"
     }
   }
 }
@@ -7549,65 +7380,65 @@ Parameter | Description
 
 ## Retrieve a Merchant
 ```shell
-curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ \
+curl https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
 import io.finix.payments.processing.client.model.Merchant;
 
-Merchant merchant = client.merchantsClient().fetch("MUzL5f3UkAwvK79iZGa8UhQ");
+Merchant merchant = client.merchantsClient().fetch("MUnv85XMcN6G7FchWRm1epEx");
 
 ```
 ```php
 <?php
 use Finix\Resources\Merchant;
 
-$merchant = Merchant::retrieve('MUzL5f3UkAwvK79iZGa8UhQ');
+$merchant = Merchant::retrieve('MUnv85XMcN6G7FchWRm1epEx');
 
 ```
 ```python
 
 
 from finix.resources import Merchant
-merchant = Merchant.get(id="MUzL5f3UkAwvK79iZGa8UhQ")
+merchant = Merchant.get(id="MUnv85XMcN6G7FchWRm1epEx")
 
 ```
 ```ruby
-merchant = Finix::Merchant.retrieve(:id => "MUzL5f3UkAwvK79iZGa8UhQ")
+merchant = Finix::Merchant.retrieve(:id => "MUnv85XMcN6G7FchWRm1epEx")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "MUzL5f3UkAwvK79iZGa8UhQ",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "MUnv85XMcN6G7FchWRm1epEx",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "verification" : null,
-  "merchant_profile" : "MPg32sgckPhfindCMvLFCpP1",
+  "merchant_profile" : "MP7oRterYoyXdfgbXwVgL3ZY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : true,
   "settlement_enabled" : true,
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:28.58Z",
-  "updated_at" : "2017-03-28T18:55:28.69Z",
+  "created_at" : "2017-04-17T23:48:43.66Z",
+  "updated_at" : "2017-04-17T23:48:43.78Z",
   "onboarding_state" : "APPROVED",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-staging.finix.io/merchant_profiles/MPg32sgckPhfindCMvLFCpP1"
+      "href" : "https://api-staging.finix.io/merchant_profiles/MP7oRterYoyXdfgbXwVgL3ZY"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -7625,9 +7456,9 @@ Parameter | Description
 
 ## Update Info on Processor
 ```shell
-curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications \
+curl https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '{}'
 
 ```
@@ -7639,7 +7470,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
 use Finix\Resources\Merchant;
 use Finix\Resources\Verification;
 
-$merchant = Merchant::retrieve('MUzL5f3UkAwvK79iZGa8UhQ');
+$merchant = Merchant::retrieve('MUnv85XMcN6G7FchWRm1epEx');
 $verification = new Verification();
 $verification = $merchant->verifyOn($verification);
 ```
@@ -7649,7 +7480,7 @@ $verification = $merchant->verifyOn($verification);
 
 ```
 ```ruby
-merchant = Finix::Merchant.retrieve(:id => "MUzL5f3UkAwvK79iZGa8UhQ")
+merchant = Finix::Merchant.retrieve(:id => "MUnv85XMcN6G7FchWRm1epEx")
 
 verification = merchant.verify
 ```
@@ -7657,27 +7488,27 @@ verification = merchant.verify
 
 ```json
 {
-  "id" : "VI8ALocEuZZ1abgNUV68DXfG",
+  "id" : "VImiopeQbZ8ysoU1pYNQWHM3",
   "tags" : { },
   "messages" : [ ],
   "raw" : null,
   "processor" : "DUMMY_V1",
   "state" : "PENDING",
-  "created_at" : "2017-03-28T18:55:46.93Z",
-  "updated_at" : "2017-03-28T18:55:46.96Z",
-  "trace_id" : "8138ab09-bcdb-4f54-a835-20dfe02ff697",
+  "created_at" : "2017-04-17T23:49:04.61Z",
+  "updated_at" : "2017-04-17T23:49:04.64Z",
+  "trace_id" : "831c3915-fff7-4410-a2e7-503561a614c6",
   "payment_instrument" : null,
-  "merchant" : "MUzL5f3UkAwvK79iZGa8UhQ",
+  "merchant" : "MUnv85XMcN6G7FchWRm1epEx",
   "identity" : null,
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/verifications/VI8ALocEuZZ1abgNUV68DXfG"
+      "href" : "https://api-staging.finix.io/verifications/VImiopeQbZ8ysoU1pYNQWHM3"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "merchant" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx"
     }
   }
 }
@@ -7698,13 +7529,13 @@ Parameter | Description
 
 ## Reattempt Merchant Provisioning
 ```shell
-curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications \
+curl https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '{}'
 ```
 ```java
-Merchant merchant = client.merchantsClient().fetch("MUzL5f3UkAwvK79iZGa8UhQ");
+Merchant merchant = client.merchantsClient().fetch("MUnv85XMcN6G7FchWRm1epEx");
 Verification verification = merchant.verify(
   Verification.builder().build()
 );
@@ -7714,7 +7545,7 @@ Verification verification = merchant.verify(
 use Finix\Resources\Merchant;
 use Finix\Resources\Verification;
 
-$merchant = Merchant::retrieve('MUzL5f3UkAwvK79iZGa8UhQ');
+$merchant = Merchant::retrieve('MUnv85XMcN6G7FchWRm1epEx');
 $verification = new Verification();
 $verification = $merchant->verifyOn($verification);
 ```
@@ -7724,7 +7555,7 @@ $verification = $merchant->verifyOn($verification);
 
 ```
 ```ruby
-merchant = Finix::Merchant.retrieve(:id => "MUzL5f3UkAwvK79iZGa8UhQ")
+merchant = Finix::Merchant.retrieve(:id => "MUnv85XMcN6G7FchWRm1epEx")
 
 verification = merchant.verify
 ```
@@ -7732,27 +7563,27 @@ verification = merchant.verify
 
 ```json
 {
-  "id" : "VI8ALocEuZZ1abgNUV68DXfG",
+  "id" : "VImiopeQbZ8ysoU1pYNQWHM3",
   "tags" : { },
   "messages" : [ ],
   "raw" : null,
   "processor" : "DUMMY_V1",
   "state" : "PENDING",
-  "created_at" : "2017-03-28T18:55:46.93Z",
-  "updated_at" : "2017-03-28T18:55:46.96Z",
-  "trace_id" : "8138ab09-bcdb-4f54-a835-20dfe02ff697",
+  "created_at" : "2017-04-17T23:49:04.61Z",
+  "updated_at" : "2017-04-17T23:49:04.64Z",
+  "trace_id" : "831c3915-fff7-4410-a2e7-503561a614c6",
   "payment_instrument" : null,
-  "merchant" : "MUzL5f3UkAwvK79iZGa8UhQ",
+  "merchant" : "MUnv85XMcN6G7FchWRm1epEx",
   "identity" : null,
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/verifications/VI8ALocEuZZ1abgNUV68DXfG"
+      "href" : "https://api-staging.finix.io/verifications/VImiopeQbZ8ysoU1pYNQWHM3"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "merchant" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx"
     }
   }
 }
@@ -7773,7 +7604,7 @@ Parameter | Description
 
 ## Disable Processing Functionality
 ```shell
-curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/ \
+curl https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8 \
     -X PUT \
@@ -7802,32 +7633,32 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/ \
 
 ```json
 {
-  "id" : "MUzL5f3UkAwvK79iZGa8UhQ",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "MUnv85XMcN6G7FchWRm1epEx",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "verification" : null,
-  "merchant_profile" : "MPg32sgckPhfindCMvLFCpP1",
+  "merchant_profile" : "MP7oRterYoyXdfgbXwVgL3ZY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : true,
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:28.58Z",
-  "updated_at" : "2017-03-28T18:58:14.88Z",
+  "created_at" : "2017-04-17T23:48:43.66Z",
+  "updated_at" : "2017-04-17T23:52:16.02Z",
   "onboarding_state" : "APPROVED",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-staging.finix.io/merchant_profiles/MPg32sgckPhfindCMvLFCpP1"
+      "href" : "https://api-staging.finix.io/merchant_profiles/MP7oRterYoyXdfgbXwVgL3ZY"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -7853,7 +7684,7 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | False to disable
 ## Disable Settlement Functionality
 ```shell
-curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/ \
+curl https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8 \
     -X PUT \
@@ -7882,32 +7713,32 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/ \
 
 ```json
 {
-  "id" : "MUzL5f3UkAwvK79iZGa8UhQ",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "MUnv85XMcN6G7FchWRm1epEx",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "verification" : null,
-  "merchant_profile" : "MPg32sgckPhfindCMvLFCpP1",
+  "merchant_profile" : "MP7oRterYoyXdfgbXwVgL3ZY",
   "processor" : "DUMMY_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:28.58Z",
-  "updated_at" : "2017-03-28T18:58:15.28Z",
+  "created_at" : "2017-04-17T23:48:43.66Z",
+  "updated_at" : "2017-04-17T23:52:16.46Z",
   "onboarding_state" : "APPROVED",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications"
+      "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-staging.finix.io/merchant_profiles/MPg32sgckPhfindCMvLFCpP1"
+      "href" : "https://api-staging.finix.io/merchant_profiles/MP7oRterYoyXdfgbXwVgL3ZY"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -7934,7 +7765,7 @@ settlement_enabled | *boolean*, **required** | False to disable
 ```shell
 curl https://api-staging.finix.io/merchants/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -7964,32 +7795,32 @@ merchants = Finix::Merchant.retrieve
 {
   "_embedded" : {
     "merchants" : [ {
-      "id" : "MUzL5f3UkAwvK79iZGa8UhQ",
-      "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "id" : "MUnv85XMcN6G7FchWRm1epEx",
+      "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "verification" : null,
-      "merchant_profile" : "MPg32sgckPhfindCMvLFCpP1",
+      "merchant_profile" : "MP7oRterYoyXdfgbXwVgL3ZY",
       "processor" : "DUMMY_V1",
       "processing_enabled" : true,
       "settlement_enabled" : true,
       "tags" : { },
-      "created_at" : "2017-03-28T18:55:28.58Z",
-      "updated_at" : "2017-03-28T18:55:28.69Z",
+      "created_at" : "2017-04-17T23:48:43.66Z",
+      "updated_at" : "2017-04-17T23:48:43.78Z",
       "onboarding_state" : "APPROVED",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ"
+          "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications"
+          "href" : "https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications"
         },
         "merchant_profile" : {
-          "href" : "https://api-staging.finix.io/merchant_profiles/MPg32sgckPhfindCMvLFCpP1"
+          "href" : "https://api-staging.finix.io/merchant_profiles/MP7oRterYoyXdfgbXwVgL3ZY"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     } ]
@@ -8013,9 +7844,9 @@ merchants = Finix::Merchant.retrieve
 
 ## List Merchant Verifications
 ```shell
-curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications \
+curl https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -8026,7 +7857,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
 use Finix\Resources\Merchant;
 use Finix\Resources\Verification;
 
-$merchant = Merchant::retrieve('MUzL5f3UkAwvK79iZGa8UhQ');
+$merchant = Merchant::retrieve('MUnv85XMcN6G7FchWRm1epEx');
 $verifications = Verification::getPagination($merchant->getHref("verifications"));
 
 
@@ -8037,7 +7868,7 @@ $verifications = Verification::getPagination($merchant->getHref("verifications")
 
 ```
 ```ruby
-merchant = Finix::Merchant.retrieve(:id => "MUzL5f3UkAwvK79iZGa8UhQ")
+merchant = Finix::Merchant.retrieve(:id => "MUnv85XMcN6G7FchWRm1epEx")
 verifications = merchant.verifications
 ```
 > Example Response:
@@ -8046,11 +7877,11 @@ verifications = merchant.verifications
 {
   "_embedded" : {
     "identities" : [ {
-      "id" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+      "id" : "ID3xkAW9p2qaQRdCvNo8cchE",
       "entity" : {
         "title" : null,
-        "first_name" : "Bob",
-        "last_name" : "White",
+        "first_name" : "Ayisha",
+        "last_name" : "Le",
         "email" : "therock@gmail.com",
         "business_name" : null,
         "business_type" : null,
@@ -8085,47 +7916,47 @@ verifications = merchant.verifications
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2017-03-28T18:55:29.36Z",
-      "updated_at" : "2017-03-28T18:55:29.36Z",
+      "created_at" : "2017-04-17T23:48:44.43Z",
+      "updated_at" : "2017-04-17T23:48:44.43Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/verifications"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/merchants"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/settlements"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/authorizations"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/transfers"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/disputes"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDf8ppQpPnhuscMRrzBvions",
+      "id" : "IDfMPhBzN1X7Wok1FUU6LUWK",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
+        "business_name" : "Pollos Hermanos",
         "business_type" : "GOVERNMENT_AGENCY",
-        "doing_business_as" : "Dunder Mifflin",
+        "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -8153,7 +7984,7 @@ verifications = merchant.verifications
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
+        "url" : "www.PollosHermanos.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -8166,52 +7997,52 @@ verifications = merchant.verifications
         "ownership_type" : "PUBLIC",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
+        "default_statement_descriptor" : "Pollos Hermanos"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:27.30Z",
-      "updated_at" : "2017-03-28T18:55:27.30Z",
+      "created_at" : "2017-04-17T23:48:42.08Z",
+      "updated_at" : "2017-04-17T23:48:42.08Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID69Zgg9iiRNYKSr2AHj6vdb",
+      "id" : "IDpPdjLcgGFHseoWLkT5NNrq",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Pollos Hermanos",
         "business_type" : "INTERNATIONAL_ORGANIZATION",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -8239,7 +8070,7 @@ verifications = merchant.verifications
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.PollosHermanos.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -8252,309 +8083,51 @@ verifications = merchant.verifications
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Pollos Hermanos"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:26.94Z",
-      "updated_at" : "2017-03-28T18:55:26.94Z",
+      "created_at" : "2017-04-17T23:48:41.69Z",
+      "updated_at" : "2017-04-17T23:48:41.69Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID96ASpo53x7KRhGPmTR5hTi",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Prestige World Wide",
-        "business_type" : "TAX_EXEMPT_ORGANIZATION",
-        "doing_business_as" : "Prestige World Wide",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.PrestigeWorldWide.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PUBLIC",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Prestige World Wide"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:26.29Z",
-      "updated_at" : "2017-03-28T18:55:26.29Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "ID26rb9jU6WZrHKwrVp2kNtz",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "ASSOCIATION_ESTATE_TRUST",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:25.91Z",
-      "updated_at" : "2017-03-28T18:55:25.91Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "ID4d2yXxTHo1p25G5yiTQnEd",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "GENERAL_PARTNERSHIP",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:25.53Z",
-      "updated_at" : "2017-03-28T18:55:25.53Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "IDkdK7Td1cSVwzdLqtzTZ87C",
+      "id" : "ID6AKxLcQQXR7aRRkydXPX5F",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "ACME Anchors",
-        "business_type" : "LIMITED_PARTNERSHIP",
+        "business_type" : "TAX_EXEMPT_ORGANIZATION",
         "doing_business_as" : "ACME Anchors",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -8593,7 +8166,7 @@ verifications = merchant.verifications
         },
         "principal_percentage_ownership" : 50,
         "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
+        "ownership_type" : "PUBLIC",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
         "default_statement_descriptor" : "ACME Anchors"
@@ -8601,47 +8174,47 @@ verifications = merchant.verifications
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:25.18Z",
-      "updated_at" : "2017-03-28T18:55:25.18Z",
+      "created_at" : "2017-04-17T23:48:41.07Z",
+      "updated_at" : "2017-04-17T23:48:41.07Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/verifications"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/merchants"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/settlements"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/authorizations"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/transfers"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/disputes"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDpP8ScaAHxrsF4EAhTebdVt",
+      "id" : "IDqEso4JwpiqtrXAx4axTw5M",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "PARTNERSHIP",
-        "doing_business_as" : "Golds Gym",
+        "business_name" : "Bobs Burgers",
+        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "doing_business_as" : "Bobs Burgers",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -8669,7 +8242,7 @@ verifications = merchant.verifications
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
+        "url" : "www.BobsBurgers.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -8682,44 +8255,130 @@ verifications = merchant.verifications
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
+        "default_statement_descriptor" : "Bobs Burgers"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:24.81Z",
-      "updated_at" : "2017-03-28T18:55:24.81Z",
+      "created_at" : "2017-04-17T23:48:40.56Z",
+      "updated_at" : "2017-04-17T23:48:40.56Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDrt8ZVtJZyoUbBxDtRhF4Av",
+      "id" : "ID48Z5ZCKnn44Mu1StZbfenp",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Pollos Hermanos",
+        "business_type" : "PARTNERSHIP",
+        "doing_business_as" : "Pollos Hermanos",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : "0742",
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 12000000,
+        "amex_mid" : null,
+        "discover_mid" : null,
+        "url" : "www.PollosHermanos.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "ownership_type" : "PRIVATE",
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Pollos Hermanos"
+      },
+      "tags" : {
+        "Studio Rating" : "4.7"
+      },
+      "created_at" : "2017-04-17T23:48:40.10Z",
+      "updated_at" : "2017-04-17T23:48:40.10Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
+        }
+      }
+    }, {
+      "id" : "IDqJ6qXLxDg5sCw21e6wEPxr",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
@@ -8773,47 +8432,47 @@ verifications = merchant.verifications
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:24.41Z",
-      "updated_at" : "2017-03-28T18:55:24.41Z",
+      "created_at" : "2017-04-17T23:48:39.68Z",
+      "updated_at" : "2017-04-17T23:48:39.68Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDts5Jx2YdP5wMdFGhhrdbbQ",
+      "id" : "IDvzSm8Wi7qDtCYfM9HbjiBi",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Pawny City Hall",
         "business_type" : "CORPORATION",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -8841,7 +8500,7 @@ verifications = merchant.verifications
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.PawnyCityHall.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -8854,52 +8513,52 @@ verifications = merchant.verifications
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Pawny City Hall"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:23.87Z",
-      "updated_at" : "2017-03-28T18:55:23.87Z",
+      "created_at" : "2017-04-17T23:48:39.27Z",
+      "updated_at" : "2017-04-17T23:48:39.27Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "id" : "IDfNKgun2WNruSqAPBFYXaXz",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Bobs Burgers",
         "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Bobs Burgers",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -8927,7 +8586,7 @@ verifications = merchant.verifications
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.BobsBurgers.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -8940,52 +8599,52 @@ verifications = merchant.verifications
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Bobs Burgers"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:23.47Z",
-      "updated_at" : "2017-03-28T18:55:23.47Z",
+      "created_at" : "2017-04-17T23:48:38.84Z",
+      "updated_at" : "2017-04-17T23:48:38.84Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "id" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "entity" : {
         "title" : null,
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "HyperWallet",
+        "business_name" : "WePay",
         "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "HyperWallet",
+        "doing_business_as" : "WePay",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -9025,37 +8684,37 @@ verifications = merchant.verifications
         "default_statement_descriptor" : null
       },
       "tags" : {
-        "application_name" : "HyperWallet"
+        "application_name" : "WePay"
       },
-      "created_at" : "2017-03-28T18:55:19.60Z",
-      "updated_at" : "2017-03-28T18:55:19.61Z",
+      "created_at" : "2017-04-17T23:48:35.68Z",
+      "updated_at" : "2017-04-17T23:48:35.69Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     } ]
@@ -9068,7 +8727,7 @@ verifications = merchant.verifications
   "page" : {
     "offset" : 0,
     "limit" : 20,
-    "count" : 12
+    "count" : 10
   }
 }
 ```
@@ -9090,7 +8749,7 @@ Parameter | Description
 
 ## [ADMIN] List Merchant Verifications
 ```shell
-curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verifications \
+curl https://api-staging.finix.io/merchants/MUnv85XMcN6G7FchWRm1epEx/verifications \
     -H "Content-Type: application/vnd.json+api" \
     -u  US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8
 
@@ -9116,11 +8775,11 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
 {
   "_embedded" : {
     "identities" : [ {
-      "id" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+      "id" : "ID3xkAW9p2qaQRdCvNo8cchE",
       "entity" : {
         "title" : null,
-        "first_name" : "Bob",
-        "last_name" : "White",
+        "first_name" : "Ayisha",
+        "last_name" : "Le",
         "email" : "therock@gmail.com",
         "business_name" : null,
         "business_type" : null,
@@ -9155,47 +8814,47 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2017-03-28T18:55:29.36Z",
-      "updated_at" : "2017-03-28T18:55:29.36Z",
+      "created_at" : "2017-04-17T23:48:44.43Z",
+      "updated_at" : "2017-04-17T23:48:44.43Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/verifications"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/merchants"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/settlements"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/authorizations"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/transfers"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3/disputes"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDf8ppQpPnhuscMRrzBvions",
+      "id" : "IDfMPhBzN1X7Wok1FUU6LUWK",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Dunder Mifflin",
+        "business_name" : "Pollos Hermanos",
         "business_type" : "GOVERNMENT_AGENCY",
-        "doing_business_as" : "Dunder Mifflin",
+        "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -9223,7 +8882,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.DunderMifflin.com",
+        "url" : "www.PollosHermanos.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -9236,52 +8895,52 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "ownership_type" : "PUBLIC",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Dunder Mifflin"
+        "default_statement_descriptor" : "Pollos Hermanos"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:27.30Z",
-      "updated_at" : "2017-03-28T18:55:27.30Z",
+      "created_at" : "2017-04-17T23:48:42.08Z",
+      "updated_at" : "2017-04-17T23:48:42.08Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDf8ppQpPnhuscMRrzBvions/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDfMPhBzN1X7Wok1FUU6LUWK/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID69Zgg9iiRNYKSr2AHj6vdb",
+      "id" : "IDpPdjLcgGFHseoWLkT5NNrq",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Pollos Hermanos",
         "business_type" : "INTERNATIONAL_ORGANIZATION",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Pollos Hermanos",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -9309,7 +8968,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.PollosHermanos.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -9322,309 +8981,51 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Pollos Hermanos"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:26.94Z",
-      "updated_at" : "2017-03-28T18:55:26.94Z",
+      "created_at" : "2017-04-17T23:48:41.69Z",
+      "updated_at" : "2017-04-17T23:48:41.69Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID69Zgg9iiRNYKSr2AHj6vdb/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDpPdjLcgGFHseoWLkT5NNrq/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID96ASpo53x7KRhGPmTR5hTi",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Prestige World Wide",
-        "business_type" : "TAX_EXEMPT_ORGANIZATION",
-        "doing_business_as" : "Prestige World Wide",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.PrestigeWorldWide.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PUBLIC",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Prestige World Wide"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:26.29Z",
-      "updated_at" : "2017-03-28T18:55:26.29Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID96ASpo53x7KRhGPmTR5hTi/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "ID26rb9jU6WZrHKwrVp2kNtz",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "ASSOCIATION_ESTATE_TRUST",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:25.91Z",
-      "updated_at" : "2017-03-28T18:55:25.91Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID26rb9jU6WZrHKwrVp2kNtz/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "ID4d2yXxTHo1p25G5yiTQnEd",
-      "entity" : {
-        "title" : "CEO",
-        "first_name" : "dwayne",
-        "last_name" : "Sunkhronos",
-        "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "GENERAL_PARTNERSHIP",
-        "doing_business_as" : "Golds Gym",
-        "phone" : "1234567890",
-        "business_phone" : "+1 (408) 756-4497",
-        "personal_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 7",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "business_address" : {
-          "line1" : "741 Douglass St",
-          "line2" : "Apartment 8",
-          "city" : "San Mateo",
-          "region" : "CA",
-          "postal_code" : "94114",
-          "country" : "USA"
-        },
-        "mcc" : "0742",
-        "dob" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "max_transaction_amount" : 12000000,
-        "amex_mid" : null,
-        "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
-        "annual_card_volume" : 12000000,
-        "has_accepted_credit_cards_previously" : true,
-        "incorporation_date" : {
-          "day" : 27,
-          "month" : 6,
-          "year" : 1978
-        },
-        "principal_percentage_ownership" : 50,
-        "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
-        "tax_id_provided" : true,
-        "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
-      },
-      "tags" : {
-        "Studio Rating" : "4.7"
-      },
-      "created_at" : "2017-03-28T18:55:25.53Z",
-      "updated_at" : "2017-03-28T18:55:25.53Z",
-      "_links" : {
-        "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd"
-        },
-        "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/verifications"
-        },
-        "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/merchants"
-        },
-        "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/settlements"
-        },
-        "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/authorizations"
-        },
-        "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/transfers"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/payment_instruments"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID4d2yXxTHo1p25G5yiTQnEd/disputes"
-        },
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        }
-      }
-    }, {
-      "id" : "IDkdK7Td1cSVwzdLqtzTZ87C",
+      "id" : "ID6AKxLcQQXR7aRRkydXPX5F",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
         "business_name" : "ACME Anchors",
-        "business_type" : "LIMITED_PARTNERSHIP",
+        "business_type" : "TAX_EXEMPT_ORGANIZATION",
         "doing_business_as" : "ACME Anchors",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
@@ -9663,7 +9064,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         },
         "principal_percentage_ownership" : 50,
         "short_business_name" : null,
-        "ownership_type" : "PRIVATE",
+        "ownership_type" : "PUBLIC",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
         "default_statement_descriptor" : "ACME Anchors"
@@ -9671,47 +9072,47 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:25.18Z",
-      "updated_at" : "2017-03-28T18:55:25.18Z",
+      "created_at" : "2017-04-17T23:48:41.07Z",
+      "updated_at" : "2017-04-17T23:48:41.07Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/verifications"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/merchants"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/settlements"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/authorizations"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/transfers"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDkdK7Td1cSVwzdLqtzTZ87C/disputes"
+          "href" : "https://api-staging.finix.io/identities/ID6AKxLcQQXR7aRRkydXPX5F/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDpP8ScaAHxrsF4EAhTebdVt",
+      "id" : "IDqEso4JwpiqtrXAx4axTw5M",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Golds Gym",
-        "business_type" : "PARTNERSHIP",
-        "doing_business_as" : "Golds Gym",
+        "business_name" : "Bobs Burgers",
+        "business_type" : "ASSOCIATION_ESTATE_TRUST",
+        "doing_business_as" : "Bobs Burgers",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -9739,7 +9140,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.GoldsGym.com",
+        "url" : "www.BobsBurgers.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -9752,44 +9153,130 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Golds Gym"
+        "default_statement_descriptor" : "Bobs Burgers"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:24.81Z",
-      "updated_at" : "2017-03-28T18:55:24.81Z",
+      "created_at" : "2017-04-17T23:48:40.56Z",
+      "updated_at" : "2017-04-17T23:48:40.56Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDpP8ScaAHxrsF4EAhTebdVt/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDqEso4JwpiqtrXAx4axTw5M/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDrt8ZVtJZyoUbBxDtRhF4Av",
+      "id" : "ID48Z5ZCKnn44Mu1StZbfenp",
+      "entity" : {
+        "title" : "CEO",
+        "first_name" : "dwayne",
+        "last_name" : "Sunkhronos",
+        "email" : "user@example.org",
+        "business_name" : "Pollos Hermanos",
+        "business_type" : "PARTNERSHIP",
+        "doing_business_as" : "Pollos Hermanos",
+        "phone" : "1234567890",
+        "business_phone" : "+1 (408) 756-4497",
+        "personal_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 7",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "business_address" : {
+          "line1" : "741 Douglass St",
+          "line2" : "Apartment 8",
+          "city" : "San Mateo",
+          "region" : "CA",
+          "postal_code" : "94114",
+          "country" : "USA"
+        },
+        "mcc" : "0742",
+        "dob" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "max_transaction_amount" : 12000000,
+        "amex_mid" : null,
+        "discover_mid" : null,
+        "url" : "www.PollosHermanos.com",
+        "annual_card_volume" : 12000000,
+        "has_accepted_credit_cards_previously" : true,
+        "incorporation_date" : {
+          "day" : 27,
+          "month" : 6,
+          "year" : 1978
+        },
+        "principal_percentage_ownership" : 50,
+        "short_business_name" : null,
+        "ownership_type" : "PRIVATE",
+        "tax_id_provided" : true,
+        "business_tax_id_provided" : true,
+        "default_statement_descriptor" : "Pollos Hermanos"
+      },
+      "tags" : {
+        "Studio Rating" : "4.7"
+      },
+      "created_at" : "2017-04-17T23:48:40.10Z",
+      "updated_at" : "2017-04-17T23:48:40.10Z",
+      "_links" : {
+        "self" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp"
+        },
+        "verifications" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/verifications"
+        },
+        "merchants" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/merchants"
+        },
+        "settlements" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/settlements"
+        },
+        "authorizations" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/authorizations"
+        },
+        "transfers" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/transfers"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/payment_instruments"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.finix.io/identities/ID48Z5ZCKnn44Mu1StZbfenp/disputes"
+        },
+        "application" : {
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
+        }
+      }
+    }, {
+      "id" : "IDqJ6qXLxDg5sCw21e6wEPxr",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
@@ -9843,47 +9330,47 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:24.41Z",
-      "updated_at" : "2017-03-28T18:55:24.41Z",
+      "created_at" : "2017-04-17T23:48:39.68Z",
+      "updated_at" : "2017-04-17T23:48:39.68Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDrt8ZVtJZyoUbBxDtRhF4Av/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDqJ6qXLxDg5sCw21e6wEPxr/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDts5Jx2YdP5wMdFGhhrdbbQ",
+      "id" : "IDvzSm8Wi7qDtCYfM9HbjiBi",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Pawny City Hall",
         "business_type" : "CORPORATION",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Pawny City Hall",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -9911,7 +9398,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.PawnyCityHall.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -9924,52 +9411,52 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Pawny City Hall"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:23.87Z",
-      "updated_at" : "2017-03-28T18:55:23.87Z",
+      "created_at" : "2017-04-17T23:48:39.27Z",
+      "updated_at" : "2017-04-17T23:48:39.27Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDts5Jx2YdP5wMdFGhhrdbbQ/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDvzSm8Wi7qDtCYfM9HbjiBi/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "id" : "IDfNKgun2WNruSqAPBFYXaXz",
       "entity" : {
         "title" : "CEO",
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "Lees Sandwiches",
+        "business_name" : "Bobs Burgers",
         "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-        "doing_business_as" : "Lees Sandwiches",
+        "doing_business_as" : "Bobs Burgers",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -9997,7 +9484,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "max_transaction_amount" : 12000000,
         "amex_mid" : null,
         "discover_mid" : null,
-        "url" : "www.LeesSandwiches.com",
+        "url" : "www.BobsBurgers.com",
         "annual_card_volume" : 12000000,
         "has_accepted_credit_cards_previously" : true,
         "incorporation_date" : {
@@ -10010,52 +9497,52 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "ownership_type" : "PRIVATE",
         "tax_id_provided" : true,
         "business_tax_id_provided" : true,
-        "default_statement_descriptor" : "Lees Sandwiches"
+        "default_statement_descriptor" : "Bobs Burgers"
       },
       "tags" : {
         "Studio Rating" : "4.7"
       },
-      "created_at" : "2017-03-28T18:55:23.47Z",
-      "updated_at" : "2017-03-28T18:55:23.47Z",
+      "created_at" : "2017-04-17T23:48:38.84Z",
+      "updated_at" : "2017-04-17T23:48:38.84Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "id" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "entity" : {
         "title" : null,
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "HyperWallet",
+        "business_name" : "WePay",
         "business_type" : "LIMITED_LIABILITY_COMPANY",
-        "doing_business_as" : "HyperWallet",
+        "doing_business_as" : "WePay",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -10095,37 +9582,37 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
         "default_statement_descriptor" : null
       },
       "tags" : {
-        "application_name" : "HyperWallet"
+        "application_name" : "WePay"
       },
-      "created_at" : "2017-03-28T18:55:19.60Z",
-      "updated_at" : "2017-03-28T18:55:19.61Z",
+      "created_at" : "2017-04-17T23:48:35.68Z",
+      "updated_at" : "2017-04-17T23:48:35.69Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/verifications"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/merchants"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/settlements"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/authorizations"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/transfers"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/payment_instruments"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8/disputes"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     } ]
@@ -10138,7 +9625,7 @@ curl https://api-staging.finix.io/merchants/MUzL5f3UkAwvK79iZGa8UhQ/verification
   "page" : {
     "offset" : 0,
     "limit" : 20,
-    "count" : 12
+    "count" : 10
   }
 }
 ```
@@ -10162,9 +9649,9 @@ Parameter | Description
 
 ## Create a Merchant User
 ```shell
-curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/users \
+curl https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '{}'
 
 ```
@@ -10187,23 +9674,23 @@ curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/users \
 
 ```json
 {
-  "id" : "USx3R7atVBXohPL5ksGzavtm",
-  "password" : "701baff6-5107-4094-9d35-29d452082d95",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "US2p6VAPg3zRdgQyrGVAAjNA",
+  "password" : "5c972764-c0a8-4882-9632-7efcdf1a2626",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "enabled" : true,
   "role" : "ROLE_MERCHANT",
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:31.90Z",
-  "updated_at" : "2017-03-28T18:55:31.90Z",
+  "created_at" : "2017-04-17T23:48:46.92Z",
+  "updated_at" : "2017-04-17T23:48:46.92Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/users/USx3R7atVBXohPL5ksGzavtm"
+      "href" : "https://api-staging.finix.io/users/US2p6VAPg3zRdgQyrGVAAjNA"
     },
     "applications" : {
       "href" : "https://api-staging.finix.io/applications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -10241,12 +9728,12 @@ Once associated, a `Payment Instrument` may not be disassociated from an
 ```shell
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "token": "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token": "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type": "TOKEN", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}'
 
 
@@ -10255,14 +9742,12 @@ curl https://api-staging.finix.io/payment_instruments \
 import io.finix.payments.processing.client.model.PaymentCard;
 import io.finix.payments.processing.client.model.PaymentCardToken;
 
-PaymentCard paymentCard = client.paymentCardsClient().save(
-  PaymentCardToken.builder()
-    .type("TOKEN")
-    .token("TKgNmLTEk6oCcDERZqCX7w2m")
-    .identity("ID6HTbvJWaQb7TUVSR2KpiqX")
+PaymentCard card = client.paymentCardsClient().associateToken(
+    PaymentCardToken.builder()
+            .token("TK7ci8PhpqSGXsLKmi6ZeM21")
+            .identity("IDfNKgun2WNruSqAPBFYXaXz")
     .build()
 );
-
 ```
 ```php
 <?php
@@ -10270,9 +9755,9 @@ use Finix\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "token"=> "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token"=> "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	));
 $card = $card->save();
 
@@ -10284,24 +9769,24 @@ from finix.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token": "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type": "TOKEN", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save()
 ```
 ```ruby
 card = Finix::PaymentInstrument.new(
 	{
-	    "token"=> "TKgNmLTEk6oCcDERZqCX7w2m", 
+	    "token"=> "TK7ci8PhpqSGXsLKmi6ZeM21", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIgNmLTEk6oCcDERZqCX7w2m",
+  "id" : "PI7ci8PhpqSGXsLKmi6ZeM21",
   "fingerprint" : "FPR-1132692079",
   "tags" : { },
   "expiration_month" : 12,
@@ -10320,33 +9805,33 @@ card = Finix::PaymentInstrument.new(
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-03-28T18:55:36.64Z",
-  "updated_at" : "2017-03-28T18:55:36.64Z",
+  "created_at" : "2017-04-17T23:48:53.48Z",
+  "updated_at" : "2017-04-17T23:48:53.48Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "updates" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/updates"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/updates"
     }
   }
 }
@@ -10379,10 +9864,10 @@ identity | *string*, **required**| ID for the `Identity` resource which the acco
 
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "name": "Jessie Sterling", 
+	    "name": "Walter Henderson", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card_name": "Business Card"
@@ -10399,7 +9884,7 @@ curl https://api-staging.finix.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID2YRE5PQEHtBTqoAAhJo2T3"
+	    "identity": "ID3xkAW9p2qaQRdCvNo8cchE"
 	}'
 
 
@@ -10410,7 +9895,7 @@ import io.finix.payments.processing.client.model.PaymentCard;
 
 PaymentCard paymentCard = PaymentCard.builder()
     .name(Name.parse("Joe Doe"))
-    .identity("ID6HTbvJWaQb7TUVSR2KpiqX")
+    .identity("IDfNKgun2WNruSqAPBFYXaXz")
     .expirationMonth(12)
     .expirationYear(2030)
     .number("4111 1111 1111 1111")
@@ -10424,10 +9909,10 @@ paymentCard = client.paymentCardsClient().save(paymentCard);
 use Finix\Resources\PaymentCard;
 use Finix\Resources\Identity;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 $card = new PaymentCard(
 	array(
-	    "name"=> "Jessie Sterling", 
+	    "name"=> "Walter Henderson", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> array(
 	        "card_name"=> "Business Card"
@@ -10444,7 +9929,7 @@ $card = new PaymentCard(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "ID2YRE5PQEHtBTqoAAhJo2T3"
+	    "identity"=> "ID3xkAW9p2qaQRdCvNo8cchE"
 	));
 $card = $identity->createPaymentCard($card);
 
@@ -10456,7 +9941,7 @@ from finix.resources import PaymentCard
 
 card = PaymentCard(**
 	{
-	    "name": "Jessie Sterling", 
+	    "name": "Walter Henderson", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card_name": "Business Card"
@@ -10473,13 +9958,13 @@ card = PaymentCard(**
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "ID2YRE5PQEHtBTqoAAhJo2T3"
+	    "identity": "ID3xkAW9p2qaQRdCvNo8cchE"
 	}).save()
 ```
 ```ruby
 card = Finix::PaymentCard.new(
 	{
-	    "name"=> "Jessie Sterling", 
+	    "name"=> "Walter Henderson", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> {
 	        "card_name"=> "Business Card"
@@ -10496,15 +9981,15 @@ card = Finix::PaymentCard.new(
 	    }, 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "ID2YRE5PQEHtBTqoAAhJo2T3"
+	    "identity"=> "ID3xkAW9p2qaQRdCvNo8cchE"
 	}).save
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "fingerprint" : "FPR1412414468",
+  "id" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "fingerprint" : "FPR739722504",
   "tags" : {
     "card_name" : "Business Card"
   },
@@ -10513,7 +9998,7 @@ card = Finix::PaymentCard.new(
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Jessie Sterling",
+  "name" : "Walter Henderson",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -10524,33 +10009,33 @@ card = Finix::PaymentCard.new(
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-03-28T18:55:29.91Z",
-  "updated_at" : "2017-03-28T18:55:29.91Z",
+  "created_at" : "2017-04-17T23:48:44.85Z",
+  "updated_at" : "2017-04-17T23:48:44.85Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+  "identity" : "ID3xkAW9p2qaQRdCvNo8cchE",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "updates" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/updates"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/updates"
     }
   }
 }
@@ -10587,19 +10072,18 @@ address | *object*, **optional** | Billing address (Full description of child at
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **optional** | First line of the address
-line2 | *string*, **optional** | Second line of the address
-city | *string*, **optional** | City
-region | *string*, **optional** | State
-postal_code | *string*, **optional** | Zip or Postal code
+line1 | *string*, **optional** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **optional** | City (max 20 characters)
+region | *string*, **optional** | 2-letter State code
+postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)
 country | *string*, **optional** | 3-Letter Country code
-
 ## Create a Bank Account
 ```shell
 
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "account_type": "SAVINGS", 
@@ -10611,7 +10095,7 @@ curl https://api-staging.finix.io/payment_instruments \
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}'
 
 
@@ -10624,7 +10108,7 @@ import io.finix.payments.processing.client.model.Name;
 BankAccount bankAccount = client.bankAccountsClient().save(
   BankAccount.builder()
     .name(Name.parse("Billy Bob Thorton III"))
-    .identity("ID6HTbvJWaQb7TUVSR2KpiqX")
+    .identity("IDfNKgun2WNruSqAPBFYXaXz")
     .accountNumber("84012312415")
     .bankCode("840123124")
     .accountType(BankAccountType.SAVINGS)
@@ -10640,7 +10124,7 @@ BankAccount bankAccount = client.bankAccountsClient().save(
 use Finix\Resources\Identity;
 use Finix\Resources\BankAccount;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 $bank_account = new BankAccount(
 	array(
 	    "account_type"=> "SAVINGS", 
@@ -10652,7 +10136,7 @@ $bank_account = new BankAccount(
 	    "bank_code"=> "123123123", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	));
 $bank_account = $identity->createBankAccount($bank_account);
 ```
@@ -10672,7 +10156,7 @@ bank_account = BankAccount(**
 	    "bank_code": "123123123", 
 	    "account_number": "123123123", 
 	    "type": "BANK_ACCOUNT", 
-	    "identity": "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity": "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save()
 ```
 ```ruby
@@ -10687,14 +10171,14 @@ bank_account = Finix::BankAccount.new(
 	    "bank_code"=> "123123123", 
 	    "account_number"=> "123123123", 
 	    "type"=> "BANK_ACCOUNT", 
-	    "identity"=> "ID6HTbvJWaQb7TUVSR2KpiqX"
+	    "identity"=> "IDfNKgun2WNruSqAPBFYXaXz"
 	}).save
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIgtzh7EvFDiSnynkwnsgr3z",
+  "id" : "PIcgLj6AecVH1XbMpZpCF4Td",
   "fingerprint" : "FPR-1215770130",
   "tags" : {
     "Bank Account" : "Company Account"
@@ -10704,30 +10188,30 @@ bank_account = Finix::BankAccount.new(
   "masked_account_number" : "XXXXX3123",
   "name" : "Fran Lemke",
   "account_type" : "SAVINGS",
-  "created_at" : "2017-03-28T18:55:27.69Z",
-  "updated_at" : "2017-03-28T18:55:27.69Z",
+  "created_at" : "2017-04-17T23:48:42.65Z",
+  "updated_at" : "2017-04-17T23:48:42.65Z",
   "instrument_type" : "BANK_ACCOUNT",
   "type" : "BANK_ACCOUNT",
   "currency" : "USD",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -10746,27 +10230,27 @@ bank_code | *string*, **required** | Bank routing number
 type | *string*, **required** | Type of `Payment Instrument` (for bank accounts use BANK_ACCOUNT)
 identity | *string*, **required**| ID for the `Identity` resource which the account is associated
 account_type | *string*, **required** | Either CHECKING or SAVINGS
-name | *string*, **optional** | Account owner's full name
+name | *string*, **required** | Account owner's full name (max 40 characters)
 ## Fetch a Bank Account
 
 ```shell
-curl https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z \
+curl https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
 
 ```
 ```java
 
 import io.finix.payments.processing.client.model.PaymentCard;
 
-BankAccount bankAccount = client.bankAccountsClient().fetch("PIgtzh7EvFDiSnynkwnsgr3z")
+BankAccount bankAccount = client.bankAccountsClient().fetch("PIcgLj6AecVH1XbMpZpCF4Td")
 
 ```
 ```php
 <?php
 use Finix\Resources\PaymentInstrument;
 
-$bank_account = PaymentInstrument::retrieve('PIgtzh7EvFDiSnynkwnsgr3z');
+$bank_account = PaymentInstrument::retrieve('PIcgLj6AecVH1XbMpZpCF4Td');
 
 ```
 ```python
@@ -10775,14 +10259,14 @@ $bank_account = PaymentInstrument::retrieve('PIgtzh7EvFDiSnynkwnsgr3z');
 
 ```
 ```ruby
-bank_account = Finix::BankAccount.retrieve(:id=> "PIgtzh7EvFDiSnynkwnsgr3z")
+bank_account = Finix::BankAccount.retrieve(:id=> "PIcgLj6AecVH1XbMpZpCF4Td")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PIgtzh7EvFDiSnynkwnsgr3z",
+  "id" : "PIcgLj6AecVH1XbMpZpCF4Td",
   "fingerprint" : "FPR-1215770130",
   "tags" : {
     "Display Name" : "Updated Field"
@@ -10792,30 +10276,30 @@ bank_account = Finix::BankAccount.retrieve(:id=> "PIgtzh7EvFDiSnynkwnsgr3z")
   "masked_account_number" : "XXXXX3123",
   "name" : "Fran Lemke",
   "account_type" : "SAVINGS",
-  "created_at" : "2017-03-28T18:55:27.67Z",
-  "updated_at" : "2017-03-28T18:55:28.12Z",
+  "created_at" : "2017-04-17T23:48:42.62Z",
+  "updated_at" : "2017-04-17T23:48:43.08Z",
   "instrument_type" : "BANK_ACCOUNT",
   "type" : "BANK_ACCOUNT",
   "currency" : "USD",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -10836,23 +10320,23 @@ Parameter | Description
 
 ## Fetch a Credit Card
 ```shell
-curl https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY \
+curl https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
 
 ```
 ```java
 
 import io.finix.payments.processing.client.model.PaymentCard;
 
-PaymentCard paymentCard = client.paymentCardsClient().fetch("PI7jjWoR9uGsiXetvjLnavUY")
+PaymentCard paymentCard = client.paymentCardsClient().fetch("PIw9KSQJAEiBMCdkeiYHm4kx")
 
 ```
 ```php
 <?php
 use Finix\Resources\PaymentInstrument;
 
-$card = PaymentInstrument::retrieve('PI7jjWoR9uGsiXetvjLnavUY');
+$card = PaymentInstrument::retrieve('PIw9KSQJAEiBMCdkeiYHm4kx');
 
 ```
 ```python
@@ -10861,7 +10345,7 @@ $card = PaymentInstrument::retrieve('PI7jjWoR9uGsiXetvjLnavUY');
 
 ```
 ```ruby
-card = Finix::PaymentCard.retrieve(:id=> "PI7jjWoR9uGsiXetvjLnavUY")
+card = Finix::PaymentCard.retrieve(:id=> "PIw9KSQJAEiBMCdkeiYHm4kx")
 
 
 ```
@@ -10869,8 +10353,8 @@ card = Finix::PaymentCard.retrieve(:id=> "PI7jjWoR9uGsiXetvjLnavUY")
 
 ```json
 {
-  "id" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "fingerprint" : "FPR1412414468",
+  "id" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "fingerprint" : "FPR739722504",
   "tags" : {
     "card_name" : "Business Card"
   },
@@ -10879,7 +10363,7 @@ card = Finix::PaymentCard.retrieve(:id=> "PI7jjWoR9uGsiXetvjLnavUY")
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Jessie Sterling",
+  "name" : "Walter Henderson",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -10890,33 +10374,33 @@ card = Finix::PaymentCard.retrieve(:id=> "PI7jjWoR9uGsiXetvjLnavUY")
   },
   "address_verification" : "POSTAL_CODE_AND_STREET_MATCH",
   "security_code_verification" : "MATCHED",
-  "created_at" : "2017-03-28T18:55:29.88Z",
-  "updated_at" : "2017-03-28T18:55:34.81Z",
+  "created_at" : "2017-04-17T23:48:44.81Z",
+  "updated_at" : "2017-04-17T23:48:50.73Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+  "identity" : "ID3xkAW9p2qaQRdCvNo8cchE",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
     },
     "authorizations" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/authorizations"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+      "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/transfers"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/verifications"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "updates" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/updates"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/updates"
     }
   }
 }
@@ -10938,12 +10422,12 @@ Parameter | Description
 ## Check for Card Updates
 
 ```shell
-curl https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/updates \
+curl https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/updates \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
-	    "merchant": "MUzL5f3UkAwvK79iZGa8UhQ"
+	    "merchant": "MUnv85XMcN6G7FchWRm1epEx"
 	}'
 
 ```
@@ -10966,24 +10450,24 @@ curl https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/u
 
 ```json
 {
-  "id" : "IUov1Gm81yCSwQ1eJeFKvyfa",
-  "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-  "merchant" : "MUzL5f3UkAwvK79iZGa8UhQ",
+  "id" : "IUfTYWJ7RRTs1gZLpyx8MyLQ",
+  "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+  "merchant" : "MUnv85XMcN6G7FchWRm1epEx",
   "state" : "PENDING",
   "messages" : [ ],
-  "created_at" : "2017-03-28T18:55:38.57Z",
-  "updated_at" : "2017-03-28T18:55:38.59Z",
-  "payment_instrument" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "trace_id" : "272c22fd-7cbd-4801-a0a7-e5382336cea8",
+  "created_at" : "2017-04-17T23:48:55.83Z",
+  "updated_at" : "2017-04-17T23:48:55.86Z",
+  "payment_instrument" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "trace_id" : "759eb87d-b08c-4778-9057-2bab1522f421",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/updates/IUov1Gm81yCSwQ1eJeFKvyfa"
+      "href" : "https://api-staging.finix.io/updates/IUfTYWJ7RRTs1gZLpyx8MyLQ"
     },
     "payment_instrument" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -11009,7 +10493,7 @@ Field | Type | Description
 ```shell
 curl https://api-staging.finix.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 ```
 ```java
 import io.finix.payments.processing.client.model.BankAccount;
@@ -11043,7 +10527,7 @@ payment_instruments = Finix::PaymentInstruments.retrieve
 {
   "_embedded" : {
     "payment_instruments" : [ {
-      "id" : "PIgNmLTEk6oCcDERZqCX7w2m",
+      "id" : "PI7ci8PhpqSGXsLKmi6ZeM21",
       "fingerprint" : "FPR-1132692079",
       "tags" : { },
       "expiration_month" : 12,
@@ -11062,37 +10546,37 @@ payment_instruments = Finix::PaymentInstruments.retrieve
       },
       "address_verification" : "UNKNOWN",
       "security_code_verification" : "UNKNOWN",
-      "created_at" : "2017-03-28T18:55:36.60Z",
-      "updated_at" : "2017-03-28T18:55:36.60Z",
+      "created_at" : "2017-04-17T23:48:53.44Z",
+      "updated_at" : "2017-04-17T23:48:53.44Z",
       "instrument_type" : "PAYMENT_CARD",
       "type" : "PAYMENT_CARD",
       "currency" : "USD",
-      "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "updates" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgNmLTEk6oCcDERZqCX7w2m/updates"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI7ci8PhpqSGXsLKmi6ZeM21/updates"
         }
       }
     }, {
-      "id" : "PI93aEoSgVtXt6jzHnvLEJhA",
+      "id" : "PIh6qmthgVJNXaYCG5ahB5wN",
       "fingerprint" : "FPR-1215770130",
       "tags" : {
         "Bank Account" : "Company Account"
@@ -11102,35 +10586,35 @@ payment_instruments = Finix::PaymentInstruments.retrieve
       "masked_account_number" : "XXXXX3123",
       "name" : "Fran Lemke",
       "account_type" : "SAVINGS",
-      "created_at" : "2017-03-28T18:55:30.33Z",
-      "updated_at" : "2017-03-28T18:55:30.33Z",
+      "created_at" : "2017-04-17T23:48:45.25Z",
+      "updated_at" : "2017-04-17T23:48:45.25Z",
       "instrument_type" : "BANK_ACCOUNT",
       "type" : "BANK_ACCOUNT",
       "currency" : "USD",
-      "identity" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+      "identity" : "ID3xkAW9p2qaQRdCvNo8cchE",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI93aEoSgVtXt6jzHnvLEJhA"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIh6qmthgVJNXaYCG5ahB5wN"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI93aEoSgVtXt6jzHnvLEJhA/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIh6qmthgVJNXaYCG5ahB5wN/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI93aEoSgVtXt6jzHnvLEJhA/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIh6qmthgVJNXaYCG5ahB5wN/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI93aEoSgVtXt6jzHnvLEJhA/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIh6qmthgVJNXaYCG5ahB5wN/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "PI7jjWoR9uGsiXetvjLnavUY",
-      "fingerprint" : "FPR1412414468",
+      "id" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+      "fingerprint" : "FPR739722504",
       "tags" : {
         "card_name" : "Business Card"
       },
@@ -11139,7 +10623,7 @@ payment_instruments = Finix::PaymentInstruments.retrieve
       "last_four" : "0454",
       "brand" : "VISA",
       "card_type" : "UNKNOWN",
-      "name" : "Jessie Sterling",
+      "name" : "Walter Henderson",
       "address" : {
         "line1" : "741 Douglass St",
         "line2" : "Apartment 7",
@@ -11150,130 +10634,130 @@ payment_instruments = Finix::PaymentInstruments.retrieve
       },
       "address_verification" : "POSTAL_CODE_AND_STREET_MATCH",
       "security_code_verification" : "MATCHED",
-      "created_at" : "2017-03-28T18:55:29.88Z",
-      "updated_at" : "2017-03-28T18:55:34.81Z",
+      "created_at" : "2017-04-17T23:48:44.81Z",
+      "updated_at" : "2017-04-17T23:48:50.73Z",
       "instrument_type" : "PAYMENT_CARD",
       "type" : "PAYMENT_CARD",
       "currency" : "USD",
-      "identity" : "ID2YRE5PQEHtBTqoAAhJo2T3",
+      "identity" : "ID3xkAW9p2qaQRdCvNo8cchE",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID2YRE5PQEHtBTqoAAhJo2T3"
+          "href" : "https://api-staging.finix.io/identities/ID3xkAW9p2qaQRdCvNo8cchE"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "updates" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY/updates"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx/updates"
         }
       }
     }, {
-      "id" : "PI4a7VHiEJpsxY7C5G3kph16",
+      "id" : "PIuYoj7cLT4FJXqBuPHHkxW7",
       "fingerprint" : "FPR-2042121662",
       "tags" : { },
       "name" : null,
-      "created_at" : "2017-03-28T18:55:28.58Z",
-      "updated_at" : "2017-03-28T18:55:28.58Z",
+      "created_at" : "2017-04-17T23:48:43.66Z",
+      "updated_at" : "2017-04-17T23:48:43.66Z",
       "instrument_type" : "VIRTUAL",
       "type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4a7VHiEJpsxY7C5G3kph16"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIuYoj7cLT4FJXqBuPHHkxW7"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4a7VHiEJpsxY7C5G3kph16/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIuYoj7cLT4FJXqBuPHHkxW7/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4a7VHiEJpsxY7C5G3kph16/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIuYoj7cLT4FJXqBuPHHkxW7/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4a7VHiEJpsxY7C5G3kph16/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIuYoj7cLT4FJXqBuPHHkxW7/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "PIFWaMJsxLZ2qgw12rMAqQ",
+      "id" : "PI5eBJ31fgnU6XjrfK3R4Z87",
       "fingerprint" : "FPR-1383578548",
       "tags" : { },
       "name" : null,
-      "created_at" : "2017-03-28T18:55:28.58Z",
-      "updated_at" : "2017-03-28T18:55:28.58Z",
+      "created_at" : "2017-04-17T23:48:43.66Z",
+      "updated_at" : "2017-04-17T23:48:43.66Z",
       "instrument_type" : "VIRTUAL",
       "type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIFWaMJsxLZ2qgw12rMAqQ"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI5eBJ31fgnU6XjrfK3R4Z87"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIFWaMJsxLZ2qgw12rMAqQ/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI5eBJ31fgnU6XjrfK3R4Z87/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIFWaMJsxLZ2qgw12rMAqQ/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI5eBJ31fgnU6XjrfK3R4Z87/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIFWaMJsxLZ2qgw12rMAqQ/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI5eBJ31fgnU6XjrfK3R4Z87/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "PI4WcsKv49EfdUPgP6ymYP46",
+      "id" : "PI6Yyo98eaCRwgLuhFK4TtzT",
       "fingerprint" : "FPR-1645745263",
       "tags" : { },
       "name" : null,
-      "created_at" : "2017-03-28T18:55:28.58Z",
-      "updated_at" : "2017-03-28T18:55:28.58Z",
+      "created_at" : "2017-04-17T23:48:43.66Z",
+      "updated_at" : "2017-04-17T23:48:43.66Z",
       "instrument_type" : "VIRTUAL",
       "type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "PIgtzh7EvFDiSnynkwnsgr3z",
+      "id" : "PIcgLj6AecVH1XbMpZpCF4Td",
       "fingerprint" : "FPR-1215770130",
       "tags" : {
         "Display Name" : "Updated Field"
@@ -11283,154 +10767,154 @@ payment_instruments = Finix::PaymentInstruments.retrieve
       "masked_account_number" : "XXXXX3123",
       "name" : "Fran Lemke",
       "account_type" : "SAVINGS",
-      "created_at" : "2017-03-28T18:55:27.67Z",
-      "updated_at" : "2017-03-28T18:55:28.12Z",
+      "created_at" : "2017-04-17T23:48:42.62Z",
+      "updated_at" : "2017-04-17T23:48:43.08Z",
       "instrument_type" : "BANK_ACCOUNT",
       "type" : "BANK_ACCOUNT",
       "currency" : "USD",
-      "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "PIm4BdpEHQ2LvwNhzSPaTpVA",
+      "id" : "PIi4aybz3MGpEaVzqboRr5vT",
       "fingerprint" : "FPR-2042121662",
       "tags" : { },
       "name" : null,
-      "created_at" : "2017-03-28T18:55:20.66Z",
-      "updated_at" : "2017-03-28T18:55:20.66Z",
+      "created_at" : "2017-04-17T23:48:36.20Z",
+      "updated_at" : "2017-04-17T23:48:36.20Z",
       "instrument_type" : "VIRTUAL",
       "type" : "VIRTUAL",
       "currency" : "USD",
       "identity" : "ID8bW3W9DmKEgFYF4GfDJ8or",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIm4BdpEHQ2LvwNhzSPaTpVA"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIi4aybz3MGpEaVzqboRr5vT"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIm4BdpEHQ2LvwNhzSPaTpVA/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIi4aybz3MGpEaVzqboRr5vT/authorizations"
         },
         "identity" : {
           "href" : "https://api-staging.finix.io/identities/ID8bW3W9DmKEgFYF4GfDJ8or"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIm4BdpEHQ2LvwNhzSPaTpVA/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIi4aybz3MGpEaVzqboRr5vT/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIm4BdpEHQ2LvwNhzSPaTpVA/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIi4aybz3MGpEaVzqboRr5vT/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "PIxiiGwwFR3hBrsibXbed4Pb",
+      "id" : "PIczY73VrpaCScZmSptbYXLX",
       "fingerprint" : "FPR-2042121662",
       "tags" : { },
       "name" : null,
-      "created_at" : "2017-03-28T18:55:20.66Z",
-      "updated_at" : "2017-03-28T18:55:20.66Z",
+      "created_at" : "2017-04-17T23:48:36.20Z",
+      "updated_at" : "2017-04-17T23:48:36.20Z",
       "instrument_type" : "VIRTUAL",
       "type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIxiiGwwFR3hBrsibXbed4Pb"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIczY73VrpaCScZmSptbYXLX"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIxiiGwwFR3hBrsibXbed4Pb/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIczY73VrpaCScZmSptbYXLX/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIxiiGwwFR3hBrsibXbed4Pb/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIczY73VrpaCScZmSptbYXLX/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIxiiGwwFR3hBrsibXbed4Pb/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIczY73VrpaCScZmSptbYXLX/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "PIvBvDPG1kATDw1nJAhcFDY2",
+      "id" : "PI6KGNqPV9mBHh9QBtevdZz8",
       "fingerprint" : "FPR-1383578548",
       "tags" : { },
       "name" : null,
-      "created_at" : "2017-03-28T18:55:20.66Z",
-      "updated_at" : "2017-03-28T18:55:20.66Z",
+      "created_at" : "2017-04-17T23:48:36.20Z",
+      "updated_at" : "2017-04-17T23:48:36.20Z",
       "instrument_type" : "VIRTUAL",
       "type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIvBvDPG1kATDw1nJAhcFDY2"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6KGNqPV9mBHh9QBtevdZz8"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIvBvDPG1kATDw1nJAhcFDY2/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6KGNqPV9mBHh9QBtevdZz8/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIvBvDPG1kATDw1nJAhcFDY2/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6KGNqPV9mBHh9QBtevdZz8/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIvBvDPG1kATDw1nJAhcFDY2/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6KGNqPV9mBHh9QBtevdZz8/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "PIroFj7KSRoK2TE3FmkMMonU",
+      "id" : "PIiuS5feUwxmrpJJnpBrQyqR",
       "fingerprint" : "FPR-1645745263",
       "tags" : { },
       "name" : null,
-      "created_at" : "2017-03-28T18:55:20.66Z",
-      "updated_at" : "2017-03-28T18:55:20.66Z",
+      "created_at" : "2017-04-17T23:48:36.20Z",
+      "updated_at" : "2017-04-17T23:48:36.20Z",
       "instrument_type" : "VIRTUAL",
       "type" : "VIRTUAL",
       "currency" : "USD",
-      "identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIroFj7KSRoK2TE3FmkMMonU"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIiuS5feUwxmrpJJnpBrQyqR"
         },
         "authorizations" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIroFj7KSRoK2TE3FmkMMonU/authorizations"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIiuS5feUwxmrpJJnpBrQyqR/authorizations"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIroFj7KSRoK2TE3FmkMMonU/transfers"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIiuS5feUwxmrpJJnpBrQyqR/transfers"
         },
         "verifications" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIroFj7KSRoK2TE3FmkMMonU/verifications"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIiuS5feUwxmrpJJnpBrQyqR/verifications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     } ]
@@ -11460,9 +10944,9 @@ A `Settlement` is a logical construct representing a collection (i.e. batch) of
 ## Create a Settlement
 ```shell
 
-curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/settlements \
+curl https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/settlements \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
 	{
 	    "currency": "USD", 
@@ -11488,7 +10972,7 @@ Settlement settlement = identity.createSettlement(
 use Finix\Resources\Identity;
 use Finix\Resources\Settlement;
 
-$identity = Identity::retrieve('ID6HTbvJWaQb7TUVSR2KpiqX');
+$identity = Identity::retrieve('IDfNKgun2WNruSqAPBFYXaXz');
 $settlement = new Settlement(
 	array(
 	    "currency"=> "USD", 
@@ -11505,7 +10989,7 @@ $settlement = $identity->createSettlement($settlement);
 from finix.resources import Identity
 from finix.resources import Settlement
 
-identity = Identity.get(id="ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Identity.get(id="IDfNKgun2WNruSqAPBFYXaXz")
 settlement = Settlement(**
 	{
 	    "currency": "USD", 
@@ -11516,7 +11000,7 @@ settlement = Settlement(**
 identity.create_settlement(settlement)
 ```
 ```ruby
-identity = Finix::Identity.retrieve(:id=>"ID6HTbvJWaQb7TUVSR2KpiqX")
+identity = Finix::Identity.retrieve(:id=>"IDfNKgun2WNruSqAPBFYXaXz")
 settlement = identity.create_settlement(
 	{
 	    "currency"=> "USD", 
@@ -11529,47 +11013,47 @@ settlement = identity.create_settlement(
 
 ```json
 {
-  "id" : "STrXDzTso6jYd83jvQS9yoVL",
+  "id" : "SThZK4ge46CJV27dV3LDbyF4",
   "tags" : {
     "Internal Daily Settlement ID" : "21DFASJSAKAS"
   },
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "currency" : "USD",
-  "created_at" : "2017-03-28T18:58:11.14Z",
-  "updated_at" : "2017-03-28T18:58:11.18Z",
+  "created_at" : "2017-04-17T23:52:11.62Z",
+  "updated_at" : "2017-04-17T23:52:11.67Z",
   "processor" : "DUMMY_V1",
-  "total_amount" : 1389672,
-  "total_fees" : 138969,
-  "total_fee" : 138969,
-  "net_amount" : 1250703,
+  "total_amount" : 1209845,
+  "total_fees" : 120985,
+  "total_fee" : 120985,
+  "net_amount" : 1088860,
   "destination" : null,
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "funding_transfers" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/funding_transfers"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/funding_transfers"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers"
     },
     "fees" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=fee"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=fee"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=reverse"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=reverse"
     },
     "credits" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=credit"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=credit"
     },
     "debits" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=debit"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=debit"
     }
   }
 }
@@ -11612,23 +11096,23 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 ```shell
 
 
-curl https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL \
+curl https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
 
 ```
 ```java
 
 import io.finix.payments.processing.client.model.Settlement;
 
-Settlement settlement = client.settlementsClient().fetch("STrXDzTso6jYd83jvQS9yoVL");
+Settlement settlement = client.settlementsClient().fetch("SThZK4ge46CJV27dV3LDbyF4");
 
 ```
 ```php
 <?php
 use Finix\Resources\Settlement;
 
-$settlement = Settlement::retrieve('STrXDzTso6jYd83jvQS9yoVL');
+$settlement = Settlement::retrieve('SThZK4ge46CJV27dV3LDbyF4');
 
 ```
 ```python
@@ -11637,54 +11121,54 @@ $settlement = Settlement::retrieve('STrXDzTso6jYd83jvQS9yoVL');
 
 ```
 ```ruby
-settlement = Finix::Settlement.retrieve(:id=>"STrXDzTso6jYd83jvQS9yoVL")
+settlement = Finix::Settlement.retrieve(:id=>"SThZK4ge46CJV27dV3LDbyF4")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "STrXDzTso6jYd83jvQS9yoVL",
+  "id" : "SThZK4ge46CJV27dV3LDbyF4",
   "tags" : {
     "Internal Daily Settlement ID" : "21DFASJSAKAS"
   },
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "currency" : "USD",
-  "created_at" : "2017-03-28T18:58:11.10Z",
-  "updated_at" : "2017-03-28T18:58:11.90Z",
+  "created_at" : "2017-04-17T23:52:11.58Z",
+  "updated_at" : "2017-04-17T23:52:12.50Z",
   "processor" : "DUMMY_V1",
-  "total_amount" : 1389672,
-  "total_fees" : 138969,
-  "total_fee" : 138969,
-  "net_amount" : 1250703,
-  "destination" : "PIgtzh7EvFDiSnynkwnsgr3z",
+  "total_amount" : 1209845,
+  "total_fees" : 120985,
+  "total_fee" : 120985,
+  "net_amount" : 1088860,
+  "destination" : "PIcgLj6AecVH1XbMpZpCF4Td",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "funding_transfers" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/funding_transfers"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/funding_transfers"
     },
     "transfers" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers"
     },
     "fees" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=fee"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=fee"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=reverse"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=reverse"
     },
     "credits" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=credit"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=credit"
     },
     "debits" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=debit"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=debit"
     }
   }
 }
@@ -11708,7 +11192,7 @@ Parameter | Description
 ```shell
 curl https://api-staging.finix.io/settlements/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -11742,47 +11226,47 @@ settlements = Finix::Settlement.retrieve
 {
   "_embedded" : {
     "settlements" : [ {
-      "id" : "STrXDzTso6jYd83jvQS9yoVL",
+      "id" : "SThZK4ge46CJV27dV3LDbyF4",
       "tags" : {
         "Internal Daily Settlement ID" : "21DFASJSAKAS"
       },
-      "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "currency" : "USD",
-      "created_at" : "2017-03-28T18:58:11.10Z",
-      "updated_at" : "2017-03-28T18:58:11.90Z",
+      "created_at" : "2017-04-17T23:52:11.58Z",
+      "updated_at" : "2017-04-17T23:52:12.50Z",
       "processor" : "DUMMY_V1",
-      "total_amount" : 1389672,
-      "total_fees" : 138969,
-      "total_fee" : 138969,
-      "net_amount" : 1250703,
-      "destination" : "PIgtzh7EvFDiSnynkwnsgr3z",
+      "total_amount" : 1209845,
+      "total_fees" : 120985,
+      "total_fee" : 120985,
+      "net_amount" : 1088860,
+      "destination" : "PIcgLj6AecVH1XbMpZpCF4Td",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL"
+          "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "funding_transfers" : {
-          "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/funding_transfers"
+          "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/funding_transfers"
         },
         "transfers" : {
-          "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers"
+          "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=fee"
+          "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=fee"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=reverse"
+          "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=reverse"
         },
         "credits" : {
-          "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=credit"
+          "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=credit"
         },
         "debits" : {
-          "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?type=debit"
+          "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?type=debit"
         }
       }
     } ]
@@ -11817,23 +11301,27 @@ Parameter | Description
 
 ## List Funding Transfers
 ```shell
-curl https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/funding_transfers \
+curl https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/funding_transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
+Settlement settlement = client.settlementsClient().fetch("SThZK4ge46CJV27dV3LDbyF4");
+  settlement.fundingTransfersClient().<Resources<Transfer>>resourcesIterator()
+    .forEachRemaining(page -> {
+      Collection<Transfer> transfers = page.getContent();
+      transfers.forEach(transfer ->
+     // do something
+      );
+    });
+}
 ```
 ```php
 <?php
 use Finix\Resources\Settlement;
 
-$settlement = Settlement::retrieve('STrXDzTso6jYd83jvQS9yoVL');
+$settlement = Settlement::retrieve('SThZK4ge46CJV27dV3LDbyF4');
 $settlements = Settlement::getPagination($settlement->getHref("funding_transfers"));
 
 ```
@@ -11843,7 +11331,7 @@ $settlements = Settlement::getPagination($settlement->getHref("funding_transfers
 
 ```
 ```ruby
-settlement = Finix::Settlement.retrieve(:id=>"STrXDzTso6jYd83jvQS9yoVL")
+settlement = Finix::Settlement.retrieve(:id=>"SThZK4ge46CJV27dV3LDbyF4")
 transfers = settlement.funding_transfers
 ```
 > Example Response:
@@ -11852,60 +11340,60 @@ transfers = settlement.funding_transfers
 {
   "_embedded" : {
     "transfers" : [ {
-      "id" : "TRb6HfADjA2e73bQv5RJh4tj",
-      "amount" : 1250703,
+      "id" : "TR4frQcc6rtZgTptRrX2UZUZ",
+      "amount" : 1088860,
       "tags" : {
         "Internal Daily Settlement ID" : "21DFASJSAKAS"
       },
       "state" : "PENDING",
-      "trace_id" : "43bac67e-614d-4da5-82c9-897441be0769",
+      "trace_id" : "c0b97e8f-74d1-435e-95af-949486d8abe5",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "destination" : "PIgtzh7EvFDiSnynkwnsgr3z",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "destination" : "PIcgLj6AecVH1XbMpZpCF4Td",
       "ready_to_settle_at" : null,
       "fee" : 0,
       "statement_descriptor" : null,
       "type" : "CREDIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:58:11.59Z",
-      "updated_at" : "2017-03-28T18:58:11.85Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:52:12.17Z",
+      "updated_at" : "2017-04-17T23:52:12.45Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRb6HfADjA2e73bQv5RJh4tj"
+          "href" : "https://api-staging.finix.io/transfers/TR4frQcc6rtZgTptRrX2UZUZ"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRb6HfADjA2e73bQv5RJh4tj/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TR4frQcc6rtZgTptRrX2UZUZ/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRb6HfADjA2e73bQv5RJh4tj/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TR4frQcc6rtZgTptRrX2UZUZ/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRb6HfADjA2e73bQv5RJh4tj/fees"
+          "href" : "https://api-staging.finix.io/transfers/TR4frQcc6rtZgTptRrX2UZUZ/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRb6HfADjA2e73bQv5RJh4tj/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TR4frQcc6rtZgTptRrX2UZUZ/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIgtzh7EvFDiSnynkwnsgr3z"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIcgLj6AecVH1XbMpZpCF4Td"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/funding_transfers?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/funding_transfers?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
@@ -11934,19 +11422,30 @@ Parameter | Description
 ## List Transfers in a Settlement
 ```shell
 
-curl https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers \
+curl https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
+Settlement settlement = client.settlementsClient().fetch("SThZK4ge46CJV27dV3LDbyF4");
+    settlement.transfersClient().<Resources<Transfer>>resourcesIterator()
+      .forEachRemaining(page -> {
+        Collection<Transfer> transfers = page.getContent();
+        transfers.forEach(transfer ->
+       // do something
+        );
+      });
+  }
+
+
 
 ```
 ```php
 <?php
 use Finix\Resources\Settlement;
 
-$settlement = Settlement::retrieve('STrXDzTso6jYd83jvQS9yoVL');
+$settlement = Settlement::retrieve('SThZK4ge46CJV27dV3LDbyF4');
 $settlements = Settlement::getPagination($settlement->getHref("transfers"));
 
 ```
@@ -11956,7 +11455,7 @@ $settlements = Settlement::getPagination($settlement->getHref("transfers"));
 
 ```
 ```ruby
-settlement = Finix::Settlement.retrieve(:id=>"STrXDzTso6jYd83jvQS9yoVL")
+settlement = Finix::Settlement.retrieve(:id=>"SThZK4ge46CJV27dV3LDbyF4")
 transfers = settlement.transfers
 ```
 > Example Response:
@@ -11965,398 +11464,398 @@ transfers = settlement.transfers
 {
   "_embedded" : {
     "transfers" : [ {
-      "id" : "TR2aDSXd99E2ogmBvreNv2kj",
-      "amount" : 66994,
+      "id" : "TRJS1gvU2xmnuThdKyfquWY",
+      "amount" : 81375,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "87022e1b-9c25-40ff-aa9b-b93360a4de9f",
+      "trace_id" : "24d1af38-d608-4db6-807b-6e9a1e5f7e4a",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "destination" : "PIxiiGwwFR3hBrsibXbed4Pb",
-      "ready_to_settle_at" : "2017-03-28T18:58:09.30Z",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "destination" : "PIczY73VrpaCScZmSptbYXLX",
+      "ready_to_settle_at" : "2017-04-17T23:52:09.27Z",
       "fee" : 0,
       "statement_descriptor" : null,
       "type" : "FEE",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:58:10.49Z",
-      "updated_at" : "2017-03-28T18:58:10.71Z",
-      "merchant_identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "created_at" : "2017-04-17T23:52:10.95Z",
+      "updated_at" : "2017-04-17T23:52:11.18Z",
+      "merchant_identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TR2aDSXd99E2ogmBvreNv2kj"
+          "href" : "https://api-staging.finix.io/transfers/TRJS1gvU2xmnuThdKyfquWY"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TR2aDSXd99E2ogmBvreNv2kj/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRJS1gvU2xmnuThdKyfquWY/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TR2aDSXd99E2ogmBvreNv2kj/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRJS1gvU2xmnuThdKyfquWY/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TR2aDSXd99E2ogmBvreNv2kj/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRJS1gvU2xmnuThdKyfquWY/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TR2aDSXd99E2ogmBvreNv2kj/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRJS1gvU2xmnuThdKyfquWY/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIxiiGwwFR3hBrsibXbed4Pb"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIczY73VrpaCScZmSptbYXLX"
         }
       }
     }, {
-      "id" : "TRsEY1eR5wd9aHywi8WoDQSh",
+      "id" : "TRjFNM2N3pn4USKZKGxFCucz",
       "amount" : 11,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "97605277-8890-4ef6-9695-eb5d29630e94",
+      "trace_id" : "ac16ff80-a953-48b7-b91d-3b6467185eb4",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "destination" : "PIm4BdpEHQ2LvwNhzSPaTpVA",
-      "ready_to_settle_at" : "2017-03-28T18:58:09.30Z",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "destination" : "PIi4aybz3MGpEaVzqboRr5vT",
+      "ready_to_settle_at" : "2017-04-17T23:52:09.27Z",
       "fee" : 0,
       "statement_descriptor" : null,
       "type" : "FEE",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:58:10.25Z",
-      "updated_at" : "2017-03-28T18:58:10.47Z",
+      "created_at" : "2017-04-17T23:52:10.49Z",
+      "updated_at" : "2017-04-17T23:52:10.92Z",
       "merchant_identity" : "ID8bW3W9DmKEgFYF4GfDJ8or",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRsEY1eR5wd9aHywi8WoDQSh"
+          "href" : "https://api-staging.finix.io/transfers/TRjFNM2N3pn4USKZKGxFCucz"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRsEY1eR5wd9aHywi8WoDQSh/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRjFNM2N3pn4USKZKGxFCucz/payment_instruments"
         },
         "merchant_identity" : {
           "href" : "https://api-staging.finix.io/identities/ID8bW3W9DmKEgFYF4GfDJ8or"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRsEY1eR5wd9aHywi8WoDQSh/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRjFNM2N3pn4USKZKGxFCucz/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRsEY1eR5wd9aHywi8WoDQSh/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRjFNM2N3pn4USKZKGxFCucz/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRsEY1eR5wd9aHywi8WoDQSh/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRjFNM2N3pn4USKZKGxFCucz/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIm4BdpEHQ2LvwNhzSPaTpVA"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIi4aybz3MGpEaVzqboRr5vT"
         }
       }
     }, {
-      "id" : "TRoEy7SfKR7GQc2eEHUHmi2P",
-      "amount" : 71942,
-      "tags" : { },
-      "state" : "SUCCEEDED",
-      "trace_id" : "ef7aa4c7-f5e7-4c58-92af-76eaa83731de",
-      "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "destination" : "PIxiiGwwFR3hBrsibXbed4Pb",
-      "ready_to_settle_at" : "2017-03-28T18:58:09.30Z",
-      "fee" : 0,
-      "statement_descriptor" : null,
-      "type" : "FEE",
-      "messages" : [ ],
-      "raw" : null,
-      "created_at" : "2017-03-28T18:58:09.96Z",
-      "updated_at" : "2017-03-28T18:58:10.19Z",
-      "merchant_identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
-      "_links" : {
-        "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
-        },
-        "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRoEy7SfKR7GQc2eEHUHmi2P"
-        },
-        "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRoEy7SfKR7GQc2eEHUHmi2P/payment_instruments"
-        },
-        "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/IDwKf7z2Xb5u4XNZwo36XA8"
-        },
-        "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRoEy7SfKR7GQc2eEHUHmi2P/reversals"
-        },
-        "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRoEy7SfKR7GQc2eEHUHmi2P/fees"
-        },
-        "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRoEy7SfKR7GQc2eEHUHmi2P/disputes"
-        },
-        "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
-        },
-        "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIxiiGwwFR3hBrsibXbed4Pb"
-        }
-      }
-    }, {
-      "id" : "TR7a6SKc5XLgR6mhob5bgAuf",
+      "id" : "TRv5Mavqbo4oYFvBXpAKmMDB",
       "amount" : 11,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "402e7873-d2ac-4339-a4b3-b79c8f9e00a7",
+      "trace_id" : "0b63cbb5-e0a8-481d-9686-65dcde79a869",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "destination" : "PIm4BdpEHQ2LvwNhzSPaTpVA",
-      "ready_to_settle_at" : "2017-03-28T18:58:09.30Z",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "destination" : "PIi4aybz3MGpEaVzqboRr5vT",
+      "ready_to_settle_at" : "2017-04-17T23:52:09.27Z",
       "fee" : 0,
       "statement_descriptor" : null,
       "type" : "FEE",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:58:09.71Z",
-      "updated_at" : "2017-03-28T18:58:09.94Z",
+      "created_at" : "2017-04-17T23:52:10.06Z",
+      "updated_at" : "2017-04-17T23:52:10.43Z",
       "merchant_identity" : "ID8bW3W9DmKEgFYF4GfDJ8or",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TR7a6SKc5XLgR6mhob5bgAuf"
+          "href" : "https://api-staging.finix.io/transfers/TRv5Mavqbo4oYFvBXpAKmMDB"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TR7a6SKc5XLgR6mhob5bgAuf/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRv5Mavqbo4oYFvBXpAKmMDB/payment_instruments"
         },
         "merchant_identity" : {
           "href" : "https://api-staging.finix.io/identities/ID8bW3W9DmKEgFYF4GfDJ8or"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TR7a6SKc5XLgR6mhob5bgAuf/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRv5Mavqbo4oYFvBXpAKmMDB/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TR7a6SKc5XLgR6mhob5bgAuf/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRv5Mavqbo4oYFvBXpAKmMDB/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TR7a6SKc5XLgR6mhob5bgAuf/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRv5Mavqbo4oYFvBXpAKmMDB/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIm4BdpEHQ2LvwNhzSPaTpVA"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIi4aybz3MGpEaVzqboRr5vT"
         }
       }
     }, {
-      "id" : "TRe9pctiCVPuuiSMF2NpnXJv",
-      "amount" : 11,
+      "id" : "TRreWBwU9EEmaynjpsnKpcKF",
+      "amount" : 39577,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "814dbfa7-4ce9-4403-9121-2481645486bb",
+      "trace_id" : "71474ce2-2be0-4f25-846f-624a7d910c23",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "destination" : "PIm4BdpEHQ2LvwNhzSPaTpVA",
-      "ready_to_settle_at" : "2017-03-28T18:58:09.30Z",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "destination" : "PIczY73VrpaCScZmSptbYXLX",
+      "ready_to_settle_at" : "2017-04-17T23:52:09.27Z",
       "fee" : 0,
       "statement_descriptor" : null,
       "type" : "FEE",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:58:09.39Z",
-      "updated_at" : "2017-03-28T18:58:09.66Z",
+      "created_at" : "2017-04-17T23:52:09.73Z",
+      "updated_at" : "2017-04-17T23:52:10.01Z",
+      "merchant_identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
+      "_links" : {
+        "application" : {
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
+        },
+        "self" : {
+          "href" : "https://api-staging.finix.io/transfers/TRreWBwU9EEmaynjpsnKpcKF"
+        },
+        "payment_instruments" : {
+          "href" : "https://api-staging.finix.io/transfers/TRreWBwU9EEmaynjpsnKpcKF/payment_instruments"
+        },
+        "merchant_identity" : {
+          "href" : "https://api-staging.finix.io/identities/IDgXEWuvWEtpM9J8W1U9vSzf"
+        },
+        "reversals" : {
+          "href" : "https://api-staging.finix.io/transfers/TRreWBwU9EEmaynjpsnKpcKF/reversals"
+        },
+        "fees" : {
+          "href" : "https://api-staging.finix.io/transfers/TRreWBwU9EEmaynjpsnKpcKF/fees"
+        },
+        "disputes" : {
+          "href" : "https://api-staging.finix.io/transfers/TRreWBwU9EEmaynjpsnKpcKF/disputes"
+        },
+        "source" : {
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
+        },
+        "destination" : {
+          "href" : "https://api-staging.finix.io/payment_instruments/PIczY73VrpaCScZmSptbYXLX"
+        }
+      }
+    }, {
+      "id" : "TRiz4XnNnkXF4FuuEJqSxE26",
+      "amount" : 11,
+      "tags" : { },
+      "state" : "SUCCEEDED",
+      "trace_id" : "904237e9-6064-4fb6-98b8-2de35cda7817",
+      "currency" : "USD",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "destination" : "PIi4aybz3MGpEaVzqboRr5vT",
+      "ready_to_settle_at" : "2017-04-17T23:52:09.27Z",
+      "fee" : 0,
+      "statement_descriptor" : null,
+      "type" : "FEE",
+      "messages" : [ ],
+      "raw" : null,
+      "created_at" : "2017-04-17T23:52:09.37Z",
+      "updated_at" : "2017-04-17T23:52:09.69Z",
       "merchant_identity" : "ID8bW3W9DmKEgFYF4GfDJ8or",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRe9pctiCVPuuiSMF2NpnXJv"
+          "href" : "https://api-staging.finix.io/transfers/TRiz4XnNnkXF4FuuEJqSxE26"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRe9pctiCVPuuiSMF2NpnXJv/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRiz4XnNnkXF4FuuEJqSxE26/payment_instruments"
         },
         "merchant_identity" : {
           "href" : "https://api-staging.finix.io/identities/ID8bW3W9DmKEgFYF4GfDJ8or"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRe9pctiCVPuuiSMF2NpnXJv/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRiz4XnNnkXF4FuuEJqSxE26/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRe9pctiCVPuuiSMF2NpnXJv/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRiz4XnNnkXF4FuuEJqSxE26/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRe9pctiCVPuuiSMF2NpnXJv/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRiz4XnNnkXF4FuuEJqSxE26/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PIm4BdpEHQ2LvwNhzSPaTpVA"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIi4aybz3MGpEaVzqboRr5vT"
         }
       }
     }, {
-      "id" : "TRtE4ScbPV8nMnAQKLoZuy9F",
+      "id" : "TR7hEkZRcxzuCSiAAV6WCcUh",
       "amount" : 100,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "79225bf1-e422-490b-874e-ddfb05e1b271",
+      "trace_id" : "aabe5af9-a702-4874-9efb-85e7cc104967",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-      "destination" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "ready_to_settle_at" : "2017-03-28T18:58:09.30Z",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+      "destination" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "ready_to_settle_at" : "2017-04-17T23:52:09.27Z",
       "fee" : 10,
-      "statement_descriptor" : "FIN*LEES SANDWICHES",
+      "statement_descriptor" : "FIN*BOBS BURGERS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:35.23Z",
-      "updated_at" : "2017-03-28T18:56:04.43Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:51.41Z",
+      "updated_at" : "2017-04-17T23:49:17.24Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F/fees"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         }
       }
     }, {
-      "id" : "TRmLZcYKowxnXStMFXnek5Bf",
-      "amount" : 670046,
+      "id" : "TRojYTyiuZP7axuAPpxxLRHw",
+      "amount" : 813861,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "SUCCEEDED",
-      "trace_id" : "db3e6872-c0b5-4b30-834c-7fa86237de3d",
+      "trace_id" : "56e041b9-65a4-4b51-b35a-364520672bbe",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI93aEoSgVtXt6jzHnvLEJhA",
-      "destination" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "ready_to_settle_at" : "2017-03-28T18:58:09.30Z",
-      "fee" : 67005,
-      "statement_descriptor" : "FIN*LEES SANDWICHES",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PIh6qmthgVJNXaYCG5ahB5wN",
+      "destination" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "ready_to_settle_at" : "2017-04-17T23:52:09.27Z",
+      "fee" : 81386,
+      "statement_descriptor" : "FIN*BOBS BURGERS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:31.25Z",
-      "updated_at" : "2017-03-28T18:56:13.35Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:46.36Z",
+      "updated_at" : "2017-04-17T23:49:20.13Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI93aEoSgVtXt6jzHnvLEJhA"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIh6qmthgVJNXaYCG5ahB5wN"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         }
       }
     }, {
-      "id" : "TRhfnbG4E6jMS7wHHanXFpjg",
-      "amount" : 719526,
+      "id" : "TRo78WokKsW3L3pAz5gZxrmD",
+      "amount" : 395884,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "SUCCEEDED",
-      "trace_id" : "b6956c8f-99ec-4dee-8bf8-0dc4eccca5bc",
+      "trace_id" : "3d2a2076-bf44-4be0-b1b9-4ef0397e92bf",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-      "destination" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "ready_to_settle_at" : "2017-03-28T18:58:09.30Z",
-      "fee" : 71953,
-      "statement_descriptor" : "FIN*LEES SANDWICHES",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+      "destination" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "ready_to_settle_at" : "2017-04-17T23:52:09.27Z",
+      "fee" : 39588,
+      "statement_descriptor" : "FIN*BOBS BURGERS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:30.75Z",
-      "updated_at" : "2017-03-28T18:56:07.71Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:45.70Z",
+      "updated_at" : "2017-04-17T23:49:13.94Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         }
       }
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/settlements/STrXDzTso6jYd83jvQS9yoVL/transfers?offset=0&limit=20&sort=created_at,desc"
+      "href" : "https://api-staging.finix.io/settlements/SThZK4ge46CJV27dV3LDbyF4/transfers?offset=0&limit=20&sort=created_at,desc"
     }
   },
   "page" : {
@@ -12389,7 +11888,7 @@ For example, a `Transfer` can be either a [debit to a card](#debit-a-card), a
 credit to a bank account, or a [refund to a card](#refund-a-debit) depending on
 the request.
 
-`Transfers` can have three possible states values: PENDING, SUCCEEDED, or FAILED.
+`Transfers` can have four possible states values: PENDING, SUCCEEDED, FAILED, or CANCELED.
 
 - **PENDING:** Authorization on `Payment Instrument` successfully created (i.e.
 funds are being held), but awaiting system to batch submit the capture request
@@ -12416,9 +11915,9 @@ When an Authorization is captured a corresponding Transfer will also be created.
 ## Retrieve a Transfer
 ```shell
 
-curl https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg \
+curl https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 
 ```
@@ -12426,14 +11925,14 @@ curl https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg \
 
 import io.finix.payments.processing.client.model.Transfer;
 
-Transfer transfer = client.transfersClient().fetch("TRhfnbG4E6jMS7wHHanXFpjg");
+Transfer transfer = client.transfersClient().fetch("TRo78WokKsW3L3pAz5gZxrmD");
 
 ```
 ```php
 <?php
 use Finix\Resources\Transfer;
 
-$transfer = Transfer::retrieve('TRhfnbG4E6jMS7wHHanXFpjg');
+$transfer = Transfer::retrieve('TRo78WokKsW3L3pAz5gZxrmD');
 
 
 
@@ -12442,64 +11941,64 @@ $transfer = Transfer::retrieve('TRhfnbG4E6jMS7wHHanXFpjg');
 
 
 from finix.resources import Transfer
-transfer = Transfer.get(id="TRhfnbG4E6jMS7wHHanXFpjg")
+transfer = Transfer.get(id="TRo78WokKsW3L3pAz5gZxrmD")
 
 ```
 ```ruby
-transfer = Finix::Transfer.retrieve(:id=> "TRhfnbG4E6jMS7wHHanXFpjg")
+transfer = Finix::Transfer.retrieve(:id=> "TRo78WokKsW3L3pAz5gZxrmD")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "TRhfnbG4E6jMS7wHHanXFpjg",
-  "amount" : 719526,
+  "id" : "TRo78WokKsW3L3pAz5gZxrmD",
+  "amount" : 395884,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "PENDING",
-  "trace_id" : "b6956c8f-99ec-4dee-8bf8-0dc4eccca5bc",
+  "trace_id" : "3d2a2076-bf44-4be0-b1b9-4ef0397e92bf",
   "currency" : "USD",
-  "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-  "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-  "destination" : "PI4WcsKv49EfdUPgP6ymYP46",
+  "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+  "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+  "destination" : "PI6Yyo98eaCRwgLuhFK4TtzT",
   "ready_to_settle_at" : null,
-  "fee" : 71953,
-  "statement_descriptor" : "FIN*LEES SANDWICHES",
+  "fee" : 39588,
+  "statement_descriptor" : "FIN*BOBS BURGERS",
   "type" : "DEBIT",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:55:30.75Z",
-  "updated_at" : "2017-03-28T18:55:30.87Z",
-  "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "created_at" : "2017-04-17T23:48:45.70Z",
+  "updated_at" : "2017-04-17T23:48:45.83Z",
+  "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "self" : {
-      "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg"
+      "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/payment_instruments"
+      "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/payment_instruments"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "reversals" : {
-      "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/reversals"
+      "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/reversals"
     },
     "fees" : {
-      "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/fees"
+      "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/fees"
     },
     "disputes" : {
-      "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/disputes"
+      "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/disputes"
     },
     "source" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
     },
     "destination" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+      "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
     }
   }
 }
@@ -12518,9 +12017,9 @@ Parameter | Description
 ## Refund a Debit
 ```shell
 
-curl https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/reversals \
+curl https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/reversals \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d  '
           {
           "refund_amount" : 100
@@ -12539,7 +12038,7 @@ Refund refund = transfer.reverse(100L);
 <?php
 use Finix\Resources\Transfer;
 
-$debit = Transfer::retrieve('TRhfnbG4E6jMS7wHHanXFpjg');
+$debit = Transfer::retrieve('TRo78WokKsW3L3pAz5gZxrmD');
 $refund = $debit->reverse(11);
 ```
 ```python
@@ -12547,7 +12046,7 @@ $refund = $debit->reverse(11);
 
 from finix.resources import Transfer
 
-transfer = Transfer.get(id="TRhfnbG4E6jMS7wHHanXFpjg")
+transfer = Transfer.get(id="TRo78WokKsW3L3pAz5gZxrmD")
 transfer.reverse(**
           {
           "refund_amount" : 100
@@ -12555,7 +12054,7 @@ transfer.reverse(**
         )
 ```
 ```ruby
-transfer = Finix::Transfer.retrieve(:id=> "TRhfnbG4E6jMS7wHHanXFpjg")
+transfer = Finix::Transfer.retrieve(:id=> "TRo78WokKsW3L3pAz5gZxrmD")
 
 refund = transfer.reverse(100)
 
@@ -12564,42 +12063,42 @@ refund = transfer.reverse(100)
 
 ```json
 {
-  "id" : "TR9Jinm2wDTDJV4tYVeL2fH2",
-  "amount" : 81938,
+  "id" : "TRkDpewtG1XbRBCuAEpboJRP",
+  "amount" : 666736,
   "tags" : { },
   "state" : "SUCCEEDED",
-  "trace_id" : "46b10d11-354d-4fe7-a810-e1db9d77c78b",
+  "trace_id" : "9f1678d4-c5f2-4822-bc4b-c91cd7ac7121",
   "currency" : "USD",
-  "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-  "source" : "PI4WcsKv49EfdUPgP6ymYP46",
-  "destination" : "PI7jjWoR9uGsiXetvjLnavUY",
+  "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+  "source" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+  "destination" : "PIw9KSQJAEiBMCdkeiYHm4kx",
   "ready_to_settle_at" : null,
-  "fee" : 8194,
-  "statement_descriptor" : "FIN*LEES SANDWICHES",
+  "fee" : 66674,
+  "statement_descriptor" : "FIN*BOBS BURGERS",
   "type" : "REVERSAL",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-03-28T18:55:34.04Z",
-  "updated_at" : "2017-03-28T18:55:34.11Z",
-  "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "created_at" : "2017-04-17T23:48:49.55Z",
+  "updated_at" : "2017-04-17T23:48:49.61Z",
+  "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     },
     "self" : {
-      "href" : "https://api-staging.finix.io/transfers/TR9Jinm2wDTDJV4tYVeL2fH2"
+      "href" : "https://api-staging.finix.io/transfers/TRkDpewtG1XbRBCuAEpboJRP"
     },
     "parent" : {
-      "href" : "https://api-staging.finix.io/transfers/TRqPCTNuS81r5mPHi192ixqD"
+      "href" : "https://api-staging.finix.io/transfers/TRmU9NKTM9K9UHZFuYXC3i9y"
     },
     "destination" : {
-      "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+      "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+      "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.finix.io/transfers/TR9Jinm2wDTDJV4tYVeL2fH2/payment_instruments"
+      "href" : "https://api-staging.finix.io/transfers/TRkDpewtG1XbRBCuAEpboJRP/payment_instruments"
     }
   }
 }
@@ -12632,7 +12131,7 @@ refund_amount | *integer*, **required** | The amount of the refund in cents (Mus
 ```shell
 curl https://api-staging.finix.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -12669,240 +12168,240 @@ transfers = Finix::Transfer.retrieve
 {
   "_embedded" : {
     "transfers" : [ {
-      "id" : "TRtE4ScbPV8nMnAQKLoZuy9F",
+      "id" : "TR7hEkZRcxzuCSiAAV6WCcUh",
       "amount" : 100,
       "tags" : { },
       "state" : "PENDING",
-      "trace_id" : "79225bf1-e422-490b-874e-ddfb05e1b271",
+      "trace_id" : "aabe5af9-a702-4874-9efb-85e7cc104967",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-      "destination" : "PI4WcsKv49EfdUPgP6ymYP46",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+      "destination" : "PI6Yyo98eaCRwgLuhFK4TtzT",
       "ready_to_settle_at" : null,
       "fee" : 10,
-      "statement_descriptor" : "FIN*LEES SANDWICHES",
+      "statement_descriptor" : "FIN*BOBS BURGERS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:35.23Z",
-      "updated_at" : "2017-03-28T18:55:35.33Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:51.41Z",
+      "updated_at" : "2017-04-17T23:48:51.52Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F/fees"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRtE4ScbPV8nMnAQKLoZuy9F/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TR7hEkZRcxzuCSiAAV6WCcUh/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         }
       }
     }, {
-      "id" : "TR9Jinm2wDTDJV4tYVeL2fH2",
-      "amount" : 81938,
+      "id" : "TRkDpewtG1XbRBCuAEpboJRP",
+      "amount" : 666736,
       "tags" : { },
       "state" : "SUCCEEDED",
-      "trace_id" : "d8e633fa-7e57-4ba8-8c7d-0542c96bb65f",
+      "trace_id" : "36f4706c-d0ec-4497-a335-dccdfcc8270b",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI4WcsKv49EfdUPgP6ymYP46",
-      "destination" : "PI7jjWoR9uGsiXetvjLnavUY",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PI6Yyo98eaCRwgLuhFK4TtzT",
+      "destination" : "PIw9KSQJAEiBMCdkeiYHm4kx",
       "ready_to_settle_at" : null,
-      "fee" : 8194,
-      "statement_descriptor" : "FIN*LEES SANDWICHES",
+      "fee" : 66674,
+      "statement_descriptor" : "FIN*BOBS BURGERS",
       "type" : "REVERSAL",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:33.93Z",
-      "updated_at" : "2017-03-28T18:55:34.11Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:49.43Z",
+      "updated_at" : "2017-04-17T23:48:49.61Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TR9Jinm2wDTDJV4tYVeL2fH2"
+          "href" : "https://api-staging.finix.io/transfers/TRkDpewtG1XbRBCuAEpboJRP"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TR9Jinm2wDTDJV4tYVeL2fH2/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRkDpewtG1XbRBCuAEpboJRP/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "parent" : {
-          "href" : "https://api-staging.finix.io/transfers/TRqPCTNuS81r5mPHi192ixqD"
+          "href" : "https://api-staging.finix.io/transfers/TRmU9NKTM9K9UHZFuYXC3i9y"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
         }
       }
     }, {
-      "id" : "TRqPCTNuS81r5mPHi192ixqD",
-      "amount" : 81938,
+      "id" : "TRmU9NKTM9K9UHZFuYXC3i9y",
+      "amount" : 666736,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "CANCELED",
-      "trace_id" : "7d0642b2-6ede-469c-aa61-1df9d20be346",
+      "trace_id" : "3a73abb5-e278-4fdd-9e0f-f84620baf528",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-      "destination" : "PI4WcsKv49EfdUPgP6ymYP46",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+      "destination" : "PI6Yyo98eaCRwgLuhFK4TtzT",
       "ready_to_settle_at" : null,
-      "fee" : 8194,
-      "statement_descriptor" : "FIN*LEES SANDWICHES",
+      "fee" : 66674,
+      "statement_descriptor" : "FIN*BOBS BURGERS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:33.24Z",
-      "updated_at" : "2017-03-28T18:55:34.01Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:48.74Z",
+      "updated_at" : "2017-04-17T23:48:49.52Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRqPCTNuS81r5mPHi192ixqD"
+          "href" : "https://api-staging.finix.io/transfers/TRmU9NKTM9K9UHZFuYXC3i9y"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRqPCTNuS81r5mPHi192ixqD/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRmU9NKTM9K9UHZFuYXC3i9y/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRqPCTNuS81r5mPHi192ixqD/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRmU9NKTM9K9UHZFuYXC3i9y/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRqPCTNuS81r5mPHi192ixqD/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRmU9NKTM9K9UHZFuYXC3i9y/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRqPCTNuS81r5mPHi192ixqD/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRmU9NKTM9K9UHZFuYXC3i9y/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         }
       }
     }, {
-      "id" : "TRmLZcYKowxnXStMFXnek5Bf",
-      "amount" : 670046,
+      "id" : "TRojYTyiuZP7axuAPpxxLRHw",
+      "amount" : 813861,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "PENDING",
-      "trace_id" : "db3e6872-c0b5-4b30-834c-7fa86237de3d",
+      "trace_id" : "56e041b9-65a4-4b51-b35a-364520672bbe",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI93aEoSgVtXt6jzHnvLEJhA",
-      "destination" : "PI4WcsKv49EfdUPgP6ymYP46",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PIh6qmthgVJNXaYCG5ahB5wN",
+      "destination" : "PI6Yyo98eaCRwgLuhFK4TtzT",
       "ready_to_settle_at" : null,
-      "fee" : 67005,
-      "statement_descriptor" : "FIN*LEES SANDWICHES",
+      "fee" : 81386,
+      "statement_descriptor" : "FIN*BOBS BURGERS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:31.25Z",
-      "updated_at" : "2017-03-28T18:55:31.36Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:46.36Z",
+      "updated_at" : "2017-04-17T23:48:46.47Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRmLZcYKowxnXStMFXnek5Bf/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRojYTyiuZP7axuAPpxxLRHw/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI93aEoSgVtXt6jzHnvLEJhA"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIh6qmthgVJNXaYCG5ahB5wN"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         }
       }
     }, {
-      "id" : "TRhfnbG4E6jMS7wHHanXFpjg",
-      "amount" : 719526,
+      "id" : "TRo78WokKsW3L3pAz5gZxrmD",
+      "amount" : 395884,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "PENDING",
-      "trace_id" : "b6956c8f-99ec-4dee-8bf8-0dc4eccca5bc",
+      "trace_id" : "3d2a2076-bf44-4be0-b1b9-4ef0397e92bf",
       "currency" : "USD",
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "source" : "PI7jjWoR9uGsiXetvjLnavUY",
-      "destination" : "PI4WcsKv49EfdUPgP6ymYP46",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "source" : "PIw9KSQJAEiBMCdkeiYHm4kx",
+      "destination" : "PI6Yyo98eaCRwgLuhFK4TtzT",
       "ready_to_settle_at" : null,
-      "fee" : 71953,
-      "statement_descriptor" : "FIN*LEES SANDWICHES",
+      "fee" : 39588,
+      "statement_descriptor" : "FIN*BOBS BURGERS",
       "type" : "DEBIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-03-28T18:55:30.75Z",
-      "updated_at" : "2017-03-28T18:55:30.87Z",
-      "merchant_identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "created_at" : "2017-04-17T23:48:45.70Z",
+      "updated_at" : "2017-04-17T23:48:45.83Z",
+      "merchant_identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         },
         "self" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/payment_instruments"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX"
+          "href" : "https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz"
         },
         "reversals" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/reversals"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/fees"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.finix.io/transfers/TRhfnbG4E6jMS7wHHanXFpjg/disputes"
+          "href" : "https://api-staging.finix.io/transfers/TRo78WokKsW3L3pAz5gZxrmD/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI7jjWoR9uGsiXetvjLnavUY"
+          "href" : "https://api-staging.finix.io/payment_instruments/PIw9KSQJAEiBMCdkeiYHm4kx"
         },
         "destination" : {
-          "href" : "https://api-staging.finix.io/payment_instruments/PI4WcsKv49EfdUPgP6ymYP46"
+          "href" : "https://api-staging.finix.io/payment_instruments/PI6Yyo98eaCRwgLuhFK4TtzT"
         }
       }
     } ]
@@ -12950,78 +12449,11 @@ data (i.e. Merchant's created under this Application)
 3. **ROLE_MERCHANT:** Access to one Merchant data
 
 
-## Create ROLE_PLATFORM User
+## Create ROLE_PARTNER User
 ```shell
-curl https://api-staging.finix.io/users \
+curl https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8 \
-    -d '
-	{
-	    "role": "ROLE_PLATFORM"
-	}'
-
-```
-```java
-
-```
-```php
-<?php
-
-```
-```python
-
-
-
-```
-```ruby
-
-```
-> Example Response:
-
-```json
-{
-  "id" : "US3xAdQ2kWWWLsKEF4PHTaQk",
-  "password" : "0100560a-3650-4d94-9b77-78cae28a9237",
-  "identity" : null,
-  "enabled" : true,
-  "role" : "ROLE_PLATFORM",
-  "tags" : { },
-  "created_at" : "2017-03-28T18:55:22.03Z",
-  "updated_at" : "2017-03-28T18:55:22.03Z",
-  "_links" : {
-    "self" : {
-      "href" : "https://api-staging.finix.io/users/US3xAdQ2kWWWLsKEF4PHTaQk"
-    },
-    "applications" : {
-      "href" : "https://api-staging.finix.io/applications"
-    }
-  }
-}
-```
-
-
-This is the equivalent of provisioning API keys (i.e. credentials) for a Platform.
-
-<aside class="notice">
-A credential with a level of ROLE_PLATFORM has access to all Application and Merchant data.
-</aside>
-
-
-#### HTTP Request
-
-`POST https://api-staging.finix.io/users`
-
-#### URL Parameters
-Field | Type | Description
------ | ---- | -----------
-role | *string*, **required** | Permission level of the user
-
-
-## Create ROLE_MERCHANT User
-```shell
-curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '{}'
 
 ```
@@ -13044,23 +12476,23 @@ curl https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF/users \
 
 ```json
 {
-  "id" : "USoMNHFZYrRHrLHXZUPbWt6E",
-  "password" : "7be396c6-6324-4738-b6de-d50f33769b2d",
-  "identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "id" : "USuT2XqryENsxHKtrQrBK5n2",
+  "password" : "097c33df-7ca5-4cdb-9db9-537951084929",
+  "identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:21.50Z",
-  "updated_at" : "2017-03-28T18:55:21.50Z",
+  "created_at" : "2017-04-17T23:48:36.90Z",
+  "updated_at" : "2017-04-17T23:48:36.90Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/users/USoMNHFZYrRHrLHXZUPbWt6E"
+      "href" : "https://api-staging.finix.io/users/USuT2XqryENsxHKtrQrBK5n2"
     },
     "applications" : {
       "href" : "https://api-staging.finix.io/applications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -13087,9 +12519,9 @@ Parameter | Description
 
 ## Create ROLE_MERCHANT User
 ```shell
-curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/users \
+curl https://api-staging.finix.io/identities/IDfNKgun2WNruSqAPBFYXaXz/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '{}'
 
 ```
@@ -13112,23 +12544,23 @@ curl https://api-staging.finix.io/identities/ID6HTbvJWaQb7TUVSR2KpiqX/users \
 
 ```json
 {
-  "id" : "USx3R7atVBXohPL5ksGzavtm",
-  "password" : "701baff6-5107-4094-9d35-29d452082d95",
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "id" : "US2p6VAPg3zRdgQyrGVAAjNA",
+  "password" : "5c972764-c0a8-4882-9632-7efcdf1a2626",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "enabled" : true,
   "role" : "ROLE_MERCHANT",
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:31.90Z",
-  "updated_at" : "2017-03-28T18:55:31.90Z",
+  "created_at" : "2017-04-17T23:48:46.92Z",
+  "updated_at" : "2017-04-17T23:48:46.92Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/users/USx3R7atVBXohPL5ksGzavtm"
+      "href" : "https://api-staging.finix.io/users/US2p6VAPg3zRdgQyrGVAAjNA"
     },
     "applications" : {
       "href" : "https://api-staging.finix.io/applications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -13156,7 +12588,7 @@ Parameter | Description
 
 ## Retrieve a User
 ```shell
-curl https://api-staging.finix.io/users/TRhfnbG4E6jMS7wHHanXFpjg \
+curl https://api-staging.finix.io/users/TRo78WokKsW3L3pAz5gZxrmD \
     -H "Content-Type: application/vnd.json+api" \
     -u  US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8
 
@@ -13172,7 +12604,7 @@ curl https://api-staging.finix.io/users/TRhfnbG4E6jMS7wHHanXFpjg \
 
 
 from finix.resources import User
-user = User.get(id="USbmMvBuHkJZQGt6YsojxiB3")
+user = User.get(id="UShascJpYqtfe9fxa9KSUHTP")
 
 ```
 ```ruby
@@ -13182,23 +12614,23 @@ user = User.get(id="USbmMvBuHkJZQGt6YsojxiB3")
 
 ```json
 {
-  "id" : "USbmMvBuHkJZQGt6YsojxiB3",
+  "id" : "UShascJpYqtfe9fxa9KSUHTP",
   "password" : null,
-  "identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+  "identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:19.17Z",
-  "updated_at" : "2017-03-28T18:55:19.61Z",
+  "created_at" : "2017-04-17T23:48:34.63Z",
+  "updated_at" : "2017-04-17T23:48:35.69Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/users/USbmMvBuHkJZQGt6YsojxiB3"
+      "href" : "https://api-staging.finix.io/users/UShascJpYqtfe9fxa9KSUHTP"
     },
     "applications" : {
       "href" : "https://api-staging.finix.io/applications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -13216,9 +12648,9 @@ user_id | ID of the `User`
 
 ## Disable a User
 ```shell
-curl https://api-staging.finix.io/users/USx3R7atVBXohPL5ksGzavtm \
+curl https://api-staging.finix.io/users/US2p6VAPg3zRdgQyrGVAAjNA \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -X PUT \
     -d '
 	{
@@ -13245,23 +12677,23 @@ curl https://api-staging.finix.io/users/USx3R7atVBXohPL5ksGzavtm \
 
 ```json
 {
-  "id" : "USx3R7atVBXohPL5ksGzavtm",
+  "id" : "US2p6VAPg3zRdgQyrGVAAjNA",
   "password" : null,
-  "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+  "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
   "enabled" : false,
   "role" : "ROLE_MERCHANT",
   "tags" : { },
-  "created_at" : "2017-03-28T18:55:31.88Z",
-  "updated_at" : "2017-03-28T18:55:32.52Z",
+  "created_at" : "2017-04-17T23:48:46.89Z",
+  "updated_at" : "2017-04-17T23:48:47.64Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/users/USx3R7atVBXohPL5ksGzavtm"
+      "href" : "https://api-staging.finix.io/users/US2p6VAPg3zRdgQyrGVAAjNA"
     },
     "applications" : {
       "href" : "https://api-staging.finix.io/applications"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -13289,7 +12721,7 @@ user_id | ID of the `User` you would like to disable
 ```shell
 curl https://api-staging.finix.io/users/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -13315,63 +12747,63 @@ users = User.get()
 {
   "_embedded" : {
     "users" : [ {
-      "id" : "USx3R7atVBXohPL5ksGzavtm",
+      "id" : "US2p6VAPg3zRdgQyrGVAAjNA",
       "password" : null,
-      "identity" : "ID6HTbvJWaQb7TUVSR2KpiqX",
+      "identity" : "IDfNKgun2WNruSqAPBFYXaXz",
       "enabled" : true,
       "role" : "ROLE_MERCHANT",
       "tags" : { },
-      "created_at" : "2017-03-28T18:55:31.88Z",
-      "updated_at" : "2017-03-28T18:55:32.87Z",
+      "created_at" : "2017-04-17T23:48:46.89Z",
+      "updated_at" : "2017-04-17T23:48:48.18Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/users/USx3R7atVBXohPL5ksGzavtm"
+          "href" : "https://api-staging.finix.io/users/US2p6VAPg3zRdgQyrGVAAjNA"
         },
         "applications" : {
           "href" : "https://api-staging.finix.io/applications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "USoMNHFZYrRHrLHXZUPbWt6E",
+      "id" : "USuT2XqryENsxHKtrQrBK5n2",
       "password" : null,
-      "identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "enabled" : true,
       "role" : "ROLE_PARTNER",
       "tags" : { },
-      "created_at" : "2017-03-28T18:55:21.48Z",
-      "updated_at" : "2017-03-28T18:55:21.48Z",
+      "created_at" : "2017-04-17T23:48:36.88Z",
+      "updated_at" : "2017-04-17T23:48:36.88Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/users/USoMNHFZYrRHrLHXZUPbWt6E"
+          "href" : "https://api-staging.finix.io/users/USuT2XqryENsxHKtrQrBK5n2"
         },
         "applications" : {
           "href" : "https://api-staging.finix.io/applications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     }, {
-      "id" : "USbmMvBuHkJZQGt6YsojxiB3",
+      "id" : "UShascJpYqtfe9fxa9KSUHTP",
       "password" : null,
-      "identity" : "IDwKf7z2Xb5u4XNZwo36XA8",
+      "identity" : "IDgXEWuvWEtpM9J8W1U9vSzf",
       "enabled" : true,
       "role" : "ROLE_PARTNER",
       "tags" : { },
-      "created_at" : "2017-03-28T18:55:19.17Z",
-      "updated_at" : "2017-03-28T18:55:19.61Z",
+      "created_at" : "2017-04-17T23:48:34.63Z",
+      "updated_at" : "2017-04-17T23:48:35.69Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/users/USbmMvBuHkJZQGt6YsojxiB3"
+          "href" : "https://api-staging.finix.io/users/UShascJpYqtfe9fxa9KSUHTP"
         },
         "applications" : {
           "href" : "https://api-staging.finix.io/applications"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     } ]
@@ -13409,7 +12841,7 @@ listening for notifications of newly created `Disputes`.
 
 curl https://api-staging.finix.io/webhooks \
     -H "Content-Type: application/vnd.json+api" \
-    -u UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce \
+    -u US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92 \
     -d '
                     {
                     "url" : "http://requestb.in/1jb5zu11"
@@ -13463,18 +12895,18 @@ webhook = Finix::Webhook.new(
 
 ```json
 {
-  "id" : "WHdrWvr5eWHMHe3kSABBBM6t",
+  "id" : "WHwyKC1keZZtnMM22nh5e3k",
   "url" : "http://requestb.in/1jb5zu11",
   "enabled" : true,
-  "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-  "created_at" : "2017-03-28T18:55:23.14Z",
-  "updated_at" : "2017-03-28T18:55:23.14Z",
+  "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+  "created_at" : "2017-04-17T23:48:38.51Z",
+  "updated_at" : "2017-04-17T23:48:38.51Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/webhooks/WHdrWvr5eWHMHe3kSABBBM6t"
+      "href" : "https://api-staging.finix.io/webhooks/WHwyKC1keZZtnMM22nh5e3k"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -13488,7 +12920,8 @@ webhook = Finix::Webhook.new(
 
 Field | Type | Description
 ----- | ---- | -----------
-url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be sent via POST request
+url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be sent via POST request (max 120 characters)
+
 
 ## Retrieve a Webhook
 
@@ -13496,9 +12929,9 @@ url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be
 
 
 
-curl https://api-staging.finix.io/webhooks/WHdrWvr5eWHMHe3kSABBBM6t \
+curl https://api-staging.finix.io/webhooks/WHwyKC1keZZtnMM22nh5e3k \
     -H "Content-Type: application/vnd.json+api" \
-    -u UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 
 ```
@@ -13506,14 +12939,14 @@ curl https://api-staging.finix.io/webhooks/WHdrWvr5eWHMHe3kSABBBM6t \
 
 import io.finix.payments.processing.client.model.Webhook;
 
-Webhook webhook = client.webhookClient().fetch("WHdrWvr5eWHMHe3kSABBBM6t");
+Webhook webhook = client.webhookClient().fetch("WHwyKC1keZZtnMM22nh5e3k");
 
 ```
 ```php
 <?php
 use Finix\Resources\Webhook;
 
-$webhook = Webhook::retrieve('WHdrWvr5eWHMHe3kSABBBM6t');
+$webhook = Webhook::retrieve('WHwyKC1keZZtnMM22nh5e3k');
 
 
 
@@ -13522,11 +12955,11 @@ $webhook = Webhook::retrieve('WHdrWvr5eWHMHe3kSABBBM6t');
 
 
 from finix.resources import Webhook
-webhook = Webhook.get(id="WHdrWvr5eWHMHe3kSABBBM6t")
+webhook = Webhook.get(id="WHwyKC1keZZtnMM22nh5e3k")
 
 ```
 ```ruby
-webhook = Finix::Webhook.retrieve(:id=> "WHdrWvr5eWHMHe3kSABBBM6t")
+webhook = Finix::Webhook.retrieve(:id=> "WHwyKC1keZZtnMM22nh5e3k")
 
 
 ```
@@ -13534,18 +12967,18 @@ webhook = Finix::Webhook.retrieve(:id=> "WHdrWvr5eWHMHe3kSABBBM6t")
 
 ```json
 {
-  "id" : "WHdrWvr5eWHMHe3kSABBBM6t",
+  "id" : "WHwyKC1keZZtnMM22nh5e3k",
   "url" : "http://requestb.in/1jb5zu11",
   "enabled" : true,
-  "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-  "created_at" : "2017-03-28T18:55:23.14Z",
-  "updated_at" : "2017-03-28T18:55:23.14Z",
+  "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+  "created_at" : "2017-04-17T23:48:38.51Z",
+  "updated_at" : "2017-04-17T23:48:38.51Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.finix.io/webhooks/WHdrWvr5eWHMHe3kSABBBM6t"
+      "href" : "https://api-staging.finix.io/webhooks/WHwyKC1keZZtnMM22nh5e3k"
     },
     "application" : {
-      "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+      "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
     }
   }
 }
@@ -13565,7 +12998,7 @@ Parameter | Description
 ```shell
 curl https://api-staging.finix.io/webhooks/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  UScrRBEbdXh6eXUnME9c1MYF:dfee4bb1-595c-40b8-888b-7efae106f0ce
+    -u  US7WwPZ8N8nGwt48GdeCmqoG:09539f06-cdc1-43d2-beb6-4d58c9a0fc92
 
 ```
 ```java
@@ -13601,18 +13034,18 @@ webhooks = Finix::Webhook.retrieve
 {
   "_embedded" : {
     "webhooks" : [ {
-      "id" : "WHdrWvr5eWHMHe3kSABBBM6t",
+      "id" : "WHwyKC1keZZtnMM22nh5e3k",
       "url" : "http://requestb.in/1jb5zu11",
       "enabled" : true,
-      "application" : "AP4GcWbztqRvJnJ9TydudDAF",
-      "created_at" : "2017-03-28T18:55:23.14Z",
-      "updated_at" : "2017-03-28T18:55:23.14Z",
+      "application" : "AP22AGPHEqD1fwgycz9DaTYk",
+      "created_at" : "2017-04-17T23:48:38.51Z",
+      "updated_at" : "2017-04-17T23:48:38.51Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.finix.io/webhooks/WHdrWvr5eWHMHe3kSABBBM6t"
+          "href" : "https://api-staging.finix.io/webhooks/WHwyKC1keZZtnMM22nh5e3k"
         },
         "application" : {
-          "href" : "https://api-staging.finix.io/applications/AP4GcWbztqRvJnJ9TydudDAF"
+          "href" : "https://api-staging.finix.io/applications/AP22AGPHEqD1fwgycz9DaTYk"
         }
       }
     } ]
