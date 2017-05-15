@@ -89,6 +89,7 @@ snippets_by_resource = {
         "associate_token",
         "create_card",
         "fetch_credit_card",
+        "verification"
         ],
     "guide_tokenization_js": [
         "definition",
@@ -165,6 +166,7 @@ admin_snippets_by_resource = {
         "associate_token",
         "create_card",
         "fetch_credit_card",
+        "verification"
         ],
     "guide_tokenization_js": [
         "definition",
@@ -224,4 +226,3 @@ included_clients = OrderedDict([
         ("PHP", "php"),
         ("Python", "python"),
 ])
-
