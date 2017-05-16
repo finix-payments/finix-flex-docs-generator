@@ -164,8 +164,6 @@ def generate_template_variables(config_values):
     create_buyer_identity_scenario = api_client.create_buyer_identity()
     create_card_scenario = api_client.create_card(create_buyer_identity_scenario["response_id"])
 
-    print (create_card_scenario)
-
     create_buyer_bank_account_scenario = api_client.create_bank_account(create_buyer_identity_scenario["response_id"])
     # account_updater_scenario = account_updater(create_card_scenario["response_id"], provision_merchant_scenario["response_id"])
     create_debit_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))

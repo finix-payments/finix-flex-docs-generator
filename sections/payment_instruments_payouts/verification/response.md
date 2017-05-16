@@ -50,14 +50,16 @@ D | Recipient issuer participates in Fast Funds for domestic transactions only
 N | Recipient issuer does not participate in Fast Funds
 
 #### Push Funds Indicator (push_funds_block_indicator)
-For use in push-payment transactions, this code indicates if the recipient account can receive push-payments (Original Credit Transactions).
+
+For use in push-payment transactions, this code indicates if the recipient account can receive push-payments (Original Credit Transactions).  
+
 Letter | Description
 ------ | -------------------------------------------------------------------
 A, B, C | Accepts push to card payments
-N | Does not accept push to card payments
-
+C | Does not accept push to card payments
 
 #### Online Gambling Block Indicator.
+
 For use in push-payment transactions, this code indicates if the recipient account can receive push-payments for online gambling payouts.
 
 Letter | Description
