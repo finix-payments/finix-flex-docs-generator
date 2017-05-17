@@ -18,7 +18,7 @@ Parameter | Description
 
 Field | Type | Description
 ----- | ---- | -----------
-processor | *string*, **required** | The name of the processor
+processor | *string*, **required** | The name of the processor, which needs to be: `VISA_V1`
 
 #### Address Verification Results (address_verification_results)
 Letter | Description
@@ -28,7 +28,7 @@ A, B, C, G, I, N, P, R, S, U, W | Address not verified
 
 #### Card Type (card_type_code)
 
-This one-character code indicates whether the account is credit, debit, prepaid, deferred debit, or charge. (This is the same Card Type Code field available through the General Attributes Inquiry API.)
+This one-character code indicates whether the account is credit, debit, prepaid, deferred debit, or charge.
 
 Letter | Description
 ------ | -------------------------------------------------------------------
@@ -40,18 +40,17 @@ R | Deferred Debit
 
 #### Fasts Funds Indicator (fast_funds_indicator)
 
-For use in push-payment transactions, this code indicates whether or not the issuer of the recipient account participates in the Fast Funds service for Original Credit Transactions (OCTs).
+Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 days.
 
 Letter | Description
 ------ | -------------------------------------------------------------------
-B | Recipient issuer participates in Fast Funds for all transactions
-C | Reserved for future use
-D | Recipient issuer participates in Fast Funds for domestic transactions only
-N | Recipient issuer does not participate in Fast Funds
+B | Fast Funds eligible for all transactions
+D | Fast Funds eligible for all transactions
+N | Not eligible for Fast Funds
 
 #### Push Funds Indicator (push_funds_block_indicator)
 
-For use in push-payment transactions, this code indicates if the recipient account can receive push-payments (Original Credit Transactions).  
+This code indicates if the associated card can receive push-payments (Original Credit Transactions).
 
 Letter | Description
 ------ | -------------------------------------------------------------------
@@ -60,9 +59,11 @@ C | Does not accept push to card payments
 
 #### Online Gambling Block Indicator.
 
-For use in push-payment transactions, this code indicates if the recipient account can receive push-payments for online gambling payouts.
+
+Indicates if the card can receive push-payments for online gambling payouts.
 
 Letter | Description
 ------ | -------------------------------------------------------------------
-Y | Accepts push to card payments
-N | Does not accept push to card payments
+Y |
+Indicates if the card can receive push-payments for online gambling payouts
+N | Not eligible for online gambling payouts
