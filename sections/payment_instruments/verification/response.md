@@ -49,7 +49,7 @@ N | Not eligible for Fast Funds
 
 #### Push Funds Indicator (push_funds_block_indicator)
 
-This code indicates if the associated card can receive push-to-card disbursements
+This code indicates if the associated card can receive push-to-card disbursements.
 
 Letter | Description
 ------ | -------------------------------------------------------------------
@@ -58,7 +58,7 @@ C | Does not accept push-to-card payments
 
 #### Online Gambling Block Indicator.
 
-Indicates if the card can receive push-payments for online gambling payouts
+Indicates if the card can receive push-payments for online gambling payouts.
 
 Letter | Description
 ------ | -------------------------------------------------------------------
@@ -67,7 +67,7 @@ N | Not eligible for online gambling payouts
 
 #### Card Product ID (card_product_id)
 
-A combination of card brand, platform, class and scheme
+A combination of card brand, platform, class and scheme.
 
 Letter | Description
 ------ | -------------------------------------------------------------------
@@ -141,7 +141,7 @@ VR | Visa Vale - Restaurant
 
 #### Card Sub-Type (card_subtype_code)
 
-The code for account funding source subtype, such as reloadable and non-reloadable
+The code for account funding source subtype, such as reloadable and non-reloadable.
 
 Letter | Description
 ------ | -------------------------------------------------------------------
