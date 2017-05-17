@@ -203,6 +203,7 @@ def generate_template_variables(config_values):
     # capture_authorization_scenario = api_client.capture_authorization(create_authorization_scenario["response_id"])
     # fetch_authorization_scenario = api_client.fetch_authorization(create_authorization_scenario["response_id"])
     create_token_scenario = api_client.create_token(create_payouts_app_scenario["response_id"])
+    
     associate_token_scenario = api_client.associate_token(create_recipient_identity_payouts_scenario["response_id"], create_token_scenario["response_id"])
     #
     # create_authorization_for_voiding_scenario = api_client.create_authorization(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
@@ -263,6 +264,9 @@ def generate_template_variables(config_values):
     toggle_on_application_processing_scenario = api_client.toggle_application_processing(create_payouts_app_scenario["response_id"], True)
     toggle_on_application_settlements_scenario = api_client.toggle_application_settlements(create_payouts_app_scenario["response_id"], True)
 
+    #payment instrument verification
+
+    payment_instrument_verification_scenario = api_client.verify_payment_instrument(fetch_credit_card_scenario["response_id"])
 
     api_scenario_vars = {
             # IDENTITIES --------------------------------------------
@@ -380,6 +384,8 @@ def generate_template_variables(config_values):
             "create_recipient_push_to_card_transfer_response": create_recipient_push_to_card_transfer["response_body"],
             "create_recipient_push_to_card_transfer_id": create_recipient_push_to_card_transfer["response_id"],
 
+            "payment_instrument_verification_scenario_curl_request":payment_instrument_verification_scenario["curl_request_body"],
+            "payment_instrument_verification_scenario_response": payment_instrument_verification_scenario["response_body"],
 
             # WEBHOOKS ------------------------------------------------------------
 

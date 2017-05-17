@@ -66,7 +66,7 @@ class Client(object):
 
     def create_app(self, application_owner_user_id, business_type):
         company = random_app_name()
-    
+
         values = {
             "tags": {
                 "application_name": company
@@ -121,7 +121,7 @@ class Client(object):
                            "canDebitBankAccount": True
                 }
             }
-        else: 
+        else:
             values = {
                 "type": processor
             }
@@ -457,6 +457,14 @@ class Client(object):
         endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
+    def verify_payment_instrument(self, payment_instrument_id):
+        values = {
+        "processor": "VISA_V1"
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id +'/verifications'
+        return formatted_response(endpoint, values, self.encoded_auth)
+
     def check_card_updater(self, merchant_id, payment_instrument_id):
         values = {
             "merchant": merchant_id
@@ -531,7 +539,7 @@ class Client(object):
     def create_token(self, application_id):
         values = {
             "expiration_year": 2020,
-            "number": "4242424242424242",
+            "number": "4957030420210454",
             "expiration_month": 12,
             "address": {
                 "city": "San Mateo",

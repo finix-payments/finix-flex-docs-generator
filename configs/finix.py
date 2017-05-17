@@ -145,6 +145,7 @@ snippets_by_resource = {
         # "update_payment_instrument",
         "check_card_updater",
         "list_payment_instruments",
+        "verification",
         ],
     "settlements": [
         "definition",
@@ -298,6 +299,7 @@ admin_snippets_by_resource = {
         # "update_payment_instrument",
         "check_card_updater",
         "list_payment_instruments",
+        "verification",
         ],
     "settlements": [
         "definition",
