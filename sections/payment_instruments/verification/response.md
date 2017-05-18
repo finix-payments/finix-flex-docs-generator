@@ -26,6 +26,13 @@ Letter | Description
 D, F, M | Address verified
 A, B, C, G, I, N, P, R, S, U, W | Address not verified
 
+#### Card Verification 2 Results (cvv2_result_code)
+Letter | Description
+------ | -------------------------------------------------------------------
+M | CVV  verified
+N, P, S | CVV not verified
+U | Issuer does not participate in CVV2 service, or participates but has not provided Visa with encryption keys, or both.
+
 #### Card Type (card_type_code)
 
 This one-character code indicates whether the account is credit, debit, prepaid, deferred debit, or charge.
