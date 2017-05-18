@@ -31,7 +31,7 @@ Letter | Description
 ------ | -------------------------------------------------------------------
 M | CVV  verified
 N, P, S | CVV not verified
-U | Issuer does not participate in CVV2 service, or participates but has not provided Visa with encryption keys, or both.
+U | Issuer does not participate in CVV2 service
 
 #### Card Type (card_type_code)
 
