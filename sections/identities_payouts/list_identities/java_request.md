@@ -1,7 +1,9 @@
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-client.identitiesClient().<Resources<Identity>>resourcesIterator()
-  .forEachRemaining(page -> {
-    Collection<Identity> identities = page.getContent();
-    //do something
-  });
+Page<Identity> page = api.identities.get().view();
+while (page.hasNext()) {
+    page = page.getNext();
+}

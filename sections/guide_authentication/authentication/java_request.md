@@ -21,14 +21,19 @@ Add the following to your pom.xml (Maven file):
 
 */
 
-import io.{{api_name_downcase}}.payments.processing.client.ProcessingClient;
-import io.{{api_name_downcase}}.payments.processing.client.model.*;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.forms.*;
 
 //...
 
 public static void main(String[] args) {
 
-  ProcessingClient client = new ProcessingClient("{{staging_base_url}}");
-  client.setupUserIdAndPassword("{{basic_auth_username}}", "{{basic_auth_password}}");
-
+  ApiClient api = ApiClient.builder()
+                  .url("{{staging_base_url}}")
+                  .user("{{basic_auth_username}}")
+                  .password("{{basic_auth_password}}")
+                  .build();
 //...
+
+

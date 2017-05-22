@@ -1,66 +1,36 @@
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.forms.Address;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.forms.Date;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Address;
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccountType;
-import io.{{api_name_downcase}}.payments.processing.client.model.BusinessType;
-import io.{{api_name_downcase}}.payments.processing.client.model.Date;
-import io.{{api_name_downcase}}.payments.processing.client.model.Entity;
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
 
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
+IdentityForm form = IdentityForm.builder()
     .entity(
-      Entity.builder()
+    IdentityEntityForm.builder()
         .firstName("dwayne")
         .lastName("Sunkhronos")
         .email("user@example.org")
-        .businessName("business inc")
-        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
-        .doingBusinessAs("doingBusinessAs")
-        .phone("1234567890")
-        .businessPhone("+1 (408) 756-4497")
-        .taxId("123456789")
-        .businessTaxId("123456789")
         .personalAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
+            Address.builder()
+                .line1("741 Douglass St")
+                .line2("Apartment 7")
+                .city("San Mateo")
+                .region("CA")
+                .postalCode("94114")
+                .country("USA")
+                .build()
         )
-        .businessAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .dob(Date.builder()
-          .day(27)
-          .month(5)
-          .year(1978)
-          .build()
-        )
-        .settlementCurrency("USD")
-        .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1000l)
-        .mcc(7399)
-        .url("http://sample-entity.com")
-        .annualCardVolume(100)
-        .defaultStatementDescriptor("Business Inc")
-        .incorporationDate(Date.builder()
-          .day(1)
-          .month(12)
-          .year(2012)
-          .build()
-        )
-        .principalPercentageOwnership(51)
-        .build()
-    )
-    .build()
-);
+        .build())
+    .build();
+
+Maybe<Identity> response = api.identities.post(form);
+
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create Identity");
+}
+
+Identity identity = response.view();
