@@ -1,4 +1,17 @@
-import io.{{api_name_downcase}}.payments.processing.client.model.VerificationForm;
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-VerificationForm form = VerificationForm.builder().processor("VISA_V1").build();
-    Maybe<Verification> request = app.instruments.id("{{fetch_credit_card_scenario_id}}").verifications.post(form);
+
+ VerificationForm verificationForm = VerificationForm.builder()
+    .processor("VISA_V1")
+    .build();
+
+Maybe<Verification> verificationResponse = api.instruments.id("{{create_recipient_card_scenario_id}}").verifications.post(verificationForm);
+if (! verificationResponse.succeeded()) {
+    ApiError error = verificationResponse.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create a Verification");
+}
+Verification verification = verificationResponse.view();

@@ -63,14 +63,14 @@ Letter | Description
 A, B, C | Accepts push-to-card payments
 C | Does not accept push-to-card payments
 
-#### Online Gambling Block Indicator.
+#### Online Gambling Block Indicator (online_gambing_block_indicator)
 
 Indicates if the card can receive push-payments for online gambling payouts.
 
 Letter | Description
 ------ | -------------------------------------------------------------------
-Y | Eligible for online gambling payouts
-N | Not eligible for online gambling payouts
+Y | Blocked for online gambling payouts
+N | Not blocked for online gambling payouts
 
 #### Card Product ID (card_product_id)
 
