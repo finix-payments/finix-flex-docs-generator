@@ -1,9 +1,21 @@
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-Authorization authorization = client.authorizationsClient().save(
-  Authorization.builder()
-    .amount(100L)
-    .merchantIdentity("{{create_merchant_identity_scenario_id}}")
-    .source("{{create_card_scenario_id}}")
-    .build()
-);
+AuthorizationCreateForm formCreateAuthorization = AuthorizationCreateForm.builder()
+                .amount(10000L)
+                .merchantIdentity("{{create_merchant_identity_scenario_id}}")
+                .source("{{create_card_scenario_id}}")
+                .build();
+
+Maybe<Authorization> responseAuthorization = api.authorizations.post(formCreateAuthorization);
+
+if (! responseAuthorization.succeeded()) {
+  ApiError error = responseAuth.error();
+  System.out.println(error.getMessage());
+  throw new RuntimeException("API error attempting to creating authorization");
+}
+
+Authorization capturedAuth = responseAuthorization.view();
