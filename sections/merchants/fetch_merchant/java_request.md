@@ -1,3 +1,7 @@
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.views.Merchant;
 
-Merchant merchant = client.merchantsClient().fetch("{{fetch_merchant_scenario_id}}");
+Merchant merchant = api.merchants
+    .id("{{fetch_merchant_scenario_id}}")
+    .get()
+    .view();

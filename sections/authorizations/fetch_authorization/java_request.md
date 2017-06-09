@@ -1,4 +1,12 @@
+import io.{{api_name_downcase}}.payments.views.Authorization;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
-
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
+<!-- Authorization authorization = null;
+        authorization = api.authorizations
+                .id("{{fetch_authorization_scenario_id}}")
+                .get()
+                .view();
+ -->
+Authorization authorization = api.authorizations
+                .id("{{fetch_authorization_scenario_id}}")
+                .get()
+                .view();

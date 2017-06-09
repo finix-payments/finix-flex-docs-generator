@@ -1,7 +1,7 @@
 import io.{{api_name_downcase}}.payments.ApiClient;
 import io.{{api_name_downcase}}.payments.forms.SettlementForm;
 import io.{{api_name_downcase}}.payments.interfaces.Maybe;
-import io.{{api_name_downcase}}.payments.views.;
+import io.{{api_name_downcase}}.payments.views.*;
 import java.util.Currency;
 
 
