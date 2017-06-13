@@ -3,7 +3,7 @@ import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 import io.{{api_name_downcase}}.payments.views.Webhook;
 
 Maybe<Webhook> response = api.webhooks
-        .id({{fetch_webhook_scenario_id}})
+        .id("{{fetch_webhook_scenario_id}}")
         .get();
 
 if(! response.succeeded()){

@@ -8,11 +8,10 @@ AuthorizationUpdateForm formVoid = AuthorizationUpdateForm.builder()
         .voidMe(true)
         .build();
 
-Maybe<Authorization> responseAuthorization = api.authorizations.id("{{fetch_authorization_scenario_id}}").put(formVoid);
+Maybe<Authorization> response = api.authorizations.id("{{fetch_authorization_scenario_id}}").put(formVoid);
 
-if (! responseAuthorization.succeeded()) {
-    System.out.println(responseAuthorization.error());
+if (! response.succeeded()) {
+    System.out.println(response.error());
     throw new RuntimeException("API error attempting to void authorization");
 }
-Authorization capturedAuth = responseAuthorization.view();
-capturedAuth.getId();
+Authorization voidAuthorization = response.view();

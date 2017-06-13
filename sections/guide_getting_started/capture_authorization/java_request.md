@@ -10,11 +10,11 @@ AuthorizationUpdateForm form = AuthorizationUpdateForm.builder()
         .statementDescriptor("Order 123")
         .build();
 
-Maybe<Authorization> responseAuthorization = api.authorizations.id("{{create_authorization_scenario_id}}").put(form);
+Maybe<Authorization> response = api.authorizations.id("{{create_authorization_scenario_id}}").put(form);
 
-if (! responseAuthorization.succeeded()) {
-    ApiError error = responseAuthorization.error();
+if (! response.succeeded()) {
+    ApiError error = response.error();
     System.out.println(error.getMessage());
     throw new RuntimeException("API error attempting to capture authorization");
 }
-Authorization capturedAuth = responseAuthorization.view();
+Authorization capturedAuthorization = response.view();

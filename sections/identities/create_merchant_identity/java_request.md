@@ -52,4 +52,4 @@ if(! response.succeeded().booleanValue()) {
     throw new RuntimeException("API error attempting to create Identity");
 }
     Identity identity = (Identity)response.view();
-    identity.getId();
+    

@@ -10,12 +10,12 @@ AuthorizationCreateForm formCreateAuthorization = AuthorizationCreateForm.builde
                 .source("{{create_card_scenario_id}}")
                 .build();
 
-Maybe<Authorization> responseAuthorization = api.authorizations.post(formCreateAuthorization);
+Maybe<Authorization> response = api.authorizations.post(formCreateAuthorization);
 
-if (! responseAuthorization.succeeded()) {
-  ApiError error = responseAuth.error();
+if (! response.succeeded()) {
+  ApiError error = response.error();
   System.out.println(error.getMessage());
-  throw new RuntimeException("API error attempting to creating authorization");
+  throw new RuntimeException("API error attempting to creating Authorization");
 }
 
-Authorization capturedAuth = responseAuthorization.view();
+Authorization authorization = response.view();

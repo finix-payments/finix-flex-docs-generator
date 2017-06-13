@@ -17,10 +17,10 @@ SettlementForm formSettlement = SettlementForm.builder()
 
 Transfer transfer = api.transfers.id("{{capture_authorization_scenario_id}}").get().view();
 
-Maybe<Settlement> request = api.identities.id("{{create_merchant_identity_scenario_id}}").settlements.post(formSettlement);
+Maybe<Settlement> response = api.identities.id("{{create_merchant_identity_scenario_id}}").settlements.post(formSettlement);
 
-if (! request.succeeded()) {
+if (! response.succeeded()) {
     throw new RuntimeException("API error attempting to create batch settlement");
 }
 
-Settlement settlementBatch = request.view();
+Settlement settlementBatch = response.view();
