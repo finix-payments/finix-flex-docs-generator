@@ -1,1 +1,1 @@
-## Retrieve a Webhook
+## Fetch a Webhook

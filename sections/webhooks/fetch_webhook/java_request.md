@@ -1,4 +1,14 @@
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Webhook;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
+Maybe<Webhook> response = api.webhooks
+        .id({{fetch_webhook_scenario_id}})
+        .get();
 
-Webhook webhook = client.webhookClient().fetch("{{fetch_webhook_scenario_id}}");
+if(! response.succeeded()){
+    System.out.println(response.error());
+    System.out.println(response.error().getDetails());
+    throw new RuntimeException("API error attempting to fetch Webhook");
+}
+Webhook webhookView = response.view();

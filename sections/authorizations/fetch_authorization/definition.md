@@ -1,1 +1,1 @@
-## Retrieve an Authorization
+## Fetch an Authorization

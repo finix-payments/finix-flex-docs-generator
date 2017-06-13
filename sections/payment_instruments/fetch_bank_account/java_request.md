@@ -1,4 +1,15 @@
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.views.Instrument;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+Maybe<Instrument> response = api.paymentInstruments
+    .id("{{fetch_bank_account_scenario_id}}")
+    .get();
 
-BankAccount bankAccount = client.bankAccountsClient().fetch("{{fetch_bank_account_scenario_id}}")
+if(! response.succeeded()){
+    System.out.println(response.error());
+    System.out.println(response.error().getDetails());
+    throw new RuntimeException("API error attempting to fetch Bank Account");
+}
+
+Instrument bankAccountView = response.view();

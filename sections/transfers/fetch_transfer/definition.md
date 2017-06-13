@@ -1,1 +1,1 @@
-## Retrieve a Transfer
+## Fetch a Transfer
