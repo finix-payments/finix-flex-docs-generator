@@ -1,1 +1,1 @@
-## Retrieve a Identity
+## Fetch a Identity

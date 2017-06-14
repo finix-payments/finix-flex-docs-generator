@@ -1,1 +1,1 @@
-## Retrieve a Dispute
+## Fetch a Dispute

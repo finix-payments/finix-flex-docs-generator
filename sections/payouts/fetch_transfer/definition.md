@@ -1,1 +1,1 @@
-## Retrieve a Payout
+## Fetch a Payout

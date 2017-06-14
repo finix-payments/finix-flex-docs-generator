@@ -1,1 +1,1 @@
-## Retrieve a Merchant
+## Fetch a Merchant

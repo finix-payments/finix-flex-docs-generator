@@ -1,1 +1,1 @@
-## Retrieve an Identity Verification
+## Fetch an Identity Verification

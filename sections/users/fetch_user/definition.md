@@ -1,1 +1,1 @@
-## Retrieve a User
+## Fetch a User
