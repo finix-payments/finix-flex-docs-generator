@@ -1,1 +1,3 @@
-### Step 3:  Verify Card
+### Step 3: Verify card is eligible to receive push-to-card disbursements
+
+Now that we've associated a payment instrument to a recipient, we'll need to verify whether or not the card is eligible to receive push-to-card disbursements. How? By making a request to the `Verifications` endpoint. The returned `Verification` resource returns a set of general attributes and details about the card in question (e.g. card type, issuer information). For example, the `inquiry_details` object will contain a `push_funds_block_indicator` attribute that indicates if it is eligible for push-to-card disbursements. Below you'll see a number of fields and the potential responses.
