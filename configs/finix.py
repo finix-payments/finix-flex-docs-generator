@@ -186,7 +186,10 @@ snippets_by_resource = {
         ],
     "fees": [
         "definition"
-    ]
+    ],
+    "faqs": [
+        "definition"
+        ]
     }
 
 # this provides the ordering for the docs by section and individual snippet
@@ -344,7 +347,10 @@ admin_snippets_by_resource = {
         ],
     "fees": [
         "definition"
-    ]
+    ],
+    "faqs": [
+        "definition"
+        ]
     }
 
 # This is the order that the directories / guides will be concatinated
@@ -366,6 +372,7 @@ resource_ordering = [
     "settlements",
     "transfers",
     "webhooks",
+    "faqs",
 ]
 
 admin_resource_ordering = [
@@ -390,6 +397,7 @@ admin_resource_ordering = [
     "transfers",
     "users",
     "webhooks",
+    "faqs",
     ]
 
 
