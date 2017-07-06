@@ -61,7 +61,7 @@ This code indicates if the associated card can receive push-to-card disbursement
 Letter | Description
 ------ | -------------------------------------------------------------------
 A, B, C | Accepts push-to-card payments
-C | Does not accept push-to-card payments
+N | Does not accept push-to-card payments
 
 #### Online Gambling Block Indicator (online_gambing_block_indicator)
 

@@ -15,9 +15,8 @@ Each settlement is comprised of all the `Transfers` that have a SUCCEEDED `state
 that have not yet been previously settled out. In other words, if a merchant has a
 `Transfer` in the PENDING state it will not be included in the batch settlement.
 In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
+The `total_amount` minus the `total_fee` equals the `net_amount` (the amount in cents
+that will be deposited into your merchant's bank account).
 
 <aside class="notice">
 Once a batch Settlement has been created it will undergo review and typically be
