@@ -15,6 +15,3 @@ Retrieve all attempts to onboard (i.e. provision) a merchant onto a processor.
 Parameter | Description
 --------- | -------------------------------------------------------------------
 :MERCHANT_ID | ID of the `Merchant`
-
-
-

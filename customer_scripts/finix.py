@@ -117,10 +117,7 @@ def build_docs(config_file):
 
 
 
-
 def generate_template_variables(config_values):
-
-
     ## initialize the API Client
     api_client = Client(staging_base_url = config_values["staging_base_url"],
                         admin_basic_auth_username = config_values["admin_basic_auth_username"],
@@ -305,8 +302,8 @@ def generate_template_variables(config_values):
             "list_identities_scenario_response": list_identities_scenario["response_body"],
 
             # MERCHANT VERIFICATIONS
-            "list_merchant_verifications_scenario_response": list_identities_scenario["response_body"],
-            "list_merchant_verifications_platform_user_scenario_response": list_identities_scenario["response_body"],
+            "list_merchant_verifications_scenario_response": list_merchant_verifications_scenario["response_body"],
+            "list_merchant_verifications_platform_user_scenario_response": list_merchant_verifications_platform_user_scenario["response_body"],
 
 
             # MERCHANTS --------------------------------------------
@@ -752,8 +749,8 @@ def generate_template_variables(config_values):
             "list_identities_scenario_response": list_identities_scenario["response_body"],
 
             # MERCHANT VERIFICATIONS
-            "list_merchant_verifications_scenario_response": list_identities_scenario["response_body"],
-            "list_merchant_verifications_platform_user_scenario_response": list_identities_scenario["response_body"],
+            "list_merchant_verifications_scenario_response": list_merchant_verifications_scenario["response_body"],
+            "list_merchant_verifications_platform_user_scenario_response": list_merchant_verifications_platform_user_scenario["response_body"],
 
 
             # MERCHANTS --------------------------------------------

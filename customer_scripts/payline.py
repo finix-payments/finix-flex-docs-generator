@@ -282,7 +282,7 @@ def generate_template_variables(config_values):
 
             # MERCHANT VERIFICATIONS
             "list_merchant_verifications_scenario_response": list_merchant_verifications_scenario["response_body"],
-            "list_merchant_verifications_platform_user_scenario_response": list_merchant_verifications_scenario["response_body"],
+            "list_merchant_verifications_platform_user_scenario_response": list_merchant_verifications_platform_user_scenario["response_body"],
 
 
             # MERCHANTS --------------------------------------------

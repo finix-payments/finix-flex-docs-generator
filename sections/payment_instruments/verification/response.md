@@ -47,7 +47,7 @@ R | Deferred Debit
 
 #### Fasts Funds Indicator (fast_funds_indicator)
 
-Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 days.
+Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 business days.
 
 Letter | Description
 ------ | -------------------------------------------------------------------

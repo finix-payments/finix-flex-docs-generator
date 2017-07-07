@@ -28,7 +28,11 @@ of charging a card. This guide will walk you through provisioning merchant
 accounts, tokenizing cards, charging those cards, and finally settling (i.e.
 payout) those funds out to your merchants.
 
-3. [Embedded Tokenization](#embedded-tokenization): This guide
+3. [Push-to-Card](#push-to-card): This guide walks
+through using the Visa Direct API to push payments to debit cards. With push-to-card
+funds are disbursed to a debit card within 30 minutes or less. 
+
+4. [Embedded Tokenization](#embedded-tokenization): This guide
 explains how to properly tokenize cards in production via our embedded iframe.
 
 
@@ -165,75 +169,61 @@ curl {{staging_base_url}}/identities \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.enums.BusinessType;
+import io.{{api_name_downcase}}.payments.forms.Address;
+import io.{{api_name_downcase}}.payments.forms.Date;
+import io.{{api_name_downcase}}.payments.forms.IdentityEntityForm;
+import io.{{api_name_downcase}}.payments.forms.IdentityForm;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Identity;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Address;
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccountType;
-import io.{{api_name_downcase}}.payments.processing.client.model.BusinessType;
-import io.{{api_name_downcase}}.payments.processing.client.model.Date;
-import io.{{api_name_downcase}}.payments.processing.client.model.Entity;
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
 
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .title("CEO")
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .businessName("business inc")
-        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
-        .doingBusinessAs("doingBusinessAs")
-        .phone("1234567890")
-        .businessPhone("+1 (408) 756-4497")
-        .taxId("123456789")
-        .businessTaxId("123456789")
-        .personalAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .businessAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .dob(Date.builder()
-          .day(27)
-          .month(5)
-          .year(1978)
-          .build()
-        )
-        .settlementCurrency("USD")
-        .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1000l)
-        .mcc(7399)
-        .url("http://sample-entity.com")
-        .annualCardVolume(100)
-        .defaultStatementDescriptor("Business Inc")
-        .incorporationDate(Date.builder()
-          .day(1)
-          .month(12)
-          .year(2012)
-          .build()
-        )
-        .principalPercentageOwnership(51)
-        .ownershipType("PRIVATE")
-        .hasAcceptedCreditCardsPreviously(false)
-        .build()
-    )
-    .build()
-);
+IdentityForm form = IdentityForm.builder()
+  .entity(IdentityEntityForm.builder()
+  .firstName("dwayne")
+  .lastName("Sunkhronos")
+  .email("user@example.org")
+  .businessName("business inc")
+  .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
+  .doingBusinessAs("doingBusinessAs")
+  .phone("1234567890")
+  .businessPhone("+1 (408) 756-4497")
+  .taxId("123456789")
+  .businessTaxId("123456789")
+  .personalAddress(Address.builder()
+  .line1("741 Douglass St")
+  .line2("Apartment 7")
+  .city("San Mateo")
+  .region("CA")
+  .postalCode("94114")
+  .country("USA")
+  .build())
+  .businessAddress(Address.builder()
+  .line1("741 Douglass St")
+  .line2("Apartment 7")
+  .city("San Mateo")
+  .region("CA")
+  .postalCode("94114")
+  .country("USA")
+  .build())
+  .dob(Date.builder().day(Integer.valueOf(27)).month(Integer.valueOf(5)).year(Integer.valueOf(1978)).build())
+  .maxTransactionAmount(Long.valueOf(1000L))
+  .mcc("7399").url("http://sample-entity.com")
+  .annualCardVolume(Long.valueOf(100L))
+  .defaultStatementDescriptor("Business Inc")
+  .incorporationDate(Date.builder().day(Integer.valueOf(1)).month(Integer.valueOf(12)).year(Integer.valueOf(2012)).build())
+  .principalPercentageOwnership(Integer.valueOf(51)).build()).build();
+
+Maybe<Identity> response = api.identities.post(form);
+if(! response.succeeded().booleanValue()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create Identity");
+}
+    Identity identity = (Identity)response.view();
+    identity.getId();
 
 ```
 ```php
@@ -362,23 +352,34 @@ curl {{staging_base_url}}/payment_instruments \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.enums.BankAccountType;
+import io.{{api_name_downcase}}.payments.forms.BankAccountForm;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.BankAccount;
+import io.{{api_name_downcase}}.payments.views.Identity;
+import java.util.Currency;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-import io.{{api_name_downcase}}.payments.processing.client.model.Name;
+BankAccountForm form = BankAccountForm.builder()
+        .name("Joe Doe")
+        .identity("{{fetch_identity_scenario_id}}")
+        .accountNumber("84012312415")
+        .bankCode("840123124")
+        .accountType(BankAccountType.SAVINGS)
+        .companyName("company name")
+        .country("USA")
+        .currency(Currency.getInstance("USD"))
+        .build();
 
-BankAccount bankAccount = client.bankAccountsClient().save(
-    BankAccount.builder()
-      .name(Name.parse("Joe Doe"))
-      .identity(identity.getId())  //  or use "{{fetch_identity_scenario_id}}"
-      .accountNumber("84012312415")
-      .bankCode("840123124")
-      .accountType(BankAccountType.SAVINGS)
-      .companyName("company name")
-      .country("USA")
-      .currency("USD")
-      .build()
-);
+Maybe<BankAccount> request = api.instruments.post(form);
 
+if (! request.succeeded()) {
+    ApiError error = request.error();
+    System.out.println(error);
+    throw new RuntimeException("API error attempting to create bank account");
+}
+BankAccount bankAccount = request.view();
 
 ```
 ```php
@@ -524,20 +525,43 @@ curl {{staging_base_url}}/identities \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.forms.Address;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.forms.Date;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
 
-Identity buyerIdentity = client.identitiesClient().save(
-  Identity.builder()
+IdentityForm form = IdentityForm.builder()
     .entity(
-      Entity.builder()
+    IdentityEntityForm.builder()
         .firstName("dwayne")
         .lastName("Sunkhronos")
         .email("user@example.org")
-        .build()
-    )
-    .build()
-);
+        .personalAddress(
+            Address.builder()
+                .line1("741 Douglass St")
+                .line2("Apartment 7")
+                .city("San Mateo")
+                .region("CA")
+                .postalCode("94114")
+                .country("USA")
+                .build()
+        )
+        .build())
+    .build();
+
+Maybe<Identity> response = api.identities.post(form);
+
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create Identity");
+}
+
+Identity identity = response.view();
+
 ```
 ```php
 <?php
@@ -615,18 +639,40 @@ curl {{staging_base_url}}/payment_instruments \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.forms.Address;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import com.google.common.collect.ImmutableMap;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+PaymentCardForm form = PaymentCardForm.builder()
+        .name("Joe Doe")
+        .number("4957030420210454")
+        .securityCode("112")
+        .expirationYear(2020)
+        .identity("{{fetch_identity_scenario_id}}")
+        .expirationMonth(12)
+        .address(
+                Address.builder()
+                        .city("San Mateo")
+                        .country("USA")
+                        .region("CA")
+                        .line1("123 Fake St")
+                        .line2("#7")
+                        .postalCode("90210")
+                        .build()
+        )
+        .tags(ImmutableMap.of("card_name", "Business Card"))
+        .build();
 
-PaymentCard paymentCard = PaymentCard.builder()
-    .name("Joe Doe")
-    .identity("{{fetch_identity_scenario_id}}")
-    .expirationMonth(12)
-    .expirationYear(2030)
-    .number("4111 1111 1111 1111")
-    .securityCode("231")
-    .build();
-paymentCard = client.paymentCardsClient().save(paymentCard);
+Maybe<PaymentCard> response = api.instruments.post(form);
+        if (! response.succeeded()) {
+            ApiError error = response .error();
+            System.out.println(error.getCode());
+            throw new RuntimeException("API error attempting to create Payment Card");
+        }
+PaymentCard card = response.view();
 
 ```
 ```php
@@ -709,15 +755,27 @@ curl {{staging_base_url}}/authorizations \
 
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-Authorization authorization = client.authorizationsClient().save(
-  Authorization.builder()
-    .amount(100L)
-    .merchantIdentity("{{create_merchant_identity_scenario_id}}")
-    .source("{{create_card_scenario_id}}")
-    .build()
-);
+AuthorizationCreateForm formCreateAuthorization = AuthorizationCreateForm.builder()
+                .amount(10000L)
+                .merchantIdentity("{{create_merchant_identity_scenario_id}}")
+                .source("{{create_card_scenario_id}}")
+                .build();
+
+Maybe<Authorization> response = api.authorizations.post(formCreateAuthorization);
+
+if (! response.succeeded()) {
+  ApiError error = response.error();
+  System.out.println(error.getMessage());
+  throw new RuntimeException("API error attempting to creating Authorization");
+}
+
+Authorization authorization = response.view();
 
 ```
 ```php
@@ -799,10 +857,26 @@ curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
     -d '{{capture_authorization_scenario_curl_request}}'
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
-authorization = authorization.capture(50L);
+AuthorizationUpdateForm form = AuthorizationUpdateForm.builder()
+        .captureAmount(100L)
+        .fee(10L)
+        .statementDescriptor("Order 123")
+        .build();
+
+Maybe<Authorization> response = api.authorizations.id("{{create_authorization_scenario_id}}").put(form);
+
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getMessage());
+    throw new RuntimeException("API error attempting to capture authorization");
+}
+Authorization capturedAuthorization = response.view();
 
 ```
 ```php
@@ -880,13 +954,32 @@ curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/se
 
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.SettlementForm;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.*;
+import java.util.Currency;
+
 
 Settlement settlement = identity.createSettlement(
   Settlement.builder()
     .currency("USD")
     .build()
 );
+
+SettlementForm formSettlement = SettlementForm.builder()
+        .currency(Currency.getInstance("USD"))
+        .build();
+
+Transfer transfer = api.transfers.id("{{capture_authorization_scenario_id}}").get().view();
+
+Maybe<Settlement> response = api.identities.id("{{create_merchant_identity_scenario_id}}").settlements.post(formSettlement);
+
+if (! response.succeeded()) {
+    throw new RuntimeException("API error attempting to create batch settlement");
+}
+
+Settlement settlementBatch = response.view();
 
 ```
 ```php
@@ -930,9 +1023,8 @@ Each settlement is comprised of all the `Transfers` that have a SUCCEEDED `state
 that have not yet been previously settled out. In other words, if a merchant has a
 `Transfer` in the PENDING state it will not be included in the batch settlement.
 In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
+The `total_amount` minus the `total_fee` equals the `net_amount` (the amount in cents
+that will be deposited into your merchant's bank account).
 
 <aside class="notice">
 Once a batch Settlement has been created it will undergo review and typically be
@@ -953,6 +1045,596 @@ Field | Type | Description
 ----- | ---- | -----------
 currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+
+## Push-to-Card
+### Step 1: Create a Recipient Identity
+```shell
+curl {{staging_base_url}}/identities \
+    -H "Content-Type: application/vnd.json+api" \
+    -u {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_recipient_identity_payouts_scenario_curl_request}}'
+
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.forms.Address;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.forms.Date;
+
+
+IdentityForm form = IdentityForm.builder()
+    .entity(
+    IdentityEntityForm.builder()
+        .firstName("dwayne")
+        .lastName("Sunkhronos")
+        .email("user@example.org")
+        .personalAddress(
+            Address.builder()
+                .line1("741 Douglass St")
+                .line2("Apartment 7")
+                .city("San Mateo")
+                .region("CA")
+                .postalCode("94114")
+                .country("USA")
+                .build()
+        )
+        .build())
+    .build();
+
+Maybe<Identity> response = api.identities.post(form);
+
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create Identity");
+}
+
+Identity identity = response.view();
+```
+```php
+<?php
+use {{php_client_resource_name}}\Resources\Identity;
+
+$identity = new Identity({{create_recipient_identity_payouts_scenario_id}});
+$identity = $identity->save();
+
+
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Identity
+
+identity = Identity(**{{create_recipient_identity_payouts_scenario_python_request}}).save()
+```
+```ruby
+identity = {{ruby_client_resource_name}}::Identity.new({{create_recipient_identity_payouts_scenario_ruby_request}}).save
+
+
+```
+> Example Response:
+
+```json
+{{create_recipient_identity_payouts_scenario_response}}
+```
+
+Let's start with the first step by creating an `Identity` resource. Each `Identity` represents either a person or a business. We use this resource to associate cards and payouts. This structure makes it simple to manage and reconcile payment instruments and payout history. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds. Additionally, the Identity resource is optionally used to collect KYC information.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/identities`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+first_name | *string*, **optional** | First name
+last_name | *string*, **optional** | Last name
+email | *string*, **optional** | Email
+phone | *string*, **optional** | Phone number
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+personal_address | *object*, **optional** | Customers shipping address or billing address (Full description of child attributes below)
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
+country | *string*, **required** | 3-Letter Country code
+
+### Step 2:  Add a Payment Instrument for the Recipient 
+
+```shell
+curl {{staging_base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_recipient_card_scenario_curl_request}}'
+
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.forms.Address;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import com.google.common.collect.ImmutableMap;
+
+PaymentCardForm form = PaymentCardForm.builder()
+        .name("Joe Doe")
+        .number("4957030420210454")
+        .securityCode("112")
+        .expirationYear(2020)
+        .identity("{{fetch_identity_scenario_id}}")
+        .expirationMonth(12)
+        .address(
+                Address.builder()
+                        .city("San Mateo")
+                        .country("USA")
+                        .region("CA")
+                        .line1("123 Fake St")
+                        .line2("#7")
+                        .postalCode("90210")
+                        .build()
+        )
+        .tags(ImmutableMap.of("card_name", "Business Card"))
+        .build();
+
+Maybe<PaymentCard> response = api.instruments.post(form);
+if (! response.succeeded()) {
+    ApiError error = response .error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create Payment Card");
+}
+PaymentCard card = response.view();
+
+```
+```php
+<?php
+use {{php_client_resource_name}}\Resources\PaymentCard;
+use {{php_client_resource_name}}\Resources\Identity;
+
+$identity = Identity::retrieve('{{create_recipient_identity_payouts_scenario_id}}');
+$card = new PaymentCard({{create_recipient_card_scenario_php_request}});
+$card = $identity->createPaymentCard($card);
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import PaymentCard
+
+card = PaymentCard(**{{create_card_scenario_python_request}}).save()
+
+```
+```ruby
+card = {{ruby_client_resource_name}}::PaymentCard.new({{create_recipient_card_scenario_ruby_request}}).save
+```
+> Example Response:
+
+```json
+{{create_recipient_card_scenario_response}}
+```
+
+<aside class="warning">
+Please note that creating cards directly via the API should only be done for
+testing purposes. You must use the Tokenization iframe or javascript client
+to remain out of PCI scope.
+</aside>
+
+Now that we've created an `Identity` for our recipient, we'll need to tokenize a credit card where funds will be disbursed.
+
+In the API, credit cards are represented by the `Payment Instrument` resource.
+
+To classify the `Payment Instrument` as a credit card you'll need to pass `PAYMENT_CARD` in the type field of your request, and you'll also want to pass the ID of the `Identity` that you created in the last step via the identity field to properly associate it with your recipient.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/payment_instruments`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+identity | *string*, **required** | ID of the `Identity` that the card should be associated
+type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | 4-digit expiration year
+name | *string*, **optional** | Full name of the registered card holder
+address | *object*, **optional** | Billing address (Full description of child attributes below)
+
+
+#### Address-object Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+line1 | *string*, **required** | First line of the address (max 60 characters)
+line2 | *string*, **optional** | Second line of the address (max 60 characters)
+city | *string*, **required** | City (max 20 characters)
+region | *string*, **required** | 2-letter State code
+postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
+country | *string*, **required** | 3-Letter Country code
+
+### Step 3: Verify card is eligible to receive push-to-card disbursements
+
+Now that we've associated a payment instrument to a recipient, we'll need to verify whether or not the card is eligible to receive push-to-card disbursements. How? By making a request to the `Verifications` endpoint. The returned `Verification` resource returns a set of general attributes and details about the card in question (e.g. card type, issuer information). For example, the `inquiry_details` object will contain a `push_funds_block_indicator` attribute that indicates if it is eligible for push-to-card disbursements. Below you'll see a number of fields and the potential responses.
+
+```shell
+curl {{staging_base_url}}/payment_instruments/{{create_recipient_card_scenario_id}}/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{payment_instrument_verification_scenario_curl_request}}'
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+
+
+ VerificationForm verificationForm = VerificationForm.builder()
+    .processor("VISA_V1")
+    .build();
+
+Maybe<Verification> verificationResponse = api.instruments.id("{{create_recipient_card_scenario_id}}").verifications.post(verificationForm);
+if (! verificationResponse.succeeded()) {
+    ApiError error = verificationResponse.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create a Verification");
+}
+Verification verification = verificationResponse.view();
+
+```
+```php
+<?php
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import PaymentInstrument
+from {{python_client_resource_name}}.resources import Verification
+
+
+payment_card = PaymentInstrument.get(id="{{create_card_scenario_id}}")
+
+verify = payment_card.verify_on(Verification(**{{payment_instrument_verification_scenario_python_request}}))
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{payment_instrument_verification_scenario_response}}
+```
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+processor | *string*, **required** | The name of the processor, which needs to be: `VISA_V1`
+
+#### Address Verification Results (address_verification_results)
+Letter | Description
+------ | -------------------------------------------------------------------
+D, F, M | Address verified
+A, B, C, G, I, N, P, R, S, U, W | Address not verified
+
+#### Card Verification 2 Results (cvv2_result_code)
+Letter | Description
+------ | -------------------------------------------------------------------
+M | CVV  verified
+N, P, S | CVV not verified
+U | Issuer does not participate in CVV2 service
+
+#### Card Type (card_type_code)
+
+This one-character code indicates whether the account is credit, debit, prepaid, deferred debit, or charge.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+C | Credit  
+D | Debit  
+H | Charge Card    
+P | Prepaid  
+R | Deferred Debit  
+
+#### Fasts Funds Indicator (fast_funds_indicator)
+
+Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 days.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+B, D | Fast Funds eligible
+N | Not eligible for Fast Funds
+
+#### Push Funds Indicator (push_funds_block_indicator)
+
+This code indicates if the associated card can receive push-to-card disbursements.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+A, B, C | Accepts push-to-card payments
+N | Does not accept push-to-card payments
+
+#### Online Gambling Block Indicator (online_gambing_block_indicator)
+
+Indicates if the card can receive push-payments for online gambling payouts.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+Y | Blocked for online gambling payouts
+N | Not blocked for online gambling payouts
+
+#### Card Product ID (card_product_id)
+
+A combination of card brand, platform, class and scheme.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+A | Visa Traditional
+AX | American Express
+B | Visa Traditional Rewards
+C | Visa Signature
+D | Visa Signature Preferred
+DI | Discover
+DN | Diners
+E | Proprietary ATM
+F | Visa Classic
+G | Visa Business
+G1 | Visa Signature Business
+G2 | Visa Business Check Card
+G3 | Visa Business Enhanced
+G4 | Visa Infinite Business
+G5 | Visa Business Rewards
+I | Visa Infinite
+I1 | Visa Infinite Privilege
+I2 | Visa UHNW
+J3 | Visa Healthcare
+JC | JCB
+K | Visa Corporate T&E
+K1 | Visa Government Corporate T&E
+L | Visa Electron
+M | MasterCard
+N | Visa Platinum
+N1 | Visa Rewards
+N2 | Visa Select
+P | Visa Gold
+Q | Private Label
+Q1 | Private Label Prepaid
+Q2 | Private Label Basic
+Q3 | Private Label Standard
+Q4 | Private Label Enhanced
+Q5 | Private Label Specialized
+Q6 | Private Label Premium
+R | Proprietary
+S | Visa Purchasing
+S1 | Visa Purchasing with Fleet
+S2 | Visa Government Purchasing
+S3 | Visa Government Purchasing with Fleet
+S4 | Visa Commercial Agriculture
+S5 | Visa Commercial Transport
+S6 | Visa Commercial Marketplace
+U | Visa Travel Money
+V | Visa V PAY
+
+#### Product Sub-Type (card_product_subtype)
+
+Description of product subtype.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+AC | Agriculture Maintenance Account
+AE | Agriculture Debit Account/Electron
+AG | Agriculture
+AI | Agriculture Investment Loan
+CG | Brazil Cargo
+CS | Construction
+DS | Distribution
+HC | Healthcare
+LP | Visa Large Purchase Advantage
+MA | Visa Mobile Agent
+MB | Interoperable Mobile Branchless Banking
+MG | Visa Mobile General
+VA | Visa Vale - Supermarket
+VF | Visa Vale - Fuel
+VR | Visa Vale - Restaurant
+
+#### Card Sub-Type (card_subtype_code)
+
+The code for account funding source subtype, such as reloadable and non-reloadable.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+N | Non-Reloadable
+R | Reloadable
+
+### Step 4: Provision Recipient Account
+
+```shell
+curl {{staging_base_url}}/identities/{{create_recipient_identity_payouts_scenario_id}}/merchants \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{provision_push_merchant_scenario_curl_request}}'
+
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import com.google.common.collect.ImmutableMap;
+
+Maybe<Identity> response = api.identities.id("{{create_recipient_identity_payouts_scenario_id}}").get();
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to fetch Identity");
+}
+Identity identity = response.view();
+
+MerchantUnderwritingForm form = MerchantUnderwritingForm.builder()
+    .tags(ImmutableMap.of("key", "value"))
+    .build();
+
+Maybe<Merchant> merchantResponse = api.identities.id(identity.id).merchants.post(form);
+
+if (! merchantResponse.succeeded()) {
+            ApiError error = merchantResponse.error();
+            System.out.println(error.getCode());
+            throw new RuntimeException("API error attempting to provision Merchant");
+        }
+Merchant merchant = merchantResponse.view();
+```
+```php
+<?php
+use {{php_client_resource_name}}\Resources\Identity;
+use {{php_client_resource_name}}\Resources\Merchant;
+
+$identity = Identity::retrieve('{{create_recipient_identity_payouts_scenario_id}}');
+
+$merchant = $identity->provisionMerchantOn(new Merchant());
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Identity
+from {{python_client_resource_name}}.resources import Merchant
+
+identity = Identity.get(id="{{create_recipient_card_scenario_id}}")
+merchant = identity.provision_merchant_on(Merchant())
+
+```
+```ruby
+identity = {{ruby_client_resource_name}}::Identity.retrieve(:id=>"{{create_recipient_identity_payouts_scenario_id}}")
+
+merchant = identity.provision_merchant
+```
+> Example Response:
+
+```json
+{{provision_push_merchant_scenario_response}}
+```
+
+Now that we've associated a Payment Instrument with our recipient's `Identity` we're ready to provision a Recipient account. This is the last step before you can begin paying out an Identity. Luckily you've already done most of the heavy lifting. Just make one final POST request, and you'll be returned a `Merchant` resource.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/identities/identityID/merchants`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+processor| *string*, **optional** | Name of Processor
+
+
+### Step 5: Send Payout
+
+```shell
+curl {{staging_base_url}}/transfers \
+    -H "Content-Type: application/vnd.json+api" \
+    -u {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_recipient_push_to_card_transfer_curl_request}}'
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import com.google.common.collect.ImmutableMap;
+import java.util.Currency;
+
+TransferForm form = TransferForm.builder()
+        .amount(100L)
+        .currency(Currency.getInstance("USD"))
+        .idempotencyId("Idsfk23jnasdfkjf")
+        .destination("{{create_recipient_card_scenario_id}}")
+        .tags(ImmutableMap.of("order_number", "21DFASJSAKAS"))
+.build();
+
+Maybe<Transfer> response = api.transfers.post(form);
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create Transfer");
+}
+Transfer transfer = response.view();
+```
+```php
+<?php
+use {{php_client_resource_name}}\Resources\Transfer;
+
+$transfer = new Transfer({{create_recipient_push_to_card_transfer_php_request}});
+$transfer = $transfer->save();
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Transfer
+
+payout = Transfer(**{{create_recipient_card_scenario_python_request}}).save()
+
+```
+```ruby
+transfer = {{ruby_client_resource_name}}::Transfer.new({{create_recipient_push_to_card_transfer_ruby_request}}).save
+```
+> Example Response:
+
+```json
+{{create_recipient_push_to_card_transfer_response}}
+```
+
+
+Now the final step - time to payout the recipient!
+
+Next you'll need to create a `Transfer`.  What's a `Transfer`? Glad you asked! A `Transfer` represents any flow of funds either to or from a Payment Instrument. In this case a Payout to a card.
+
+To create a `Transfer` we'll simply supply the Payment Instrument ID of the previously tokenized card as the destination field. Also, be sure to note that the amount field is in cents.
+
+Simple enough, right? You'll also want to store the ID from that `Transfer` for your records. `Transfers` can have two possible states SUCCEEDED and FAILED.
+
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/transfers`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+destination | *string*, **required** | ID of the `Payment Instrument` where funds will be sent
+amount | *integer*, **required** | The total amount that will be charged in cents (e.g. 100 cents to charge $1.00)
+currency | *string*, **required** | 3-letter ISO code designating the currency of the `Transfers` (e.g. USD)
+statement_descriptor | *string*, **required** | Description that will show up on card statement 
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+
 
 ## Embedded Tokenization
 
@@ -1417,16 +2099,27 @@ curl {{staging_base_url}}/authorizations \
 
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-Authorization authorization = client.authorizationsClient().save(
-  Authorization.builder()
-    .amount(100L)
-    .merchantIdentity("{{create_merchant_identity_scenario_id}}")
-    .source("{{create_card_scenario_id}}")
-    .build()
-);
+AuthorizationCreateForm formCreateAuthorization = AuthorizationCreateForm.builder()
+                .amount(10000L)
+                .merchantIdentity("{{create_merchant_identity_scenario_id}}")
+                .source("{{create_card_scenario_id}}")
+                .build();
 
+Maybe<Authorization> response = api.authorizations.post(formCreateAuthorization);
+
+if (! response.succeeded()) {
+  ApiError error = response.error();
+  System.out.println(error.getMessage());
+  throw new RuntimeException("API error attempting to creating Authorization");
+}
+
+Authorization authorization = response.view();
 
 ```
 ```php
@@ -1493,13 +2186,26 @@ curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+AuthorizationUpdateForm form = AuthorizationUpdateForm.builder()
+        .captureAmount(100L)
+        .fee(10L)
+        .statementDescriptor("Order 123")
+        .build();
 
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
-Long captureAmount = 50L;
-Long feeAmount = 10L;
-authorization = authorization.capture(captureAmount, feeAmount);
+Maybe<Authorization> responseAuthorization = api.authorizations.id("{{create_authorization_scenario_id}}").put(form);
+
+if (! responseAuthorization.succeeded()) {
+    ApiError error = responseAuthorization.error();
+    System.out.println(error.getMessage());
+    throw new RuntimeException("API error attempting to capture authorization");
+}
+Authorization capturedAuth = responseAuthorization.view();
 
 ```
 ```php
@@ -1569,8 +2275,23 @@ curl {{staging_base_url}}/authorizations/{{void_authorization_scenario_id}} \
 
 ```
 ```java
-Authorization authorization = client.authorizationsClient().fetch(authorization.getId());
-authorization.voidMe(true);
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.AuthorizationUpdateForm;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.*;
+
+AuthorizationUpdateForm formVoid = AuthorizationUpdateForm.builder()
+        .voidMe(true)
+        .build();
+
+Maybe<Authorization> response = api.authorizations.id("{{fetch_authorization_scenario_id}}").put(formVoid);
+
+if (! response.succeeded()) {
+    System.out.println(response.error());
+    throw new RuntimeException("API error attempting to void authorization");
+}
+Authorization voidAuthorization = response.view();
 
 ```
 ```php
@@ -1622,7 +2343,8 @@ Field | Type | Description
 ----- | ---- | -----------
 void_me | *boolean*, **required** | Set to True to void the `Authorization`
 
-## Retrieve an Authorization
+## Fetch an Authorization
+
 ```shell
 
 curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
@@ -1631,10 +2353,20 @@ curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
 
 ```
 ```java
+import io.{{api_name_downcase}}.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Authorization;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Authorization;
+Maybe <Authorization> response =  api.authorizations
+    .id("{{fetch_authorization_scenario_id}}")
+    .get();
 
-Authorization authorization = client.authorizationsClient().fetch("{{fetch_authorization_scenario_id}}");
+if(! response.succeeded()){
+    System.out.println(response.error());
+    throw new RuntimeException("API error in attempting to fetch Authorization");
+}
+
+Authorization authorization = response.view();
 
 ```
 ```php
@@ -1681,13 +2413,25 @@ curl {{staging_base_url}}/authorizations/ \
 
 ```
 ```java
-import io.payline.payments.processing.client.model.Authorization;
+import io.finix.payments.ApiClient;
+import io.finix.payments.interfaces.ApiError;
+import io.finix.payments.interfaces.Maybe;
+import io.finix.payments.lib.Page;
+import io.finix.payments.views.*;
 
-client.authorizationsClient().<Resources<Authorization>>resourcesIterator()
-  .forEachRemaining(page-> {
-    Collection<Authorization> authorizations = page.getContent();
-    //do something
-  });
+Maybe<Page<Authorization>> response = api.authorizations.get();
+
+if (! response.succeeded()) {
+   ApiError error = response.error();
+   System.out.println(error.getCode());
+   System.out.println(error.getMessage());
+   System.out.println(error.getDetails());
+   throw new RuntimeException("API error attempting to list all Authorizations");
+}
+
+ Page<Authorization> page = response.view();
+ Page<Authorization> page2 = page.getNext();
+
 ```
 ```php
 <?php
@@ -1797,7 +2541,7 @@ identity = {{ruby_client_resource_name}}::Identity.new({{create_buyer_identity_s
 ```json
 {{create_buyer_identity_scenario_response}}
 ```
-All fields for a buyer's Identity are optional. However, a business_type field should not be passed. Passing a business_type indicates that the Identity should be treated as a merchant.
+All fields for a buyer's Identity are optional. However, a `business_type` field should not be passed. Passing a `business_type` indicates that the Identity should be treated as a merchant.
 
 #### HTTP Request
 
@@ -1830,75 +2574,61 @@ curl {{staging_base_url}}/identities \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.enums.BusinessType;
+import io.{{api_name_downcase}}.payments.forms.Address;
+import io.{{api_name_downcase}}.payments.forms.Date;
+import io.{{api_name_downcase}}.payments.forms.IdentityEntityForm;
+import io.{{api_name_downcase}}.payments.forms.IdentityForm;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Identity;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Address;
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccountType;
-import io.{{api_name_downcase}}.payments.processing.client.model.BusinessType;
-import io.{{api_name_downcase}}.payments.processing.client.model.Date;
-import io.{{api_name_downcase}}.payments.processing.client.model.Entity;
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
 
-Identity identity = client.identitiesClient().save(
-  Identity.builder()
-    .entity(
-      Entity.builder()
-        .title("CEO")
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .businessName("business inc")
-        .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
-        .doingBusinessAs("doingBusinessAs")
-        .phone("1234567890")
-        .businessPhone("+1 (408) 756-4497")
-        .taxId("123456789")
-        .businessTaxId("123456789")
-        .personalAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .businessAddress(
-          Address.builder()
-            .line1("741 Douglass St")
-            .line2("Apartment 7")
-            .city("San Mateo")
-            .region("CA")
-            .postalCode("94114")
-            .country("USA")
-            .build()
-        )
-        .dob(Date.builder()
-          .day(27)
-          .month(5)
-          .year(1978)
-          .build()
-        )
-        .settlementCurrency("USD")
-        .settlementBankAccount(BankAccountType.CORPORATE)
-        .maxTransactionAmount(1000l)
-        .mcc(7399)
-        .url("http://sample-entity.com")
-        .annualCardVolume(100)
-        .defaultStatementDescriptor("Business Inc")
-        .incorporationDate(Date.builder()
-          .day(1)
-          .month(12)
-          .year(2012)
-          .build()
-        )
-        .principalPercentageOwnership(51)
-        .ownershipType("PRIVATE")
-        .hasAcceptedCreditCardsPreviously(false)
-        .build()
-    )
-    .build()
-);
+IdentityForm form = IdentityForm.builder()
+  .entity(IdentityEntityForm.builder()
+  .firstName("dwayne")
+  .lastName("Sunkhronos")
+  .email("user@example.org")
+  .businessName("business inc")
+  .businessType(BusinessType.LIMITED_LIABILITY_COMPANY)
+  .doingBusinessAs("doingBusinessAs")
+  .phone("1234567890")
+  .businessPhone("+1 (408) 756-4497")
+  .taxId("123456789")
+  .businessTaxId("123456789")
+  .personalAddress(Address.builder()
+  .line1("741 Douglass St")
+  .line2("Apartment 7")
+  .city("San Mateo")
+  .region("CA")
+  .postalCode("94114")
+  .country("USA")
+  .build())
+  .businessAddress(Address.builder()
+  .line1("741 Douglass St")
+  .line2("Apartment 7")
+  .city("San Mateo")
+  .region("CA")
+  .postalCode("94114")
+  .country("USA")
+  .build())
+  .dob(Date.builder().day(Integer.valueOf(27)).month(Integer.valueOf(5)).year(Integer.valueOf(1978)).build())
+  .maxTransactionAmount(Long.valueOf(1000L))
+  .mcc("7399").url("http://sample-entity.com")
+  .annualCardVolume(Long.valueOf(100L))
+  .defaultStatementDescriptor("Business Inc")
+  .incorporationDate(Date.builder().day(Integer.valueOf(1)).month(Integer.valueOf(12)).year(Integer.valueOf(2012)).build())
+  .principalPercentageOwnership(Integer.valueOf(51)).build()).build();
+
+Maybe<Identity> response = api.identities.post(form);
+if(! response.succeeded().booleanValue()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create Identity");
+}
+    Identity identity = (Identity)response.view();
+    
 
 ```
 ```php
@@ -1925,18 +2655,7 @@ identity = {{ruby_client_resource_name}}::Identity.new({{create_merchant_identit
 ```json
 {{create_merchant_identity_scenario_response}}
 ```
-
-Before we can begin charging cards we'll need to provision a `Merchant` account
-for your seller. This requires 3-steps:
-
-1. Create an `Identity` resource with the sender's underwriting and identity
-verification information (API request to the right)
-
-
-2. [Create a Payment Instrument](#create-a-card) representing the
-sender's bank account where processed funds will be settled (i.e. deposited)
-
-
+Create an `Identity` resource with the merchant's underwriting information.
 
 #### HTTP Request
 
@@ -2008,7 +2727,9 @@ Field | Type | Description
 day | *integer*, **required** | Day of birth (between 1 and 31)
 month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
-## Retrieve a Identity
+
+## Fetch a Identity
+
 ```shell
 
 curl {{staging_base_url}}/identities/{{fetch_identity_scenario_id}} \
@@ -2023,13 +2744,14 @@ import io.{{api_name_downcase}}.payments.interfaces.ApiError;
 import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 import com.google.common.collect.ImmutableMap;
 
-Maybe<Identity> response = api.identities.id("{{create_recipient_identity_payouts_scenario_id}}").get();
+Maybe<Identity> response = api.identities.id("{{fetch_identity_scenario_id}}").get();
 if (! response.succeeded()) {
     ApiError error = response.error();
     System.out.println(error.getCode());
     throw new RuntimeException("API error attempting to fetch Identity");
 }
 Identity identity = response.view();
+
 ```
 ```php
 <?php
@@ -2074,13 +2796,22 @@ curl {{staging_base_url}}/identities/ \
 
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Identity;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.lib.Page;
 
-client.identitiesClient().<Resources<Identity>>resourcesIterator()
-  .forEachRemaining(page -> {
-    Collection<Identity> identities = page.getContent();
-    //do something
-  });
+Maybe<Page<Identity>> response = api.identities.get();
+
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    System.out.println(error.getMessage());
+    System.out.println(error.getDetails());
+    throw new RuntimeException("API error attempting to list all Identities");
+}
+
+Page<Identity> page = response.view();
 
 ```
 ```php
@@ -2124,6 +2855,29 @@ curl {{staging_base_url}}/identities/{{update_identity_scenario_id}} \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.enums.BusinessType;
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Identity;
+
+IdentityForm form = IdentityForm.builder()
+                .entity(
+                  IdentityEntityForm.builder()
+                      .firstName("dwayne")
+                      .email("self@newdomain.com")
+                      .businessPhone("+1 (408) 756-4497")
+                      .build())
+                .build();
+
+Maybe<Identity> response = api.identities.id("{{fetch_identity_scenario_id}}").put(form);
+
+if (! response.succeeded()) {
+    System.out.println(response.error());
+    throw new RuntimeException("API error attempting to update identity");
+}
+
+Identity updatedIdentity = response.view();
 
 ```
 ```php
@@ -2349,9 +3103,22 @@ curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/me
 
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.finix.payments.forms.*;
 
-Merchant merchant = identity.provisionMerchantOn(Merchant.builder().build());
+MerchantUnderwritingForm form = MerchantUnderwritingForm.builder()
+    .processor(null)
+    .tags(ImmutableMap.of("key", "value"))
+    .build();
+
+Maybe<Merchant> underwriteMerchant = api.identities.id("{{fetch_identity_scenario_id}}").merchants.post(form);
+
+if(! underwriteMerchant.succeeded()){
+   System.out.println(underwriteMerchant.error());
+}
+
+Merchant provisionMerchant = underwriteMerchant.view();
 
 ```
 ```php
@@ -2426,7 +3193,8 @@ Parameter | Description
 --------- | -------------------------------------------------------------------
 :IDENTITY_ID | ID of the Identity
 
-## Retrieve a Merchant
+## Fetch a Merchant
+
 ```shell
 curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}} \
     -H "Content-Type: application/vnd.json+api" \
@@ -2434,9 +3202,21 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}} \
 
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Merchant;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Merchant;
 
-Merchant merchant = client.merchantsClient().fetch("{{fetch_merchant_scenario_id}}");
+Maybe<Merchant> response = api.merchants
+    .id(merchant.id)
+    .get();
+
+if(! response.succeeded()){
+    System.out.println(response.error());
+    System.out.println(response.error().getDetails());
+    throw new RuntimeException("API error attempting to fetch Merchant");
+}
+
+Merchant merchantView = response.view();
 
 ```
 ```php
@@ -2498,6 +3278,12 @@ $verification = $merchant->verifyOn($verification);
 ```python
 
 
+from {{python_client_resource_name}}.resources import Merchant
+from {{python_client_resource_name}}.resources import Verification
+
+merchant = Merchant.get(id="{fetch_merchant_scenario_id}")
+
+reattempt_merchant_provision = merchant.verify_on(Verification())
 
 ```
 ```ruby
@@ -2552,7 +3338,8 @@ $verification = $merchant->verifyOn($verification);
 ```ruby
 merchant = {{ruby_client_resource_name}}::Merchant.retrieve(:id => "{{fetch_merchant_scenario_id}}")
 
-verification = merchant.verify
+verification = merchant.entity["default_statement_descriptor"] = "Prestige World Wide"
+
 ```
 > Example Response:
 
@@ -2581,6 +3368,23 @@ curl {{staging_base_url}}/merchants/ \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.lib.Page;
+import io.{{api_name_downcase}}.payments.views.Merchant;
+
+Maybe<Page<Merchant>> response = api.merchants.get();
+
+if (! response.succeeded()) {
+  ApiError error = response.error();
+  System.out.println(error.getCode());
+  System.out.println(error.getMessage());
+  System.out.println(error.getDetails());
+  throw new RuntimeException("API error attempting to list all Merchants");
+}
+
+Page<Merchant> page = response.view();
 
 ```
 ```php
@@ -2634,6 +3438,13 @@ $verifications = Verification::getPagination($merchant->getHref("verifications")
 ```python
 
 
+from {{python_client_resource_name}}.resources import Merchant
+
+merchant_identity = Merchant.get(id="{{fetch_merchant_scenario_id}}")
+
+provision_merchant = merchant_identity.provision_merchant_on(Merchant())
+
+list_all_merchant_verifications = provision_merchant.verifications
 
 ```
 ```ruby
@@ -2792,22 +3603,34 @@ curl {{staging_base_url}}/payment_instruments \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.enums.BankAccountType;
+import io.{{api_name_downcase}}.payments.forms.BankAccountForm;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.BankAccount;
+import io.{{api_name_downcase}}.payments.views.Identity;
+import java.util.Currency;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
-import io.{{api_name_downcase}}.payments.processing.client.model.Name;
+BankAccountForm form = BankAccountForm.builder()
+        .name("Joe Doe")
+        .identity("{{fetch_identity_scenario_id}}")
+        .accountNumber("84012312415")
+        .bankCode("840123124")
+        .accountType(BankAccountType.SAVINGS)
+        .companyName("company name")
+        .country("USA")
+        .currency(Currency.getInstance("USD"))
+        .build();
 
-BankAccount bankAccount = client.bankAccountsClient().save(
-  BankAccount.builder()
-    .name(Name.parse("Billy Bob Thorton III"))
-    .identity("{{fetch_identity_scenario_id}}")
-    .accountNumber("84012312415")
-    .bankCode("840123124")
-    .accountType(BankAccountType.SAVINGS)
-    .companyName("company name")
-    .country("USA")
-    .currency("USD")
-    .build()
-);
+Maybe<BankAccount> request = api.instruments.post(form);
+
+if (! request.succeeded()) {
+    ApiError error = request.error();
+    System.out.println(error);
+    throw new RuntimeException("API error attempting to create bank account");
+}
+BankAccount bankAccount = request.view();
 
 ```
 ```php
@@ -2932,10 +3755,21 @@ curl {{staging_base_url}}/payment_instruments/{{fetch_bank_account_scenario_id}}
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.views.Instrument;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+Maybe<Instrument> response = api.paymentInstruments
+    .id("{{fetch_bank_account_scenario_id}}")
+    .get();
 
-BankAccount bankAccount = client.bankAccountsClient().fetch("{{fetch_bank_account_scenario_id}}")
+if(! response.succeeded()){
+    System.out.println(response.error());
+    System.out.println(response.error().getDetails());
+    throw new RuntimeException("API error attempting to fetch Bank Account");
+}
+
+Instrument bankAccountView = response.view();
 
 ```
 ```php
@@ -2948,6 +3782,8 @@ $bank_account = PaymentInstrument::retrieve('{{fetch_bank_account_scenario_id}}'
 ```python
 
 
+from {{python_client_resource_name}}.resources import PaymentInstrument
+bank_account = PaymentInstrument.get(id="{{fetch_bank_account_scenario_id}}")
 
 ```
 ```ruby
@@ -2981,10 +3817,21 @@ curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}} 
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.PaymentCard;
+Maybe<PaymentCard> response = api.instruments
+  .id("{{create_card_scenario_id}}")
+  .get();
 
-PaymentCard paymentCard = client.paymentCardsClient().fetch("{{fetch_credit_card_scenario_id}}")
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to fetch Payment Card");
+}
+PaymentCard card = response.view();
 
 ```
 ```php
@@ -2997,6 +3844,8 @@ $card = PaymentInstrument::retrieve('{{fetch_credit_card_scenario_id}}');
 ```python
 
 
+from {{python_client_resource_name}}.resources import PaymentInstrument
+credit_card = PaymentInstrument.get(id="{{fetch_credit_card_scenario_id}")
 
 ```
 ```ruby
@@ -3042,6 +3891,10 @@ curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}}/
 ```python
 
 
+from {{python_client_resource_name}}.resources import PaymentCard
+
+card = PaymentCard(**{{create_card_scenario_python_request}}).save()
+check_for_updates = card.update("{{fetch_merchant_scenario_id}}")
 
 ```
 ```ruby
@@ -3076,13 +3929,23 @@ curl {{staging_base_url}}/payment_instruments \
     -u  {{basic_auth_username}}:{{basic_auth_password}}
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.BankAccount;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.lib.Page;
+import io.{{api_name_downcase}}.payments.views.Instrument;
 
-client.bankAccountsClient().<Resources<BankAccount>>resourcesIterator()
-  .forEachRemaining(baPage -> {
-    Collection<BankAccount> bankAccounts = baPage.getContent();
-    //do something
-  });
+Maybe<Page<Instrument>> response = api.instruments.get();
+
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    System.out.println(error.getMessage());
+    System.out.println(error.getDetails());
+    throw new RuntimeException("API error attempting to list all Payment Instruments");
+}
+
+Page<Instrument> page = response.view();
 
 ```
 ```php
@@ -3096,6 +3959,8 @@ $paymentinstruments = PaymentInstrument::getPagination("/payment_instruments");
 ```python
 
 
+from {{python_client_resource_name}}.resources import PaymentInstrument
+payment_instruments = PaymentInstrument.get()
 
 ```
 ```ruby
@@ -3111,12 +3976,218 @@ payment_instruments = {{ruby_client_resource_name}}::PaymentInstruments.retrieve
 
 `GET {{staging_base_url}}/payment_instruments`
 
+## Payment Instrument Verification
+
+```shell
+curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}}/verifications \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{payment_instrument_verification_scenario_curl_request}}'
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+
+
+ VerificationForm verificationForm = VerificationForm.builder()
+    .processor("VISA_V1")
+    .build();
+
+Maybe<Verification> verificationResponse = api.instruments.id("{{create_recipient_card_scenario_id}}").verifications.post(verificationForm);
+if (! verificationResponse.succeeded()) {
+    ApiError error = verificationResponse.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create a Verification");
+}
+Verification verification = verificationResponse.view();
+
+```
+```php
+<?php
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import PaymentInstrument
+from {{python_client_resource_name}}.resources import Verification
+
+
+payment_card = PaymentInstrument.get(id="{{create_card_scenario_id}}")
+
+verify = payment_card.verify_on(Verification(**{{payment_instrument_verification_scenario_python_request}}))
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{payment_instrument_verification_scenario_response}}
+```
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+processor | *string*, **required** | The name of the processor, which needs to be: `VISA_V1`
+
+#### Address Verification Results (address_verification_results)
+Letter | Description
+------ | -------------------------------------------------------------------
+D, F, M | Address verified
+A, B, C, G, I, N, P, R, S, U, W | Address not verified
+
+#### Card Verification 2 Results (cvv2_result_code)
+Letter | Description
+------ | -------------------------------------------------------------------
+M | CVV  verified
+N, P, S | CVV not verified
+U | Issuer does not participate in CVV2 service
+
+#### Card Type (card_type_code)
+
+This one-character code indicates whether the account is credit, debit, prepaid, deferred debit, or charge.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+C | Credit  
+D | Debit  
+H | Charge Card    
+P | Prepaid  
+R | Deferred Debit  
+
+#### Fasts Funds Indicator (fast_funds_indicator)
+
+Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 days.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+B, D | Fast Funds eligible
+N | Not eligible for Fast Funds
+
+#### Push Funds Indicator (push_funds_block_indicator)
+
+This code indicates if the associated card can receive push-to-card disbursements.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+A, B, C | Accepts push-to-card payments
+N | Does not accept push-to-card payments
+
+#### Online Gambling Block Indicator (online_gambing_block_indicator)
+
+Indicates if the card can receive push-payments for online gambling payouts.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+Y | Blocked for online gambling payouts
+N | Not blocked for online gambling payouts
+
+#### Card Product ID (card_product_id)
+
+A combination of card brand, platform, class and scheme.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+A | Visa Traditional
+AX | American Express
+B | Visa Traditional Rewards
+C | Visa Signature
+D | Visa Signature Preferred
+DI | Discover
+DN | Diners
+E | Proprietary ATM
+F | Visa Classic
+G | Visa Business
+G1 | Visa Signature Business
+G2 | Visa Business Check Card
+G3 | Visa Business Enhanced
+G4 | Visa Infinite Business
+G5 | Visa Business Rewards
+I | Visa Infinite
+I1 | Visa Infinite Privilege
+I2 | Visa UHNW
+J3 | Visa Healthcare
+JC | JCB
+K | Visa Corporate T&E
+K1 | Visa Government Corporate T&E
+L | Visa Electron
+M | MasterCard
+N | Visa Platinum
+N1 | Visa Rewards
+N2 | Visa Select
+P | Visa Gold
+Q | Private Label
+Q1 | Private Label Prepaid
+Q2 | Private Label Basic
+Q3 | Private Label Standard
+Q4 | Private Label Enhanced
+Q5 | Private Label Specialized
+Q6 | Private Label Premium
+R | Proprietary
+S | Visa Purchasing
+S1 | Visa Purchasing with Fleet
+S2 | Visa Government Purchasing
+S3 | Visa Government Purchasing with Fleet
+S4 | Visa Commercial Agriculture
+S5 | Visa Commercial Transport
+S6 | Visa Commercial Marketplace
+U | Visa Travel Money
+V | Visa V PAY
+
+#### Product Sub-Type (card_product_subtype)
+
+Description of product subtype.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+AC | Agriculture Maintenance Account
+AE | Agriculture Debit Account/Electron
+AG | Agriculture
+AI | Agriculture Investment Loan
+CG | Brazil Cargo
+CS | Construction
+DS | Distribution
+HC | Healthcare
+LP | Visa Large Purchase Advantage
+MA | Visa Mobile Agent
+MB | Interoperable Mobile Branchless Banking
+MG | Visa Mobile General
+VA | Visa Vale - Supermarket
+VF | Visa Vale - Fuel
+VR | Visa Vale - Restaurant
+
+#### Card Sub-Type (card_subtype_code)
+
+The code for account funding source subtype, such as reloadable and non-reloadable.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+N | Non-Reloadable
+R | Reloadable
+
 # Settlements
 
 A `Settlement` is a logical construct representing a collection (i.e. batch) of
 `Transfers` that are intended to be paid out to a specific `Merchant`.
 
-## Create a Settlement
+## Create a Batch Settlement
+
 ```shell
 
 curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/settlements \
@@ -3126,14 +4197,32 @@ curl {{staging_base_url}}/identities/{{create_merchant_identity_scenario_id}}/se
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.SettlementForm;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.*;
+import java.util.Currency;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
 
 Settlement settlement = identity.createSettlement(
   Settlement.builder()
     .currency("USD")
     .build()
 );
+
+SettlementForm formSettlement = SettlementForm.builder()
+        .currency(Currency.getInstance("USD"))
+        .build();
+
+Transfer transfer = api.transfers.id("{{capture_authorization_scenario_id}}").get().view();
+
+Maybe<Settlement> response = api.identities.id("{{create_merchant_identity_scenario_id}}").settlements.post(formSettlement);
+
+if (! response.succeeded()) {
+    throw new RuntimeException("API error attempting to create batch settlement");
+}
+
+Settlement settlementBatch = response.view();
 
 ```
 ```php
@@ -3169,9 +4258,8 @@ Each settlement is comprised of all the `Transfers` that have a SUCCEEDED state 
 that have not been previously settled out. In other words, if a merchant has a
 `Transfer` in the PENDING state it will not be included in the batch settlement.
 In addition, `Settlements` will include any refunded Transfers as a deduction.
-The `total_amount` is the net settled amount in cents (i.e. the amount in cents
-that will be deposited into your merchant's bank account after your fees have
-been deducted).
+The `total_amount` minus the `total_fee` equals the `net_amount` (the amount in cents
+that will be deposited into your merchant's bank account).
 
 <aside class="notice">
 To view all the Transfers that were included in a Settlement you can make a
@@ -3197,8 +4285,7 @@ Field | Type | Description
 currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
-
-## Retrieve a Settlement
+## Fetch a Settlement
 
 ```shell
 
@@ -3209,10 +4296,21 @@ curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}} \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Settlement;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Settlement;
+Maybe<Settlement> response = api.settlements
+  .id("{{fetch_settlement_scenario_id}}")
+  .get();
 
-Settlement settlement = client.settlementsClient().fetch("{{fetch_settlement_scenario_id}}");
+if(! response.succeeded()){
+    System.out.println(response.error());
+    System.out.println(response.error().getDetails());
+    throw new RuntimeException("API error attempting to fetch settlement");
+}
+
+Settlement settlementView = response.view();
 
 ```
 ```php
@@ -3225,6 +4323,8 @@ $settlement = Settlement::retrieve('{{fetch_settlement_scenario_id}}');
 ```python
 
 
+from {{python_client_resource_name}}.resources import Settlements
+settlement = Settlements.get(id="{{fetch_settlement_scenario_id}")
 
 ```
 ```ruby
@@ -3259,11 +4359,24 @@ curl {{staging_base_url}}/settlements/ \
 
 ```
 ```java
-client.settlementsClient().<Resources<Settlement>>resourcesIterator()
-  .forEachRemaining(settlementPage -> {
-    Collection<Settlement> settlements = settlementPage.getContent();
-    //do something
-  });
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.lib.Page;
+import io.{{api_name_downcase}}.payments.views.Settlement;
+
+Maybe<Page<Settlement>> request = api.settlements.get();
+
+if (! request.succeeded()) {
+    ApiError error = request.error();
+    System.out.println(error.getCode());
+    System.out.println(error.getMessage());
+    System.out.println(error.getDetails());
+    throw new RuntimeException("API error attempting to list all Settlements");
+}
+
+Page<Settlement> page = request.view();
+
 ```
 ```php
 <?php
@@ -3333,6 +4446,9 @@ $settlements = Settlement::getPagination($settlement->getHref("funding_transfers
 ```python
 
 
+from {{python_client_resource_name}}.resources import Settlements
+settlement = Settlement.get(id="{{fetch_settlement_scenario_id}}")
+transfer = settlement.funding_transfers
 
 ```
 ```ruby
@@ -3451,77 +4567,8 @@ within an hour) update to SUCCEEDED.
 <aside class="notice">
 When an Authorization is captured a corresponding Transfer will also be created.
 </aside> 
-## Debit a Bank Account (ie eCheck) 
+## Fetch a Transfer
 
-```shell
-curl {{staging_base_url}}/transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_bank_debit_scenario_curl_request}}'
-
-
-```
-```java
-
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
-
-Map<String, String> tags = new HashMap<>();
-tags.put("name", "sample-tag");
-
-Transfer transfer = client.transfersClient().save(
-    Transfer.builder()
-      .merchantIdentity("{{create_merchant_identity_scenario_id}}")
-      .source("{{create_card_scenario_id}}")
-      .amount(888888)
-      .currency("USD")
-      .tags(tags)
-      .build()
-);
-
-```
-```php
-<?php
-use {{php_client_resource_name}}\Resources\Transfer;
-
-$debit = new Transfer({{create_debit_scenario_php_request}});
-$debit = $debit->save();
-```
-```python
-
-
-
-```
-```ruby
-{{ruby_client_resource_name}}::Transfer.new({{create_bank_debit_scenario_ruby_request}}}).save
-```
-
-
-> Example Response:
-
-```json
-{{create_bank_debit_scenario_response}}
-```
-
-A `Transfer` representing a customer payment where funds are obtained from a
-bank account (i.e. ACH Debit, eCheck). These specific `Transfers` are
-distinguished by their type which return DEBIT.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/transfers`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-source | *string*, **required** | ID of the `Payment Instrument` that will be debited
-merchant_identity | *string*, **required** | `Identity` ID of the merchant whom you're charging on behalf of
-amount | *integer*, **required** | The total amount that will be debited in cents (e.g. 100 cents to debit $1.00)
-fee | *integer*, **optional** | The amount of the `Transfer` you would like to collect as your fee in cents. Defaults to zero (Must be less than or equal to the amount)
-currency | *string*, **required** | 3-letter ISO code designating the currency of the `Transfers` (e.g. USD)
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
-## Retrieve a Transfer
 ```shell
 
 curl {{staging_base_url}}/transfers/{{fetch_transfer_scenario_id}} \
@@ -3531,10 +4578,21 @@ curl {{staging_base_url}}/transfers/{{fetch_transfer_scenario_id}} \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Transfer;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
+Maybe<Transfer> response = api.transfers
+    .id("{{fetch_transfer_scenario_id}}")
+    .get();
 
-Transfer transfer = client.transfersClient().fetch("{{fetch_transfer_scenario_id}}");
+if(! response.succeeded()){
+    System.out.println(response.error());
+    System.out.println(response.error().getDetails());
+    throw new RuntimeException("API error attempting to fetch Transfer");
+}
+
+Transfer transferView = response.view();
 
 ```
 ```php
@@ -3647,13 +4705,23 @@ curl {{staging_base_url}}/transfers \
 
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Transfer;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.lib.Page;
+import io.{{api_name_downcase}}.payments.views.Transfer;
 
-client.transfersClient().<Resources<Transfer>>resourcesIterator()
-  .forEachRemaining(transfersPage -> {
-    Collection<Transfer> transfers = transfersPage.getContent();
-    //do something with `transfers`
-  });
+Maybe<Page<Transfer>> request = api.transfers.get();
+
+if (! request.succeeded()) {
+    ApiError error = request.error();
+    System.out.println(error.getCode());
+    System.out.println(error.getMessage());
+    System.out.println(error.getDetails());
+    throw new RuntimeException("API error attempting to list all Transfers");
+}
+
+Page<Transfer> page = request.view();
 
 ```
 ```php
@@ -3704,15 +4772,24 @@ curl {{staging_base_url}}/webhooks \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.forms.WebhookForm;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Webhook;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
+WebhookForm form = WebhookForm.builder()
+    .url("http://requestb.in/1jb5zu11")
+    .build();
 
-Webhook webhook = client.webhookClient().save(
-    Webhook.builder()
-      .url("https://tools.ietf.org/html/rfc2606#section-3")
-      .build()
-);
+Maybe<Webhook> request = api.webhooks.post(form);
 
+if (! request.succeeded()) {
+    ApiError error = request.error();
+    System.out.println(error);
+    throw new RuntimeException("API error attempting to create Webhook");
+}
+Webhook webhookView = request.view();
 
 ```
 ```php
@@ -3750,7 +4827,7 @@ Field | Type | Description
 url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be sent via POST request (max 120 characters)
 
 
-## Retrieve a Webhook
+## Fetch a Webhook
 
 ```shell
 
@@ -3763,10 +4840,20 @@ curl {{staging_base_url}}/webhooks/{{fetch_webhook_scenario_id}} \
 
 ```
 ```java
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.views.Webhook;
 
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
+Maybe<Webhook> response = api.webhooks
+        .id("{{fetch_webhook_scenario_id}}")
+        .get();
 
-Webhook webhook = client.webhookClient().fetch("{{fetch_webhook_scenario_id}}");
+if(! response.succeeded()){
+    System.out.println(response.error());
+    System.out.println(response.error().getDetails());
+    throw new RuntimeException("API error attempting to fetch Webhook");
+}
+Webhook webhookView = response.view();
 
 ```
 ```php
@@ -3814,13 +4901,24 @@ curl {{staging_base_url}}/webhooks/ \
 
 ```
 ```java
-import io.{{api_name_downcase}}.payments.processing.client.model.Webhook;
+import io.{{api_name_downcase}}.payments.ApiClient;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import io.{{api_name_downcase}}.payments.lib.Page;
+import io.{{api_name_downcase}}.payments.views.Webhook;
 
-client.webhookClient().<Resources<Webhook>>resourcesIterator()
-  .forEachRemaining(webhookPage -> {
-    Collection<Webhook> webhooks = webhookPage.getContent();
-    //do something with `webhooks`
-  });
+Maybe<Page<Webhook>> response = api.webhooks.get();
+
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    System.out.println(error.getMessage());
+    System.out.println(error.getDetails());
+    throw new RuntimeException("API error attempting to list all Webhooks");
+}
+
+Page<Webhook> page = response.view();
+
 ```
 ```php
 <?php
@@ -4115,3 +5213,53 @@ webhooks = {{ruby_client_resource_name}}::Webhook.retrieve
   }
 }
 ```
+# FAQs
+
+Below are GIFs of some of the common actions that you will be performing when using the dashboard.
+
+## Sign Up
+If you haven't signed up yet, please create a user account.
+![sign up gif] (https://finix-payments.github.io/customer-logos/assets/sign_up.gif)
+
+## Create Production Account
+Once you've played with a sandbox account, you're ready to create a production `Application.`
+![create production account] (https://finix-payments.github.io/customer-logos/assets/create_production_account.gif)
+
+## Create an Identity for a Merchant
+Simply select `Identity` on the sidebar, click "Create new identity", and fill out the form with the `Merchant's` underwriting information.
+![Create an Identity for a Merchant]
+(https://finix-payments.github.io/customer-logos/assets/create_identity_merchant.gif)
+
+## View KYC Identity Verification
+You are able to view important KYC information for `Merchants` by first selecting `Merchants`, then clicking your desired `Merchant`. This will take you the summary view of the `Merchant` you selected. Now just click the Processor tab and scroll down to the Verification container.
+![view kyc identity verification]     (https://finix-payments.github.io/customer-logos/assets/view_kyc_identity_verification.gif)
+
+## Approve Merchant
+Want to approve a `Merchant`? Under review queues in the sidebar, you'll see `Merchants`- a list of all pending `Merchants` under your `Application`. You have the ability to approve one by one, or approve an entire page.
+![approve merchant] (https://finix-payments.github.io/customer-logos/assets/approve_merchant.gif)
+
+## Enable or Disable Processing Functionality
+Enable or disable `Merchant's` ability to create new `Transfers` and `Authorizations` by navigating to Merchants on the sidebar. Then select your desired `Merchant` and click the `Processors` tab. Finally, click the edit button and configure a `Merchant's` processing ability to your liking.
+![enable processing merchant]
+(https://finix-payments.github.io/customer-logos/assets/enable_processing_merchant.gif)
+
+## Enable or Disable Settlement Functionality
+Disable or disable `Merchant's` ability to create new `Settlements`by navigating to Merchants on the sidebar. Then select your desired `Merchant` and click the `Processors` tab. Finally, click the edit button and configure a `Merchant's` settlement ability to your liking.
+![enable processing settlements] (https://finix-payments.github.io/customer-logos/assets/enable_processing_settlements.gif)
+
+## Edit Fees & Interchange Plus
+Want to edit an `Application's` fixed fee, basis points, ACH fee, or toggle interchange plus? First, click `Application` on the sidebar and then click the Processors tab. Once you pick which processor you want to configure, you'll be presented with a modal allowing you edit fees and interchange plus.  
+![edit fees] (https://finix-payments.github.io/customer-logos/assets/edit_fees.gif)
+
+## Enable CVV & AVS
+Finix offers you the ability to configure Address Verification System (AVS) and CVV rules as part of our fraud risk system, to help you ensure that transactions are being made by only authorized users. How? Simply click `Application` on the sidebar, then click the Processors tab. Select the desired processor, and then click edit on the Security configuration.
+![enable cvv and avs] (https://finix-payments.github.io/customer-logos/assets/enable_cvv_avs.gif)
+
+## Approve a Settlement
+Want to approve a `Settlement`? Under review queues in the sidebar, you'll see `Settlements`- a list of all pending `Settlements` under your `Application`. You have the ability to approve one by one, or approve an entire page.
+![approve settlement] (https://finix-payments.github.io/customer-logos/assets/settlement_aprove.gif)
+
+## Upload Dispute Evidence
+Have evidence for your dispute? Click Disputes, select the desired dispute, then scroll down to the Evidence container, and click Upload File.
+![upload dispute evidence] (https://finix-payments.github.io/customer-logos/assets/upload_dispute_evidence.gif)
+
