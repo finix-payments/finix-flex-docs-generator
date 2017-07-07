@@ -450,6 +450,7 @@ def generate_template_variables(config_values):
             "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
             "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
 
+
             "provision_push_merchant_scenario_curl_request":  provision_push_merchant_scenario["curl_request_body"],
             "provision_push_merchant_scenario_response": provision_push_merchant_scenario["response_body"],
             "provision_push_merchant_scenario_id": provision_push_merchant_scenario["response_id"],
@@ -470,6 +471,7 @@ def generate_template_variables(config_values):
 
             "payment_instrument_verification_scenario_curl_request":payment_instrument_verification_scenario["curl_request_body"],
             "payment_instrument_verification_scenario_response": payment_instrument_verification_scenario["response_body"],
+            "payment_instrument_verification_scenario_python_request": payment_instrument_verification_scenario["python_request_body"],
 
             # TRANSFERS (Refunds) --------------------------------------------
 

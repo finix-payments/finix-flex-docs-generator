@@ -203,7 +203,7 @@ def generate_template_variables(config_values):
     # capture_authorization_scenario = api_client.capture_authorization(create_authorization_scenario["response_id"])
     # fetch_authorization_scenario = api_client.fetch_authorization(create_authorization_scenario["response_id"])
     create_token_scenario = api_client.create_token(create_payouts_app_scenario["response_id"])
-    
+
     associate_token_scenario = api_client.associate_token(create_recipient_identity_payouts_scenario["response_id"], create_token_scenario["response_id"])
     #
     # create_authorization_for_voiding_scenario = api_client.create_authorization(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
@@ -386,6 +386,7 @@ def generate_template_variables(config_values):
 
             "payment_instrument_verification_scenario_curl_request":payment_instrument_verification_scenario["curl_request_body"],
             "payment_instrument_verification_scenario_response": payment_instrument_verification_scenario["response_body"],
+            "payment_instrument_verification_scenario_python_request": payment_instrument_verification_scenario["python_request_body"],
 
             # WEBHOOKS ------------------------------------------------------------
 
