@@ -29,8 +29,7 @@ partner_configs = {
         'java_artifact_id': "payline-data",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
-        }   
-
+        }
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
@@ -368,8 +367,6 @@ admin_resource_ordering = [
     "users",
     "webhooks",
     ]
-
-
 
 # Determine which client libraries to include
 # https://github.com/lord/slate/wiki/Customizing-the-Language-Tabs
