@@ -165,9 +165,11 @@ snippets_by_resource = {
     "transfers": [
         "definition",
         # "create_debit",
+        "create_bank_debit",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
+        "update_transfer_tag",
         ],
     "users": [
         "definition",
@@ -325,10 +327,11 @@ admin_snippets_by_resource = {
     "transfers": [
         "definition",
         # "create_debit",
-        # "create_bank_debit",
+        "create_bank_debit",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
+        "update_transfer_tag",
         ],
     "users": [
         "definition",

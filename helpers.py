@@ -72,7 +72,7 @@ def transfer_ready_to_settle(endpoint, encoded_auth):
     return json.loads(response_body)['ready_to_settle_at'] is not None
 
 def message_slack(channel, message):
-    slack = Slacker('xoxb-110626438564-4f5m7EukMeEdcPcRdQkTgln3')
+    slack = Slacker('xoxb-216066206390-2V98aTCIppQuMKAkUoWAe3Ad')
     # Send a message to #general channel
     slack.chat.post_message(channel, message, as_user="richies_revenge")
 

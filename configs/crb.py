@@ -83,7 +83,7 @@ snippets_by_resource = {
         "create_recipient_identity",
         "fetch_identity",
         "list_identities",
-        "update_identity_payouts",
+        "update_identity",
         ],
     "payment_instruments_payouts": [
         "definition",

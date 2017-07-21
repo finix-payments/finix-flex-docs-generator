@@ -216,7 +216,10 @@ def generate_template_variables(config_values):
     # list_queued_settlements_scenario = list_queued_settlements()
     # fetch_queued_item_scenario = fetch_queued_item()
     # update_queued_state_scenario = update_queued_state()
+
+    # UPDATE
     update_identity_scenario = api_client.update_identity(create_identity_individual_sole_proprietorship_scenario["response_id"])
+    update_transfer_tag_scenario = api_client.update_transfer_tag(fetch_transfer_scenario["response_id"])
     reattempt_provision_merchant_scenario = api_client.reattempt_provision_merchant(provision_merchant_scenario["response_id"])
 
     # create_dispute_scenario = create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
@@ -391,6 +394,13 @@ def generate_template_variables(config_values):
             "fetch_transfer_scenario_id": fetch_transfer_scenario["response_id"],
 
             "list_transfers_scenario_response": list_transfers_scenario["response_body"],
+
+            "update_transfer_tag _scenario_curl_request": update_transfer_tag_scenario["curl_request_body"],
+            "update_transfer_tag_scenario_php_request": update_transfer_tag_scenario['php_request_body'],
+            "update_transfer_tag_scenario_ruby_request": update_transfer_tag_scenario["ruby_request_body"],
+            "update_transfer_tag_scenario_python_request": update_transfer_tag_scenario["python_request_body"],
+            "update_transfer_tag_scenario_respone": update_transfer_tag_scenario["response_body"],
+            "update_transfer_tag_scenario_id": update_transfer_tag_scenario["response_id"],
 
             # # TRANSFERS (CREDITS) ----------------------------------------------------------------------------------------
 
@@ -857,6 +867,13 @@ def generate_template_variables(config_values):
             "create_refund_scenario_response": create_refund_scenario["response_body"],
             "create_refund_scenario_id": create_refund_scenario["response_id"],
 
+            "update_transfer_tag _scenario_curl_request": update_transfer_tag_scenario["curl_request_body"],
+            "update_transfer_tag_scenario_php_request": update_transfer_tag_scenario['php_request_body'],
+            "update_transfer_tag_scenario_ruby_request": update_transfer_tag_scenario["ruby_request_body"],
+            "update_transfer_tag_scenario_python_request": update_transfer_tag_scenario["python_request_body"],
+            "update_transfer_tag_scenario_respone": update_transfer_tag_scenario["response_body"],
+            "update_transfer_tag_scenario_id": update_transfer_tag_scenario["response_id"],
+
             # AUTHORIZATIONS ------------------------------------------------------------
 
             "create_authorization_scenario_curl_request": create_authorization_scenario["curl_request_body"],
@@ -1053,7 +1070,7 @@ def generate_template_variables(config_values):
             # "list_queued_identities_scenario_response": list_queued_identities_scenario["response_body"],
             # "list_queued_merchants_scenario_response": list_queued_merchants_scenario["response_body"],
             # "list_queued_settlements_scenario_response": list_queued_settlements_scenario["response_body"],
-            
+
             # "fetch_queued_item_scenario_response": fetch_queued_item_scenario["response_body"],
             # "fetch_queued_item_scenario_id": fetch_queued_item_scenario["response_id"],
 

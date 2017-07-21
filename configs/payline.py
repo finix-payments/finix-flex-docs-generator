@@ -154,6 +154,7 @@ snippets_by_resource = {
         "fetch_transfer",
         "create_refund",
         "list_transfers",
+        "update_transfer_tag",
         ],
     "users": [
         "definition",
@@ -300,6 +301,7 @@ admin_snippets_by_resource = {
         "fetch_transfer",
         "create_refund",
         "list_transfers",
+        "update_transfer_tag",
         ],
     "users": [
         "definition",

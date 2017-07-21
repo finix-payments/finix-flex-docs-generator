@@ -450,11 +450,21 @@ class Client(object):
     def update_payment_instrument(self, payment_instrument_id):
         values = {
             "tags": {
-                "Display Name": "Updated Field"
+                "order_number": "12121212"
             }
         }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id
+        return formatted_response(endpoint, values, self.encoded_auth, "PUT")
+
+    def update_transfer_tag(self, transfer_id):
+        values = {
+            "tags": {
+                "Display Name": "Updated Field"
+            }
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/transfers/' + transfer_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
     def verify_payment_instrument(self, payment_instrument_id):
@@ -685,7 +695,7 @@ class Client(object):
                 # This is the full response body
                 # message = '*Transfer Reconciliation Latency Alert*\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\n```' + transfer_response['response_body'] + '```'
                 message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
-                message_slack(channel, message)
+                # message_slack(channel, message)
         values = {
             "currency": "USD",
             "tags": {
