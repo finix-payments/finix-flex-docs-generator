@@ -12,8 +12,8 @@ Settlement settlement = identity.createSettlement(
 );
 
 SettlementForm formSettlement = SettlementForm.builder()
-        .currency(Currency.getInstance("USD"))
-        .build();
+    .currency(Currency.getInstance("USD"))
+    .build();
 
 Transfer transfer = api.transfers.id("{{capture_authorization_scenario_id}}").get().view();
 

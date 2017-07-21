@@ -1,1 +1,1 @@
-from customer_scripts import finix, crb, payline, simon
+from customer_scripts import payline, finix, crb

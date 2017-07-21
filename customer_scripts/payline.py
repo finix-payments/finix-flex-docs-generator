@@ -395,11 +395,11 @@ def generate_template_variables(config_values):
 
             "list_transfers_scenario_response": list_transfers_scenario["response_body"],
 
-            "update_transfer_tag _scenario_curl_request": update_transfer_tag_scenario["curl_request_body"],
+            "update_transfer_tag_scenario_curl_request": update_transfer_tag_scenario["curl_request_body"],
             "update_transfer_tag_scenario_php_request": update_transfer_tag_scenario['php_request_body'],
             "update_transfer_tag_scenario_ruby_request": update_transfer_tag_scenario["ruby_request_body"],
             "update_transfer_tag_scenario_python_request": update_transfer_tag_scenario["python_request_body"],
-            "update_transfer_tag_scenario_respone": update_transfer_tag_scenario["response_body"],
+            "update_transfer_tag_scenario_response": update_transfer_tag_scenario["response_body"],
             "update_transfer_tag_scenario_id": update_transfer_tag_scenario["response_id"],
 
             # # TRANSFERS (CREDITS) ----------------------------------------------------------------------------------------
@@ -867,11 +867,11 @@ def generate_template_variables(config_values):
             "create_refund_scenario_response": create_refund_scenario["response_body"],
             "create_refund_scenario_id": create_refund_scenario["response_id"],
 
-            "update_transfer_tag _scenario_curl_request": update_transfer_tag_scenario["curl_request_body"],
+            "update_transfer_tag_scenario_curl_request": update_transfer_tag_scenario["curl_request_body"],
             "update_transfer_tag_scenario_php_request": update_transfer_tag_scenario['php_request_body'],
             "update_transfer_tag_scenario_ruby_request": update_transfer_tag_scenario["ruby_request_body"],
             "update_transfer_tag_scenario_python_request": update_transfer_tag_scenario["python_request_body"],
-            "update_transfer_tag_scenario_respone": update_transfer_tag_scenario["response_body"],
+            "update_transfer_tag_scenario_response": update_transfer_tag_scenario["response_body"],
             "update_transfer_tag_scenario_id": update_transfer_tag_scenario["response_id"],
 
             # AUTHORIZATIONS ------------------------------------------------------------

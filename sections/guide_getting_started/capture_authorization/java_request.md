@@ -5,10 +5,10 @@ import io.{{api_name_downcase}}.payments.interfaces.ApiError;
 import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
 AuthorizationUpdateForm form = AuthorizationUpdateForm.builder()
-        .captureAmount(100L)
-        .fee(10L)
-        .statementDescriptor("Order 123")
-        .build();
+    .captureAmount(100L)
+    .fee(10L)
+    .statementDescriptor("Order 123")
+    .build();
 
 Maybe<Authorization> response = api.authorizations.id("{{create_authorization_scenario_id}}").put(form);
 

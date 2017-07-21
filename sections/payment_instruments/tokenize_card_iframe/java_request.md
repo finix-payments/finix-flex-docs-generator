@@ -6,7 +6,7 @@ import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 TokenAssociationForm tokenForm =  TokenAssociationForm.builder()
     .token("{{create_token_scenario_id}}")
     .identity("{{update_identity_scenario_id}}")
-.build();
+    .build();
 
 Maybe<PaymentCard> cardResponse = api.instruments.post(tokenForm);
 if (! cardResponse.succeeded()) {

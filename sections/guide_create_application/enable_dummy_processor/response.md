@@ -38,4 +38,4 @@ Parameter | Description
 
 Field | Type | Description
 ----- | ---- | -----------
-canDebitBankAccount | *boolean*, **optional* | Allows a payment instrument of type `BANK_ACCOUNT` which is associated with the processor to be debited (i.e. eCheck)
+canDebitBankAccount | *boolean*, **optional** | Allows a payment instrument of type `BANK_ACCOUNT` which is associated with the processor to be debited (i.e. eCheck)

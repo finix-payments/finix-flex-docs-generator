@@ -450,7 +450,7 @@ class Client(object):
     def update_payment_instrument(self, payment_instrument_id):
         values = {
             "tags": {
-                "order_number": "12121212"
+                "Display Name": "Updated Field"
             }
         }
         values = format_json(json.dumps(values))
@@ -460,7 +460,7 @@ class Client(object):
     def update_transfer_tag(self, transfer_id):
         values = {
             "tags": {
-                "Display Name": "Updated Field"
+                "order_number": "12121212"
             }
         }
         values = format_json(json.dumps(values))
@@ -691,11 +691,11 @@ class Client(object):
                 transfer_response = self.fetch_transfer(transfer_id)
                 minutes = minutes + 20
                 counter = stringified_elapsed_time(start)
-                channel = '#fnx-dev'
+                channel = 'dev'
                 # This is the full response body
                 # message = '*Transfer Reconciliation Latency Alert*\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\n```' + transfer_response['response_body'] + '```'
                 message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
-                # message_slack(channel, message)
+                message_slack(channel, message)
         values = {
             "currency": "USD",
             "tags": {

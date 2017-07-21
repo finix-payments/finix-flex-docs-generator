@@ -5,10 +5,10 @@ import io.{{api_name_downcase}}.payments.interfaces.ApiError;
 import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
 AuthorizationCreateForm formCreateAuthorization = AuthorizationCreateForm.builder()
-                .amount(10000L)
-                .merchantIdentity("{{create_merchant_identity_scenario_id}}")
-                .source("{{create_card_scenario_id}}")
-                .build();
+    .amount(10000L)
+    .merchantIdentity("{{create_merchant_identity_scenario_id}}")
+    .source("{{create_card_scenario_id}}")
+    .build();
 
 Maybe<Authorization> response = api.authorizations.post(formCreateAuthorization);
 
