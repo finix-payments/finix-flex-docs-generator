@@ -226,7 +226,7 @@ def generate_template_variables(config_values):
 
     # UPDATE
     update_identity_scenario = api_client.update_identity(create_identity_individual_sole_proprietorship_scenario["response_id"])
-    update_transfer_tag_scenario = api_client.update_transfer_tag(fetch_transfer_scenario["response_id"])
+    update_transfer_scenario = api_client.update_transfer(fetch_transfer_scenario["response_id"])
     reattempt_provision_merchant_scenario = api_client.reattempt_provision_merchant(provision_merchant_scenario["response_id"])
 
     # create_dispute_scenario = create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
@@ -430,12 +430,12 @@ def generate_template_variables(config_values):
 
             "list_transfers_scenario_response": list_transfers_scenario["response_body"],
 
-            "update_transfer_tag_scenario_curl_request": update_transfer_tag_scenario["curl_request_body"],
-            "update_transfer_tag_scenario_php_request": update_transfer_tag_scenario['php_request_body'],
-            "update_transfer_tag_scenario_ruby_request": update_transfer_tag_scenario["ruby_request_body"],
-            "update_transfer_tag_scenario_python_request": update_transfer_tag_scenario["python_request_body"],
-            "update_transfer_tag_scenario_response": update_transfer_tag_scenario["response_body"],
-            "update_transfer_tag_scenario_id": update_transfer_tag_scenario["response_id"],
+            "update_transfer_scenario_curl_request": update_transfer_scenario["curl_request_body"],
+            "update_transfer_scenario_php_request": update_transfer_scenario['php_request_body'],
+            "update_transfer_scenario_ruby_request": update_transfer_scenario["ruby_request_body"],
+            "update_transfer_scenario_python_request": update_transfer_scenario["python_request_body"],
+            "update_transfer_scenario_response": update_transfer_scenario["response_body"],
+            "update_transfer_scenario_id": update_transfer_scenario["response_id"],
 
             # # TRANSFERS (CREDITS) ------------------------------------------------------------------------------------------------
 
@@ -886,12 +886,12 @@ def generate_template_variables(config_values):
             "list_transfers_scenario_response": list_transfers_scenario["response_body"],
 
 
-            "update_transfer_tag _scenario_curl_request": update_transfer_tag_scenario["curl_request_body"],
-            "update_transfer_tag_scenario_php_request": update_transfer_tag_scenario['php_request_body'],
-            "update_transfer_tag_scenario_ruby_request": update_transfer_tag_scenario["ruby_request_body"],
-            "update_transfer_tag_scenario_python_request": update_transfer_tag_scenario["python_request_body"],
-            "update_transfer_tag_scenario_response": update_transfer_tag_scenario["response_body"],
-            "update_transfer_tag_scenario_id": update_transfer_tag_scenario["response_id"],
+            "update_transfer_scenario_curl_request": update_transfer_scenario["curl_request_body"],
+            "update_transfer_scenario_php_request": update_transfer_scenario['php_request_body'],
+            "update_transfer_scenario_ruby_request": update_transfer_scenario["ruby_request_body"],
+            "update_transfer_scenario_python_request": update_transfer_scenario["python_request_body"],
+            "update_transfer_scenario_response": update_transfer_scenario["response_body"],
+            "update_transfer_scenario_id": update_transfer_scenario["response_id"],
 
 
             # TRANSFERS (CREDITS) ----------------------------------------------------------------------

@@ -457,7 +457,7 @@ class Client(object):
         endpoint = self.staging_base_url + '/payment_instruments/' + payment_instrument_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
-    def update_transfer_tag(self, transfer_id):
+    def update_transfer(self, transfer_id):
         values = {
             "tags": {
                 "order_number": "12121212"
