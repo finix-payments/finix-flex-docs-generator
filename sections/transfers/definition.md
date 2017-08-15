@@ -11,7 +11,7 @@ A `Transfer` can have one of three types: `Debit`, `Credit`, or `Reversal`. Each
 
 * A **Reversal** represents a refund or chargeback where funds are returned to a customer
 
-* A **Credit** is produced when funds are transferred to a merchant’s bank account when funding (i.e. paying out) a batch settlement
+* A **Credit** is produced when funds are transferred to a merchant's bank account when funding (i.e. paying out) a batch settlement
 
 `Transfers` can have four possible states values: PENDING, SUCCEEDED, FAILED, or CANCELED.
 
