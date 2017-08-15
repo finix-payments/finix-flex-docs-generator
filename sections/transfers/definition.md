@@ -13,7 +13,7 @@ to complete the transaction
 
 - **SUCCEEDED:** Funds captured and available for settlement (i.e. disbursement
 via ACH Credit)
-        
+
 - **FAILED:** Authorization attempt failed
 
 - **CANCELED:** Created, and then reversed before transfer has transitioned to succeeded
@@ -28,4 +28,4 @@ within an hour) update to SUCCEEDED.
 
 <aside class="notice">
 When an Authorization is captured a corresponding Transfer will also be created.
-</aside> 
+</aside>

@@ -9,6 +9,11 @@ A `Transfer` representing the refund (i.e. reversal) of a previously created
 of the original `Transfer`. These specific `Transfers` are distinguished by
 their type which return REVERSAL.
 
+A Reversal can have two `subtypes` indicating how they were created:
+
+* **API**: Transfer created via an end-user API request (e.g. POST)
+* **SYSTEM**: Transfer created via the upstream processor (e.g. resulting from
+  an eCheck return); Note that SYSTEM created Transfers are rare occurrences.
 
 #### HTTP Request
 

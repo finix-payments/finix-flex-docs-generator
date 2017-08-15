@@ -246,3 +246,53 @@
   }
 }
 ```
+
+### Created Instrument Update
+
+```javascript
+{
+  "type": "updated",
+  "entity": "instrument_update",
+  "occurred_at": "2017-08-14T14:17:43.004",
+  "_embedded": {
+    "instrument_updates": [{
+      "trace_id": "FNXa2UvnrWMA6h4uER2F3wcg",
+      "application": "APuEebjbpT8Baz8VqERaEx3z",
+      "updated_at": "2017-08-14T14:17:42.97Z",
+      "payment_instrument": "PIrgiJ1KtZVaT4dqDeDkveYh",
+      "merchant": "MUxtD9KaVh1Ax5WRKBQZntPX",
+      "messages": [
+        "No match found"
+      ],
+      "created_at": "2017-08-09T23:58:05.74Z",
+      "id": "IUkE7oida5Jupzd471HPkjqu",
+      "state": "FAILED"
+    }]
+  }
+}
+```
+
+### Update Payment Instrument
+
+```javascript
+{
+  "type" : "updated",
+  "entity" : "instrument",
+  "occurred_at" : "2017-08-04T23:52:49.759",
+  "_embedded" : {
+    "instruments" : [ {
+      "updated_at" : "2017-08-04T23:52:49.70Z",
+      "identity" : "IDcVVAdGYhiaq4Xka6PVHYVD",
+      "fingerprint" : "FPR316679720",
+      "created_at" : "2017-05-23T18:52:54.64Z",
+      "currency" : "USD",
+      "id" : "PIc2DqWRD8wiNYLqQBMAYjku",
+      "instrument_type" : "PAYMENT_CARD",
+      "type" : "PAYMENT_CARD",
+      "tags" : {
+        "driver" : "123"
+      }
+    } ]
+  }
+}
+```
