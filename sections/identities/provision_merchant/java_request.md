@@ -4,7 +4,7 @@ import io.{{api_name_downcase}}.payments.interfaces.ApiError;
 import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 import com.google.common.collect.ImmutableMap;
 
-Maybe<Identity> response = api.identities.id("{{create_recipient_identity_payouts_scenario_id}}").get();
+Maybe<Identity> response = api.identities.id("{{create_merchant_identity_scenario_id}}").get();
 if (! response.succeeded()) {
     ApiError error = response.error();
     System.out.println(error.getCode());

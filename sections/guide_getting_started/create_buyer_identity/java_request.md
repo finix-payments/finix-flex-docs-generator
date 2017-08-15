@@ -23,7 +23,7 @@ IdentityForm form = IdentityForm.builder()
                 .build()
         )
         .build())
-    .build();
+      .build();
 
 Maybe<Identity> response = api.identities.post(form);
 

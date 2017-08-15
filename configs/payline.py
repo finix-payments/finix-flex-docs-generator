@@ -29,8 +29,7 @@ partner_configs = {
         'java_artifact_id': "payline-data",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
-        }   
-
+        }
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
@@ -155,6 +154,7 @@ snippets_by_resource = {
         "fetch_transfer",
         "create_refund",
         "list_transfers",
+        "update_transfer",
         ],
     "users": [
         "definition",
@@ -301,6 +301,7 @@ admin_snippets_by_resource = {
         "fetch_transfer",
         "create_refund",
         "list_transfers",
+        "update_transfer",
         ],
     "users": [
         "definition",
@@ -351,11 +352,11 @@ admin_resource_ordering = [
     "guide_getting_started",
     "guide_iframe",
     "guide_hosted_fields",
+    "test_data",
     "guide_admin_overview",
     "guide_create_application",
-    "fees",
     "guide_tokenization_js",
-    "test_data",
+    "fees",
     "applications",
     "authorizations",
     # "disputes",
@@ -368,8 +369,6 @@ admin_resource_ordering = [
     "users",
     "webhooks",
     ]
-
-
 
 # Determine which client libraries to include
 # https://github.com/lord/slate/wiki/Customizing-the-Language-Tabs

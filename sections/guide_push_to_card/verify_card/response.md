@@ -23,7 +23,7 @@ processor | *string*, **required** | The name of the processor, which needs to b
 #### Address Verification Results (address_verification_results)
 Letter | Description
 ------ | -------------------------------------------------------------------
-D, F, M | Address verified
+D, F, M, Y | Address verified
 A, B, C, G, I, N, P, R, S, U, W | Address not verified
 
 #### Card Verification 2 Results (cvv2_result_code)
@@ -47,7 +47,7 @@ R | Deferred Debit
 
 #### Fasts Funds Indicator (fast_funds_indicator)
 
-Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 days.
+Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 business days.
 
 Letter | Description
 ------ | -------------------------------------------------------------------

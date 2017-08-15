@@ -27,3 +27,10 @@ the example to the right.
 Parameter | Description
 --------- | -------------------------------------------------------------------
 :APPLICATION_ID | ID of the `Application`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+canDebitBankAccount | *boolean*, **optional** | Allows a payment instrument of type `BANK_ACCOUNT` which is associated with the processor to be debited (i.e. eCheck)

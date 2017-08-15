@@ -11,7 +11,7 @@ TransferForm form = TransferForm.builder()
         .idempotencyId("Idsfk23jnasdfkjf")
         .destination("{{create_recipient_card_scenario_id}}")
         .tags(ImmutableMap.of("order_number", "21DFASJSAKAS"))
-.build();
+        .build();
 
 Maybe<Transfer> response = api.transfers.post(form);
 if (! response.succeeded()) {

@@ -43,7 +43,7 @@ explains how to properly tokenize cards in production via hosted fields.
 
 curl https://api-staging.crbpay.io/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410
 
 ```
 ```java
@@ -80,8 +80,8 @@ public static void main(String[] args) {
 
   ApiClient api = ApiClient.builder()
                   .url("https://api-staging.crbpay.io")
-                  .user("US3YmXJXbcxe1oBXsX9vNQGQ")
-                  .password("eabd2675-e4db-4b36-b6b5-a7dee2c3542b")
+                  .user("USiFamqVgvMwqN2yS1Ky8GEA")
+                  .password("d699b9a5-40f9-492d-ae93-f96c3c306410")
                   .build();
 //...
 
@@ -97,8 +97,8 @@ require(__DIR__ . '/src/CRB/Settings.php');
 
 CRB\Settings::configure([
 	"root_url" => 'https://api-staging.crbpay.io',
-	"username" => 'US3YmXJXbcxe1oBXsX9vNQGQ',
-	"password" => 'eabd2675-e4db-4b36-b6b5-a7dee2c3542b']
+	"username" => 'USiFamqVgvMwqN2yS1Ky8GEA',
+	"password" => 'd699b9a5-40f9-492d-ae93-f96c3c306410']
 	);
 
 require(__DIR__ . '/src/CRB/Bootstrap.php');
@@ -114,7 +114,7 @@ CRB\Bootstrap::init();
 import crossriver
 
 from crb.config import configure
-configure(root_url="https://api-staging.crbpay.io", auth=("US3YmXJXbcxe1oBXsX9vNQGQ", "eabd2675-e4db-4b36-b6b5-a7dee2c3542b"))
+configure(root_url="https://api-staging.crbpay.io", auth=("USiFamqVgvMwqN2yS1Ky8GEA", "d699b9a5-40f9-492d-ae93-f96c3c306410"))
 
 ```
 To communicate with the CRB API you'll need to authenticate your requests
@@ -122,11 +122,11 @@ via http basic access authentication with a `username` and `password`, which you
 can locate in your dashboard. If you do not have a dashboard feel free to test
 the API with the credentials below:
 
-- Username: `US3YmXJXbcxe1oBXsX9vNQGQ`
+- Username: `USiFamqVgvMwqN2yS1Ky8GEA`
 
-- Password: `eabd2675-e4db-4b36-b6b5-a7dee2c3542b`
+- Password: `d699b9a5-40f9-492d-ae93-f96c3c306410`
 
-- Application ID: `APsKuVbSYCPqbXYhhQWQJQnq`
+- Application ID: `APfz6mtTf41HacNCNiixy57c`
 
 Your `Application` is a resource that represents your web app. In other words,
 any web service that connects buyers (i.e. customers) and sellers
@@ -149,7 +149,7 @@ API credentials. For testing please use the Staging API and when you are ready t
 ```shell
 curl https://api-staging.crbpay.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
 	    "tags": {
@@ -157,9 +157,9 @@ curl https://api-staging.crbpay.io/identities \
 	    }, 
 	    "entity": {
 	        "phone": "7145677612", 
-	        "first_name": "Laura", 
-	        "last_name": "Kline", 
-	        "email": "Laura@gmail.com", 
+	        "first_name": "Marshall", 
+	        "last_name": "Curry", 
+	        "email": "Marshall@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -215,7 +215,7 @@ Identity identity = response.view();
 <?php
 use CRB\Resources\Identity;
 
-$identity = new Identity(IDeoUBEa2qmSZXSgWzBSPgc8);
+$identity = new Identity(ID31nVq9QQ2HZTUvMsjQQHe);
 $identity = $identity->save();
 
 
@@ -233,9 +233,9 @@ identity = Identity(**
 	    }, 
 	    "entity": {
 	        "phone": "7145677612", 
-	        "first_name": "Laura", 
-	        "last_name": "Kline", 
-	        "email": "Laura@gmail.com", 
+	        "first_name": "Marshall", 
+	        "last_name": "Curry", 
+	        "email": "Marshall@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -251,12 +251,12 @@ identity = Identity(**
 
 ```json
 {
-  "id" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "id" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "entity" : {
     "title" : null,
-    "first_name" : "Laura",
-    "last_name" : "Kline",
-    "email" : "Laura@gmail.com",
+    "first_name" : "Marshall",
+    "last_name" : "Curry",
+    "email" : "Marshall@gmail.com",
     "business_name" : null,
     "business_type" : null,
     "doing_business_as" : null,
@@ -290,35 +290,35 @@ identity = Identity(**
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2017-05-22T19:18:17.30Z",
-  "updated_at" : "2017-05-22T19:18:17.30Z",
+  "created_at" : "2017-07-06T05:32:39.95Z",
+  "updated_at" : "2017-07-06T05:32:39.95Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/verifications"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/merchants"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/settlements"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/transfers"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/payment_instruments"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/disputes"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     }
   }
 }
@@ -357,10 +357,10 @@ country | *string*, **required** | 3-Letter Country code
 ```shell
 curl https://api-staging.crbpay.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
-	    "name": "Bob Le", 
+	    "name": "Marcie Henderson", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card_name": "Business Card"
@@ -377,7 +377,7 @@ curl https://api-staging.crbpay.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}'
 
 
@@ -395,7 +395,7 @@ PaymentCardForm form = PaymentCardForm.builder()
         .number("4957030420210454")
         .securityCode("112")
         .expirationYear(2020)
-        .identity("IDeoUBEa2qmSZXSgWzBSPgc8")
+        .identity("ID31nVq9QQ2HZTUvMsjQQHe")
         .expirationMonth(12)
         .address(
                 Address.builder()
@@ -424,10 +424,10 @@ PaymentCard card = response.view();
 use CRB\Resources\PaymentCard;
 use CRB\Resources\Identity;
 
-$identity = Identity::retrieve('IDeoUBEa2qmSZXSgWzBSPgc8');
+$identity = Identity::retrieve('ID31nVq9QQ2HZTUvMsjQQHe');
 $card = new PaymentCard(
 	array(
-	    "name"=> "Bob Le", 
+	    "name"=> "Marcie Henderson", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> array(
 	        "card_name"=> "Business Card"
@@ -444,7 +444,7 @@ $card = new PaymentCard(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity"=> "ID31nVq9QQ2HZTUvMsjQQHe"
 	));
 $card = $identity->createPaymentCard($card);
 
@@ -452,14 +452,37 @@ $card = $identity->createPaymentCard($card);
 ```python
 
 
+from crossriver.resources import PaymentCard
+
+card = PaymentCard(**
+	{
+	    "name": "Marcie Henderson", 
+	    "expiration_year": 2020, 
+	    "tags": {
+	        "card_name": "Business Card"
+	    }, 
+	    "number": "4957030420210454", 
+	    "expiration_month": 12, 
+	    "address": {
+	        "city": "San Mateo", 
+	        "country": "USA", 
+	        "region": "CA", 
+	        "line2": "Apartment 7", 
+	        "line1": "741 Douglass St", 
+	        "postal_code": "94114"
+	    }, 
+	    "security_code": "112", 
+	    "type": "PAYMENT_CARD", 
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
+	}).save()
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PI8D8zDPcbTq6dAZbbyW83Ed",
-  "fingerprint" : "FPR-548299190",
+  "id" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
+  "fingerprint" : "FPR764826810",
   "tags" : {
     "card_name" : "Business Card"
   },
@@ -468,7 +491,7 @@ $card = $identity->createPaymentCard($card);
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Bob Le",
+  "name" : "Marcie Henderson",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -479,33 +502,33 @@ $card = $identity->createPaymentCard($card);
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-05-22T19:18:18.47Z",
-  "updated_at" : "2017-05-22T19:18:18.47Z",
+  "created_at" : "2017-07-06T05:32:41.84Z",
+  "updated_at" : "2017-07-06T05:32:41.84Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/transfers"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/verifications"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "updates" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/updates"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/updates"
     }
   }
 }
@@ -552,11 +575,273 @@ region | *string*, **required** | 2-letter State code
 postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
 country | *string*, **required** | 3-Letter Country code
 
-### Step 3: Provision Recipient Account
+### Step 3: Verify card is eligible to receive push-to-card disbursements
+
+Now that we've associated a payment instrument to a recipient, we'll need to verify whether or not the card is eligible to receive push-to-card disbursements. How? By making a request to the `Verifications` endpoint. The returned `Verification` resource returns a set of general attributes and details about the card in question (e.g. card type, issuer information). For example, the `inquiry_details` object will contain a `push_funds_block_indicator` attribute that indicates if it is eligible for push-to-card disbursements. Below you'll see a number of fields and the potential responses.
+
 ```shell
-curl https://api-staging.crbpay.io/identities/IDeoUBEa2qmSZXSgWzBSPgc8/merchants \
+curl https://api-staging.crbpay.io/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
+    -d '
+	{
+	    "processor": "VISA_V1"
+	}'
+
+```
+```java
+import io.crb.payments.forms.*;
+import io.crb.payments.views.*;
+import io.crb.payments.interfaces.ApiError;
+import io.crb.payments.interfaces.Maybe;
+
+
+ VerificationForm verificationForm = VerificationForm.builder()
+    .processor("VISA_V1")
+    .build();
+
+Maybe<Verification> verificationResponse = api.instruments.id("PIpEUWYVBT1F3uDAKNh7MbZ5").verifications.post(verificationForm);
+if (! verificationResponse.succeeded()) {
+    ApiError error = verificationResponse.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create a Verification");
+}
+Verification verification = verificationResponse.view();
+
+```
+```php
+<?php
+
+```
+```python
+
+
+from crossriver.resources import PaymentInstrument
+from crossriver.resources import Verification
+
+
+payment_card = PaymentInstrument.get(id="PIpEUWYVBT1F3uDAKNh7MbZ5")
+
+verify = payment_card.verify_on(Verification(**
+	{
+	    "processor": "VISA_V1"
+	}))
+
+```
+> Example Response:
+
+```json
+{
+  "id" : "VIqegfG9kHrrzLGNHGgbsvmS",
+  "tags" : { },
+  "messages" : [ ],
+  "raw" : {
+    "validation_details" : {
+      "systems_trace_audit_number" : "448",
+      "transaction_identifier" : "1234",
+      "approval_code" : "003403",
+      "action_code" : "85",
+      "response_code" : "5",
+      "address_verification_results" : "N"
+    },
+    "inquiry_details" : {
+      "systems_trace_audit_number" : "448",
+      "card_type_code" : "C",
+      "billing_currency_code" : 986,
+      "billing_currency_minor_digits" : 2,
+      "issuer_name" : "Visa Test Bank",
+      "card_issuer_country_code" : 76,
+      "fast_funds_indicator" : "N",
+      "push_funds_block_indicator" : "N",
+      "online_gambing_block_indicator" : "Y"
+    },
+    "general_inquiry_details" : {
+      "systems_trace_audit_number" : "448",
+      "status" : {
+        "status_code" : "CDI000",
+        "status_description" : "Success"
+      }
+    }
+  },
+  "processor" : "VISA_V1",
+  "state" : "SUCCEEDED",
+  "created_at" : "2017-07-06T05:33:30.55Z",
+  "updated_at" : "2017-07-06T05:33:33.59Z",
+  "trace_id" : "448",
+  "payment_instrument" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
+  "merchant" : null,
+  "identity" : null,
+  "_links" : {
+    "self" : {
+      "href" : "https://api-staging.crbpay.io:443/verifications/VIqegfG9kHrrzLGNHGgbsvmS"
+    },
+    "application" : {
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
+    },
+    "payment_instrument" : {
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`POST https://api-staging.crbpay.io/payment_instruments/:PAYMENT_INSTRUMENT_ID/verifications`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+processor | *string*, **required** | The name of the processor, which needs to be: `VISA_V1`
+
+#### Address Verification Results (address_verification_results)
+Letter | Description
+------ | -------------------------------------------------------------------
+D, F, M | Address verified
+A, B, C, G, I, N, P, R, S, U, W | Address not verified
+
+#### Card Verification 2 Results (cvv2_result_code)
+Letter | Description
+------ | -------------------------------------------------------------------
+M | CVV  verified
+N, P, S | CVV not verified
+U | Issuer does not participate in CVV2 service
+
+#### Card Type (card_type_code)
+
+This one-character code indicates whether the account is credit, debit, prepaid, deferred debit, or charge.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+C | Credit  
+D | Debit  
+H | Charge Card    
+P | Prepaid  
+R | Deferred Debit  
+
+#### Fasts Funds Indicator (fast_funds_indicator)
+
+Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 days.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+B, D | Fast Funds eligible
+N | Not eligible for Fast Funds
+
+#### Push Funds Indicator (push_funds_block_indicator)
+
+This code indicates if the associated card can receive push-to-card disbursements.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+A, B, C | Accepts push-to-card payments
+N | Does not accept push-to-card payments
+
+#### Online Gambling Block Indicator (online_gambing_block_indicator)
+
+Indicates if the card can receive push-payments for online gambling payouts.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+Y | Blocked for online gambling payouts
+N | Not blocked for online gambling payouts
+
+#### Card Product ID (card_product_id)
+
+A combination of card brand, platform, class and scheme.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+A | Visa Traditional
+AX | American Express
+B | Visa Traditional Rewards
+C | Visa Signature
+D | Visa Signature Preferred
+DI | Discover
+DN | Diners
+E | Proprietary ATM
+F | Visa Classic
+G | Visa Business
+G1 | Visa Signature Business
+G2 | Visa Business Check Card
+G3 | Visa Business Enhanced
+G4 | Visa Infinite Business
+G5 | Visa Business Rewards
+I | Visa Infinite
+I1 | Visa Infinite Privilege
+I2 | Visa UHNW
+J3 | Visa Healthcare
+JC | JCB
+K | Visa Corporate T&E
+K1 | Visa Government Corporate T&E
+L | Visa Electron
+M | MasterCard
+N | Visa Platinum
+N1 | Visa Rewards
+N2 | Visa Select
+P | Visa Gold
+Q | Private Label
+Q1 | Private Label Prepaid
+Q2 | Private Label Basic
+Q3 | Private Label Standard
+Q4 | Private Label Enhanced
+Q5 | Private Label Specialized
+Q6 | Private Label Premium
+R | Proprietary
+S | Visa Purchasing
+S1 | Visa Purchasing with Fleet
+S2 | Visa Government Purchasing
+S3 | Visa Government Purchasing with Fleet
+S4 | Visa Commercial Agriculture
+S5 | Visa Commercial Transport
+S6 | Visa Commercial Marketplace
+U | Visa Travel Money
+V | Visa V PAY
+
+#### Product Sub-Type (card_product_subtype)
+
+Description of product subtype.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+AC | Agriculture Maintenance Account
+AE | Agriculture Debit Account/Electron
+AG | Agriculture
+AI | Agriculture Investment Loan
+CG | Brazil Cargo
+CS | Construction
+DS | Distribution
+HC | Healthcare
+LP | Visa Large Purchase Advantage
+MA | Visa Mobile Agent
+MB | Interoperable Mobile Branchless Banking
+MG | Visa Mobile General
+VA | Visa Vale - Supermarket
+VF | Visa Vale - Fuel
+VR | Visa Vale - Restaurant
+
+#### Card Sub-Type (card_subtype_code)
+
+The code for account funding source subtype, such as reloadable and non-reloadable.
+
+Letter | Description
+------ | -------------------------------------------------------------------
+N | Non-Reloadable
+R | Reloadable
+
+### Step 4: Provision Recipient Account
+
+```shell
+curl https://api-staging.crbpay.io/identities/ID31nVq9QQ2HZTUvMsjQQHe/merchants \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
 	    "processor": "VISA_V1", 
@@ -574,7 +859,7 @@ import io.crb.payments.interfaces.ApiError;
 import io.crb.payments.interfaces.Maybe;
 import com.google.common.collect.ImmutableMap;
 
-Maybe<Identity> response = api.identities.id("IDeoUBEa2qmSZXSgWzBSPgc8").get();
+Maybe<Identity> response = api.identities.id("ID31nVq9QQ2HZTUvMsjQQHe").get();
 if (! response.succeeded()) {
     ApiError error = response.error();
     System.out.println(error.getCode());
@@ -600,7 +885,7 @@ Merchant merchant = merchantResponse.view();
 use CRB\Resources\Identity;
 use CRB\Resources\Merchant;
 
-$identity = Identity::retrieve('IDeoUBEa2qmSZXSgWzBSPgc8');
+$identity = Identity::retrieve('ID31nVq9QQ2HZTUvMsjQQHe');
 
 $merchant = $identity->provisionMerchantOn(new Merchant());
 
@@ -608,41 +893,46 @@ $merchant = $identity->provisionMerchantOn(new Merchant());
 ```python
 
 
+from crossriver.resources import Identity
+from crossriver.resources import Merchant
+
+identity = Identity.get(id="PIpEUWYVBT1F3uDAKNh7MbZ5")
+merchant = identity.provision_merchant_on(Merchant())
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "MU9z7DrRP7LBuhHVS3vLFvtb",
-  "identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
-  "verification" : "VIre7jjrTr896eExNB4Q3oj2",
-  "merchant_profile" : "MP9LQ3P5qj8ERuw4zQyPR6xw",
+  "id" : "MUhWT3d1nRKAPRVZMskJoUKB",
+  "identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
+  "verification" : "VItm7vkFDKwCYnGLDKPvweon",
+  "merchant_profile" : "MPwBstNj76sdssKTcJr7GQZK",
   "processor" : "VISA_V1",
   "processing_enabled" : false,
   "settlement_enabled" : false,
   "tags" : { },
-  "created_at" : "2017-05-22T19:18:19.15Z",
-  "updated_at" : "2017-05-22T19:18:19.15Z",
+  "created_at" : "2017-07-06T05:32:43.44Z",
+  "updated_at" : "2017-07-06T05:32:43.44Z",
   "onboarding_state" : "PROVISIONING",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/merchants/MU9z7DrRP7LBuhHVS3vLFvtb"
+      "href" : "https://api-staging.crbpay.io:443/merchants/MUhWT3d1nRKAPRVZMskJoUKB"
     },
     "identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/merchants/MU9z7DrRP7LBuhHVS3vLFvtb/verifications"
+      "href" : "https://api-staging.crbpay.io:443/merchants/MUhWT3d1nRKAPRVZMskJoUKB/verifications"
     },
     "merchant_profile" : {
-      "href" : "https://api-staging.crbpay.io:443/merchant_profiles/MP9LQ3P5qj8ERuw4zQyPR6xw"
+      "href" : "https://api-staging.crbpay.io:443/merchant_profiles/MPwBstNj76sdssKTcJr7GQZK"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "verification" : {
-      "href" : "https://api-staging.crbpay.io:443/verifications/VIre7jjrTr896eExNB4Q3oj2"
+      "href" : "https://api-staging.crbpay.io:443/verifications/VItm7vkFDKwCYnGLDKPvweon"
     }
   }
 }
@@ -661,20 +951,17 @@ Field | Type | Description
 processor| *string*, **optional** | Name of Processor
 
 
-### Step 4: Send Payout
-
-
-
+### Step 5: Send Payout
 
 ```shell
 curl https://api-staging.crbpay.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
 	    "currency": "USD", 
 	    "amount": 10000, 
-	    "destination": "PI8D8zDPcbTq6dAZbbyW83Ed", 
+	    "destination": "PIpEUWYVBT1F3uDAKNh7MbZ5", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -693,7 +980,7 @@ TransferForm form = TransferForm.builder()
         .amount(100L)
         .currency(Currency.getInstance("USD"))
         .idempotencyId("Idsfk23jnasdfkjf")
-        .destination("PI8D8zDPcbTq6dAZbbyW83Ed")
+        .destination("PIpEUWYVBT1F3uDAKNh7MbZ5")
         .tags(ImmutableMap.of("order_number", "21DFASJSAKAS"))
 .build();
 
@@ -713,7 +1000,7 @@ $transfer = new Transfer(
 	array(
 	    "currency"=> "USD", 
 	    "amount"=> 10000, 
-	    "destination"=> "PI8D8zDPcbTq6dAZbbyW83Ed", 
+	    "destination"=> "PIpEUWYVBT1F3uDAKNh7MbZ5", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -723,60 +1010,83 @@ $transfer = $transfer->save();
 ```python
 
 
+from crossriver.resources import Transfer
+
+payout = Transfer(**
+	{
+	    "name": "Marcie Henderson", 
+	    "expiration_year": 2020, 
+	    "tags": {
+	        "card_name": "Business Card"
+	    }, 
+	    "number": "4957030420210454", 
+	    "expiration_month": 12, 
+	    "address": {
+	        "city": "San Mateo", 
+	        "country": "USA", 
+	        "region": "CA", 
+	        "line2": "Apartment 7", 
+	        "line1": "741 Douglass St", 
+	        "postal_code": "94114"
+	    }, 
+	    "security_code": "112", 
+	    "type": "PAYMENT_CARD", 
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
+	}).save()
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "TRpjDv1xQLns23rurNPSQdCA",
+  "id" : "TRbBHbTQoC2uPxLUDYFA2x1c",
   "amount" : 10000,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
-  "trace_id" : "310",
+  "trace_id" : "447",
   "currency" : "USD",
-  "application" : "APsKuVbSYCPqbXYhhQWQJQnq",
-  "source" : "PIf5UozeAUfzEg8ZemQechjs",
-  "destination" : "PI8D8zDPcbTq6dAZbbyW83Ed",
+  "application" : "APfz6mtTf41HacNCNiixy57c",
+  "source" : "PImfHE94yj98755zDc86WGbG",
+  "destination" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
   "ready_to_settle_at" : null,
   "fee" : 0,
   "statement_descriptor" : "CRB*CRB PAY",
   "type" : "CREDIT",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-05-22T19:18:20.12Z",
-  "updated_at" : "2017-05-22T19:18:22.49Z",
+  "created_at" : "2017-07-06T05:32:45.28Z",
+  "updated_at" : "2017-07-06T05:32:47.48Z",
   "idempotency_id" : null,
-  "merchant_identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "merchant_identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/payment_instruments"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/payment_instruments"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "reversals" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/reversals"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/reversals"
     },
     "fees" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/fees"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/fees"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/disputes"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/disputes"
     },
     "source" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIf5UozeAUfzEg8ZemQechjs"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PImfHE94yj98755zDc86WGbG"
     },
     "destination" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
     }
   }
 }
@@ -860,7 +1170,7 @@ as doing so prevents important updates.
       document.getElementById('show-form').addEventListener('click', function() {
         Payline.openTokenizeCardForm({
           applicationName: 'Business Name',
-          applicationId: 'APsKuVbSYCPqbXYhhQWQJQnq',
+          applicationId: 'APfz6mtTf41HacNCNiixy57c',
         }, function (tokenizedResponse) {
           // Define a callback to send your token to your back-end server
         });
@@ -882,16 +1192,16 @@ HTTPS request on your back-end for future use.
 
 ```json
 {
-  "id" : "TK7RoadsioNcGGNFFSorw3n6",
+  "id" : "TKoWRX22WA5YEfzmUfFejhwB",
   "fingerprint" : "FPR1202406258",
-  "created_at" : "2017-05-22T19:18:28.00Z",
-  "updated_at" : "2017-05-22T19:18:28.00Z",
+  "created_at" : "2017-07-06T05:32:59.43Z",
+  "updated_at" : "2017-07-06T05:32:59.43Z",
   "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2017-05-23T19:18:28.00Z",
+  "expires_at" : "2017-07-07T05:32:59.43Z",
   "currency" : "USD",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     }
   }
 }
@@ -901,12 +1211,12 @@ HTTPS request on your back-end for future use.
 ```shell
 curl https://api-staging.crbpay.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
-	    "token": "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token": "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type": "TOKEN", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}'
 
 
@@ -918,8 +1228,8 @@ import io.crb.payments.interfaces.ApiError;
 import io.crb.payments.interfaces.Maybe;
 
 TokenAssociationForm tokenForm =  TokenAssociationForm.builder()
-    .token("TK7RoadsioNcGGNFFSorw3n6")
-    .identity("IDeoUBEa2qmSZXSgWzBSPgc8")
+    .token("TKoWRX22WA5YEfzmUfFejhwB")
+    .identity("ID31nVq9QQ2HZTUvMsjQQHe")
 .build();
 
 Maybe<PaymentCard> cardResponse = api.instruments.post(tokenForm);
@@ -937,9 +1247,9 @@ use CRB\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "token"=> "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token"=> "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity"=> "ID31nVq9QQ2HZTUvMsjQQHe"
 	));
 $card = $card->save();
 
@@ -951,9 +1261,9 @@ from crossriver.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token": "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type": "TOKEN", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}).save()
 
 ```
@@ -961,7 +1271,7 @@ payment_instrument = PaymentInstrument(**
 
 ```json
 {
-  "id" : "PI7RoadsioNcGGNFFSorw3n6",
+  "id" : "PIoWRX22WA5YEfzmUfFejhwB",
   "fingerprint" : "FPR1202406258",
   "tags" : { },
   "expiration_month" : 12,
@@ -980,33 +1290,33 @@ payment_instrument = PaymentInstrument(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-05-22T19:18:28.64Z",
-  "updated_at" : "2017-05-22T19:18:28.64Z",
+  "created_at" : "2017-07-06T05:33:00.89Z",
+  "updated_at" : "2017-07-06T05:33:00.89Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/transfers"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/verifications"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "updates" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/updates"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/updates"
     }
   }
 }
@@ -1190,7 +1500,7 @@ Form#submit(path, options, callback)-> Form
 document.getElementById('cc-form')
   .addEventListener('submit', function(e) {
     e.preventDefault();
-    secureForm.submit('/applications/APsKuVbSYCPqbXYhhQWQJQnq/tokens', {
+    secureForm.submit('/applications/APfz6mtTf41HacNCNiixy57c/tokens', {
         data: {
             type: 'PAYMENT_CARD',
         },
@@ -1206,16 +1516,16 @@ document.getElementById('cc-form')
 
 ```json
 {
-  "id" : "TK7RoadsioNcGGNFFSorw3n6",
+  "id" : "TKoWRX22WA5YEfzmUfFejhwB",
   "fingerprint" : "FPR1202406258",
-  "created_at" : "2017-05-22T19:18:28.00Z",
-  "updated_at" : "2017-05-22T19:18:28.00Z",
+  "created_at" : "2017-07-06T05:32:59.43Z",
+  "updated_at" : "2017-07-06T05:32:59.43Z",
   "instrument_type" : "PAYMENT_CARD",
-  "expires_at" : "2017-05-23T19:18:28.00Z",
+  "expires_at" : "2017-07-07T05:32:59.43Z",
   "currency" : "USD",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     }
   }
 }
@@ -1246,12 +1556,12 @@ callback | *function*, **required** | Callback that will be executed when the HT
 ```shell
 curl https://api-staging.crbpay.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
-	    "token": "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token": "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type": "TOKEN", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}'
 
 ```
@@ -1262,8 +1572,8 @@ import io.crb.payments.interfaces.ApiError;
 import io.crb.payments.interfaces.Maybe;
 
 TokenAssociationForm tokenForm =  TokenAssociationForm.builder()
-    .token("TK7RoadsioNcGGNFFSorw3n6")
-    .identity("IDeoUBEa2qmSZXSgWzBSPgc8")
+    .token("TKoWRX22WA5YEfzmUfFejhwB")
+    .identity("ID31nVq9QQ2HZTUvMsjQQHe")
 .build();
 
 Maybe<PaymentCard> cardResponse = api.instruments.post(tokenForm);
@@ -1281,9 +1591,9 @@ use CRB\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "token"=> "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token"=> "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity"=> "ID31nVq9QQ2HZTUvMsjQQHe"
 	));
 $card = $card->save();
 
@@ -1295,9 +1605,9 @@ from crossriver.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token": "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type": "TOKEN", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}).save()
 
 ```
@@ -1305,7 +1615,7 @@ payment_instrument = PaymentInstrument(**
 
 ```json
 {
-  "id" : "PI7RoadsioNcGGNFFSorw3n6",
+  "id" : "PIoWRX22WA5YEfzmUfFejhwB",
   "fingerprint" : "FPR1202406258",
   "tags" : { },
   "expiration_month" : 12,
@@ -1324,33 +1634,33 @@ payment_instrument = PaymentInstrument(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-05-22T19:18:28.64Z",
-  "updated_at" : "2017-05-22T19:18:28.64Z",
+  "created_at" : "2017-07-06T05:33:00.89Z",
+  "updated_at" : "2017-07-06T05:33:00.89Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/transfers"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/verifications"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "updates" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/updates"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/updates"
     }
   }
 }
@@ -1472,7 +1782,7 @@ customers) and sellers (i.e. merchants).
 
 ## Fetch an Application
 ```shell
-curl https://api-staging.crbpay.io/applications/APsKuVbSYCPqbXYhhQWQJQnq \
+curl https://api-staging.crbpay.io/applications/APfz6mtTf41HacNCNiixy57c \
     -H "Content-Type: application/vnd.json+api" \
     -u UScDQHHFKkfFk5pLEGdn6zoK:4c81c4dc-8f56-448a-9f6d-731a35e39e8f 
 
@@ -1484,7 +1794,7 @@ curl https://api-staging.crbpay.io/applications/APsKuVbSYCPqbXYhhQWQJQnq \
 <?php
 use CRB\Resources\Application;
 
-$application = Application::retrieve('APsKuVbSYCPqbXYhhQWQJQnq');
+$application = Application::retrieve('APfz6mtTf41HacNCNiixy57c');
 
 ```
 ```python
@@ -1492,64 +1802,64 @@ $application = Application::retrieve('APsKuVbSYCPqbXYhhQWQJQnq');
 
 from crossriver.resources import Application
 
-application = Application.get(id="APsKuVbSYCPqbXYhhQWQJQnq")
+application = Application.get(id="APfz6mtTf41HacNCNiixy57c")
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "APsKuVbSYCPqbXYhhQWQJQnq",
+  "id" : "APfz6mtTf41HacNCNiixy57c",
   "enabled" : true,
   "tags" : {
-    "application_name" : "WePay"
+    "application_name" : "Paypal"
   },
-  "owner" : "IDwcpKQn1aq7bCUnz21XhLqB",
+  "owner" : "IDkS4LuSJkoKTEJZ6pV1PeDg",
   "processing_enabled" : true,
   "settlement_enabled" : false,
-  "created_at" : "2017-05-22T19:18:14.35Z",
-  "updated_at" : "2017-05-22T19:18:16.65Z",
+  "created_at" : "2017-07-06T05:32:34.98Z",
+  "updated_at" : "2017-07-06T05:32:38.57Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "processors" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/processors"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/processors"
     },
     "users" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/users"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB"
+      "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/transfers"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/disputes"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/settlements"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/merchants"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/identities"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/webhooks"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/reversals"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/tokens"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/application_profile"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/application_profile"
     }
   }
 }
@@ -1573,9 +1883,9 @@ curl https://api-staging.crbpay.io/applications/ \
     -d '
 	{
 	    "tags": {
-	        "application_name": "WePay"
+	        "application_name": "Paypal"
 	    }, 
-	    "user": "US3YmXJXbcxe1oBXsX9vNQGQ", 
+	    "user": "USiFamqVgvMwqN2yS1Ky8GEA", 
 	    "entity": {
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -1597,7 +1907,7 @@ curl https://api-staging.crbpay.io/applications/ \
 	        }, 
 	        "max_transaction_amount": 1200000, 
 	        "phone": "1234567890", 
-	        "doing_business_as": "WePay", 
+	        "doing_business_as": "Paypal", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -1606,7 +1916,7 @@ curl https://api-staging.crbpay.io/applications/ \
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "WePay", 
+	        "business_name": "Paypal", 
 	        "business_tax_id": "123456789", 
 	        "email": "user@example.org", 
 	        "tax_id": "5779"
@@ -1624,9 +1934,9 @@ use CRB\Resources\Application;
 $application = new Application(
 	array(
 	    "tags"=> array(
-	        "application_name"=> "WePay"
+	        "application_name"=> "Paypal"
 	    ), 
-	    "user"=> "US3YmXJXbcxe1oBXsX9vNQGQ", 
+	    "user"=> "USiFamqVgvMwqN2yS1Ky8GEA", 
 	    "entity"=> array(
 	        "business_type"=> "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone"=> "+1 (408) 756-4497", 
@@ -1648,7 +1958,7 @@ $application = new Application(
 	        ), 
 	        "max_transaction_amount"=> 1200000, 
 	        "phone"=> "1234567890", 
-	        "doing_business_as"=> "WePay", 
+	        "doing_business_as"=> "Paypal", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -1657,7 +1967,7 @@ $application = new Application(
 	            "line1"=> "741 Douglass St", 
 	            "postal_code"=> "94114"
 	        ), 
-	        "business_name"=> "WePay", 
+	        "business_name"=> "Paypal", 
 	        "business_tax_id"=> "123456789", 
 	        "email"=> "user@example.org", 
 	        "tax_id"=> "5779"
@@ -1674,9 +1984,9 @@ from crossriver.resources import Application
 application = Application(**
 	{
 	    "tags": {
-	        "application_name": "WePay"
+	        "application_name": "Paypal"
 	    }, 
-	    "user": "US3YmXJXbcxe1oBXsX9vNQGQ", 
+	    "user": "USiFamqVgvMwqN2yS1Ky8GEA", 
 	    "entity": {
 	        "business_type": "INDIVIDUAL_SOLE_PROPRIETORSHIP", 
 	        "business_phone": "+1 (408) 756-4497", 
@@ -1698,7 +2008,7 @@ application = Application(**
 	        }, 
 	        "max_transaction_amount": 1200000, 
 	        "phone": "1234567890", 
-	        "doing_business_as": "WePay", 
+	        "doing_business_as": "Paypal", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -1707,7 +2017,7 @@ application = Application(**
 	            "line1": "741 Douglass St", 
 	            "postal_code": "94114"
 	        }, 
-	        "business_name": "WePay", 
+	        "business_name": "Paypal", 
 	        "business_tax_id": "123456789", 
 	        "email": "user@example.org", 
 	        "tax_id": "5779"
@@ -1718,58 +2028,58 @@ application = Application(**
 
 ```json
 {
-  "id" : "APsKuVbSYCPqbXYhhQWQJQnq",
+  "id" : "APfz6mtTf41HacNCNiixy57c",
   "enabled" : true,
   "tags" : {
-    "application_name" : "WePay"
+    "application_name" : "Paypal"
   },
-  "owner" : "IDwcpKQn1aq7bCUnz21XhLqB",
+  "owner" : "IDkS4LuSJkoKTEJZ6pV1PeDg",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2017-05-22T19:18:14.36Z",
-  "updated_at" : "2017-05-22T19:18:14.36Z",
+  "created_at" : "2017-07-06T05:32:34.99Z",
+  "updated_at" : "2017-07-06T05:32:34.99Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "processors" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/processors"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/processors"
     },
     "users" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/users"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB"
+      "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/transfers"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/disputes"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/settlements"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/merchants"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/identities"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/webhooks"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/reversals"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/tokens"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/application_profile"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/application_profile"
     }
   }
 }
@@ -1857,7 +2167,7 @@ month | *integer*, **required** | Month of birth (between 1 and 12)
 year | *integer*, **required** | Year of birth (4-digit)
 ## [ADMIN] Disable Processing Functionality
 ```shell
-curl https://api-staging.crbpay.io/applications/APsKuVbSYCPqbXYhhQWQJQnq/ \
+curl https://api-staging.crbpay.io/applications/APfz6mtTf41HacNCNiixy57c/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  UScDQHHFKkfFk5pLEGdn6zoK:4c81c4dc-8f56-448a-9f6d-731a35e39e8f \
     -X PUT \
@@ -1883,58 +2193,58 @@ curl https://api-staging.crbpay.io/applications/APsKuVbSYCPqbXYhhQWQJQnq/ \
 
 ```json
 {
-  "id" : "APsKuVbSYCPqbXYhhQWQJQnq",
+  "id" : "APfz6mtTf41HacNCNiixy57c",
   "enabled" : true,
   "tags" : {
-    "application_name" : "WePay"
+    "application_name" : "Paypal"
   },
-  "owner" : "IDwcpKQn1aq7bCUnz21XhLqB",
+  "owner" : "IDkS4LuSJkoKTEJZ6pV1PeDg",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2017-05-22T19:18:14.35Z",
-  "updated_at" : "2017-05-22T19:18:38.73Z",
+  "created_at" : "2017-07-06T05:32:34.98Z",
+  "updated_at" : "2017-07-06T05:33:22.61Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "processors" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/processors"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/processors"
     },
     "users" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/users"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB"
+      "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/transfers"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/disputes"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/settlements"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/merchants"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/identities"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/webhooks"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/reversals"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/tokens"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/application_profile"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/application_profile"
     }
   }
 }
@@ -1960,7 +2270,7 @@ Field | Type | Description
 processing_enabled | *boolean*, **required** | False to disable
 ## [ADMIN] Disable Settlement Functionality
 ```shell
-curl https://api-staging.crbpay.io/applications/APsKuVbSYCPqbXYhhQWQJQnq/ \
+curl https://api-staging.crbpay.io/applications/APfz6mtTf41HacNCNiixy57c/ \
     -H "Content-Type: application/vnd.json+api" \
     -u  UScDQHHFKkfFk5pLEGdn6zoK:4c81c4dc-8f56-448a-9f6d-731a35e39e8f \
     -X PUT \
@@ -1986,58 +2296,58 @@ curl https://api-staging.crbpay.io/applications/APsKuVbSYCPqbXYhhQWQJQnq/ \
 
 ```json
 {
-  "id" : "APsKuVbSYCPqbXYhhQWQJQnq",
+  "id" : "APfz6mtTf41HacNCNiixy57c",
   "enabled" : true,
   "tags" : {
-    "application_name" : "WePay"
+    "application_name" : "Paypal"
   },
-  "owner" : "IDwcpKQn1aq7bCUnz21XhLqB",
+  "owner" : "IDkS4LuSJkoKTEJZ6pV1PeDg",
   "processing_enabled" : false,
   "settlement_enabled" : false,
-  "created_at" : "2017-05-22T19:18:14.35Z",
-  "updated_at" : "2017-05-22T19:18:39.47Z",
+  "created_at" : "2017-07-06T05:32:34.98Z",
+  "updated_at" : "2017-07-06T05:33:23.87Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "processors" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/processors"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/processors"
     },
     "users" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/users"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/users"
     },
     "owner_identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB"
+      "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/transfers"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/transfers"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/disputes"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/disputes"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/authorizations"
     },
     "settlements" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/settlements"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/settlements"
     },
     "merchants" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/merchants"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/merchants"
     },
     "identities" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/identities"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/identities"
     },
     "webhooks" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/webhooks"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/webhooks"
     },
     "reversals" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/reversals"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/reversals"
     },
     "tokens" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/tokens"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/tokens"
     },
     "application_profile" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/application_profile"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/application_profile"
     }
   }
 }
@@ -2062,9 +2372,9 @@ Field | Type | Description
 settlement_enabled | *boolean*, **required** | False to disable
 ## Create an Application User
 ```shell
-curl https://api-staging.crbpay.io/applications/APsKuVbSYCPqbXYhhQWQJQnq/users \
+curl https://api-staging.crbpay.io/applications/APfz6mtTf41HacNCNiixy57c/users \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '{}'
 
 ```
@@ -2084,23 +2394,23 @@ curl https://api-staging.crbpay.io/applications/APsKuVbSYCPqbXYhhQWQJQnq/users \
 
 ```json
 {
-  "id" : "USrj2tMZ5B6hn1NF92bBDnUK",
-  "password" : "d1d7f13b-8c6b-4706-9ede-50281e589e9a",
-  "identity" : "IDwcpKQn1aq7bCUnz21XhLqB",
+  "id" : "USf45bEsYfXFWUs6gb59hece",
+  "password" : "4617348d-b224-4914-84d4-283141ef55c3",
+  "identity" : "IDkS4LuSJkoKTEJZ6pV1PeDg",
   "enabled" : true,
   "role" : "ROLE_PARTNER",
   "tags" : { },
-  "created_at" : "2017-05-22T19:18:24.33Z",
-  "updated_at" : "2017-05-22T19:18:24.33Z",
+  "created_at" : "2017-07-06T05:32:51.68Z",
+  "updated_at" : "2017-07-06T05:32:51.68Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/users/USrj2tMZ5B6hn1NF92bBDnUK"
+      "href" : "https://api-staging.crbpay.io:443/users/USf45bEsYfXFWUs6gb59hece"
     },
     "applications" : {
       "href" : "https://api-staging.crbpay.io:443/applications"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     }
   }
 }
@@ -2129,7 +2439,7 @@ Parameter | Description
 ```shell
 curl https://api-staging.crbpay.io/applications/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410
 
 ```
 ```java
@@ -2152,58 +2462,58 @@ application = Application.get()
 {
   "_embedded" : {
     "applications" : [ {
-      "id" : "APsKuVbSYCPqbXYhhQWQJQnq",
+      "id" : "APfz6mtTf41HacNCNiixy57c",
       "enabled" : true,
       "tags" : {
-        "application_name" : "WePay"
+        "application_name" : "Paypal"
       },
-      "owner" : "IDwcpKQn1aq7bCUnz21XhLqB",
+      "owner" : "IDkS4LuSJkoKTEJZ6pV1PeDg",
       "processing_enabled" : true,
       "settlement_enabled" : false,
-      "created_at" : "2017-05-22T19:18:14.35Z",
-      "updated_at" : "2017-05-22T19:18:16.65Z",
+      "created_at" : "2017-07-06T05:32:34.98Z",
+      "updated_at" : "2017-07-06T05:32:38.57Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
         },
         "processors" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/processors"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/processors"
         },
         "users" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/users"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/users"
         },
         "owner_identity" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg"
         },
         "transfers" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/transfers"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/transfers"
         },
         "disputes" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/disputes"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/disputes"
         },
         "authorizations" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/authorizations"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/authorizations"
         },
         "settlements" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/settlements"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/settlements"
         },
         "merchants" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/merchants"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/merchants"
         },
         "identities" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/identities"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/identities"
         },
         "webhooks" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/webhooks"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/webhooks"
         },
         "reversals" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/reversals"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/reversals"
         },
         "tokens" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/tokens"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/tokens"
         },
         "application_profile" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq/application_profile"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c/application_profile"
         }
       }
     } ]
@@ -2239,7 +2549,7 @@ This field is optionally used to collect KYC information for the recipient.
 ```shell
 curl https://api-staging.crbpay.io/identities \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
 	    "tags": {
@@ -2247,9 +2557,9 @@ curl https://api-staging.crbpay.io/identities \
 	    }, 
 	    "entity": {
 	        "phone": "7145677612", 
-	        "first_name": "Laura", 
-	        "last_name": "Kline", 
-	        "email": "Laura@gmail.com", 
+	        "first_name": "Marshall", 
+	        "last_name": "Curry", 
+	        "email": "Marshall@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -2311,9 +2621,9 @@ $identity = new Identity(
 	    ), 
 	    "entity"=> array(
 	        "phone"=> "7145677612", 
-	        "first_name"=> "Laura", 
-	        "last_name"=> "Kline", 
-	        "email"=> "Laura@gmail.com", 
+	        "first_name"=> "Marshall", 
+	        "last_name"=> "Curry", 
+	        "email"=> "Marshall@gmail.com", 
 	        "personal_address"=> array(
 	            "city"=> "San Mateo", 
 	            "country"=> "USA", 
@@ -2339,9 +2649,9 @@ identity = Identity(**
 	    }, 
 	    "entity": {
 	        "phone": "7145677612", 
-	        "first_name": "Laura", 
-	        "last_name": "Kline", 
-	        "email": "Laura@gmail.com", 
+	        "first_name": "Marshall", 
+	        "last_name": "Curry", 
+	        "email": "Marshall@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -2357,12 +2667,12 @@ identity = Identity(**
 
 ```json
 {
-  "id" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "id" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "entity" : {
     "title" : null,
-    "first_name" : "Laura",
-    "last_name" : "Kline",
-    "email" : "Laura@gmail.com",
+    "first_name" : "Marshall",
+    "last_name" : "Curry",
+    "email" : "Marshall@gmail.com",
     "business_name" : null,
     "business_type" : null,
     "doing_business_as" : null,
@@ -2396,35 +2706,35 @@ identity = Identity(**
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2017-05-22T19:18:17.30Z",
-  "updated_at" : "2017-05-22T19:18:17.30Z",
+  "created_at" : "2017-07-06T05:32:39.95Z",
+  "updated_at" : "2017-07-06T05:32:39.95Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/verifications"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/merchants"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/settlements"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/transfers"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/payment_instruments"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/disputes"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     }
   }
 }
@@ -2456,12 +2766,13 @@ region | *string*, **optional** | 2-letter State code
 postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)
 country | *string*, **optional** | 3-Letter Country code
 
-## Retrieve a Identity
+## Fetch a Identity
+
 ```shell
 
-curl https://api-staging.crbpay.io/identities/IDeoUBEa2qmSZXSgWzBSPgc8 \
+curl https://api-staging.crbpay.io/identities/ID31nVq9QQ2HZTUvMsjQQHe \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410
 
 ```
 ```java
@@ -2471,7 +2782,7 @@ import io.crb.payments.interfaces.ApiError;
 import io.crb.payments.interfaces.Maybe;
 import com.google.common.collect.ImmutableMap;
 
-Maybe<Identity> response = api.identities.id("IDeoUBEa2qmSZXSgWzBSPgc8").get();
+Maybe<Identity> response = api.identities.id("ID31nVq9QQ2HZTUvMsjQQHe").get();
 if (! response.succeeded()) {
     ApiError error = response.error();
     System.out.println(error.getCode());
@@ -2484,25 +2795,25 @@ Identity identity = response.view();
 <?php
 use CRB\Resources\Identity;
 
-$identity = Identity::retrieve('IDeoUBEa2qmSZXSgWzBSPgc8');
+$identity = Identity::retrieve('ID31nVq9QQ2HZTUvMsjQQHe');
 ```
 ```python
 
 
 from crossriver.resources import Identity
-identity = Identity.get(id="IDeoUBEa2qmSZXSgWzBSPgc8")
+identity = Identity.get(id="ID31nVq9QQ2HZTUvMsjQQHe")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "id" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "entity" : {
     "title" : null,
-    "first_name" : "Laura",
-    "last_name" : "Henderson",
-    "email" : "Jessie@gmail.com",
+    "first_name" : "Fran",
+    "last_name" : "Diaz",
+    "email" : "Step@gmail.com",
     "business_name" : null,
     "business_type" : null,
     "doing_business_as" : null,
@@ -2536,35 +2847,35 @@ identity = Identity.get(id="IDeoUBEa2qmSZXSgWzBSPgc8")
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2017-05-22T19:18:17.29Z",
-  "updated_at" : "2017-05-22T19:18:23.12Z",
+  "created_at" : "2017-07-06T05:32:39.93Z",
+  "updated_at" : "2017-07-06T05:32:48.89Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/verifications"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/merchants"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/settlements"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/transfers"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/payment_instruments"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/disputes"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     }
   }
 }
@@ -2582,9 +2893,9 @@ Parameter | Description
 
 ## Update an Identity
 ```shell
-curl https://api-staging.crbpay.io/identities/IDeoUBEa2qmSZXSgWzBSPgc8 \
+curl https://api-staging.crbpay.io/identities/ID31nVq9QQ2HZTUvMsjQQHe \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -X PUT \
     -d '
 	{
@@ -2593,9 +2904,9 @@ curl https://api-staging.crbpay.io/identities/IDeoUBEa2qmSZXSgWzBSPgc8 \
 	    }, 
 	    "entity": {
 	        "phone": "7145677612", 
-	        "first_name": "Laura", 
-	        "last_name": "Henderson", 
-	        "email": "Jessie@gmail.com", 
+	        "first_name": "Fran", 
+	        "last_name": "Diaz", 
+	        "email": "Step@gmail.com", 
 	        "personal_address": {
 	            "city": "San Mateo", 
 	            "country": "USA", 
@@ -2624,12 +2935,12 @@ curl https://api-staging.crbpay.io/identities/IDeoUBEa2qmSZXSgWzBSPgc8 \
 
 ```json
 {
-  "id" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "id" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "entity" : {
     "title" : null,
-    "first_name" : "Laura",
-    "last_name" : "Henderson",
-    "email" : "Jessie@gmail.com",
+    "first_name" : "Fran",
+    "last_name" : "Diaz",
+    "email" : "Step@gmail.com",
     "business_name" : null,
     "business_type" : null,
     "doing_business_as" : null,
@@ -2663,35 +2974,35 @@ curl https://api-staging.crbpay.io/identities/IDeoUBEa2qmSZXSgWzBSPgc8 \
   "tags" : {
     "key" : "value"
   },
-  "created_at" : "2017-05-22T19:18:17.29Z",
-  "updated_at" : "2017-05-22T19:18:23.12Z",
+  "created_at" : "2017-07-06T05:32:39.93Z",
+  "updated_at" : "2017-07-06T05:32:48.89Z",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/verifications"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/verifications"
     },
     "merchants" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/merchants"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/merchants"
     },
     "settlements" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/settlements"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/settlements"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/authorizations"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/transfers"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/transfers"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/payment_instruments"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/payment_instruments"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/disputes"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/disputes"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     }
   }
 }
@@ -2739,7 +3050,7 @@ country | *string*, **optional** | 3-Letter Country code
 ```shell
 curl https://api-staging.crbpay.io/identities/ \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410
 
 
 ```
@@ -2775,12 +3086,12 @@ identity = Identity.get()
 {
   "_embedded" : {
     "identities" : [ {
-      "id" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+      "id" : "ID31nVq9QQ2HZTUvMsjQQHe",
       "entity" : {
         "title" : null,
-        "first_name" : "Laura",
-        "last_name" : "Henderson",
-        "email" : "Jessie@gmail.com",
+        "first_name" : "Fran",
+        "last_name" : "Diaz",
+        "email" : "Step@gmail.com",
         "business_name" : null,
         "business_type" : null,
         "doing_business_as" : null,
@@ -2814,47 +3125,47 @@ identity = Identity.get()
       "tags" : {
         "key" : "value"
       },
-      "created_at" : "2017-05-22T19:18:17.29Z",
-      "updated_at" : "2017-05-22T19:18:23.12Z",
+      "created_at" : "2017-07-06T05:32:39.93Z",
+      "updated_at" : "2017-07-06T05:32:48.89Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
         },
         "verifications" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/verifications"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/merchants"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/settlements"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/authorizations"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/transfers"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/payment_instruments"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8/disputes"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
         }
       }
     }, {
-      "id" : "IDwcpKQn1aq7bCUnz21XhLqB",
+      "id" : "IDkS4LuSJkoKTEJZ6pV1PeDg",
       "entity" : {
         "title" : null,
         "first_name" : "dwayne",
         "last_name" : "Sunkhronos",
         "email" : "user@example.org",
-        "business_name" : "WePay",
+        "business_name" : "Paypal",
         "business_type" : "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-        "doing_business_as" : "WePay",
+        "doing_business_as" : "Paypal",
         "phone" : "1234567890",
         "business_phone" : "+1 (408) 756-4497",
         "personal_address" : {
@@ -2894,37 +3205,37 @@ identity = Identity.get()
         "default_statement_descriptor" : null
       },
       "tags" : {
-        "application_name" : "WePay"
+        "application_name" : "Paypal"
       },
-      "created_at" : "2017-05-22T19:18:14.35Z",
-      "updated_at" : "2017-05-22T19:18:14.36Z",
+      "created_at" : "2017-07-06T05:32:34.98Z",
+      "updated_at" : "2017-07-06T05:32:35.00Z",
       "_links" : {
         "self" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg"
         },
         "verifications" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB/verifications"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg/verifications"
         },
         "merchants" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB/merchants"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg/merchants"
         },
         "settlements" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB/settlements"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg/settlements"
         },
         "authorizations" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB/authorizations"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg/authorizations"
         },
         "transfers" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB/transfers"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg/transfers"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB/payment_instruments"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg/payment_instruments"
         },
         "disputes" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDwcpKQn1aq7bCUnz21XhLqB/disputes"
+          "href" : "https://api-staging.crbpay.io:443/identities/IDkS4LuSJkoKTEJZ6pV1PeDg/disputes"
         },
         "application" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
         }
       }
     } ]
@@ -2960,12 +3271,12 @@ Once associated, a `Payment Instrument` may not be disassociated from an
 ```shell
 curl https://api-staging.crbpay.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
-	    "token": "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token": "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type": "TOKEN", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}'
 
 ```
@@ -2976,8 +3287,8 @@ import io.crb.payments.interfaces.ApiError;
 import io.crb.payments.interfaces.Maybe;
 
 TokenAssociationForm tokenForm =  TokenAssociationForm.builder()
-    .token("TK7RoadsioNcGGNFFSorw3n6")
-    .identity("IDeoUBEa2qmSZXSgWzBSPgc8")
+    .token("TKoWRX22WA5YEfzmUfFejhwB")
+    .identity("ID31nVq9QQ2HZTUvMsjQQHe")
 .build();
 
 Maybe<PaymentCard> cardResponse = api.instruments.post(tokenForm);
@@ -2995,9 +3306,9 @@ use CRB\Resources\PaymentInstrument;
 
 $card = new PaymentInstrument(
 	array(
-	    "token"=> "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token"=> "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type"=> "TOKEN", 
-	    "identity"=> "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity"=> "ID31nVq9QQ2HZTUvMsjQQHe"
 	));
 $card = $card->save();
 
@@ -3009,16 +3320,16 @@ from crossriver.resources import PaymentInstrument
 
 payment_instrument = PaymentInstrument(**
 	{
-	    "token": "TK7RoadsioNcGGNFFSorw3n6", 
+	    "token": "TKoWRX22WA5YEfzmUfFejhwB", 
 	    "type": "TOKEN", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}).save()
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PI7RoadsioNcGGNFFSorw3n6",
+  "id" : "PIoWRX22WA5YEfzmUfFejhwB",
   "fingerprint" : "FPR1202406258",
   "tags" : { },
   "expiration_month" : 12,
@@ -3037,33 +3348,33 @@ payment_instrument = PaymentInstrument(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-05-22T19:18:28.64Z",
-  "updated_at" : "2017-05-22T19:18:28.64Z",
+  "created_at" : "2017-07-06T05:33:00.89Z",
+  "updated_at" : "2017-07-06T05:33:00.89Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/transfers"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/verifications"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "updates" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI7RoadsioNcGGNFFSorw3n6/updates"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIoWRX22WA5YEfzmUfFejhwB/updates"
     }
   }
 }
@@ -3096,10 +3407,10 @@ identity | *string*, **required**| ID for the `Identity` resource which the acco
 
 curl https://api-staging.crbpay.io/payment_instruments \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
-	    "name": "Bob Le", 
+	    "name": "Marcie Henderson", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card_name": "Business Card"
@@ -3116,7 +3427,7 @@ curl https://api-staging.crbpay.io/payment_instruments \
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}'
 
 
@@ -3134,7 +3445,7 @@ PaymentCardForm form = PaymentCardForm.builder()
         .number("4957030420210454")
         .securityCode("112")
         .expirationYear(2020)
-        .identity("IDeoUBEa2qmSZXSgWzBSPgc8")
+        .identity("ID31nVq9QQ2HZTUvMsjQQHe")
         .expirationMonth(12)
         .address(
                 Address.builder()
@@ -3163,10 +3474,10 @@ PaymentCard card = response.view();
 use CRB\Resources\PaymentCard;
 use CRB\Resources\Identity;
 
-$identity = Identity::retrieve('IDeoUBEa2qmSZXSgWzBSPgc8');
+$identity = Identity::retrieve('ID31nVq9QQ2HZTUvMsjQQHe');
 $card = new PaymentCard(
 	array(
-	    "name"=> "Bob Le", 
+	    "name"=> "Marcie Henderson", 
 	    "expiration_year"=> 2020, 
 	    "tags"=> array(
 	        "card_name"=> "Business Card"
@@ -3183,7 +3494,7 @@ $card = new PaymentCard(
 	    ), 
 	    "security_code"=> "112", 
 	    "type"=> "PAYMENT_CARD", 
-	    "identity"=> "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity"=> "ID31nVq9QQ2HZTUvMsjQQHe"
 	));
 $card = $identity->createPaymentCard($card);
 
@@ -3195,7 +3506,7 @@ from crossriver.resources import PaymentCard
 
 card = PaymentCard(**
 	{
-	    "name": "Bob Le", 
+	    "name": "Marcie Henderson", 
 	    "expiration_year": 2020, 
 	    "tags": {
 	        "card_name": "Business Card"
@@ -3212,15 +3523,15 @@ card = PaymentCard(**
 	    }, 
 	    "security_code": "112", 
 	    "type": "PAYMENT_CARD", 
-	    "identity": "IDeoUBEa2qmSZXSgWzBSPgc8"
+	    "identity": "ID31nVq9QQ2HZTUvMsjQQHe"
 	}).save()
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "PI8D8zDPcbTq6dAZbbyW83Ed",
-  "fingerprint" : "FPR-548299190",
+  "id" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
+  "fingerprint" : "FPR764826810",
   "tags" : {
     "card_name" : "Business Card"
   },
@@ -3229,7 +3540,7 @@ card = PaymentCard(**
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Bob Le",
+  "name" : "Marcie Henderson",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -3240,33 +3551,33 @@ card = PaymentCard(**
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-05-22T19:18:18.47Z",
-  "updated_at" : "2017-05-22T19:18:18.47Z",
+  "created_at" : "2017-07-06T05:32:41.84Z",
+  "updated_at" : "2017-07-06T05:32:41.84Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/transfers"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/verifications"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "updates" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/updates"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/updates"
     }
   }
 }
@@ -3311,9 +3622,9 @@ postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)
 country | *string*, **optional** | 3-Letter Country code
 ## Fetch a Credit Card
 ```shell
-curl https://api-staging.crbpay.io/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed \
+curl https://api-staging.crbpay.io/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5 \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
 
 ```
 ```java
@@ -3321,21 +3632,25 @@ import io.crb.payments.forms.*;
 import io.crb.payments.views.*;
 import io.crb.payments.interfaces.ApiError;
 import io.crb.payments.interfaces.Maybe;
-import com.google.common.collect.ImmutableMap;
+;
 
-Maybe<PaymentCard> response = api.instruments.id("PI8D8zDPcbTq6dAZbbyW83Ed").get();
+Maybe<PaymentCard> response = api.instruments
+  .id("PIpEUWYVBT1F3uDAKNh7MbZ5")
+  .get();
+
 if (! response.succeeded()) {
     ApiError error = response.error();
     System.out.println(error.getCode());
     throw new RuntimeException("API error attempting to fetch Payment Card");
 }
 PaymentCard card = response.view();
+
 ```
 ```php
 <?php
 use CRB\Resources\PaymentInstrument;
 
-$card = PaymentInstrument::retrieve('PI8D8zDPcbTq6dAZbbyW83Ed');
+$card = PaymentInstrument::retrieve('PIpEUWYVBT1F3uDAKNh7MbZ5');
 
 ```
 ```python
@@ -3347,8 +3662,8 @@ $card = PaymentInstrument::retrieve('PI8D8zDPcbTq6dAZbbyW83Ed');
 
 ```json
 {
-  "id" : "PI8D8zDPcbTq6dAZbbyW83Ed",
-  "fingerprint" : "FPR-548299190",
+  "id" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
+  "fingerprint" : "FPR764826810",
   "tags" : {
     "card_name" : "Business Card"
   },
@@ -3357,7 +3672,7 @@ $card = PaymentInstrument::retrieve('PI8D8zDPcbTq6dAZbbyW83Ed');
   "last_four" : "0454",
   "brand" : "VISA",
   "card_type" : "UNKNOWN",
-  "name" : "Bob Le",
+  "name" : "Marcie Henderson",
   "address" : {
     "line1" : "741 Douglass St",
     "line2" : "Apartment 7",
@@ -3368,33 +3683,33 @@ $card = PaymentInstrument::retrieve('PI8D8zDPcbTq6dAZbbyW83Ed');
   },
   "address_verification" : "UNKNOWN",
   "security_code_verification" : "UNKNOWN",
-  "created_at" : "2017-05-22T19:18:18.44Z",
-  "updated_at" : "2017-05-22T19:18:18.44Z",
+  "created_at" : "2017-07-06T05:32:41.80Z",
+  "updated_at" : "2017-07-06T05:32:41.80Z",
   "instrument_type" : "PAYMENT_CARD",
   "type" : "PAYMENT_CARD",
   "currency" : "USD",
-  "identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
     },
     "authorizations" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/authorizations"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/authorizations"
     },
     "identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "transfers" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/transfers"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/transfers"
     },
     "verifications" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/verifications"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/verifications"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "updates" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/updates"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/updates"
     }
   }
 }
@@ -3416,9 +3731,9 @@ Parameter | Description
 ## Payment Instrument Verification
 
 ```shell
-curl https://api-staging.crbpay.io/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed/verifications \
+curl https://api-staging.crbpay.io/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5/verifications \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
 	    "processor": "VISA_V1"
@@ -3436,7 +3751,7 @@ import io.crb.payments.interfaces.Maybe;
     .processor("VISA_V1")
     .build();
 
-Maybe<Verification> verificationResponse = api.instruments.id("PI8D8zDPcbTq6dAZbbyW83Ed").verifications.post(verificationForm);
+Maybe<Verification> verificationResponse = api.instruments.id("PIpEUWYVBT1F3uDAKNh7MbZ5").verifications.post(verificationForm);
 if (! verificationResponse.succeeded()) {
     ApiError error = verificationResponse.error();
     System.out.println(error.getCode());
@@ -3452,18 +3767,28 @@ Verification verification = verificationResponse.view();
 ```python
 
 
+from crossriver.resources import PaymentInstrument
+from crossriver.resources import Verification
+
+
+payment_card = PaymentInstrument.get(id="PIpEUWYVBT1F3uDAKNh7MbZ5")
+
+verify = payment_card.verify_on(Verification(**
+	{
+	    "processor": "VISA_V1"
+	}))
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "VIhjPnMQYN7Bp5VmiMYLiVTR",
+  "id" : "VIqegfG9kHrrzLGNHGgbsvmS",
   "tags" : { },
   "messages" : [ ],
   "raw" : {
     "validation_details" : {
-      "systems_trace_audit_number" : "311",
+      "systems_trace_audit_number" : "448",
       "transaction_identifier" : "1234",
       "approval_code" : "003403",
       "action_code" : "85",
@@ -3471,7 +3796,7 @@ Verification verification = verificationResponse.view();
       "address_verification_results" : "N"
     },
     "inquiry_details" : {
-      "systems_trace_audit_number" : "311",
+      "systems_trace_audit_number" : "448",
       "card_type_code" : "C",
       "billing_currency_code" : 986,
       "billing_currency_minor_digits" : 2,
@@ -3480,25 +3805,32 @@ Verification verification = verificationResponse.view();
       "fast_funds_indicator" : "N",
       "push_funds_block_indicator" : "N",
       "online_gambing_block_indicator" : "Y"
+    },
+    "general_inquiry_details" : {
+      "systems_trace_audit_number" : "448",
+      "status" : {
+        "status_code" : "CDI000",
+        "status_description" : "Success"
+      }
     }
   },
   "processor" : "VISA_V1",
   "state" : "SUCCEEDED",
-  "created_at" : "2017-05-22T19:18:44.02Z",
-  "updated_at" : "2017-05-22T19:18:46.12Z",
-  "trace_id" : "311",
-  "payment_instrument" : "PI8D8zDPcbTq6dAZbbyW83Ed",
+  "created_at" : "2017-07-06T05:33:30.55Z",
+  "updated_at" : "2017-07-06T05:33:33.59Z",
+  "trace_id" : "448",
+  "payment_instrument" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
   "merchant" : null,
   "identity" : null,
   "_links" : {
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/verifications/VIhjPnMQYN7Bp5VmiMYLiVTR"
+      "href" : "https://api-staging.crbpay.io:443/verifications/VIqegfG9kHrrzLGNHGgbsvmS"
     },
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "payment_instrument" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
     }
   }
 }
@@ -3525,6 +3857,13 @@ Letter | Description
 ------ | -------------------------------------------------------------------
 D, F, M | Address verified
 A, B, C, G, I, N, P, R, S, U, W | Address not verified
+
+#### Card Verification 2 Results (cvv2_result_code)
+Letter | Description
+------ | -------------------------------------------------------------------
+M | CVV  verified
+N, P, S | CVV not verified
+U | Issuer does not participate in CVV2 service
 
 #### Card Type (card_type_code)
 
@@ -3554,7 +3893,7 @@ This code indicates if the associated card can receive push-to-card disbursement
 Letter | Description
 ------ | -------------------------------------------------------------------
 A, B, C | Accepts push-to-card payments
-C | Does not accept push-to-card payments
+N | Does not accept push-to-card payments
 
 #### Online Gambling Block Indicator (online_gambing_block_indicator)
 
@@ -3665,12 +4004,12 @@ Payouts can have two possible states values: SUCCEEDED or FAILED.
 ```shell
 curl https://api-staging.crbpay.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b \
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410 \
     -d '
 	{
 	    "currency": "USD", 
 	    "amount": 10000, 
-	    "destination": "PI8D8zDPcbTq6dAZbbyW83Ed", 
+	    "destination": "PIpEUWYVBT1F3uDAKNh7MbZ5", 
 	    "tags": {
 	        "order_number": "21DFASJSAKAS"
 	    }
@@ -3690,7 +4029,7 @@ TransferForm form = TransferForm.builder()
         .amount(100L)
         .currency(Currency.getInstance("USD"))
         .idempotencyId("Idsfk23jnasdfkjf")
-        .destination("PI8D8zDPcbTq6dAZbbyW83Ed")
+        .destination("PIpEUWYVBT1F3uDAKNh7MbZ5")
         .tags(ImmutableMap.of("order_number", "21DFASJSAKAS"))
 .build();
 
@@ -3710,7 +4049,7 @@ $debit = new Transfer(
 	array(
 	    "currency"=> "USD", 
 	    "amount"=> 10000, 
-	    "destination"=> "PI8D8zDPcbTq6dAZbbyW83Ed", 
+	    "destination"=> "PIpEUWYVBT1F3uDAKNh7MbZ5", 
 	    "tags"=> array(
 	        "order_number"=> "21DFASJSAKAS"
 	    )
@@ -3726,54 +4065,54 @@ $debit = $debit->save();
 
 ```json
 {
-  "id" : "TRpjDv1xQLns23rurNPSQdCA",
+  "id" : "TRbBHbTQoC2uPxLUDYFA2x1c",
   "amount" : 10000,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
-  "trace_id" : "310",
+  "trace_id" : "447",
   "currency" : "USD",
-  "application" : "APsKuVbSYCPqbXYhhQWQJQnq",
-  "source" : "PIf5UozeAUfzEg8ZemQechjs",
-  "destination" : "PI8D8zDPcbTq6dAZbbyW83Ed",
+  "application" : "APfz6mtTf41HacNCNiixy57c",
+  "source" : "PImfHE94yj98755zDc86WGbG",
+  "destination" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
   "ready_to_settle_at" : null,
   "fee" : 0,
   "statement_descriptor" : "CRB*CRB PAY",
   "type" : "CREDIT",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-05-22T19:18:20.12Z",
-  "updated_at" : "2017-05-22T19:18:22.49Z",
+  "created_at" : "2017-07-06T05:32:45.28Z",
+  "updated_at" : "2017-07-06T05:32:47.48Z",
   "idempotency_id" : null,
-  "merchant_identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "merchant_identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/payment_instruments"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/payment_instruments"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "reversals" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/reversals"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/reversals"
     },
     "fees" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/fees"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/fees"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/disputes"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/disputes"
     },
     "source" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIf5UozeAUfzEg8ZemQechjs"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PImfHE94yj98755zDc86WGbG"
     },
     "destination" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
     }
   }
 }
@@ -3794,12 +4133,13 @@ statement_descriptor | *string*, **required** | Description that will show up on
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
 
-## Retrieve a Payout
+## Fetch a Payout
+
 ```shell
 
-curl https://api-staging.crbpay.io/transfers/TRpjDv1xQLns23rurNPSQdCA \
+curl https://api-staging.crbpay.io/transfers/TRbBHbTQoC2uPxLUDYFA2x1c \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410
 
 
 ```
@@ -3809,7 +4149,7 @@ import io.crb.payments.views.*;
 import io.crb.payments.interfaces.ApiError;
 import io.crb.payments.interfaces.Maybe;
 
-Maybe<Transfer> response = api.transfers.id("TRpjDv1xQLns23rurNPSQdCA").get();
+Maybe<Transfer> response = api.transfers.id("TRbBHbTQoC2uPxLUDYFA2x1c").get();
 if (! response.succeeded()) {
     ApiError error = response.error();
     System.out.println(error.getCode());
@@ -3821,7 +4161,7 @@ Transfer card = response.view();
 <?php
 use CRB\Resources\Transfer;
 
-$transfer = Transfer::retrieve('TRpjDv1xQLns23rurNPSQdCA');
+$transfer = Transfer::retrieve('TRbBHbTQoC2uPxLUDYFA2x1c');
 
 
 
@@ -3830,61 +4170,61 @@ $transfer = Transfer::retrieve('TRpjDv1xQLns23rurNPSQdCA');
 
 
 from crossriver.resources import Transfer
-transfer = Transfer.get(id="TRpjDv1xQLns23rurNPSQdCA")
+transfer = Transfer.get(id="TRbBHbTQoC2uPxLUDYFA2x1c")
 
 ```
 > Example Response:
 
 ```json
 {
-  "id" : "TRpjDv1xQLns23rurNPSQdCA",
+  "id" : "TRbBHbTQoC2uPxLUDYFA2x1c",
   "amount" : 10000,
   "tags" : {
     "order_number" : "21DFASJSAKAS"
   },
   "state" : "SUCCEEDED",
-  "trace_id" : "310",
+  "trace_id" : "447",
   "currency" : "USD",
-  "application" : "APsKuVbSYCPqbXYhhQWQJQnq",
-  "source" : "PIf5UozeAUfzEg8ZemQechjs",
-  "destination" : "PI8D8zDPcbTq6dAZbbyW83Ed",
+  "application" : "APfz6mtTf41HacNCNiixy57c",
+  "source" : "PImfHE94yj98755zDc86WGbG",
+  "destination" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
   "ready_to_settle_at" : null,
   "fee" : 0,
   "statement_descriptor" : "CRB*CRB PAY",
   "type" : "CREDIT",
   "messages" : [ ],
   "raw" : null,
-  "created_at" : "2017-05-22T19:18:20.07Z",
-  "updated_at" : "2017-05-22T19:18:22.49Z",
+  "created_at" : "2017-07-06T05:32:45.22Z",
+  "updated_at" : "2017-07-06T05:32:47.48Z",
   "idempotency_id" : null,
-  "merchant_identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+  "merchant_identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
   "_links" : {
     "application" : {
-      "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+      "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
     },
     "self" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c"
     },
     "payment_instruments" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/payment_instruments"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/payment_instruments"
     },
     "merchant_identity" : {
-      "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+      "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
     },
     "reversals" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/reversals"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/reversals"
     },
     "fees" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/fees"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/fees"
     },
     "disputes" : {
-      "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/disputes"
+      "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/disputes"
     },
     "source" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIf5UozeAUfzEg8ZemQechjs"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PImfHE94yj98755zDc86WGbG"
     },
     "destination" : {
-      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed"
+      "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
     }
   }
 }
@@ -3904,7 +4244,7 @@ Parameter | Description
 ```shell
 curl https://api-staging.crbpay.io/transfers \
     -H "Content-Type: application/vnd.json+api" \
-    -u  US3YmXJXbcxe1oBXsX9vNQGQ:eabd2675-e4db-4b36-b6b5-a7dee2c3542b
+    -u  USiFamqVgvMwqN2yS1Ky8GEA:d699b9a5-40f9-492d-ae93-f96c3c306410
 
 ```
 ```java
@@ -3941,54 +4281,54 @@ transfer = Transfer.get()
 {
   "_embedded" : {
     "transfers" : [ {
-      "id" : "TRpjDv1xQLns23rurNPSQdCA",
+      "id" : "TRbBHbTQoC2uPxLUDYFA2x1c",
       "amount" : 10000,
       "tags" : {
         "order_number" : "21DFASJSAKAS"
       },
       "state" : "SUCCEEDED",
-      "trace_id" : "310",
+      "trace_id" : "447",
       "currency" : "USD",
-      "application" : "APsKuVbSYCPqbXYhhQWQJQnq",
-      "source" : "PIf5UozeAUfzEg8ZemQechjs",
-      "destination" : "PI8D8zDPcbTq6dAZbbyW83Ed",
+      "application" : "APfz6mtTf41HacNCNiixy57c",
+      "source" : "PImfHE94yj98755zDc86WGbG",
+      "destination" : "PIpEUWYVBT1F3uDAKNh7MbZ5",
       "ready_to_settle_at" : null,
       "fee" : 0,
       "statement_descriptor" : "CRB*CRB PAY",
       "type" : "CREDIT",
       "messages" : [ ],
       "raw" : null,
-      "created_at" : "2017-05-22T19:18:20.07Z",
-      "updated_at" : "2017-05-22T19:18:22.49Z",
+      "created_at" : "2017-07-06T05:32:45.22Z",
+      "updated_at" : "2017-07-06T05:32:47.48Z",
       "idempotency_id" : null,
-      "merchant_identity" : "IDeoUBEa2qmSZXSgWzBSPgc8",
+      "merchant_identity" : "ID31nVq9QQ2HZTUvMsjQQHe",
       "_links" : {
         "application" : {
-          "href" : "https://api-staging.crbpay.io:443/applications/APsKuVbSYCPqbXYhhQWQJQnq"
+          "href" : "https://api-staging.crbpay.io:443/applications/APfz6mtTf41HacNCNiixy57c"
         },
         "self" : {
-          "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA"
+          "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c"
         },
         "payment_instruments" : {
-          "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/payment_instruments"
+          "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/payment_instruments"
         },
         "merchant_identity" : {
-          "href" : "https://api-staging.crbpay.io:443/identities/IDeoUBEa2qmSZXSgWzBSPgc8"
+          "href" : "https://api-staging.crbpay.io:443/identities/ID31nVq9QQ2HZTUvMsjQQHe"
         },
         "reversals" : {
-          "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/reversals"
+          "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/reversals"
         },
         "fees" : {
-          "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/fees"
+          "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/fees"
         },
         "disputes" : {
-          "href" : "https://api-staging.crbpay.io:443/transfers/TRpjDv1xQLns23rurNPSQdCA/disputes"
+          "href" : "https://api-staging.crbpay.io:443/transfers/TRbBHbTQoC2uPxLUDYFA2x1c/disputes"
         },
         "source" : {
-          "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIf5UozeAUfzEg8ZemQechjs"
+          "href" : "https://api-staging.crbpay.io:443/payment_instruments/PImfHE94yj98755zDc86WGbG"
         },
         "destination" : {
-          "href" : "https://api-staging.crbpay.io:443/payment_instruments/PI8D8zDPcbTq6dAZbbyW83Ed"
+          "href" : "https://api-staging.crbpay.io:443/payment_instruments/PIpEUWYVBT1F3uDAKNh7MbZ5"
         }
       }
     } ]
