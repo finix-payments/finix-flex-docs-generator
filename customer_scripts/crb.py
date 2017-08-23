@@ -247,7 +247,7 @@ def generate_template_variables(config_values):
     toggle_on_application_processing_scenario = api_client.toggle_application_processing(create_payouts_app_scenario["response_id"], True)
     toggle_on_application_settlements_scenario = api_client.toggle_application_settlements(create_payouts_app_scenario["response_id"], True)
 
-    payment_instrument_verification_scenario = api_client.verify_payment_instrument(fetch_credit_card_scenario["response_id"])
+    payment_instrument_verification_payouts_scenario = api_client.verify_payment_instrument(fetch_credit_card_scenario["response_id"])
 
     api_scenario_vars = {
             # IDENTITIES ----------------------------------------------------------------------------------------
@@ -285,25 +285,6 @@ def generate_template_variables(config_values):
             "toggle_merchant_settlements_scenario_id": toggle_merchant_settlements_scenario["response_id"],
 
 
-            # IDENTITY VERIFICATION ----------------------------------------------------------------------
-
-            # "create_identity_verification_scenario_curl_request": create_identity_verification_scenario["curl_request_body"],
-            # "create_identity_verification_scenario_php_request": create_identity_verification_scenario["php_request_body"],
-            # "create_identity_verification_scenario_ruby_request": create_identity_verification_scenario["ruby_request_body"],
-            # "create_identity_verification_scenario_python_request": create_identity_verification_scenario["python_request_body"],
-            # "create_identity_verification_scenario_response": create_identity_verification_scenario["response_body"],
-            # "create_identity_verification_scenario_id": create_identity_verification_scenario["response_id"],
-            #
-            # "fetch_identity_verification_scenario_response": fetch_identity_verification_scenario["response_body"],
-            # "fetch_identity_verification_scenario_id": fetch_identity_verification_scenario["response_id"],
-
-
-            # "list_identity_verifications_scenario_curl_request": list_identity_verifications_scenario["curl_request_body"],
-            # "list_identity_verifications_scenario_php_request": list_identity_verifications_scenario["php_request_body"],
-            # "list_identity_verifications_scenario_ruby_request": list_identity_verifications_scenario["ruby_request_body"],
-            # "list_identity_verifications_scenario_python_request": list_identity_verifications_scenario["python_request_body"],
-            # "list_identity_verifications_scenario_response": list_identity_verifications_scenario["response_body"],
-
             # PAYMENT INSTRUMENTS (cards) --------------------------
 
             "create_card_scenario_curl_request": create_recipient_card_scenario["curl_request_body"],
@@ -317,6 +298,11 @@ def generate_template_variables(config_values):
             "fetch_credit_card_scenario_id": fetch_credit_card_scenario["response_id"],
 
             "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
+
+            "payment_instrument_verification_payouts_scenario_curl_request":payment_instrument_verification_payouts_scenario["curl_request_body"],
+            "payment_instrument_verification_payouts_scenario_response": payment_instrument_verification_payouts_scenario["response_body"],
+            "payment_instrument_verification_payouts_scenario_python_request": payment_instrument_verification_payouts_scenario["python_request_body"],
+
 
             # TRANSFERS (Debits) --------------------------------------------
 
@@ -360,9 +346,14 @@ def generate_template_variables(config_values):
             "create_recipient_push_to_card_transfer_response": create_recipient_push_to_card_transfer["response_body"],
             "create_recipient_push_to_card_transfer_id": create_recipient_push_to_card_transfer["response_id"],
 
-            "payment_instrument_verification_scenario_curl_request":payment_instrument_verification_scenario["curl_request_body"],
-            "payment_instrument_verification_scenario_response": payment_instrument_verification_scenario["response_body"],
-            "payment_instrument_verification_scenario_python_request": payment_instrument_verification_scenario["python_request_body"],
+        
+            "associate_visaV1_payment_processor_scenario_curl_request": associate_visaV1_payment_processor_scenario["curl_request_body"],
+            "associate_visaV1_payment_processor_scenario_php_request": associate_visaV1_payment_processor_scenario["php_request_body"],
+            "associate_visaV1_payment_processor_scenario_ruby_request": associate_visaV1_payment_processor_scenario["ruby_request_body"],
+            "associate_visaV1_payment_processor_scenario_python_request": associate_visaV1_payment_processor_scenario["python_request_body"],
+            "associate_visaV1_payment_processor_scenario_response": associate_visaV1_payment_processor_scenario["response_body"],
+            "associate_visaV1_payment_processor_scenario_id": associate_visaV1_payment_processor_scenario["response_id"],
+
 
             # WEBHOOKS ------------------------------------------------------------
 

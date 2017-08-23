@@ -10,6 +10,9 @@ partner_configs = {
         'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
         'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
         'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
+        'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
+        'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
+        'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
@@ -33,7 +36,6 @@ partner_configs = {
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/finix.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/Ls101sou/",
         }
-
 
 
 # this provides the ordering for the docs by section and individual snippet

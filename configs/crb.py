@@ -130,6 +130,13 @@ admin_snippets_by_resource = {
     "guide_admin_overview": [
         "definition",
         ],
+    "guide_create_application_payouts": [
+        "definition",
+        "create_owner_user",
+        "create_application",
+        "enable_dummy_processor",
+        "enable_processing",
+        ],
     "guide_authentication": [
         "definition",
         "authentication",
@@ -199,6 +206,7 @@ resource_ordering = [
 
 admin_resource_ordering = [
     "guide_general_overview_payouts",
+    "guide_create_application_payouts",
     "guide_authentication",
     "api_endpoints",
     "guide_push_to_card",

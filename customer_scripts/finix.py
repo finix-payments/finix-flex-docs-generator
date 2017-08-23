@@ -132,23 +132,59 @@ def generate_template_variables(config_values):
                         platform_basic_auth_password = config_values["platform_basic_auth_password"],
                         basic_auth_username = "",
                         basic_auth_password = "",
+                        platform_basic_auth_username_payouts = config_values["platform_basic_auth_username_payouts"],
+                        platform_basic_auth_password_payouts = config_values["platform_basic_auth_password_payouts"],
                         basic_auth_username_payouts = "",
-                        basic_auth_password_payouts = ""
+                        basic_auth_password_payouts = "",
                         )
 
     # CREATE NEW USER AND APP
     create_owner_user_scenario = api_client.create_user("ROLE_PARTNER")
     create_app_scenario = api_client.create_app(create_owner_user_scenario["response_id"], "LIMITED_LIABILITY_COMPANY")
     associate_dummyV1_payment_processor_scenario = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])
+
     create_user_partner_role_scenario = api_client.create_user_partner_role(create_app_scenario["response_id"])
     api_client.basic_auth_username = create_owner_user_scenario["response_id"]
     config_values["basic_auth_username"] = create_owner_user_scenario["response_id"]
     api_client.basic_auth_password = json.loads(create_owner_user_scenario["response_body"])['password']
     config_values["basic_auth_password"] = json.loads(create_owner_user_scenario["response_body"])['password']
     api_client.encoded_auth = base64.b64encode(api_client.basic_auth_username + ':' + api_client.basic_auth_password)
+
+
+
+
+
+    create_owner_user_payouts_scenario = api_client.create_user("ROLE_PARTNER", 'payouts')
+    create_payouts_app_scenario = api_client.create_app(create_owner_user_payouts_scenario["response_id"], "LIMITED_LIABILITY_COMPANY", 'payouts')
+    associate_visaV1_payment_processor_scenario = api_client.associate_payment_processor("VISA_V1", create_payouts_app_scenario["response_id"], 'payouts')
+
+    create_user_partner_role_payouts_scenario = api_client.create_user_partner_role(create_app_scenario["response_id"], 'payouts')
+
+    # print(create_owner_user_payouts_scenario)
+    api_client.basic_auth_username_payouts = create_owner_user_payouts_scenario['response_id']
+    config_values["basic_auth_username_payouts"] = create_owner_user_payouts_scenario["response_id"]
+    api_client.basic_auth_password_payouts = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
+    config_values["basic_auth_password_payouts"] = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
+
+
+    api_client.encoded_auth_payouts = base64.b64encode(api_client.basic_auth_username_payouts + ':' + api_client.basic_auth_password_payouts)
+
+
+    toggle_application_processing_payouts_scenario = api_client.toggle_application_processing(create_payouts_app_scenario["response_id"], True, 'payouts')
+    create_recipient_identity_payouts_scenario = api_client.create_recipient_identity('payouts')
+
     toggle_application_processing_scenario = api_client.toggle_application_processing(create_app_scenario["response_id"], True)
     toggle_application_settlements_scenario = api_client.toggle_application_settlements(create_app_scenario["response_id"], True)
 
+
+    create_recipient_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"], 'payouts')
+
+    provision_push_merchant_scenario = api_client.provision_sender(create_recipient_identity_payouts_scenario["response_id"], "VISA_V1", 'payouts')
+    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_payouts_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000, 'payouts')
+
+    #payment instrument verification
+    # payment_instrument_verification_scenario = api_client.verify_payment_instrument(create_recipient_card_scenario["response_id"], 'payouts')
+    payment_instrument_verification_payouts_scenario = api_client.verify_payment_instrument(create_recipient_card_scenario["response_id"], 'payouts')
 
     # FIRST RUN SCENARIOS
     create_webhook_scenario = api_client.create_webhook()
@@ -254,28 +290,7 @@ def generate_template_variables(config_values):
 
 
 
-    # Push-to-card Scenarios
 
-    create_owner_user_payouts_scenario = api_client.create_user("ROLE_PARTNER")
-    create_payouts_app_scenario = api_client.create_app(create_owner_user_payouts_scenario["response_id"], "INDIVIDUAL_SOLE_PROPRIETORSHIP")
-    associate_visaV1_payment_processor_scenario = api_client.associate_payment_processor("VISA_V1", create_payouts_app_scenario["response_id"])
-    api_client.basic_auth_username = create_owner_user_payouts_scenario["response_id"]
-    config_values["basic_auth_username"] = create_owner_user_payouts_scenario["response_id"]
-    api_client.basic_auth_password = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
-    config_values["basic_auth_password"] = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
-    api_client.encoded_auth = base64.b64encode(api_client.basic_auth_username + ':' + api_client.basic_auth_password)
-    toggle_application_processing_payouts_scenario = api_client.toggle_application_processing(create_payouts_app_scenario["response_id"], True)
-    create_recipient_identity_payouts_scenario = api_client.create_recipient_identity()
-
-    create_recipient_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"])
-
-    provision_push_merchant_scenario = api_client.provision_sender(create_recipient_identity_payouts_scenario["response_id"], "VISA_V1")
-    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_payouts_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000)
-    create_owner_user_payouts_scenario = api_client.create_user("ROLE_PARTNER")
-
-    #payment instrument verification
-    payment_instrument_verification_scenario = api_client.verify_payment_instrument(create_recipient_card_scenario["response_id"])
-    # payment_instrument_verification_scenario = api_client.verify_payment_instrument(update_payment_instrument_scenario["response_id"])
 
     if TOGGLE_OFF_SETTLEMENTS == False:
         # STORE RESULTS IN HASH FOR TEMPLATE
@@ -482,9 +497,9 @@ def generate_template_variables(config_values):
             "create_recipient_identity_payouts_scenario_response": create_recipient_identity_payouts_scenario["response_body"],
             "create_recipient_identity_payouts_scenario_id": create_recipient_identity_payouts_scenario["response_id"],
 
-            "payment_instrument_verification_scenario_curl_request":payment_instrument_verification_scenario["curl_request_body"],
-            "payment_instrument_verification_scenario_response": payment_instrument_verification_scenario["response_body"],
-            "payment_instrument_verification_scenario_python_request": payment_instrument_verification_scenario["python_request_body"],
+            "payment_instrument_verification_payouts_scenario_curl_request":payment_instrument_verification_payouts_scenario["curl_request_body"],
+            "payment_instrument_verification_payouts_scenario_response": payment_instrument_verification_payouts_scenario["response_body"],
+            "payment_instrument_verification_payouts_scenario_python_request": payment_instrument_verification_payouts_scenario["python_request_body"],
 
             # TRANSFERS (REFUNDS) ------------------------------------------------------------------------------------------------
 
@@ -860,6 +875,11 @@ def generate_template_variables(config_values):
             "fetch_credit_card_scenario_id": fetch_credit_card_scenario["response_id"],
 
             "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
+
+            "payment_instrument_verification_payouts_scenario_curl_request":payment_instrument_verification_payouts_scenario["curl_request_body"],
+            "payment_instrument_verification_payouts_scenario_response": payment_instrument_verification_payouts_scenario["response_body"],
+            "payment_instrument_verification_payouts_scenario_python_request": payment_instrument_verification_payouts_scenario["python_request_body"],
+
 
             # PAYMENT INSTRUMENTS (BANK ACCOUNTS) ----------------------------------------------------
 

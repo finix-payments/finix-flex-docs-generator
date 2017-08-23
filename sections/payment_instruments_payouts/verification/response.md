@@ -1,7 +1,7 @@
 > Example Response:
 
 ```json
-{{payment_instrument_verification_scenario_response}}
+{{payment_instrument_verification_payouts_scenario_response}}
 ```
 
 #### HTTP Request
