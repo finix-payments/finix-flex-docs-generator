@@ -8,7 +8,7 @@
  has succeeded, it must be captured before the `expires_at` or the funds will
  be released.
 
- You'll notice the response has a field named `idempotency_id`, its purpose is to ensure the API request only be performed once. Why is this important? We've all experienced a hanging request while on a checkout page, fearing that if we refresh or submit the payment again, we'll be charged twice.  With {{api_name}}, we remove the ambiguity by having the user generate a unique  `idempotency_id` and sending it with the normal payload. If the user attempts a request with the same `idempotency_id`, the response will raise an exception. Now you can rest assured that when you create an authorization or debit a bank account that the user will be protected from potential network issues by simply passing `idempotency_id` in body of the request.
+You'll notice the resource has a field named `idempotency_id` which ensures the API request is only performed once. Why is this important? We've all experienced a hanging request while on a checkout page and feared that if we refresh or submit the payment again we'll be charged twice. With {{api_name}}, we remove the ambiguity by having the user generate a unique `idempotency_id` and sending it with the normal payload. If the user attempts a request with the same `idempotency_id`, the response will raise an exception. Now you can rest assured that when you create an authorization or debit a bank account that the user will be protected from potential network issues by simply passing `idempotency_id` in body of the request.
 
 <aside class="warning">
 Authorizations on debit cards actually place a hold on funds in the cardholder's

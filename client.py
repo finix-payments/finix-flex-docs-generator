@@ -639,7 +639,6 @@ class Client(object):
             "merchant_identity": merchant_id,
             "amount": amount,
             "fee": fee,
-            "idempotency_id":str(uuid.uuid4()),
             "tags": {
                 "order_number": "21DFASJSAKAS"
             },
@@ -655,7 +654,6 @@ class Client(object):
             "currency": "USD",
             "destination": card_id,
             "amount": amount,
-            "idempotency_id": str(uuid.uuid4()),
             "tags": {
                 "order_number": "21DFASJSAKAS"
                 },
@@ -809,7 +807,6 @@ class Client(object):
             "source": card_id,
             "merchant_identity": merchant_id,
             "amount": 100,
-            "idempotency_id":str(uuid.uuid4()),
             "tags": {
                 "order_number": "21DFASJSAKAS"
             }
