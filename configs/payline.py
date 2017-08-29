@@ -171,7 +171,26 @@ snippets_by_resource = {
         "list_webhooks",
         "sample_payloads",
         ],
-    }
+    "idempotent_requests": [
+        "definition",
+        "create_authorization_idempotency",
+        "create_bank_debit_idempotency",
+    ],
+    "topics": [
+    'definition',
+    # 'guide_authentication',
+    # 'api_endpoints',
+    # 'idempotent_requests',
+    # 'test_data',
+    # 'errors',
+    ],
+    'tags': [
+        'definition',
+    ],
+    'errors': [
+        'definition'
+    ]
+}
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
@@ -321,18 +340,43 @@ admin_snippets_by_resource = {
     "fees": [
         "definition"
     ],
-    }
+    "idempotent_requests": [
+        "definition",
+        "create_authorization_idempotency",
+        "create_bank_debit_idempotency",
+    ],
+    "topics": [
+    'definition',
+    # 'guide_authentication',
+    # 'api_endpoints',
+    # 'idempotent_requests',
+    # 'test_data',
+    # "fees",
+    # 'errors',
+    ],
+    'tags': [
+        'definition',
+    ],
+    'errors': [
+        'definition'
+    ]
+}
 
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
-    "guide_general_overview_no_payouts",
-    "guide_authentication",
+    "topics",
     "api_endpoints",
+    "guide_authentication",
+    "idempotent_requests",
+    "tags",
+    "test_data",
+    "errors",
+    "guide_general_overview_no_payouts",
     "guide_getting_started",
     "guide_iframe",
     "guide_hosted_fields",
+    "idempotent_requests",
     # "guide_tokenization_js",
-    "test_data",
     "authorizations",
     # "disputes",
     "identities",
@@ -342,21 +386,24 @@ resource_ordering = [
     "settlements",
     "transfers",
     "webhooks",
-
 ]
 
 admin_resource_ordering = [
-    "guide_general_overview_no_payouts",
-    "guide_authentication",
+    "topics",
     "api_endpoints",
+    "guide_authentication",
+    "idempotent_requests",
+    "tags",
+    "test_data",
+    "errors",
+    "fees",
+    "guide_general_overview_no_payouts",
     "guide_getting_started",
     "guide_iframe",
     "guide_hosted_fields",
-    "test_data",
     "guide_admin_overview",
     "guide_create_application",
     "guide_tokenization_js",
-    "fees",
     "applications",
     "authorizations",
     # "disputes",

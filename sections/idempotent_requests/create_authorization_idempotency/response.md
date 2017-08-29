@@ -1,14 +1,12 @@
 > Example Response:
 
 ```json
-{{create_authorization_scenario_response}}
+{{create_authorization_idempotency_scenario_response}}
 ```
 
 `Authorizations` have two possible states SUCCEEDED and FAILED. If the `Authorization`
  has succeeded, it must be captured before the `expires_at` or the funds will
  be released.
-
-Learn how to prevent duplicate authorizations by passing an [idempotency ID](#Idempotency-Requests) in the payload.
 
 <aside class="warning">
 Authorizations on debit cards actually place a hold on funds in the cardholder's

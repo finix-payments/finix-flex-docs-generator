@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableMap;
 import java.util.Currency;
 
 TransferForm form = TransferForm.builder()
+        .idempotencyId("{{create_bank_debit_idempotency_scenario_idempotency_id}}")
         .amount(100L)
         .currency(Currency.getInstance("USD"))
         .source("{{create_card_scenario_id}}}")

@@ -3,14 +3,13 @@
 > Example Response:
 
 ```json
-{{create_bank_debit_scenario_response}}
+{{create_bank_debit_idempotency_scenario_response}}
 ```
 
 A `Transfer` representing a customer payment where funds are obtained from a
 bank account (i.e. ACH Debit, eCheck). These specific `Transfers` are
 distinguished by their type which return DEBIT.
 
-Learn how to prevent duplicate transfers by passing an [idempotency ID](#Idempotency-Requests) in the payload.
 
 #### HTTP Request
 

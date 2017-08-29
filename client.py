@@ -648,6 +648,24 @@ class Client(object):
         endpoint = self.staging_base_url + '/transfers'
         return formatted_response(endpoint, values, self.encoded_auth)
 
+    def create_debit_idempotency(self, merchant_id, card_id, amount):
+        fee = int(round(amount * .1))
+        values =  {
+            "idempotency_id": uuid.uuid4().hex,
+            "currency": "USD",
+            "source": card_id,
+            "merchant_identity": merchant_id,
+            "amount": amount,
+            "fee": fee,
+            "tags": {
+                "order_number": "21DFASJSAKAS"
+            },
+        }
+
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/transfers'
+        return formatted_response(endpoint, values, self.encoded_auth)
+
     def create_push_to_card_transfer(self, recipient_identity_id, card_id, amount, product_type=None):
         fee = int(round(amount * .1))
         values =  {
@@ -811,7 +829,22 @@ class Client(object):
                 "order_number": "21DFASJSAKAS"
             }
             }
+        values = format_json(json.dumps(values))
 
+        endpoint = self.staging_base_url + '/authorizations'
+        return formatted_response(endpoint, values, self.encoded_auth)
+
+    def create_authorization_idempotency(self, merchant_id, card_id):
+        values = {
+            "idempotency_id": uuid.uuid4().hex,
+            "currency": "USD",
+            "source": card_id,
+            "merchant_identity": merchant_id,
+            "amount": 100,
+            "tags": {
+                "order_number": "21DFASJSAKAS"
+            }
+            }
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/authorizations'

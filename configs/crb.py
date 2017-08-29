@@ -32,8 +32,8 @@ partner_configs = {
         'ruby_gem': "finix",
         'ruby_require_statement': "finix",
         'java_artifact_id': "finix",
-        'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/crb.js",
-        'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/Ls101sou/",
+        'hosted_fields_src': "https://s3.us-east-2.amazonaws.com/finix-payments-js-form-v1/dist/crb.js",
+        'hosted_fields_jsfiddle': "https://jsfiddle.net/cohitre/y1ab94x6/",
 }
 
 
@@ -102,7 +102,16 @@ snippets_by_resource = {
         "fetch_transfer",
         "list_transfers",
         ],
-    }
+    "topics": [
+    'definition',
+    ],
+    'tags_payouts': [
+        'definition',
+    ],
+    'errors': [
+        'definition'
+    ],
+}
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
@@ -187,13 +196,25 @@ admin_snippets_by_resource = {
         "fetch_transfer",
         "list_transfers",
         ],
-    }
+    "topics": [
+        'definition',
+    ],
+    'tags_payouts': [
+        'definition',
+    ],
+    'errors': [
+        'definition'
+    ],
+}
 
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
-    "guide_general_overview_payouts",
-    "guide_authentication",
+    "topics",
     "api_endpoints",
+    "guide_authentication",
+    "tags_payouts",
+    "errors",
+    "guide_general_overview_payouts",
     "guide_push_to_card",
     "guide_iframe",
     "guide_hosted_fields",
@@ -205,14 +226,18 @@ resource_ordering = [
 ]
 
 admin_resource_ordering = [
+    "topics",
+    "api_endpoints",
+    "guide_authentication",
+    "test_data",
+    "tags_payouts",
+    "errors",
     "guide_general_overview_payouts",
     "guide_create_application_payouts",
     "guide_authentication",
-    "api_endpoints",
     "guide_push_to_card",
     "guide_iframe",
     "guide_hosted_fields",
-    "test_data",
     "guide_admin_overview",
     "applications",
     # "disputes",
@@ -221,7 +246,6 @@ admin_resource_ordering = [
     "payment_instruments_payouts",
     "payouts",
 ]
-
 
 
 # Determine which client libraries to include

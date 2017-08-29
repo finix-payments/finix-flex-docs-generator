@@ -191,10 +191,30 @@ snippets_by_resource = {
     "fees": [
         "definition"
     ],
-    "faqs": [
+    "dashboard_overview_finix": [
         "definition"
-        ]
-    }
+    ],
+    "idempotent_requests": [
+        "definition",
+        "create_authorization_idempotency",
+        "create_bank_debit_idempotency",
+    ],
+    "topics": [
+        # 'guide_authentication',
+        # 'api_endpoints',
+        # 'dashboard_overview_finix',
+        # 'idempotent_requests',
+        # 'test_data',
+        # 'errors',
+        'definition'
+    ],
+    'tags': [
+        'definition',
+    ],
+    'errors': [
+        'definition'
+    ]
+}
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
@@ -314,7 +334,7 @@ admin_snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        # "fund_settlement",
+        "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -353,21 +373,46 @@ admin_snippets_by_resource = {
     "fees": [
         "definition"
     ],
-    "faqs": [
+    "dashboard_overview_finix": [
         "definition"
-        ]
-    }
+    ],
+    "idempotent_requests": [
+        "definition",
+        "create_authorization_idempotency",
+        "create_bank_debit_idempotency",
+    ],
+    "topics": [
+        # 'guide_authentication',
+        # 'api_endpoints',
+        # 'dashboard_overview_finix',
+        # 'idempotent_requests',
+        # 'test_data',
+        # 'errors',
+        'definition'
+    ],
+    'tags': [
+        'definition'
+    ],
+    'errors': [
+        'definition'
+    ]
+}
 
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
-    "guide_general_overview",
-    "guide_authentication",
+    "topics",
     "api_endpoints",
+    "guide_authentication",
+    "idempotent_requests",
+    "dashboard_overview_finix",
+    "tags",
+    "test_data",
+    "errors",
+    "guide_general_overview",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
     "guide_hosted_fields",
-    "test_data",
     "authorizations",
     # "disputes",
     "identities",
@@ -377,18 +422,22 @@ resource_ordering = [
     "settlements",
     "transfers",
     "webhooks",
-    "faqs",
 ]
 
 admin_resource_ordering = [
-    "guide_general_overview",
-    "guide_authentication",
+    "topics",
     "api_endpoints",
+    "guide_authentication",
+    "idempotent_requests",
+    "dashboard_overview_finix",
+    "tags",
+    "test_data",
+    "errors",
+    "guide_general_overview",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
     "guide_hosted_fields",
-    "test_data",
     "guide_admin_overview",
     "guide_create_application",
     "applications",
@@ -402,8 +451,7 @@ admin_resource_ordering = [
     "transfers",
     "users",
     "webhooks",
-    "faqs",
-    ]
+]
 
 
 
