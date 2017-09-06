@@ -8,7 +8,7 @@
  has succeeded, it must be captured before the `expires_at` or the funds will
  be released.
 
-Learn how to prevent duplicate authorizations by passing an [idempotency ID](#Idempotency-Requests) in the payload.
+Learn how to prevent duplicate authorizations by passing an [idempotency ID](#idempotency-requests) in the payload.
 
 <aside class="warning">
 Authorizations on debit cards actually place a hold on funds in the cardholder's

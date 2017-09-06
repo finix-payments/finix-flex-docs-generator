@@ -173,16 +173,9 @@ snippets_by_resource = {
         ],
     "idempotent_requests": [
         "definition",
-        "create_authorization_idempotency",
-        "create_bank_debit_idempotency",
     ],
     "topics": [
     'definition',
-    # 'guide_authentication',
-    # 'api_endpoints',
-    # 'idempotent_requests',
-    # 'test_data',
-    # 'errors',
     ],
     'tags': [
         'definition',
@@ -342,17 +335,9 @@ admin_snippets_by_resource = {
     ],
     "idempotent_requests": [
         "definition",
-        "create_authorization_idempotency",
-        "create_bank_debit_idempotency",
     ],
     "topics": [
     'definition',
-    # 'guide_authentication',
-    # 'api_endpoints',
-    # 'idempotent_requests',
-    # 'test_data',
-    # "fees",
-    # 'errors',
     ],
     'tags': [
         'definition',

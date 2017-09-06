@@ -196,16 +196,8 @@ snippets_by_resource = {
     ],
     "idempotent_requests": [
         "definition",
-        "create_authorization_idempotency",
-        "create_bank_debit_idempotency",
     ],
     "topics": [
-        # 'guide_authentication',
-        # 'api_endpoints',
-        # 'dashboard_overview_finix',
-        # 'idempotent_requests',
-        # 'test_data',
-        # 'errors',
         'definition'
     ],
     'tags': [
@@ -378,16 +370,8 @@ admin_snippets_by_resource = {
     ],
     "idempotent_requests": [
         "definition",
-        "create_authorization_idempotency",
-        "create_bank_debit_idempotency",
     ],
     "topics": [
-        # 'guide_authentication',
-        # 'api_endpoints',
-        # 'dashboard_overview_finix',
-        # 'idempotent_requests',
-        # 'test_data',
-        # 'errors',
         'definition'
     ],
     'tags': [
@@ -404,10 +388,10 @@ resource_ordering = [
     "api_endpoints",
     "guide_authentication",
     "idempotent_requests",
-    "dashboard_overview_finix",
     "tags",
     "test_data",
     "errors",
+    "dashboard_overview_finix",
     "guide_general_overview",
     "guide_getting_started",
     "guide_push_to_card",
@@ -429,10 +413,10 @@ admin_resource_ordering = [
     "api_endpoints",
     "guide_authentication",
     "idempotent_requests",
-    "dashboard_overview_finix",
     "tags",
     "test_data",
     "errors",
+    "dashboard_overview_finix",
     "guide_general_overview",
     "guide_getting_started",
     "guide_push_to_card",

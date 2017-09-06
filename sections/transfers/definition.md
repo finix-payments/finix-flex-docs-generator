@@ -1,9 +1,7 @@
 # Transfers
 
 A `Transfer` represents any flow of funds either to or from a `Payment Instrument`.
-For example, a `Transfer` can be either a [debit to a card](#debit-a-card), a
-credit to a bank account, or a [refund to a card](#refund-a-debit) depending on
-the request.
+For example, a `Transfer` is a credit to a bank account [refund to a card](#refund-a-debit).
 
 A `Transfer` can have one of three types: `Debit`, `Credit`, or `Reversal`. Each type indicates a different funds flow. For example:
 

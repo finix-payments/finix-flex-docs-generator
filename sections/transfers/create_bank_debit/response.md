@@ -10,7 +10,7 @@ A `Transfer` representing a customer payment where funds are obtained from a
 bank account (i.e. ACH Debit, eCheck). These specific `Transfers` are
 distinguished by their type which return DEBIT.
 
-Learn how to prevent duplicate transfers by passing an [idempotency ID](#Idempotency-Requests) in the payload.
+Learn how to prevent duplicate transfers by passing an [idempotency ID](#idempotency-requests) in the payload.
 
 #### HTTP Request
 
