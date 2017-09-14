@@ -428,9 +428,6 @@ class Client(object):
 
     def provision_sender(self, identity_id, processor, product_type=None):
         values = {
-            "tags": {
-              "key_2": "value_2"
-            },
             "processor": processor
           }
 
