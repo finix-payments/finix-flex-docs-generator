@@ -5,8 +5,5 @@ language_tabs:
 {{included_clients}}
 
 
-includes:
-  - errors
-
 search: true
 ---

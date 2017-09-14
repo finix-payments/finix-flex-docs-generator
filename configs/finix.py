@@ -10,6 +10,9 @@ partner_configs = {
         'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
         'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
         'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
+        'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
+        'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
+        'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
@@ -33,7 +36,6 @@ partner_configs = {
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/finix.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/Ls101sou/",
         }
-
 
 
 # this provides the ordering for the docs by section and individual snippet
@@ -189,10 +191,22 @@ snippets_by_resource = {
     "fees": [
         "definition"
     ],
-    "faqs": [
+    "dashboard_overview_finix": [
         "definition"
-        ]
-    }
+    ],
+    "idempotent_requests": [
+        "definition",
+    ],
+    "topics": [
+        'definition'
+    ],
+    'tags': [
+        'definition',
+    ],
+    'errors': [
+        'definition'
+    ]
+}
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
@@ -312,7 +326,7 @@ admin_snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        # "fund_settlement",
+        "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -351,21 +365,38 @@ admin_snippets_by_resource = {
     "fees": [
         "definition"
     ],
-    "faqs": [
+    "dashboard_overview_finix": [
         "definition"
-        ]
-    }
+    ],
+    "idempotent_requests": [
+        "definition",
+    ],
+    "topics": [
+        'definition'
+    ],
+    'tags': [
+        'definition'
+    ],
+    'errors': [
+        'definition'
+    ]
+}
 
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
-    "guide_general_overview",
-    "guide_authentication",
+    "topics",
     "api_endpoints",
+    "guide_authentication",
+    "idempotent_requests",
+    "tags",
+    "test_data",
+    "errors",
+    "dashboard_overview_finix",
+    "guide_general_overview",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
     "guide_hosted_fields",
-    "test_data",
     "authorizations",
     # "disputes",
     "identities",
@@ -375,18 +406,22 @@ resource_ordering = [
     "settlements",
     "transfers",
     "webhooks",
-    "faqs",
 ]
 
 admin_resource_ordering = [
-    "guide_general_overview",
-    "guide_authentication",
+    "topics",
     "api_endpoints",
+    "guide_authentication",
+    "idempotent_requests",
+    "tags",
+    "test_data",
+    "errors",
+    "dashboard_overview_finix",
+    "guide_general_overview",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
     "guide_hosted_fields",
-    "test_data",
     "guide_admin_overview",
     "guide_create_application",
     "applications",
@@ -400,8 +435,7 @@ admin_resource_ordering = [
     "transfers",
     "users",
     "webhooks",
-    "faqs",
-    ]
+]
 
 
 
