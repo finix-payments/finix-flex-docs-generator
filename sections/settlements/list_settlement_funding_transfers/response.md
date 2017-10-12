@@ -4,8 +4,7 @@
 {{list_settlement_funding_transfers_scenario_response}}
 ```
 
-List the `Transfers` of type `CREDIT` that result from issuing funding instructions
-for the `Settlement`.
+List the `Transfers` of type `CREDIT` that result from issuing a `Settlement`.
 
 #### HTTP Request
 
@@ -17,4 +16,3 @@ for the `Settlement`.
 Parameter | Description
 --------- | -------------------------------------------------------------------
 :SETTLEMENT_ID | ID of the Settlement
-
