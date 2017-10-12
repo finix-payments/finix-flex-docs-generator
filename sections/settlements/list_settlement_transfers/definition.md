@@ -1,1 +1,1 @@
-## List Transfers in a Settlement
+## List Transfers in a Batch Settlement

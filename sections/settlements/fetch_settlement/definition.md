@@ -1,1 +1,1 @@
-## Fetch a Settlement
+## Fetch a Batch Settlement
