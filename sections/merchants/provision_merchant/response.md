@@ -23,8 +23,8 @@ previously created Identity before attempting to provision a Merchant account.
   * processing_enabled: True
   * settlement_enabled: True
 
-3. `REJECTED`: Merchant was rejected by the processor either because the collected
-information was invalid or it failed one of a number of regulatory and/or
+3. `REJECTED`: Merchant was rejected by the processor either because the
+information collected was invalid or it failed one of a number of regulatory and/or
 compliance checks (e.g. KYC, OFAC or MATCH)
   * processing_enabled: False
   * settlement_enabled: False

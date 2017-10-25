@@ -20,7 +20,7 @@ previously created Identity before attempting to provision a Merchant account.
 
 2. `APPROVED`: Merchant has been approved and can begin processing
 
-3. `REJECTED`: Merchant was rejected by the processor either because the collected underwriting information was invalid or it failed one a number of regulatory and compliance checks (e.g. KYC, OFAC or MATCH)
+3. `REJECTED`: Merchant was rejected by the processor either because the  underwriting information collected was invalid or it failed one a number of regulatory and compliance checks (e.g. KYC, OFAC or MATCH)
 
 <aside class="notice">
 Provisioning a `Merchant` account is an asynchronous request. We recommend creating a Webhook to listen for the state change.
@@ -37,4 +37,3 @@ Provisioning a `Merchant` account is an asynchronous request. We recommend creat
 Parameter | Description
 --------- | -------------------------------------------------------------------
 identity_id | ID of the Identity
-
