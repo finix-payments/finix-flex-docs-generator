@@ -34,6 +34,7 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
     try:
         response_body = opener.open(request).read()
     except URLError as e:
+        import ipdb; ipdb.set_trace()
         json.loads(e.read())
 
     if "id" not in json.loads(response_body):
