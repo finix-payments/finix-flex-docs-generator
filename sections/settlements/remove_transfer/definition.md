@@ -1,1 +1,1 @@
-## Remove Tranfer(s) from a Batch Settlements
+## Remove Transfer(s) from a Batch Settlements
