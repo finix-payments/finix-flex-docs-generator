@@ -500,6 +500,16 @@ class Client(object):
         endpoint = self.staging_base_url + '/transfers/' + transfer_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
+
+    def remove_transfer(self, settlement_id, transfer_ids):
+        values = {
+        "transfers": [transfer_ids]
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/settlements/' + settlement_id + '/transfers'
+        return formatted_response(endpoint, values, self.platform_encoded_auth, "DELETE")
+
+
     def verify_payment_instrument(self, payment_instrument_id, product_type=None):
         values = {
         "processor": "VISA_V1"

@@ -265,6 +265,7 @@ def generate_template_variables(config_values):
     # UPDATE
     update_identity_scenario = api_client.update_identity(create_identity_individual_sole_proprietorship_scenario["response_id"])
     update_transfer_scenario = api_client.update_transfer(fetch_transfer_scenario["response_id"])
+
     reattempt_provision_merchant_scenario = api_client.reattempt_provision_merchant(provision_merchant_scenario["response_id"])
 
     # create_dispute_scenario = create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
@@ -273,9 +274,13 @@ def generate_template_variables(config_values):
 
     if TOGGLE_OFF_SETTLEMENTS == False:
         create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_bank_debit_scenario['response_id'])
+
+        remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
+
         fund_settlement_scenario = api_client.fund_settlement(create_settlement_scenario["response_id"], create_bank_account_scenario["response_id"])
         fetch_settlement_scenario = api_client.fetch_settlement(create_settlement_scenario['response_id'])
         fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
+
         list_settlement_transfers_scenario = api_client.list_settlement_transfers(create_settlement_scenario["response_id"])
         list_settlement_funding_transfers_scenario = api_client.list_settlement_funding_transfers(fund_settlement_scenario["response_id"])
         list_settlements_scenario = api_client.list_settlements()
@@ -450,6 +455,8 @@ def generate_template_variables(config_values):
             "create_bank_debit_idempotency_scenario_response": create_bank_debit_idempotency_scenario["response_body"],
             "create_bank_debit_idempotency_scenario_id": create_bank_debit_idempotency_scenario["response_id"],
             "create_bank_debit_idempotency_scenario_idempotency_id": json.loads(create_bank_debit_idempotency_scenario["response_body"])['idempotency_id'],
+
+            "remove_transfer_scenario_curl_request": remove_transfer_scenario['curl_request_body'],
 
             "fetch_transfer_scenario_response": fetch_transfer_scenario["response_body"],
             "fetch_transfer_scenario_id": fetch_transfer_scenario["response_id"],
@@ -634,7 +641,7 @@ def generate_template_variables(config_values):
             "associate_dummyV1_payment_processor_scenario_ruby_request": associate_dummyV1_payment_processor_scenario["ruby_request_body"],
             "associate_dummyV1_payment_processor_scenario_python_request": associate_dummyV1_payment_processor_scenario["python_request_body"],
             "associate_dummyV1_payment_processor_scenario_response": associate_dummyV1_payment_processor_scenario["response_body"],
-            
+
             "associate_visaV1_payment_processor_scenario_curl_request": associate_visaV1_payment_processor_scenario["curl_request_body"],
             "associate_visaV1_payment_processor_scenario_php_request": associate_visaV1_payment_processor_scenario["php_request_body"],
             "associate_visaV1_payment_processor_scenario_ruby_request": associate_visaV1_payment_processor_scenario["ruby_request_body"],
@@ -936,6 +943,9 @@ def generate_template_variables(config_values):
             "create_debit_idempotency_scenario_response": create_debit_idempotency_scenario["response_body"],
             "create_debit_idempotency_scenario_id": create_debit_idempotency_scenario["response_id"],
             "create_debit_idempotency_scenario_idempotency_id": json.loads(create_debit_idempotency_scenario["response_body"])['idempotency_id'],
+
+
+            "remove_transfer_scenario_curl_request": remove_transfer_scenario['curl_request_body'],
 
             "fetch_transfer_scenario_response": fetch_transfer_scenario["response_body"],
             "fetch_transfer_scenario_id": fetch_transfer_scenario["response_id"],
