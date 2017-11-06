@@ -229,6 +229,7 @@ def generate_template_variables(config_values):
     # upload_dispute_file_scenario = upload_dispute_file(fetch_dispute_scenario["response_id"])
     if TOGGLE_OFF_SETTLEMENTS == False:
         create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_bank_debit_scenario['response_id'])
+        remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
         fund_settlement_scenario = api_client.fund_settlement(create_settlement_scenario["response_id"], create_bank_account_scenario["response_id"])
         fetch_settlement_scenario = api_client.fetch_settlement(create_settlement_scenario['response_id'])
         fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
@@ -411,6 +412,8 @@ def generate_template_variables(config_values):
             "update_transfer_scenario_python_request": update_transfer_scenario["python_request_body"],
             "update_transfer_scenario_response": update_transfer_scenario["response_body"],
             "update_transfer_scenario_id": update_transfer_scenario["response_id"],
+
+            "remove_transfer_scenario_curl_request": remove_transfer_scenario['curl_request_body'],
 
             # # TRANSFERS (CREDITS) ----------------------------------------------------------------------------------------
 
@@ -884,6 +887,8 @@ def generate_template_variables(config_values):
             "update_transfer__scenario_python_request": update_transfer_scenario["python_request_body"],
             "update_transfer__scenario_response": update_transfer_scenario["response_body"],
             "update_transfer__scenario_id": update_transfer_scenario["response_id"],
+
+            "remove_transfer_scenario_curl_request": remove_transfer_scenario['curl_request_body'],
 
             # AUTHORIZATIONS ------------------------------------------------------------
 

@@ -12,6 +12,7 @@ import time
 from slacker import Slacker
 
 def formatted_response(endpoint, values, encoded_auth, request_type=None):
+
     headers = {
         'Content-Type': 'application/vnd.json+api',
         'Authorization': 'Basic ' + encoded_auth
@@ -23,6 +24,13 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
     # Check if a PUT request
     if request_type == "PUT":
         request.get_method = lambda: 'PUT'
+
+    elif request_type == "DELETE":
+        # import ipdb; ipdb.set_trace()
+        request.get_method = lambda: 'DELETE'
+        return {'request_body': values,
+        'curl_request_body': values}
+
     try:
         response_body = opener.open(request).read()
     except URLError as e:
@@ -34,6 +42,7 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
                 'response_body': response_body,
                 }
     response_id = json.loads(response_body)["id"]
+
     if values:
         return {'request_body': values,
                 'curl_request_body': values,

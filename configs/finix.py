@@ -154,6 +154,7 @@ snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
+        "remove_transfer",
         # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
@@ -325,6 +326,7 @@ admin_snippets_by_resource = {
     "settlements": [
         "definition",
         "create_settlement",
+        "remove_transfer",
         "fetch_settlement",
         "fund_settlement",
         "list_settlements",
