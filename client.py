@@ -500,6 +500,33 @@ class Client(object):
         endpoint = self.staging_base_url + '/transfers/' + transfer_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
+    def create_fee_profile(self, application_id):
+        values = {
+            "tags": {
+                "app pricing": "sample"
+            },
+            'application': application_id,
+            'basis_points': 200,
+            'fixed_fee': 100,
+            'ach_basis_points': 300,
+            'charged_interchange': False
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/fee_profiles'
+        return formatted_response(endpoint, values, self.platform_encoded_auth, "POST")
+
+    def fetch_application_profile(self, application_profile_id):
+        values = None
+        endpoint = self.staging_base_url + '/applications/' + application_profile_id + '/application_profile'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def update_application_profile(self, application_profile_id, fee_profile_id):
+        values = {
+            'fee_profile': fee_profile_id
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/application_profiles/' + application_profile_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
 
     def remove_transfer(self, settlement_id, transfer_ids):
         values = {
@@ -766,7 +793,7 @@ class Client(object):
                 # This is the full response body
                 # message = '*Transfer Reconciliation Latency Alert*\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\n```' + transfer_response['response_body'] + '```'
                 message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
-                message_slack(channel, message)
+                # message_slack(channel, message)
         values = {
             "currency": "USD",
             "tags": {

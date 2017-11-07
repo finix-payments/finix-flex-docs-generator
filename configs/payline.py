@@ -259,6 +259,11 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
     ],
+    'guide_application_pricing': [
+        '1_create_new_profile',
+        '2_locate_application_profile',
+        '3_update_applicaiton_profile',
+    ],
     "identities": [
         "definition",
         "create_buyer_identity",
@@ -390,6 +395,7 @@ admin_resource_ordering = [
     "guide_hosted_fields",
     "guide_admin_overview",
     "guide_create_application",
+    'guide_application_pricing',
     "guide_tokenization_js",
     "applications",
     "authorizations",

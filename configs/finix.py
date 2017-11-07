@@ -244,6 +244,11 @@ admin_snippets_by_resource = {
     "guide_admin_overview": [
         "definition",
         ],
+    'guide_application_pricing': [
+        '1_create_new_profile',
+        '2_locate_application_profile',
+        '3_update_applicaiton_profile',
+    ],
     "guide_authentication": [
         "definition",
         "authentication",
@@ -426,6 +431,7 @@ admin_resource_ordering = [
     "guide_hosted_fields",
     "guide_admin_overview",
     "guide_create_application",
+    'guide_application_pricing',
     "applications",
     "authorizations",
     # "disputes",

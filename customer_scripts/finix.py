@@ -242,6 +242,10 @@ def generate_template_variables(config_values):
     fetch_transfer_scenario = api_client.fetch_transfer(create_bank_debit_scenario["response_id"])
     fetch_webhook_scenario = api_client.fetch_webhook(create_webhook_scenario["response_id"])
 
+    #fees
+    create_application_fee_profile_scenario = api_client.create_fee_profile(create_app_scenario["response_id"])
+    fetch_application_profile_scenario = api_client.fetch_application_profile(create_app_scenario['response_id'])
+    update_application_profile_scenario = api_client.update_application_profile(fetch_application_profile_scenario['response_id'], json.loads(fetch_application_profile_scenario['response_body'])['fee_profile'])
 
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
@@ -764,6 +768,25 @@ def generate_template_variables(config_values):
             "fetch_user_scenario_response": fetch_user_scenario["response_body"],
             "fetch_user_scenario_id": fetch_user_scenario["response_id"],
 
+            # FEES ----------------------------------------------------------------------
+
+            "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request"],
+            "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
+            "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
+            'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
+            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body']
+            'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
+
+
+            "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body']
+
+            "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request'],
+            "update_application_profile_scenario_php_request": update_application_profile_scenario['php_request_body'],
+            'update_application_profile_scenario_ruby_request': update_application_profile_scenario['ruby_request_body'],
+            'update_application_profile_scenario_python_request': update_application_profile_scenario['python_request_body'],
+            'update_application_profile_scenario_response': update_application_profile_scenario['response_body'],
+            'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id']
+
             # REVIEW QUEUES ----------------------------------------------------------------------
 
             # "list_queued_identities_scenario_response": list_queued_identities_scenario["response_body"],
@@ -1231,6 +1254,26 @@ def generate_template_variables(config_values):
 
             "fetch_user_scenario_response": fetch_user_scenario["response_body"],
             "fetch_user_scenario_id": fetch_user_scenario["response_id"],
+
+
+            # FEES ----------------------------------------------------------------------
+
+            "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request"],
+            "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
+            "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
+            'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
+            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body']
+            'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
+
+
+            "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body']
+
+            "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request'],
+            "update_application_profile_scenario_php_request": update_application_profile_scenario['php_request_body'],
+            'update_application_profile_scenario_ruby_request': update_application_profile_scenario['ruby_request_body'],
+            'update_application_profile_scenario_python_request': update_application_profile_scenario['python_request_body'],
+            'update_application_profile_scenario_response': update_application_profile_scenario['response_body'],
+            'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id']
 
             # REVIEW QUEUES --------------------------------------------
 
