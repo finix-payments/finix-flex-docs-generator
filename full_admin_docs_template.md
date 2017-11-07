@@ -5,36 +5,22 @@ language_tabs:
 {{included_clients}}
 
 
-includes:
-  - errors
-
 search: true
 ---
 
-# Guides
+# Topics 
 
-## Overview
+## API Endpoints
 
-These guides provide a collection of resources for utilizing the {{api_name}}
-API and its client libraries. We offer a number of client libraries for
-interfacing with the API, and you can view example code snippets for each in
-the dark area to the right.
+We provide two distinct base urls for making API requests depending on
+whether you would like to utilize the sandbox or production environments. These
+two environments are completely separate and share no information, including
+API credentials. For testing please use the Staging API and when you are ready to
+ process live transactions use the Production endpoint.
 
-1. [Authentication](#authentication): A quick guide on how to properly
-authenticate and interface with the API.
+- **Staging API:** `{{staging_base_url}}`
 
-2. [Getting Started](#getting-started): A step-by-step guide demonstrating the basic workflow
-of charging a card. This guide will walk you through provisioning merchant
-accounts, tokenizing cards, charging those cards, and finally settling (i.e.
-payout) those funds out to your merchants.
-
-3. [Push-to-Card](#push-to-card): This guide walks
-through using the Visa Direct API to push payments to debit cards. With push-to-card
-funds are disbursed to a debit card within 30 minutes or less. 
-
-4. [Embedded Tokenization](#embedded-tokenization): This guide
-explains how to properly tokenize cards in production via our embedded iframe.
-
+- **Production API:** `{{production_base_url}}`
 
 ## Authentication
 
@@ -146,17 +132,114 @@ Your `Application` is a resource that represents your web app. In other words,
 any web service that connects buyers (i.e. customers) and sellers
 (i.e. merchants).
 
-## API Endpoints
+## Idempotency Requests
 
-We provide two distinct base urls for making API requests depending on
-whether you would like to utilize the sandbox or production environments. These
-two environments are completely seperate and share no information, including
-API credentials. For testing please use the Staging API and when you are ready to
- process live transactions use the Production endpoint.
+You'll notice the authorization and transfer object have a field named `idempotency_id` which ensures the API request is only performed once. Why is this important? We've all experienced a hanging request while on a checkout page and feared that if we refresh or submit the payment again we'll be charged twice. With {{api_name}}, we remove the ambiguity by having the user generate a unique `idempotency_id` and sending it with the normal payload. If the user attempts a request with the same `idempotency_id`, the response will raise an exception. Now you can rest assured that when you create an authorization or debit a bank account that the user will be protected from potential network issues by simply passing `idempotency_id` in body of the request.
 
-- **Staging API:** `{{staging_base_url}}`
+## Tags
 
-- **Production API:** `{{production_base_url}}`
+All {{api_name}} objects (i.e. `Authorization`, `Application`, `Identity`, `Merchant`, `Payment Instrument`, `Settlement`, `Transfer`) include a tags attribute that allows the user to include key-value metadata to their object. For example, when creating a `Payment Instrument`, you may want to include more data about the card. Simply pass a custom key and value, such as "card-type": "business card". Or when creating an `Authorization`, you may want to include specific information about the transaction, such as a unique ID or additional information about the transaction.
+
+## Testing for specific responses and errors
+
+Before taking your integration to production, use the information below to test it thoroughly.
+
+Amount| Description
+----- | -----------
+`100` | Success amount
+`102` | Failed amount
+`103` | Canceled amount
+`104` | Exception amount
+`888888` | Disputed amount
+`193` | Insufficient funds amount
+`194` | Invalid card number amount
+`889986` | AVS total failure amount
+`889987` | CVC failure amount
+`889988` | Risk amount canceled amount
+
+Card| Description
+----- | -----------
+ `4957030420210454` | Payment card positive result  
+ `4000000000000036` | Payment card AVS total failure
+ `4000000000000127` | Payment card CVC failure
+
+## Errors
+
+Error Code | Meaning
+---------- | -------
+400 | Bad Request -- You've attemped an invalid request
+401 | Unauthorized -- You have used the incorrect API key
+402 | Upstream Processor Error -- Errors caused by 3rd party service
+404 | Not Found -- The specified resource could not be found
+422 | Unprocessable Entity -- The parameters were valid but the request failed. The error is usually some misunderstanding of various steps that have to be executed in order (e.g. attempting to initiate a transfer on behalf of a merchant that has not yet been approved)
+500 | Internal Server Error -- We had a problem with our server. Try again later.
+
+## Fees
+
+ You can find the live example of how fees are calculated in this [spreadsheet](https://docs.google.com/spreadsheets/d/1UFmKg7EvhlCduM31bQ3rOeslszOlO49rOw3frllBj9c/edit#gid=0)
+
+### Case 1
+- Fee profile not set
+- Charge interchange fee is set to `FALSE`
+
+| Transfer Amount | Transfer Fee | Platform Fee Profile (Fixed+BPS) | Interchange Fee | Merchant | Application | Platform | Total |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| $100 | $0.00 | 0c+0% ($0.00) | $0.00 | $100.00 | $0.00 | $0.00 | $0.00 |
+| $100 | $10.00 | 0c+0% ($0.00) | $0.00 | $90.00 | $10.00 | $0.00 | $0.00 |
+
+### Case 2
+- Fee profile not set
+- Charge interchange fee is set to `TRUE`
+
+| Transfer Amount | Transfer Fee | Platform Fee Profile (Fixed+BPS) | Interchange Fee | Merchant | Application | Platform | Total |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| $100 | $0.00 | 0c+0% ($0.00) | $0.11 | $99.89 | $0.00 | $0.11 | $0.11 |
+| $100 | $10.00 | 0c+0% ($0.00) | $0.11 | $90.00 | $9.89 | $0.11 | $0.11 |
+| $100 | $0.10 | 0c+0% ($0.00) | $0.11 | $99.89 | $0.00 | $0.11 | $0.11 |
+
+### Case 3
+- Fee profile is set to `30c + 2.9%`
+- Charge interchange fee is set to `FALSE`
+
+| Transfer Amount | Transfer Fee | Platform Fee Profile (Fixed+BPS) | Interchange Fee | Merchant | Application | Platform | Total |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| $100 | $0.00 | 30c+2.9% ($3.20) | $0.00 | $96.80 | $0.00 | $3.20 | $3.20 |
+| $100 | $0.10 | 30c+2.9% ($3.20) | $0.00 | $96.80 | $0.00 | $3.20 | $3.20 |
+| $100 | $3.20 | 30c+2.9% ($3.20) | $0.00 | $96.80 | $0.00 | $3.20 | $3.20 |
+| $100 | $4.00 | 30c+2.9% ($3.20) | $0.00 | $96.00 | $0.80 | $3.20 | $3.20 |
+| $100 | $99.00 | 30c+2.9% ($3.20) | $0.00 | $1.00 | $95.80 | $3.20 | $3.20 |
+
+### Case 4
+- Fee profile is set to `30c + 2.9%`
+- Charge interchange fee is set to `TRUE`
+
+| Transfer Amount | Transfer Fee | Platform Fee Profile (Fixed+BPS) | Interchange Fee | Merchant | Application | Platform | Total |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| $100 | $0.00 | 30c+2.9% ($3.20) | $0.11 | $96.69 | $0.00 | $3.31 | $3.31 |
+| $100 | $0.10 | 30c+2.9% ($3.20) | $0.11 | $96.69 | $0.00 | $3.31 | $3.31 |
+| $100 | $3.20 | 30c+2.9% ($3.20) | $0.11 | $96.69 | $0.00 | $3.31 | $3.31 |
+| $100 | $4.00 | 30c+2.9% ($3.20) | $0.11 | $96.00 | $0.69 | $3.31 | $3.31 |
+| $100 | $99.00 | 30c+2.9% ($3.20) | $0.11 | $1.00 | $95.69 | $3.31 | $3.31 |
+
+# Guides
+
+## Overview
+
+These guides provide a collection of resources for utilizing the {{api_name}}
+API and its client libraries. We offer a number of client libraries for
+interfacing with the API, and you can view example code snippets for each in
+the dark area to the right.
+
+1. [Authentication](#authentication): Learn how to properly
+authenticate and interface with the API.
+
+2. [Getting Started](#getting-started): A step-by-step guide demonstrating the basic workflow
+of charging a card. This guide will walk you through provisioning merchant
+accounts, tokenizing cards, charging those cards, and finally settling (i.e.
+payout) those funds out to your merchants.
+
+3. [Embedded Tokenization](#embedded-tokenization): This guide
+explains how to properly tokenize cards in production via our embedded iframe.
 
 ## Getting Started
 ### Step 1: Create an Identity for a Merchant
@@ -493,8 +576,7 @@ indicate its ability to process and settle funds:
   * processing_enabled: True
   * settlement_enabled: True
 
-3. `REJECTED`: Merchant was rejected by the processor either because the collected
-information was invalid or it failed one of a number of regulatory and/or
+3. `REJECTED`: Merchant was rejected by the processor either because the information collected was invalid or it failed one of a number of regulatory and/or
 compliance checks (e.g. KYC, OFAC or MATCH)
   * processing_enabled: False
   * settlement_enabled: False
@@ -550,7 +632,7 @@ IdentityForm form = IdentityForm.builder()
                 .build()
         )
         .build())
-    .build();
+      .build();
 
 Maybe<Identity> response = api.identities.post(form);
 
@@ -762,10 +844,10 @@ import io.{{api_name_downcase}}.payments.interfaces.ApiError;
 import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
 AuthorizationCreateForm formCreateAuthorization = AuthorizationCreateForm.builder()
-                .amount(10000L)
-                .merchantIdentity("{{create_merchant_identity_scenario_id}}")
-                .source("{{create_card_scenario_id}}")
-                .build();
+    .amount(10000L)
+    .merchantIdentity("{{create_merchant_identity_scenario_id}}")
+    .source("{{create_card_scenario_id}}")
+    .build();
 
 Maybe<Authorization> response = api.authorizations.post(formCreateAuthorization);
 
@@ -864,10 +946,10 @@ import io.{{api_name_downcase}}.payments.interfaces.ApiError;
 import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 
 AuthorizationUpdateForm form = AuthorizationUpdateForm.builder()
-        .captureAmount(100L)
-        .fee(10L)
-        .statementDescriptor("Order 123")
-        .build();
+    .captureAmount(100L)
+    .fee(10L)
+    .statementDescriptor("Order 123")
+    .build();
 
 Maybe<Authorization> response = api.authorizations.id("{{create_authorization_scenario_id}}").put(form);
 
@@ -968,8 +1050,8 @@ Settlement settlement = identity.createSettlement(
 );
 
 SettlementForm formSettlement = SettlementForm.builder()
-        .currency(Currency.getInstance("USD"))
-        .build();
+    .currency(Currency.getInstance("USD"))
+    .build();
 
 Transfer transfer = api.transfers.id("{{capture_authorization_scenario_id}}").get().view();
 
@@ -1045,596 +1127,6 @@ Field | Type | Description
 ----- | ---- | -----------
 currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
-## Push-to-Card
-### Step 1: Create a Recipient Identity
-```shell
-curl {{staging_base_url}}/identities \
-    -H "Content-Type: application/vnd.json+api" \
-    -u {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_recipient_identity_payouts_scenario_curl_request}}'
-
-
-```
-```java
-import io.{{api_name_downcase}}.payments.forms.*;
-import io.{{api_name_downcase}}.payments.views.*;
-import io.{{api_name_downcase}}.payments.forms.Address;
-import io.{{api_name_downcase}}.payments.interfaces.ApiError;
-import io.{{api_name_downcase}}.payments.interfaces.Maybe;
-import io.{{api_name_downcase}}.payments.forms.Date;
-
-
-IdentityForm form = IdentityForm.builder()
-    .entity(
-    IdentityEntityForm.builder()
-        .firstName("dwayne")
-        .lastName("Sunkhronos")
-        .email("user@example.org")
-        .personalAddress(
-            Address.builder()
-                .line1("741 Douglass St")
-                .line2("Apartment 7")
-                .city("San Mateo")
-                .region("CA")
-                .postalCode("94114")
-                .country("USA")
-                .build()
-        )
-        .build())
-    .build();
-
-Maybe<Identity> response = api.identities.post(form);
-
-if (! response.succeeded()) {
-    ApiError error = response.error();
-    System.out.println(error.getCode());
-    throw new RuntimeException("API error attempting to create Identity");
-}
-
-Identity identity = response.view();
-```
-```php
-<?php
-use {{php_client_resource_name}}\Resources\Identity;
-
-$identity = new Identity({{create_recipient_identity_payouts_scenario_id}});
-$identity = $identity->save();
-
-
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-
-identity = Identity(**{{create_recipient_identity_payouts_scenario_python_request}}).save()
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.new({{create_recipient_identity_payouts_scenario_ruby_request}}).save
-
-
-```
-> Example Response:
-
-```json
-{{create_recipient_identity_payouts_scenario_response}}
-```
-
-Let's start with the first step by creating an `Identity` resource. Each `Identity` represents either a person or a business. We use this resource to associate cards and payouts. This structure makes it simple to manage and reconcile payment instruments and payout history. Accounting of funds is done using the Identity so it's recommended to have an Identity per recipient of funds. Additionally, the Identity resource is optionally used to collect KYC information.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/identities`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-first_name | *string*, **optional** | First name
-last_name | *string*, **optional** | Last name
-email | *string*, **optional** | Email
-phone | *string*, **optional** | Phone number
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-personal_address | *object*, **optional** | Customers shipping address or billing address (Full description of child attributes below)
-
-#### Address-object Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-line1 | *string*, **required** | First line of the address (max 60 characters)
-line2 | *string*, **optional** | Second line of the address (max 60 characters)
-city | *string*, **required** | City (max 20 characters)
-region | *string*, **required** | 2-letter State code
-postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
-country | *string*, **required** | 3-Letter Country code
-
-### Step 2:  Add a Payment Instrument for the Recipient 
-
-```shell
-curl {{staging_base_url}}/payment_instruments \
-    -H "Content-Type: application/vnd.json+api" \
-    -u {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_recipient_card_scenario_curl_request}}'
-
-
-```
-```java
-import io.{{api_name_downcase}}.payments.forms.*;
-import io.{{api_name_downcase}}.payments.views.*;
-import io.{{api_name_downcase}}.payments.forms.Address;
-import io.{{api_name_downcase}}.payments.interfaces.ApiError;
-import io.{{api_name_downcase}}.payments.interfaces.Maybe;
-import com.google.common.collect.ImmutableMap;
-
-PaymentCardForm form = PaymentCardForm.builder()
-        .name("Joe Doe")
-        .number("4957030420210454")
-        .securityCode("112")
-        .expirationYear(2020)
-        .identity("{{fetch_identity_scenario_id}}")
-        .expirationMonth(12)
-        .address(
-                Address.builder()
-                        .city("San Mateo")
-                        .country("USA")
-                        .region("CA")
-                        .line1("123 Fake St")
-                        .line2("#7")
-                        .postalCode("90210")
-                        .build()
-        )
-        .tags(ImmutableMap.of("card_name", "Business Card"))
-        .build();
-
-Maybe<PaymentCard> response = api.instruments.post(form);
-if (! response.succeeded()) {
-    ApiError error = response .error();
-    System.out.println(error.getCode());
-    throw new RuntimeException("API error attempting to create Payment Card");
-}
-PaymentCard card = response.view();
-
-```
-```php
-<?php
-use {{php_client_resource_name}}\Resources\PaymentCard;
-use {{php_client_resource_name}}\Resources\Identity;
-
-$identity = Identity::retrieve('{{create_recipient_identity_payouts_scenario_id}}');
-$card = new PaymentCard({{create_recipient_card_scenario_php_request}});
-$card = $identity->createPaymentCard($card);
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import PaymentCard
-
-card = PaymentCard(**{{create_card_scenario_python_request}}).save()
-
-```
-```ruby
-card = {{ruby_client_resource_name}}::PaymentCard.new({{create_recipient_card_scenario_ruby_request}}).save
-```
-> Example Response:
-
-```json
-{{create_recipient_card_scenario_response}}
-```
-
-<aside class="warning">
-Please note that creating cards directly via the API should only be done for
-testing purposes. You must use the Tokenization iframe or javascript client
-to remain out of PCI scope.
-</aside>
-
-Now that we've created an `Identity` for our recipient, we'll need to tokenize a credit card where funds will be disbursed.
-
-In the API, credit cards are represented by the `Payment Instrument` resource.
-
-To classify the `Payment Instrument` as a credit card you'll need to pass `PAYMENT_CARD` in the type field of your request, and you'll also want to pass the ID of the `Identity` that you created in the last step via the identity field to properly associate it with your recipient.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/payment_instruments`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-identity | *string*, **required** | ID of the `Identity` that the card should be associated
-type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
-number | *string*, **required** | Credit card account number
-security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
-expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
-expiration_year | *integer*, **required** | 4-digit expiration year
-name | *string*, **optional** | Full name of the registered card holder
-address | *object*, **optional** | Billing address (Full description of child attributes below)
-
-
-#### Address-object Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-line1 | *string*, **required** | First line of the address (max 60 characters)
-line2 | *string*, **optional** | Second line of the address (max 60 characters)
-city | *string*, **required** | City (max 20 characters)
-region | *string*, **required** | 2-letter State code
-postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
-country | *string*, **required** | 3-Letter Country code
-
-### Step 3: Verify card is eligible to receive push-to-card disbursements
-
-Now that we've associated a payment instrument to a recipient, we'll need to verify whether or not the card is eligible to receive push-to-card disbursements. How? By making a request to the `Verifications` endpoint. The returned `Verification` resource returns a set of general attributes and details about the card in question (e.g. card type, issuer information). For example, the `inquiry_details` object will contain a `push_funds_block_indicator` attribute that indicates if it is eligible for push-to-card disbursements. Below you'll see a number of fields and the potential responses.
-
-```shell
-curl {{staging_base_url}}/payment_instruments/{{create_recipient_card_scenario_id}}/verifications \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{payment_instrument_verification_scenario_curl_request}}'
-
-```
-```java
-import io.{{api_name_downcase}}.payments.forms.*;
-import io.{{api_name_downcase}}.payments.views.*;
-import io.{{api_name_downcase}}.payments.interfaces.ApiError;
-import io.{{api_name_downcase}}.payments.interfaces.Maybe;
-
-
- VerificationForm verificationForm = VerificationForm.builder()
-    .processor("VISA_V1")
-    .build();
-
-Maybe<Verification> verificationResponse = api.instruments.id("{{create_recipient_card_scenario_id}}").verifications.post(verificationForm);
-if (! verificationResponse.succeeded()) {
-    ApiError error = verificationResponse.error();
-    System.out.println(error.getCode());
-    throw new RuntimeException("API error attempting to create a Verification");
-}
-Verification verification = verificationResponse.view();
-
-```
-```php
-<?php
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import PaymentInstrument
-from {{python_client_resource_name}}.resources import Verification
-
-
-payment_card = PaymentInstrument.get(id="{{create_card_scenario_id}}")
-
-verify = payment_card.verify_on(Verification(**{{payment_instrument_verification_scenario_python_request}}))
-
-```
-```ruby
-
-```
-> Example Response:
-
-```json
-{{payment_instrument_verification_scenario_response}}
-```
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID/verifications`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-processor | *string*, **required** | The name of the processor, which needs to be: `VISA_V1`
-
-#### Address Verification Results (address_verification_results)
-Letter | Description
------- | -------------------------------------------------------------------
-D, F, M | Address verified
-A, B, C, G, I, N, P, R, S, U, W | Address not verified
-
-#### Card Verification 2 Results (cvv2_result_code)
-Letter | Description
------- | -------------------------------------------------------------------
-M | CVV  verified
-N, P, S | CVV not verified
-U | Issuer does not participate in CVV2 service
-
-#### Card Type (card_type_code)
-
-This one-character code indicates whether the account is credit, debit, prepaid, deferred debit, or charge.
-
-Letter | Description
------- | -------------------------------------------------------------------
-C | Credit  
-D | Debit  
-H | Charge Card    
-P | Prepaid  
-R | Deferred Debit  
-
-#### Fasts Funds Indicator (fast_funds_indicator)
-
-Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 days.
-
-Letter | Description
------- | -------------------------------------------------------------------
-B, D | Fast Funds eligible
-N | Not eligible for Fast Funds
-
-#### Push Funds Indicator (push_funds_block_indicator)
-
-This code indicates if the associated card can receive push-to-card disbursements.
-
-Letter | Description
------- | -------------------------------------------------------------------
-A, B, C | Accepts push-to-card payments
-N | Does not accept push-to-card payments
-
-#### Online Gambling Block Indicator (online_gambing_block_indicator)
-
-Indicates if the card can receive push-payments for online gambling payouts.
-
-Letter | Description
------- | -------------------------------------------------------------------
-Y | Blocked for online gambling payouts
-N | Not blocked for online gambling payouts
-
-#### Card Product ID (card_product_id)
-
-A combination of card brand, platform, class and scheme.
-
-Letter | Description
------- | -------------------------------------------------------------------
-A | Visa Traditional
-AX | American Express
-B | Visa Traditional Rewards
-C | Visa Signature
-D | Visa Signature Preferred
-DI | Discover
-DN | Diners
-E | Proprietary ATM
-F | Visa Classic
-G | Visa Business
-G1 | Visa Signature Business
-G2 | Visa Business Check Card
-G3 | Visa Business Enhanced
-G4 | Visa Infinite Business
-G5 | Visa Business Rewards
-I | Visa Infinite
-I1 | Visa Infinite Privilege
-I2 | Visa UHNW
-J3 | Visa Healthcare
-JC | JCB
-K | Visa Corporate T&E
-K1 | Visa Government Corporate T&E
-L | Visa Electron
-M | MasterCard
-N | Visa Platinum
-N1 | Visa Rewards
-N2 | Visa Select
-P | Visa Gold
-Q | Private Label
-Q1 | Private Label Prepaid
-Q2 | Private Label Basic
-Q3 | Private Label Standard
-Q4 | Private Label Enhanced
-Q5 | Private Label Specialized
-Q6 | Private Label Premium
-R | Proprietary
-S | Visa Purchasing
-S1 | Visa Purchasing with Fleet
-S2 | Visa Government Purchasing
-S3 | Visa Government Purchasing with Fleet
-S4 | Visa Commercial Agriculture
-S5 | Visa Commercial Transport
-S6 | Visa Commercial Marketplace
-U | Visa Travel Money
-V | Visa V PAY
-
-#### Product Sub-Type (card_product_subtype)
-
-Description of product subtype.
-
-Letter | Description
------- | -------------------------------------------------------------------
-AC | Agriculture Maintenance Account
-AE | Agriculture Debit Account/Electron
-AG | Agriculture
-AI | Agriculture Investment Loan
-CG | Brazil Cargo
-CS | Construction
-DS | Distribution
-HC | Healthcare
-LP | Visa Large Purchase Advantage
-MA | Visa Mobile Agent
-MB | Interoperable Mobile Branchless Banking
-MG | Visa Mobile General
-VA | Visa Vale - Supermarket
-VF | Visa Vale - Fuel
-VR | Visa Vale - Restaurant
-
-#### Card Sub-Type (card_subtype_code)
-
-The code for account funding source subtype, such as reloadable and non-reloadable.
-
-Letter | Description
------- | -------------------------------------------------------------------
-N | Non-Reloadable
-R | Reloadable
-
-### Step 4: Provision Recipient Account
-
-```shell
-curl {{staging_base_url}}/identities/{{create_recipient_identity_payouts_scenario_id}}/merchants \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{provision_push_merchant_scenario_curl_request}}'
-
-
-```
-```java
-import io.{{api_name_downcase}}.payments.forms.*;
-import io.{{api_name_downcase}}.payments.views.*;
-import io.{{api_name_downcase}}.payments.interfaces.ApiError;
-import io.{{api_name_downcase}}.payments.interfaces.Maybe;
-import com.google.common.collect.ImmutableMap;
-
-Maybe<Identity> response = api.identities.id("{{create_recipient_identity_payouts_scenario_id}}").get();
-if (! response.succeeded()) {
-    ApiError error = response.error();
-    System.out.println(error.getCode());
-    throw new RuntimeException("API error attempting to fetch Identity");
-}
-Identity identity = response.view();
-
-MerchantUnderwritingForm form = MerchantUnderwritingForm.builder()
-    .tags(ImmutableMap.of("key", "value"))
-    .build();
-
-Maybe<Merchant> merchantResponse = api.identities.id(identity.id).merchants.post(form);
-
-if (! merchantResponse.succeeded()) {
-            ApiError error = merchantResponse.error();
-            System.out.println(error.getCode());
-            throw new RuntimeException("API error attempting to provision Merchant");
-        }
-Merchant merchant = merchantResponse.view();
-```
-```php
-<?php
-use {{php_client_resource_name}}\Resources\Identity;
-use {{php_client_resource_name}}\Resources\Merchant;
-
-$identity = Identity::retrieve('{{create_recipient_identity_payouts_scenario_id}}');
-
-$merchant = $identity->provisionMerchantOn(new Merchant());
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Identity
-from {{python_client_resource_name}}.resources import Merchant
-
-identity = Identity.get(id="{{create_recipient_card_scenario_id}}")
-merchant = identity.provision_merchant_on(Merchant())
-
-```
-```ruby
-identity = {{ruby_client_resource_name}}::Identity.retrieve(:id=>"{{create_recipient_identity_payouts_scenario_id}}")
-
-merchant = identity.provision_merchant
-```
-> Example Response:
-
-```json
-{{provision_push_merchant_scenario_response}}
-```
-
-Now that we've associated a Payment Instrument with our recipient's `Identity` we're ready to provision a Recipient account. This is the last step before you can begin paying out an Identity. Luckily you've already done most of the heavy lifting. Just make one final POST request, and you'll be returned a `Merchant` resource.
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/identities/identityID/merchants`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-processor| *string*, **optional** | Name of Processor
-
-
-### Step 5: Send Payout
-
-```shell
-curl {{staging_base_url}}/transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{create_recipient_push_to_card_transfer_curl_request}}'
-
-```
-```java
-import io.{{api_name_downcase}}.payments.forms.*;
-import io.{{api_name_downcase}}.payments.views.*;
-import io.{{api_name_downcase}}.payments.interfaces.ApiError;
-import io.{{api_name_downcase}}.payments.interfaces.Maybe;
-import com.google.common.collect.ImmutableMap;
-import java.util.Currency;
-
-TransferForm form = TransferForm.builder()
-        .amount(100L)
-        .currency(Currency.getInstance("USD"))
-        .idempotencyId("Idsfk23jnasdfkjf")
-        .destination("{{create_recipient_card_scenario_id}}")
-        .tags(ImmutableMap.of("order_number", "21DFASJSAKAS"))
-.build();
-
-Maybe<Transfer> response = api.transfers.post(form);
-if (! response.succeeded()) {
-    ApiError error = response.error();
-    System.out.println(error.getCode());
-    throw new RuntimeException("API error attempting to create Transfer");
-}
-Transfer transfer = response.view();
-```
-```php
-<?php
-use {{php_client_resource_name}}\Resources\Transfer;
-
-$transfer = new Transfer({{create_recipient_push_to_card_transfer_php_request}});
-$transfer = $transfer->save();
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import Transfer
-
-payout = Transfer(**{{create_recipient_card_scenario_python_request}}).save()
-
-```
-```ruby
-transfer = {{ruby_client_resource_name}}::Transfer.new({{create_recipient_push_to_card_transfer_ruby_request}}).save
-```
-> Example Response:
-
-```json
-{{create_recipient_push_to_card_transfer_response}}
-```
-
-
-Now the final step - time to payout the recipient!
-
-Next you'll need to create a `Transfer`.  What's a `Transfer`? Glad you asked! A `Transfer` represents any flow of funds either to or from a Payment Instrument. In this case a Payout to a card.
-
-To create a `Transfer` we'll simply supply the Payment Instrument ID of the previously tokenized card as the destination field. Also, be sure to note that the amount field is in cents.
-
-Simple enough, right? You'll also want to store the ID from that `Transfer` for your records. `Transfers` can have two possible states SUCCEEDED and FAILED.
-
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/transfers`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-destination | *string*, **required** | ID of the `Payment Instrument` where funds will be sent
-amount | *integer*, **required** | The total amount that will be charged in cents (e.g. 100 cents to charge $1.00)
-currency | *string*, **required** | 3-letter ISO code designating the currency of the `Transfers` (e.g. USD)
-statement_descriptor | *string*, **required** | Description that will show up on card statement 
-tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
-
 
 ## Embedded Tokenization
 
@@ -1731,7 +1223,7 @@ import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 TokenAssociationForm tokenForm =  TokenAssociationForm.builder()
     .token("{{create_token_scenario_id}}")
     .identity("{{update_identity_scenario_id}}")
-.build();
+    .build();
 
 Maybe<PaymentCard> cardResponse = api.instruments.post(tokenForm);
 if (! cardResponse.succeeded()) {
@@ -2001,7 +1493,7 @@ import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 TokenAssociationForm tokenForm =  TokenAssociationForm.builder()
     .token("{{create_token_scenario_id}}")
     .identity("{{update_identity_scenario_id}}")
-.build();
+    .build();
 
 Maybe<PaymentCard> cardResponse = api.instruments.post(tokenForm);
 if (! cardResponse.succeeded()) {
@@ -2061,27 +1553,6 @@ type | *string*, **required** | Must pass TOKEN as the value
 identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
 
 
-## Testing for specific responses and errors
-
-Before taking your integration to production, use the information below to test it thoroughly.
-
-Amount| Description
------ | -----------
-`100` | Success amount
-`102` | Failed amount
-`103` | Canceled amount
-`104` | Exception amount
-`888888` | Disputed amount
-`193` | Insufficient funds amount
-`194` | Invalid card number amount
-`889986` | AVS total failure amount 
-`889987` | CVC failure amount
-`889988` | Risk amount canceled amount
-
-Card| Description
------ | -----------
- `4000000000000036` | Payment card AVS total failure
- `4000000000000127` | Payment card CVC failure 
 # Admin Guides
 
 ## Overview
@@ -2384,6 +1855,13 @@ Parameter | Description
 --------- | -------------------------------------------------------------------
 :APPLICATION_ID | ID of the `Application`
 
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+canDebitBankAccount | *boolean*, **optional** | Allows a payment instrument of type `BANK_ACCOUNT` which is associated with the processor to be debited (i.e. eCheck)
+
 ### Step 4: Enable Processing Functionality
 ```shell
 curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/ \
@@ -2489,6 +1967,310 @@ Parameter | Description
 Field | Type | Description
 ----- | ---- | -----------
 settlement_enabled | *boolean*, **required** | True to enable
+## Tokenization.js
+
+To ensure that you remain PCI compliant, please use tokenization.js to tokenize cards and bank accounts. Tokenization.js ensures sensitive card data never touches your servers and keeps you out of PCI scope by sending this info over SSL directly to {{api_name}}.
+
+For a complete example of how to use tokenization.js please refer to this [jsFiddle example]({{jsfiddle}}).
+
+<aside class="warning">
+Creating payment instruments directly via the API should only be done for testing purposes.
+</aside>
+
+<aside class="notice">
+Note you must still use SSL on your servers for any actions related to financial transactions via the {{api_name}} API.
+</aside>
+
+
+### Step 1: Create a form
+
+```html
+<!--This is an example for for Cards-->
+<form role="form" class="form-horizontal">
+  <div class="form-group">
+    <label class="col-lg-5 control-label">Card Number</label>
+    <div class="col-lg-5">
+      <input type="text" id="cc-number" class="form-control" autocomplete="off" placeholder="4111111111111111" maxlength="16" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-5 control-label">Expiration</label>
+    <div class="col-lg-2">
+      <input type="text" id="cc-ex-month" class="form-control" autocomplete="off" placeholder="01" maxlength="2" />
+    </div>
+    <div class="col-lg-2">
+      <input type="text" id="cc-ex-year" class="form-control" autocomplete="off" placeholder="2013" maxlength="4" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-5 control-label">Security Code (CVV)</label>
+    <div class="col-lg-2">
+      <input type="text" id="cc-cvv" class="form-control" autocomplete="off" placeholder="453" maxlength="4" />
+    </div>
+  </div>
+  <a id="cc-submit" class="btn btn-large btn-primary pull-right">Tokenize</a>
+</form>
+
+<!--This is an example for for Bank Accounts-->
+<form role="form" class="form-horizontal">
+  <div class="form-group">
+    <label class="col-lg-5 control-label">Account Holder's Name</label>
+    <div class="col-lg-6">
+      <input type="text" id="ba-name" class="form-control" autocomplete="off" placeholder="John Doe" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-5 control-label">Routing Number</label>
+    <div class="col-lg-6">
+      <input type="text" id="ba-routing" class="form-control" autocomplete="off" placeholder="322271627" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-5 control-label">Account Number</label>
+    <div class="col-lg-6">
+      <input type="text" id="ba-number" class="form-control" autocomplete="off" placeholder="8887776665555" />
+    </div>
+  </div>
+  <a id="ba-submit" class="btn btn-large btn-primary pull-right">Tokenize</a>
+</form>
+```
+
+Before collecting the sensitive payment information, we will need to construct
+an HTML form for users to input their data.
+
+We have provided a simple example to the right for capturing Payment Instrument
+data.
+
+
+### Step 2: Include library
+
+To use tokenization.js you will first need to include the library on the webpage
+where you're hosting your form. Please include the script tag as demonstrated
+to the right.
+
+<aside class="notice">
+Please refrain from hosting the tokenization.js library locally as doing so prevents important updates.
+</aside>
+
+
+```html
+<script type="text/javascript" src="https://js.verygoodproxy.com/tokenization.1-latest.js"></script>
+```
+
+
+### Step 3: Configure and initialize
+
+```javascript
+var initTokenization = function() {
+  Tokenization.init({
+    server: "{{staging_base_url}}",
+    applicationId: "{{create_app_scenario_id}}",
+    hosted_fields: {
+      card: {
+        number: {
+          selector: "#cc-number"
+        },
+        expiration_month: {
+          selector: "#cc-ex-month"
+        },
+        expiration_year: {
+          selector: "#cc-ex-year"
+        },
+        security_code: {
+          selector: "#cc-cvv"
+        }
+      },
+
+      bankAccount: {
+        account_type: "SAVINGS",
+        account_number: {
+          selector: "#ba-number"
+        },
+        bank_code: {
+          selector: "#ba-routing"
+        },
+        full_name: {
+          selector: "#ba-name"
+        }
+      }
+    }
+  });
+};
+```
+
+
+
+Now we need to configure the client so that it `POSTs` to the correct endpoint and
+associates the `Payment Instrument` to your application. We'll also use the JQuery
+selector method to capture the form data during the initialization.
+
+#### Initialization Fields
+Field | Type | Description
+----- | ---- | -----------
+server | *string*, **required** |  The base url for the {{api_name}} API
+applicationId | *string*, **required** | The ID for your `Application`
+hosted_fields | *object*, **required** | An object containing the `Payment Instrument`information collected from your form
+
+#### hosted_fields object for card
+Field | Type | Description
+----- | ---- | -----------
+number | *string*, **required** | Credit card account number
+security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
+expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
+expiration_year | *integer*, **required** | Expiration year
+
+#### hosted_fields object for bankAccount
+Field | Type | Description
+----- | ---- | -----------
+name | *string*, **required** | Account owner's full name (max 40 characters)
+account_number | *string*, **required** | Bank account number
+bank_code | *string*, **required** | Bank routing number
+account_type | *string*, **required** | Either CHECKING or SAVINGS
+
+### Step 4: Submit payload and handle response
+
+```javascript
+// Register "Click" event for the Card form
+$('#cc-submit').click(function(e) {
+    e.preventDefault();
+
+    // Initialize the client to capture form data
+    initTokenization();
+
+    // Tokenization.card.create to submit the payload and include a callback to capture the response
+    Tokenization.card.create({
+
+      // callback for handling response
+      callback: function(errorThrown, response) {
+
+      }
+    });
+});
+
+// Register "Click" event for the Bank Account form
+$('#ba-submit').click(function(e) {
+    e.preventDefault();
+
+    // Initialize the client to capture form data
+    initTokenization();
+
+    // Tokenization.bankAccount.create to submit the payload and include a callback to capture the response
+    Tokenization.bankAccount.create({
+
+      // callback for handling response
+      callback: function(errorThrown, response) {
+
+      }
+    });
+});
+```
+
+> Example Response:
+
+```json
+{{create_token_scenario_response}}
+```
+
+Finally we will need to register a click event that fires when our users submit the form and define a callback for handling the tokenization.js response.
+
+### Step 5: Send token to your back-end server for storing
+
+```javascript
+callback: function(errorThrown, response) {
+    // POST to your back-end server
+    jQuery.post("PATH TO YOUR BACK END", {
+        uri: response.id
+        }, function(r) {
+            // Inspect HTTP response
+            if (r.status === 201) {
+                // Logic if successful response
+            } else {
+                // Logic if failed response
+            }
+    });
+}
+
+```
+Great! Now that you have created a token you will want to store that ID to utilize the token in the future. To do this you will need to send the ID from your front-end client to your back-end server, which you'll do by expanding on the callback that you created in the previous step.
+
+
+### Step 6: Associate to an Identity
+```shell
+curl {{staging_base_url}}/payment_instruments \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{associate_token_scenario_curl_request}}'
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+
+TokenAssociationForm tokenForm =  TokenAssociationForm.builder()
+    .token("{{create_token_scenario_id}}")
+    .identity("{{update_identity_scenario_id}}")
+    .build();
+
+Maybe<PaymentCard> cardResponse = api.instruments.post(tokenForm);
+if (! cardResponse.succeeded()) {
+    ApiError error = cardResponse.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to create Payment Card");
+}
+PaymentCard paymentCard = cardResponse.view();
+
+```
+```php
+<?php
+use {{php_client_resource_name}}\Resources\PaymentInstrument;
+
+$card = new PaymentInstrument({{associate_token_scenario_php_request}});
+$card = $card->save();
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import PaymentInstrument
+
+payment_instrument = PaymentInstrument(**{{associate_token_scenario_python_request}}).save()
+
+```
+```ruby
+card = {{ruby_client_resource_name}}::PaymentInstrument.new({{associate_token_scenario_ruby_request}}).save
+```
+> Example Response:
+
+```json
+{{associate_token_scenario_response}}
+```
+
+Before you can use the newly tokenized card or bank account you will need to
+associate it with an `Identity`. To do this you must make an authenticated
+`POST` request to the `/payment_instruments` endpoint with the relevant token
+and `Identity` information.
+
+<aside class="warning">
+Tokens should be associated right away. Tokens not associated within 30 mins
+of creation will be invalidated. 
+</aside>
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/payment_instruments`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+token | *string*, **required** | ID for the `Token` that was returned via the tokenization client
+type | *string*, **required** | Must pass TOKEN as the value
+identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
+
+
 # Applications
 
 An `Application` resource represents a web application (e.g. marketplace, ISV,
@@ -2537,54 +2319,6 @@ application = Application.get(id="{{fetch_application_scenario_id}}")
 Parameter | Description
 --------- | -------------------------------------------------------------------
 :APPLICATION_ID | ID of the `Application`
-
-## Create an Application User
-```shell
-curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/users \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{}'
-
-```
-```java
-
-```
-```php
-<?php
-
-```
-```python
-
-
-
-```
-```ruby
-
-```
-> Example Response:
-
-```json
-{{create_user_partner_role_scenario_response}}
-```
-
-This is the equivalent of provisioning API keys (i.e. credentials) for an `Application`.
-
-<aside class="notice">
-Each Application can have multiple Users which allows each merchant to have multiple
-API keys that can be independently enabled and disabled. Merchants only have read
-access to the API.
-</aside>
-
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/applications/:APPLICATION_ID/users`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:APPLICATION_ID | ID of the `Application` you would like to create keys for
 
 ## Create an Application
 ```shell
@@ -2796,6 +2530,54 @@ Parameter | Description
 Field | Type | Description
 ----- | ---- | -----------
 settlement_enabled | *boolean*, **required** | False to disable
+## Create an Application User
+```shell
+curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/users \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{create_user_partner_role_scenario_response}}
+```
+
+This is the equivalent of provisioning API keys (i.e. credentials) for an `Application`.
+
+<aside class="notice">
+Each Application can have multiple Users which allows each merchant to have multiple
+API keys that can be independently enabled and disabled. Merchants only have read
+access to the API.
+</aside>
+
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/applications/:APPLICATION_ID/users`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:APPLICATION_ID | ID of the `Application` you would like to create keys for
+
 ## [ADMIN] Enable the Dummy Processor (i.e. Sandbox)
 ```shell
 curl {{staging_base_url}}/applications/{{create_app_scenario_id}}/processors \
@@ -2848,6 +2630,13 @@ the example to the right.
 Parameter | Description
 --------- | -------------------------------------------------------------------
 :APPLICATION_ID | ID of the `Application`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+canDebitBankAccount | *boolean*, **optional** | Allows a payment instrument of type `BANK_ACCOUNT` which is associated with the processor to be debited (i.e. eCheck)
 
 ## [ADMIN] List all Applications
 ```shell
@@ -2953,6 +2742,8 @@ authorization = {{ruby_client_resource_name}}::Authorization.new({{create_author
  has succeeded, it must be captured before the `expires_at` or the funds will
  be released.
 
+Learn how to prevent duplicate authorizations by passing an [idempotency ID](#idempotency-requests) in the payload.
+
 <aside class="warning">
 Authorizations on debit cards actually place a hold on funds in the cardholder's
 bank account and may lead to lower than expected balances and/or insufficient
@@ -2978,6 +2769,8 @@ merchant_identity | *string*, **required** | The ID of the `Identity` for the me
 amount | *integer*, **required** | The amount of the authorization in cents
 currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org/wiki/ISO_4217) designating the currency (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+idempotency_id | *string*, **optional** | A randomly generated value that you want associated with the request
+
 ## Capture an Authorization
 ```shell
 curl {{staging_base_url}}/authorizations/{{fetch_authorization_scenario_id}} \
@@ -3015,7 +2808,10 @@ Authorization capturedAuth = responseAuthorization.view();
 use {{php_client_resource_name}}\Resources\Authorization;
 
 $authorization = Authorization::retrieve('{{fetch_authorization_scenario_id}}');
-$authorization = $authorization->capture(50, 10);
+$authorization = $authorization->capture([
+                    "capture_amount"=> 50,
+                    "fee"=> 10
+                ]);
 
 ```
 ```python
@@ -3631,6 +3427,11 @@ Identity updatedIdentity = response.view();
 ```python
 
 
+from {{python_client_resource_name}}.resources import Identity
+
+identity = Identity.get(id="{{fetch_identity_scenario_id}}")
+identity.entity["first_name"] = "Bernard"
+identity.save()
 
 ```
 ```ruby
@@ -3868,8 +3669,8 @@ previously created Identity before attempting to provision a Merchant account.
   * processing_enabled: True
   * settlement_enabled: True
 
-3. `REJECTED`: Merchant was rejected by the processor either because the collected
-information was invalid or it failed one of a number of regulatory and/or
+3. `REJECTED`: Merchant was rejected by the processor either because the
+information collected was invalid or it failed one of a number of regulatory and/or
 compliance checks (e.g. KYC, OFAC or MATCH)
   * processing_enabled: False
   * settlement_enabled: False
@@ -3973,6 +3774,11 @@ $verification = $merchant->verifyOn($verification);
 ```python
 
 
+from {{python_client_resource_name}}.resources import Merchant
+merchant = Merchant.get(id="{{fetch_merchant_scenario_id}}")
+
+merchant.entity["first_name"] = "Michael"
+merchant.save()
 
 ```
 ```ruby
@@ -4028,9 +3834,9 @@ $verification = $merchant->verifyOn($verification);
 from {{python_client_resource_name}}.resources import Merchant
 from {{python_client_resource_name}}.resources import Verification
 
-merchant = Merchant.get(id="{fetch_merchant_scenario_id}")
+merchant = Merchant.get(id="{{fetch_merchant_scenario_id}}")
 
-reattempt_merchant_provision = merchant.verify_on(Verification())
+verification = merchant.verify_on(Verification())
 
 ```
 ```ruby
@@ -4231,12 +4037,8 @@ $verifications = Verification::getPagination($merchant->getHref("verifications")
 
 
 from {{python_client_resource_name}}.resources import Merchant
-
-merchant_identity = Merchant.get(id="{{fetch_merchant_scenario_id}}")
-
-provision_merchant = merchant_identity.provision_merchant_on(Merchant())
-
-list_all_merchant_verifications = provision_merchant.verifications
+merchant = Merchant.get(id="{{fetch_merchant_scenario_id}}")
+verifications = merchant.verifications
 
 ```
 ```ruby
@@ -4261,9 +4063,6 @@ Parameter | Description
 --------- | -------------------------------------------------------------------
 :MERCHANT_ID | ID of the `Merchant`
 
-
-
-
 ## [ADMIN] List Merchant Verifications
 ```shell
 curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications \
@@ -4283,11 +4082,9 @@ curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}}/verifications
 
 from {{python_client_resource_name}}.resources import Merchant
 
-merchant_identity = Merchant.get(id="{{fetch_merchant_scenario_id}}")
+merchant = Merchant.get(id="{{fetch_merchant_scenario_id}}")
 
-provision_merchant = merchant_identity.provision_merchant_on(Merchant())
-
-list_all_merchant_verifications = provision_merchant.verifications
+verifications = merchant.verifications
 
 ```
 ```ruby
@@ -4417,7 +4214,7 @@ import io.{{api_name_downcase}}.payments.interfaces.Maybe;
 TokenAssociationForm tokenForm =  TokenAssociationForm.builder()
     .token("{{create_token_scenario_id}}")
     .identity("{{update_identity_scenario_id}}")
-.build();
+    .build();
 
 Maybe<PaymentCard> cardResponse = api.instruments.post(tokenForm);
 if (! cardResponse.succeeded()) {
@@ -4763,7 +4560,7 @@ $card = PaymentInstrument::retrieve('{{fetch_credit_card_scenario_id}}');
 
 
 from {{python_client_resource_name}}.resources import PaymentInstrument
-credit_card = PaymentInstrument.get(id="{{fetch_credit_card_scenario_id}")
+credit_card = PaymentInstrument.get(id="{{fetch_credit_card_scenario_id}}")
 
 ```
 ```ruby
@@ -4790,7 +4587,13 @@ Parameter | Description
 --------- | -------------------------------------------------------------------
 :PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
 
-## Check for Card Updates
+## Check for Card Updates (Account Updater)
+
+{{api_name}} works with card networks so that your costumers can continue, without interruption, using your service even if their card has changed due to it being closed, lost, or stolen. When a successful account update record is located, the `Payment Instrument` will be automatically updated with the new primary account number or new expiration date.
+
+<aside class="warning">
+Please note that only Visa, MasterCard, and Discover cards are compatible with this feature. Also, this feature does not support changes to a card's address.
+</aside>
 
 ```shell
 curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}}/updates \
@@ -4812,7 +4615,7 @@ curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}}/
 from {{python_client_resource_name}}.resources import PaymentCard
 
 card = PaymentCard(**{{create_card_scenario_python_request}}).save()
-check_for_updates = card.update("{{fetch_merchant_scenario_id}}")
+update = card.update("{{fetch_merchant_scenario_id}}")
 
 ```
 ```ruby
@@ -4824,6 +4627,41 @@ check_for_updates = card.update("{{fetch_merchant_scenario_id}}")
 {{check_card_updater_scenario_response}}
 ```
 
+#### Immediate Response
+
+When first making a Post request to the `updates` endpoint, the state field will either be pending or failed.
+
+1. `PENDING`: The initial Account Update request has been approved by the card networks and is awaiting review.
+
+2. `FAILED`: Request rejected due to one of the following reasons:
+  * Invalid credit card number
+  * Invalid expiration date
+
+
+#### Subsequent Response
+
+
+Once {{api_name}} receives a response from the card network, the state of the `Update` resource will return either `SUCCEEDED` or `FAILED`. Each `Update` will also provide a message that details the reason for the outcome. If either an account number or expiration date was found, {{api_name}} will automatically update the
+associated `Payment Instrument` resource with the new details and the card will be
+ready for use.
+
+
+<aside class="warning">
+This process can take up to five days. {{api_name}} suggests utilizing webhooks
+to listen for the response.
+</aside>
+
+1. `SUCCEEDED` Messages:
+  * No changes found
+  * The account number was changed
+  * The expiration date was changed
+
+2. `FAILED` Messages:
+  * No match found
+  * Invalid payment type (often due to unsupported card brands, e.g. Amex)
+  * The issuing bank does not participate in the update program
+  * The account was closed
+
 #### HTTP Request
 
 `POST {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID/updates/`
@@ -4833,11 +4671,8 @@ check_for_updates = card.update("{{fetch_merchant_scenario_id}}")
 
 Field | Type | Description
 ----- | ---- | -----------
-:MERCHANT_ID | *string*, **required** | ID of the `Merchant` 
+:MERCHANT_ID | *string*, **required** | ID of the `Merchant`
 :PAYMENT_INSTRUMENT_ID | *string*, **required** | ID of the `Payment Instrument`
-
-
-
 
 ## List all Payment Instruments
 
@@ -4893,211 +4728,6 @@ payment_instruments = {{ruby_client_resource_name}}::PaymentInstruments.retrieve
 #### HTTP Request
 
 `GET {{staging_base_url}}/payment_instruments`
-
-## Payment Instrument Verification
-
-```shell
-curl {{staging_base_url}}/payment_instruments/{{fetch_credit_card_scenario_id}}/verifications \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{payment_instrument_verification_scenario_curl_request}}'
-
-```
-```java
-import io.{{api_name_downcase}}.payments.forms.*;
-import io.{{api_name_downcase}}.payments.views.*;
-import io.{{api_name_downcase}}.payments.interfaces.ApiError;
-import io.{{api_name_downcase}}.payments.interfaces.Maybe;
-
-
- VerificationForm verificationForm = VerificationForm.builder()
-    .processor("VISA_V1")
-    .build();
-
-Maybe<Verification> verificationResponse = api.instruments.id("{{create_recipient_card_scenario_id}}").verifications.post(verificationForm);
-if (! verificationResponse.succeeded()) {
-    ApiError error = verificationResponse.error();
-    System.out.println(error.getCode());
-    throw new RuntimeException("API error attempting to create a Verification");
-}
-Verification verification = verificationResponse.view();
-
-```
-```php
-<?php
-
-```
-```python
-
-
-from {{python_client_resource_name}}.resources import PaymentInstrument
-from {{python_client_resource_name}}.resources import Verification
-
-
-payment_card = PaymentInstrument.get(id="{{create_card_scenario_id}}")
-
-verify = payment_card.verify_on(Verification(**{{payment_instrument_verification_scenario_python_request}}))
-
-```
-```ruby
-
-```
-> Example Response:
-
-```json
-{{payment_instrument_verification_scenario_response}}
-```
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID/verifications`
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
-
-#### Request Arguments
-
-Field | Type | Description
------ | ---- | -----------
-processor | *string*, **required** | The name of the processor, which needs to be: `VISA_V1`
-
-#### Address Verification Results (address_verification_results)
-Letter | Description
------- | -------------------------------------------------------------------
-D, F, M | Address verified
-A, B, C, G, I, N, P, R, S, U, W | Address not verified
-
-#### Card Verification 2 Results (cvv2_result_code)
-Letter | Description
------- | -------------------------------------------------------------------
-M | CVV  verified
-N, P, S | CVV not verified
-U | Issuer does not participate in CVV2 service
-
-#### Card Type (card_type_code)
-
-This one-character code indicates whether the account is credit, debit, prepaid, deferred debit, or charge.
-
-Letter | Description
------- | -------------------------------------------------------------------
-C | Credit  
-D | Debit  
-H | Charge Card    
-P | Prepaid  
-R | Deferred Debit  
-
-#### Fasts Funds Indicator (fast_funds_indicator)
-
-Indicates whether or not the card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 days.
-
-Letter | Description
------- | -------------------------------------------------------------------
-B, D | Fast Funds eligible
-N | Not eligible for Fast Funds
-
-#### Push Funds Indicator (push_funds_block_indicator)
-
-This code indicates if the associated card can receive push-to-card disbursements.
-
-Letter | Description
------- | -------------------------------------------------------------------
-A, B, C | Accepts push-to-card payments
-N | Does not accept push-to-card payments
-
-#### Online Gambling Block Indicator (online_gambing_block_indicator)
-
-Indicates if the card can receive push-payments for online gambling payouts.
-
-Letter | Description
------- | -------------------------------------------------------------------
-Y | Blocked for online gambling payouts
-N | Not blocked for online gambling payouts
-
-#### Card Product ID (card_product_id)
-
-A combination of card brand, platform, class and scheme.
-
-Letter | Description
------- | -------------------------------------------------------------------
-A | Visa Traditional
-AX | American Express
-B | Visa Traditional Rewards
-C | Visa Signature
-D | Visa Signature Preferred
-DI | Discover
-DN | Diners
-E | Proprietary ATM
-F | Visa Classic
-G | Visa Business
-G1 | Visa Signature Business
-G2 | Visa Business Check Card
-G3 | Visa Business Enhanced
-G4 | Visa Infinite Business
-G5 | Visa Business Rewards
-I | Visa Infinite
-I1 | Visa Infinite Privilege
-I2 | Visa UHNW
-J3 | Visa Healthcare
-JC | JCB
-K | Visa Corporate T&E
-K1 | Visa Government Corporate T&E
-L | Visa Electron
-M | MasterCard
-N | Visa Platinum
-N1 | Visa Rewards
-N2 | Visa Select
-P | Visa Gold
-Q | Private Label
-Q1 | Private Label Prepaid
-Q2 | Private Label Basic
-Q3 | Private Label Standard
-Q4 | Private Label Enhanced
-Q5 | Private Label Specialized
-Q6 | Private Label Premium
-R | Proprietary
-S | Visa Purchasing
-S1 | Visa Purchasing with Fleet
-S2 | Visa Government Purchasing
-S3 | Visa Government Purchasing with Fleet
-S4 | Visa Commercial Agriculture
-S5 | Visa Commercial Transport
-S6 | Visa Commercial Marketplace
-U | Visa Travel Money
-V | Visa V PAY
-
-#### Product Sub-Type (card_product_subtype)
-
-Description of product subtype.
-
-Letter | Description
------- | -------------------------------------------------------------------
-AC | Agriculture Maintenance Account
-AE | Agriculture Debit Account/Electron
-AG | Agriculture
-AI | Agriculture Investment Loan
-CG | Brazil Cargo
-CS | Construction
-DS | Distribution
-HC | Healthcare
-LP | Visa Large Purchase Advantage
-MA | Visa Mobile Agent
-MB | Interoperable Mobile Branchless Banking
-MG | Visa Mobile General
-VA | Visa Vale - Supermarket
-VF | Visa Vale - Fuel
-VR | Visa Vale - Restaurant
-
-#### Card Sub-Type (card_subtype_code)
-
-The code for account funding source subtype, such as reloadable and non-reloadable.
-
-Letter | Description
------- | -------------------------------------------------------------------
-N | Non-Reloadable
-R | Reloadable
 
 # Settlements
 
@@ -5203,7 +4833,7 @@ Field | Type | Description
 currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
-## Fetch a Settlement
+## Fetch a Batch Settlement
 
 ```shell
 
@@ -5242,7 +4872,7 @@ $settlement = Settlement::retrieve('{{fetch_settlement_scenario_id}}');
 
 
 from {{python_client_resource_name}}.resources import Settlements
-settlement = Settlements.get(id="{{fetch_settlement_scenario_id}")
+settlement = Settlements.get(id="{{fetch_settlement_scenario_id}}")
 
 ```
 ```ruby
@@ -5269,7 +4899,106 @@ Parameter | Description
 :SETTLEMENT_ID | ID of the `Settlement`
 
 
-## List all Settlements
+## Remove Transfer(s) from a Batch Settlements
+
+```shell
+
+curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}}/transfers \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{remove_transfer_scenario_curl_request}}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+Do you have a transfer in a batch settlement that you think may be a fraudulent transaction? So as long as the `Settlement` hasn't been funded, you can remove the `Transfer` or an array of `Transfers`, along with its corresponding fee from a batch settlement.
+
+<aside class="notice">
+Per the JSON API for deleting a resource, our API doesn't have a response body when removing a transfer from a settlement.
+</aside>
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/settlements/:SETTLEMENT_ID/transfers`
+
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:SETTLEMENT_ID | ID of the Settlement
+
+## Fund a Settlement
+```shell
+curl {{staging_base_url}}/settlements/{{create_settlement_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
+    -X PUT \
+    -d '{{fund_settlement_scenario_curl_request}}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{fund_settlement_scenario_response}}
+```
+
+Issue funding instructions to pay out funds that are allocated in a previously
+ created batch `Settlement` resource for a merchant.
+
+<aside class="warning">
+Once instructions have been issued to a particular destination it cannot be
+updated.
+</aside>
+
+
+#### HTTP Request
+
+`PUT {{staging_base_url}}/settlements/:SETTLEMENT_ID`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:SETTLEMENT_ID | ID of the `Settlement`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+destination | *string*, **required** | ID of the `Payment Instrument` where the funds should be deposited
+
+## List all Batch Settlements
+
 ```shell
 curl {{staging_base_url}}/settlements/ \
     -H "Content-Type: application/vnd.json+api" \
@@ -5335,7 +5064,8 @@ Parameter | Description
 :SETTLEMENT_ID | ID of the Settlement
 
 
-## List Funding Transfers
+## List Funding Transfers in a Batch Settlement
+
 ```shell
 curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}}/funding_transfers \
     -H "Content-Type: application/vnd.json+api" \
@@ -5366,7 +5096,7 @@ $settlements = Settlement::getPagination($settlement->getHref("funding_transfers
 
 from {{python_client_resource_name}}.resources import Settlements
 settlement = Settlement.get(id="{{fetch_settlement_scenario_id}}")
-transfer = settlement.funding_transfers
+transfers = settlement.funding_transfers
 
 ```
 ```ruby
@@ -5379,8 +5109,7 @@ transfers = settlement.funding_transfers
 {{list_settlement_funding_transfers_scenario_response}}
 ```
 
-List the `Transfers` of type `CREDIT` that result from issuing funding instructions
-for the `Settlement`.
+List the `Transfers` of type `CREDIT` that result from issuing a `Settlement`.
 
 #### HTTP Request
 
@@ -5393,8 +5122,8 @@ Parameter | Description
 --------- | -------------------------------------------------------------------
 :SETTLEMENT_ID | ID of the Settlement
 
+## List Transfers in a Batch Settlement
 
-## List Transfers in a Settlement
 ```shell
 
 curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}}/transfers \
@@ -5457,9 +5186,15 @@ Parameter | Description
 # Transfers
 
 A `Transfer` represents any flow of funds either to or from a `Payment Instrument`.
-For example, a `Transfer` can be either a [debit to a card](#debit-a-card), a
-credit to a bank account, or a [refund to a card](#refund-a-debit) depending on
-the request.
+For example, a `Transfer` is a credit to a bank account [refund to a card](#refund-a-debit).
+
+A `Transfer` can have one of three types: `Debit`, `Credit`, or `Reversal`. Each type indicates a different funds flow. For example:
+
+* A **Debit** is created after capturing an Authorization or creating eCheck where funds are pulled from the issuer into the settlement account
+
+* A **Reversal** represents a refund or chargeback where funds are returned to a customer
+
+* A **Credit** is produced when funds are transferred to a merchant's bank account when funding (i.e. paying out) a batch settlement
 
 `Transfers` can have four possible states values: PENDING, SUCCEEDED, FAILED, or CANCELED.
 
@@ -5469,7 +5204,7 @@ to complete the transaction
 
 - **SUCCEEDED:** Funds captured and available for settlement (i.e. disbursement
 via ACH Credit)
-        
+
 - **FAILED:** Authorization attempt failed
 
 - **CANCELED:** Created, and then reversed before transfer has transitioned to succeeded
@@ -5484,7 +5219,95 @@ within an hour) update to SUCCEEDED.
 
 <aside class="notice">
 When an Authorization is captured a corresponding Transfer will also be created.
-</aside> 
+</aside>
+
+## Debit a Bank Account (ie eCheck)
+
+Returns: Note eCheck transactions can be rejected for up to 60 days for a variety of reasons including insufficient funds, closed accounts, or a revoked authorization (i.e. dispute). When a return occurs a Transfer of type `REVERSAL` with a subtype `SYSTEM` is automatically created and will negatively impact the future settlement. 
+
+```shell
+curl {{staging_base_url}}/transfers \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -d '{{create_bank_debit_scenario_curl_request}}'
+
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import com.google.common.collect.ImmutableMap;
+import java.util.Currency;
+
+TransferForm form = TransferForm.builder()
+        .amount(100L)
+        .currency(Currency.getInstance("USD"))
+        .source("{{create_card_scenario_id}}}")
+        .merchantIdentity("{{create_merchant_identity_scenario_id}}")
+        .tags(ImmutableMap.of("order_number", "21DFASJSAKAS"))
+        .build();
+
+Maybe<Transfer> response = api.transfers.post(form);
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to debit Bank Account");
+}
+Transfer transfer = response.view();
+
+```
+```php
+<?php
+use {{php_client_resource_name}}\Resources\Transfer;
+
+$debit = new Transfer({{create_bank_debit_scenario_php_request}});
+$debit = $debit->save();
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Transfer
+
+payout = Transfer(**{{create_bank_debit_scenario_python_request}}).save()
+
+```
+```ruby
+{{ruby_client_resource_name}}::Transfer.new({{create_bank_debit_scenario_ruby_request}}).save
+
+```
+
+
+> Example Response:
+
+```json
+{{create_bank_debit_scenario_response}}
+```
+
+A `Transfer` representing a customer payment where funds are obtained from a
+bank account (i.e. ACH Debit, eCheck). These specific `Transfers` are
+distinguished by their type which return DEBIT.
+
+Learn how to prevent duplicate transfers by passing an [idempotency ID](#idempotency-requests) in the payload.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/transfers`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+source | *string*, **required** | ID of the `Payment Instrument` that will be debited
+merchant_identity | *string*, **required** | `Identity` ID of the merchant whom you're charging on behalf of
+amount | *integer*, **required** | The total amount that will be debited in cents (e.g. 100 cents to debit $1.00)
+fee | *integer*, **optional** | The amount of the `Transfer` you would like to collect as your fee in cents. Defaults to zero (Must be less than or equal to the amount)
+currency | *string*, **required** | 3-letter ISO code designating the currency of the `Transfers` (e.g. USD)
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+idempotency_id | *string*, **optional** | A randomly generated value that you want associated with the request
+
 ## Fetch a Transfer
 
 ```shell
@@ -5552,7 +5375,7 @@ Parameter | Description
 ## Refund a Debit
 ```shell
 
-curl {{staging_base_url}}/transfers/{{create_debit_scenario_id}}/reversals \
+curl {{staging_base_url}}/transfers/{{create_bank_debit_scenario_id}}/reversals \
     -H "Content-Type: application/vnd.json+api" \
     -u  {{basic_auth_username}}:{{basic_auth_password}} \
     -d  '{{create_refund_scenario_curl_request}}'
@@ -5569,8 +5392,9 @@ Refund refund = transfer.reverse(100L);
 <?php
 use {{php_client_resource_name}}\Resources\Transfer;
 
-$debit = Transfer::retrieve('{{create_debit_scenario_id}}');
+$debit = Transfer::retrieve('{{create_bank_debit_scenario_id}}');
 $refund = $debit->reverse(11);
+
 ```
 ```python
 
@@ -5597,6 +5421,11 @@ A `Transfer` representing the refund (i.e. reversal) of a previously created
 of the original `Transfer`. These specific `Transfers` are distinguished by
 their type which return REVERSAL.
 
+A Reversal can have two `subtypes` indicating how they were created:
+
+* **API**: Transfer created via an end-user API request (e.g. POST)
+* **SYSTEM**: Transfer created via the upstream processor (e.g. resulting from
+  an eCheck return); Note that SYSTEM created Transfers are rare occurrences.
 
 #### HTTP Request
 
@@ -5669,6 +5498,85 @@ transfers = {{ruby_client_resource_name}}::Transfer.retrieve
 #### HTTP Request
 
 `GET {{staging_base_url}}/transfers`
+## Update a Transfer
+
+```shell
+curl {{staging_base_url}}/transfers/{{fetch_transfer_scenario_id}}/ \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -X PUT \
+    -d '{{update_transfer_scenario_curl_request}}'
+
+```
+```java
+import io.{{api_name_downcase}}.payments.forms.*;
+import io.{{api_name_downcase}}.payments.views.*;
+import io.{{api_name_downcase}}.payments.interfaces.ApiError;
+import io.{{api_name_downcase}}.payments.interfaces.Maybe;
+import com.google.common.collect.ImmutableMap;
+import java.util.Currency;
+
+TransferForm form = TransferForm.builder()
+        .tags(ImmutableMap.of("order_number", "12121212"))
+        .build();
+
+Maybe<Transfer> response = api.transfers.post(form);
+
+Maybe<Transfer> response = api.transfers.id("{{fetch_transfer_scenario_id}}").put(form);
+
+if (! response.succeeded()) {
+    ApiError error = response.error();
+    System.out.println(error.getCode());
+    throw new RuntimeException("API error attempting to update transfer");
+}
+Transfer transfer = response.view();
+
+```
+```php
+<?php
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Transfer
+transfer = Transfer.get(id="{{fetch_transfer_scenario_id}}")
+
+refund = transfer.reverse(**{{create_refund_scenario_python_request}})
+refund.tags["order_number"] = "12121212"
+refund.save()
+
+```
+```ruby
+transfer = {{ruby_client_resource_name}}::Transfer.retrieve(:id=>"{{fetch_transfer_scenario_id}}")
+
+refund = transfer.reverse(100)
+refund.tags = {"order_number"=> "12121212"}
+refund.save
+
+```
+> Example Response:
+
+```json
+{{update_transfer_scenario_response}}
+```
+
+#### HTTP Request
+
+`PUT {{staging_base_url}}/transfers/:TRANSFER_ID`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:TRANSFER_ID | ID of the `Transfer`
+
+
+#### Request Parameters
+Field | Type | Description
+----- | ---- | -----------
+tags | *object*, **required** | Key value pair for annotating custom meta data (e.g. order numbers)
+
 # Users (API Keys)
 
 A `User` resource represents a pair of API keys which are used to perform
@@ -6378,53 +6286,54 @@ webhooks = {{ruby_client_resource_name}}::Webhook.retrieve
   }
 }
 ```
-# FAQs
 
-Below are GIFs of some of the common actions that you will be performing when using the dashboard.
+### Created Instrument Update
 
-## Sign Up
-If you haven't signed up yet, please create a user account.
-![sign up gif] (https://finix-payments.github.io/customer-logos/assets/sign_up.gif)
+```javascript
+{
+  "type": "updated",
+  "entity": "instrument_update",
+  "occurred_at": "2017-08-14T14:17:43.004",
+  "_embedded": {
+    "instrument_updates": [{
+      "trace_id": "FNXa2UvnrWMA6h4uER2F3wcg",
+      "application": "APuEebjbpT8Baz8VqERaEx3z",
+      "updated_at": "2017-08-14T14:17:42.97Z",
+      "payment_instrument": "PIrgiJ1KtZVaT4dqDeDkveYh",
+      "merchant": "MUxtD9KaVh1Ax5WRKBQZntPX",
+      "messages": [
+        "No match found"
+      ],
+      "created_at": "2017-08-09T23:58:05.74Z",
+      "id": "IUkE7oida5Jupzd471HPkjqu",
+      "state": "FAILED"
+    }]
+  }
+}
+```
 
-## Create Production Account
-Once you've played with a sandbox account, you're ready to create a production `Application.`
-![create production account] (https://finix-payments.github.io/customer-logos/assets/create_production_account.gif)
+### Update Payment Instrument
 
-## Create an Identity for a Merchant
-Simply select `Identity` on the sidebar, click "Create new identity", and fill out the form with the `Merchant's` underwriting information.
-![Create an Identity for a Merchant]
-(https://finix-payments.github.io/customer-logos/assets/create_identity_merchant.gif)
-
-## View KYC Identity Verification
-You are able to view important KYC information for `Merchants` by first selecting `Merchants`, then clicking your desired `Merchant`. This will take you the summary view of the `Merchant` you selected. Now just click the Processor tab and scroll down to the Verification container.
-![view kyc identity verification]     (https://finix-payments.github.io/customer-logos/assets/view_kyc_identity_verification.gif)
-
-## Approve Merchant
-Want to approve a `Merchant`? Under review queues in the sidebar, you'll see `Merchants`- a list of all pending `Merchants` under your `Application`. You have the ability to approve one by one, or approve an entire page.
-![approve merchant] (https://finix-payments.github.io/customer-logos/assets/approve_merchant.gif)
-
-## Enable or Disable Processing Functionality
-Enable or disable `Merchant's` ability to create new `Transfers` and `Authorizations` by navigating to Merchants on the sidebar. Then select your desired `Merchant` and click the `Processors` tab. Finally, click the edit button and configure a `Merchant's` processing ability to your liking.
-![enable processing merchant]
-(https://finix-payments.github.io/customer-logos/assets/enable_processing_merchant.gif)
-
-## Enable or Disable Settlement Functionality
-Disable or disable `Merchant's` ability to create new `Settlements`by navigating to Merchants on the sidebar. Then select your desired `Merchant` and click the `Processors` tab. Finally, click the edit button and configure a `Merchant's` settlement ability to your liking.
-![enable processing settlements] (https://finix-payments.github.io/customer-logos/assets/enable_processing_settlements.gif)
-
-## Edit Fees & Interchange Plus
-Want to edit an `Application's` fixed fee, basis points, ACH fee, or toggle interchange plus? First, click `Application` on the sidebar and then click the Processors tab. Once you pick which processor you want to configure, you'll be presented with a modal allowing you edit fees and interchange plus.  
-![edit fees] (https://finix-payments.github.io/customer-logos/assets/edit_fees.gif)
-
-## Enable CVV & AVS
-Finix offers you the ability to configure Address Verification System (AVS) and CVV rules as part of our fraud risk system, to help you ensure that transactions are being made by only authorized users. How? Simply click `Application` on the sidebar, then click the Processors tab. Select the desired processor, and then click edit on the Security configuration.
-![enable cvv and avs] (https://finix-payments.github.io/customer-logos/assets/enable_cvv_avs.gif)
-
-## Approve a Settlement
-Want to approve a `Settlement`? Under review queues in the sidebar, you'll see `Settlements`- a list of all pending `Settlements` under your `Application`. You have the ability to approve one by one, or approve an entire page.
-![approve settlement] (https://finix-payments.github.io/customer-logos/assets/settlement_aprove.gif)
-
-## Upload Dispute Evidence
-Have evidence for your dispute? Click Disputes, select the desired dispute, then scroll down to the Evidence container, and click Upload File.
-![upload dispute evidence] (https://finix-payments.github.io/customer-logos/assets/upload_dispute_evidence.gif)
+```javascript
+{
+  "type" : "updated",
+  "entity" : "instrument",
+  "occurred_at" : "2017-08-04T23:52:49.759",
+  "_embedded" : {
+    "instruments" : [ {
+      "updated_at" : "2017-08-04T23:52:49.70Z",
+      "identity" : "IDcVVAdGYhiaq4Xka6PVHYVD",
+      "fingerprint" : "FPR316679720",
+      "created_at" : "2017-05-23T18:52:54.64Z",
+      "currency" : "USD",
+      "id" : "PIc2DqWRD8wiNYLqQBMAYjku",
+      "instrument_type" : "PAYMENT_CARD",
+      "type" : "PAYMENT_CARD",
+      "tags" : {
+        "driver" : "123"
+      }
+    } ]
+  }
+}
+```
 
