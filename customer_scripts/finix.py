@@ -243,20 +243,13 @@ def generate_template_variables(config_values):
     fetch_webhook_scenario = api_client.fetch_webhook(create_webhook_scenario["response_id"])
 
     #fees
-
     create_application_fee_profile_scenario = api_client.create_fee_profile(create_app_scenario["response_id"])
-
-    # import ipdb; ipdb.set_trace()
     fetch_application_profile_scenario = api_client.fetch_application_profile(create_app_scenario['response_id'])
     update_application_profile_scenario = api_client.update_application_profile(fetch_application_profile_scenario['response_id'], create_application_fee_profile_scenario['response_id'])
-
-
-
 
     create_merchant_fee_profile_scenario = api_client.create_fee_profile(fetch_application_scenario["response_id"])
     fetch_merchant_fee_scenario = api_client.fetch_merchant(provision_merchant_scenario['response_id'])
     fetch_merchant_profile_scenario = api_client.fetch_merchant_profile(json.loads(fetch_merchant_fee_scenario['response_body'])['merchant_profile'])
-    # import ipdb; ipdb.set_trace()
     update_merchant_profile_scenario = api_client.update_merchant_profile(fetch_merchant_profile_scenario['response_id'], create_merchant_fee_profile_scenario['response_id'])
 
     # # LIST
