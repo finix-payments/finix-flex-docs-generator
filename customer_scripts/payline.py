@@ -205,6 +205,10 @@ def generate_template_variables(config_values):
     fetch_application_profile_scenario = api_client.fetch_application_profile(create_app_scenario['response_id'])
     update_application_profile_scenario = api_client.update_application_profile(fetch_application_profile_scenario['response_id'], json.loads(fetch_application_profile_scenario['response_body'])['fee_profile'])
 
+    create_merchant_fee_profile_scenario = api_client.create_fee_profile(create_merchant_scenario["response_id"])
+    fetch_merchant_profile_scenario = api_client.fetch_merchant_profile(create_merchant_scenario['response_id'])
+    update_merchant_profile_scenario = api_client.update_merchant_profile(fetch_merchant_profile_scenario['response_id'], json.loads(fetch_merchant_profile_scenario['response_body'])['fee_profile'])
+
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
     list_disputes_scenario = api_client.list_disputes()
@@ -669,18 +673,57 @@ def generate_template_variables(config_values):
             "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
             "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
             'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
-            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body']
+            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
             'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
 
 
-            "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body']
+            "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
 
             "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request'],
             "update_application_profile_scenario_php_request": update_application_profile_scenario['php_request_body'],
             'update_application_profile_scenario_ruby_request': update_application_profile_scenario['ruby_request_body'],
             'update_application_profile_scenario_python_request': update_application_profile_scenario['python_request_body'],
             'update_application_profile_scenario_response': update_application_profile_scenario['response_body'],
-            'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id']
+            'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id'],
+
+            # FEES ----------------------------------------------------------------------
+
+            "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request_body"],
+            "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
+            "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
+            'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
+            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
+            'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
+
+
+            "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
+
+            "update_merchant_profile_scenario_curl_request": update_merchant_profile_scenario['curl_request_body'],
+            "update_merchant_profile_scenario_php_request": update_merchant_profile_scenario['php_request_body'],
+            'update_merchant_profile_scenario_ruby_request': update_merchant_profile_scenario['ruby_request_body'],
+            'update_merchant_profile_scenario_python_request': update_merchant_profile_scenario['python_request_body'],
+            'update_merchant_profile_scenario_response': update_merchant_profile_scenario['response_body'],
+            'update_merchant_profile_scenario_response_id': update_merchant_profile_scenario['response_id'],
+
+            "create_merchant_fee_profile_scenario_curl_request": create_merchant_fee_profile_scenario["curl_request_body"],
+            "create_merchant_fee_profile_scenario_php_request": create_merchant_fee_profile_scenario['php_request_body'],
+            "create_merchant_fee_profile_scenario_ruby_request": create_merchant_fee_profile_scenario['ruby_request_body'],
+            'create_merchant_fee_profile_scenario_response': create_merchant_fee_profile_scenario['response_body'],
+            'create_merchant_fee_profile_scenario_python_request': create_merchant_fee_profile_scenario['python_request_body'],
+            'create_merchant_fee_profile_scenario_response_id': create_merchant_fee_profile_scenario['response_id'],
+
+            "fetch_merchant_profile_scenario_response": fetch_merchant_profile_scenario['response_body'],
+            'fetch_merchant_profile_scenario_id': fetch_merchant_profile_scenario['response_id'],
+
+            "update_merchant_profile_scenario_curl_request": update_merchant_profile_scenario['curl_request_body'],
+            "update_merchant_profile_scenario_php_request": update_merchant_profile_scenario['php_request_body'],
+            'update_merchant_profile_scenario_ruby_request': update_merchant_profile_scenario['ruby_request_body'],
+            'update_merchant_profile_scenario_python_request': update_merchant_profile_scenario['python_request_body'],
+            'update_merchant_profile_scenario_response': update_merchant_profile_scenario['response_body'],
+            'update_merchant_profile_scenario_response_id': update_merchant_profile_scenario['response_id'],
+
+            'fetch_merchant_fee_scenario_response': fetch_merchant_fee_scenario['response_body']
+
 
             # REVIEW QUEUES ----------------------------------------------------------------------------------------
 
@@ -1118,7 +1161,7 @@ def generate_template_variables(config_values):
             "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
             "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
             'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
-            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body']
+            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
             'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
 
 
@@ -1130,6 +1173,26 @@ def generate_template_variables(config_values):
             'update_application_profile_scenario_python_request': update_application_profile_scenario['python_request_body'],
             'update_application_profile_scenario_response': update_application_profile_scenario['response_body'],
             'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id']
+
+            "create_merchant_fee_profile_scenario_curl_request": create_merchant_fee_profile_scenario["curl_request_body"],
+            "create_merchant_fee_profile_scenario_php_request": create_merchant_fee_profile_scenario['php_request_body'],
+            "create_merchant_fee_profile_scenario_ruby_request": create_merchant_fee_profile_scenario['ruby_request_body'],
+            'create_merchant_fee_profile_scenario_response': create_merchant_fee_profile_scenario['response_body'],
+            'create_merchant_fee_profile_scenario_python_request': create_merchant_fee_profile_scenario['python_request_body'],
+            'create_merchant_fee_profile_scenario_response_id': create_merchant_fee_profile_scenario['response_id'],
+
+            "update_merchant_profile_scenario_curl_request": update_merchant_profile_scenario['curl_request_body'],
+            "update_merchant_profile_scenario_php_request": update_merchant_profile_scenario['php_request_body'],
+            'update_merchant_profile_scenario_ruby_request': update_merchant_profile_scenario['ruby_request_body'],
+            'update_merchant_profile_scenario_python_request': update_merchant_profile_scenario['python_request_body'],
+            'update_merchant_profile_scenario_response': update_merchant_profile_scenario['response_body'],
+            'update_merchant_profile_scenario_response_id': update_merchant_profile_scenario['response_id']
+
+            "fetch_merchant_profile_scenario_response": fetch_merchant_profile_scenario['response_body'],
+            'fetch_merchant_profile_scenario_id': fetch_merchant_profile_scenario['response_id'],
+
+            'fetch_merchant_fee_scenario_response': fetch_merchant_fee_scenario['response_body'],
+
 
             # REVIEW QUEUES --------------------------------------------
 

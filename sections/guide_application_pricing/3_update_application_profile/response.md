@@ -1,22 +1,24 @@
 > Example Response:
 
 ```json
-{{create_owner_user_scenario_response}}
+{{update_application_profile_scenario_response}}
 ```
 
-We'll first start by creating a new `User` with ROLE_PARTNER permissions that
-will be the owner of this new `Application`. Note that this is the equivalent of
-provisioning API keys (i.e. credentials) that are not associated with any single
-`Application`. You'll want to store the `password` as it is only returned once.
-The keys will be associated in the next step.
-
+Next, locate the Application's `application_profile`- there's a link to it on the application resource from the previous step. Lastly, you'll update the Application's `application_profile` by making a PUT request and passing the `fee_profile` that you received from the previous step.
 
 #### HTTP Request
 
-`POST {{staging_base_url}}/users`
+`PUT {{staging_base_url}}/application_profiles/:APPLICATION_PROFILE`
+
+#### URL Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+:APPLICATION_PROFILE | *string*, **required** | ID of the `APPLICATION_PROFILE`
+
 
 #### Request Arguments
 
 Field | Type | Description
 ----- | ---- | -----------
-role | *string*, **required** | Permission level of the user (use ROLE_PARTNER when creating a new `Application`)
+fee_profile | *string*, **required** | ID of the `fee_profile`

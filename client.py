@@ -528,6 +528,36 @@ class Client(object):
         endpoint = self.staging_base_url + '/application_profiles/' + application_profile_id
         return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
 
+
+
+    # def create_merchant_fee_profile(self, merchant_id):
+    #     values = {
+    #         "tags": {
+    #             "app pricing": "sample"
+    #         },
+    #         'application': merchant_id,
+    #         'basis_points': 200,
+    #         'fixed_fee': 100,
+    #         'ach_basis_points': 300,
+    #         'charged_interchange': False
+    #     }
+    #     values = format_json(json.dumps(values))
+    #     endpoint = self.staging_base_url + '/fee_profiles'
+    #     return formatted_response(endpoint, values, self.platform_encoded_auth, "POST")
+
+    def fetch_merchant_profile(self, merchant_profile_id):
+        values = None
+        endpoint = self.staging_base_url + '/merchant_profiles/' + merchant_profile_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def update_merchant_profile(self, merchant_profile_id, fee_profile_id):
+        values = {
+            'fee_profile': fee_profile_id
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/merchant_profiles/' + merchant_profile_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
+
     def remove_transfer(self, settlement_id, transfer_ids):
         values = {
         "transfers": [transfer_ids]

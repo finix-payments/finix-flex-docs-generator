@@ -1,1 +1,1 @@
-### Step 1: Create New Fee Profile
+### Step 1: Create New Application Fee Profile

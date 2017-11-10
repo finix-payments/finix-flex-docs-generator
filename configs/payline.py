@@ -260,9 +260,17 @@ admin_snippets_by_resource = {
         "associate_token",
     ],
     'guide_application_pricing': [
+        "definition",
         '1_create_new_profile',
         '2_locate_application_profile',
-        '3_update_applicaiton_profile',
+        '3_update_application_profile',
+    ],
+    'guide_merchant_pricing': [
+        "definition",
+        '1_create_new_profile',
+        '2_locate_merchant',
+        '3_locate_merchant_profile',
+        '4_update_merchant_profile',
     ],
     "identities": [
         "definition",
@@ -396,6 +404,7 @@ admin_resource_ordering = [
     "guide_admin_overview",
     "guide_create_application",
     'guide_application_pricing',
+    'guide_merchant_pricing',
     "guide_tokenization_js",
     "applications",
     "authorizations",
