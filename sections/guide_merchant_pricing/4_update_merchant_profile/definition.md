@@ -1,1 +1,1 @@
-### Step 3: Update Merchant Profile
+### Step 4: Update Merchant Profile
