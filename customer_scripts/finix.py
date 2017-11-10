@@ -782,7 +782,6 @@ def generate_template_variables(config_values):
             'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
             'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
 
-
             "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
 
             "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request_body'],
@@ -792,14 +791,12 @@ def generate_template_variables(config_values):
             'update_application_profile_scenario_response': update_application_profile_scenario['response_body'],
             'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id'],
 
-
             "create_merchant_fee_profile_scenario_curl_request": create_merchant_fee_profile_scenario["curl_request_body"],
             "create_merchant_fee_profile_scenario_php_request": create_merchant_fee_profile_scenario['php_request_body'],
             "create_merchant_fee_profile_scenario_ruby_request": create_merchant_fee_profile_scenario['ruby_request_body'],
             'create_merchant_fee_profile_scenario_response': create_merchant_fee_profile_scenario['response_body'],
             'create_merchant_fee_profile_scenario_python_request': create_merchant_fee_profile_scenario['python_request_body'],
             'create_merchant_fee_profile_scenario_response_id': create_merchant_fee_profile_scenario['response_id'],
-
 
             "fetch_merchant_profile_scenario_response": fetch_merchant_profile_scenario['response_body'],
             'fetch_merchant_profile_scenario_id': fetch_merchant_profile_scenario['response_id'],
@@ -818,18 +815,16 @@ def generate_template_variables(config_values):
             # "list_queued_identities_scenario_response": list_queued_identities_scenario["response_body"],
             # "list_queued_merchants_scenario_response": list_queued_merchants_scenario["response_body"],
             # "list_queued_settlements_scenario_response": list_queued_settlements_scenario["response_body"],
-            #
+
             # "fetch_queued_item_scenario_response": fetch_queued_item_scenario["response_body"],
             # "fetch_queued_item_scenario_id": fetch_queued_item_scenario["response_id"],
-            #
+
             # "update_queued_state_scenario_curl_request": update_queued_state_scenario["curl_request_body"],
             # "update_queued_state_scenario_php_request": update_queued_state_scenario["php_request_body"],
             # "update_queued_state_scenario_ruby_request": update_queued_state_scenario["ruby_request_body"],
             # "update_queued_state_scenario_python_request": update_queued_state_scenario["python_request_body"],
             # "update_queued_state_scenario_response": update_queued_state_scenario["response_body"],
             # "update_queued_state_scenario_id": update_queued_state_scenario["response_id"],
-            #
-
         }
     else:
         api_scenario_vars = {
@@ -912,10 +907,9 @@ def generate_template_variables(config_values):
             # "create_identity_verification_scenario_python_request": create_identity_verification_scenario["python_request_body"],
             # "create_identity_verification_scenario_response": create_identity_verification_scenario["response_body"],
             # "create_identity_verification_scenario_id": create_identity_verification_scenario["response_id"],
-            #
+
             # "fetch_identity_verification_scenario_response": fetch_identity_verification_scenario["response_body"],
             # "fetch_identity_verification_scenario_id": fetch_identity_verification_scenario["response_id"],
-
 
             # "list_identity_verifications_scenario_curl_request": list_identity_verifications_scenario["curl_request_body"],
             # "list_identity_verifications_scenario_php_request": list_identity_verifications_scenario["php_request_body"],
@@ -951,7 +945,6 @@ def generate_template_variables(config_values):
             # "account_updater_scenario_python_request": account_updater_scenario["python_request_body"],
             # "account_updater_scenario_response": account_updater_scenario["response_body"],
             # "account_updater_scenario_id": account_updater_scenario["response_id"],
-
 
             "fetch_bank_account_scenario_response": fetch_bank_account_scenario["response_body"],
             "fetch_bank_account_scenario_id": fetch_bank_account_scenario["response_id"],
@@ -1291,7 +1284,6 @@ def generate_template_variables(config_values):
             'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
             'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
 
-
             "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
 
             "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request_body'],
@@ -1319,8 +1311,7 @@ def generate_template_variables(config_values):
             'update_merchant_profile_scenario_response_id': update_merchant_profile_scenario['response_id'],
 
             'fetch_merchant_fee_scenario_response': fetch_merchant_fee_scenario['response_body'],
-
-
+            
             # REVIEW QUEUES --------------------------------------------
 
             # "list_queued_identities_scenario_response": list_queued_identities_scenario["response_body"],
