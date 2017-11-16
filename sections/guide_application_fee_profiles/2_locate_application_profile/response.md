@@ -4,7 +4,7 @@
 {{fetch_application_profile_scenario_response}}
 ```
 
-Make a GET request with your `Application`'s ID. You'll want to keep the `application_profile` in the links section of the response for the following step.
+In the links you'll see the application_profile, which you'll want to store for the following step.
 
 #### HTTP Request
 

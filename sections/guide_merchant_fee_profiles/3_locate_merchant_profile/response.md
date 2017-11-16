@@ -4,7 +4,7 @@
 {{fetch_merchant_profile_scenario_response}}
 ```
 
-Make a GET request with your `Merchant`'s ID. You'll want to keep the `merchant_profile` located in the links section of the response for the following step.
+Make a GET request with the `merchant_profile` ID that you received from the previous step. You'll want to keep the `fee_profile` handy for the next step. 
 
 #### HTTP Request
 

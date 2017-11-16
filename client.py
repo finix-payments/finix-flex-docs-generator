@@ -509,6 +509,7 @@ class Client(object):
             'basis_points': 200,
             'fixed_fee': 100,
             'ach_basis_points': 300,
+            "ach_fixed_fee" : 30,
             'charged_interchange': False
         }
         values = format_json(json.dumps(values))
@@ -718,7 +719,7 @@ class Client(object):
         values =  {
             "currency": "USD",
             "destination": card_id,
-            "amount": amount,
+            "amount": 452,
             "tags": {
                 "order_number": "21DFASJSAKAS"
                 },

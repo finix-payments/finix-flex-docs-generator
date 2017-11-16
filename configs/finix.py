@@ -116,6 +116,22 @@ snippets_by_resource = {
         "provision_merchant_account",
         "send_to_recipient",
         ],
+    "fee_profile_overview": [
+        "definition",
+        ],
+    'guide_application_fee_profiles': [
+        "definition",
+        '1_create_new_profile',
+        '2_locate_application_profile',
+        '3_update_application_profile',
+    ],
+    'guide_merchant_fee_profiles': [
+        "definition",
+        '1_create_new_profile',
+        '2_locate_merchant',
+        '3_locate_merchant_profile',
+        '4_update_merchant_profile',
+    ],
     "test_data": [
         "definition"
     ],
@@ -244,13 +260,16 @@ admin_snippets_by_resource = {
     "guide_admin_overview": [
         "definition",
         ],
-    'guide_application_pricing': [
+    "fee_profile_overview": [
+        "definition",
+        ],
+    'guide_application_fee_profiles': [
         "definition",
         '1_create_new_profile',
         '2_locate_application_profile',
         '3_update_application_profile',
     ],
-    'guide_merchant_pricing': [
+    'guide_merchant_fee_profiles': [
         "definition",
         '1_create_new_profile',
         '2_locate_merchant',
@@ -412,6 +431,9 @@ resource_ordering = [
     "guide_push_to_card",
     "guide_iframe",
     "guide_hosted_fields",
+    'fee_profile_overview',
+    'guide_application_fee_profiles',
+    'guide_merchant_fee_profiles',
     "authorizations",
     # "disputes",
     "identities",
@@ -439,8 +461,9 @@ admin_resource_ordering = [
     "guide_hosted_fields",
     "guide_admin_overview",
     "guide_create_application",
-    'guide_application_pricing',
-    'guide_merchant_pricing',
+    'fee_profile_overview',
+    'guide_application_fee_profiles',
+    'guide_merchant_fee_profiles',
     "applications",
     "authorizations",
     # "disputes",

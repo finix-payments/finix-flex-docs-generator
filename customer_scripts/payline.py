@@ -670,24 +670,13 @@ def generate_template_variables(config_values):
 
             # FEES ----------------------------------------------------------------------
 
-            "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request"],
-            "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
-            "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
-            'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
-            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
-            'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
-
-
-            "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
-
-            "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request'],
+            "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request_body'],
             "update_application_profile_scenario_php_request": update_application_profile_scenario['php_request_body'],
             'update_application_profile_scenario_ruby_request': update_application_profile_scenario['ruby_request_body'],
             'update_application_profile_scenario_python_request': update_application_profile_scenario['python_request_body'],
             'update_application_profile_scenario_response': update_application_profile_scenario['response_body'],
             'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id'],
 
-            # FEES ----------------------------------------------------------------------
 
             "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request_body"],
             "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
@@ -1158,7 +1147,7 @@ def generate_template_variables(config_values):
 
             # FEES ----------------------------------------------------------------------
 
-            "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request"],
+            "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request_body"],
             "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
             "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
             'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
@@ -1168,7 +1157,7 @@ def generate_template_variables(config_values):
 
             "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
 
-            "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request'],
+            "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request_body'],
             "update_application_profile_scenario_php_request": update_application_profile_scenario['php_request_body'],
             'update_application_profile_scenario_ruby_request': update_application_profile_scenario['ruby_request_body'],
             'update_application_profile_scenario_python_request': update_application_profile_scenario['python_request_body'],
