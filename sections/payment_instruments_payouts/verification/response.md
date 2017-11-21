@@ -29,8 +29,8 @@ A, B, C, G, I, N, P, R, S, U, W | Address not verified
 #### Card Verification 2 Results (cvv2_result_code)
 Letter | Description
 ------ | -------------------------------------------------------------------
-M | CVV  verified
-N, P, S | CVV not verified
+M | CVV and expiration dates verified
+N, P, S | Either CVV or expiration date is incorrect
 U | Issuer does not participate in CVV2 service
 
 #### Card Type (card_type_code)

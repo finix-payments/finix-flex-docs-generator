@@ -378,5 +378,3 @@ included_clients = OrderedDict([
     ("cURL", "shell"),
     ("PHP", "php")
 ])
-
-
