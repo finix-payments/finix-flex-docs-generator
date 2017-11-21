@@ -65,7 +65,7 @@ snippets_by_resource = {
 
     "disputes": [
         "definition",
-        "create_dispute",
+        "upload_dispute",
         "fetch_dispute",
         "list_disputes"
     ],
@@ -253,7 +253,7 @@ admin_snippets_by_resource = {
 
     "disputes": [
         "definition",
-        "create_dispute",
+        "upload_dispute",
         "fetch_dispute",
         "list_disputes"
     ],

@@ -841,7 +841,7 @@ class Client(object):
 
 
     def create_dispute(self, merchant_id, card_id):
-        import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
 
         def create_debit(self, merchant_id, card_id, amount):
             fee = int(round(amount * .1))
@@ -877,13 +877,6 @@ class Client(object):
 
         response_body = urlopen(request).read()
         response_body = format_json(response_body)
-        # print response_body
-
-        # first dispute in collection
-        # dispute_resource = json.loads(response_body)['_embedded']['disputes'][0]
-        # return {'request_body': None,
-        #         'response_body': dispute_resource,
-        #         'response_id': dispute_resource["id"]}
 
         values = None
         return formatted_response(endpoint, values, self.encoded_auth)
