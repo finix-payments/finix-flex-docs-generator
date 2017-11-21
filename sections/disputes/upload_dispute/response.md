@@ -10,5 +10,5 @@
 
 
 <aside class="notice">
-Please upload a file with a size of under 10MB and with an extension of: .jpeg, .pdf, .png, .gif, or .tiff.
+Please upload a file with a size less than 10MB and with an extension of: .jpeg, .pdf, .png, .gif, or .tiff.
 </aside>
