@@ -124,7 +124,7 @@ admin_snippets_by_resource = {
         "fetch_application",
         "create_application",
         "disable_application_processing",
-        "disable_application_settlements",
+        # "disable_application_settlements",
         "create_partner_user",
         # "enable_dummy_processor",
         # "enable_litle_processor",
