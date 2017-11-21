@@ -254,7 +254,7 @@ def generate_template_variables(config_values):
 
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
-    list_disputes_scenario = api_client.list_disputes()
+
     list_identities_scenario = api_client.list_identities()
     list_merchants_scenario = api_client.list_merchants()
     list_merchant_verifications_scenario = api_client.list_merchant_verifications(provision_merchant_scenario["response_id"])
@@ -277,9 +277,11 @@ def generate_template_variables(config_values):
 
     reattempt_provision_merchant_scenario = api_client.reattempt_provision_merchant(provision_merchant_scenario["response_id"])
 
-    # create_dispute_scenario = create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
-    # fetch_dispute_scenario = fetch_dispute(create_dispute_scenario["response_id"])
-    # upload_dispute_file_scenario = upload_dispute_file(fetch_dispute_scenario["response_id"])
+    create_dispute_scenario = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+    # import ipdb; ipdb.set_trace()
+    fetch_dispute_scenario = api_client.fetch_dispute(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
+    upload_dispute_file_scenario = api_client.upload_dispute_file(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
+    list_disputes_scenario = api_client.list_disputes()
 
     if TOGGLE_OFF_SETTLEMENTS == False:
         create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_bank_debit_scenario['response_id'])
@@ -303,10 +305,6 @@ def generate_template_variables(config_values):
     toggle_on_merchant_settlements_scenario = api_client.toggle_merchant_settlements(provision_merchant_scenario["response_id"], True)
     toggle_on_application_processing_scenario = api_client.toggle_application_processing(create_app_scenario["response_id"], True)
     toggle_on_application_settlements_scenario = api_client.toggle_application_settlements(create_app_scenario["response_id"], True)
-
-
-
-
 
     if TOGGLE_OFF_SETTLEMENTS == False:
         # STORE RESULTS IN HASH FOR TEMPLATE
@@ -581,19 +579,19 @@ def generate_template_variables(config_values):
             "list_authorizations_scenario_response": list_authorizations_scenario["response_body"],
 
             # DISPUTES ----------------------------------------------------------------------------------------------------------------------------
-            # "create_dispute_scenario_request": create_dispute_scenario["request_body"],
-            # "create_dispute_scenario_response": create_dispute_scenario["response_body"],
-            # "create_dispute_scenario_id": create_dispute_scenario["response_id"],
-            #
-            # "fetch_dispute_scenario_response": fetch_dispute_scenario["response_body"],
-            # "fetch_dispute_scenario_id": fetch_dispute_scenario["response_id"],
-            #
-            #
-            # "list_disputes_scenario_response": list_disputes_scenario["response_body"],
 
-            # "upload_dispute_file_scenario_request": upload_dispute_file_scenario["request_body"]    ,
-            # "upload_dispute_file_scenario_response": upload_dispute_file_scenario["response_body"],
-            # "upload_dispute_file_scenario_id": upload_dispute_file_scenario["response_id"],
+            "create_dispute_scenario_request": create_dispute_scenario["request_body"],
+            "create_dispute_scenario_response": create_dispute_scenario["response_body"],
+
+
+            "fetch_dispute_scenario_response": fetch_dispute_scenario["response_body"],
+            "fetch_dispute_scenario_id": fetch_dispute_scenario["response_id"],
+
+            "list_disputes_scenario_response": list_disputes_scenario["response_body"],
+
+            "upload_dispute_file_scenario_request": upload_dispute_file_scenario["request_body"]    ,
+            "upload_dispute_file_scenario_response": upload_dispute_file_scenario["response_body"],
+            "upload_dispute_file_scenario_id": upload_dispute_file_scenario["response_id"],
 
             # WEBHOOKS ----------------------------------------------------------------------------------------------------------------
 
@@ -1091,18 +1089,20 @@ def generate_template_variables(config_values):
 
             # DISPUTES ------------------------------------------------------------
 
-            # "create_dispute_scenario_request": create_dispute_scenario["request_body"],
-            # "create_dispute_scenario_response": create_dispute_scenario["response_body"],
+            # "create_dispute_scenario_curl_request": create_dispute_scenario["curl_request_body"],
             # "create_dispute_scenario_id": create_dispute_scenario["response_id"],
-            #
-            # "fetch_dispute_scenario_response": fetch_dispute_scenario["response_body"],
-            # "fetch_dispute_scenario_id": fetch_dispute_scenario["response_id"],
+            "create_dispute_scenario_request": create_dispute_scenario["request_body"],
+            "create_dispute_scenario_response": create_dispute_scenario["response_body"],
 
-            # "list_disputes_scenario_response": list_disputes_scenario["response_body"],
 
-            # "upload_dispute_file_scenario_request": upload_dispute_file_scenario["request_body"]    ,
-            # "upload_dispute_file_scenario_response": upload_dispute_file_scenario["response_body"],
-            # "upload_dispute_file_scenario_id": upload_dispute_file_scenario["response_id"],
+            "fetch_dispute_scenario_response": fetch_dispute_scenario["response_body"],
+            "fetch_dispute_scenario_id": fetch_dispute_scenario["response_id"],
+
+            "list_disputes_scenario_response": list_disputes_scenario["response_body"],
+
+            "upload_dispute_file_scenario_request": upload_dispute_file_scenario["request_body"]    ,
+            "upload_dispute_file_scenario_response": upload_dispute_file_scenario["response_body"],
+            "upload_dispute_file_scenario_id": upload_dispute_file_scenario["response_id"],
 
             # WEBHOOKS ------------------------------------------------------------
 
@@ -1311,7 +1311,7 @@ def generate_template_variables(config_values):
             'update_merchant_profile_scenario_response_id': update_merchant_profile_scenario['response_id'],
 
             'fetch_merchant_fee_scenario_response': fetch_merchant_fee_scenario['response_body'],
-            
+
             # REVIEW QUEUES --------------------------------------------
 
             # "list_queued_identities_scenario_response": list_queued_identities_scenario["response_body"],

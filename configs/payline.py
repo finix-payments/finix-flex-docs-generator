@@ -57,7 +57,7 @@ snippets_by_resource = {
     ],
     "disputes": [
         "definition",
-        # "create_dispute",
+        "upload_dispute",
         "fetch_dispute",
         "list_disputes"
     ],
@@ -230,7 +230,7 @@ admin_snippets_by_resource = {
 
     "disputes": [
         "definition",
-        # "create_dispute",
+        "upload_dispute",
         "fetch_dispute",
         "list_disputes"
     ],
@@ -400,7 +400,7 @@ resource_ordering = [
     'guide_merchant_fee_profiles',
     # "guide_tokenization_js",
     "authorizations",
-    # "disputes",
+    "disputes",
     "identities",
     "merchants",
     "payment_instruments",
@@ -431,7 +431,7 @@ admin_resource_ordering = [
     'guide_merchant_fee_profiles',
     "applications",
     "authorizations",
-    # "disputes",
+    "disputes",
     "identities",
     # # "identity_verifications",
     "merchants",

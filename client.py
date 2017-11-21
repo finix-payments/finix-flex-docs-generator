@@ -841,6 +841,25 @@ class Client(object):
 
 
     def create_dispute(self, merchant_id, card_id):
+        # import ipdb; ipdb.set_trace()
+
+        def create_debit(self, merchant_id, card_id, amount):
+            fee = int(round(amount * .1))
+            values =  {
+                "currency": "USD",
+                "source": card_id,
+                "merchant_identity": merchant_id,
+                "amount": amount,
+                "fee": fee,
+                "tags": {
+                    "order_number": "21DFASJSAKAS"
+                },
+            }
+
+            values = format_json(json.dumps(values))
+            endpoint = self.staging_base_url + '/transfers'
+            return formatted_response(endpoint, values, self.encoded_auth)
+
 
         # create dispute by debiting card with amount 888888
         debit = create_debit(self, merchant_id, card_id, 888888)
@@ -859,12 +878,8 @@ class Client(object):
         response_body = urlopen(request).read()
         response_body = format_json(response_body)
 
-        # first dispute in collection
-        dispute_resource = json.loads(response_body)['_embedded']['disputes'][0]
-        return {'request_body': None,
-                'response_body': dispute_resource,
-                'response_id': dispute_resource["id"]}
-
+        values = None
+        return formatted_response(endpoint, values, self.encoded_auth)
 
     def create_authorization(self, merchant_id, card_id):
 
@@ -960,7 +975,7 @@ class Client(object):
     def upload_dispute_file(self, dispute_id):
 
         opener = poster.streaminghttp.register_openers()
-        values = {'file': open("testfile.txt", "rb"), 'name': 'file'}
+        values = {'file': open("testfile.pdf", "rb"), 'name': 'file'}
         datagen, headers = poster.encode.multipart_encode(values)
 
         endpoint = self.staging_base_url + '/disputes/' + dispute_id + "/evidence"
