@@ -212,7 +212,7 @@ def generate_template_variables(config_values):
 
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
-    list_disputes_scenario = api_client.list_disputes()
+
     list_identities_scenario = api_client.list_identities()
     list_merchants_scenario = api_client.list_merchants()
     list_merchant_verifications_scenario = api_client.list_merchant_verifications(provision_merchant_scenario["response_id"])
@@ -237,6 +237,8 @@ def generate_template_variables(config_values):
     create_dispute_scenario = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
     fetch_dispute_scenario = api_client.fetch_dispute(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
     upload_dispute_file_scenario = api_client.upload_dispute_file(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
+
+    list_disputes_scenario = api_client.list_disputes()
 
     if TOGGLE_OFF_SETTLEMENTS == False:
         create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_bank_debit_scenario['response_id'])
