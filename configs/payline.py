@@ -153,7 +153,6 @@ snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        "remove_transfer",
         # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
@@ -184,6 +183,7 @@ snippets_by_resource = {
     "webhooks": [
         "definition",
         "create_webhook",
+        "update_webhook",
         "fetch_webhook",
         "list_webhooks",
         "sample_payloads",
@@ -360,6 +360,7 @@ admin_snippets_by_resource = {
     "webhooks": [
         "definition",
         "create_webhook",
+        "update_webhook",
         "fetch_webhook",
         "list_webhooks",
         "sample_payloads",

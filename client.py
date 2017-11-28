@@ -789,6 +789,15 @@ class Client(object):
         return formatted_response(endpoint, values, self.encoded_auth)
 
 
+    def update_webhook(self, webhook_id):
+        values = """
+                    {
+                    "url" : "https://requestb.in/1bexhoq1"
+                    }
+        """
+        endpoint = self.staging_base_url + '/webhooks/' + webhook_id
+        return formatted_response(endpoint, values, self.encoded_auth, "PUT")
+
     def create_settlement(self, identity_id, transfer_id):
         # transfer_id is the ID of a recently created debit transfer. Here we're
         # checking  to see if its ready to settle, typically waiting period
