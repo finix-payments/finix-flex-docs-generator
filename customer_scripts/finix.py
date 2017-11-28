@@ -187,7 +187,10 @@ def generate_template_variables(config_values):
     payment_instrument_verification_payouts_scenario = api_client.verify_payment_instrument(create_recipient_card_scenario["response_id"], 'payouts')
 
     # FIRST RUN SCENARIOS
+
     create_webhook_scenario = api_client.create_webhook()
+    update_webhook_scenario = api_client.update_webhook(create_webhook_scenario["response_id"])
+
     create_identity_individual_sole_proprietorship_scenario = api_client.create_merchant_identity("INDIVIDUAL_SOLE_PROPRIETORSHIP")
     create_identity_corporation_scenario = api_client.create_merchant_identity("CORPORATION")
     create_identity_limited_liability_company_scenario = api_client.create_merchant_identity("LIMITED_LIABILITY_COMPANY")
@@ -601,6 +604,9 @@ def generate_template_variables(config_values):
             "create_webhook_scenario_python_request": create_webhook_scenario["python_request_body"],
             "create_webhook_scenario_response": create_webhook_scenario["response_body"],
             "create_webhook_scenario_id": create_webhook_scenario["response_id"],
+
+            "update_webhook_scenario_curl_request": update_webhook_scenario["curl_request_body"],
+            "update_webhook_scenario_response": update_webhook_scenario["response_body"],
 
             "fetch_webhook_scenario_response": fetch_webhook_scenario["response_body"],
             "fetch_webhook_scenario_id": fetch_webhook_scenario["response_id"],
@@ -1112,6 +1118,9 @@ def generate_template_variables(config_values):
             "create_webhook_scenario_python_request": create_webhook_scenario["python_request_body"],
             "create_webhook_scenario_response": create_webhook_scenario["response_body"],
             "create_webhook_scenario_id": create_webhook_scenario["response_id"],
+
+            "update_webhook_scenario_curl_request": update_webhook_scenario["curl_request_body"],
+            "update_webhook_scenario_response": update_webhook_scenario["response_body"],
 
             "fetch_webhook_scenario_response": fetch_webhook_scenario["response_body"],
             "fetch_webhook_scenario_id": fetch_webhook_scenario["response_id"],
