@@ -276,6 +276,9 @@ admin_snippets_by_resource = {
         '3_locate_merchant_profile',
         '4_update_merchant_profile',
     ],
+    'fee_profile': [
+        "fetch_fee_profile"
+    ],
     "guide_authentication": [
         "definition",
         "authentication",
@@ -462,6 +465,7 @@ admin_resource_ordering = [
     'fee_profile_overview',
     'guide_application_fee_profiles',
     'guide_merchant_fee_profiles',
+    'fee_profile',
     "applications",
     "authorizations",
     "disputes",

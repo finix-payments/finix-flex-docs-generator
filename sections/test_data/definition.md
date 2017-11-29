@@ -6,8 +6,6 @@ Amount| Description
 ----- | -----------
 `100` | Success amount
 `102` | Failed amount
-`103` | Canceled amount
-`104` | Exception amount
 `888888` | Disputed amount
 `193` | Insufficient funds amount
 `194` | Invalid card number amount

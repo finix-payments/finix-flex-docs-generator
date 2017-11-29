@@ -6,7 +6,7 @@ Per the JSON API for deleting a resource, our API doesn't have a response body w
 
 #### HTTP Request
 
-`POST {{staging_base_url}}/settlements/:SETTLEMENT_ID/transfers`
+`DELETE {{staging_base_url}}/settlements/:SETTLEMENT_ID/transfers`
 
 
 #### URL Parameters

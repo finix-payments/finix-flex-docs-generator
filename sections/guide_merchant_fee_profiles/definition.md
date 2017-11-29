@@ -1,1 +1,1 @@
-## Defining Custom Merchant Pricing
+## Associate Fee Profile to a Merchant
