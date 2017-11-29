@@ -1091,8 +1091,7 @@ of PCI scope by sending this info over SSL directly to {{api_name}}. For your
 convenience we've provided a [jsfiddle]({{embedded_iframe_jsfiddle}}) as a live example.
 
 <aside class="notice">
-Note you must still use SSL on your servers for any actions related to financial
-transactions via the {{api_name}} API.
+Note you must still use SSL on your servers for any actions related to financial transactions via the {{api_name}} API.
 </aside>
 
 ### Step 1: Create a Button
@@ -1116,9 +1115,7 @@ We have provided a simple example to the right.
 ### Step 2: Include library
 
 To use the iframe you will need to include the library on the webpage
-where you're hosting the aforementioned button. Please include the script as
-demonstrated to the right. Please refrain from hosting the iframe library locally
-as doing so prevents important updates.
+where you're hosting the aforementioned button. Please include the script as demonstrated to the right. Please refrain from hosting the iframe library locally as doing so prevents important updates.
 
 
 ```html
@@ -1135,6 +1132,7 @@ as doing so prevents important updates.
         Payline.openTokenizeCardForm({
           applicationName: 'Business Name',
           applicationId: '{{create_app_scenario_id}}',
+          environment: 'sandbox',
         }, function (tokenizedResponse) {
           // Define a callback to send your token to your back-end server
         });
@@ -1143,14 +1141,15 @@ as doing so prevents important updates.
  </script>
 ```
 
-Next we need to configure the client so that it associates the card with your `Application`.
-We will also need to register a click event that fires when our users click on the
-button, thereby rendering the iframe on the page. Then when the form is submitted
-you'll be returned a unique `Token` resource representing the submitted card
-details. We will also need to define a callback for handling that response.
 
-In the next step we'll show you how to claim the instrument via an authenticated
-HTTPS request on your back-end for future use.
+Next we need to configure the client so that it associates the card with your `Application`. We will also need to register a click event that fires when our users click on the button, thereby rendering the iframe on the page. Then when the form is submitted you'll be returned a unique `Token` resource representing the submitted card details. We will also need to define a callback for handling that response.
+
+<aside class="notice">
+ When you're ready to tokenize in production, pass `live` for the `environment` attribute.
+</aside>
+
+
+In the next step we'll show you how to claim the instrument via an authenticated HTTPS request on your back-end for future use.
 
 > Example Response:
 
@@ -1895,6 +1894,141 @@ authorizations = {{ruby_client_resource_name}}::Authorization.retrieve
 #### HTTP Request
 
 `GET {{staging_base_url}}/authorizations/`
+
+# Disputes
+
+Disputes, also known as chargebacks, represent any customer-disputed charge. The `respond_by` field gets set by the upstream `Processor` and is the date that the `Merchant` needs to submit evidence thats supports their claim. 
+
+## Upload Dispute Evidence
+
+```shell
+curl {{staging_base_url}}/disputes/{{fetch_dispute_scenario_id}}/evidence \
+    -H "Content-Type: application/pdf/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -F 'data=@path/to/local/file' testfile.pdf
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{upload_dispute_file_scenario_response}}
+```
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/disputes/:DISPUTE_ID/evidence`
+
+
+<aside class="notice">
+Please upload a file with a size less than 10MB and with an extension of: .jpeg, .pdf, .png, or .tiff.
+</aside>
+
+## Fetch a Dispute
+
+```shell
+
+curl {{staging_base_url}}/disputes/{{fetch_dispute_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Dispute;
+
+Dispute dispute = transfer.disputeClient().fetch("{{fetch_dispute_scenario_id}}");
+
+```
+```php
+<?php
+use {{php_client_resource_name}}\Resources\Dispute;
+
+$dispute = Dispute::retrieve('{{fetch_dispute_scenario_id}}');
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Dispute
+dispute = Dispute.get(id="{{fetch_dispute_scenario_id}}")
+
+```
+```ruby
+disputes = {{ruby_client_resource_name}}::Dispute.retrieve
+```
+> Example Response:
+
+```json
+{{fetch_dispute_scenario_response}}
+```
+
+#### HTTP Request
+
+`GET {{staging_base_url}}/disputes/:DISPUTE_ID`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:DISPUTE_ID | ID of the Dispute
+
+
+## List all Disputes
+
+```shell
+curl {{staging_base_url}}/disputes/ \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+
+```
+```java
+import io.{{api_name_downcase}}.payments.processing.client.model.Dispute;
+
+transfer.disputeClient().<Resources<Dispute>>resourcesIterator()
+  .forEachRemaining(page -> {
+    Collection<Dispute> disputes = page.getContent();
+  })
+```
+```php
+<?php
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Dispute
+dispute = Dispute.get()
+
+```
+```ruby
+disputes = {{ruby_client_resource_name}}::Dispute.retrieve(:id => "{{fetch_dispute_scenario_id}}")
+```
+> Example Response:
+
+```json
+{{list_disputes_scenario_response}}
+```
+
+#### HTTP Request
+
+`GET {{staging_base_url}}/disputes/`
+
 
 # Identities
 
@@ -3622,48 +3756,6 @@ Parameter | Description
 :SETTLEMENT_ID | ID of the `Settlement`
 
 
-## Remove Transfer(s) from a Batch Settlements
-
-```shell
-
-curl {{staging_base_url}}/settlements/{{fetch_settlement_scenario_id}}/transfers \
-    -H "Content-Type: application/vnd.json+api" \
-    -u  {{basic_auth_username}}:{{basic_auth_password}} \
-    -d '{{remove_transfer_scenario_curl_request}}'
-
-```
-```java
-
-```
-```php
-<?php
-
-```
-```python
-
-
-
-```
-```ruby
-
-```
-Do you have a transfer in a batch settlement that you think may be a fraudulent transaction? So as long as the `Settlement` hasn't been funded, you can remove the `Transfer` or an array of `Transfers`, along with its corresponding fee from a batch settlement.
-
-<aside class="notice">
-Per the JSON API for deleting a resource, our API doesn't have a response body when removing a transfer from a settlement.
-</aside>
-
-#### HTTP Request
-
-`POST {{staging_base_url}}/settlements/:SETTLEMENT_ID/transfers`
-
-
-#### URL Parameters
-
-Parameter | Description
---------- | -------------------------------------------------------------------
-:SETTLEMENT_ID | ID of the Settlement
-
 ## List all Batch Settlements
 
 ```shell
@@ -4319,6 +4411,59 @@ Field | Type | Description
 ----- | ---- | -----------
 url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be sent via POST request (max 120 characters)
 
+
+## Update Webhook
+
+```shell
+curl {{staging_base_url}}/webhooks/{{fetch_webhook_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -X PUT \
+    -d '{{update_webhook_scenario_curl_request}}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+
+
+curl https://api-test.payline.io/users/USjiEpgJ2PLShubgJMDH26zb \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USjXwXbL7N1tp6UnCCqfogkP:8d745c00-1f4f-4d65-a92c-44dcf19e872e
+
+
+
+    curl https://api-staging.finix.io/settlements/STgVTi76xy8Q5sbwVXEN6sxb/transfers \
+        -H "Content-Type: application/vnd.json+api" \
+        -u  UShfdG5dew9fRecphnQC4rx9:1eb2a18b-294b-4aab-a8ab-6b4d21daba91 \
+        -d '
+        {
+            "transfers": [
+                "TRajzGQCARaBC1iggsBCxuUc"
+            ]
+        }'
+
+```
+> Example Response:
+
+```json
+{{update_webhook_scenario_response}}
+```
+
+#### HTTP Request
+
+`PUT {{staging_base_url}}/webhook/:WEBHOOK_ID`
 
 ## Fetch a Webhook
 

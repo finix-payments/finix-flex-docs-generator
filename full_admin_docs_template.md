@@ -1138,8 +1138,7 @@ of PCI scope by sending this info over SSL directly to {{api_name}}. For your
 convenience we've provided a [jsfiddle]({{embedded_iframe_jsfiddle}}) as a live example.
 
 <aside class="notice">
-Note you must still use SSL on your servers for any actions related to financial
-transactions via the {{api_name}} API.
+Note you must still use SSL on your servers for any actions related to financial transactions via the {{api_name}} API.
 </aside>
 
 ### Step 1: Create a Button
@@ -1163,9 +1162,7 @@ We have provided a simple example to the right.
 ### Step 2: Include library
 
 To use the iframe you will need to include the library on the webpage
-where you're hosting the aforementioned button. Please include the script as
-demonstrated to the right. Please refrain from hosting the iframe library locally
-as doing so prevents important updates.
+where you're hosting the aforementioned button. Please include the script as demonstrated to the right. Please refrain from hosting the iframe library locally as doing so prevents important updates.
 
 
 ```html
@@ -1182,6 +1179,7 @@ as doing so prevents important updates.
         Payline.openTokenizeCardForm({
           applicationName: 'Business Name',
           applicationId: '{{create_app_scenario_id}}',
+          environment: 'sandbox',
         }, function (tokenizedResponse) {
           // Define a callback to send your token to your back-end server
         });
@@ -1190,14 +1188,15 @@ as doing so prevents important updates.
  </script>
 ```
 
-Next we need to configure the client so that it associates the card with your `Application`.
-We will also need to register a click event that fires when our users click on the
-button, thereby rendering the iframe on the page. Then when the form is submitted
-you'll be returned a unique `Token` resource representing the submitted card
-details. We will also need to define a callback for handling that response.
 
-In the next step we'll show you how to claim the instrument via an authenticated
-HTTPS request on your back-end for future use.
+Next we need to configure the client so that it associates the card with your `Application`. We will also need to register a click event that fires when our users click on the button, thereby rendering the iframe on the page. Then when the form is submitted you'll be returned a unique `Token` resource representing the submitted card details. We will also need to define a callback for handling that response.
+
+<aside class="notice">
+ When you're ready to tokenize in production, pass `live` for the `environment` attribute.
+</aside>
+
+
+In the next step we'll show you how to claim the instrument via an authenticated HTTPS request on your back-end for future use.
 
 > Example Response:
 
@@ -2271,6 +2270,333 @@ type | *string*, **required** | Must pass TOKEN as the value
 identity | *string*, **required**| ID for the `Identity` resource which the account is to be associated
 
 
+# Fee Profiles
+
+With {{api_name_downcase}}, you have the power to configure an entire `Application's` `fee_profile` or a specific `Merchant's` `fee_profile`. A `fee_profile` consists of percentage and fixed based fees that are subtracted from the total `amount` for each `Transfer`.
+
+Both an `Application` and a `Merchant` can have a `fee_profile`; however if an `Application` and it's `Merchant` have a `fee_profile`, the `Merchant's` `fee_profile` will take precedence. By default, both an `Application's` and a `Merchant's` `fee_profile` will be null.
+
+## Defining Custom Application Fees
+
+### Step 1: Create New Application Fee Profile
+
+```shell
+curl {{staging_base_url}}/fee_profiles \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
+    -d '{{create_application_fee_profile_scenario_curl_request}}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{create_application_fee_profile_scenario_response}}
+```
+
+Setting new pricing for an `Application` will only impact the pricing for this `Application` and any of it's submerchants that do not have custom pricing. If a submerchant's `fee_profile` is not null, it will not inherit the new `Application` pricing by default.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/fee_profiles`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+:APPLICATION_ID | *string*, **required** | ID of `Application`
+basis_points | *integer*, **optional** | Percentage-based fee incurred against the full amount of each card-based Transfer. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%)
+fixed_fee | *integer*, **optional** | Fee in cents incurred for each individual card-based `Transfer`
+ach_basis_points | *integer*, **optional** | Percentage-based fee incurred against the full amount of an eCheck (ACH Debit). Calculated as one hundredth of one percent (1 basis point = .0001 or .01%)
+ach_fixed_fee | *integer*, **optional** | Fee in cents incurred for each individual `Transfer`
+charged_interchange | *boolean*, **optional** | Set to True to incur interchange fees for card-based Transfers.
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+
+### Step 2: Locate Application Profile
+
+```shell
+curl {{staging_base_url}}/applications/{{fetch_application_scenario_id}}/application_profile \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}}
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{fetch_application_profile_scenario_response}}
+```
+
+In the links you'll see the application_profile, which you'll want to store for the following step.
+
+#### HTTP Request
+
+`GET {{staging_base_url}}/applications/:APPLICATION_ID/application_profile`
+
+#### URL Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+:APPLICATION_ID | *string*, **required** | ID of the `Application`
+
+### Step 3: Update Application Profile
+
+```shell
+curl {{staging_base_url}}/application_profiles/{{update_application_profile_scenario_response_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
+    -d '{{update_application_profile_scenario_curl_request}}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{update_application_profile_scenario_response}}
+```
+
+Next, locate the Application's `application_profile`- there's a link to it on the application resource from the previous step. Lastly, you'll update the Application's `application_profile` by making a PUT request and passing the `fee_profile` that you received from the previous step.
+
+#### HTTP Request
+
+`PUT {{staging_base_url}}/application_profiles/:APPLICATION_PROFILE`
+
+#### URL Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+:APPLICATION_PROFILE | *string*, **required** | ID of the `APPLICATION_PROFILE`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+fee_profile | *string*, **required** | ID of the `fee_profile`
+
+## Defining Custom Merchant Pricing
+
+### Step 1: Create New Merchant Fee Profile
+
+```shell
+curl {{staging_base_url}}/fee_profiles \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
+    -d '{{create_application_fee_profile_scenario_curl_request}}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{create_merchant_fee_profile_scenario_response}}
+```
+
+Setting new pricing for a `Merchant` will only impact the pricing for this merchant. It will not impact other `Merchants` or the `Application` as a whole. `Merchants` with custom pricing will not inherit changes to the `Application's` default pricing.
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/fee_profiles`
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+:MERCHANT_ID | *string*, **required** | ID of `Merchant`
+basis_points | *integer*, **optional** | Percentage-based fee incurred against the full amount of each card-based Transfer. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%)
+fixed_fee | *integer*, **optional** | Fee in cents incurred for each individual card-based `Transfer`
+ach_basis_points | *integer*, **optional** | Percentage-based fee incurred against the full amount of an eCheck (ACH Debit). Calculated as one hundredth of one percent (1 basis point = .0001 or .01%)
+ach_fixed_fee | *integer*, **optional** | Fee in cents incurred for each individual `Transfer`
+charged_interchange | *boolean*, **optional** | Set to True to incur interchange fees for card-based Transfers.
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
+
+### Step 2: Locate Merchant
+
+```shell
+curl {{staging_base_url}}/merchants/{{fetch_merchant_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}}
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{fetch_merchant_fee_scenario_response}}
+```
+
+Make a GET request with your `Merchant`'s ID. You'll want to keep the `merchant_profile` from the response for the following step.
+
+#### HTTP Request
+
+`GET {{staging_base_url}}/merchants/:MERCHANT_ID`
+
+#### URL Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+:MERCHANT_ID | *string*, **required** | ID of the `Merchant`
+
+### Step 3: Locate Merchant Profile
+
+```shell
+curl {{staging_base_url}}/merchant_profiles/{{fetch_merchant_profile_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}}
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{fetch_merchant_profile_scenario_response}}
+```
+
+Make a GET request with the `merchant_profile` ID that you received from the previous step. You'll want to keep the `fee_profile` handy for the next step. 
+
+#### HTTP Request
+
+`GET {{staging_base_url}}/merchants/:MERCHANT_ID`
+
+#### URL Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+:MERCHANT_ID | *string*, **required** | ID of the `Merchant`
+
+### Step 4: Update Merchant Profile
+
+```shell
+curl {{staging_base_url}}/merchant_profiles/{{update_merchant_profile_scenario_response_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{platform_basic_auth_username}}:{{platform_basic_auth_password}} \
+    -d '{{update_merchant_profile_scenario_curl_request}}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{update_merchant_profile_scenario_response}}
+```
+
+Lastly, you'll update the Merchant's `merchant_profile` by making a PUT request and passing the `fee_profile` that you received from the previous step.
+
+#### HTTP Request
+
+`PUT {{staging_base_url}}/merchant_profiles/:MERCHANT_PROFILE`
+
+#### URL Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+:MERCHANT_PROFILE | *string*, **required** | ID of the `MERCHANT_PROFILE`
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+fee_profile | *string*, **required** | ID of the `fee_profile`
+
 # Applications
 
 An `Application` resource represents a web application (e.g. marketplace, ISV,
@@ -3058,6 +3384,141 @@ authorizations = {{ruby_client_resource_name}}::Authorization.retrieve
 #### HTTP Request
 
 `GET {{staging_base_url}}/authorizations/`
+
+# Disputes
+
+Disputes, also known as chargebacks, represent any customer-disputed charge. The `respond_by` field gets set by the upstream `Processor` and is the date that the `Merchant` needs to submit evidence thats supports their claim. 
+
+## Upload Dispute Evidence
+
+```shell
+curl {{staging_base_url}}/disputes/{{fetch_dispute_scenario_id}}/evidence \
+    -H "Content-Type: application/pdf/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -F 'data=@path/to/local/file' testfile.pdf
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+```
+> Example Response:
+
+```json
+{{upload_dispute_file_scenario_response}}
+```
+
+#### HTTP Request
+
+`POST {{staging_base_url}}/disputes/:DISPUTE_ID/evidence`
+
+
+<aside class="notice">
+Please upload a file with a size less than 10MB and with an extension of: .jpeg, .pdf, .png, or .tiff.
+</aside>
+
+## Fetch a Dispute
+
+```shell
+
+curl {{staging_base_url}}/disputes/{{fetch_dispute_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+
+
+```
+```java
+
+import io.{{api_name_downcase}}.payments.processing.client.model.Dispute;
+
+Dispute dispute = transfer.disputeClient().fetch("{{fetch_dispute_scenario_id}}");
+
+```
+```php
+<?php
+use {{php_client_resource_name}}\Resources\Dispute;
+
+$dispute = Dispute::retrieve('{{fetch_dispute_scenario_id}}');
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Dispute
+dispute = Dispute.get(id="{{fetch_dispute_scenario_id}}")
+
+```
+```ruby
+disputes = {{ruby_client_resource_name}}::Dispute.retrieve
+```
+> Example Response:
+
+```json
+{{fetch_dispute_scenario_response}}
+```
+
+#### HTTP Request
+
+`GET {{staging_base_url}}/disputes/:DISPUTE_ID`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:DISPUTE_ID | ID of the Dispute
+
+
+## List all Disputes
+
+```shell
+curl {{staging_base_url}}/disputes/ \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}}
+
+```
+```java
+import io.{{api_name_downcase}}.payments.processing.client.model.Dispute;
+
+transfer.disputeClient().<Resources<Dispute>>resourcesIterator()
+  .forEachRemaining(page -> {
+    Collection<Dispute> disputes = page.getContent();
+  })
+```
+```php
+<?php
+
+```
+```python
+
+
+from {{python_client_resource_name}}.resources import Dispute
+dispute = Dispute.get()
+
+```
+```ruby
+disputes = {{ruby_client_resource_name}}::Dispute.retrieve(:id => "{{fetch_dispute_scenario_id}}")
+```
+> Example Response:
+
+```json
+{{list_disputes_scenario_response}}
+```
+
+#### HTTP Request
+
+`GET {{staging_base_url}}/disputes/`
+
 
 # Identities
 
@@ -5899,6 +6360,59 @@ Field | Type | Description
 ----- | ---- | -----------
 url | *string*, **required** | The HTTP or HTTPS url where the callbacks will be sent via POST request (max 120 characters)
 
+
+## Update Webhook
+
+```shell
+curl {{staging_base_url}}/webhooks/{{fetch_webhook_scenario_id}} \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  {{basic_auth_username}}:{{basic_auth_password}} \
+    -X PUT \
+    -d '{{update_webhook_scenario_curl_request}}'
+
+```
+```java
+
+```
+```php
+<?php
+
+```
+```python
+
+
+
+```
+```ruby
+
+
+
+curl https://api-test.payline.io/users/USjiEpgJ2PLShubgJMDH26zb \
+    -H "Content-Type: application/vnd.json+api" \
+    -u  USjXwXbL7N1tp6UnCCqfogkP:8d745c00-1f4f-4d65-a92c-44dcf19e872e
+
+
+
+    curl https://api-staging.finix.io/settlements/STgVTi76xy8Q5sbwVXEN6sxb/transfers \
+        -H "Content-Type: application/vnd.json+api" \
+        -u  UShfdG5dew9fRecphnQC4rx9:1eb2a18b-294b-4aab-a8ab-6b4d21daba91 \
+        -d '
+        {
+            "transfers": [
+                "TRajzGQCARaBC1iggsBCxuUc"
+            ]
+        }'
+
+```
+> Example Response:
+
+```json
+{{update_webhook_scenario_response}}
+```
+
+#### HTTP Request
+
+`PUT {{staging_base_url}}/webhook/:WEBHOOK_ID`
 
 ## Fetch a Webhook
 
