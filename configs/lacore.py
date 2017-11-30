@@ -33,6 +33,8 @@ partner_configs = {
 
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: [NON-ADMIN]
+# this provides the ordering for the docs by section and individual snippet
+# Doc Type: [NON-ADMIN]
 snippets_by_resource = {
     "api_endpoints": [
         "definition",
@@ -57,7 +59,7 @@ snippets_by_resource = {
     ],
     "disputes": [
         "definition",
-        # "create_dispute",
+        "upload_dispute",
         "fetch_dispute",
         "list_disputes"
     ],
@@ -100,6 +102,22 @@ snippets_by_resource = {
         "definition",
         "associate_token",
         ],
+    "fee_profile_overview": [
+        "definition",
+        ],
+    'guide_application_fee_profiles': [
+        "definition",
+        '1_create_new_profile',
+        '2_locate_application_profile',
+        '3_update_application_profile',
+    ],
+    'guide_merchant_fee_profiles': [
+        "definition",
+        '1_create_new_profile',
+        '2_locate_merchant',
+        '3_locate_merchant_profile',
+        '4_update_merchant_profile',
+    ],
     "test_data": [
         "definition"
     ],
@@ -137,7 +155,6 @@ snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        "remove_transfer",
         # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
@@ -147,7 +164,6 @@ snippets_by_resource = {
         "definition",
         "associate_token",
         ],
-
     "transfers": [
         "definition",
         # "create_debit",
@@ -168,6 +184,7 @@ snippets_by_resource = {
     "webhooks": [
         "definition",
         "create_webhook",
+        "update_webhook",
         "fetch_webhook",
         "list_webhooks",
         "sample_payloads",
@@ -214,7 +231,7 @@ admin_snippets_by_resource = {
 
     "disputes": [
         "definition",
-        # "create_dispute",
+        "upload_dispute",
         "fetch_dispute",
         "list_disputes"
     ],
@@ -258,6 +275,22 @@ admin_snippets_by_resource = {
     "guide_hosted_fields": [
         "definition",
         "associate_token",
+    ],
+    "fee_profile_overview": [
+        "definition",
+        ],
+    'guide_application_fee_profiles': [
+        "definition",
+        '1_create_new_profile',
+        '2_locate_application_profile',
+        '3_update_application_profile',
+    ],
+    'guide_merchant_fee_profiles': [
+        "definition",
+        '1_create_new_profile',
+        '2_locate_merchant',
+        '3_locate_merchant_profile',
+        '4_update_merchant_profile',
     ],
     "identities": [
         "definition",
@@ -328,6 +361,7 @@ admin_snippets_by_resource = {
     "webhooks": [
         "definition",
         "create_webhook",
+        "update_webhook",
         "fetch_webhook",
         "list_webhooks",
         "sample_payloads",
@@ -365,7 +399,7 @@ resource_ordering = [
     "idempotent_requests",
     # "guide_tokenization_js",
     "authorizations",
-    # "disputes",
+    "disputes",
     "identities",
     "merchants",
     "payment_instruments",
@@ -393,7 +427,11 @@ admin_resource_ordering = [
     "guide_tokenization_js",
     "applications",
     "authorizations",
-    # "disputes",
+    "disputes",
+    'fee_profile_overview',
+    'guide_application_fee_profiles',
+    'guide_merchant_fee_profiles',
+    'fee_profile',
     "identities",
     # # "identity_verifications",
     "merchants",

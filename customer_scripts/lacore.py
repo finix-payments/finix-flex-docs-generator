@@ -149,6 +149,8 @@ def generate_template_variables(config_values):
 
     # FIRST RUN SCENARIOS
     create_webhook_scenario = api_client.create_webhook()
+    update_webhook_scenario = api_client.update_webhook(create_webhook_scenario["response_id"])
+
     create_identity_individual_sole_proprietorship_scenario = api_client.create_merchant_identity("INDIVIDUAL_SOLE_PROPRIETORSHIP")
     create_identity_corporation_scenario = api_client.create_merchant_identity("CORPORATION")
     create_identity_limited_liability_company_scenario = api_client.create_merchant_identity("LIMITED_LIABILITY_COMPANY")
@@ -200,7 +202,17 @@ def generate_template_variables(config_values):
     fetch_transfer_scenario = api_client.fetch_transfer(create_bank_debit_scenario["response_id"])
     fetch_webhook_scenario = api_client.fetch_webhook(create_webhook_scenario["response_id"])
 
-    # # LIST
+    # FEES
+    create_application_fee_profile_scenario = api_client.create_fee_profile(create_app_scenario["response_id"])
+    fetch_application_profile_scenario = api_client.fetch_application_profile(create_app_scenario['response_id'])
+    update_application_profile_scenario = api_client.update_application_profile(fetch_application_profile_scenario['response_id'], create_application_fee_profile_scenario['response_id'])
+
+    create_merchant_fee_profile_scenario = api_client.create_fee_profile(fetch_application_scenario["response_id"])
+    fetch_merchant_fee_scenario = api_client.fetch_merchant(provision_merchant_scenario['response_id'])
+    fetch_merchant_profile_scenario = api_client.fetch_merchant_profile(json.loads(fetch_merchant_fee_scenario['response_body'])['merchant_profile'])
+    update_merchant_profile_scenario = api_client.update_merchant_profile(fetch_merchant_profile_scenario['response_id'], create_merchant_fee_profile_scenario['response_id'])
+
+    # LIST
     list_authorizations_scenario = api_client.list_authorizations()
     list_disputes_scenario = api_client.list_disputes()
     list_identities_scenario = api_client.list_identities()
@@ -224,15 +236,7 @@ def generate_template_variables(config_values):
     update_transfer_scenario = api_client.update_transfer(fetch_transfer_scenario["response_id"])
     reattempt_provision_merchant_scenario = api_client.reattempt_provision_merchant(provision_merchant_scenario["response_id"])
 
-
     create_dispute_scenario = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
-
-    create_dispute_scenario_1 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
-    create_dispute_scenario_2 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
-    create_dispute_scenario_3 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
-    create_dispute_scenario_4 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
-    create_dispute_scenario_5 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
-
     fetch_dispute_scenario = api_client.fetch_dispute(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
     upload_dispute_file_scenario = api_client.upload_dispute_file(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
     list_disputes_scenario = api_client.list_disputes()
@@ -240,7 +244,7 @@ def generate_template_variables(config_values):
     # create_dispute_scenario = create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
     # fetch_dispute_scenario = fetch_dispute(create_dispute_scenario["response_id"])
     # upload_dispute_file_scenario = upload_dispute_file(fetch_dispute_scenario["response_id"])
-    
+
     if TOGGLE_OFF_SETTLEMENTS == False:
         create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_bank_debit_scenario['response_id'])
         remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
@@ -511,18 +515,19 @@ def generate_template_variables(config_values):
             "list_authorizations_scenario_response": list_authorizations_scenario["response_body"],
 
             # DISPUTES ------------------------------------------------------------
-            # "create_dispute_scenario_request": create_dispute_scenario["request_body"],
-            # "create_dispute_scenario_response": create_dispute_scenario["response_body"],
-            # "create_dispute_scenario_id": create_dispute_scenario["response_id"],
 
-            # "fetch_dispute_scenario_response": fetch_dispute_scenario["response_body"],
-            # "fetch_dispute_scenario_id": fetch_dispute_scenario["response_id"],
+            "create_dispute_scenario_request": create_dispute_scenario["request_body"],
+            "create_dispute_scenario_response": create_dispute_scenario["response_body"],
 
-            # "list_disputes_scenario_response": list_disputes_scenario["response_body"],
+            "fetch_dispute_scenario_response": fetch_dispute_scenario["response_body"],
+            "fetch_dispute_scenario_id": fetch_dispute_scenario["response_id"],
 
-            # "upload_dispute_file_scenario_request": upload_dispute_file_scenario["request_body"]    ,
-            # "upload_dispute_file_scenario_response": upload_dispute_file_scenario["response_body"],
-            # "upload_dispute_file_scenario_id": upload_dispute_file_scenario["response_id"],
+            "list_disputes_scenario_response": list_disputes_scenario["response_body"],
+
+            "upload_dispute_file_scenario_request": upload_dispute_file_scenario["request_body"]    ,
+            "upload_dispute_file_scenario_response": upload_dispute_file_scenario["response_body"],
+            "upload_dispute_file_scenario_id": upload_dispute_file_scenario["response_id"],
+
 
             # WEBHOOKS ------------------------------------------------------------
 
@@ -537,6 +542,9 @@ def generate_template_variables(config_values):
             "fetch_webhook_scenario_id": fetch_webhook_scenario["response_id"],
 
             "list_webhooks_scenario_response": list_webhooks_scenario["response_body"],
+
+            "update_webhook_scenario_curl_request": update_webhook_scenario["curl_request_body"],
+            "update_webhook_scenario_response": update_webhook_scenario["response_body"],
 
             # SETTLEMENTS -----------------------------------------------------
 
@@ -687,6 +695,44 @@ def generate_template_variables(config_values):
             # "update_queued_state_scenario_python_request": update_queued_state_scenario["python_request_body"],
             # "update_queued_state_scenario_response": update_queued_state_scenario["response_body"],
             # "update_queued_state_scenario_id": update_queued_state_scenario["response_id"],
+
+            # FEES ----------------------------------------------------------------------------------------
+
+            "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request_body"],
+            "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
+            "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
+            'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
+            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
+            'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
+
+            "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
+
+            "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request_body'],
+            "update_application_profile_scenario_php_request": update_application_profile_scenario['php_request_body'],
+            'update_application_profile_scenario_ruby_request': update_application_profile_scenario['ruby_request_body'],
+            'update_application_profile_scenario_python_request': update_application_profile_scenario['python_request_body'],
+            'update_application_profile_scenario_response': update_application_profile_scenario['response_body'],
+            'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id'],
+
+            "create_merchant_fee_profile_scenario_curl_request": create_merchant_fee_profile_scenario["curl_request_body"],
+            "create_merchant_fee_profile_scenario_php_request": create_merchant_fee_profile_scenario['php_request_body'],
+            "create_merchant_fee_profile_scenario_ruby_request": create_merchant_fee_profile_scenario['ruby_request_body'],
+            'create_merchant_fee_profile_scenario_response': create_merchant_fee_profile_scenario['response_body'],
+            'create_merchant_fee_profile_scenario_python_request': create_merchant_fee_profile_scenario['python_request_body'],
+            'create_merchant_fee_profile_scenario_response_id': create_merchant_fee_profile_scenario['response_id'],
+
+            "fetch_merchant_profile_scenario_response": fetch_merchant_profile_scenario['response_body'],
+            'fetch_merchant_profile_scenario_id': fetch_merchant_profile_scenario['response_id'],
+
+            "update_merchant_profile_scenario_curl_request": update_merchant_profile_scenario['curl_request_body'],
+            "update_merchant_profile_scenario_php_request": update_merchant_profile_scenario['php_request_body'],
+            'update_merchant_profile_scenario_ruby_request': update_merchant_profile_scenario['ruby_request_body'],
+            'update_merchant_profile_scenario_python_request': update_merchant_profile_scenario['python_request_body'],
+            'update_merchant_profile_scenario_response': update_merchant_profile_scenario['response_body'],
+            'update_merchant_profile_scenario_response_id': update_merchant_profile_scenario['response_id'],
+
+            'fetch_merchant_fee_scenario_response': fetch_merchant_fee_scenario['response_body'],
+
         }
     else:
         api_scenario_vars = {
@@ -942,18 +988,18 @@ def generate_template_variables(config_values):
 
             # DISPUTES ------------------------------------------------------------
 
-            # "create_dispute_scenario_request": create_dispute_scenario["request_body"],
-            # "create_dispute_scenario_response": create_dispute_scenario["response_body"],
-            # "create_dispute_scenario_id": create_dispute_scenario["response_id"],
+            "create_dispute_scenario_request": create_dispute_scenario["request_body"],
+            "create_dispute_scenario_response": create_dispute_scenario["response_body"],
 
-            # "fetch_dispute_scenario_response": fetch_dispute_scenario["response_body"],
-            # "fetch_dispute_scenario_id": fetch_dispute_scenario["response_id"],
 
-            # "list_disputes_scenario_response": list_disputes_scenario["response_body"],
+            "fetch_dispute_scenario_response": fetch_dispute_scenario["response_body"],
+            "fetch_dispute_scenario_id": fetch_dispute_scenario["response_id"],
 
-            # "upload_dispute_file_scenario_request": upload_dispute_file_scenario["request_body"]    ,
-            # "upload_dispute_file_scenario_response": upload_dispute_file_scenario["response_body"],
-            # "upload_dispute_file_scenario_id": upload_dispute_file_scenario["response_id"],
+            "list_disputes_scenario_response": list_disputes_scenario["response_body"],
+
+            "upload_dispute_file_scenario_request": upload_dispute_file_scenario["request_body"]    ,
+            "upload_dispute_file_scenario_response": upload_dispute_file_scenario["response_body"],
+            "upload_dispute_file_scenario_id": upload_dispute_file_scenario["response_id"],
 
             # WEBHOOKS ------------------------------------------------------------
 
@@ -968,6 +1014,9 @@ def generate_template_variables(config_values):
             "fetch_webhook_scenario_id": fetch_webhook_scenario["response_id"],
 
             "list_webhooks_scenario_response": list_webhooks_scenario["response_body"],
+
+            "update_webhook_scenario_curl_request": update_webhook_scenario["curl_request_body"],
+            "update_webhook_scenario_response": update_webhook_scenario["response_body"],
 
             # SETTLEMENTS -----------------------------------------------------
 
@@ -1117,6 +1166,43 @@ def generate_template_variables(config_values):
             # "update_queued_state_scenario_python_request": update_queued_state_scenario["python_request_body"],
             # "update_queued_state_scenario_response": update_queued_state_scenario["response_body"],
             # "update_queued_state_scenario_id": update_queued_state_scenario["response_id"],
+
+            # FEES ----------------------------------------------------------------------------------------
+
+            "create_application_fee_profile_scenario_curl_request": create_application_fee_profile_scenario["curl_request_body"],
+            "create_application_fee_profile_scenario_php_request": create_application_fee_profile_scenario['php_request_body'],
+            "create_application_fee_profile_scenario_ruby_request": create_application_fee_profile_scenario['ruby_request_body'],
+            'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
+            'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
+            'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
+
+            "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
+
+            "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request_body'],
+            "update_application_profile_scenario_php_request": update_application_profile_scenario['php_request_body'],
+            'update_application_profile_scenario_ruby_request': update_application_profile_scenario['ruby_request_body'],
+            'update_application_profile_scenario_python_request': update_application_profile_scenario['python_request_body'],
+            'update_application_profile_scenario_response': update_application_profile_scenario['response_body'],
+            'update_application_profile_scenario_response_id': update_application_profile_scenario['response_id'],
+
+            "create_merchant_fee_profile_scenario_curl_request": create_merchant_fee_profile_scenario["curl_request_body"],
+            "create_merchant_fee_profile_scenario_php_request": create_merchant_fee_profile_scenario['php_request_body'],
+            "create_merchant_fee_profile_scenario_ruby_request": create_merchant_fee_profile_scenario['ruby_request_body'],
+            'create_merchant_fee_profile_scenario_response': create_merchant_fee_profile_scenario['response_body'],
+            'create_merchant_fee_profile_scenario_python_request': create_merchant_fee_profile_scenario['python_request_body'],
+            'create_merchant_fee_profile_scenario_response_id': create_merchant_fee_profile_scenario['response_id'],
+
+            "fetch_merchant_profile_scenario_response": fetch_merchant_profile_scenario['response_body'],
+            'fetch_merchant_profile_scenario_id': fetch_merchant_profile_scenario['response_id'],
+
+            "update_merchant_profile_scenario_curl_request": update_merchant_profile_scenario['curl_request_body'],
+            "update_merchant_profile_scenario_php_request": update_merchant_profile_scenario['php_request_body'],
+            'update_merchant_profile_scenario_ruby_request': update_merchant_profile_scenario['ruby_request_body'],
+            'update_merchant_profile_scenario_python_request': update_merchant_profile_scenario['python_request_body'],
+            'update_merchant_profile_scenario_response': update_merchant_profile_scenario['response_body'],
+            'update_merchant_profile_scenario_response_id': update_merchant_profile_scenario['response_id'],
+
+            'fetch_merchant_fee_scenario_response': fetch_merchant_fee_scenario['response_body'],
         }
 
 

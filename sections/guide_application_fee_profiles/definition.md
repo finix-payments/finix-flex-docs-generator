@@ -1,1 +1,1 @@
-## Defining Custom Application Fees
+## Associate Fee Profile to an Application
