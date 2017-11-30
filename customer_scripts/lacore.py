@@ -224,9 +224,23 @@ def generate_template_variables(config_values):
     update_transfer_scenario = api_client.update_transfer(fetch_transfer_scenario["response_id"])
     reattempt_provision_merchant_scenario = api_client.reattempt_provision_merchant(provision_merchant_scenario["response_id"])
 
+
+    create_dispute_scenario = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+
+    create_dispute_scenario_1 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+    create_dispute_scenario_2 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+    create_dispute_scenario_3 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+    create_dispute_scenario_4 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+    create_dispute_scenario_5 = api_client.create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
+
+    fetch_dispute_scenario = api_client.fetch_dispute(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
+    upload_dispute_file_scenario = api_client.upload_dispute_file(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
+    list_disputes_scenario = api_client.list_disputes()
+
     # create_dispute_scenario = create_dispute(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"])
     # fetch_dispute_scenario = fetch_dispute(create_dispute_scenario["response_id"])
     # upload_dispute_file_scenario = upload_dispute_file(fetch_dispute_scenario["response_id"])
+    
     if TOGGLE_OFF_SETTLEMENTS == False:
         create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_bank_debit_scenario['response_id'])
         remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
