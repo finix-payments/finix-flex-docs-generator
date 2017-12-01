@@ -292,6 +292,9 @@ admin_snippets_by_resource = {
         '3_locate_merchant_profile',
         '4_update_merchant_profile',
     ],
+    'fee_profile': [
+        "fetch_fee_profile"
+    ],
     "identities": [
         "definition",
         "create_buyer_identity",
