@@ -182,17 +182,20 @@
 {
   "type" : "created",
   "entity" : "merchant",
-  "occurred_at" : "2016-07-06T07:40:01.224",
+  "occurred_at" : "2017-11-30T23:29:22.877",
   "_embedded" : {
     "merchants" : [ {
-      "updated_at" : "2016-07-06T07:40:00.77Z",
-      "identity" : "IDoXe9ce6ztf6Pbpoq2WbeMt",
-      "created_at" : "2016-07-06T07:40:00.66Z",
-      "id" : "MU6LMTZMw5X1MmjzqzkaPE7v",
-      "underwriting_state" : "APPROVED",
+      "updated_at" : "2017-11-30T23:29:22.25Z",
+      "identity" : "IDbNi5P4w9QdMd6xdJq39V3s",
+      "settlement_enabled" : true,
+      "created_at" : "2017-11-30T23:29:22.12Z",
+      "id" : "MUkAgao5qJNtpSdNJx5MXMgx",
+      "processing_enabled" : true,
+      "onboarding_state" : "APPROVED",
       "processor" : "DUMMY_V1",
       "verification" : null,
-      "merchant_profile" : "MP5LCjDsB6kY7wEPHK9szmAw"
+      "merchant_profile" : "MPvTW1DZihdgLS8yzAtdbjPf",
+      "tags" : { }
     } ]
   }
 }
@@ -202,19 +205,25 @@
 
 ```javascript
 {
-  "type" : "underwritten",
-  "entity" : "merchant",
-  "occurred_at" : "2016-07-06T08:13:42.460",
+  "type" : "created",
+  "entity" : "verification",
+  "occurred_at" : "2017-11-30T23:29:22.538",
   "_embedded" : {
-    "merchants" : [ {
-      "updated_at" : "2016-07-06T08:13:42.28Z",
-      "identity" : "IDradKrsCKMYJyj3VFKimKuy",
-      "created_at" : "2016-07-06T08:13:42.28Z",
-      "id" : "MUew1oPVk5nBHypxa33U39n3",
-      "underwriting_state" : "APPROVED",
+    "verifications" : [ {
+      "trace_id" : "d46e18d0-d171-4c4d-b0ff-3bac81a5324c",
+      "updated_at" : "2017-11-30T23:29:22.33Z",
+      "payment_instrument" : null,
+      "identity" : null,
+      "messages" : [ ],
+      "raw" : "RawDummyMerchantUnderwriteResult",
+      "created_at" : "2017-11-30T23:29:22.15Z",
+      "merchant" : "MUkAgao5qJNtpSdNJx5MXMgx",
+      "id" : "VI3o8e4ebrfo6NR7LuCNmmoz",
+      "state" : "SUCCEEDED",
       "processor" : "DUMMY_V1",
-      "verification" : null,
-      "merchant_profile" : "MPtn5JmNnABFXHBtkmaS1aBP"
+      "tags" : {
+        "key_2" : "value_2"
+      }
     } ]
   }
 }
