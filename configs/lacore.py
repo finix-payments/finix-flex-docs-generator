@@ -4,12 +4,12 @@ from collections import OrderedDict
 partner_configs = {
         'api_name': "Lacore",
         'api_name_downcase': "lacore",
-        'admin_basic_auth_username': 'USd6r7ERYMsK2mDUBmqWdhmk',
-        'admin_basic_auth_password': 'b271aac5-6826-4d2d-af66-bf86e9ffa85b',
+        'admin_basic_auth_username': 'US5tcgn5gSJKvp5H6ppiK29M',
+        'admin_basic_auth_password': 'bd2db27d-4ee1-444e-9e77-220ffcd000ec',
         'platform_basic_auth_username': 'USd6r7ERYMsK2mDUBmqWdhmk',
         'platform_basic_auth_password': 'b271aac5-6826-4d2d-af66-bf86e9ffa85b',
         'platform_encoded_auth': base64.b64encode('USd6r7ERYMsK2mDUBmqWdhmk:b271aac5-6826-4d2d-af66-bf86e9ffa85b'),
-        'admin_encoded_auth': base64.b64encode('USd6r7ERYMsK2mDUBmqWdhmk:b271aac5-6826-4d2d-af66-bf86e9ffa85b'),
+        'admin_encoded_auth': base64.b64encode('US5tcgn5gSJKvp5H6ppiK29M:bd2db27d-4ee1-444e-9e77-220ffcd000ec'),
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
@@ -291,6 +291,9 @@ admin_snippets_by_resource = {
         '2_locate_merchant',
         '3_locate_merchant_profile',
         '4_update_merchant_profile',
+    ],
+    'fee_profile': [
+        "fetch_fee_profile"
     ],
     "identities": [
         "definition",

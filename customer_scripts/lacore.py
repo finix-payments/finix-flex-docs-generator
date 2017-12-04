@@ -161,6 +161,7 @@ def generate_template_variables(config_values):
     create_identity_government_agency_scenario = api_client.create_merchant_identity("GOVERNMENT_AGENCY")
 
     create_bank_account_scenario = api_client.create_bank_account(create_identity_individual_sole_proprietorship_scenario["response_id"])
+    create_bank_account_application_owner_scenario = api_client.create_bank_account(json.loads(create_app_scenario['response_body'])['owner'])
     update_payment_instrument_scenario = api_client.update_payment_instrument(create_bank_account_scenario["response_id"])
     provision_merchant_scenario = api_client.provision_merchant(create_identity_individual_sole_proprietorship_scenario["response_id"])
     create_buyer_identity_scenario = api_client.create_buyer_identity()

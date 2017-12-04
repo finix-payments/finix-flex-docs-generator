@@ -11,7 +11,6 @@ Amount| Description
 `194` | Invalid card number amount
 `889986` | AVS total failure amount
 `889987` | CVC failure amount
-`889988` | Risk amount canceled amount
 
 Card| Description
 ----- | -----------
