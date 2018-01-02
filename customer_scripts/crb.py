@@ -175,7 +175,7 @@ def generate_template_variables(config_values):
     # # create_bank_account_scenario = api_client.create_bank_account(create_identity_individual_sole_proprietorship_scenario["response_id"])
     # # update_payment_instrument_scenario = api_client.update_payment_instrument(create_bank_account_scenario["response_id"])
     # provision_merchant_scenario = api_client.provision_merchant(create_identity_individual_sole_proprietorship_scenario["response_id"])
-    # create_buyer_identity_scenario = api_client.create_buyer_identity()
+    create_buyer_identity_scenario = api_client.create_buyer_identity()
     # create_card_scenario = api_client.create_card(create_buyer_identity_scenario["response_id"])
     # # create_buyer_bank_account_scenario = api_client.create_bank_account(create_buyer_identity_scenario["response_id"])
     # # account_updater_scenario = account_updater(create_card_scenario["response_id"], provision_merchant_scenario["response_id"])
@@ -261,6 +261,8 @@ def generate_template_variables(config_values):
             "fetch_identity_scenario_response": fetch_identity_scenario["response_body"],
             "fetch_identity_scenario_id": fetch_identity_scenario["response_id"],
 
+            "create_buyer_identity_scenario_ruby_request": create_buyer_identity_scenario["ruby_request_body"],
+
 
             "list_identities_scenario_response": list_identities_scenario["response_body"],
 
@@ -344,9 +346,10 @@ def generate_template_variables(config_values):
             "create_recipient_push_to_card_transfer_php_request": create_recipient_push_to_card_transfer["php_request_body"],
             "create_recipient_push_to_card_transfer_python_request": create_recipient_push_to_card_transfer["python_request_body"],
             "create_recipient_push_to_card_transfer_response": create_recipient_push_to_card_transfer["response_body"],
+            "create_recipient_push_to_card_transfer_ruby_request": create_recipient_push_to_card_transfer["ruby_request_body"],
             "create_recipient_push_to_card_transfer_id": create_recipient_push_to_card_transfer["response_id"],
 
-        
+
             "associate_visaV1_payment_processor_scenario_curl_request": associate_visaV1_payment_processor_scenario["curl_request_body"],
             "associate_visaV1_payment_processor_scenario_php_request": associate_visaV1_payment_processor_scenario["php_request_body"],
             "associate_visaV1_payment_processor_scenario_ruby_request": associate_visaV1_payment_processor_scenario["ruby_request_body"],

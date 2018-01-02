@@ -26,7 +26,9 @@ partner_configs = {
         'ruby_client_resource_name': "Payline",
         'ruby_gem': "payline-data",
         'ruby_require_statement': "payline",
-        'java_artifact_id': "payline-data",
+        'java_artifact_id': "payline-java",
+        'version': "1.0.0"
+        'java_group_id': "io.payline.payments.processing.client",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
         }
@@ -74,7 +76,7 @@ snippets_by_resource = {
         "create_application",
         "enable_dummy_processor",
         ],
-    "guide_general_overview_no_payouts": [
+    "guide_general_overview_payline": [
         "definition",
         ],
     "guide_getting_started": [
@@ -233,7 +235,7 @@ admin_snippets_by_resource = {
         "enable_processing",
         "enable_settlements",
         ],
-    "guide_general_overview_no_payouts": [
+    "guide_general_overview_payline": [
         "definition",
         ],
     "guide_getting_started": [
@@ -378,7 +380,7 @@ resource_ordering = [
     "tags",
     "test_data",
     "errors",
-    "guide_general_overview_no_payouts",
+    "guide_general_overview_payline",
     "guide_getting_started",
     "guide_iframe",
     "guide_hosted_fields",
@@ -404,7 +406,7 @@ admin_resource_ordering = [
     "test_data",
     "errors",
     "fees",
-    "guide_general_overview_no_payouts",
+    "guide_general_overview_payline",
     "guide_getting_started",
     "guide_iframe",
     "guide_hosted_fields",

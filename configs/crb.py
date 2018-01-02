@@ -23,15 +23,15 @@ partner_configs = {
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
         'staging_base_url': "https://api.sandbox.crb.finixpayments.com",
         'production_base_url': "https://api.crb.finixpayments.com",
-        'python_client_resource_name': "CRB",
-        'php_client_repo': "https://github.com/finix-payments/processing-php-client",
-        'php_client_resource_name': "CRB",
-        'python_client_resource_name': "crossriver",
-        'php_client_repo': "https://github.com/finix-payments/processing-php-client",
-        'ruby_client_resource_name': "CrossRiver",
-        'ruby_gem': "finix",
-        'ruby_require_statement': "finix",
-        'java_artifact_id': "finix",
+        'python_client_resource_name': "cross_river_bank",
+        'php_client_repo': "https://github.com/crossriverbank/crossriver-php",
+        'php_client_resource_name': "Crossriver",
+        'ruby_client_resource_name': "CrossRiverBank",
+        'ruby_gem': "crossriverbank",
+        'ruby_require_statement': "crossriverbank",
+        'java_artifact_id': "crossriver-java",
+        'version': '1.0.3',
+        'java_group_id': "io.github.crossriverbank.payments.processing.client",
         'hosted_fields_src': "https://s3.us-east-2.amazonaws.com/finix-payments-js-form-v1/dist/crb.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/cohitre/y1ab94x6/",
 }
@@ -59,14 +59,14 @@ snippets_by_resource = {
     "guide_general_overview_payouts": [
         "definition",
         ],
-    "guide_iframe": [
+    "guide_hosted_fields_non_payline": [
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields": [
-        "definition",
-        "associate_token",
-    ],
+    # "guide_iframe": [
+    #     "definition",
+    #     "associate_token",
+    # ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
@@ -102,6 +102,14 @@ snippets_by_resource = {
         "fetch_transfer",
         "list_transfers",
         ],
+    # "webhooks": [
+    #     "definition",
+    #     "create_webhook",
+    #     "update_webhook",
+    #     "fetch_webhook",
+    #     "list_webhooks",
+    #     "sample_payloads",
+    #     ],
     "topics": [
     'definition',
     ],
@@ -153,11 +161,11 @@ admin_snippets_by_resource = {
     "guide_general_overview_payouts": [
         "definition",
         ],
-    "guide_iframe": [
-        "definition",
-        "associate_token",
-    ],
-    "guide_hosted_fields": [
+    # "guide_iframe": [
+    #     "definition",
+    #     "associate_token",
+    # ],
+    "guide_hosted_fields_non_payline": [
         "definition",
         "associate_token",
     ],
@@ -196,6 +204,14 @@ admin_snippets_by_resource = {
         "fetch_transfer",
         "list_transfers",
         ],
+    # "webhooks": [
+    #     "definition",
+    #     "create_webhook",
+    #     "update_webhook",
+    #     "fetch_webhook",
+    #     "list_webhooks",
+    #     "sample_payloads",
+    #     ],
     "topics": [
         'definition',
     ],
@@ -216,8 +232,8 @@ resource_ordering = [
     "errors",
     "guide_general_overview_payouts",
     "guide_push_to_card",
-    "guide_iframe",
-    "guide_hosted_fields",
+    # "guide_iframe",
+    "guide_hosted_fields_non_payline",
     # "disputes",
     "identities_payouts",
     "payment_instruments_payouts",
@@ -236,8 +252,8 @@ admin_resource_ordering = [
     "guide_create_application_payouts",
     "guide_authentication",
     "guide_push_to_card",
-    "guide_iframe",
-    "guide_hosted_fields",
+    # "guide_iframe",
+    "guide_hosted_fields_non_payline",
     "guide_admin_overview",
     "applications",
     # "disputes",
@@ -257,6 +273,7 @@ admin_resource_ordering = [
 included_clients = OrderedDict([
         ("cURL", "shell"),
         ("Java", "java"),
-        ("PHP", "php"),
-        ("Python", "python"),
+        ('Ruby', 'ruby')
+        # ("PHP", "php"),
+        # ("Python", "python"),
 ])
