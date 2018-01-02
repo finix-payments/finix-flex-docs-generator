@@ -33,7 +33,7 @@ partner_configs = {
         'version': '1.0.3',
         'java_group_id': "io.github.crossriverbank.payments.processing.client",
         'hosted_fields_src': "https://s3.us-east-2.amazonaws.com/finix-payments-js-form-v1/dist/crb.js",
-        'hosted_fields_jsfiddle': "https://jsfiddle.net/cohitre/y1ab94x6/",
+        'hosted_fields_jsfiddle': "https://jsfiddle.net/maserna2/9zo8d16x/",
 }
 
 

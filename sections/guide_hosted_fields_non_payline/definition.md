@@ -9,7 +9,7 @@ through a JavaScript callback. The state object includes information about the
 validity, focused value and if the user has entered information in the field.
 
 For a complete example of how to use the library please refer to this
-[jsFiddle example](https://jsfiddle.net/maserna2/9zo8d16x/).
+[jsFiddle example]({{hosted_fields_jsfiddle}}).
 
 ### Step 1: Include library and desired HTML elements
 
@@ -25,14 +25,13 @@ form. Please include the script as demonstrated to the right.
 
 
 `window.PaymentForm.card(function(state, binInformation)-> PaymentForm`
+
 ```javascript
 
 
 const paymentForm = window.PaymentForm.card(function(state, binInformation){
      // Logic for interacting with form's potential states (see jsFiddle for  example)
-})
-
-
+});
 ```
 
 The next step is to configure the library. This "card" method is the single entry point into the library. It initializes and returns a `PaymentForm` object that contains fields(i.e. name, number, expiration date, & CVV).
@@ -72,12 +71,10 @@ function defineField(elementId, type, placeholder) {
   document.getElementById(elementId).appendChild(f);
 }
 
-
 defineField("field-wrapper-number", "number", '4111 1111 1111 1111');
 defineField("field-wrapper-name", "name", 'Bo Jackson');
 defineField("field-wrapper-expiration_date", "expiration_date", '02/2020');
 defineField("field-wrapper-security_code", "security_code", '411');
-
 
 ```
 

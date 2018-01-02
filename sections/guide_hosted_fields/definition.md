@@ -38,8 +38,8 @@ const secureForm = SecureForm.create('sandbox', function(state) {
  });
 ```
 
-The next step is to configure the library. This method is the single entry point into the library.
-It initializes and returns a `Form` object representing the secured form.
+The next step is to configure the library. This method is the single entry point into the library. It initializes and returns a `Form` object representing the secured form.
+
 
 
 #### Arguments
