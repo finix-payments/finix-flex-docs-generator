@@ -27,7 +27,7 @@ partner_configs = {
         'ruby_gem': "payline-data",
         'ruby_require_statement': "payline",
         'java_artifact_id': "payline-java",
-        'version': "1.0.0"
+        'version': "1.0.0",
         'java_group_id': "io.payline.payments.processing.client",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
