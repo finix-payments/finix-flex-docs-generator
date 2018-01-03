@@ -273,7 +273,7 @@ admin_resource_ordering = [
 included_clients = OrderedDict([
         ("cURL", "shell"),
         ("Java", "java"),
-        ('Ruby', 'ruby')
-        # ("PHP", "php"),
-        # ("Python", "python"),
+        ('Ruby', 'ruby'),
+        ("PHP", "php"),
+        ("Python", "python"),
 ])
