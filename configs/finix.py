@@ -33,6 +33,8 @@ partner_configs = {
         'ruby_gem': "finix",
         'ruby_require_statement': "finix",
         'java_artifact_id': "finix",
+        'version': '1.0.0',
+        'java_group_id': "io.finix.payments.processing.client",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/finix.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/Ls101sou/",
         }
@@ -82,7 +84,7 @@ snippets_by_resource = {
         "create_application",
         "enable_dummy_processor",
         ],
-    "guide_general_overview": [
+    "guide_general_overview_finix": [
         "definition",
         ],
     "guide_getting_started": [
@@ -291,7 +293,7 @@ admin_snippets_by_resource = {
         "enable_processing",
         "enable_settlements",
         ],
-    "guide_general_overview": [
+    "guide_general_overview_finix": [
         "definition",
         ],
     "guide_getting_started": [
@@ -430,7 +432,7 @@ resource_ordering = [
     "test_data",
     "errors",
     "dashboard_overview_finix",
-    "guide_general_overview",
+    "guide_general_overview_finix",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
@@ -455,7 +457,7 @@ admin_resource_ordering = [
     "test_data",
     "errors",
     "dashboard_overview_finix",
-    "guide_general_overview",
+    "guide_general_overview_finix",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",

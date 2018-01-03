@@ -2,20 +2,20 @@
 Add the following to your pom.xml (Maven file):
 
 <dependency>
-  <groupId>io.{{api_name_downcase}}.payments.processing.client</groupId>
+  <groupId>{{java_group_id}}</groupId>
   <artifactId>{{java_artifact_id}}</artifactId>
-  <version>${version}</version>
+  <version>{{version}}</version>
 </dependency>
 
 ...
 
 <repositories>
   <repository>
-    <id>oss-snapshots</id>
-    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    <snapshots>
-      <enabled>true</enabled>
-    </snapshots>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/</url>
+      <snapshots>
+          <enabled>true</enabled>
+      </snapshots>
   </repository>
 </repositories>
 
@@ -35,5 +35,3 @@ public static void main(String[] args) {
                   .password("{{basic_auth_password}}")
                   .build();
 //...
-
-

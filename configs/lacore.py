@@ -18,15 +18,17 @@ partner_configs = {
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
-        'staging_base_url': "https://lacore-sandbox.finixpayments.com",
-        'production_base_url': "https://api.live.lacore.finixpymnts.com",
-        'python_client_resource_name': "lacore",
-        'php_client_repo': "https://github.com/Payline/payline-php",
+        'staging_base_url': "https://sandbox-api.lacorepayments.com",
+        'production_base_url': "https://api.lacorepayments.com",
+        'python_client_resource_name': "lacore_technologies",
+        'php_client_repo': "https://github.com/lacore-payment-tech/lacore-php",
         'php_client_resource_name': "Lacore",
         'ruby_client_resource_name': "Lacore",
-        'ruby_gem': "payline-data",
-        'ruby_require_statement': "payline",
-        'java_artifact_id': "payline-data",
+        'ruby_gem': "lacore-payments",
+        'ruby_require_statement': "lacore",
+        'java_artifact_id': "",
+        'version': '',
+        'java_group_id': "",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
         }
@@ -76,7 +78,7 @@ snippets_by_resource = {
         "create_application",
         "enable_dummy_processor",
         ],
-    "guide_general_overview_no_payouts": [
+    "guide_general_overview_lacore": [
         "definition",
         ],
     "guide_getting_started": [
@@ -90,7 +92,7 @@ snippets_by_resource = {
         # "create_card_debit",
         "create_authorization",
         "capture_authorization",
-        "create_batch_settlement",
+        # "create_batch_settlement",
         # "fund_settlement",
         # "refund_debit"
     ],
@@ -250,7 +252,7 @@ admin_snippets_by_resource = {
         "enable_processing",
         "enable_settlements",
         ],
-    "guide_general_overview_no_payouts": [
+    "guide_general_overview_lacore": [
         "definition",
         ],
     "guide_getting_started": [
@@ -264,7 +266,7 @@ admin_snippets_by_resource = {
         # "create_card_debit",
         "create_authorization",
         "capture_authorization",
-        "create_batch_settlement",
+        # "create_batch_settlement",
         # "fund_settlement",
         # "refund_debit"
     ],
@@ -395,7 +397,7 @@ resource_ordering = [
     "tags",
     "test_data",
     "errors",
-    "guide_general_overview_no_payouts",
+    "guide_general_overview_lacore",
     "guide_getting_started",
     "guide_iframe",
     "guide_hosted_fields",
@@ -407,7 +409,7 @@ resource_ordering = [
     "merchants",
     "payment_instruments",
     # # "identity_verifications",
-    "settlements",
+    # "settlements",
     "transfers",
     "webhooks",
 ]
@@ -421,7 +423,7 @@ admin_resource_ordering = [
     "test_data",
     "errors",
     "fees",
-    "guide_general_overview_no_payouts",
+    "guide_general_overview_lacore",
     "guide_getting_started",
     "guide_iframe",
     "guide_hosted_fields",
@@ -439,11 +441,12 @@ admin_resource_ordering = [
     # # "identity_verifications",
     "merchants",
     "payment_instruments",
-    "settlements",
+    # "settlements",
     "transfers",
     "users",
     "webhooks",
     ]
+
 
 # Determine which client libraries to include
 # https://github.com/lord/slate/wiki/Customizing-the-Language-Tabs
@@ -453,7 +456,7 @@ admin_resource_ordering = [
 
 included_clients = OrderedDict([
     ("cURL", "shell"),
-    ("Java", "java"),
+    # ("Java", "java"),
     ("PHP", "php"),
     ("Python", "python"),
     ("Ruby", "ruby"),
