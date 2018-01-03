@@ -4,7 +4,7 @@ Add the following to your pom.xml (Maven file):
 <dependency>
   <groupId>{{java_group_id}}</groupId>
   <artifactId>{{java_artifact_id}}</artifactId>
-  <version>{}{version}}</version>
+  <version>{{version}}</version>
 </dependency>
 
 ...
