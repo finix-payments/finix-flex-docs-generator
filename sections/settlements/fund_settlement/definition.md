@@ -1,1 +1,1 @@
-## Fund a Settlement
+## Fund a Batch Settlement

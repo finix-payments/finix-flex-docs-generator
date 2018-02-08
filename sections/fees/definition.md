@@ -1,6 +1,7 @@
 ## Fees
 
- You can find the live example of how fees are calculated in this [spreadsheet](https://docs.google.com/spreadsheets/d/1UFmKg7EvhlCduM31bQ3rOeslszOlO49rOw3frllBj9c/edit#gid=0)
+ You can find the live example of how fees are calculated in this [spreadsheet]( https://docs.google.com/spreadsheets/u/1/d/1qkK5i-namQDt8BFyeNipdWXKqkaaXMwfXJYFNQbb6rY/edit?usp=sharing)
+
 
 ### Case 1
 - Fee profile not set

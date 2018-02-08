@@ -75,7 +75,7 @@ snippets_by_resource = {
         "provision_merchant_account",
         "send_to_recipient",
         ],
-    "test_data": [
+    "test_data_payouts": [
         "definition"
     ],
     "identities_payouts": [
@@ -113,11 +113,14 @@ snippets_by_resource = {
     "topics": [
     'definition',
     ],
+    'test_data_visa': [
+        'definition',
+    ],
     'tags_payouts': [
         'definition',
     ],
     'errors': [
-        'definition'
+        'definition',
     ],
 }
 
@@ -177,7 +180,7 @@ admin_snippets_by_resource = {
         "provision_merchant_account",
         "send_to_recipient",
         ],
-    "test_data": [
+    "test_data_payouts": [
         "definition"
     ],
     "identities_payouts": [
@@ -218,6 +221,9 @@ admin_snippets_by_resource = {
     'tags_payouts': [
         'definition',
     ],
+    'test_data_payouts': [
+        'definition',
+    ],
     'errors': [
         'definition'
     ],
@@ -228,6 +234,7 @@ resource_ordering = [
     "topics",
     "api_endpoints",
     "guide_authentication",
+    "test_data_payouts",
     "tags_payouts",
     "errors",
     "guide_general_overview_payouts",
@@ -245,7 +252,7 @@ admin_resource_ordering = [
     "topics",
     "api_endpoints",
     "guide_authentication",
-    "test_data",
+    "test_data_payouts",
     "tags_payouts",
     "errors",
     "guide_general_overview_payouts",

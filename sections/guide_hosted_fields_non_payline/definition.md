@@ -14,7 +14,7 @@ For a complete example of how to use the library please refer to this
 ### Step 1: Include library and desired HTML elements
 
 ```html
- <script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/finix-payments-js-form-v1/dist/crb.js"></script>
+ <script type="text/javascript" src="{{hosted_fields_src}}"></script>
 ```
 
 First we'll need to include the library on the webpage where you're hosting your

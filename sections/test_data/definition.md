@@ -1,6 +1,6 @@
 ## Testing for specific responses and errors
 
-Before taking your integration to production, use the information below to test it thoroughly.
+Before taking your integration to production, use the information below to test it thoroughly. Please note, once a Payment Instrument has been flagged with AVS or CVC, it will continue to throw the respective error.
 
 Amount| Description
 ----- | -----------
@@ -14,6 +14,5 @@ Amount| Description
 
 Card| Description
 ----- | -----------
- `4957030420210454` | Payment card positive result  
  `4000000000000036` | Payment card AVS total failure
  `4000000000000127` | Payment card CVC failure

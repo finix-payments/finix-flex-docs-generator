@@ -31,6 +31,7 @@ partner_configs = {
         'java_group_id': "io.payline.payments.processing.client",
         'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
+        'ACH_business_day_delay': '6'
         }
 
 # this provides the ordering for the docs by section and individual snippet

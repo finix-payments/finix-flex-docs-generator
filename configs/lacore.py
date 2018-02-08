@@ -26,11 +26,12 @@ partner_configs = {
         'ruby_client_resource_name': "Lacore",
         'ruby_gem': "lacore-payments",
         'ruby_require_statement': "lacore",
-        'java_artifact_id': "",
-        'version': '',
-        'java_group_id': "",
-        'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/payline.js",
-        'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/vap35hru/",
+        'java_artifact_id': "lacore-java",
+        'version': '1.0.5',
+        'java_group_id': "com.lacorepayments.processing.client",
+        'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/lacore.js",
+        'hosted_fields_jsfiddle': "https://jsfiddle.net/maserna2/ppxg8zm1/",
+        'ACH_business_day_delay': '6'
         }
 
 # this provides the ordering for the docs by section and individual snippet
@@ -142,7 +143,7 @@ snippets_by_resource = {
         "list_merchants",
         "list_merchant_verifications",
         ],
-    "payment_instruments": [
+    "payment_instruments_lacore": [
         "definition",
         "create_card",
         "create_bank_account",
@@ -318,7 +319,7 @@ admin_snippets_by_resource = {
         "list_merchant_verifications_platform_user",
         "create_merchant_user",
         ],
-    "payment_instruments": [
+    "payment_instruments_lacore": [
         "definition",
         "associate_token",
         "create_card",
@@ -399,7 +400,6 @@ resource_ordering = [
     "errors",
     "guide_general_overview_lacore",
     "guide_getting_started",
-    "guide_iframe",
     "guide_hosted_fields",
     "idempotent_requests",
     # "guide_tokenization_js",
@@ -407,7 +407,7 @@ resource_ordering = [
     "disputes",
     "identities",
     "merchants",
-    "payment_instruments",
+    "payment_instruments_lacore",
     # # "identity_verifications",
     # "settlements",
     "transfers",
@@ -425,11 +425,10 @@ admin_resource_ordering = [
     "fees",
     "guide_general_overview_lacore",
     "guide_getting_started",
-    "guide_iframe",
     "guide_hosted_fields",
     "guide_admin_overview",
     "guide_create_application",
-    "guide_tokenization_js",
+    # "guide_tokenization_js",
     "applications",
     "authorizations",
     "disputes",
@@ -440,7 +439,7 @@ admin_resource_ordering = [
     "identities",
     # # "identity_verifications",
     "merchants",
-    "payment_instruments",
+    "payment_instruments_lacore",
     # "settlements",
     "transfers",
     "users",
@@ -456,7 +455,7 @@ admin_resource_ordering = [
 
 included_clients = OrderedDict([
     ("cURL", "shell"),
-    # ("Java", "java"),
+    ("Java", "java"),
     ("PHP", "php"),
     ("Python", "python"),
     ("Ruby", "ruby"),

@@ -22,8 +22,8 @@ partner_configs = {
         'payment_processor': "DUMMY_V1",
         'identity_verification_processor': "DUMMY_V1",
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
-        'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
-        'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
+        'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
+        'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
         'staging_base_url': "https://api-staging.finix.io",
         'production_base_url': "https://api.finix.io",
         'python_client_resource_name': "finix",
@@ -35,8 +35,9 @@ partner_configs = {
         'java_artifact_id': "finix",
         'version': '1.0.0',
         'java_group_id': "io.finix.payments.processing.client",
-        'hosted_fields_src': "https://js.verygoodvault.com/js-vgfield-2/finix.js",
-        'hosted_fields_jsfiddle': "https://jsfiddle.net/rserna2010/Ls101sou/",
+        'hosted_fields_src': "https://forms.finixpymnts.com/finix.js",
+        'hosted_fields_jsfiddle': "https://jsfiddle.net/maserna2/znLe9kp6/",
+        'ACH_business_day_delay': '3'
         }
 
 
@@ -106,7 +107,7 @@ snippets_by_resource = {
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields": [
+    "guide_hosted_fields_non_payline": [
         "definition",
         "associate_token",
     ],
@@ -134,7 +135,7 @@ snippets_by_resource = {
         '3_locate_merchant_profile',
         '4_update_merchant_profile',
     ],
-    "test_data": [
+    "test_data_finix": [
         "definition"
     ],
     "identities": [
@@ -315,7 +316,7 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields": [
+    "guide_hosted_fields_non_payline": [
         "definition",
         "associate_token",
     ],
@@ -374,7 +375,7 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
         ],
-    "test_data": [
+    "test_data_finix": [
         "definition"
     ],
     "transfers": [
@@ -429,14 +430,14 @@ resource_ordering = [
     "guide_authentication",
     "idempotent_requests",
     "tags",
-    "test_data",
+    "test_data_finix",
     "errors",
     "dashboard_overview_finix",
     "guide_general_overview_finix",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_hosted_fields",
+    "guide_hosted_fields_non_payline",
     "authorizations",
     "disputes",
     "identities",
@@ -454,14 +455,14 @@ admin_resource_ordering = [
     "guide_authentication",
     "idempotent_requests",
     "tags",
-    "test_data",
+    "test_data_finix",
     "errors",
     "dashboard_overview_finix",
     "guide_general_overview_finix",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_hosted_fields",
+    "guide_hosted_fields_non_payline",
     "guide_admin_overview",
     "guide_create_application",
     "applications",

@@ -12,7 +12,6 @@ to remain out of PCI scope.
 
 Please review our guide on how to tokenize cards via the [embedded tokenization
 form](#embedded-tokenization)
-
 #### HTTP Request
 
 `POST {{staging_base_url}}/payment_instruments`

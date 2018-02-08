@@ -13,7 +13,9 @@ authenticate and interface with the API.
 2. [Getting Started](#getting-started): A step-by-step guide demonstrating the basic workflow
 of charging a card. This guide will walk you through provisioning merchant
 accounts, tokenizing cards, charging those cards, and finally settling (i.e.
-payout) those funds out to your merchants.
+payout) those funds out to your merchants.  
+
+3. [Embedded Tokenization](#embedded-tokenization): This guide explains how to properly tokenize cards in production via our embedded iframe.  
 
 3. [Tokenization with Hosted Fields](#tokenization-with-hosted-fields): This guide
 explains how to properly tokenize cards in production via hosted fields.
