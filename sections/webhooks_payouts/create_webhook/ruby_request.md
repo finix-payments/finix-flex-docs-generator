@@ -1,0 +1,1 @@
+webhook = {{ruby_client_resource_name}}::Webhook.new({{create_webhook_scenario_ruby_request}}).save
