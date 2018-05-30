@@ -15,6 +15,7 @@ partner_configs = {
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
+        'window.PaymentForm': "Finix",
         'staging_base_url': "https://api-staging.finix.io",
         'production_base_url': "https://api.finix.io",
         'python_client_resource_name': "finix",

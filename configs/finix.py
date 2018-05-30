@@ -23,6 +23,7 @@ partner_configs = {
         'identity_verification_processor': "DUMMY_V1",
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
+        'window.PaymentForm': "Finix",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
         'staging_base_url': "https://api-staging.finix.io",
         'production_base_url': "https://api.finix.io",

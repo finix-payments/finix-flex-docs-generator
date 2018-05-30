@@ -49,7 +49,7 @@ as doing so prevents important updates.
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(event) {
       document.getElementById('show-form').addEventListener('click', function() {
-        .openTokenizeCardForm({
+        {{}}.openTokenizeCardForm({
           applicationName: 'Business Name',
           applicationId: '{{create_app_scenario_id}}',
         }, function (tokenizedResponse) {
