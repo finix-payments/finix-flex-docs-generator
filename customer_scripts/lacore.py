@@ -165,6 +165,7 @@ def generate_template_variables(config_values):
     update_payment_instrument_scenario = api_client.update_payment_instrument(create_bank_account_scenario["response_id"])
     provision_merchant_scenario = api_client.provision_merchant(create_identity_individual_sole_proprietorship_scenario["response_id"])
     create_buyer_identity_scenario = api_client.create_buyer_identity()
+
     create_card_scenario = api_client.create_card(create_buyer_identity_scenario["response_id"])
     create_buyer_bank_account_scenario = api_client.create_bank_account(create_buyer_identity_scenario["response_id"])
     # account_updater_scenario = account_updater(create_card_scenario["response_id"], provision_merchant_scenario["response_id"])
@@ -246,7 +247,7 @@ def generate_template_variables(config_values):
     # fetch_dispute_scenario = fetch_dispute(create_dispute_scenario["response_id"])
     # upload_dispute_file_scenario = upload_dispute_file(fetch_dispute_scenario["response_id"])
 
-    if TOGGLE_OFF_SETTLEMENT == False:
+    if TOGGLE_OFF_SETTLEMENTS == False:
         create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_bank_debit_scenario['response_id'])
         remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
         fund_settlement_scenario = api_client.fund_settlement(create_settlement_scenario["response_id"], create_bank_account_scenario["response_id"])

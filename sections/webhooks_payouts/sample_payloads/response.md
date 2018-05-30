@@ -144,4 +144,31 @@
     } ]
   }
 }
+```  
+
+
+### Provisioned Recipient  
+```javascript
+{
+  "type": "underwritten",
+  "entity": "merchant",
+  "occurred_at": "2018-04-11T17:19:20.554",
+  "_embedded": {
+    "merchants": [
+      {
+        "updated_at": "2018-04-11T17:19:20.38Z",
+        "identity": "IDjDGR5TH5cDanHcL8DAcSfz",
+        "settlement_enabled": false,
+        "created_at": "2018-04-11T17:19:20.38Z",
+        "id": "MUwn6HHuNzeK5nNgh2jRABRA",
+        "processing_enabled": false,
+        "onboarding_state": "APPROVED",
+        "processor": "VISA_V1",
+        "verification": null,
+        "merchant_profile": "MP3wo3CATD2p9Q8Svq8M3RbV",
+        "tags": {}
+      }
+    ]
+  }
+}
 ```

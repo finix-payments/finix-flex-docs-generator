@@ -95,7 +95,7 @@ snippets_by_resource = {
         # "perform_identity_verification",
         "provision_merchant",
         "create_buyer_identity",
-        "create_card",
+        "create_payment_card",
         # "create_card_debit",
         "create_authorization",
         "capture_authorization",
@@ -107,14 +107,14 @@ snippets_by_resource = {
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields_non_payline": [
+    "guide_hosted_fields": [
         "definition",
         "associate_token",
     ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
-        "create_card",
+        "create_payment_card",
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
@@ -159,11 +159,11 @@ snippets_by_resource = {
         ],
     "payment_instruments": [
         "definition",
-        "create_card",
+        "create_payment_card",
         "create_bank_account",
         "associate_token",
         "fetch_bank_account",
-        "fetch_credit_card",
+        "fetch_payment_card",
         # "update_payment_instrument",
         "check_card_updater",
         "list_payment_instruments",
@@ -304,7 +304,7 @@ admin_snippets_by_resource = {
         # "perform_identity_verification",
         "provision_merchant",
         "create_buyer_identity",
-        "create_card",
+        "create_payment_card",
         # "create_card_debit",
         "create_authorization",
         "capture_authorization",
@@ -316,14 +316,14 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields_non_payline": [
+    "guide_hosted_fields": [
         "definition",
         "associate_token",
     ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
-        "create_card",
+        "create_payment_card",
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
@@ -352,10 +352,10 @@ admin_snippets_by_resource = {
     "payment_instruments": [
         "definition",
         "associate_token",
-        "create_card",
+        "create_payment_card",
         "create_bank_account",
         "fetch_bank_account",
-        "fetch_credit_card",
+        "fetch_payment_card",
         # "update_payment_instrument",
         "check_card_updater",
         "list_payment_instruments",
@@ -406,6 +406,9 @@ admin_snippets_by_resource = {
     "fees": [
         "definition"
     ],
+    'FAQS': [
+        'definition',
+    ],
     "dashboard_overview_finix": [
         "definition"
     ],
@@ -428,16 +431,16 @@ resource_ordering = [
     "topics",
     "api_endpoints",
     "guide_authentication",
+    "dashboard_overview_finix",
+    "errors",
     "idempotent_requests",
     "tags",
     "test_data_finix",
-    "errors",
-    "dashboard_overview_finix",
     "guide_general_overview_finix",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_hosted_fields_non_payline",
+    "guide_hosted_fields",
     "authorizations",
     "disputes",
     "identities",
@@ -452,17 +455,18 @@ resource_ordering = [
 admin_resource_ordering = [
     "topics",
     "api_endpoints",
+    "dashboard_overview_finix",
     "guide_authentication",
+    "errors",
+    'FAQS',
     "idempotent_requests",
     "tags",
     "test_data_finix",
-    "errors",
-    "dashboard_overview_finix",
     "guide_general_overview_finix",
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_hosted_fields_non_payline",
+    "guide_hosted_fields",
     "guide_admin_overview",
     "guide_create_application",
     "applications",
@@ -481,10 +485,6 @@ admin_resource_ordering = [
     "users",
     "webhooks",
 ]
-
-
-
-
 
 
 # Determine which client libraries to include

@@ -4,20 +4,14 @@ from collections import OrderedDict
 partner_configs = {
         'api_name': "CRB",
         'api_name_downcase': "crb",
-        'admin_basic_auth_username': 'US4xkWGRBVqbjLvTrQvF7o3C',
-        'admin_basic_auth_password': '8ea15723-e470-48e2-97a9-0433924400ba',
-        'admin_encoded_auth': base64.b64encode('US4xkWGRBVqbjLvTrQvF7o3C:8ea15723-e470-48e2-97a9-0433924400ba'),
-        'platform_basic_auth_username': 'USq73knKXVo4ocbF9doVygNL',
-        'platform_basic_auth_password': '51212950-a3a6-436b-a99d-c8e5bac80462',
-        'platform_encoded_auth': base64.b64encode('USq73knKXVo4ocbF9doVygNL:51212950-a3a6-436b-a99d-c8e5bac80462'),
-        'basic_auth_username': None,
-        'basic_auth_password': None,
-        'encoded_auth': None,
+        'platform_basic_auth_username_payouts': 'USvHN3rmBbUD8yDSMqRfPu1o',
+        'platform_basic_auth_password_payouts': 'b4f18fdf-a1dc-4243-89b5-50cb7d100634',
+        'platform_encoded_auth_payouts': base64.b64encode('USvHN3rmBbUD8yDSMqRfPu1o:b4f18fdf-a1dc-4243-89b5-50cb7d100634'),
         'basic_auth_username_payouts': None,
         'basic_auth_password_payouts': None,
         'encoded_auth_payouts': None,
         'payment_processor': "VISA_V1",
-        'identity_verification_processor': "VISA_VA",
+        'identity_verification_processor': "VISA_V1",
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://vgs-assets.s3.amazonaws.com/payline-1.latest.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/",
@@ -43,23 +37,17 @@ snippets_by_resource = {
     "api_endpoints":[
         "definition",
     ],
-    "disputes": [
-        "definition",
-        # "create_dispute",
-        "fetch_dispute",
-        "list_disputes",
-    ],
     "guide_admin_overview": [
         "definition",
         ],
-    "guide_authentication": [
+    "guide_authentication_payouts": [
         "definition",
         "authentication",
         ],
     "guide_general_overview_payouts": [
         "definition",
         ],
-    "guide_hosted_fields_non_payline": [
+    "guide_hosted_fields_payouts": [
         "definition",
         "associate_token",
     ],
@@ -70,13 +58,16 @@ snippets_by_resource = {
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
-        "create_card",
+        "create_payment_card",
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
         ],
     "test_data_payouts": [
         "definition"
+    ],
+    "idempotent_requests": [
+        "definition",
     ],
     "identities_payouts": [
         "definition",
@@ -88,13 +79,13 @@ snippets_by_resource = {
     "payment_instruments_payouts": [
         "definition",
         "associate_token",
-        "create_card",
-        "fetch_credit_card",
+        "create_payment_card",
+        "fetch_payment_card",
         "verification"
         ],
     "guide_tokenization_js": [
         "definition",
-        "associate_token",
+        "associate_token_payouts",
         ],
     "payouts": [
         "definition",
@@ -130,7 +121,7 @@ admin_snippets_by_resource = {
     "api_endpoints":[
         "definition",
     ],
-    "applications": [
+    "applications_payouts": [
         "definition",
         "fetch_application",
         "create_application",
@@ -141,12 +132,6 @@ admin_snippets_by_resource = {
         # "enable_litle_processor",
         "list_applications",
         ],
-    "disputes": [
-        "definition",
-        # "create_dispute",
-        "fetch_dispute",
-        "list_disputes",
-    ],
     "guide_admin_overview": [
         "definition",
         ],
@@ -157,7 +142,7 @@ admin_snippets_by_resource = {
         "enable_dummy_processor",
         "enable_processing",
         ],
-    "guide_authentication": [
+    "guide_authentication_payouts": [
         "definition",
         "authentication",
         ],
@@ -168,20 +153,23 @@ admin_snippets_by_resource = {
     #     "definition",
     #     "associate_token",
     # ],
-    "guide_hosted_fields_non_payline": [
+    "guide_hosted_fields_payouts": [
         "definition",
         "associate_token",
     ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
-        "create_card",
+        "create_payment_card",
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
         ],
     "test_data_payouts": [
         "definition"
+    ],
+    "idempotent_requests": [
+        "definition",
     ],
     "identities_payouts": [
         "definition",
@@ -193,13 +181,13 @@ admin_snippets_by_resource = {
     "payment_instruments_payouts": [
         "definition",
         "associate_token",
-        "create_card",
-        "fetch_credit_card",
+        "create_payment_card",
+        "fetch_payment_card",
         "verification"
         ],
     "guide_tokenization_js": [
         "definition",
-        "associate_token",
+        "associate_token_payouts",
         ],
     "payouts": [
         "definition",
@@ -233,14 +221,15 @@ admin_snippets_by_resource = {
 resource_ordering = [
     "topics",
     "api_endpoints",
-    "guide_authentication",
+    "guide_authentication_payouts",
+    "idempotent_requests",
     "test_data_payouts",
     "tags_payouts",
     "errors",
     "guide_general_overview_payouts",
     "guide_push_to_card",
     # "guide_iframe",
-    "guide_hosted_fields_non_payline",
+    "guide_hosted_fields_payouts",
     # "disputes",
     "identities_payouts",
     "payment_instruments_payouts",
@@ -252,18 +241,19 @@ resource_ordering = [
 admin_resource_ordering = [
     "topics",
     "api_endpoints",
-    "guide_authentication",
+    "guide_authentication_payouts",
+    "idempotent_requests",
     "test_data_payouts",
     "tags_payouts",
     "errors",
     "guide_general_overview_payouts",
     "guide_create_application_payouts",
-    "guide_authentication",
+    "guide_authentication_payouts",
     "guide_push_to_card",
     # "guide_iframe",
-    "guide_hosted_fields_non_payline",
+    "guide_hosted_fields_payouts",
     "guide_admin_overview",
-    "applications",
+    "applications_payouts",
     # "disputes",
     "identities_payouts",
      # "identity_verifications",

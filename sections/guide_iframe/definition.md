@@ -46,7 +46,7 @@ where you're hosting the aforementioned button. Please include the script as dem
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(event) {
       document.getElementById('show-form').addEventListener('click', function() {
-        Payline.openTokenizeCardForm({
+        document.openTokenizeCardForm({
           applicationName: 'Business Name',
           applicationId: '{{create_app_scenario_id}}',
           environment: 'sandbox',

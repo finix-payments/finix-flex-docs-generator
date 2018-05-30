@@ -4,23 +4,14 @@ from collections import OrderedDict
 partner_configs = {
         'api_name': "Finix",
         'api_name_downcase': "finix",
-        'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
-        'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
-        'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
-        'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
-        'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
-        'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
         'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
         'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
         'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
-        'basic_auth_username': None,
-        'basic_auth_password': None,
-        'encoded_auth': None,
         'basic_auth_username_payouts': None,
         'basic_auth_password_payouts': None,
         'encoded_auth_payouts': None,
-        'payment_processor': "DUMMY_V1",
-        'identity_verification_processor': "DUMMY_V1",
+        'payment_processor': "VISA_V1",
+        'identity_verification_processor': "VISA_V1",
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
@@ -64,7 +55,7 @@ snippets_by_resource = {
     "guide_general_overview_payouts": [
         "definition",
         ],
-    "guide_hosted_fields_non_payline": [
+    "guide_hosted_fields_payouts": [
         "definition",
         "associate_token",
     ],
@@ -75,7 +66,7 @@ snippets_by_resource = {
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
-        "create_card",
+        "create_payment_card",
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
@@ -93,13 +84,13 @@ snippets_by_resource = {
     "payment_instruments_payouts": [
         "definition",
         "associate_token",
-        "create_card",
-        "fetch_credit_card",
+        "create_payment_card",
+        "fetch_payment_card",
         "verification"
         ],
     "guide_tokenization_js": [
         "definition",
-        "associate_token",
+        "associate_token_payouts",
         ],
     "payouts": [
         "definition",
@@ -173,14 +164,14 @@ admin_snippets_by_resource = {
     #     "definition",
     #     "associate_token",
     # ],
-    "guide_hosted_fields_non_payline": [
+    "guide_hosted_fields_payouts": [
         "definition",
         "associate_token",
     ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
-        "create_card",
+        "create_payment_card",
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
@@ -198,13 +189,13 @@ admin_snippets_by_resource = {
     "payment_instruments_payouts": [
         "definition",
         "associate_token",
-        "create_card",
-        "fetch_credit_card",
+        "create_payment_card",
+        "fetch_payment_card",
         "verification"
         ],
     "guide_tokenization_js": [
         "definition",
-        "associate_token",
+        "associate_token_payouts",
         ],
     "payouts": [
         "definition",
@@ -245,7 +236,7 @@ resource_ordering = [
     "guide_general_overview_payouts",
     "guide_push_to_card",
     # "guide_iframe",
-    "guide_hosted_fields_non_payline",
+    "guide_hosted_fields_payouts",
     # "disputes",
     "identities_payouts",
     "payment_instruments_payouts",
@@ -266,7 +257,7 @@ admin_resource_ordering = [
     "guide_authentication",
     "guide_push_to_card",
     # "guide_iframe",
-    "guide_hosted_fields_non_payline",
+    "guide_hosted_fields_payouts",
     "guide_admin_overview",
     "applications",
     # "disputes",

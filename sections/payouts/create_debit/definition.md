@@ -1,1 +1,0 @@
-## Payout to a Card

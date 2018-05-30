@@ -304,4 +304,62 @@
     } ]
   }
 }
+
+```
+
+
+### Create Settlement  
+
+```javascript
+{
+  "type": "created",
+  "entity": "settlement",
+  "occurred_at": "2018-03-06T20:41:34.277",
+  "_embedded": {
+    "settlements": [
+      {
+        "updated_at": "2018-03-06T20:41:34.00Z",
+        "total_amount": 557710,
+        "identity": "IDj4Y23Xd5Xn5vvtBR7gfxLM",
+        "total_fees": 25402,
+        "total_fee": 25402,
+        "destination": null,
+        "created_at": "2018-03-06T20:41:33.73Z",
+        "currency": "USD",
+        "id": "STqdtjFPKbcFZJ7VFpoQ4niu",
+        "net_amount": 532308,
+        "processor": "LITLE_V1",
+        "tags": {}
+      }
+    ]
+  }
+}
+```
+
+### Fund Settlement  
+
+```javascript
+{
+  "type": "updated",
+  "entity": "settlement",
+  "occurred_at": "2018-03-06T20:42:25.439",
+  "_embedded": {
+    "settlements": [
+      {
+        "updated_at": "2018-03-06T20:42:19.29Z",
+        "total_amount": 557710,
+        "identity": "IDj4Y23Xd5Xn5vvtBR7gfxLM",
+        "total_fees": 25402,
+        "total_fee": 25402,
+        "destination": "PIreVTtPDXoRhww3VZiLZR3L",
+        "created_at": "2018-03-06T20:41:33.73Z",
+        "currency": "USD",
+        "id": "STqdtjFPKbcFZJ7VFpoQ4niu",
+        "net_amount": 532308,
+        "processor": "LITLE_V1",
+        "tags": {}
+      }
+    ]
+  }
+}
 ```

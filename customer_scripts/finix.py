@@ -158,7 +158,7 @@ def generate_template_variables(config_values):
     create_payouts_app_scenario = api_client.create_app(create_owner_user_payouts_scenario["response_id"], "LIMITED_LIABILITY_COMPANY", 'payouts')
     associate_visaV1_payment_processor_scenario = api_client.associate_payment_processor("VISA_V1", create_payouts_app_scenario["response_id"], 'payouts')
 
-    create_user_partner_role_payouts_scenario = api_client.create_user_partner_role(create_app_scenario["response_id"], 'payouts')
+    create_user_partner_role_payouts_scenario = api_client.create_user_partner_role(create_payouts_app_scenario["response_id"], 'payouts')
 
     # print(create_owner_user_payouts_scenario)
     api_client.basic_auth_username_payouts = create_owner_user_payouts_scenario['response_id']
@@ -180,7 +180,7 @@ def generate_template_variables(config_values):
     create_recipient_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"], 'payouts')
 
     provision_push_merchant_scenario = api_client.provision_sender(create_recipient_identity_payouts_scenario["response_id"], "VISA_V1", 'payouts')
-    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_identity_payouts_scenario["response_id"], create_recipient_card_scenario["response_id"], 10000, 'payouts')
+    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_card_scenario["response_id"], 1510, 'payouts')
 
     #payment instrument verification
     # payment_instrument_verification_scenario = api_client.verify_payment_instrument(create_recipient_card_scenario["response_id"], 'payouts')
