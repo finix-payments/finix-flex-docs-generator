@@ -6,4 +6,4 @@
 
 #### HTTP Request
 
-`PUT {{staging_base_url}}/webhook/:WEBHOOK_ID`
+`PUT {{staging_base_url}}/webhooks/:WEBHOOK_ID`

@@ -25,6 +25,7 @@ Letter | Description
 ------ | -------------------------------------------------------------------
 D, F, M, Y | Address verified
 A, B, C, G, I, N, P, R, S, U, W | Address not verified
+Z | Postal/ZIP match, street addresses do not match or street address not included in request
 
 #### Card Verification 2 Results (cvv2_result_code)
 Letter | Description

@@ -5,7 +5,7 @@
 ```
 
 Now that we have a processor associated with an `Application` we'll want to
-enable its ability to creaet new `Transfers` and `Authorizations`. This same
+enable its ability to create new `Transfers` and `Authorizations`. This same
 method can be used to shut off its ability to process transactions as a form of
 risk management.
 

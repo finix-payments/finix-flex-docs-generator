@@ -10,11 +10,11 @@ testing purposes. You must use the Tokenization iframe or javascript client
 to remain out of PCI scope.
 </aside>
 
-Now that we've created an `Identity` for our recipient, we'll need to tokenize a credit card where funds will be disbursed.
+Now that we've created an `Identity` for our recipient, we'll need to tokenize a payment card where funds will be disbursed.
 
-In the API, credit cards are represented by the `Payment Instrument` resource.
+In the API, payment cards are represented by the `Payment Instrument` resource.
 
-To classify the `Payment Instrument` as a credit card you'll need to pass `PAYMENT_CARD` in the type field of your request, and you'll also want to pass the ID of the `Identity` that you created in the last step via the identity field to properly associate it with your recipient.
+To classify the `Payment Instrument` as a payment card you'll need to pass `PAYMENT_CARD` in the type field of your request, and you'll also want to pass the ID of the `Identity` that you created in the last step via the identity field to properly associate it with your recipient.
 
 #### HTTP Request
 
@@ -26,7 +26,7 @@ Field | Type | Description
 ----- | ---- | -----------
 identity | *string*, **required** | ID of the `Identity` that the card should be associated
 type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
-number | *string*, **required** | Credit card account number
+number | *string*, **required** | Primary card account number
 security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
 expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
 expiration_year | *integer*, **required** | 4-digit expiration year

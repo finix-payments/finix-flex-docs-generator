@@ -25,12 +25,13 @@ Letter | Description
 ------ | -------------------------------------------------------------------
 D, F, M, Y | Address verified
 A, B, C, G, I, N, P, R, S, U, W | Address not verified
+Z | Postal/ZIP match, street addresses do not match or street address not included in request
 
 #### Card Verification 2 Results (cvv2_result_code)
 Letter | Description
 ------ | -------------------------------------------------------------------
 M | CVV and expiration verified
-N, P, S | CVV not verified
+N, P, S | Either CVV or expiration date is incorrect
 U | Issuer does not participate in CVV2 service
 
 #### Card Type (card_type_code)

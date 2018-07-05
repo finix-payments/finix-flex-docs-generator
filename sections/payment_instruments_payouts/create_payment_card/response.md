@@ -23,7 +23,7 @@ Field | Type | Description
 ----- | ---- | -----------
 identity | *string*, **required** | ID of the `Identity` that the card should be associated
 type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
-number | *string*, **required** | Credit card account number
+number | *string*, **required** | Primary account number
 security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
 expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
 expiration_year | *integer*, **required** | 4-digit expiration year
