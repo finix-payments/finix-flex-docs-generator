@@ -80,10 +80,10 @@ def transfer_ready_to_settle(endpoint, encoded_auth):
     response_body = opener.open(request).read()
     return json.loads(response_body)['ready_to_settle_at'] is not None
 
-def message_slack(channel, message):
-    slack = Slacker('xoxb-216066206390-2V98aTCIppQuMKAkUoWAe3Ad')
-    # Send a message to #general channel
-    slack.chat.post_message(channel, message, as_user="richies_revenge")
+# def message_slack(channel, message):
+#     slack = Slacker('xoxb-216066206390-2V98aTCIppQuMKAkUoWAe3Ad')
+#     # Send a message to #general channel
+#     slack.chat.post_message(channel, message, as_user="richies_revenge")
 
 
 def stringified_elapsed_time(start_time):

@@ -94,7 +94,7 @@ Form#submit(environment, applicationID, callback)-> Form
 
 function submitForm() {
   // sandbox or production for environment
-  form.submit('sandbox', 'APu7v3CBcRGqh2G5yM52NHPd', function(err, res) {
+  form.submit('sandbox', {{fetch_application_scenario_id}}, function(err, res) {
     if (err) {
       console.log("There was an error");
     }

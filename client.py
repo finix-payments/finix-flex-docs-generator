@@ -13,7 +13,7 @@ import uuid
 from helpers import formatted_response, format_json, format_curl_request_body, \
     format_php_request_body, random_business_name, random_last_name, \
     random_first_name, random_app_name, transfer_ready_to_settle, \
-    stringified_elapsed_time, message_slack
+    stringified_elapsed_time
 
 
 class Client(object):
@@ -117,8 +117,7 @@ class Client(object):
                 "business_tax_id": "123456789",
                 "doing_business_as": company,
                 "email": "user@example.org",
-                "max_transaction_amount": 1200000,
-                "settlement_bank_account": "CORPORATE"
+                "max_transaction_amount": 1200000
             }
         }
         values = format_json(json.dumps(values))
@@ -841,8 +840,8 @@ class Client(object):
                 channel = 'dev'
                 # This is the full response body
                 # message = '*Transfer Reconciliation Latency Alert*\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\n```' + transfer_response['response_body'] + '```'
-                message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
-                message_slack(channel, message)
+                # message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
+                # message_slack(channel, message)
         values = {
             "currency": "USD",
             "tags": {
@@ -900,7 +899,7 @@ class Client(object):
         debit = create_debit(self, merchant_id, card_id, 888888)
 
         # sleeping so that the dispute can be created
-        time.sleep(240)
+        time.sleep(2400)
         # fetch list of all disputes
         headers = {
             'Content-Type': 'application/vnd.json+api',

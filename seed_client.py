@@ -59,8 +59,7 @@ def create_app(config_values, application_owner_user_id, company):
             "business_tax_id": "123456789",
             "doing_business_as": company,
             "email": "user@example.org",
-            "max_transaction_amount": 12000,
-            "settlement_bank_account": "CORPORATE"
+            "max_transaction_amount": 120000
         }
     }
     values = format_json(json.dumps(values))

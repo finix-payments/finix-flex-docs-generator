@@ -108,9 +108,14 @@ snippets_by_resource = {
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields": [
+    "guide_hosted_fields_payouts": [
         "definition",
         "associate_token",
+    ],
+    "guide_mobile": [
+        "definition",
+        "guide_android",
+        "guide_iOS",
     ],
     "guide_push_to_card": [
         "definition",
@@ -317,9 +322,14 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields": [
+    "guide_hosted_fields_payouts": [
         "definition",
         "associate_token",
+    ],
+    "guide_mobile": [
+        "definition",
+        "guide_android",
+        "guide_iOS",
     ],
     "guide_push_to_card": [
         "definition",
@@ -441,7 +451,8 @@ resource_ordering = [
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_hosted_fields",
+    "guide_hosted_fields_payouts",
+    "guide_mobile",
     "authorizations",
     "disputes",
     "identities",
@@ -467,7 +478,8 @@ admin_resource_ordering = [
     "guide_getting_started",
     "guide_push_to_card",
     "guide_iframe",
-    "guide_hosted_fields",
+    "guide_hosted_fields_payouts",
+    "guide_mobile",
     "guide_admin_overview",
     "guide_create_application",
     "applications",
