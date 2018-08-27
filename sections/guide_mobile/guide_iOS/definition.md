@@ -1,17 +1,21 @@
-## iOS Integration
+### iOS SDK
 
-### Step 1: Import Payments SDK
+#### Step 1: Import Payments SDK
 
 Import the Payments SDK with with CocoaPods by adding pod `'PaymentsSDK', '~> 1.0.4'` to the Podfile
 
-### Step 2: Import Library
+#### Step 2: Import Library
+
+Import PaymentsSDK by running ` import PaymentsSDK`
 
 ```
  import PaymentsSDK
 ```
 
 
-### Step 3: Initialize Tokenizer Class
+#### Step 3: Initialize Tokenizer Class
+
+First, initiate `Tokenizer` class and pass it a sandbox or live endpoint. In addition to the endpoint, you need to pass the Application ID to the `Tokenizer` function.
 
 ```
 let tokenizer = Tokenizer(
@@ -19,22 +23,22 @@ let tokenizer = Tokenizer(
   applicationId: applicationId)
 ```
 
-```javascript
+```
 let tokenizer = Tokenizer(
   host: {{staging_base_url}},
   applicationId: {{fetch_application_scenario_id}})
 ```
 
-#### Arguments
+##### Arguments
 Field | Type | Description
 ----- | ---- | -----------
-apiEndpoint | *string*, **required** | Sandbox or Production API endpoint (e.g. {{staging_base_url}} for Sandbox)
+apiEndpoint | *string*, **required** | Sandbox or Live API endpoint (e.g. {{staging_base_url}} for Sandbox)
 applicationId | *string*, **required** | ID of `Application`
 
 
 
-### Step 4: Tokenize Payment Card
-
+#### Step 4: Tokenize Payment Card
+Lastly, pass the card number, payment type, expiration month and year to the `createToken` function.
 
 ```
 tokenizer.createToken(
@@ -51,7 +55,7 @@ tokenizer.createToken(
 }   
 ```
 
-```javascript
+```
 tokenizer.createToken(
   cardNumber: "4111111111111111",
   paymentType: "PAYMENT_CARD",
@@ -67,9 +71,7 @@ tokenizer.createToken(
 ```
 
 
-#### Arguments
-
-#### Arguments
+##### Arguments
 Field | Type | Description
 ----- | ---- | -----------
 cardNumber | *string*, **required** | Payment card account number

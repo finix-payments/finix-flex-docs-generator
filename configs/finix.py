@@ -454,7 +454,7 @@ resource_ordering = [
     "guide_hosted_fields_payouts",
     "guide_mobile",
     "authorizations",
-    "disputes",
+    # "disputes",
     "identities",
     "merchants",
     "payment_instruments",

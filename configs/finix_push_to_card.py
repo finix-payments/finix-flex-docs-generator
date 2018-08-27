@@ -40,16 +40,16 @@ snippets_by_resource = {
     "api_endpoints":[
         "definition",
     ],
-    "disputes": [
-        "definition",
-        # "create_dispute",
-        "fetch_dispute",
-        "list_disputes",
-    ],
-    "guide_admin_overview": [
-        "definition",
-        ],
-    "guide_authentication": [
+    # "disputes": [
+    #     "definition",
+    #     # "create_dispute",
+    #     "fetch_dispute",
+    #     "list_disputes",
+    # ],
+    # "guide_admin_overview": [
+    #     "definition",
+    #     ],
+    "guide_authentication_payouts": [
         "definition",
         "authentication",
         ],
@@ -64,6 +64,11 @@ snippets_by_resource = {
     #     "definition",
     #     "associate_token",
     # ],
+    "guide_mobile": [
+        "definition",
+        "guide_android",
+        "guide_iOS",
+    ],
     "guide_push_to_card": [
         "definition",
         "create_recipient_identity",
@@ -124,113 +129,118 @@ snippets_by_resource = {
 # this provides the ordering for the docs by section and individual snippet
 # Doc Type: ADMIN LEVEL
 admin_snippets_by_resource = {
-    "api_endpoints":[
-        "definition",
-    ],
-    "applications": [
-        "definition",
-        "fetch_application",
-        "create_application",
-        "disable_application_processing",
-        # "disable_application_settlements",
-        "create_partner_user",
-        # "enable_dummy_processor",
-        # "enable_litle_processor",
-        "list_applications",
-        ],
-    "disputes": [
-        "definition",
-        # "create_dispute",
-        "fetch_dispute",
-        "list_disputes",
-    ],
-    "guide_admin_overview": [
-        "definition",
-        ],
-    "guide_create_application_payouts": [
-        "definition",
-        "create_owner_user",
-        "create_application",
-        "enable_dummy_processor",
-        "enable_processing",
-        ],
-    "guide_authentication": [
-        "definition",
-        "authentication",
-        ],
-    "guide_general_overview_payouts": [
-        "definition",
-        ],
-    # "guide_iframe": [
+#     "api_endpoints":[
+#         "definition",
+#     ],
+#     "applications": [
+#         "definition",
+#         "fetch_application",
+#         "create_application",
+#         "disable_application_processing",
+#         # "disable_application_settlements",
+#         "create_partner_user",
+#         # "enable_dummy_processor",
+#         # "enable_litle_processor",
+#         "list_applications",
+#         ],
+#     "disputes": [
+#         "definition",
+#         # "create_dispute",
+#         "fetch_dispute",
+#         "list_disputes",
+#     ],
+#     "guide_admin_overview": [
+#         "definition",
+#         ],
+#     "guide_create_application_payouts": [
+#         "definition",
+#         "create_owner_user",
+#         "create_application",
+#         "enable_dummy_processor",
+#         "enable_processing",
+#         ],
+#     "guide_authentication_payouts": [
+#         "definition",
+#         "authentication",
+#         ],
+#     "guide_general_overview_payouts": [
+#         "definition",
+#         ],
+#     # "guide_iframe": [
+#     #     "definition",
+#     #     "associate_token",
+#     # ],
+#     "guide_hosted_fields_payouts": [
+#         "definition",
+#         "associate_token",
+#     ],
+#     "guide_mobile": [
+#         "definition",
+#         "guide_android",
+#         "guide_iOS",
+#     ],
+#     "guide_push_to_card": [
+#         "definition",
+#         "create_recipient_identity",
+#         "create_payment_card",
+#         "verify_card",
+#         "provision_merchant_account",
+#         "send_to_recipient",
+#         ],
+#     "test_data_payouts": [
+#         "definition"
+#     ],
+#     "identities_payouts": [
+#         "definition",
+#         "create_recipient_identity",
+#         "fetch_identity",
+#         "update_identity",
+#         "list_identities",
+#         ],
+#     "payment_instruments_payouts": [
+#         "definition",
+#         "associate_token",
+#         "create_payment_card",
+#         "fetch_payment_card",
+#         "verification"
+#         ],
+#     "guide_tokenization_js": [
+#         "definition",
+#         "associate_token_payouts",
+#         ],
+#     "payouts": [
+#         "definition",
+#         "create_payout",
+#         "fetch_transfer",
+#         "list_transfers",
+#         ],
+    # "webhooks_payouts": [
     #     "definition",
-    #     "associate_token",
-    # ],
-    "guide_hosted_fields_payouts": [
-        "definition",
-        "associate_token",
-    ],
-    "guide_push_to_card": [
-        "definition",
-        "create_recipient_identity",
-        "create_payment_card",
-        "verify_card",
-        "provision_merchant_account",
-        "send_to_recipient",
-        ],
-    "test_data_payouts": [
-        "definition"
-    ],
-    "identities_payouts": [
-        "definition",
-        "create_recipient_identity",
-        "fetch_identity",
-        "update_identity",
-        "list_identities",
-        ],
-    "payment_instruments_payouts": [
-        "definition",
-        "associate_token",
-        "create_payment_card",
-        "fetch_payment_card",
-        "verification"
-        ],
-    "guide_tokenization_js": [
-        "definition",
-        "associate_token_payouts",
-        ],
-    "payouts": [
-        "definition",
-        "create_payout",
-        "fetch_transfer",
-        "list_transfers",
-        ],
-    "webhooks_payouts": [
-        "definition",
-        "create_webhook",
-        "update_webhook",
-        "fetch_webhook",
-        "list_webhooks",
-        "sample_payloads",
-        ],
-    "topics": [
-        'definition',
-    ],
-    'tags_payouts': [
-        'definition',
-    ],
-    'test_data_payouts': [
-        'definition',
-    ],
-    'errors': [
-        'definition'
-    ],
+    #     "create_webhook",
+    #     "update_webhook",
+    #     "fetch_webhook",
+    #     "list_webhooks",
+    #     "sample_payloads",
+    #     ],
+#     "topics": [
+#         'definition',
+#     ],
+#     'tags_payouts': [
+#         'definition',
+#     ],
+#     'test_data_payouts': [
+#         'definition',
+#     ],
+#     'errors': [
+#         'definition'
+#     ],
 }
 
 # This is the order that the directories / guides will be concatinated
 resource_ordering = [
     "topics",
     "api_endpoints",
-    "guide_authentication",
+    "guide_authentication_payouts",
     "test_data_payouts",
     "tags_payouts",
     "errors",
@@ -238,6 +248,7 @@ resource_ordering = [
     "guide_push_to_card",
     # "guide_iframe",
     "guide_hosted_fields_payouts",
+    "guide_mobile",
     # "disputes",
     "identities_payouts",
     "payment_instruments_payouts",
@@ -247,25 +258,25 @@ resource_ordering = [
 ]
 
 admin_resource_ordering = [
-    "topics",
-    "api_endpoints",
-    "guide_authentication",
-    "test_data_payouts",
-    "tags_payouts",
-    "errors",
-    "guide_general_overview_payouts",
-    "guide_create_application_payouts",
-    "guide_authentication",
-    "guide_push_to_card",
-    # "guide_iframe",
-    "guide_hosted_fields_payouts",
-    "guide_admin_overview",
-    "applications",
-    # "disputes",
-    "identities_payouts",
-     # "identity_verifications",
-    "payment_instruments_payouts",
-    "payouts",
+    # "topics",
+    # "api_endpoints",
+    # "guide_authentication",
+    # "test_data_payouts",
+    # "tags_payouts",
+    # "errors",
+    # "guide_general_overview_payouts",
+    # "guide_create_application_payouts",
+    # "guide_authentication",
+    # "guide_push_to_card",
+    # # "guide_iframe",
+    # "guide_hosted_fields_payouts",
+    # "guide_admin_overview",
+    # "applications",
+    # # "disputes",
+    # "identities_payouts",
+    #  # "identity_verifications",
+    # "payment_instruments_payouts",
+    # "payouts",
     "webhooks_payouts",
 ]
 

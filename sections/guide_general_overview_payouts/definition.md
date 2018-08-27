@@ -15,4 +15,7 @@ through using the Visa Direct API to push payments to debit cards. With push-to-
 funds are disbursed to a debit card within 30 minutes or less.
 
 3. [Tokenization with Hosted Fields](#tokenization-with-hosted-fields): This guide
-explains how to properly tokenize cards in production via hosted fields.
+explains how to properly tokenize cards via hosted fields.
+
+4. [Mobile Tokenization](#mobile-tokenization): This guide
+explains how to tokenize cards via our mobile SDKs.

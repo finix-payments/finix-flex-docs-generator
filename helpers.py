@@ -7,9 +7,9 @@ import string
 import base64
 from urllib2 import Request, urlopen, HTTPError, URLError, build_opener, HTTPHandler
 import json
-import finix
+# import finix
 import time
-from slacker import Slacker
+# from slacker import Slacker
 
 def formatted_response(endpoint, values, encoded_auth, request_type=None):
 

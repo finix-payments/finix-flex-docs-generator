@@ -179,9 +179,9 @@ class Client(object):
         """
         endpoint = self.staging_base_url + '/applications/' + application_id + '/users'
         if(product_type == 'payouts'):
-            return formatted_response(endpoint, values, self.platform_encoded_auth_payouts)
+            return formatted_response(endpoint, values, self.encoded_auth_payouts)
         else:
-            return formatted_response(endpoint, values, self.platform_encoded_auth)
+            return formatted_response(endpoint, values, self.encoded_auth)
 
 
     def create_buyer_identity(self, product_type=None):
