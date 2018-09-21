@@ -8,7 +8,7 @@ import java.util.Currency;
 TransferForm form = TransferForm.builder()
         .amount(100L)
         .currency(Currency.getInstance("USD"))
-        .source("{{create_card_scenario_id}}}")
+        .source("{{create_card_scenario_id}}")
         .merchantIdentity("{{create_merchant_identity_scenario_id}}")
         .tags(ImmutableMap.of("order_number", "21DFASJSAKAS"))
         .build();
