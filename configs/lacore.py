@@ -118,7 +118,7 @@ snippets_by_resource = {
         '3_locate_merchant_profile',
         '4_update_merchant_profile',
     ],
-    "test_data": [
+    "test_data_payfac": [
         "definition"
     ],
     "identities": [
@@ -341,7 +341,7 @@ admin_snippets_by_resource = {
         "definition",
         "associate_token",
         ],
-    "test_data": [
+    "test_data_payfac": [
         "definition"
     ],
     "transfers": [
@@ -393,7 +393,7 @@ resource_ordering = [
     "guide_authentication",
     "idempotent_requests",
     "tags",
-    "test_data",
+    "test_data_payfac",
     "errors",
     "guide_general_overview_lacore",
     "guide_getting_started",
@@ -417,7 +417,7 @@ admin_resource_ordering = [
     "guide_authentication",
     "idempotent_requests",
     "tags",
-    "test_data",
+    "test_data_payfac",
     "errors",
     "fees",
     "guide_general_overview_lacore",

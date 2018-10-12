@@ -16,3 +16,6 @@ funds are disbursed to a debit card within 30 minutes or less.
 
 3. [Tokenization with Hosted Fields](#tokenization-with-hosted-fields): This guide
 explains how to properly tokenize cards via hosted fields.
+
+4. [Mobile Tokenization](#mobile-tokenization): This guide
+explains how to tokenize cards via our mobile SDKs.

@@ -53,7 +53,7 @@ snippets_by_resource = {
         "definition",
         "authentication",
         ],
-    "guide_general_overview_payouts": [
+    "guide_general_overview_finix_payouts": [
         "definition",
         ],
     "guide_hosted_fields_payouts": [
@@ -244,7 +244,7 @@ resource_ordering = [
     "test_data_payouts",
     "tags_payouts",
     "errors",
-    "guide_general_overview_payouts",
+    "guide_general_overview_finix_payouts",
     "guide_push_to_card",
     # "guide_iframe",
     "guide_hosted_fields_payouts",

@@ -1,67 +1,13 @@
 ## Testing Data
 
-To be able to successfully make a push to card transaction on the sandbox environment, use the payment card number below.
-
-Card| Description
------ | -----------
-`4957030420210454`  | Payment card positive result
+Below are the different scenarios that we have available for the sandbox environment.
 
 
-Below are the different error values that the `messages` attribute will return:
-
-|Messages |
-|------------------------|
-| APPROVED_SUCCESSFULLY |
-| REFER_TO_CARD_ISSUER |
-| REFER_TO_CARD_ISSUER_SPECIAL_CONDITION |
-| INVALID_MERCHANT |
-| PICK_UP_CARD_NO_FRAUD |
-| DO_NOT_HONOR |
-| ERROR |
-| PICK_UP_CARD_FRAUD_ACCOUNT |
-| PARTIAL_APPROVAL |
-| APPROVED_VIP |
-| INVALID_TRANSACTION |
-| INVALID_AMOUNT_OR_CURRENCY |
-| INVALID_ACCOUNT_NUMBER |
-| NO_SUCH_ISSUER |
-| RE_ENTER_TRANSACTION |
-| NO_ACTION_TAKEN |
-| UNABLE_TO_LOCATE_RECORD |
-| FILE_TEMPORARILY_NOT_AVAILABLE |
-| NO_CREDIT_ACCOUNT |
-| LOST_CARD_PICK_UP_FRAUD_ACCOUNT |
-| STOLEN_CARD_PICK_UP_FRAUD_ACCOUNT |
-| NOT_SUFFICIENT_FUNDS |
-| NO_CHECKING_ACCOUNT |
-| NO_SAVINGS_ACCOUNT |
-| EXPIRED_CARD |
-| INCORRECT_PIN |
-| TRANSACTION_NOT_PERMITTED |
-| SUSPECTED_FRAUD |
-| EXCEEDS_APPROVAL_AMOUNT_LIMIT |
-| RESTRICTED_CARD |
-| SECURITY_VIOLATION |
-| TRANSACTION_DOES_NOT_FULFILL_AML_REQUIREMENT |
-| EXCEEDS_WITHDRAWAL_FREQUENCY_LIMIT |
-| ALLOWABLE_NUMBER_OF_PIN_ENTRY_TRIES_EXCEEDED |
-| UNSOLICITED_REVERSAL |
-| ALREADY_REVERSED_BY_SWITCH |
-| NO_FINANCIAL_IMPACT |
-| CRYPTOGRAPHIC_ERROR_FOUND_IN_PIN |
-| NEGATIVE_RESULTS |
-| NO_REASON_TO_DECLINE_REQUEST |
-| CANNOT_VERIFY_PIN |
-| INELIGIBLE_TO_RECEIVE_FINANCIAL_POSITION |
-| ISSUER_INOPERATIVE |
-| FINANCIAL_INSTITUTION_NOT_FOUND |
-| TRANSACTION_NOT_COMPLETED_LAW_VIOLATION |
-| SURCHARGE_AMOUNT_NOT_SUPPORTED |
-| FORCE_STIP |
-| CASH_SERVICE_NOT_AVAILABLE |
-| CASH_REQUEST_EXCEEDS_ISSUER_OR_APPROVED_LIMIT |
-| INELIGIBLE_FOR_RESUBMISSION |
-| DECLINE_FOR_CVV2_FAILURE |
-| TRANSACTION_AMOUNT_EXCEEDS_PREAUTHORIZED_APPROVAL_AMOUNT |
-| CARD_AUTHENTICATION_FAILED |
-| STOP_PAYMENT_ORDER |
+Scenario                                     | number           | security_code | address.line1        | postal_code | region         | city          | country | address_verification_results | cvv2_result_code
+ ---------------------------------------------|------------------|---------------|----------------------|-------------|----------------|---------------|---------|------------------------------|-----------------
+ Successful push to card payout (credit card) | 4957030420210454 | 999           | 801 Metro Center Blv | 94404       | CA             | San Francisco | USA     | Y                            | M   
+ Successful push to card payout (debit card)  | 4895142232120006 | 022           | 900 Metro Center Blv | 94404       | CA             | San Francisco | USA     | M                            | M               
+ Invalid account number                       | 4957040000000001 | 999           | 801 Metro Center Blv | 94404       | CA             | San Francisco | USA     | I                            | P               
+ Invalid Zip Code and CVV2 values             | 4957030420210488 | 227           | 900 Metro Center Blv | 94402       | CA             | San Francisco | USA     | A                            | N               
+ Invalid CVV2 value                           | 4957030420210496 | 664           | 900 Metro Center Blv | 94404       | CA             | San Francisco | USA     | Y                            | N               
+ Invalid Address, Zip code and CVV2 values    | 4957030420210504 | 322           | 901 Metro Center Blv | 94404       | CA             | San Francisco | USA     | Z                            | N

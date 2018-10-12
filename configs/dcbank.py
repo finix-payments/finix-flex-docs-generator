@@ -110,9 +110,6 @@ snippets_by_resource = {
     "topics": [
     'definition',
     ],
-    'test_data_visa': [
-        'definition',
-    ],
     'tags_payouts': [
         'definition',
     ],
@@ -216,9 +213,6 @@ admin_snippets_by_resource = {
         'definition',
     ],
     'tags_payouts': [
-        'definition',
-    ],
-    'test_data_payouts': [
         'definition',
     ],
     'errors': [

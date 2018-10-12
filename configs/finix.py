@@ -229,7 +229,7 @@ snippets_by_resource = {
     'tags': [
         'definition',
     ],
-    'errors': [
+    'errors_payouts': [
         'definition'
     ]
 }
@@ -432,7 +432,7 @@ admin_snippets_by_resource = {
     'tags': [
         'definition'
     ],
-    'errors': [
+    'errors_payouts': [
         'definition'
     ]
 }
@@ -443,7 +443,7 @@ resource_ordering = [
     "api_endpoints",
     "guide_authentication",
     "dashboard_overview_finix",
-    "errors",
+    "errors_payouts",
     "idempotent_requests",
     "tags",
     "test_data_finix",
@@ -467,11 +467,11 @@ resource_ordering = [
 admin_resource_ordering = [
     "topics",
     "api_endpoints",
-    "dashboard_overview_finix",
     "guide_authentication",
-    "errors",
-    'FAQS',
     "idempotent_requests",
+    "errors_payouts",
+    'FAQS',
+    "dashboard_overview_finix",
     "tags",
     "test_data_finix",
     "guide_general_overview_finix",

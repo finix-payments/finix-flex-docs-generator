@@ -26,7 +26,7 @@ partner_configs = {
         'java_artifact_id': "crossriver-java",
         'version': '1.0.3',
         'java_group_id': "io.github.crossriverbank.payments.processing.client",
-        'hosted_fields_src': "https://s3.us-east-2.amazonaws.com/finix-payments-js-form-v1/dist/crb.js",
+        'hosted_fields_src': "https://forms.finixpymnts.com/crb.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/maserna2/9zo8d16x/",
 }
 
@@ -37,15 +37,12 @@ snippets_by_resource = {
     "api_endpoints":[
         "definition",
     ],
-    "guide_admin_overview": [
+    "guide_general_overview_payouts": [
         "definition",
         ],
     "guide_authentication_payouts": [
         "definition",
         "authentication",
-        ],
-    "guide_general_overview_payouts": [
-        "definition",
         ],
     "guide_hosted_fields_payouts": [
         "definition",
@@ -104,13 +101,11 @@ snippets_by_resource = {
     "topics": [
     'definition',
     ],
-    'test_data_visa': [
-        'definition',
-    ],
+
     'tags_payouts': [
         'definition',
     ],
-    'errors': [
+    'errors_payouts': [
         'definition',
     ],
 }
@@ -165,9 +160,6 @@ admin_snippets_by_resource = {
         "provision_merchant_account",
         "send_to_recipient",
         ],
-    "test_data_payouts": [
-        "definition"
-    ],
     "idempotent_requests": [
         "definition",
     ],
@@ -212,7 +204,7 @@ admin_snippets_by_resource = {
     'test_data_payouts': [
         'definition',
     ],
-    'errors': [
+    'errors_payouts': [
         'definition'
     ],
 }
@@ -222,10 +214,10 @@ resource_ordering = [
     "topics",
     "api_endpoints",
     "guide_authentication_payouts",
+    "errors_payouts",
     "idempotent_requests",
-    "test_data_payouts",
     "tags_payouts",
-    "errors",
+    "test_data_payouts",
     "guide_general_overview_payouts",
     "guide_push_to_card",
     # "guide_iframe",
@@ -242,10 +234,10 @@ admin_resource_ordering = [
     "topics",
     "api_endpoints",
     "guide_authentication_payouts",
+    "errors_payouts",
     "idempotent_requests",
-    "test_data_payouts",
     "tags_payouts",
-    "errors",
+    "test_data_payouts",
     "guide_general_overview_payouts",
     "guide_create_application_payouts",
     "guide_authentication_payouts",
