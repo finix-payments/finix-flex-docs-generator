@@ -9,16 +9,11 @@ please create a new Identity resource.
 </aside>
 
 
-Update the information of a previously created `Identity`. Please note that in
-the case of merchant accounts this API request alone does not update this
-information on the underlying processor. To update the merchant's information
- on the underlying processor you must [update the merchant on the
- processor.](#update-info-on-processor)
-
+Update the information of a previously created `Identity`. 
 
 #### HTTP Request
 
-`POST {{staging_base_url}}/identities`
+`PUT {{staging_base_url}}/identities`
 
 #### Request Arguments
 

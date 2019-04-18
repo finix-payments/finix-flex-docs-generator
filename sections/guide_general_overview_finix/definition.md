@@ -15,7 +15,11 @@ of charging a card. This guide will walk you through provisioning merchant
 accounts, tokenizing cards, charging those cards, and finally settling (i.e.
 payout) those funds out to your merchants.  
 
-3. [Embedded Tokenization](#embedded-tokenization): This guide explains how to properly tokenize cards in production via our embedded iframe.  
-
 3. [Tokenization with Hosted Fields](#tokenization-with-hosted-fields): This guide
-explains how to properly tokenize cards in production via hosted fields.
+explains how to properly tokenize cards in live via hosted fields.
+
+4. [Push to Card](#push-to-card): This guide walks through using the Visa Direct API to push payments to payment cards. With push-to-card funds are disbursed to a debit card within 30 minutes or less.
+
+5. [Pull from Card](#pull-from-card): This guide walks through using the Visa Direct API to pull payments from payment cards.
+
+6. [Mobile Tokenization](#mobile-tokenization): Mobile Tokenization: This guide explains how to tokenize cards via our mobile SDKs.

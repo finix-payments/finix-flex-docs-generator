@@ -19,7 +19,7 @@ Only a User with ROLE_PLATFORM level credentials can enable a processor for an A
 </aside>
 
 <aside class="warning">
-The DUMMY_V1 processor should not be provisioned on production level Applications.
+The DUMMY_V1 processor should not be provisioned on live level Applications.
 </aside>
 
 

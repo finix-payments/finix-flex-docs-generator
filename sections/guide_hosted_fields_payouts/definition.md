@@ -152,6 +152,6 @@ front-end client to your back-end server.
 #### Arguments
 Field | Type | Description
 ----- | ---- | -----------
-environment | *string*, **required** | `sandbox` for testing and `production` for production
+environment | *string*, **required** | `sandbox` for testing and `live` for live
 applicationId | *string*, **required** | `Application` id that the payment card will be scoped to
 callback | *function*, **required** | Callback that will be executed when the HTTPRequest is finished.

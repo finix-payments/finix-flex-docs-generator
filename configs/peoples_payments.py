@@ -18,13 +18,15 @@ partner_configs = {
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
-        'staging_base_url': "https://fastfunds-staging.peoplespayments.com",
-        'production_base_url': "https://fastfunds.peoplespayments.com",
+        # 'staging_base_url': "https://fastfunds-staging.peoplespayments.com",
+        'staging_base_url': "https://peoplespayments.sandbox-payments-api.com",
+        'live_base_url': "https://peoplespayments.live-payments-api.com",
+        # 'production_base_url': "https://fastfunds.peoplespayments.com",
         'python_client_resource_name': "peoples_payments",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",
         'php_client_resource_name': "Finix",
         'ruby_client_resource_name': "PeoplesPayments",
-        'ruby_gem': "PeoplesPayments",
+        'ruby_gem': "eoplespayments",
         'ruby_require_statement': "PeoplesPayments",
         'java_artifact_id': "peoples-payments-java",
         'version': '1.1.0',
@@ -34,26 +36,16 @@ partner_configs = {
         'ACH_business_day_delay': '3'
         }
 
-
 snippets_by_resource = {
     "api_endpoints":[
         "definition",
     ],
-    "disputes": [
-        "definition",
-        # "create_dispute",
-        "fetch_dispute",
-        "list_disputes",
-    ],
-    "guide_admin_overview": [
+    "guide_general_overview_peoples_payouts": [
         "definition",
         ],
     "guide_authentication_payouts": [
         "definition",
         "authentication",
-        ],
-    "guide_general_overview_payouts": [
-        "definition",
         ],
     "guide_hosted_fields_payouts": [
         "definition",
@@ -71,7 +63,16 @@ snippets_by_resource = {
         "provision_merchant_account",
         "send_to_recipient",
         ],
-    "test_data_payouts": [
+    "guide_pull_from_card": [
+        "definition",
+        "create_sender_identity",
+        "create_payment_card",
+        "verify_card",
+        "provision_merchant_account",
+        "pull_from_sender",
+        # "send_to_recipient",
+        ],
+    "test_data_canada_payouts": [
         "definition"
     ],
     "idempotent_requests": [
@@ -98,6 +99,8 @@ snippets_by_resource = {
     "payouts": [
         "definition",
         "create_payout",
+        "pull_from_sender",
+        "create_refund",
         "fetch_transfer",
         "list_transfers",
         ],
@@ -112,10 +115,11 @@ snippets_by_resource = {
     "topics": [
     'definition',
     ],
+
     'tags_payouts': [
         'definition',
     ],
-    'errors': [
+    'errors_payouts': [
         'definition',
     ],
 }
@@ -126,7 +130,7 @@ admin_snippets_by_resource = {
     "api_endpoints":[
         "definition",
     ],
-    "applications": [
+    "applications_payouts": [
         "definition",
         "fetch_application",
         "create_application",
@@ -137,12 +141,6 @@ admin_snippets_by_resource = {
         # "enable_litle_processor",
         "list_applications",
         ],
-    "disputes": [
-        "definition",
-        # "create_dispute",
-        "fetch_dispute",
-        "list_disputes",
-    ],
     "guide_admin_overview": [
         "definition",
         ],
@@ -157,7 +155,7 @@ admin_snippets_by_resource = {
         "definition",
         "authentication",
         ],
-    "guide_general_overview_payouts": [
+    "guide_general_overview_peoples_payouts": [
         "definition",
         ],
     # "guide_iframe": [
@@ -176,9 +174,15 @@ admin_snippets_by_resource = {
         "provision_merchant_account",
         "send_to_recipient",
         ],
-    "test_data_payouts": [
-        "definition"
-    ],
+    "guide_pull_from_card": [
+        "definition",
+        "create_sender_identity",
+        "create_payment_card",
+        "verify_card",
+        "provision_merchant_account",
+        "pull_from_sender"
+        # "send_to_recipient",
+        ],
     "idempotent_requests": [
         "definition",
     ],
@@ -203,6 +207,8 @@ admin_snippets_by_resource = {
     "payouts": [
         "definition",
         "create_payout",
+        "pull_from_sender",
+        "create_refund",
         "fetch_transfer",
         "list_transfers",
         ],
@@ -220,10 +226,10 @@ admin_snippets_by_resource = {
     'tags_payouts': [
         'definition',
     ],
-    'test_data_payouts': [
+    'test_data_canada_payouts': [
         'definition',
     ],
-    'errors': [
+    'errors_payouts': [
         'definition'
     ],
 }
@@ -233,12 +239,13 @@ resource_ordering = [
     "topics",
     "api_endpoints",
     "guide_authentication_payouts",
+    "errors_payouts",
     "idempotent_requests",
-    "test_data_payouts",
     "tags_payouts",
-    "errors",
-    "guide_general_overview_payouts",
+    "test_data_canada_payouts",
+    "guide_general_overview_peoples_payouts",
     "guide_push_to_card",
+    "guide_pull_from_card",
     # "guide_iframe",
     "guide_hosted_fields_payouts",
     # "disputes",
@@ -253,18 +260,19 @@ admin_resource_ordering = [
     "topics",
     "api_endpoints",
     "guide_authentication_payouts",
+    "errors_payouts",
     "idempotent_requests",
-    "test_data_payouts",
     "tags_payouts",
-    "errors",
-    "guide_general_overview_payouts",
+    "test_data_canada_payouts",
+    "guide_general_overview_peoples_payouts",
     "guide_create_application_payouts",
     "guide_authentication_payouts",
     "guide_push_to_card",
+    "guide_pull_from_card",
     # "guide_iframe",
     "guide_hosted_fields_payouts",
     "guide_admin_overview",
-    "applications",
+    "applications_payouts",
     # "disputes",
     "identities_payouts",
      # "identity_verifications",
@@ -272,7 +280,6 @@ admin_resource_ordering = [
     "payouts",
     "webhooks_payouts",
 ]
-
 
 
 # Determine which client libraries to include
@@ -284,6 +291,7 @@ admin_resource_ordering = [
 included_clients = OrderedDict([
         ("cURL", "shell"),
         ("Java", "java"),
-        ("Ruby", "ruby"),
+        ('Ruby', 'ruby'),
+        # ("PHP", "php"),
         ("Python", "python"),
 ])

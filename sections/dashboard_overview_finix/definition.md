@@ -8,10 +8,10 @@ If you haven't signed up yet, please create a user account.
 <video src="https://finix-payments.github.io/customer-logos/assets/create-new-account.mov" width="440" height="200" controls preload>
 </video>
 
-### Create Production Account
-Once you've played with a sandbox account, you're ready to create a production `Application.`  
+### Create Live Account
+Once you've played with a sandbox account, you're ready to create a live `Application.`  
 
-<video src="https://finix-payments.github.io/customer-logos/assets/create_production_account.mov" width="440" height="200" controls preload>
+<video src="https://finix-payments.github.io/customer-logos/assets/create_live_account.mov" width="440" height="200" controls preload>
 </video>
 
 

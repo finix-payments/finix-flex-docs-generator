@@ -133,11 +133,14 @@ def generate_template_variables(config_values):
     create_payouts_app_scenario = api_client.create_app(create_owner_user_payouts_scenario["response_id"],
                                                         "INDIVIDUAL_SOLE_PROPRIETORSHIP", 'payouts')
     associate_visaV1_payment_processor_scenario = api_client.associate_payment_processor("VISA_V1", create_payouts_app_scenario["response_id"], 'payouts')
+
     api_client.basic_auth_username_payouts = create_owner_user_payouts_scenario["response_id"]
     config_values["basic_auth_username_payouts"] = create_owner_user_payouts_scenario["response_id"]
     api_client.basic_auth_password_payouts = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
     config_values["basic_auth_password_payouts"] = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
     api_client.encoded_auth_payouts = base64.b64encode(api_client.basic_auth_username_payouts + ':' + api_client.basic_auth_password_payouts)
+
+
     toggle_application_processing_payouts_scenario = api_client.toggle_application_processing(create_payouts_app_scenario["response_id"], True, 'payouts')
     create_recipient_identity_payouts_scenario = api_client.create_recipient_identity('payouts')
     create_recipient_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"], 'payouts')

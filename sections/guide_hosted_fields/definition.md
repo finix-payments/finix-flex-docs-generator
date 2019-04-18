@@ -45,7 +45,7 @@ The next step is to configure the library. This method is the single entry point
 #### Arguments
 Field | Type | Description
 ----- | ---- | -----------
-environment | *string*, **required** |  `sandbox` for testing and `live` for production
+environment | *string*, **required** |  `sandbox` for testing and `live` for live
 onUpdateCallback | *function*, **required** | Callback that will be called whenever the form state changes. It receives the state object representing the current state.
 
 ### Step 3: Configure the form fields

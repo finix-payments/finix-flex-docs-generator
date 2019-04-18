@@ -62,7 +62,7 @@ where you're hosting the aforementioned button. Please include the script as dem
 Next we need to configure the client so that it associates the card with your `Application`. We will also need to register a click event that fires when our users click on the button, thereby rendering the iframe on the page. Then when the form is submitted you'll be returned a unique `Token` resource representing the submitted card details. We will also need to define a callback for handling that response.
 
 <aside class="notice">
- When you're ready to tokenize in production, pass `live` for the `environment` attribute.
+ When you're ready to tokenize in live, pass `live` for the `environment` attribute.
 </aside>
 
 

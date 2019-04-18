@@ -118,9 +118,9 @@ def random_business_name():
 
 
 def random_first_name():
-    names = ["Jim", "Bob", "Joe", "Walter", "Daphne", "Maggie", "Fran",
-                    "Jessie", "Michae", "Marcie", "Ricardo", "Amy", "Sean",
-                    "Marshall", "Laura", "Collen", "Alex", "Ayisha", "Step"]
+    names = ["Jim", "Bob", "Joe", "Walter", "Daphne",
+                     "Marcie", "Ricardo", "Amy", "Sean",
+                    "Michael", "Laura", "Collen", "Alex", "Ayisha", "Steph"]
     return random.choice (names)
 
 def random_last_name():

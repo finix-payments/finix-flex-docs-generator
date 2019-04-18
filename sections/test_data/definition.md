@@ -1,6 +1,6 @@
 ## Testing for specific responses and errors
 
-Before taking your integration to production, use the information below to test it thoroughly. Please note, once a Payment Instrument has been flagged with AVS or CVC, it will continue to throw the respective error.
+Before taking your integration to live, use the information below to test it thoroughly. Please note, once a Payment Instrument has been flagged with AVS or CVC, it will continue to throw the respective error.
 
 Amount| Description
 ----- | -----------

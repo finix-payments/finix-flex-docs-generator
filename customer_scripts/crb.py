@@ -160,11 +160,15 @@ def generate_template_variables(config_values):
     api_client.basic_auth_password_payouts = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
     config_values["basic_auth_password_payouts"] = json.loads(create_owner_user_payouts_scenario["response_body"])['password']
     api_client.encoded_auth_payouts = base64.b64encode(api_client.basic_auth_username_payouts + ':' + api_client.basic_auth_password_payouts)
+
     toggle_application_processing_payouts_scenario = api_client.toggle_application_processing(create_payouts_app_scenario["response_id"], True, 'payouts')
     create_recipient_identity_payouts_scenario = api_client.create_recipient_identity('payouts')
     create_recipient_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"], 'payouts')
+
+    create_card_verification_scenario = api_client.create_card_verification(create_recipient_identity_payouts_scenario["response_id"], 'payouts')
     provision_push_merchant_scenario = api_client.provision_sender(create_recipient_identity_payouts_scenario["response_id"], "VISA_V1", 'payouts')
-    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_card_scenario["response_id"], 1510, 'payouts')
+
+    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_card_scenario["response_id"], 1510, 'USD', 'push', 'payouts')
 
     update_identity_scenario = api_client.update_identity_payouts(create_recipient_identity_payouts_scenario["response_id"])
     fetch_identity_scenario = api_client.fetch_identity(create_recipient_identity_payouts_scenario["response_id"], 'payouts')
@@ -192,6 +196,7 @@ def generate_template_variables(config_values):
     fetch_user_scenario = api_client.fetch_user(create_owner_user_payouts_scenario["response_id"], 'payouts')
     fetch_application_scenario = api_client.fetch_application(create_payouts_app_scenario["response_id"], 'payouts')
     fetch_credit_card_scenario = api_client.fetch_credit_card(create_recipient_card_scenario["response_id"], 'payouts')
+    fetch_credit_card_verification_scenario = api_client.fetch_credit_card(create_card_verification_scenario["response_id"], 'payouts')
     fetch_transfer_scenario = api_client.fetch_transfer(create_recipient_push_to_card_transfer["response_id"], 'payouts')
     fetch_webhook_scenario = api_client.fetch_webhook(create_webhook_scenario["response_id"], 'payouts')
 
@@ -217,7 +222,7 @@ def generate_template_variables(config_values):
     # toggle_on_merchant_processing_scenario = api_client.toggle_merchant_processing(provision_push_merchant_scenario["response_id"], True)
     toggle_on_application_processing_scenario = api_client.toggle_application_processing(create_payouts_app_scenario["response_id"], True, 'payouts')
 
-    payment_instrument_verification_payouts_scenario = api_client.verify_payment_instrument(fetch_credit_card_scenario["response_id"], 'payouts')
+    payment_instrument_verification_payouts_scenario = api_client.verify_payment_instrument(fetch_credit_card_verification_scenario["response_id"], 'payouts')
 
     api_scenario_vars = {
             # IDENTITIES ----------------------------------------------------------------------------------------
@@ -254,6 +259,9 @@ def generate_template_variables(config_values):
 
             "fetch_credit_card_scenario_response": fetch_credit_card_scenario["response_body"],
             "fetch_credit_card_scenario_id": fetch_credit_card_scenario["response_id"],
+
+            "fetch_credit_card_verification_scenario_response": fetch_credit_card_verification_scenario["response_body"],
+            "fetch_credit_card_verification_scenario_id": fetch_credit_card_verification_scenario["response_id"],
 
             "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
 
@@ -293,6 +301,8 @@ def generate_template_variables(config_values):
             "create_recipient_card_scenario_python_request": create_recipient_card_scenario["python_request_body"],
             "create_recipient_card_scenario_response": create_recipient_card_scenario["response_body"],
             "create_recipient_card_scenario_id": create_recipient_card_scenario["response_id"],
+
+            "create_card_verification_scenario_id": create_card_verification_scenario["response_id"],
 
             "provision_push_merchant_scenario_curl_request":  provision_push_merchant_scenario["curl_request_body"],
             "provision_push_merchant_scenario_response": provision_push_merchant_scenario["response_body"],

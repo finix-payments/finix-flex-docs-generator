@@ -10,8 +10,8 @@ testing purposes. You must use the Tokenization iframe or javascript client
 to remain out of PCI scope.
 </aside>
 
-Please review our guide on how to tokenize cards via the [embedded tokenization
-form](#embedded-tokenization)
+Please review our guide on how to tokenize cards via the [tokenization with hosted fields
+form](#tokenization-with-hosted-fields)
 #### HTTP Request
 
 `POST {{staging_base_url}}/payment_instruments`

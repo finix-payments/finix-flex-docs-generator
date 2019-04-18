@@ -30,6 +30,7 @@ number | *string*, **required** | Primary card account number
 security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
 expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
 expiration_year | *integer*, **required** | 4-digit expiration year
+currency | *string*, **required** | Currency that should be associated with card
 name | *string*, **optional** | Full name of the registered card holder
 address | *object*, **optional** | Billing address (Full description of child attributes below)
 

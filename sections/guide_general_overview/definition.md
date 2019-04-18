@@ -20,4 +20,4 @@ through using the Visa Direct API to push payments to debit cards. With push-to-
 funds are disbursed to a debit card within 30 minutes or less.
 
 4. [Embedded Tokenization](#embedded-tokenization): This guide
-explains how to properly tokenize cards in production via our embedded iframe.
+explains how to properly tokenize cards in live via our embedded iframe.

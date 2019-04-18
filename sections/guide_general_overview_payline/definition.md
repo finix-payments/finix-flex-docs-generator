@@ -11,7 +11,7 @@ the dark area to the right.
 authenticate and interface with the API.
 
 2. [Tokenization with Hosted Fields](#tokenization-with-hosted-fields): This guide
-explains how to properly tokenize cards in production via hosted fields.
+explains how to properly tokenize cards in live via hosted fields.
 
 3. [Embedded Tokenization](#embedded-tokenization): This guide
-explains how to properly tokenize cards in production via our embedded iframe.
+explains how to properly tokenize cards in live via our embedded iframe.

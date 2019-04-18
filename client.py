@@ -242,6 +242,34 @@ class Client(object):
         else:
             return formatted_response(endpoint, values, self.encoded_auth)
 
+    def create_sender_identity(self, product_type=None):
+        first = random_first_name()
+        values = {
+            "tags": {
+                "key": "value"
+            },
+            "entity": {
+                "last_name": random_last_name(),
+                "first_name": first,
+                "email": first + "@gmail.com",
+                "phone": "7145677612",
+                "personal_address": {
+                    "city": "San Mateo",
+                    "country": "USA",
+                    "region": "CA",
+                    "line2": "Apartment 7",
+                    "line1": "741 Douglass St",
+                    "postal_code": "94114"
+                }
+            }
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/identities'
+        if(product_type == 'payouts'):
+            return formatted_response(endpoint, values, self.encoded_auth_payouts)
+        else:
+            return formatted_response(endpoint, values, self.encoded_auth)
+
 
     def create_merchant_identity(self, business_type):
         if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
@@ -309,24 +337,24 @@ class Client(object):
         endpoint = self.staging_base_url + '/identities'
         return formatted_response(endpoint, values, self.encoded_auth)
 
-    def create_sender_identity(self, business_type):
-        if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
-            ownership_type = "PUBLIC"
-        else:
-            ownership_type = "PRIVATE"
-
-        company = random_business_name()
-        values = {
-            "processor": "VISA_V1",
-            "tags": {
-                "key_2": "value_2"
-            }
-        }
-
-        values = format_json(json.dumps(values))
-
-        endpoint = self.staging_base_url + '/identities'
-        return formatted_response(endpoint, values, self.encoded_auth)
+    # def create_sender_identity(self, business_type):
+    #     if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
+    #         ownership_type = "PUBLIC"
+    #     else:
+    #         ownership_type = "PRIVATE"
+    #
+    #     company = random_business_name()
+    #     values = {
+    #         "processor": "VISA_V1",
+    #         "tags": {
+    #             "key_2": "value_2"
+    #         }
+    #     }
+    #
+    #     values = format_json(json.dumps(values))
+    #
+    #     endpoint = self.staging_base_url + '/identities'
+    #     return formatted_response(endpoint, values, self.encoded_auth)
 
     def update_identity(self, identity_id):
         company = random_business_name()
@@ -454,12 +482,41 @@ class Client(object):
         endpoint = self.staging_base_url + '/identities/' + identity_id + '/verifications'
         return formatted_response(endpoint, values, self.encoded_auth)
 
-    def create_card(self, identity_id, product_type=None):
+    def create_card_canada(self, identity_id, card_number, currency, product_type=None):
+        values = {
+            "currency": currency,
+            "identity": identity_id,
+            "expiration_year": 2020,
+            "number": card_number ,
+            "expiration_month": 03,
+            "address": {
+                "city": "San Mateo",
+                "country": "USA",
+                "region": "CA",
+                "line2": "Apartment 7",
+                "line1": "741 Douglass St",
+                "postal_code": "94404"
+            },
+            "name": random_first_name() + " " + random_last_name(),
+            "security_code": "112",
+            "type": "PAYMENT_CARD",
+            "tags": {
+            "card_name": "Business Card"
+            }
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/payment_instruments'
+        if(product_type == 'payouts'):
+            return formatted_response(endpoint, values, self.encoded_auth_payouts)
+        else:
+            return formatted_response(endpoint, values, self.encoded_auth)
+
+    def create_card_verification(self, identity_id, product_type=None):
         values = {
             "identity": identity_id,
             "expiration_year": 2020,
-            "number": "4957030420210454",
-            "expiration_month": 12,
+            "number": "4815070000000018" ,
+            "expiration_month": 03,
             "address": {
                 "city": "San Mateo",
                 "country": "USA",
@@ -481,6 +538,63 @@ class Client(object):
             return formatted_response(endpoint, values, self.encoded_auth_payouts)
         else:
             return formatted_response(endpoint, values, self.encoded_auth)
+
+    def create_card(self, identity_id, product_type=None):
+        values = {
+            "identity": identity_id,
+            "expiration_year": 2020,
+            "number": "4895142232120006" ,
+            # "number": "4957030420210454" ,
+
+            "expiration_month": 03,
+            "address": {
+                "city": "San Francisco",
+                "country": "USA",
+                "region": "CA",
+                "line1": "900 Metro Center Blv",
+                "postal_code": "94404"
+            },
+            "name": random_first_name() + " " + random_last_name(),
+            "security_code": "022",
+            "type": "PAYMENT_CARD",
+            "tags": {
+            "card_name": "Business Card"
+            }
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/payment_instruments'
+        if(product_type == 'payouts'):
+            return formatted_response(endpoint, values, self.encoded_auth_payouts)
+        else:
+            return formatted_response(endpoint, values, self.encoded_auth)
+
+    # def create_aft_card(self, identity_id, product_type=None):
+    #     values = {
+    #         "identity": identity_id,
+    #         "expiration_year": 2020,
+    #         "number": "4957030420210454",
+    #         "expiration_month": 12,
+    #         "address": {
+    #             "city": "San Mateo",
+    #             "country": "USA",
+    #             "region": "CA",
+    #             "line2": "Apartment 7",
+    #             "line1": "741 Douglass St",
+    #             "postal_code": "94114"
+    #         },
+    #         "name": random_first_name() + " " + random_last_name(),
+    #         "security_code": "112",
+    #         "type": "PAYMENT_CARD",
+    #         "tags": {
+    #         "card_name": "Business Card"
+    #         }
+    #     }
+    #     values = format_json(json.dumps(values))
+    #     endpoint = self.staging_base_url + '/payment_instruments'
+    #     if(product_type == 'payouts'):
+    #         return formatted_response(endpoint, values, self.encoded_auth_payouts)
+    #     else:
+    #         return formatted_response(endpoint, values, self.encoded_auth)
 
 
     def update_payment_instrument(self, payment_instrument_id):
@@ -676,7 +790,6 @@ class Client(object):
             return formatted_response(endpoint, values, self.encoded_auth)
 
 
-
     def create_bank_account(self, identity_id):
 
         values = {
@@ -732,23 +845,53 @@ class Client(object):
         endpoint = self.staging_base_url + '/transfers'
         return formatted_response(endpoint, values, self.encoded_auth)
 
-    def create_push_to_card_transfer(self, card_id, amount, product_type=None):
+    # import ipdb; ipdb.set_trace()
+    def create_push_to_card_transfer(self, card_id, amount, currency, type, product_type=None):
         fee = int(round(amount * .1))
-        values =  {
-            "currency": "USD",
-            "destination": card_id,
-            "amount": amount,
-            "tags": {
-                "order_number": "21DFASJSAKAS"
-                },
-        }
-
+        if(type == 'aft'):
+            values =  {
+                "currency": currency,
+                "source": card_id,
+                "amount": amount,
+                "operation_key": "PULL_FROM_CARD",
+                "tags": {
+                    "order_number": "21DFASJSAKAS"
+                    },
+            }
+        else:
+            values =  {
+                "currency": currency,
+                "destination": card_id,
+                "amount": amount,
+                "tags": {
+                    "order_number": "21DFASJSAKAS"
+                    },
+            }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/transfers'
         if(product_type == 'payouts'):
             return formatted_response(endpoint, values, self.encoded_auth_payouts)
         else:
             return formatted_response(endpoint, values, self.encoded_auth)
+
+    # def create_push_to_card_transfer_aft(self, card_id, amount, currency, product_type=None):
+    #     fee = int(round(amount * .1))
+    #     values =  {
+    #         "currency": currency,
+    #         "source": card_id,
+    #         "amount": amount,
+    #         "operation_key" : "A2",
+    #         "tags": {
+    #             "order_number": "21DFASJSAKAS"
+    #             },
+    #     }
+    #
+    #     values = format_json(json.dumps(values))
+    #     endpoint = self.staging_base_url + '/transfers'
+    #     if(product_type == 'payouts'):
+    #         return formatted_response(endpoint, values, self.encoded_auth_payouts)
+    #     else:
+    #         return formatted_response(endpoint, values, self.encoded_auth)
 
     # no longer allowing bank credits
     # def create_credit(self, merchant_id, bank_account_id):
@@ -778,15 +921,17 @@ class Client(object):
     #             'response_id': response_id }
 
 
-    def create_refund(self, transfer_id):
+    def create_refund(self, transfer_id, product_type=None):
         values = """
                   {
                   "refund_amount" : 100
                   }
                 """
         endpoint = self.staging_base_url + '/transfers/' + transfer_id + '/reversals'
-        return formatted_response(endpoint, values, self.encoded_auth)
-
+        if(product_type == 'payouts'):
+            return formatted_response(endpoint, values, self.encoded_auth_payouts)
+        else:
+            return formatted_response(endpoint, values, self.encoded_auth)
 
     def reattempt_provision_merchant(self, id):
         values = """

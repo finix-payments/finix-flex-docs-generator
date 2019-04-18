@@ -8,7 +8,7 @@ import io.{{api_name_downcase}}.payments.interfaces.Maybe;
     .processor("VISA_V1")
     .build();
 
-Maybe<Verification> verificationResponse = api.instruments.id("{{create_recipient_card_scenario_id}}").verifications.post(verificationForm);
+Maybe<Verification> verificationResponse = api.instruments.id("{{create_card_verification_scenario_id}}").verifications.post(verificationForm);
 if (! verificationResponse.succeeded()) {
     ApiError error = verificationResponse.error();
     System.out.println(error.getCode());
