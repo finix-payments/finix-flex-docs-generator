@@ -54,8 +54,8 @@ Field | Type | Description
 default_statement_descriptor | *string*, **required** | Billing descriptor displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters)
 annual_card_volume | *integer*, **required** |  Approximate annual credit card sales expected to be processed in cents by this merchant (max 23 characters)
 max_transaction_amount | *integer*, **required** |  Maximum amount that can be transacted for a single transaction in cents (max 12 characters)
-mcc | *string*, **required** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under
-has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to false if not passed
+mcc | *string*, **optional** |  Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under
+has_accepted_credit_cards_previously; Required if you plan on underwriting the owner identity | *boolean*, **optional** | Defaults to false if not passed
 
 #### Address-object Request Arguments
 
@@ -66,7 +66,7 @@ line2 | *string*, **optional** | Second line of the address (max 60 characters)
 city | *string*, **required** | City (max 20 characters)
 region | *string*, **required** | 2-letter State code
 postal_code | *string*, **required** | Zip or Postal code (max 7 characters)
-country | *string*, **required** | 3-Letter Country code 
+country | *string*, **required** | 3-Letter Country code
 
 #### Incorporation Date-object Request Arguments
 

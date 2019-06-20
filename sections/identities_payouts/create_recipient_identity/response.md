@@ -23,9 +23,9 @@ personal_address | *object*, **optional** | Customers shipping address or billin
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **optional** | First line of the address (max 60 characters)
-line2 | *string*, **optional** | Second line of the address (max 60 characters)
+line1 | *string*, **optional** | First line of the address
+line2 | *string*, **optional** | Second line of the address
 city | *string*, **optional** | City (max 20 characters)
 region | *string*, **optional** | 2-letter State code
-postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)
+postal_code | *string*, **optional** | Zip or Postal code 
 country | *string*, **optional** | 3-Letter Country code

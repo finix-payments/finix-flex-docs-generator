@@ -18,7 +18,7 @@ information on the underlying processor. To update the merchant's information
 
 #### HTTP Request
 
-`POST {{staging_base_url}}/identities`
+`PUT {{staging_base_url}}/identities/:IDENTITY_ID`
 
 #### Business-specific Request Arguments
 

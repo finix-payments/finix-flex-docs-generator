@@ -47,7 +47,7 @@ Field | Type | Description
 ----- | ---- | -----------
 elementId | *string*, **required** |  Name of HTML id
 type | *string*, **required** | API attribute name that will be sent in the payload
-placholder | *string*, **required** | What the user will see in the input field
+placeholder | *string*, **required** | What the user will see in the input field
 
 
 ```javascript

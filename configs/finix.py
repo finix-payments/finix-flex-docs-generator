@@ -7,16 +7,32 @@ partner_configs = {
         'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
         'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
-        # 'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
-        # 'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
-        # 'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
+        #
+        'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
+        'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
+        'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
 
         'platform_basic_auth_username': 'USpTNdGq7qfgVwCHHP9gKoSu',
         'platform_basic_auth_password': 'a4c1e20e-bc44-405e-9df4-82fce5a4d3c9',
-        'platform_encoded_auth': base64.b64encode('USpTNdGq7qfgVwCHHP9gKoSu:a4c1e20e-bc44-405e-9df4-82fce5a4d3c9'),
+
         'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
         'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
         'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
+
+        #QA
+        # 'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        # 'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        # 'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+        #
+        # 'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        # 'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        # 'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+        #
+
+
+
+
+
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
@@ -30,6 +46,7 @@ partner_configs = {
         'window.PaymentForm': "Finix",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
         'staging_base_url': "https://finix.sandbox-payments-api.com",
+        # 'staging_base_url': "https://finix.qa-payments-api.com",
         'live_base_url': "https://finix.live-payments-api.com",
         # 'live_base_url': "https://finix.live-payments-api.com",
         'python_client_resource_name': "finix",
@@ -68,6 +85,9 @@ snippets_by_resource = {
         "create_authorization",
         "capture_authorization",
         "void_authorization",
+        "triPOS_Authorization_with_EMV_card",
+        "triPOS_Authorization_with_Non_EMV_card",
+        "triPOS_Capture_Authorization",
         "fetch_authorization",
         "list_authorizations"
     ],
@@ -105,7 +125,7 @@ snippets_by_resource = {
         # "create_card_debit",
         "create_authorization",
         "capture_authorization",
-        "create_batch_settlement",
+        # "create_batch_settlement", uncomment
         # "fund_settlement",
         # "refund_debit"
     ],
@@ -140,6 +160,14 @@ snippets_by_resource = {
         "create_refund",
         # "send_to_recipient",
         ],
+    "guide_tripos": [
+        "definition",
+        "Provision_Merchant_with_triPOS",
+        "triPOS_Create_Device",
+        "triPOS_Activate_Device",
+        "triPOS_Authorization_with_EMV_card",
+        "triPOS_Capture_Authorization",
+        ],
     "fee_profile_overview": [
         "definition",
         ],
@@ -168,12 +196,23 @@ snippets_by_resource = {
         "update_identity",
         "provision_merchant",
         ],
+    "devices": [
+        "definition",
+        "triPOS_Create_Device",
+        "triPOS_Activate_Device",
+        "Fetch_triPOS_Device",
+        "Reboot_triPOS_Device",
+        "Set_Idle_Message_on_triPOS_Device",
+        "Check_Connectivity_of_triPOS_Device",
+        "Deactivate_triPOS_Device",
+    ],
     "merchants": [
         "definition",
         "provision_merchant",
         "fetch_merchant",
         # "create_merchant_user",
         "reattempt_merchant_provision",
+        "Provision_Merchant_with_triPOS",
         "update_merchant_on_processor",
         "list_merchants",
         "list_merchant_verifications",
@@ -194,7 +233,6 @@ snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -210,6 +248,11 @@ snippets_by_resource = {
         "create_bank_debit",
         "fetch_transfer",
         "create_refund",
+        "triPOS_Sale_with_EMV_Card",
+        "triPOS_Sale_using_Non_EMV_Card",
+        "triPOS_Sale_with_Manual_Entry",
+        "Referenced_Refund",
+        "Unreferenced_Refund_with_Swipe_Card",
         "list_transfers",
         "update_transfer",
         ],
@@ -478,7 +521,9 @@ resource_ordering = [
     # "guide_iframe",
     "guide_hosted_fields_payouts",
     "guide_mobile",
+    "guide_tripos",
     "authorizations",
+    "devices",
     # "disputes",
     "identities",
     "merchants",
