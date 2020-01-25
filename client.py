@@ -72,7 +72,6 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/users'
         if(product_type == 'payouts'):
-            'hit payouts'
             return formatted_response(endpoint, values, self.platform_encoded_auth_payouts)
         else:
             return formatted_response(endpoint, values, self.platform_encoded_auth)
@@ -890,7 +889,6 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/transfers'
         if(product_type == 'payouts'):
-            print "hit"
             return formatted_response(endpoint, values, self.encoded_auth_payouts)
         else:
             return formatted_response(endpoint, values, self.encoded_auth)
