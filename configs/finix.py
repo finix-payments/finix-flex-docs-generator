@@ -7,7 +7,8 @@ partner_configs = {
         'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
         'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
-        #
+
+        #sandbox
         # 'platform_basic_auth_username': 'USimz3zSq5R2PqiEBXY6rSiJ',
         # 'platform_basic_auth_password': '8bacba32-9550-48ff-b567-fe7648947041',
         # 'platform_encoded_auth': base64.b64encode('USimz3zSq5R2PqiEBXY6rSiJ:8bacba32-9550-48ff-b567-fe7648947041'),
