@@ -225,9 +225,9 @@ def generate_template_variables(config_values):
 
     # create_bank_debit_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_buyer_bank_account_scenario["response_id"], random.randint(100, 900000), "USD")
     create_bank_debit_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_buyer_bank_account_scenario["response_id"], random.randint(100, 900000), "CAD")
-    create_user_merchant_role_scenario = api_client.create_user_merchant_role(create_identity_individual_sole_proprietorship_scenario["response_id"])
-    disable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], False)
-    enable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], True)
+    # create_user_merchant_role_scenario = api_client.create_user_merchant_role(create_identity_individual_sole_proprietorship_scenario["response_id"])
+    # disable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], False)
+    # enable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], True)
 
     # provision_sender_scenario = api_client.provision_sender(create_identity_individual_sole_proprietorship_payouts_scenario["response_id"], "VISA_V1")
     # associate_payment_processor_push_to_card_scenario = api_client.associate_payment_processor("VISA_V1", create_payouts_app_scenario["response_id"])create_recipient_identity_payouts_scenario

@@ -124,8 +124,8 @@ def generate_template_variables(config_values):
                         # basic_auth_password = "",
                         platform_basic_auth_username_payouts = config_values["platform_basic_auth_username_payouts"],
                         platform_basic_auth_password_payouts = config_values["platform_basic_auth_password_payouts"],
-                        basic_auth_username_payouts="",
-                        basic_auth_password_payouts=""
+                        basic_auth_username_payouts = "",
+                        basic_auth_password_payouts = "",
                         )
 
     # import ipdb; ipdb.set_trace()
@@ -145,7 +145,8 @@ def generate_template_variables(config_values):
     create_recipient_identity_payouts_scenario = api_client.create_recipient_identity('payouts')
     create_recipient_card_scenario = api_client.create_card(create_recipient_identity_payouts_scenario["response_id"], 'payouts')
     provision_push_merchant_scenario = api_client.provision_sender(create_recipient_identity_payouts_scenario["response_id"], "VISA_V1", 'payouts')
-    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_card_scenario["response_id"], 1510, 'payouts')
+    create_recipient_push_to_card_transfer = api_client.create_push_to_card_transfer(create_recipient_card_scenario["response_id"], 1510, "USD", "oct", 'payouts')
+
 
     update_identity_scenario = api_client.update_identity_payouts(create_recipient_identity_payouts_scenario["response_id"])
     fetch_identity_scenario = api_client.fetch_identity(create_recipient_identity_payouts_scenario["response_id"], 'payouts')
@@ -154,8 +155,20 @@ def generate_template_variables(config_values):
     create_buyer_identity_scenario = api_client.create_buyer_identity('payouts')
     # ## create new user and app
 
-
     # # FIRST RUN SCENARIOS
+
+    create_sender_identity_payouts_scenario = api_client.create_sender_identity('payouts')
+    create_sender_card_scenario = api_client.create_card(create_sender_identity_payouts_scenario["response_id"], 'payouts')
+    provision_push_aft_merchant_scenario = api_client.provision_sender(create_sender_identity_payouts_scenario["response_id"], "VISA_V1", 'payouts')
+    create_sender_push_to_card_transfer = api_client.create_push_to_card_transfer(create_sender_card_scenario["response_id"], 20000, 'USD','aft', 'payouts')
+    create_refund_aft_scenario = api_client.create_refund(create_sender_push_to_card_transfer["response_id"], "payouts")
+    create_card_verification_scenario = api_client.create_card_verification(create_recipient_identity_payouts_scenario["response_id"], 'payouts')
+
+
+    # create_debit_for_refund_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_card_scenario["response_id"], random.randint(100, 900000))
+    # create_refund_scenario = api_client.create_refund(create_debit_for_refund_scenario['response_id'])
+
+
     create_webhook_scenario = api_client.create_webhook('payouts')
     update_webhook_scenario = api_client.update_webhook(create_webhook_scenario["response_id"], 'payouts')
 
@@ -297,6 +310,45 @@ def generate_template_variables(config_values):
             "associate_visaV1_payment_processor_scenario_response": associate_visaV1_payment_processor_scenario["response_body"],
             "associate_visaV1_payment_processor_scenario_id": associate_visaV1_payment_processor_scenario["response_id"],
 
+            "create_card_verification_scenario_id": create_card_verification_scenario["response_id"],
+
+
+            "create_sender_identity_payouts_scenario_curl_request": create_sender_identity_payouts_scenario["curl_request_body"],
+            "create_sender_identity_payouts_scenario_php_request": create_sender_identity_payouts_scenario["php_request_body"],
+            "create_sender_identity_payouts_scenario_ruby_request": create_sender_identity_payouts_scenario["ruby_request_body"],
+            "create_sender_identity_payouts_scenario_python_request": create_sender_identity_payouts_scenario["python_request_body"],
+            "create_sender_identity_payouts_scenario_response": create_sender_identity_payouts_scenario["response_body"],
+            "create_sender_identity_payouts_scenario_id": create_sender_identity_payouts_scenario["response_id"],
+
+            "create_sender_card_scenario_curl_request": create_sender_card_scenario["curl_request_body"],
+            "create_sender_card_scenario_php_request": create_sender_card_scenario["php_request_body"],
+            "create_sender_card_scenario_ruby_request": create_sender_card_scenario["ruby_request_body"],
+            "create_sender_card_scenario_python_request": create_sender_card_scenario["python_request_body"],
+            "create_sender_card_scenario_response": create_sender_card_scenario["response_body"],
+            "create_sender_card_scenario_id": create_sender_card_scenario["response_id"],
+
+            "provision_push_aft_merchant_scenario_curl_request":  provision_push_merchant_scenario["curl_request_body"],
+            "provision_push_aft_merchant_scenario_response": provision_push_merchant_scenario["response_body"],
+            "provision_push_aft_merchant_scenario_id": provision_push_merchant_scenario["response_id"],
+
+            "create_sender_push_to_card_transfer_curl_request": create_sender_push_to_card_transfer["curl_request_body"],
+            "create_sender_push_to_card_transfer_php_request": create_sender_push_to_card_transfer["php_request_body"],
+            "create_sender_push_to_card_transfer_python_request": create_sender_push_to_card_transfer["python_request_body"],
+            "create_sender_push_to_card_transfer_response": create_sender_push_to_card_transfer["response_body"],
+            "create_sender_push_to_card_transfer_ruby_request": create_sender_push_to_card_transfer["ruby_request_body"],
+            "create_sender_push_to_card_transfer_id": create_sender_push_to_card_transfer["response_id"],
+
+            "create_refund_aft_scenario_response": create_refund_aft_scenario["response_body"],
+            "create_refund_aft_scenario_curl_request": create_refund_aft_scenario["curl_request_body"],
+
+            # TRANSFERS (REFUNDS) ------------------------------------------------------------------------------------------------
+            #
+            "create_refund_aft_scenario_curl_request": create_refund_aft_scenario["curl_request_body"],
+            "create_refund_aft_scenario_php_request": create_refund_aft_scenario["php_request_body"],
+            "create_refund_aft_scenario_ruby_request": create_refund_aft_scenario["ruby_request_body"],
+            "create_refund_aft_scenario_python_request": create_refund_aft_scenario["python_request_body"],
+            "create_refund_aft_scenario_response": create_refund_aft_scenario["response_body"],
+            "create_refund_aft_scenario_id": create_refund_aft_scenario["response_id"],
 
             # WEBHOOKS ------------------------------------------------------------
 
