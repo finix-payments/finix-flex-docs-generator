@@ -20,13 +20,16 @@ tags | *object*, **optional** | Key value pair for annotating custom meta data (
 description | *string*, **optional** |  Additional information about device (e.g. self serving terminal)
 
 #### Configuration Arguments
+Field | Type | Description
+----- | ---- | -----------
+allow_debit | *boolean*, **optional** |  Sets whether device will allow debit by default or not (defaults to true)  
+prompt_signature | *string*, **optional** |  Sets whether device will prompt the card holder for a signature by default or not, AMOUNT is used in conjuction with signature_threshold_amount so that when the threshold is reached the signature form appears on device screen (defaults to always). Options are: ALWAYS, NEVER, AMOUNT  
+check_for_duplicate_transactions | *boolean*, **optional** |  Sets whether the device will check for duplicate transactions  
+prompt_amount_confirmation | *boolean*, **optional** |  Sets whether or not to make card holder confirm the amount they will pay (defaults is true)  
+signature_threshold_amount | *integer*, **optional** |  Threshold set for when to prompt a signature prompt_signature is set to AMOUNT (defaults to 0)  
+prompt_manual_entry | *boolean*, **optional** |  Sets whether or not the default card input method will be keyed in manual entry or not (defaults to false)  
 
-allow_debit | *boolean*, **optional** |  Sets whether device will allow debit by default or not (defaults to true)
-prompt_signature | *string*, **optional** |  Sets whether device will prompt the card holder for a signature by default or not, AMOUNT is used in conjuction with signature_threshold_amount so that when the threshold is reached the signature form appears on device screen (defaults to always). Options are: ALWAYS, NEVER, AMOUNT
-check_for_duplicate_transactions | *boolean*, **optional** |  Sets whether the device will check for duplicate transactions
-prompt_amount_confirmation | *boolean*, **optional** |  Sets whether or not to make card holder confirm the amount they will pay (defaults is true)
-signature_threshold_amount | *integer*, **optional** |  Threshold set for when to prompt a signature if configuration#prompt_signature is set to AMOUNT (defaults to 0)
-prompt_manual_entry | *boolean*, **optional** |  Sets whether or not the default card input method will be keyed in manual entry or not (defaults to false)
+
 
 
 ```

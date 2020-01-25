@@ -40,6 +40,9 @@ business_phone | *string*, **required** | Customer service phone number where th
 incorporation_date  | *object*, **required** | Date company was founded (See below for a full list of the child attributes)
 business_address | *object*, **required** | Primary address for the legal entity (Full description of child attributes below)
 ownership_type | *string*, **required** | Values can be either PUBLIC to indicate a publicly traded company or PRIVATE for privately held businesses
+amex_mid | *integer*, **optional** | Assigned amexMid value. If provided must be 10 or 11 digits
+discover_mid | *integer*, **optional** | Assigned discoverMid value
+
 
 #### Principal-specific Request Arguments
 (i.e. authorized representative or primary contact responsible for the account)
@@ -70,8 +73,8 @@ has_accepted_credit_cards_previously | *boolean*, **optional** | Defaults to fal
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **required** | First line of the address (max 60 characters)
-line2 | *string*, **optional** | Second line of the address (max 60 characters)
+line1 | *string*, **required** | First line of the address (max 35 characters)
+line2 | *string*, **optional** | Second line of the address (max 35 characters)
 city | *string*, **required** | City (max 20 characters)
 region | *string*, **required** | 2-letter State code
 postal_code | *string*, **required** | Zip or Postal code (max 7 characters)

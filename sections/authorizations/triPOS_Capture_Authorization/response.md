@@ -6,7 +6,7 @@
 #### URL Parameters
 Field | Type | Description
 ----- | ---- | -----------
-AUTHORIZATION_ID | *string*, **required** | ID of Device
+AUTHORIZATION_ID | *string*, **required** | ID of Authorization
 
 
 #### Request Arguments

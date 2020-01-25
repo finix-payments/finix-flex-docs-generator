@@ -459,5 +459,5 @@ included_clients = OrderedDict([
     ("Java", "java"),
     ("PHP", "php"),
     ("Python", "python"),
-    ("Ruby", "ruby"),
+    # ("Ruby", "ruby"),
 ])

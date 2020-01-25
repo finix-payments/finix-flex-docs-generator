@@ -14,13 +14,10 @@ authenticate and interface with the API.
 through using the Visa Direct API to push payments to payment cards. With push-to-card
 funds are disbursed to a payment card within 30 minutes or less.
 
-3. [Pull-from-Card](#push-from-card): This guide walks
-through using the Visa Direct API to pull payments to payment cards.
+3. [Pull from Card](#pull-from-card): This guide walks through using the Visa Direct API to pull payments from payment cards.
 
-4. [Pull from Card](#pull-from-card): This guide walks through using the Visa Direct API to pull payments from payment cards.
-
-5. [Tokenization with Hosted Fields](#tokenization-with-hosted-fields): This guide
+4. [Tokenization with Hosted Fields](#tokenization-with-hosted-fields): This guide
 explains how to properly tokenize cards via hosted fields.
 
-6. [Mobile Tokenization](#mobile-tokenization): This guide
+5. [Mobile Tokenization](#mobile-tokenization): This guide
 explains how to tokenize cards via our mobile SDKs.

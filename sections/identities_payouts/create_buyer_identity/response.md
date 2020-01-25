@@ -17,8 +17,8 @@ first_name | *string*, **optional** | First name
 last_name | *string*, **optional** | Last name
 phone | *string*, **optional** | Phone number
 email | *string*, **optional** | Email address
-line1 | *string*, **optional** | First line of the address (max 60 characters)
-line2 | *string*, **optional** | Second line of the address (max 60 characters)
+line1 | *string*, **optional** | First line of the address (max 35 characters)
+line2 | *string*, **optional** | Second line of the address (max 35 characters)
 city | *string*, **optional** | City (max 20 characters)
 region | *string*, **optional** | 2-letter State code
 postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)

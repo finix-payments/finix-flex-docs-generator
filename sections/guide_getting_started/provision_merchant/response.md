@@ -40,3 +40,11 @@ a Webhook to listen for the state change.
 Parameter | Description
 --------- | -------------------------------------------------------------------
 :IDENTITY_ID | ID of the Identity
+
+
+
+#### Request Arguments
+
+Field | Type | Description
+----- | ---- | -----------
+processor | *string*, **required** | Name of the processor that you're onboarding the Merchant with (a user can pass either null or DUMMY_V1 for sandbox)

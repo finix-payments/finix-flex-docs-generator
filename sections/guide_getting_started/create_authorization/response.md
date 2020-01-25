@@ -48,4 +48,5 @@ source | *string*, **required** | The buyer's `Payment Instrument` ID that you w
 merchant_identity | *string*, **required** | The ID of the `Identity` for the merchant that you are transacting on behalf of
 amount | *integer*, **required** | The amount of the authorization in cents
 currency | *string*, **required** | [3-letter ISO code](https://en.wikipedia.org/wiki/ISO_4217) designating the currency (e.g. USD)
+processor | *string*, **optional** | If the Application has more than one processor association, it's required to pass the processor (e.g. DUMMY_V1)
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)

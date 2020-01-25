@@ -23,7 +23,7 @@ Field | Type | Description
 ----- | ---- | -----------
 identity | *string*, **required** | ID of the `Identity` that the card should be associated
 type | *string*, **required** | Type of Payment Instrument (for cards input PAYMENT_CARD)
-number | *string*, **required** | Primary account number
+number | *string*, **required** | Primary account number (no dashes in between numbers)
 security_code | *string*, **optional** | The 3-4 digit security code for the card (i.e. CVV code)
 expiration_month | *integer*, **required** | Expiration month (e.g. 12 for December)
 expiration_year | *integer*, **required** | 4-digit expiration year
@@ -35,8 +35,8 @@ address | *object*, **optional** | Billing address (Full description of child at
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **optional** | First line of the address (max 60 characters)
-line2 | *string*, **optional** | Second line of the address (max 60 characters)
+line1 | *string*, **optional** | First line of the address (max 35 characters)
+line2 | *string*, **optional** | Second line of the address (max 35 characters)
 city | *string*, **optional** | City (max 20 characters)
 region | *string*, **optional** | 2-letter State code
 postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)

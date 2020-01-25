@@ -63,22 +63,92 @@
 
 ```javascript
 {
-  "type" : "created",
-  "entity" : "instrument",
-  "occurred_at" : "2016-07-06T07:06:04.751",
-  "_embedded" : {
-    "instruments" : [ {
-      "updated_at" : "2016-07-06T07:06:04.63Z",
-      "identity" : "IDbtqHvNT1eJHi3WbkbzAb5y",
-      "fingerprint" : "FPR369385117",
-      "created_at" : "2016-07-06T07:06:04.63Z",
-      "id" : "PIx7rQE9dzEGoccQ76D22xuZ",
-      "instrument_type" : "PAYMENT_CARD",
-      "tags" : { }
-    } ]
-  }
+    "type": "created",
+    "entity": "instrument",
+    "occurred_at": "2019-10-16T23:13:12.133",
+    "_embedded": {
+        "instruments": [
+            {
+                "address": {
+                    "line1": "900 Metro Center Blv",
+                    "line2": null,
+                    "city": "San Francisco",
+                    "region": "CA",
+                    "postal_code": "94404",
+                    "country": "USA"
+                },
+                "address_verification": "UNKNOWN",
+                "bin": "489514",
+                "security_code_verification": "UNKNOWN",
+                "created_at": "2019-10-16T23:13:11.90Z",
+                "instrument_type": "PAYMENT_CARD",
+                "card_type": "UNKNOWN",
+                "type": "PAYMENT_CARD",
+                "tags": {
+                    "card_name": "Business Card"
+                },
+                "expiration_year": 2020,
+                "application": "APf7avmNAHZ9Qtm2mENaGQT",
+                "updated_at": "2019-10-16T23:13:11.91Z",
+                "last_four": "0006",
+                "identity": "IDxmDPpYkpQCaFj4LAnwXyJW",
+                "fingerprint": "FPRogKWsRQks2HGaau5eGR9AF",
+                "expiration_month": 3,
+                "name": "Ayisha Curry",
+                "currency": "USD",
+                "id": "PIgSQx5XHNiwef1Bh87tzqNB",
+                "brand": "VISA"
+            }
+        ]
+    }
 }
 ```
+
+### Update Payment Instrument
+
+```javascript
+{
+    "type": "updated",
+    "entity": "instrument",
+    "occurred_at": "2019-10-16T23:13:12.133",
+    "_embedded": {
+        "instruments": [
+            {
+                "address": {
+                    "line1": "900 Metro Center Blv",
+                    "line2": null,
+                    "city": "San Francisco",
+                    "region": "CA",
+                    "postal_code": "94404",
+                    "country": "USA"
+                },
+                "address_verification": "UNKNOWN",
+                "bin": "489514",
+                "security_code_verification": "UNKNOWN",
+                "created_at": "2019-10-16T23:13:11.90Z",
+                "instrument_type": "PAYMENT_CARD",
+                "card_type": "UNKNOWN",
+                "type": "PAYMENT_CARD",
+                "tags": {
+                    "card_name": "Business Card"
+                },
+                "expiration_year": 2020,
+                "application": "APf7avmNAHZ9Qtm2mENaGQT",
+                "updated_at": "2019-10-16T23:13:11.91Z",
+                "last_four": "0006",
+                "identity": "IDxmDPpYkpQCaFj4LAnwXyJW",
+                "fingerprint": "FPRogKWsRQks2HGaau5eGR9AF",
+                "expiration_month": 3,
+                "name": "Ayisha Curry",
+                "currency": "USD",
+                "id": "PIgSQx5XHNiwef1Bh87tzqNB",
+                "brand": "VISA"
+            }
+        ]
+    }
+}
+```
+
 
 ### Created Identity
 

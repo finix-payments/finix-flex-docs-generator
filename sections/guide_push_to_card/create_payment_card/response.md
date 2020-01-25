@@ -39,8 +39,8 @@ address | *object*, **optional** | Billing address (Full description of child at
 
 Field | Type | Description
 ----- | ---- | -----------
-line1 | *string*, **optional** | First line of the address (max 60 characters)
-line2 | *string*, **optional** | Second line of the address (max 60 characters)
+line1 | *string*, **optional** | First line of the address (max 35 characters)
+line2 | *string*, **optional** | Second line of the address (max 35 characters)
 city | *string*, **optional** | City (max 20 characters)
 region | *string*, **optional** | 2-letter State code
 postal_code | *string*, **optional** | Zip or Postal code (max 7 characters)

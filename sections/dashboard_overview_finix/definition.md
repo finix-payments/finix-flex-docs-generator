@@ -8,12 +8,6 @@ If you haven't signed up yet, please create a user account.
 <video src="https://finix-payments.github.io/customer-logos/assets/create-new-account.mov" width="440" height="200" controls preload>
 </video>
 
-### Create Live Account
-Once you've played with a sandbox account, you're ready to create a live `Application.`  
-
-<video src="https://finix-payments.github.io/customer-logos/assets/create_live_account.mov" width="440" height="200" controls preload>
-</video>
-
 
 ### Create an Identity for a Merchant
 Simply select `Identity` on the sidebar, click "Create new identity", and fill out the form with the `Merchant's` underwriting information.  

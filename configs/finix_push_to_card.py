@@ -4,20 +4,47 @@ from collections import OrderedDict
 partner_configs = {
         'api_name': "Finix",
         'api_name_downcase': "finix",
+        'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
+        'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
+        'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
+        #
+        'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
+        'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
+        'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
+
+        'platform_basic_auth_username': 'USpTNdGq7qfgVwCHHP9gKoSu',
+        'platform_basic_auth_password': 'a4c1e20e-bc44-405e-9df4-82fce5a4d3c9',
+
         'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
         'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
         'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
+
+        #QA
+        # 'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        # 'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        # 'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+        #
+        # 'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        # 'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        # 'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+
+
+        'basic_auth_username': None,
+        'basic_auth_password': None,
+        'encoded_auth': None,
         'basic_auth_username_payouts': None,
         'basic_auth_password_payouts': None,
         'encoded_auth_payouts': None,
-        'payment_processor': "VISA_V1",
-        'identity_verification_processor': "VISA_V1",
+        'payment_processor': "DUMMY_V1",
+        'identity_verification_processor': "DUMMY_V1",
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
-        'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
         'window.PaymentForm': "Finix",
-        'staging_base_url': "https://api-staging.finix.io",
-        'production_base_url': "https://api.finix.io",
+        'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
+        'staging_base_url': "https://finix.sandbox-payments-api.com",
+        # 'staging_base_url': "https://finix.qa-payments-api.com",
+        'live_base_url': "https://finix.live-payments-api.com",
+        # 'live_base_url': "https://finix.live-payments-api.com",
         'python_client_resource_name': "finix",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",
         'php_client_resource_name': "Finix",
@@ -25,7 +52,7 @@ partner_configs = {
         'ruby_gem': "finix",
         'ruby_require_statement': "finix",
         'java_artifact_id': "finix",
-        'version': '1.0.0',
+        'version': '1.0.6',
         'java_group_id': "io.finix.payments.processing.client",
         'hosted_fields_src': "https://forms.finixpymnts.com/finix.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/maserna2/znLe9kp6/",
@@ -76,6 +103,16 @@ snippets_by_resource = {
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
+        ],
+    "guide_pull_from_card": [
+        "definition",
+        "create_sender_identity",
+        "create_payment_card",
+        "verify_card",
+        "provision_merchant_account",
+        "pull_from_sender",
+        "create_refund",
+        # "send_to_recipient",
         ],
     "test_data_payouts": [
         "definition"
@@ -240,6 +277,7 @@ resource_ordering = [
     "errors",
     "guide_general_overview_finix_payouts",
     "guide_push_to_card",
+    "guide_pull_from_card",
     # "guide_iframe",
     "guide_hosted_fields_payouts",
     "guide_mobile",
@@ -271,7 +309,7 @@ admin_resource_ordering = [
     #  # "identity_verifications",
     # "payment_instruments_payouts",
     # "payouts",
-    "webhooks_payouts",
+    # "webhooks_payouts",
 ]
 
 

@@ -43,10 +43,15 @@ to listen for the response.
 
 `POST {{staging_base_url}}/payment_instruments/:PAYMENT_INSTRUMENT_ID/updates/`
 
+#### URL Parameters
+
+Parameter | Description
+--------- | -------------------------------------------------------------------
+:PAYMENT_INSTRUMENT_ID | ID of the `Payment Instrument`
+
 
 #### Request Arguments
 
 Field | Type | Description
 ----- | ---- | -----------
 :MERCHANT_ID | *string*, **required** | ID of the `Merchant`
-:PAYMENT_INSTRUMENT_ID | *string*, **required** | ID of the `Payment Instrument`

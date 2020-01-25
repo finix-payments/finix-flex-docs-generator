@@ -4,14 +4,14 @@
 {{fetch_merchant_profile_scenario_response}}
 ```
 
-Make a GET request with the `merchant_profile` ID that you received from the previous step. You'll want to keep the `fee_profile` handy for the next step. 
+Make a GET request with the `merchant_profile` ID that you received from the previous step. You'll want to keep the `fee_profile` handy for the next step.
 
 #### HTTP Request
 
-`GET {{staging_base_url}}/merchants/:MERCHANT_ID`
+`GET {{staging_base_url}}/merchants/:MERCHANT_PROFILE`
 
 #### URL Arguments
 
 Field | Type | Description
 ----- | ---- | -----------
-:MERCHANT_ID | *string*, **required** | ID of the `Merchant`
+:MERCHANT_PROFILE | *string*, **required** | ID of the `Merchant Profile`

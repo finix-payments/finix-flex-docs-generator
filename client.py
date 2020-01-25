@@ -105,7 +105,7 @@ class Client(object):
                     "line1": "741 Douglass St",
                     "postal_code": "94114"
                 },
-                "tax_id": "5779",
+                "tax_id": "123456789",
                 "business_type": business_type,
                 "business_phone": "+1 (408) 756-4497",
                 "first_name": "dwayne",
@@ -659,6 +659,16 @@ class Client(object):
         endpoint = self.staging_base_url + '/merchant_profiles/' + merchant_profile_id
         return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
 
+
+    def update_risk_profile(self, risk_profile_id):
+        values = {
+            'avs_failure_allowed': false,
+            'csc_failure_allowed': false
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/risk_profiles/' + risk_profile_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
+
     def remove_transfer(self, settlement_id, transfer_ids):
         values = {
         "transfers": [transfer_ids]
@@ -718,6 +728,15 @@ class Client(object):
             return formatted_response(endpoint, values, self.platform_encoded_auth_payouts, 'PUT')
         else:
             return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
+
+    def update_merchant_transfers_settlement_timing(self, id):
+        values = {
+            "ready_to_settle_upon": "SUCCESSFUL_CAPTURE"
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/merchants/' + id
+        return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
+
 
     def toggle_merchant_settlements(self, id, toggle_boolean):
         values = {
@@ -794,7 +813,7 @@ class Client(object):
 
         values = {
             "account_type": "SAVINGS",
-            "name": "Fran Lemke",
+            "name": "Alice",
             "bank_code": "123123123",
             "country": "USA",
             "type": "BANK_ACCOUNT",
@@ -818,6 +837,7 @@ class Client(object):
             "merchant_identity": merchant_id,
             "amount": amount,
             "fee": fee,
+            "processor": "DUMMY_V1",
             "tags": {
                 "order_number": "21DFASJSAKAS"
             },
@@ -870,6 +890,7 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/transfers'
         if(product_type == 'payouts'):
+            print "hit"
             return formatted_response(endpoint, values, self.encoded_auth_payouts)
         else:
             return formatted_response(endpoint, values, self.encoded_auth)
@@ -973,6 +994,7 @@ class Client(object):
         # checking  to see if its ready to settle, typically waiting period
         # should be 3600 milliseconds before
         # field changes
+        print ('hit settlement creation')
         start = time.time()
         minutes = 5
         endpoint = self.staging_base_url + '/transfers/' + transfer_id
@@ -989,6 +1011,7 @@ class Client(object):
                 # message_slack(channel, message)
         values = {
             "currency": "USD",
+            "processor": "DUMMY_V1",
             "tags": {
                 "Internal Daily Settlement ID": "21DFASJSAKAS"
             }
@@ -996,6 +1019,41 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/identities/' + identity_id + "/settlements"
         return formatted_response(endpoint, values, self.encoded_auth)
+
+
+    def create_split_payout_settlement(self, settlement_id, payment_instrument_id, merchant_identity):
+        # transfer_id is the ID of a recently created debit transfer. Here we're
+        # checking  to see if its ready to settle, typically waiting period
+        # should be 3600 milliseconds before
+        # field changes
+        # start = time.time()
+        # minutes = 5
+        # endpoint = self.staging_base_url + '/transfers/' + transfer_id
+        # while not transfer_ready_to_settle(endpoint, self.encoded_auth):
+        #     elapsed_time = time.time() - start
+        #     if (elapsed_time // 60) % minutes == 0 and elapsed_time > 60:
+        #         transfer_response = self.fetch_transfer(transfer_id)
+        #         minutes = minutes + 20
+        #         counter = stringified_elapsed_time(start)
+        #         channel = 'dev'
+                # This is the full response body
+                # message = '*Transfer Reconciliation Latency Alert*\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\n```' + transfer_response['response_body'] + '```'
+                # message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
+                # message_slack(channel, message)
+        values =  {
+             "destination": payment_instrument_id,
+             "merchant_identity": merchant_identity,
+             "currency": "USD",
+             "amount": 200,
+             "tags": {
+                 "Split Payout ID": "21DFASJSAKAS"
+             }
+            }
+
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/settlements/' + settlement_id + "/funding_transfers"
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
 
 
     def fetch_settlement(self, settlement_id):
@@ -1052,8 +1110,10 @@ class Client(object):
         }
         # hit disputes index until transfers have a dispute link
         endpoint = self.staging_base_url + '/disputes/'
-        request = Request(endpoint, headers=headers)
-
+        request = Request(endpoint, data = None,headers=headers)
+        print request
+        print endpoint
+        print headers
         response_body = urlopen(request).read()
         response_body = format_json(response_body)
 
@@ -1066,6 +1126,7 @@ class Client(object):
             "currency": "USD",
             "source": card_id,
             "merchant_identity": merchant_id,
+            "processor": "DUMMY_V1",
             "amount": 100,
             "tags": {
                 "order_number": "21DFASJSAKAS"

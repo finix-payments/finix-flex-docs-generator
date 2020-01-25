@@ -93,20 +93,44 @@
 
 ```javascript
 {
-  "type" : "created",
-  "entity" : "instrument",
-  "occurred_at" : "2016-07-06T07:06:04.751",
-  "_embedded" : {
-    "instruments" : [ {
-      "updated_at" : "2016-07-06T07:06:04.63Z",
-      "identity" : "IDbtqHvNT1eJHi3WbkbzAb5y",
-      "fingerprint" : "FPR369385117",
-      "created_at" : "2016-07-06T07:06:04.63Z",
-      "id" : "PIx7rQE9dzEGoccQ76D22xuZ",
-      "instrument_type" : "PAYMENT_CARD",
-      "tags" : { }
-    } ]
-  }
+    "type": "created",
+    "entity": "instrument",
+    "occurred_at": "2019-10-16T23:13:12.133",
+    "_embedded": {
+        "instruments": [
+            {
+                "address": {
+                    "line1": "900 Metro Center Blv",
+                    "line2": null,
+                    "city": "San Francisco",
+                    "region": "CA",
+                    "postal_code": "94404",
+                    "country": "USA"
+                },
+                "address_verification": "UNKNOWN",
+                "bin": "489514",
+                "security_code_verification": "UNKNOWN",
+                "created_at": "2019-10-16T23:13:11.90Z",
+                "instrument_type": "PAYMENT_CARD",
+                "card_type": "UNKNOWN",
+                "type": "PAYMENT_CARD",
+                "tags": {
+                    "card_name": "Business Card"
+                },
+                "expiration_year": 2020,
+                "application": "APf7avmNAHZ9Qtm2mENaGQT",
+                "updated_at": "2019-10-16T23:13:11.91Z",
+                "last_four": "0006",
+                "identity": "IDxmDPpYkpQCaFj4LAnwXyJW",
+                "fingerprint": "FPRogKWsRQks2HGaau5eGR9AF",
+                "expiration_month": 3,
+                "name": "Ayisha Curry",
+                "currency": "USD",
+                "id": "PIgSQx5XHNiwef1Bh87tzqNB",
+                "brand": "VISA"
+            }
+        ]
+    }
 }
 ```
 
@@ -285,26 +309,45 @@
 
 ```javascript
 {
-  "type" : "updated",
-  "entity" : "instrument",
-  "occurred_at" : "2017-08-04T23:52:49.759",
-  "_embedded" : {
-    "instruments" : [ {
-      "updated_at" : "2017-08-04T23:52:49.70Z",
-      "identity" : "IDcVVAdGYhiaq4Xka6PVHYVD",
-      "fingerprint" : "FPR316679720",
-      "created_at" : "2017-05-23T18:52:54.64Z",
-      "currency" : "USD",
-      "id" : "PIc2DqWRD8wiNYLqQBMAYjku",
-      "instrument_type" : "PAYMENT_CARD",
-      "type" : "PAYMENT_CARD",
-      "tags" : {
-        "driver" : "123"
-      }
-    } ]
-  }
+    "type": "updated",
+    "entity": "instrument",
+    "occurred_at": "2019-10-16T23:13:12.133",
+    "_embedded": {
+        "instruments": [
+            {
+                "address": {
+                    "line1": "900 Metro Center Blv",
+                    "line2": null,
+                    "city": "San Francisco",
+                    "region": "CA",
+                    "postal_code": "94404",
+                    "country": "USA"
+                },
+                "address_verification": "UNKNOWN",
+                "bin": "489514",
+                "security_code_verification": "UNKNOWN",
+                "created_at": "2019-10-16T23:13:11.90Z",
+                "instrument_type": "PAYMENT_CARD",
+                "card_type": "UNKNOWN",
+                "type": "PAYMENT_CARD",
+                "tags": {
+                    "card_name": "Business Card"
+                },
+                "expiration_year": 2020,
+                "application": "APf7avmNAHZ9Qtm2mENaGQT",
+                "updated_at": "2019-10-16T23:13:11.91Z",
+                "last_four": "0006",
+                "identity": "IDxmDPpYkpQCaFj4LAnwXyJW",
+                "fingerprint": "FPRogKWsRQks2HGaau5eGR9AF",
+                "expiration_month": 3,
+                "name": "Ayisha Curry",
+                "currency": "USD",
+                "id": "PIgSQx5XHNiwef1Bh87tzqNB",
+                "brand": "VISA"
+            }
+        ]
+    }
 }
-
 ```
 
 
@@ -358,6 +401,78 @@
         "net_amount": 532308,
         "processor": "LITLE_V1",
         "tags": {}
+      }
+    ]
+  }
+}
+```
+
+### Awaiting for Approval Settlement  (v2 Settlement Engine)
+
+```javascript
+{
+  "type": "updated",
+  "entity": "settlement_v2",
+  "occurred_at": "2020-01-16T20:17:35.817",
+  "_embedded": {
+    "settlements_v2": [
+      {
+        "exception": false,
+        "fee_count": 6,
+        "processor_type": "DUMMY_V1",
+        "created_at": "2020-01-15T01:27:04.36Z",
+        "merchant_id": "MU87xmmN4pZZgm97Cok3oAp",
+        "adjustment_credit_count": 0,
+        "settlement_group_id": "SG5jV9hZJkp6a9i3WfJUja9q",
+        "transfer_credit_count": 0,
+        "adjustment_debit_count": 0,
+        "transfer_debit_count": 2,
+        "updated_at": "2020-01-16T20:17:08.85Z",
+        "total_amount": 4000,
+        "total_fee_amount": 338,
+        "currency": "USD",
+        "id": "ST5jVXU8pAv4CM23W1Y5bp85",
+        "net_amount": 3662,
+        "dispute_debit_count": 0,
+        "reverse_count": 0,
+        "status": "AWAITING_APPROVAL",
+        "dispute_credit_count": 0
+      }
+    ]
+  }
+}
+```
+
+### Approved Settlement  (v2 Settlement Engine)
+
+```javascript
+{
+  "type": "updated",
+  "entity": "settlement_v2",
+  "occurred_at": "2020-01-16T20:17:35.817",
+  "_embedded": {
+    "settlements_v2": [
+      {
+        "exception": false,
+        "fee_count": 6,
+        "processor_type": "DUMMY_V1",
+        "created_at": "2020-01-15T01:27:04.36Z",
+        "merchant_id": "MU87xmmN4pZZgm97Cok3oAp",
+        "adjustment_credit_count": 0,
+        "settlement_group_id": "SG5jV9hZJkp6a9i3WfJUja9q",
+        "transfer_credit_count": 0,
+        "adjustment_debit_count": 0,
+        "transfer_debit_count": 2,
+        "updated_at": "2020-01-16T20:17:08.85Z",
+        "total_amount": 4000,
+        "total_fee_amount": 338,
+        "currency": "USD",
+        "id": "ST5jVXU8pAv4CM23W1Y5bp85",
+        "net_amount": 3662,
+        "dispute_debit_count": 0,
+        "reverse_count": 0,
+        "status": "APPROVED",
+        "dispute_credit_count": 0
       }
     ]
   }

@@ -8,29 +8,25 @@ partner_configs = {
         'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
         'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
         #
-        'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
-        'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
-        'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
-
-        'platform_basic_auth_username': 'USpTNdGq7qfgVwCHHP9gKoSu',
-        'platform_basic_auth_password': 'a4c1e20e-bc44-405e-9df4-82fce5a4d3c9',
-
-        'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
-        'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
-        'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
+        # 'platform_basic_auth_username': 'USimz3zSq5R2PqiEBXY6rSiJ',
+        # 'platform_basic_auth_password': '8bacba32-9550-48ff-b567-fe7648947041',
+        # 'platform_encoded_auth': base64.b64encode('USimz3zSq5R2PqiEBXY6rSiJ:8bacba32-9550-48ff-b567-fe7648947041'),
+        #
+        # 'platform_basic_auth_username': 'USpTNdGq7qfgVwCHHP9gKoSu',
+        # 'platform_basic_auth_password': 'a4c1e20e-bc44-405e-9df4-82fce5a4d3c9',
+        #
+        # 'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
+        # 'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
+        # 'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
 
         #QA
-        # 'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
-        # 'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
-        # 'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
-        #
-        # 'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
-        # 'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
-        # 'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
-        #
+        'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
 
-
-
+        'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
 
 
         'basic_auth_username': None,
@@ -45,10 +41,9 @@ partner_configs = {
         'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
         'window.PaymentForm': "Finix",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
-        'staging_base_url': "https://finix.sandbox-payments-api.com",
-        # 'staging_base_url': "https://finix.qa-payments-api.com",
+        # 'staging_base_url': "https://finix.sandbox-payments-api.com",
+        'staging_base_url': "https://finix.qa-payments-api.com",
         'live_base_url': "https://finix.live-payments-api.com",
-        # 'live_base_url': "https://finix.live-payments-api.com",
         'python_client_resource_name': "finix",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",
         'php_client_resource_name': "Finix",
@@ -56,7 +51,7 @@ partner_configs = {
         'ruby_gem': "finix",
         'ruby_require_statement': "finix",
         'java_artifact_id': "finix",
-        'version': '1.0.0',
+        'version': '1.0.6',
         'java_group_id': "io.finix.payments.processing.client",
         'hosted_fields_src': "https://forms.finixpymnts.com/finix.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/maserna2/znLe9kp6/",
@@ -184,6 +179,12 @@ snippets_by_resource = {
         '3_locate_merchant_profile',
         '4_update_merchant_profile',
     ],
+    'guide_risk_profiles': [
+        "definition",
+        '1_locate_merchant',
+        '2_locate_merchant_profile',
+        '3_update_risk_profile',
+    ],
     "test_data_finix": [
         "definition"
     ],
@@ -256,14 +257,14 @@ snippets_by_resource = {
         "list_transfers",
         "update_transfer",
         ],
-    "users": [
-        "definition",
-        "create_partner_user",
-        "create_merchant_user",
-        "disable_user",
-        "fetch_user",
-        "list_users"
-    ],
+    # "users": [
+    #     "definition",
+    #     "create_partner_user",
+    #     "create_merchant_user",
+    #     "disable_user",
+    #     "fetch_user",
+    #     "list_users"
+    # ],
     "webhooks": [
         "definition",
         "create_webhook",
@@ -422,10 +423,11 @@ admin_snippets_by_resource = {
         "reattempt_merchant_provision",
         "disable_merchant_processing",
         "disable_merchant_settlements",
+        "ready_to_settle_upon_capture",
         "list_merchants",
         "list_merchant_verifications",
         "list_merchant_verifications_platform_user",
-        "create_merchant_user",
+        # "create_merchant_user",
         ],
     "payment_instruments": [
         "definition",
@@ -445,6 +447,7 @@ admin_snippets_by_resource = {
         "remove_transfer",
         "fetch_settlement",
         "fund_settlement",
+        "split_payout",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -524,7 +527,7 @@ resource_ordering = [
     "guide_tripos",
     "authorizations",
     "devices",
-    # "disputes",
+    "disputes",
     "identities",
     "merchants",
     "payment_instruments",
@@ -566,7 +569,7 @@ admin_resource_ordering = [
     "payment_instruments",
     "settlements",
     "transfers",
-    "users",
+    # "users",
     "webhooks",
 ]
 
