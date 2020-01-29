@@ -126,8 +126,8 @@ def build_docs(config_file):
 def generate_template_variables(config_values):
     ## initialize the API Client
     api_client = Client(staging_base_url = config_values["staging_base_url"],
-                        admin_basic_auth_username = config_values["admin_basic_auth_username"],
-                        admin_basic_auth_password = config_values["admin_basic_auth_password"],
+                        # admin_basic_auth_username = config_values["admin_basic_auth_username"],
+                        # admin_basic_auth_password = config_values["admin_basic_auth_password"],
                         platform_basic_auth_username = config_values["platform_basic_auth_username"],
                         platform_basic_auth_password = config_values["platform_basic_auth_password"],
                         basic_auth_username = "",

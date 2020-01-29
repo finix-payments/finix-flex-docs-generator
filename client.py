@@ -32,8 +32,8 @@ class Client(object):
 
     def __init__(self,
                  staging_base_url = "",
-                 admin_basic_auth_username = "",
-                 admin_basic_auth_password = "",
+                 # admin_basic_auth_username = "",
+                 # admin_basic_auth_password = "",
                  platform_basic_auth_username = "",
                  platform_basic_auth_password = "",
                  platform_basic_auth_username_payouts = "",
@@ -44,9 +44,9 @@ class Client(object):
                  basic_auth_password_payouts = ""):
         # type: (object, object, object, object, object, object, object) -> object
         self.staging_base_url = staging_base_url
-        self.admin_basic_auth_username = admin_basic_auth_username
-        self.admin_basic_auth_password = admin_basic_auth_password
-        self.admin_encoded_auth = base64.b64encode(self.admin_basic_auth_username + ':' + self.admin_basic_auth_password)
+        # self.admin_basic_auth_username = admin_basic_auth_username
+        # self.admin_basic_auth_password = admin_basic_auth_password
+        # self.admin_encoded_auth = base64.b64encode(self.admin_basic_auth_username + ':' + self.admin_basic_auth_password)
 
         self.platform_basic_auth_username = platform_basic_auth_username
         self.platform_basic_auth_password = platform_basic_auth_password

@@ -4,9 +4,6 @@ from collections import OrderedDict
 partner_configs = {
         'api_name': "Finix",
         'api_name_downcase': "finix",
-        'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
-        'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
-        'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
 
         #sandbox
         'platform_basic_auth_username': 'USimz3zSq5R2PqiEBXY6rSiJ',
@@ -22,12 +19,11 @@ partner_configs = {
         # 'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
         # 'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
         # 'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
-        
+
         # 'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
         # 'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
         # 'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
         # 'staging_base_url': "https://finix.qa-payments-api.com",
-
 
         'basic_auth_username': None,
         'basic_auth_password': None,
