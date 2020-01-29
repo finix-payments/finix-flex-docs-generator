@@ -18,8 +18,8 @@ from helpers import formatted_response, format_json, format_curl_request_body, \
 
 class Client(object):
     staging_base_url = ""
-    admin_basic_auth_username = ""
-    admin_basic_auth_password = ""
+    # admin_basic_auth_username = ""
+    # admin_basic_auth_password = ""
     platform_basic_auth_username = ""
     platform_basic_auth_password = ""
     platform_basic_auth_username_payouts = ""
@@ -661,8 +661,8 @@ class Client(object):
 
     def update_risk_profile(self, risk_profile_id):
         values = {
-            'avs_failure_allowed': false,
-            'csc_failure_allowed': false
+            'avs_failure_allowed': False,
+            'csc_failure_allowed': False
         }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/risk_profiles/' + risk_profile_id

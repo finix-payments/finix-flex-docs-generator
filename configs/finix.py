@@ -9,25 +9,24 @@ partner_configs = {
         'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
 
         #sandbox
-        # 'platform_basic_auth_username': 'USimz3zSq5R2PqiEBXY6rSiJ',
-        # 'platform_basic_auth_password': '8bacba32-9550-48ff-b567-fe7648947041',
-        # 'platform_encoded_auth': base64.b64encode('USimz3zSq5R2PqiEBXY6rSiJ:8bacba32-9550-48ff-b567-fe7648947041'),
-        #
-        # 'platform_basic_auth_username': 'USpTNdGq7qfgVwCHHP9gKoSu',
-        # 'platform_basic_auth_password': 'a4c1e20e-bc44-405e-9df4-82fce5a4d3c9',
-        #
-        # 'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
-        # 'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
-        # 'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
+        'platform_basic_auth_username': 'USimz3zSq5R2PqiEBXY6rSiJ',
+        'platform_basic_auth_password': '8bacba32-9550-48ff-b567-fe7648947041',
+        'platform_encoded_auth': base64.b64encode('USimz3zSq5R2PqiEBXY6rSiJ:8bacba32-9550-48ff-b567-fe7648947041'),
+
+        'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
+        'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
+        'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
+        'staging_base_url': "https://finix.sandbox-payments-api.com",
 
         #QA
-        'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
-        'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
-        'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
-
-        'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
-        'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
-        'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+        # 'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        # 'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        # 'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+        
+        # 'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        # 'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        # 'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+        # 'staging_base_url': "https://finix.qa-payments-api.com",
 
 
         'basic_auth_username': None,
@@ -42,8 +41,6 @@ partner_configs = {
         'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
         'window.PaymentForm': "Finix",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
-        # 'staging_base_url': "https://finix.sandbox-payments-api.com",
-        'staging_base_url': "https://finix.qa-payments-api.com",
         'live_base_url': "https://finix.live-payments-api.com",
         'python_client_resource_name': "finix",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",

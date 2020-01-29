@@ -282,7 +282,8 @@ def generate_template_variables(config_values):
 
     update_merchant_profile_scenario = api_client.update_merchant_profile(fetch_merchant_profile_scenario['response_id'], create_merchant_fee_profile_scenario['response_id'])
 
-    update_risk_profile_scenario = api_client.update_risk_profile(fetch_merchant_profile_scenario['response_id'], json.loads(fetch_merchant_profile_scenario["response_body"])['risk_profile'])
+    # update_risk_profile_scenario = api_client.update_risk_profile(fetch_merchant_profile_scenario['response_id'], json.loads(fetch_merchant_profile_scenario["response_body"])['risk_profile'])
+    update_risk_profile_scenario = api_client.update_risk_profile(json.loads(fetch_merchant_profile_scenario["response_body"])['risk_profile'])
 
     # # LIST
     list_authorizations_scenario = api_client.list_authorizations()
