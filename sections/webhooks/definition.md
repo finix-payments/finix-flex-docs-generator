@@ -8,3 +8,4 @@ your configured URL endpoint. `Webhooks` are particularly useful for updating
 asynchronous state changes in `Transfers`, `Merchant` account provisioning, and
 listening for notifications of newly created `Disputes`.
 
+In v2 of the settlement engine, the `destination` attribute will be deprecated from the Settlement `Webhook` event. The `destination` field will be returned in the transfer (type = created; entity = transfer) `Webhook` event.

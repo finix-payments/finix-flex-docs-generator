@@ -616,6 +616,257 @@ class Client(object):
         endpoint = self.staging_base_url + '/transfers/' + transfer_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
+    # def create_fee_profile(self, application_id, merchant=None ):
+    #
+    #     if(merchant == "merchant-tiered"):
+    #         values = {
+    #             "tags": {
+    #                 "app pricing": "merchant-tiered"
+    #             },
+    #             'merchant': application_id,
+    #             'basis_points': 200,
+    #             'fixed_fee': 100,
+    #             'ach_basis_points': 300,
+    #             "ach_fixed_fee" : 30,
+    #             'charged_interchange': False,
+    #             "qualified_tiers": {
+    #         		"AMERICAN_EXPRESS": {
+    #         			"CREDIT": [{
+    #         					"display_name": "Amex Credit Qualified",
+    #         					"basis_points": 330,
+    #         					"fixed": 70,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "INCLUSIVE",
+    #         					"range_high": 175,
+    #         					"range_low": 0
+    #         				},
+    #         				{
+    #         					"display_name": "Amex Credit Mid-Qualified",
+    #         					"basis_points": 440,
+    #         					"fixed": 80,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 239,
+    #         					"range_low": 175
+    #         				},
+    #         				{
+    #         					"display_name": "Amex Credit Non-Qualified",
+    #         					"basis_points": 550,
+    #         					"fixed": 90,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 10000,
+    #         					"range_low": 239
+    #         				}
+    #         			]
+    #         		},
+    #         		"DISCOVER": {
+    #         			"CREDIT": [{
+    #
+    #         					"display_name": "Discover Credit Qualified",
+    #         					"basis_points": 255,
+    #         					"fixed": 30,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "INCLUSIVE",
+    #         					"range_high": 175,
+    #         					"range_low": 0
+    #         				},
+    #         				{
+    #         					"display_name": "Discover Credit Mid-Qualified",
+    #         					"basis_points": 325,
+    #         					"fixed": 40,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 239,
+    #         					"range_low": 175
+    #         				},
+    #         				{
+    #         					"display_name": "Discover Credit Non-Qualified",
+    #         					"basis_points": 375,
+    #         					"fixed": 50,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 10000,
+    #         					"range_low": 239
+    #         				}
+    #         			],
+    #         			"DEBIT": [{
+    #         					"display_name": "Discover Debit Qualified",
+    #         					"basis_points": 225,
+    #         					"fixed": 25,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "INCLUSIVE",
+    #         					"range_high": 160,
+    #         					"range_low": 0
+    #         				},
+    #         				{
+    #         					"display_name": "Discover Debit Mid-Qualified",
+    #         					"basis_points": 275,
+    #         					"fixed": 35,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 200,
+    #         					"range_low": 160
+    #         				},
+    #         				{
+    #         					"display_name": "Discover Debit Non-Qualified",
+    #         					"basis_points": 325,
+    #         					"fixed": 40,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 10000,
+    #         					"range_low": 200
+    #         				}
+    #         			]
+    #         		},
+    #         		"MASTERCARD": {
+    #         			"CREDIT": [{
+    #         					"display_name": "Mastercard Credit Qualified",
+    #         					"basis_points": 255,
+    #         					"fixed": 30,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "INCLUSIVE",
+    #         					"range_high": 175,
+    #         					"range_low": 0
+    #         				},
+    #         				{
+    #         					"display_name": "Mastercard Credit Mid-Qualified",
+    #         					"basis_points": 325,
+    #         					"fixed": 40,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 239,
+    #         					"range_low": 175
+    #         				},
+    #         				{
+    #         					"display_name": "Mastercard Credit Non-Qualified",
+    #         					"basis_points": 375,
+    #         					"fixed": 50,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 10000,
+    #         					"range_low": 239
+    #         				}
+    #         			],
+    #         			"DEBIT": [{
+    #         					"display_name": "Mastercard Debit Qualified",
+    #         					"basis_points": 225,
+    #         					"fixed": 25,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "INCLUSIVE",
+    #         					"range_high": 160,
+    #         					"range_low": 0
+    #         				},
+    #         				{
+    #         					"display_name": "Mastercard Debit Mid-Qualified",
+    #         					"basis_points": 275,
+    #         					"fixed": 35,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "INCLUSIVE",
+    #         					"range_high": 200,
+    #         					"range_low": 160
+    #         				},
+    #         				{
+    #         					"display_name": "Mastercard Debit Non-Qualified",
+    #         					"basis_points": 325,
+    #         					"fixed": 40,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 10000,
+    #         					"range_low": 200
+    #         				}
+    #         			]
+    #         		},
+    #         		"VISA": {
+    #         			"CREDIT": [{
+    #         					"display_name": "Visa Credit Qualified",
+    #         					"basis_points": 255,
+    #         					"fixed": 30,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "INCLUSIVE",
+    #         					"range_high": 175,
+    #         					"range_low": 0
+    #         				},
+    #         				{
+    #         					"display_name": "Visa Credit Mid-Qualified",
+    #         					"basis_points": 325,
+    #         					"fixed": 40,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 239,
+    #         					"range_low": 175
+    #         				},
+    #         				{
+    #         					"display_name": "Visa Credit Non-Qualified",
+    #         					"basis_points": 375,
+    #         					"fixed": 50,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 10000,
+    #         					"range_low": 239
+    #         				}
+    #         			],
+    #         			"DEBIT": [{
+    #         					"display_name": "Visa Debit Qualified",
+    #         					"basis_points": 225,
+    #         					"fixed": 25,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "INCLUSIVE",
+    #         					"range_high": 160,
+    #         					"range_low": 0
+    #         				},
+    #         				{
+    #         					"display_name": "Visa Debit Mid-Qualified",
+    #         					"basis_points": 275,
+    #         					"fixed": 35,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 200,
+    #         					"range_low": 160
+    #         				},
+    #         				{
+    #         					"display_name": "Visa Debit Non-Qualified",
+    #         					"basis_points": 325,
+    #         					"fixed": 40,
+    #         					"high_type": "INCLUSIVE",
+    #         					"low_type": "EXCLUSIVE",
+    #         					"range_high": 10000,
+    #         					"range_low": 200
+    #                     				}
+    #                     			]
+    #                     		}
+    #                     	}
+    #                 }
+    #     elif (merchant == "merchant"):
+    #         values = {
+    #             "tags": {
+    #                 "app pricing": "merchant"
+    #             },
+    #             'merchant': application_id,
+    #             'basis_points': 200,
+    #             'fixed_fee': 100,
+    #             'ach_basis_points': 300,
+    #             "ach_fixed_fee" : 30,
+    #             'charged_interchange': False
+    #         }
+    #     else:
+    #         values = {
+    #         "tags": {
+    #             "app pricing": "application"
+    #         },
+    #             'application': application_id,
+    #             'basis_points': 200,
+    #             'fixed_fee': 100,
+    #             'ach_basis_points': 300,
+    #             "ach_fixed_fee" : 30,
+    #             'charged_interchange': False
+    #         }
+    #
+    #     values = format_json(json.dumps(values))
+    #     endpoint = self.staging_base_url + '/fee_profiles'
+    #     return formatted_response(endpoint, values, self.platform_encoded_auth, "POST")
+
+
     def create_fee_profile(self, application_id):
         values = {
             "tags": {
@@ -631,7 +882,7 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/fee_profiles'
         return formatted_response(endpoint, values, self.platform_encoded_auth, "POST")
-
+        
     def fetch_application_profile(self, application_profile_id):
         values = None
         endpoint = self.staging_base_url + '/applications/' + application_profile_id + '/application_profile'
@@ -1170,6 +1421,8 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/authorizations/' + auth_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
+
+    # def create_subscription_schedule(self, )
 
 
     def fetch_authorization(self, auth_id):

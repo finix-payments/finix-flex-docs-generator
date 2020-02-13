@@ -87,8 +87,6 @@
 
 ```
 
-
-
 ### Created Payment Instrument
 
 ```javascript
@@ -475,6 +473,40 @@
         "dispute_credit_count": 0
       }
     ]
+  }
+}
+```
+
+### Settlement's Funding Transfer
+
+```javascript
+{
+  "type" : "created",
+  "entity" : "transfer",
+  "occurred_at" : "2020-02-08T00:53:19.495",
+  "_embedded" : {
+    "transfers" : [ {
+      "idempotency_id" : null,
+      "amount" : 640830,
+      "trace_id" : "FNXs7nZ7Wo9h7JYHWA7WT1v9J",
+      "fee" : 0,
+      "destination" : "PIsmXAK15VPu3uW46P1rd5gg",
+      "raw" : null,
+      "created_at" : "2020-02-08T00:52:05.05Z",
+      "source" : null,
+      "merchant_identity" : "IDsAdjiN5uWCTdNojKLse8SM",
+      "type" : "SETTLEMENT",
+      "tags" : { },
+      "statement_descriptor" : null,
+      "ready_to_settle_at" : null,
+      "application" : "APrtqGVzLhi8FxpLKLE8Ajvm",
+      "updated_at" : "2020-02-08T00:53:18.38Z",  
+      "subtype" : "API",
+      "messages" : [ ],
+      "currency" : "USD",
+      "id" : "TRmu2oZ8tk94jrnm6DpQhu11",
+      "state" : "SUCCEEDED"
+    } ]
   }
 }
 ```
