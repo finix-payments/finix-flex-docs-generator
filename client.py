@@ -882,7 +882,7 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/fee_profiles'
         return formatted_response(endpoint, values, self.platform_encoded_auth, "POST")
-        
+
     def fetch_application_profile(self, application_profile_id):
         values = None
         endpoint = self.staging_base_url + '/applications/' + application_profile_id + '/application_profile'
@@ -963,6 +963,72 @@ class Client(object):
     def fund_settlement(self, settlement_id, bank_account_id):
         values = {
             "destination": bank_account_id
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/settlements/' + settlement_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth, "PUT")
+
+    def fetch_settlement_split_payout_settlement(self, settlement_id):
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/settlement/settlements/' + settlement_id + "/funding_instruction_preview"
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def enable_sale(self, application_id):
+        values = {
+            "application_config" : {
+            "card_sale_submission_method" : "real_time"
+            }
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/applications/' + application_id + "/processors/DUMMY_V1"
+        return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
+
+    def create_sale(self, merchant_id, buyer_payment_instrument, amount):
+        values = {
+         "merchant": merchant_id,
+         "currency": "USD",
+         "amount": amount,
+         "source": buyer_payment_instrument,
+         "tags": {
+            "test": "sale"
+         }
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/transfers'
+        return formatted_response(endpoint, values, self.encoded_auth)
+
+    def fund_split_payout_settlement(self, settlement_id, bank_account_id):
+        values = {
+                        "type": "EXPLICIT_AMOUNTS",
+                "data": [
+                    {
+                        "name": "MERCHANT_FUNDING_INSTRUCTION_SPLIT_1",
+                        "level": "MERCHANT",
+                        "amount": 8255,
+                        "currency": "USD",
+                        "source_instrument_id": "PI2si4bXXRq8R6AZNxuPVpsH",
+                        "destination_instrument_id": bank_account_id,
+                        "rail": "PAYFAC_CREDIT"
+                    },
+                    {
+                        "name": "MERCHANT_FUNDING_INSTRUCTION_SPLIT_2",
+                        "level": "MERCHANT",
+                        "amount": 1000,
+                        "currency": "USD",
+                        "source_instrument_id": "PI2si4bXXRq8R6AZNxuPVpsH",
+                        "destination_instrument_id": "PIu8psXPheWZxCARBrxay2MT",
+                        "rail": "PAYFAC_CREDIT"
+                    },
+                    {
+                        "name": "PLATFORM_FUNDING_INSTRUCTION",
+                        "level": "PLATFORM",
+                        "amount": 745,
+                        "currency": "USD",
+                        "source_instrument_id": "PI2si4bXXRq8R6AZNxuPVpsH",
+                        "destination_instrument_id": "PI7DhFb16hsvseJWz9saB4nL",
+                        "rail": "PAYFAC_CREDIT"
+                    }
+                ]
         }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/settlements/' + settlement_id
@@ -1422,8 +1488,118 @@ class Client(object):
         endpoint = self.staging_base_url + '/authorizations/' + auth_id
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
-    # def create_subscription_schedule(self, )
+    def create_subscription_schedule(self):
 
+            values = {
+            "name": "test_subscription_schedule",
+            "subscription_type": "PERIODIC",
+            "period_type": "MONTHLY",
+            "period_offset": {
+                "month": null,
+                "day": 5
+               }
+            }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/subscription/subscription_schedules'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def fetch_subscription(self):
+        values = None
+        endpoint = self.staging_base_url + '/subscription/subscription_schedules'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def fetch_subscription_filters(self):
+        values = None
+        endpoint = self.staging_base_url + '/subscription/subscription_schedules?name=test_subscription_schedule&subscription_type=PERIODIC'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def create_subscription_plan(self):
+     values = {
+        	"plan_type":"FEE",
+        	"name": "plan_name",
+        	"fee_plan_data" : {
+        		"display_name": "name_group_for_settling",
+        		"amount": 54321,
+        		"currency": "USD"
+        	}
+          }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/subscription/subscription_plans'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def fetch_subscription_plan(self, subscription_plan_id):
+        values = None
+        endpoint = self.staging_base_url + '/subscription/subscription_plans/'+ subscription_plan_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def fetch_subscription_plan_filters(self):
+        values = None
+        endpoint = self.staging_base_url + '/subscription/subscription_plans?name=plan_name&subscription_plan_type=FEE'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def create_subscription_group(self, subscription_schedule_id, subscription_schedule_id):
+         values = {
+          	"name": "name",
+            "subscription_schedule_id": subscription_schedule_id,
+            "subscription_plan_id": subscription_schedule_id,
+          }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/subscription/subscription_groups'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def fetch_subscription_group(self, subscription_group_id):
+        values = None
+        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def fetch_subscription_group_filter(self, subscription_schedule_id, subscription_plan_id):
+        values = None
+        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def update_subsciption_group(self, subscription_group_id, subscription_schedule_id, subscription_schedule_id):
+        values = {
+          	"name": "name",
+        	"subscription_schedule_id": subscription_schedule_id,
+        	"subscription_plan_id": subscription_plan_id
+        }
+        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group
+        return formatted_response(endpoint, values, self.platform_encoded_auth, "PATCH")
+
+    def fetch_subscription_group_history(self, subscription_group_id):
+        values = None
+        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def create_subsciption_item(self, merchant_id, subscription_group):
+        values = {
+            "name": "item_name",
+        	"merchant_id": merchant_id,
+        	"started_at": "2020-02-29T19:47:27.50Z",
+        	"ended_at": "2020-05-30T02:00:00Z"
+        }
+        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group + '/subscription_items'
+        return formatted_response(endpoint, values, self.platform_encoded_auth, "PATCH")
+
+    def fetch_subsciption_item(self, subscription_item):
+        values = None
+        endpoint = self.staging_base_url + 'subscription/subscription_items/'+ subscription_item
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def fetch_subsciption_item_filter(self, subscription_group_id,merchant_id):
+        values = None
+        endpoint = self.staging_base_url + 'subscription/subscription_items?subscription_group_id=' + subscription_group_id +'&merchant_id=' + merchant_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def delete_subsciption_item(self, subscription_item):
+        values = None
+        endpoint = self.staging_base_url + 'subscription/subscription_items' + subscription_item
+        return formatted_response(endpoint, values, self.platform_encoded_auth, "DELETE")
+
+    def fetch_subsciption_item_task_filter(self, subscription_group_id,merchant_id):
+        values = None
+        endpoint = self.staging_base_url + 'subscription/subscription_items?subscription_group_id=' + subscription_group_id +'&merchant_id=' + merchant_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def fetch_authorization(self, auth_id):
         values = None

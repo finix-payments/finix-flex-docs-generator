@@ -1,7 +1,7 @@
 import re
 import string
 from client import *
-from configs import elavon
+from configs import payment_brands
 from helpers import format_included_client_header
 
 class MyTemplate(string.Template):
@@ -317,6 +317,8 @@ def generate_template_variables(config_values):
     upload_dispute_file_scenario = api_client.upload_dispute_file(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
     list_disputes_scenario = api_client.list_disputes()
 
+
+
     create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_bank_debit_scenario['response_id'])
     # create_settlement_split_payout_scenario = api_client.create_settlement(create_identity_corporation_scenario['response_id'], create_bank_debit_scenario['response_id'])
 
@@ -325,6 +327,9 @@ def generate_template_variables(config_values):
     fetch_settlement_scenario = api_client.fetch_settlement(create_settlement_scenario['response_id'])
     # fund_settlement_split_payout_scenario = api_client.create_split_payout_settlement(fetch_settlement_scenario['response_id'],fetch_bank_account_scenario["response_id"], fetch_identity_scenario["response_id"])
     fund_settlement_scenario = api_client.fund_settlement(create_settlement_scenario["response_id"], create_bank_account_scenario["response_id"])
+
+
+
 
     fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
     list_settlement_transfers_scenario = api_client.list_settlement_transfers(create_settlement_scenario["response_id"])
@@ -344,7 +349,6 @@ def generate_template_variables(config_values):
         # STORE RESULTS IN HASH FOR TEMPLATE
     api_scenario_vars = {
         # IDENTITIES --------------------------------------------
-
         "create_merchant_identity_scenario_curl_request": create_identity_individual_sole_proprietorship_scenario["curl_request_body"],
         "create_merchant_identity_scenario_php_request": create_identity_individual_sole_proprietorship_scenario["php_request_body"],
         "create_merchant_identity_scenario_ruby_request": create_identity_individual_sole_proprietorship_scenario["ruby_request_body"],
@@ -378,7 +382,6 @@ def generate_template_variables(config_values):
 
 
         # MERCHANTS ------------------------------------------------------------------------------------------------
-
         "provision_merchant_scenario_curl_request": provision_merchant_scenario["curl_request_body"],
         "provision_merchant_scenario_php_request": provision_merchant_scenario["php_request_body"],
         "provision_merchant_scenario_ruby_request": provision_merchant_scenario["ruby_request_body"],
@@ -429,27 +432,7 @@ def generate_template_variables(config_values):
 
         "list_merchants_scenario_response": list_merchants_scenario["response_body"],
 
-        # IDENTITY VERIFICATION ------------------------------------------------------------------------------
-
-        # "create_identity_verification_scenario_curl_request": create_identity_verification_scenario["curl_request_body"],
-        # "create_identity_verification_scenario_php_request": create_identity_verification_scenario["php_request_body"],
-        # "create_identity_verification_scenario_ruby_request": create_identity_verification_scenario["ruby_request_body"],
-        # "create_identity_verification_scenario_python_request": create_identity_verification_scenario["python_request_body"],
-        # "create_identity_verification_scenario_response": create_identity_verification_scenario["response_body"],
-        # "create_identity_verification_scenario_id": create_identity_verification_scenario["response_id"],
-        #
-        # "fetch_identity_verification_scenario_response": fetch_identity_verification_scenario["response_body"],
-        # "fetch_identity_verification_scenario_id": fetch_identity_verification_scenario["response_id"],
-
-
-        # "list_identity_verifications_scenario_curl_request": list_identity_verifications_scenario["curl_request_body"],
-        # "list_identity_verifications_scenario_php_request": list_identity_verifications_scenario["php_request_body"],
-        # "list_identity_verifications_scenario_ruby_request": list_identity_verifications_scenario["ruby_request_body"],
-        # "list_identity_verifications_scenario_python_request": list_identity_verifications_scenario["python_request_body"],
-        # "list_identity_verifications_scenario_response": list_identity_verifications_scenario["response_body"],
-
         # PAYMENT INSTRUMENTS (CARDS) ------------------------------------------------------------------------------
-
         "create_card_scenario_curl_request": create_card_scenario["curl_request_body"],
         "create_card_scenario_php_request": create_card_scenario["php_request_body"],
         "create_card_scenario_ruby_request": create_card_scenario["ruby_request_body"],
@@ -490,14 +473,12 @@ def generate_template_variables(config_values):
         "list_payment_instruments_scenario_response": list_payment_instruments_scenario["response_body"],
 
         # PAYMENT INSTRUMENTS (BANK ACCOUNTS) ------------------------------------------------------------------------------
-
         "create_bank_account_scenario_curl_request": create_bank_account_scenario["curl_request_body"],
         "create_bank_account_scenario_php_request": create_bank_account_scenario["php_request_body"],
         "create_bank_account_scenario_ruby_request": create_bank_account_scenario["ruby_request_body"],
         "create_bank_account_scenario_python_request": create_bank_account_scenario["python_request_body"],
         "create_bank_account_scenario_response": create_bank_account_scenario["response_body"],
         "create_bank_account_scenario_id": create_bank_account_scenario["response_id"],
-
 
         # TRANSFERS (DEBITS) ------------------------------------------------------------------------------------------------
         "create_sale_scenario_curl_request": create_sale_scenario["curl_request_body"],
@@ -923,4 +904,4 @@ def generate_template_variables(config_values):
     return template_vars
 
 
-build_docs(elavon)
+build_docs(finix)
