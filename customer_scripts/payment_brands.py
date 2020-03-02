@@ -150,6 +150,7 @@ def generate_template_variables(config_values):
     create_user_partner_role_scenario = api_client.create_user_partner_role(create_app_scenario["response_id"])
 
     create_owner_user_payouts_scenario = api_client.create_user("ROLE_PARTNER", 'payouts')
+    # import ipdb; ipdb.set_trace()
     create_payouts_app_scenario = api_client.create_app(create_owner_user_payouts_scenario["response_id"], "LIMITED_LIABILITY_COMPANY", 'payouts')
     associate_visaV1_payment_processor_scenario = api_client.associate_payment_processor("VISA_V1", create_payouts_app_scenario["response_id"], 'payouts')
 
@@ -205,6 +206,29 @@ def generate_template_variables(config_values):
     create_card_scenario = api_client.create_card(create_buyer_identity_scenario["response_id"])
     create_buyer_bank_account_scenario = api_client.create_bank_account(create_buyer_identity_scenario["response_id"])
 
+    create_subscription_schedule_scenario = api_client.create_subscription_schedule()
+    fetch_subscription_scenario = api_client.fetch_subscription(create_subscription_schedule_scenario["response_id"])
+    fetch_subscription_filters_scenario = api_client.fetch_subscription_filters()
+
+    create_subscription_plan_scenario = api_client.create_subscription_plan()
+
+    fetch_subscription_plan_scenario = api_client.fetch_subscription_plan(create_subscription_plan_scenario["response_id"])
+    fetch_subscription_plan_filters_scenario = api_client.fetch_subscription_plan_filters()
+
+    create_subscription_group_scenario = api_client.create_subscription_group(create_subscription_schedule_scenario["response_id"], create_subscription_plan_scenario["response_id"])
+
+    fetch_subscription_group_scenario = api_client.fetch_subscription_group(create_subscription_group_scenario["response_id"])
+
+    fetch_subscription_group_filter_scenario = api_client.fetch_subscription_group_filter(create_subscription_schedule_scenario["response_id"],create_subscription_plan_scenario["response_id"], fetch_subscription_group_scenario["response_id"])
+    update_subsciption_group_scenario = api_client.update_subsciption_group(create_subscription_schedule_scenario["response_id"],  create_subscription_plan_scenario["response_id"], fetch_subscription_group_scenario["response_id"])
+
+    fetch_subscription_group_history_scenario = api_client.fetch_subscription_group_history(fetch_subscription_group_scenario["response_id"])
+    create_subsciption_item_scenario = api_client.create_subsciption_item(provision_merchant_scenario["response_id"], fetch_subscription_group_scenario["response_id"])
+    fetch_subsciption_item_scenario = api_client.fetch_subsciption_item(create_subsciption_item_scenario["response_id"])
+    fetch_subsciption_item_filter_scenario = fetch_subsciption_item_filter(fetch_subscription_group["response_id"], provision_merchant_scenario["response_id"])
+    delete_subsciption_item_scenario = api_client.delete_subsciption_item(fetch_subsciption_item["response_id"])
+    fetch_subsciption_item_task_filter_scenario = api_client.fetch_subsciption_item_task_filter(fetch_subscription_group["response_id"], provision_merchant_scenario["response_id"])
+
 
 
     #  NEW SHIT ************
@@ -222,8 +246,9 @@ def generate_template_variables(config_values):
     create_bank_debit_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_buyer_bank_account_scenario["response_id"], random.randint(100, 900000))
     create_sale_scenario = api_client.create_sale(provision_merchant_settle_upon_scenario["response_id"], create_card_scenario["response_id"], random.randint(100, 900000))
     # print create_sale_scenario
-    # import ipdb; ipdb.set_trace()
+
     create_user_merchant_role_scenario = api_client.create_user_merchant_role(create_identity_individual_sole_proprietorship_scenario["response_id"])
+
     disable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], False)
     enable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], True)
 
@@ -348,6 +373,36 @@ def generate_template_variables(config_values):
 
         # STORE RESULTS IN HASH FOR TEMPLATE
     api_scenario_vars = {
+
+        #SUBSCRIPTION
+        "create_subscription_schedule_scenario_curl_request": create_subscription_schedule_scenario["curl_request_body"],
+        "create_subscription_schedule_scenario_response": create_subscription_schedule_scenario["response_body"],
+        "create_subscription_schedule_scenario_id": create_subscription_schedule_scenario['response_id'],
+        "fetch_subscription_scenario_response": fetch_subscription_scenario["response_body"],
+
+        "create_subscription_plan_scenario_curl_request": create_subscription_plan_scenario["curl_request_body"],
+        "create_subscription_plan_scenario_response": create_subscription_plan_scenario["response_body"],
+        "create_subscription_plan_scenario_id": create_subscription_plan_scenario["response_id"],
+        "fetch_subscription_plan_scenario_response": fetch_subscription_plan_scenario['response_body'],
+
+        "create_subscription_group_scenario_curl_request": create_subscription_group_scenario["response_body"],
+        "create_subscription_group_scenario_response": create_subscription_group_scenario['response_body'],
+        "create_subscription_group_scenario_response_id": create_subscription_group_scenario['response_id'],
+        "fetch_subscription_group_scenario_response":  fetch_subscription_group_scenario["response_body"],
+        "fetch_subscription_group_scenario_response_id":  fetch_subscription_group_scenario["response_id"],
+        "fetch_subscription_group_filter_scenario_response": fetch_subscription_group_filter_scenario["response_body"],
+        "update_subsciption_group_scenario_curl_request": update_subsciption_group_scenario["curl_request_body"],
+        "update_subsciption_group_scenario_response": update_subsciption_group_scenario["response_body"],
+        "fetch_subscription_group_history_scenario_response" : fetch_subscription_group_history_scenario["response_body"],
+
+        "create_subsciption_item_scenario_curl_request" : create_subsciption_item_scenario["curl_request_body"],
+        "create_subsciption_item_scenario_response" : create_subsciption_item_scenario["response_body"],
+        "create_subsciption_item_scenario_response_id" : create_subsciption_item_scenario["response_id"],
+        "fetch_subsciption_item_scenario_response" : fetch_subsciption_item_scenario['response_body'],
+        "fetch_subsciption_item_filter_scenario_response" : fetch_subsciption_item_filter_scenario['response_body'],
+        "delete_subsciption_item_scenario_response" : delete_subsciption_item_scenario['response_body'],
+        "fetch_subsciption_item_task_filter_scenario_response" : fetch_subsciption_item_task_filter_scenario['response_body'],
+
         # IDENTITIES --------------------------------------------
         "create_merchant_identity_scenario_curl_request": create_identity_individual_sole_proprietorship_scenario["curl_request_body"],
         "create_merchant_identity_scenario_php_request": create_identity_individual_sole_proprietorship_scenario["php_request_body"],
@@ -904,4 +959,4 @@ def generate_template_variables(config_values):
     return template_vars
 
 
-build_docs(finix)
+build_docs(payment_brands)

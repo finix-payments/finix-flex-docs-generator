@@ -66,6 +66,7 @@ class Client(object):
 
 
     def create_user(self, role, product_type=None):
+        print 'hit create user'
         values = {
             "role": role
         }
@@ -1489,23 +1490,22 @@ class Client(object):
         return formatted_response(endpoint, values, self.encoded_auth, "PUT")
 
     def create_subscription_schedule(self):
-
-            values = {
-            "name": "test_subscription_schedule",
-            "subscription_type": "PERIODIC",
-            "period_type": "MONTHLY",
-            "period_offset": {
-                "month": null,
-                "day": 5
-               }
-            }
+        values = {
+        "name": "test_subscription_schedule",
+        "subscription_type": "PERIODIC",
+        "period_type": "MONTHLY",
+        "period_offset": {
+            "month": None,
+            "day": 5
+           }
+        }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/subscription/subscription_schedules'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-    def fetch_subscription(self):
+    def fetch_subscription(self, subscription_schedule_id):
         values = None
-        endpoint = self.staging_base_url + '/subscription/subscription_schedules'
+        endpoint = self.staging_base_url + '/subscription/subscription_schedules/' + subscription_schedule_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def fetch_subscription_filters(self):
@@ -1514,7 +1514,7 @@ class Client(object):
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def create_subscription_plan(self):
-     values = {
+        values = {
         	"plan_type":"FEE",
         	"name": "plan_name",
         	"fee_plan_data" : {
@@ -1522,7 +1522,7 @@ class Client(object):
         		"amount": 54321,
         		"currency": "USD"
         	}
-          }
+        }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/subscription/subscription_plans'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
@@ -1537,68 +1537,69 @@ class Client(object):
         endpoint = self.staging_base_url + '/subscription/subscription_plans?name=plan_name&subscription_plan_type=FEE'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-    def create_subscription_group(self, subscription_schedule_id, subscription_schedule_id):
-         values = {
+    def create_subscription_group(self, subscription_schedule_id, subscription_plan_id):
+        values = {
           	"name": "name",
             "subscription_schedule_id": subscription_schedule_id,
-            "subscription_plan_id": subscription_schedule_id,
-          }
+            "subscription_plan_id": subscription_plan_id,
+        }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/subscription/subscription_groups'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def fetch_subscription_group(self, subscription_group_id):
         values = None
-        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group
+        endpoint = self.staging_base_url + '/subscription/subscription_groups/'+ subscription_group_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-    def fetch_subscription_group_filter(self, subscription_schedule_id, subscription_plan_id):
+    def fetch_subscription_group_filter(self, subscription_schedule_id, subscription_plan_id, subscription_group_id):
         values = None
-        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group
+        endpoint = self.staging_base_url + '/subscription/subscription_groups/'+ subscription_group_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-    def update_subsciption_group(self, subscription_group_id, subscription_schedule_id, subscription_schedule_id):
+    def update_subsciption_group(self, subscription_schedule_id, subscription_plan_id, subscription_group_id):
+        print '-----------------------------------------'
         values = {
           	"name": "name",
         	"subscription_schedule_id": subscription_schedule_id,
         	"subscription_plan_id": subscription_plan_id
         }
-        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group
+        endpoint = self.staging_base_url + '/subscription/subscription_groups/'+ subscription_group_id
         return formatted_response(endpoint, values, self.platform_encoded_auth, "PATCH")
 
     def fetch_subscription_group_history(self, subscription_group_id):
         values = None
-        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group_id
+        endpoint = self.staging_base_url + '/subscription/subscription_groups/'+ subscription_group_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-    def create_subsciption_item(self, merchant_id, subscription_group):
+    def create_subsciption_item(self, merchant_id, subscription_group_id):
         values = {
             "name": "item_name",
         	"merchant_id": merchant_id,
         	"started_at": "2020-02-29T19:47:27.50Z",
         	"ended_at": "2020-05-30T02:00:00Z"
         }
-        endpoint = self.staging_base_url + 'subscription/subscription_groups/'+ subscription_group + '/subscription_items'
+        endpoint = self.staging_base_url + '/subscription/subscription_groups/'+ subscription_group_id + '/subscription_items'
         return formatted_response(endpoint, values, self.platform_encoded_auth, "PATCH")
 
     def fetch_subsciption_item(self, subscription_item):
         values = None
-        endpoint = self.staging_base_url + 'subscription/subscription_items/'+ subscription_item
+        endpoint = self.staging_base_url + '/subscription/subscription_items/'+ subscription_item
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def fetch_subsciption_item_filter(self, subscription_group_id,merchant_id):
         values = None
-        endpoint = self.staging_base_url + 'subscription/subscription_items?subscription_group_id=' + subscription_group_id +'&merchant_id=' + merchant_id
+        endpoint = self.staging_base_url + '/subscription/subscription_items?subscription_group_id=' + subscription_group_id +'&merchant_id=' + merchant_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def delete_subsciption_item(self, subscription_item):
         values = None
-        endpoint = self.staging_base_url + 'subscription/subscription_items' + subscription_item
+        endpoint = self.staging_base_url + '/subscription/subscription_items' + subscription_item
         return formatted_response(endpoint, values, self.platform_encoded_auth, "DELETE")
 
     def fetch_subsciption_item_task_filter(self, subscription_group_id,merchant_id):
         values = None
-        endpoint = self.staging_base_url + 'subscription/subscription_items?subscription_group_id=' + subscription_group_id +'&merchant_id=' + merchant_id
+        endpoint = self.staging_base_url + '/subscription/subscription_items?subscription_group_id=' + subscription_group_id +'&merchant_id=' + merchant_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def fetch_authorization(self, auth_id):

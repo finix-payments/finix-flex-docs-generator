@@ -19,17 +19,24 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
     }
 
     request = Request(endpoint, data=values, headers=headers)
+
     opener = build_opener(HTTPHandler(debuglevel=1))
 
     # Check if a PUT request
     if request_type == "PUT":
+        print 'hit put'
         request.get_method = lambda: 'PUT'
 
     elif request_type == "DELETE":
+        print 'hit delete'
         # import ipdb; ipdb.set_trace()
         request.get_method = lambda: 'DELETE'
         return {'request_body': values,
         'curl_request_body': values}
+
+    elif request_type == "PATCH":
+        print 'hit patch'
+        request.get_method = lambda: 'PATCH'
 
     try:
         response_body = opener.open(request).read()
@@ -37,13 +44,16 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
         import ipdb; ipdb.set_trace()
         json.loads(e.read())
 
+
     if "id" not in json.loads(response_body):
+        print 'hit here'
         return {'request_body': values,
                 'response_body': response_body,
                 }
     response_id = json.loads(response_body)["id"]
 
     if values:
+        print 'hit here 2'
         return {'request_body': values,
                 'curl_request_body': values,
                 'php_request_body': format_php_request_body(values),
@@ -52,6 +62,7 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
                 'response_body': response_body,
                 'response_id': response_id}
     else:
+        print 'hit here 3'
         return {'request_body': values,
                 'response_body': response_body,
                 'response_id': response_id}
