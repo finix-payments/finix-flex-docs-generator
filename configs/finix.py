@@ -19,7 +19,7 @@ partner_configs = {
         # 'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
         # 'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
         # 'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
-
+        #
         # 'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
         # 'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
         # 'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
