@@ -1,7 +1,7 @@
 > Example Response:
 
 ```json
-{{fetch_subscription_scenario_response}}
+{{fetch_subscription_filters_scenario_response}}
 ```
 
 #### HTTP Request
@@ -12,7 +12,5 @@
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-:NAME | 	
-Name of the subscription plan
-:SUBSCRIPTION_TYPE | 	
-Type of subscription plan. (e.g. PERIODIC, FIXED_TIME, AD_HOC)
+:NAME | Name of the subscription plan
+:SUBSCRIPTION_TYPE | 	Type of subscription plan. (e.g. PERIODIC, FIXED_TIME, AD_HOC)

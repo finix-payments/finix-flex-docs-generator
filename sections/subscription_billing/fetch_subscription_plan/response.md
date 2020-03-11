@@ -6,7 +6,7 @@
 
 #### HTTP Request
 
-`GET {{staging_base_url}}/subscription/subscription_schedules/:SUBSCRIPTION_PLAN_ID `
+`GET {{staging_base_url}}/subscription/subscription_plans/:SUBSCRIPTION_PLAN_ID `
 
 #### URL Parameters
 

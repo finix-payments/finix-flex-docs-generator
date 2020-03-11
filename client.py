@@ -1558,12 +1558,12 @@ class Client(object):
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def update_subsciption_group(self, subscription_schedule_id, subscription_plan_id, subscription_group_id):
-        print '-----------------------------------------'
         values = {
           	"name": "name",
         	"subscription_schedule_id": subscription_schedule_id,
         	"subscription_plan_id": subscription_plan_id
         }
+        values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/subscription/subscription_groups/'+ subscription_group_id
         return formatted_response(endpoint, values, self.platform_encoded_auth, "PATCH")
 
@@ -1576,11 +1576,12 @@ class Client(object):
         values = {
             "name": "item_name",
         	"merchant_id": merchant_id,
-        	"started_at": "2020-02-29T19:47:27.50Z",
+        	"started_at": "2020-03-29T19:47:27.50Z",
         	"ended_at": "2020-05-30T02:00:00Z"
         }
+        values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/subscription/subscription_groups/'+ subscription_group_id + '/subscription_items'
-        return formatted_response(endpoint, values, self.platform_encoded_auth, "PATCH")
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def fetch_subsciption_item(self, subscription_item):
         values = None
@@ -1594,12 +1595,12 @@ class Client(object):
 
     def delete_subsciption_item(self, subscription_item):
         values = None
-        endpoint = self.staging_base_url + '/subscription/subscription_items' + subscription_item
+        endpoint = self.staging_base_url + '/subscription/subscription_items/' + subscription_item
         return formatted_response(endpoint, values, self.platform_encoded_auth, "DELETE")
 
-    def fetch_subsciption_item_task_filter(self, subscription_group_id,merchant_id):
+    def fetch_subsciption_item_task_filter(self, subscription_item_id,merchant_id):
         values = None
-        endpoint = self.staging_base_url + '/subscription/subscription_items?subscription_group_id=' + subscription_group_id +'&merchant_id=' + merchant_id
+        endpoint = self.staging_base_url + '/subscription/subscription_items/'+ subscription_item_id +    '/subscription_item_tasks?state=CANCELLED&merchant_id=' + merchant_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def fetch_authorization(self, auth_id):

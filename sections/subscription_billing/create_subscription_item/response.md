@@ -4,7 +4,7 @@
 {{create_subsciption_item_scenario_response}}
 ```
 
-Subscription items allow you to create a merchant subscription
+A `Subscription Item` allows you to create a `Merchant` subscription.
 
 #### HTTP Request
 

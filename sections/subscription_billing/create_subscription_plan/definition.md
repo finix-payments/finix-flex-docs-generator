@@ -1,1 +1,1 @@
-## Create Subscription Group
+## Create Subscription Plan

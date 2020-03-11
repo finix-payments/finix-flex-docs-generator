@@ -1,8 +1,6 @@
 > Example Response:
 
-```json
-{{delete_subsciption_item_scenario_response}}
-```
+
 
 
 #### HTTP Request
