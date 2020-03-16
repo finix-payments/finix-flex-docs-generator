@@ -882,7 +882,7 @@ class Client(object):
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/fee_profiles'
         return formatted_response(endpoint, values, self.platform_encoded_auth, "POST")
-        
+
     def fetch_application_profile(self, application_profile_id):
         values = None
         endpoint = self.staging_base_url + '/applications/' + application_profile_id + '/application_profile'
@@ -1360,9 +1360,6 @@ class Client(object):
         # hit disputes index until transfers have a dispute link
         endpoint = self.staging_base_url + '/disputes/'
         request = Request(endpoint, data = None,headers=headers)
-        print request
-        print endpoint
-        print headers
         response_body = urlopen(request).read()
         response_body = format_json(response_body)
 
