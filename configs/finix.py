@@ -481,7 +481,7 @@ admin_snippets_by_resource = {
     "fees": [
         "definition"
     ],
-    'FAQS': [
+    'faqs': [
         'definition',
     ],
     "dashboard_overview_finix": [
@@ -537,7 +537,7 @@ admin_resource_ordering = [
     "guide_authentication",
     "idempotent_requests",
     "errors_payouts",
-    'FAQS',
+    'faqs',
     "dashboard_overview_finix",
     "tags",
     "test_data_finix",
