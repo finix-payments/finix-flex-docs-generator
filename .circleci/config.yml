@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  docs-tests:
+    docker:
+    - image: circleci/python:2.7.17
+    steps:
+    - checkout
+    - run:
+        name: install dependencies
+        command: |
+          sudo pip install poster
+          sudo pip install ipdb
+        working_directory: ~/project
+        when: always
+    - run:
+        name: run the tests
+        command:
+          python doc_generator.py
+        working_directory: ~/project
+        no_output_timeout: 6h
+        when: always
+
+workflows:
+  version: 2
+  run-docs-tests:
+    jobs:
+    - docs-tests
