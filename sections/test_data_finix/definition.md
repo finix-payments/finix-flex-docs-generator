@@ -1,5 +1,6 @@
 ## Testing for specific responses and errors
 
+### Payment Facilitation Testing
 Before taking your integration to live, use the information below to test it thoroughly. Please note, once a Payment Instrument has been flagged with AVS or CVC, it will continue to throw the respective error.
 
 Amount| Description
@@ -17,18 +18,22 @@ Card| Description
  `4000000000000036` | Payment card AVS total failure  
  `4000000000000127` | Payment card CVC failure  
 
-Below are the different scenarios that we have available for the sandbox environment.
-
+### Push-to-Card Testing  
 Cards for Testing a Push to Card Payout  
 
-Scenario                                     | number           | security_code | address.line1        | postal_code | region         | city          | country | address_verification_results | cvv2_result_code
- ---------------------------------------------|------------------|---------------|----------------------|-------------|----------------|---------------|---------|------------------------------|-----------------
- Successful push to card payout (credit card) | 4957030420210454 | 999           | 801 Metro Center Blv | 94404       | CA             | San Francisco | USA     | Y                            | M   
- Successful push to card payout (debit card)  | 4895142232120006 | 022           | 900 Metro Center Blv | 94404       | CA             | San Francisco | USA     | M                            | M               
- Invalid account number                       | 4957040000000001 | 999           | 801 Metro Center Blv | 94404       | CA             | San Francisco | USA     | I                            | P               
- Invalid Zip Code and CVV2 values             | 4957030420210488 | 227           | 900 Metro Center Blv | 94402       | CA             | San Francisco | USA     | A                            | N               
- Invalid CVV2 value                           | 4957030420210496 | 664           | 900 Metro Center Blv | 94404       | CA             | San Francisco | USA     | Y                            | N               
- Invalid Address, Zip code and CVV2 values    | 4957030420210504 | 322           | 901 Metro Center Blv | 94404       | CA             | San Francisco | USA     | Z                            | N
+ Scenario                                       | number              | region          | country | code
+  ----------------------------------------------|--------------------|-----------------|---------  |-----------------
+  Successful push to a Visa (debit card)        | 4895142232120006  | CA              | USA        | N/A               
+  Successful push to a Visa (credit card)       | 4957030420210454  | CA              | USA        | N/A   
+  Successful push to a Mastercard (debit card)  | 5123280115058611  | CA              | USA        | N/A               
+  Invalid account number                        | 4957030420210504  | CA              | USA        | INVALID_INSTRUMENT               
+  Exceeds approval amount limit                 | 4957030420210488  | CA              | USA        | EXCEEDS_ISSUER_AMOUNT_LIMIT               
+  Exceeds withdrawal frequency limit            | 4957030420210496  | CA              | USA        | EXCEEDS_ISSUER_COUNT_LIMIT               
+  Refer to card issuer                          | 4895070000007685  | CA              | USA        | CALL_ISSUER
+  Do not honor                                  | 4895070000006687  | CA              | USA        | DECLINE
+  Lost card, pick up (fraud account)            | 4895070000005671  | CA              | USA        | LOST_OR_STOLEN_CARD
+  Suspected fraud                               | 4895070000004674  | CA              | USA        | SUSPECTED_FRAUD
+  Transaction does not fulfill AML requirement  | 4895070000003551  | CA              | USA        | COMPLIANCE_VIOLATION
 
 
 Cards for Testing a Verification  
