@@ -439,6 +439,10 @@ admin_snippets_by_resource = {
         "list_payment_instruments",
         "verification",
         ],
+    "review_queue": [
+        "definition",
+        "fetch_review_queue"
+    ],
     "settlements": [
         "definition",
         "create_settlement",
@@ -590,6 +594,7 @@ admin_resource_ordering = [
     # # "identity_verifications",
     "merchants",
     "payment_instruments",
+    "review_queue",
     "settlements",
     "subscription_billing",
     "transfers",
