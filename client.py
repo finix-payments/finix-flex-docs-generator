@@ -66,7 +66,6 @@ class Client(object):
 
 
     def create_user(self, role, product_type=None):
-        print 'hit create user'
         values = {
             "role": role
         }

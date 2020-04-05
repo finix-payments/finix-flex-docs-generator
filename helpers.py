@@ -21,49 +21,23 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
     request = Request(endpoint, data=values, headers=headers)
 
     opener = build_opener(HTTPHandler(debuglevel=1))
-    print endpoint
-    print values
-    print encoded_auth
-    print request_type
     # Check if a PUT request
     if request_type == "PUT":
-        print 'hit put----------'
-
-        print endpoint
-        print values
-        print headers
-        print type(endpoint)
-        print type(values)
-        print type(headers)
-
         request.get_method = lambda: 'PUT'
 
     elif request_type == "DELETE":
-        print 'hit delete'
-        # import ipdb; ipdb.set_trace()
+
         request.get_method = lambda: 'DELETE'
         return {'request_body': values,
         'curl_request_body': values}
 
     elif request_type == "PATCH":
-        print 'hit patch------------'
-        print endpoint
-        print values
-        print headers
-        print type(endpoint)
-        print type(values)
-        print type(headers)
         request.get_method = lambda: 'PATCH'
 
     try:
-        print 'hit this response_body'
-        print '***********'
-        print request
 
         response_body = opener.open(request).read()
-        print response_body
     except URLError as e:
-        print '*****------'
         import ipdb; ipdb.set_trace()
         json.loads(e.read())
 
