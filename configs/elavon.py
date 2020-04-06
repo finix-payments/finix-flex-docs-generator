@@ -2,17 +2,29 @@ import base64
 from collections import OrderedDict
 
 partner_configs = {
-        'api_name': "Elavon",
-        'api_name_downcase': "finix",
-        'admin_basic_auth_username': 'US7AQLoX6FtZcPDttFAafEz2',
-        'admin_basic_auth_password': 'f3276399-20f4-4bc3-aff0-71131cb347b8',
-        'admin_encoded_auth': base64.b64encode('US7AQLoX6FtZcPDttFAafEz2:f3276399-20f4-4bc3-aff0-71131cb347b8'),
-        'platform_basic_auth_username': 'US9C35Uh2qqqWLiaCHbMBb4c',
-        'platform_basic_auth_password': 'a821faf7-625a-4ab8-943e-f5e8ef94b834',
-        'platform_encoded_auth': base64.b64encode('US9C35Uh2qqqWLiaCHbMBb4c:a821faf7-625a-4ab8-943e-f5e8ef94b834'),
+        'api_name': "Scoop Connect",
+        'api_name_downcase': "scoop connect",
+
+        #sandbox
+        'platform_basic_auth_username': 'USimz3zSq5R2PqiEBXY6rSiJ',
+        'platform_basic_auth_password': '8bacba32-9550-48ff-b567-fe7648947041',
+        'platform_encoded_auth': base64.b64encode('USimz3zSq5R2PqiEBXY6rSiJ:8bacba32-9550-48ff-b567-fe7648947041'),
+
         'platform_basic_auth_username_payouts': 'US8HXXhg1hakavFEhNzpzLHk',
         'platform_basic_auth_password_payouts': '1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79',
         'platform_encoded_auth_payouts': base64.b64encode('US8HXXhg1hakavFEhNzpzLHk:1bb1f91a-5e65-4667-bcb7-55d6fa1c0c79'),
+        'staging_base_url': "https://finix.sandbox-payments-api.com",
+
+        #QA
+        # 'platform_basic_auth_username': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        # 'platform_basic_auth_password': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        # 'platform_encoded_auth': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+
+        # 'platform_basic_auth_username_payouts': 'USdKBJ2TFYKDL9zCP7T9rbkj',
+        # 'platform_basic_auth_password_payouts': 'f5498da8-58f6-45c7-8a61-afe55c4073d4',
+        # 'platform_encoded_auth_payouts': base64.b64encode('USdKBJ2TFYKDL9zCP7T9rbkj:f5498da8-58f6-45c7-8a61-afe55c4073d4'),
+        # 'staging_base_url': "https://finix.qa-payments-api.com",
+
         'basic_auth_username': None,
         'basic_auth_password': None,
         'encoded_auth': None,
@@ -23,18 +35,18 @@ partner_configs = {
         'identity_verification_processor': "DUMMY_V1",
         'jsfiddle': "http://jsfiddle.net/rserna2010/2hxnjL0q/",
         'embedded_iframe_src': "https://forms.finixpymnts.com/finix.js",
+        'window.PaymentForm': "Finix",
         'embedded_iframe_jsfiddle': "https://jsfiddle.net/ne96gvxs/27/",
-        'staging_base_url': "https://api-staging.finix.io",
-        'production_base_url': "https://api.finix.io",
+        # 'live_base_url': "https://finix.live-payments-api.com",
         'python_client_resource_name': "finix",
         'php_client_repo': "https://github.com/finix-payments/processing-php-client",
-        'php_client_resource_name': "Finix",
-        'ruby_client_resource_name': "Finix",
-        'ruby_gem': "finix",
-        'ruby_require_statement': "finix",
-        'java_artifact_id': "finix",
-        'version': '1.0.0',
-        'java_group_id': "io.finix.payments.processing.client",
+        'php_client_resource_name': "ScoopConnect",
+        'ruby_client_resource_name': "ScoopConnect",
+        'ruby_gem': "scoopconnect",
+        'ruby_require_statement': "scoopconnect",
+        'java_artifact_id': "scoopconnect",
+        'version': '1.0.6',
+        'java_group_id': "io.scoopconnect.payments.processing.client",
         'hosted_fields_src': "https://forms.finixpymnts.com/finix.js",
         'hosted_fields_jsfiddle': "https://jsfiddle.net/maserna2/znLe9kp6/",
         'ACH_business_day_delay': '3'
@@ -62,6 +74,9 @@ snippets_by_resource = {
         "create_authorization",
         "capture_authorization",
         "void_authorization",
+        "triPOS_Authorization_with_EMV_card",
+        "triPOS_Authorization_with_Non_EMV_card",
+        "triPOS_Capture_Authorization",
         "fetch_authorization",
         "list_authorizations"
     ],
@@ -97,19 +112,25 @@ snippets_by_resource = {
         "create_buyer_identity",
         "create_payment_card",
         # "create_card_debit",
-        "create_authorization",
-        "capture_authorization",
-        "create_batch_settlement",
+        "create_sale"
+        # "create_authorization",
+        # "capture_authorization",
+        # "create_batch_settlement", uncomment
         # "fund_settlement",
         # "refund_debit"
     ],
-    "guide_iframe": [
+    # "guide_iframe": [
+    #     "definition",
+    #     "associate_token",
+    # ],
+    "guide_hosted_fields_payouts": [
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields_non_payline": [
+    "guide_mobile": [
         "definition",
-        "associate_token",
+        "guide_android",
+        "guide_iOS",
     ],
     "guide_push_to_card": [
         "definition",
@@ -118,6 +139,24 @@ snippets_by_resource = {
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
+        ],
+    "guide_pull_from_card": [
+        "definition",
+        "create_sender_identity",
+        "create_payment_card",
+        "verify_card",
+        "provision_merchant_account",
+        "pull_from_sender",
+        "create_refund",
+        # "send_to_recipient",
+        ],
+    "guide_tripos": [
+        "definition",
+        "Provision_Merchant_with_triPOS",
+        "triPOS_Create_Device",
+        "triPOS_Activate_Device",
+        "triPOS_Authorization_with_EMV_card",
+        "triPOS_Capture_Authorization",
         ],
     "fee_profile_overview": [
         "definition",
@@ -135,6 +174,12 @@ snippets_by_resource = {
         '3_locate_merchant_profile',
         '4_update_merchant_profile',
     ],
+    'guide_risk_profiles': [
+        "definition",
+        '1_locate_merchant',
+        '2_locate_merchant_profile',
+        '3_update_risk_profile',
+    ],
     "test_data_finix": [
         "definition"
     ],
@@ -147,12 +192,23 @@ snippets_by_resource = {
         "update_identity",
         "provision_merchant",
         ],
+    "devices": [
+        "definition",
+        "triPOS_Create_Device",
+        "triPOS_Activate_Device",
+        "Fetch_triPOS_Device",
+        "Reboot_triPOS_Device",
+        "Set_Idle_Message_on_triPOS_Device",
+        "Check_Connectivity_of_triPOS_Device",
+        "Deactivate_triPOS_Device",
+    ],
     "merchants": [
         "definition",
         "provision_merchant",
         "fetch_merchant",
         # "create_merchant_user",
         "reattempt_merchant_provision",
+        "Provision_Merchant_with_triPOS",
         "update_merchant_on_processor",
         "list_merchants",
         "list_merchant_verifications",
@@ -173,7 +229,6 @@ snippets_by_resource = {
         "definition",
         "create_settlement",
         "fetch_settlement",
-        # "fund_settlement",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -187,19 +242,25 @@ snippets_by_resource = {
         "definition",
         # "create_debit",
         "create_bank_debit",
+        "create_sale",
         "fetch_transfer",
         "create_refund",
+        "triPOS_Sale_with_EMV_Card",
+        "triPOS_Sale_using_Non_EMV_Card",
+        "triPOS_Sale_with_Manual_Entry",
+        "Referenced_Refund",
+        "Unreferenced_Refund_with_Swipe_Card",
         "list_transfers",
         "update_transfer",
         ],
-    "users": [
-        "definition",
-        "create_partner_user",
-        "create_merchant_user",
-        "disable_user",
-        "fetch_user",
-        "list_users"
-    ],
+    # "users": [
+    #     "definition",
+    #     "create_partner_user",
+    #     "create_merchant_user",
+    #     "disable_user",
+    #     "fetch_user",
+    #     "list_users"
+    # ],
     "webhooks": [
         "definition",
         "create_webhook",
@@ -223,7 +284,7 @@ snippets_by_resource = {
     'tags': [
         'definition',
     ],
-    'errors': [
+    'errors_payouts': [
         'definition'
     ]
 }
@@ -242,6 +303,7 @@ admin_snippets_by_resource = {
         "disable_application_processing",
         "disable_application_settlements",
         "enable_dummy_processor",
+        "enable_sale",
         # "enable_litle_processor",
         "list_applications",
         ],
@@ -305,20 +367,26 @@ admin_snippets_by_resource = {
         "provision_merchant",
         "create_buyer_identity",
         "create_payment_card",
+        "create_sale"
         # "create_card_debit",
-        "create_authorization",
-        "capture_authorization",
-        "create_batch_settlement",
+        # "create_authorization",
+        # "capture_authorization",
+        # "create_batch_settlement",
         # "fund_settlement",
         # "refund_debit"
     ],
-    "guide_iframe": [
+    # "guide_iframe": [
+    #     "definition",
+    #     "associate_token",
+    # ],
+    "guide_hosted_fields_payouts": [
         "definition",
         "associate_token",
     ],
-    "guide_hosted_fields_non_payline": [
+    "guide_mobile": [
         "definition",
-        "associate_token",
+        "guide_android",
+        "guide_iOS",
     ],
     "guide_push_to_card": [
         "definition",
@@ -327,6 +395,15 @@ admin_snippets_by_resource = {
         "verify_card",
         "provision_merchant_account",
         "send_to_recipient",
+        ],
+    "guide_pull_from_card": [
+        "definition",
+        "create_sender_identity",
+        "create_payment_card",
+        "verify_card",
+        "provision_merchant_account",
+        "pull_from_sender",
+        # "send_to_recipient",
         ],
     "identities": [
         "definition",
@@ -344,10 +421,11 @@ admin_snippets_by_resource = {
         "reattempt_merchant_provision",
         "disable_merchant_processing",
         "disable_merchant_settlements",
+        "ready_to_settle_upon_capture",
         "list_merchants",
         "list_merchant_verifications",
         "list_merchant_verifications_platform_user",
-        "create_merchant_user",
+        # "create_merchant_user",
         ],
     "payment_instruments": [
         "definition",
@@ -367,6 +445,7 @@ admin_snippets_by_resource = {
         "remove_transfer",
         "fetch_settlement",
         "fund_settlement",
+        "split_payout",
         "list_settlements",
         "list_settlement_funding_transfers",
         "list_settlement_transfers",
@@ -382,10 +461,16 @@ admin_snippets_by_resource = {
         "definition",
         # "create_debit",
         "create_bank_debit",
+        "create_sale",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
         "update_transfer",
+        "triPOS_Sale_with_EMV_Card",
+        "triPOS_Sale_using_Non_EMV_Card",
+        "triPOS_Sale_with_Manual_Entry",
+        "Referenced_Refund",
+        "Unreferenced_Refund_with_Swipe_Card",
         ],
     "users": [
         "definition",
@@ -406,6 +491,9 @@ admin_snippets_by_resource = {
     "fees": [
         "definition"
     ],
+    'FAQS': [
+        'definition',
+    ],
     "dashboard_overview_finix": [
         "definition"
     ],
@@ -418,7 +506,7 @@ admin_snippets_by_resource = {
     'tags': [
         'definition'
     ],
-    'errors': [
+    'errors_payouts': [
         'definition'
     ]
 }
@@ -428,17 +516,21 @@ resource_ordering = [
     "topics",
     "api_endpoints",
     "guide_authentication",
+    "dashboard_overview_finix",
+    "errors_payouts",
     "idempotent_requests",
     "tags",
     "test_data_finix",
-    "errors",
-    "dashboard_overview_finix",
     "guide_general_overview_finix",
     "guide_getting_started",
     "guide_push_to_card",
-    "guide_iframe",
-    "guide_hosted_fields_non_payline",
+    "guide_pull_from_card",
+    # "guide_iframe",
+    "guide_hosted_fields_payouts",
+    "guide_mobile",
+    "guide_tripos",
     "authorizations",
+    "devices",
     "disputes",
     "identities",
     "merchants",
@@ -454,15 +546,18 @@ admin_resource_ordering = [
     "api_endpoints",
     "guide_authentication",
     "idempotent_requests",
+    "errors_payouts",
+    'FAQS',
+    "dashboard_overview_finix",
     "tags",
     "test_data_finix",
-    "errors",
-    "dashboard_overview_finix",
     "guide_general_overview_finix",
     "guide_getting_started",
     "guide_push_to_card",
-    "guide_iframe",
-    "guide_hosted_fields_non_payline",
+    "guide_pull_from_card",
+    # "guide_iframe",
+    "guide_hosted_fields_payouts",
+    "guide_mobile",
     "guide_admin_overview",
     "guide_create_application",
     "applications",
@@ -481,10 +576,6 @@ admin_resource_ordering = [
     "users",
     "webhooks",
 ]
-
-
-
-
 
 
 # Determine which client libraries to include

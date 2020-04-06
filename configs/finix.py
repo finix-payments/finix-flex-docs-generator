@@ -112,8 +112,9 @@ snippets_by_resource = {
         "create_buyer_identity",
         "create_payment_card",
         # "create_card_debit",
-        "create_authorization",
-        "capture_authorization",
+        "create_sale"
+        # "create_authorization",
+        # "capture_authorization",
         # "create_batch_settlement", uncomment
         # "fund_settlement",
         # "refund_debit"
@@ -241,6 +242,7 @@ snippets_by_resource = {
         "definition",
         # "create_debit",
         "create_bank_debit",
+        "create_sale",
         "fetch_transfer",
         "create_refund",
         "triPOS_Sale_with_EMV_Card",
@@ -301,6 +303,7 @@ admin_snippets_by_resource = {
         "disable_application_processing",
         "disable_application_settlements",
         "enable_dummy_processor",
+        "enable_sale",
         # "enable_litle_processor",
         "list_applications",
         ],
@@ -364,10 +367,11 @@ admin_snippets_by_resource = {
         "provision_merchant",
         "create_buyer_identity",
         "create_payment_card",
+        "create_sale"
         # "create_card_debit",
-        "create_authorization",
-        "capture_authorization",
-        "create_batch_settlement",
+        # "create_authorization",
+        # "capture_authorization",
+        # "create_batch_settlement",
         # "fund_settlement",
         # "refund_debit"
     ],
@@ -457,10 +461,16 @@ admin_snippets_by_resource = {
         "definition",
         # "create_debit",
         "create_bank_debit",
+        "create_sale",
         "fetch_transfer",
         "create_refund",
         "list_transfers",
         "update_transfer",
+        "triPOS_Sale_with_EMV_Card",
+        "triPOS_Sale_using_Non_EMV_Card",
+        "triPOS_Sale_with_Manual_Entry",
+        "Referenced_Refund",
+        "Unreferenced_Refund_with_Swipe_Card",
         ],
     "users": [
         "definition",
@@ -563,7 +573,7 @@ admin_resource_ordering = [
     "payment_instruments",
     "settlements",
     "transfers",
-    # "users",
+    "users",
     "webhooks",
 ]
 
