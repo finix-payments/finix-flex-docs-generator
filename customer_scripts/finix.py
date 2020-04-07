@@ -141,6 +141,11 @@ def generate_template_variables(config_values):
     associate_dummyV1_payment_processor_scenario = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])
 
 
+    create_owner_user_scenario_two = api_client.create_user("ROLE_PARTNER")
+    create_app_scenario_two = api_client.create_app(create_owner_user_scenario["response_id"], "LIMITED_LIABILITY_COMPANY")
+    associate_dummyV1_payment_processor_scenario_two = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])
+
+
     api_client.basic_auth_username = create_owner_user_scenario["response_id"]
     config_values["basic_auth_username"] = create_owner_user_scenario["response_id"]
     api_client.basic_auth_password = json.loads(create_owner_user_scenario["response_body"])['password']
@@ -265,6 +270,11 @@ def generate_template_variables(config_values):
     # create_application_fee_profile_scenario = api_client.create_fee_profile(create_app_scenario["response_id"], "application")
 
     create_application_fee_profile_scenario = api_client.create_fee_profile(create_app_scenario["response_id"])
+
+    create_application_fee_profile_qualified_tiers_scenario = api_client.create_fee_profile_qualified_tiers(create_app_scenario_two['response_id'])
+
+
+
     # import ipdb; ipdb.set_trace()
 
     fetch_application_profile_scenario = api_client.fetch_application_profile(create_app_scenario['response_id'])
@@ -886,6 +896,10 @@ def generate_template_variables(config_values):
         'create_application_fee_profile_scenario_response': create_application_fee_profile_scenario['response_body'],
         'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
         'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
+
+
+        "create_application_fee_profile_qualified_tiers_scenario_curl_request": create_application_fee_profile_qualified_tiers_scenario["curl_request_body"],
+        "create_application_fee_profile_qualified_tiers_scenario_response": create_application_fee_profile_qualified_tiers_scenario["response_body"],
 
         "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
 

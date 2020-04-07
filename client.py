@@ -628,7 +628,7 @@ class Client(object):
     #             'fixed_fee': 100,
     #             'ach_basis_points': 300,
     #             "ach_fixed_fee" : 30,
-    #             'charged_interchange': False,
+    #             'charge_interchange': False,
     #             "qualified_tiers": {
     #         		"AMERICAN_EXPRESS": {
     #         			"CREDIT": [{
@@ -847,7 +847,7 @@ class Client(object):
     #             'fixed_fee': 100,
     #             'ach_basis_points': 300,
     #             "ach_fixed_fee" : 30,
-    #             'charged_interchange': False
+    #             'charge_interchange': False
     #         }
     #     else:
     #         values = {
@@ -859,7 +859,7 @@ class Client(object):
     #             'fixed_fee': 100,
     #             'ach_basis_points': 300,
     #             "ach_fixed_fee" : 30,
-    #             'charged_interchange': False
+    #             'charge_interchange': False
     #         }
     #
     #     values = format_json(json.dumps(values))
@@ -877,7 +877,130 @@ class Client(object):
             'fixed_fee': 100,
             'ach_basis_points': 300,
             "ach_fixed_fee" : 30,
-            'charged_interchange': False
+            'charge_interchange': False
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/fee_profiles'
+        return formatted_response(endpoint, values, self.platform_encoded_auth, "POST")
+
+
+    def create_fee_profile_qualified_tiers(self, application_id):
+        values = {
+            "tags": {
+                "app pricing": "sample"
+            },
+            'application': application_id,
+            'basis_points': 200,
+            'fixed_fee': 100,
+            'ach_basis_points': 300,
+            "ach_fixed_fee" : 30,
+            'charge_interchange': False,
+             "qualified_tiers": {
+                "american_express": {
+                    "credit": [
+                        {
+                            "display_name": "American Express Credit Qualified Rate",
+                            "basis_points": 330,
+                            "fixed": 70,
+                            "max_interchange": 175
+                        },
+                        {
+                        	"display_name": "American Express Credit Mid-Qualified Rate",
+                            "basis_points": 440,
+                            "fixed": 80,
+                            "max_interchange": 239
+                        },
+                        {
+                        	"display_name": "American Express Credit Non-Qualified Rate",
+                            "basis_points": 550,
+                            "fixed": 90
+                        }
+                    ]
+                },
+                "visa": {
+                    "credit": [
+                        {
+                        	"display_name": "Visa Credit Qualified Rate",
+                            "basis_points": 225,
+                            "fixed": 30,
+                            "max_interchange": 175
+                        },
+                        {
+                        	"display_name": "Visa Credit Mid-Qualified Rate",
+                            "basis_points": 325,
+                            "fixed": 40,
+                            "max_interchange": 239
+                        },
+                        {
+                        	"display_name": "Visa Credit Non-Qualified Rate",
+                            "basis_points": 375,
+                            "fixed": 50
+                        }
+                    ],
+                    "debit": [
+                        {
+                        	"display_name": "Visa Debit Qualified",
+                            "basis_points": 225,
+                            "fixed": 25,
+                            "max_interchange": 160
+                        },
+                        {
+                        	"display_name": "Visa Debit Mid-Qualified",
+                            "basis_points": 275,
+                            "fixed": 35,
+                            "max_interchange": 200
+                        },
+                        {
+                        	"display_name": "Visa Debit Non-Qualified",
+                            "basis_points": 325,
+                            "fixed": 40
+                        }
+                    ]
+                },
+                "unknown_card_type": {
+                    "credit": [
+                        {
+                        	"display_name": "Other Cards Credit Qualified",
+                            "basis_points": 255,
+                            "fixed": 20,
+                            "max_interchange": 175
+                        },
+                        {
+                        	"display_name": "Other Cards Credit Mid-Qualified",
+                            "basis_points": 325,
+                            "fixed": 30,
+                            "max_interchange": 239
+                        },
+                        {
+                        	"display_name": "Other Cards Credit Non-Qualified",
+                            "basis_points": 375,
+                            "fixed": 40
+                        }
+                    ],
+                    "debit": [
+                        {
+                        	"display_name": "Other Cards Debit Qualified",
+                            "basis_points": 225,
+                            "fixed": 25,
+                            "max_interchange": 160
+                        },
+                        {
+                        	"display_name": "Other Cards Debit Mid-Qualified",
+                            "basis_points": 275,
+                            "fixed": 35,
+                            "max_interchange": 200
+                        },
+                        {
+                        	"display_name": "Other Cards Credit Non-Qualified",
+                            "basis_points": 325,
+                            "fixed": 40
+                        }
+                    ]
+                }
+            },
+            "tags": {
+                "app pricing": "sample"
+            }
         }
         values = format_json(json.dumps(values))
         endpoint = self.staging_base_url + '/fee_profiles'
