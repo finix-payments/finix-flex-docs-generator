@@ -4,6 +4,11 @@
 {{create_bank_account_scenario_response}}
 ```
 
+<aside class="warning">
+ Ensure that you create an additional buyer `Identity` separate from the Merchant `Identity`. Associate the buyer `Identity` with the bank account you tokenize.  
+</aside>
+
+
 #### HTTP Request
 
 `POST {{staging_base_url}}/payment_instruments`
