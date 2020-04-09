@@ -57,7 +57,6 @@ def formatted_response(endpoint, values, encoded_auth, request_type=None):
                 'response_body': response_body,
                 'response_id': response_id}
     else:
-        print 'hit here 3'
         return {'request_body': values,
                 'response_body': response_body,
                 'response_id': response_id}
