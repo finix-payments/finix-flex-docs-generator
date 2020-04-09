@@ -123,12 +123,12 @@ def build_docs(config_file):
 def generate_template_variables(config_values):
     ## initialize the API Client
     api_client = Client(staging_base_url = config_values["staging_base_url"],
-                        # admin_basic_auth_username = config_values["admin_basic_auth_username"],
-                        # admin_basic_auth_password = config_values["admin_basic_auth_password"],
                         platform_basic_auth_username = config_values["platform_basic_auth_username"],
                         platform_basic_auth_password = config_values["platform_basic_auth_password"],
                         basic_auth_username = "",
                         basic_auth_password = "",
+                        # basic_auth_username_second_payfac = "",
+                        # basic_auth_password_second_payfac = "",
                         platform_basic_auth_username_payouts = config_values["platform_basic_auth_username_payouts"],
                         platform_basic_auth_password_payouts = config_values["platform_basic_auth_password_payouts"],
                         basic_auth_username_payouts = "",
@@ -142,8 +142,8 @@ def generate_template_variables(config_values):
 
 
     create_owner_user_scenario_two = api_client.create_user("ROLE_PARTNER")
-    create_app_scenario_two = api_client.create_app(create_owner_user_scenario["response_id"], "LIMITED_LIABILITY_COMPANY")
-    associate_dummyV1_payment_processor_scenario_two = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])
+    create_app_scenario_two = api_client.create_app(create_owner_user_scenario_two["response_id"], "LIMITED_LIABILITY_COMPANY")
+    associate_dummyV1_payment_processor_scenario_two = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario_two["response_id"])
 
 
     api_client.basic_auth_username = create_owner_user_scenario["response_id"]
@@ -151,6 +151,14 @@ def generate_template_variables(config_values):
     api_client.basic_auth_password = json.loads(create_owner_user_scenario["response_body"])['password']
     config_values["basic_auth_password"] = json.loads(create_owner_user_scenario["response_body"])['password']
     api_client.encoded_auth = base64.b64encode(api_client.basic_auth_username + ':' + api_client.basic_auth_password)
+
+    # api_client.basic_auth_username_second_payfac = create_owner_user_scenario_two["response_id"]
+    # config_values["basic_auth_username_second_payfac"] = create_owner_user_scenario_two["response_id"]
+    # api_client.basic_auth_password_second_payfac = json.loads(create_owner_user_scenario_two["response_body"])['password']
+    # config_values["basic_auth_password_second_payfac"] = json.loads(create_owner_user_scenario_two["response_body"])['password']
+    # api_client.encoded_auth_second_payfac_application = base64.b64encode(api_client.basic_auth_username_second_payfac + ':' + api_client.basic_auth_password_second_payfac)
+
+
 
     create_user_partner_role_scenario = api_client.create_user_partner_role(create_app_scenario["response_id"])
 
@@ -190,6 +198,11 @@ def generate_template_variables(config_values):
     update_webhook_scenario = api_client.update_webhook(create_webhook_scenario["response_id"])
 
     create_identity_individual_sole_proprietorship_scenario = api_client.create_merchant_identity("INDIVIDUAL_SOLE_PROPRIETORSHIP")
+
+    # create_identity_individual_sole_proprietorship_scenario_two = api_client.create_merchant_identity("INDIVIDUAL_SOLE_PROPRIETORSHIP", 'second_payfac_application')
+    # create_bank_account_scenario_two = api_client.create_bank_account(create_identity_individual_sole_proprietorship_scenario_two["response_id"], 'second_payfac_application'))
+    # provision_merchant_scenario_two = api_client.provision_merchant(create_identity_individual_sole_proprietorship_scenario_two["response_id"], 'second_payfac_application')
+
 
     create_identity_limited_liability_company_scenario = api_client.create_merchant_identity("LIMITED_LIABILITY_COMPANY")
     create_identity_partnership_scenario = api_client.create_merchant_identity("PARTNERSHIP")
@@ -272,8 +285,6 @@ def generate_template_variables(config_values):
     create_application_fee_profile_scenario = api_client.create_fee_profile(create_app_scenario["response_id"])
 
     create_application_fee_profile_qualified_tiers_scenario = api_client.create_fee_profile_qualified_tiers(create_app_scenario_two['response_id'])
-
-
 
     # import ipdb; ipdb.set_trace()
 

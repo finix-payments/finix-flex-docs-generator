@@ -270,11 +270,12 @@ class Client(object):
             return formatted_response(endpoint, values, self.encoded_auth)
 
 
-    def create_merchant_identity(self, business_type):
+    def create_merchant_identity(self, business_type, application_type=None):
         if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
             ownership_type = "PUBLIC"
         else:
             ownership_type = "PRIVATE"
+
 
         company = random_business_name()
         values = {
@@ -334,7 +335,11 @@ class Client(object):
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/identities'
-        return formatted_response(endpoint, values, self.encoded_auth)
+
+        if (application_type == 'second_payfac_application'):
+            return formatted_response(endpoint, values, self.encoded_auth_second_payfac_application)
+        else:
+            return formatted_response(endpoint, values, self.encoded_auth)
 
     # def create_sender_identity(self, business_type):
     #     if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
@@ -443,7 +448,7 @@ class Client(object):
         return formatted_response(endpoint, values, self.encoded_auth_payouts, "PUT")
 
 
-    def provision_merchant(self, identity_id, processor=None):
+    def provision_merchant(self, identity_id, processor=None, application_type=None):
         values = {
             "tags": {
               "key_2": "value_2"
@@ -454,7 +459,11 @@ class Client(object):
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/identities/' + identity_id + '/merchants'
-        return formatted_response(endpoint, values, self.encoded_auth)
+
+        if (application_type == 'second_payfac_application'):
+            return formatted_response(endpoint, values, self.encoded_auth_second_payfac_application)
+        else:
+            return formatted_response(endpoint, values, self.encoded_auth)
 
     def provision_sender(self, identity_id, processor, product_type=None):
         values = {
@@ -1182,7 +1191,7 @@ class Client(object):
             return formatted_response(endpoint, values, self.encoded_auth)
 
 
-    def create_bank_account(self, identity_id):
+    def create_bank_account(self, identity_id, application_type=None):
 
         values = {
             "account_type": "SAVINGS",
@@ -1199,7 +1208,11 @@ class Client(object):
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/payment_instruments'
-        return formatted_response(endpoint, values, self.encoded_auth)
+
+        if (application_type == 'second_payfac_application'):
+            return formatted_response(endpoint, values, self.encoded_auth_second_payfac_application)
+        else:
+            return formatted_response(endpoint, values, self.encoded_auth)
 
 
     def create_debit(self, merchant_id, card_id, amount):
