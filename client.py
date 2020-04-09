@@ -455,11 +455,7 @@ class Client(object):
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/identities/' + identity_id + '/merchants'
-
-        if (application_type == 'second_payfac_application'):
-            return formatted_response(endpoint, values, self.encoded_auth_second_payfac_application)
-        else:
-            return formatted_response(endpoint, values, self.encoded_auth)
+        return formatted_response(endpoint, values, self.encoded_auth)
 
     def provision_sender(self, identity_id, processor, product_type=None):
         values = {
