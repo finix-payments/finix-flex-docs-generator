@@ -485,7 +485,7 @@ class Client(object):
         values = {
             "currency": currency,
             "identity": identity_id,
-            "expiration_year": 2020,
+            "expiration_year": 2029,
             "number": card_number ,
             "expiration_month": 03,
             "address": {
@@ -513,7 +513,7 @@ class Client(object):
     def create_card_verification(self, identity_id, product_type=None):
         values = {
             "identity": identity_id,
-            "expiration_year": 2020,
+            "expiration_year": 2029,
             "number": "4815070000000018" ,
             "expiration_month": 03,
             "address": {
@@ -541,7 +541,7 @@ class Client(object):
     def create_card(self, identity_id, product_type=None):
         values = {
             "identity": identity_id,
-            "expiration_year": 2020,
+            "expiration_year": 2029,
             "number": "4895142232120006" ,
             # "number": "4957030420210454" ,
 
@@ -1101,7 +1101,7 @@ class Client(object):
 
     def create_token(self, application_id, product_type=None):
         values = {
-            "expiration_year": 2020,
+            "expiration_year": 2029,
             "number": "4957030420210454",
             "expiration_month": 12,
             "address": {

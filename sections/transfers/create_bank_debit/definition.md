@@ -7,7 +7,7 @@ By default, {{api_name}} implements a {{ACH_business_day_delay}} day business da
 </aside>
 
 <aside class="warning">
- Ensure that you create an additional buyer `Identity` separate from the Merchant `Identity`. Associate the buyer `Identity` with the bank account you tokenize.  
+ Ensure that you create an additional buyer Identity separate from the merchant Identity. Associate the buyer Identity with the bank account you tokenize.  
 </aside>
 
 

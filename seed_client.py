@@ -305,7 +305,7 @@ def provision_merchant(config_values, identity_id):
 def create_card(config_values, identity_id):
     values = {
         "identity": identity_id,
-        "expiration_year": 2020,
+        "expiration_year": 2029,
         "number": "4242424242424242",
         "expiration_month": 12,
         "address": {
