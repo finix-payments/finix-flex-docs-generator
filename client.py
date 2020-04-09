@@ -270,7 +270,7 @@ class Client(object):
             return formatted_response(endpoint, values, self.encoded_auth)
 
 
-    def create_merchant_identity(self, business_type, application_type=None):
+    def create_merchant_identity(self, business_type):
         if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
             ownership_type = "PUBLIC"
         else:
@@ -335,11 +335,7 @@ class Client(object):
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/identities'
-
-        if (application_type == 'second_payfac_application'):
-            return formatted_response(endpoint, values, self.encoded_auth_second_payfac_application)
-        else:
-            return formatted_response(endpoint, values, self.encoded_auth)
+        return formatted_response(endpoint, values, self.encoded_auth)
 
     # def create_sender_identity(self, business_type):
     #     if business_type == "TAX_EXEMPT_ORGANIZATION" or business_type == "GOVERNMENT_AGENCY":
@@ -448,7 +444,7 @@ class Client(object):
         return formatted_response(endpoint, values, self.encoded_auth_payouts, "PUT")
 
 
-    def provision_merchant(self, identity_id, processor=None, application_type=None):
+    def provision_merchant(self, identity_id, processor=None):
         values = {
             "tags": {
               "key_2": "value_2"
@@ -1191,7 +1187,7 @@ class Client(object):
             return formatted_response(endpoint, values, self.encoded_auth)
 
 
-    def create_bank_account(self, identity_id, application_type=None):
+    def create_bank_account(self, identity_id):
 
         values = {
             "account_type": "SAVINGS",
@@ -1208,11 +1204,7 @@ class Client(object):
         values = format_json(json.dumps(values))
 
         endpoint = self.staging_base_url + '/payment_instruments'
-
-        if (application_type == 'second_payfac_application'):
-            return formatted_response(endpoint, values, self.encoded_auth_second_payfac_application)
-        else:
-            return formatted_response(endpoint, values, self.encoded_auth)
+        return formatted_response(endpoint, values, self.encoded_auth)
 
 
     def create_debit(self, merchant_id, card_id, amount):
