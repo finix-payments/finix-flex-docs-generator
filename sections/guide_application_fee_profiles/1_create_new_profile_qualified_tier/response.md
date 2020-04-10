@@ -8,6 +8,7 @@ Qualified tiers allow Payment Facilitators to create various fee tiers based on 
 
 Each payment card within the `Fee Profile` must have at least one tier associated to it. The Payment Facilitator can create an unlimited amount of tiers; however, at least one tier required.
 
+
 #### HTTP Request
 
 `POST {{staging_base_url}}/fee_profiles`
