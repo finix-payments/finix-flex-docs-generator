@@ -4,10 +4,9 @@
 {{create_application_fee_profile_qualified_tiers_scenario_response}}
 ```
 
-Qualified Tiered Fees gives the customer the ability to create fees based off a simple calculation.
-Interchange Percentage = Approximate Interchange Fee Amount / Purchase Amount
+Qualified tiers allow Payment Facilitators to create various fee tiers based on the interchange percentage. The interchange percentage is the approximate interchange fee amount divided by the purchase amount. When an interchange percent falls within a certain tier, a fixed fee and basis point fee is created for that sale.
 
-The user will create tiered buckets for each card brand and card type. When an interchange percent lands in a tier, a fixed fee and basis point fee will be created for the sale.
+Each payment card within the `Fee Profile` must have at least one tier associated to it. The Payment Facilitator can create an unlimited amount of tiers; however, at least one tier required.
 
 #### HTTP Request
 
