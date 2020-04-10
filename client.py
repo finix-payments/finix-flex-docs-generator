@@ -918,6 +918,86 @@ class Client(object):
                         }
                     ]
                 },
+                "discover": {
+                    "credit": [
+                        {
+                        	"display_name": "Discover Credit Qualified Rate",
+                            "basis_points": 255,
+                            "fixed": 30,
+                            "max_interchange": 175
+                        },
+                        {
+                        	"display_name": "Discover Credit Mid-Qualified Rate",
+                            "basis_points": 325,
+                            "fixed": 40,
+                            "max_interchange": 239
+                        },
+                        {
+                        	"display_name": "Discover Credit Non-Qualified Rate",
+                            "basis_points": 375,
+                            "fixed": 50
+                        }
+                    ],
+                    "debit": [
+                        {
+                        	"display_name": "Discover Debit Qualified Rate",
+                            "basis_points": 225,
+                            "fixed": 25,
+                            "max_interchange": 160
+                        },
+                        {
+                        	"display_name": "Discover Debit Mid-Qualified Rate",
+                            "basis_points": 275,
+                            "fixed": 35,
+                            "max_interchange": 200
+                        },
+                        {
+                        	"display_name": "Discover Debit Non-Qualified Rate",
+                            "basis_points": 325,
+                            "fixed": 40
+                        }
+                    ]
+                },
+                "mastercard": {
+                    "credit": [
+                        {
+                        	"display_name": "Mastercard Credit Qualified Rate",
+                            "basis_points": 255,
+                            "fixed": 30,
+                            "max_interchange": 175
+                        },
+                        {
+                        	"display_name": "Mastercard Credit Mid-Qualified Rate",
+                            "basis_points": 325,
+                            "fixed": 40,
+                            "max_interchange": 239
+                        },
+                        {
+                        	"display_name": "Mastercard Credit Non-Qualified Rate",
+                            "basis_points": 375,
+                            "fixed": 50
+                        }
+                    ],
+                    "debit": [
+                        {
+                        	"display_name": "Mastercard Debit Qualified Rate",
+                            "basis_points": 225,
+                            "fixed": 25,
+                            "max_interchange": 160
+                        },
+                        {
+                        	"display_name": "Mastercard Debit Mid-Qualified Rate",
+                            "basis_points": 275,
+                            "fixed": 35,
+                            "max_interchange": 200
+                        },
+                        {
+                        	"display_name": "Mastercard Debit Non-Qualified Rate",
+                            "basis_points": 325,
+                            "fixed": 40
+                        }
+                    ]
+                },
                 "visa": {
                     "credit": [
                         {
@@ -1000,7 +1080,7 @@ class Client(object):
                 }
             },
             "tags": {
-                "app pricing": "sample"
+                "app_pricing": "qualified billing"
             }
         }
         values = format_json(json.dumps(values))
