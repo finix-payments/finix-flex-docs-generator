@@ -19,5 +19,5 @@ basis_points | *integer*, **optional** | Percentage-based fee incurred against t
 fixed_fee | *integer*, **optional** | Fee in cents incurred for each individual card-based `Transfer`
 ach_basis_points | *integer*, **optional** | Percentage-based fee incurred against the full amount of an eCheck (ACH Debit). Calculated as one hundredth of one percent (1 basis point = .0001 or .01%)
 ach_fixed_fee | *integer*, **optional** | Fee in cents incurred for each individual `Transfer`
-charged_interchange | *boolean*, **optional** | Set to True to incur interchange fees for card-based Transfers.
+charge_interchange | *boolean*, **optional** | Set to True to incur interchange fees for card-based Transfers.
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)

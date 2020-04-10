@@ -123,8 +123,6 @@ def build_docs(config_file):
 def generate_template_variables(config_values):
     ## initialize the API Client
     api_client = Client(staging_base_url = config_values["staging_base_url"],
-                        # admin_basic_auth_username = config_values["admin_basic_auth_username"],
-                        # admin_basic_auth_password = config_values["admin_basic_auth_password"],
                         platform_basic_auth_username = config_values["platform_basic_auth_username"],
                         platform_basic_auth_password = config_values["platform_basic_auth_password"],
                         basic_auth_username = "",
@@ -140,6 +138,9 @@ def generate_template_variables(config_values):
     create_app_scenario = api_client.create_app(create_owner_user_scenario["response_id"], "LIMITED_LIABILITY_COMPANY")
     associate_dummyV1_payment_processor_scenario = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario["response_id"])
 
+    create_owner_user_scenario_two = api_client.create_user("ROLE_PARTNER")
+    create_app_scenario_two = api_client.create_app(create_owner_user_scenario_two["response_id"], "LIMITED_LIABILITY_COMPANY")
+    associate_dummyV1_payment_processor_scenario_two = api_client.associate_payment_processor("DUMMY_V1", create_app_scenario_two["response_id"])
 
     api_client.basic_auth_username = create_owner_user_scenario["response_id"]
     config_values["basic_auth_username"] = create_owner_user_scenario["response_id"]
@@ -205,8 +206,6 @@ def generate_template_variables(config_values):
     create_card_scenario = api_client.create_card(create_buyer_identity_scenario["response_id"])
     create_buyer_bank_account_scenario = api_client.create_bank_account(create_buyer_identity_scenario["response_id"])
 
-
-
     #  NEW SHIT ************
     create_identity_corporation_scenario = api_client.create_merchant_identity("CORPORATION")
     create_bank_account_split_payout_scenario = api_client.create_bank_account(create_identity_corporation_scenario["response_id"])
@@ -270,7 +269,8 @@ def generate_template_variables(config_values):
     # create_application_fee_profile_scenario = api_client.create_fee_profile(create_app_scenario["response_id"], "application")
 
     create_application_fee_profile_scenario = api_client.create_fee_profile(create_app_scenario["response_id"])
-    # import ipdb; ipdb.set_trace()
+
+    create_application_fee_profile_qualified_tiers_scenario = api_client.create_fee_profile_qualified_tiers(create_app_scenario_two['response_id'])
 
     fetch_application_profile_scenario = api_client.fetch_application_profile(create_app_scenario['response_id'])
 
@@ -481,12 +481,14 @@ def generate_template_variables(config_values):
         "create_bank_account_scenario_id": create_bank_account_scenario["response_id"],
 
         # TRANSFERS (DEBITS) ------------------------------------------------------------------------------------------------
+
         "create_sale_scenario_curl_request": create_sale_scenario["curl_request_body"],
         "create_sale_scenario_php_request": create_sale_scenario["php_request_body"],
         "create_sale_scenario_ruby_request": create_sale_scenario["php_request_body"],
         "create_sale_scenario_python_request": create_sale_scenario["python_request_body"],
         "create_sale_scenario_response": create_sale_scenario["response_body"],
         "create_sale_scenario_id": create_sale_scenario["response_id"],
+
 
         "create_bank_debit_idempotency_scenario_curl_request": create_bank_debit_idempotency_scenario["curl_request_body"],
         "create_bank_debit_idempotency_scenario_php_request": create_bank_debit_idempotency_scenario["php_request_body"],
@@ -509,6 +511,7 @@ def generate_template_variables(config_values):
         "update_transfer_scenario_python_request": update_transfer_scenario["python_request_body"],
         "update_transfer_scenario_response": update_transfer_scenario["response_body"],
         "update_transfer_scenario_id": update_transfer_scenario["response_id"],
+
 
         # TRANSFERS (CREDITS) ------------------------------------------------------------------------------------------------
 
@@ -855,6 +858,10 @@ def generate_template_variables(config_values):
         'create_application_fee_profile_scenario_python_request': create_application_fee_profile_scenario['python_request_body'],
         'create_application_fee_profile_scenario_response_id': create_application_fee_profile_scenario['response_id'],
 
+
+        "create_application_fee_profile_qualified_tiers_scenario_curl_request": create_application_fee_profile_qualified_tiers_scenario["curl_request_body"],
+        "create_application_fee_profile_qualified_tiers_scenario_response": create_application_fee_profile_qualified_tiers_scenario["response_body"],
+
         "fetch_application_profile_scenario_response": fetch_application_profile_scenario['response_body'],
 
         "update_application_profile_scenario_curl_request": update_application_profile_scenario['curl_request_body'],
@@ -896,6 +903,17 @@ def generate_template_variables(config_values):
         'update_risk_profile_scenario_response_id': update_risk_profile_scenario['response_id'],
 
         'fetch_merchant_fee_scenario_response': fetch_merchant_fee_scenario['response_body'],
+
+
+        # TRANSFERS (REFUNDS) ------------------------------------------------------------------------------------------------
+        #
+        "create_refund_aft_scenario_curl_request": create_refund_aft_scenario["curl_request_body"],
+        "create_refund_aft_scenario_php_request": create_refund_aft_scenario["php_request_body"],
+        "create_refund_aft_scenario_ruby_request": create_refund_aft_scenario["ruby_request_body"],
+        "create_refund_aft_scenario_python_request": create_refund_aft_scenario["python_request_body"],
+        "create_refund_aft_scenario_response": create_refund_aft_scenario["response_body"],
+        "create_refund_aft_scenario_id": create_refund_aft_scenario["response_id"],
+
     }
 
     # COMBINE CONFIGS W/ SCENARIO VARs
