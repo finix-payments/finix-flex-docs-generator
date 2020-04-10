@@ -33,4 +33,5 @@ Field | Type | Description
 ----- | ---- | -----------
 currency | *integer*, **required** | 3-letter currency code that the funds should be deposited (e.g. USD)
 processor | *string*, **optional** | If the Application has more than one processor association, it's required to pass the processor (e.g. DUMMY_V1)
+MERCHANT_ID | *string*, **required** | If the Application has more than one processor association, this field is required
 tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
