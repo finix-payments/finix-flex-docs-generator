@@ -8,6 +8,7 @@
 
 `GET {{staging_base_url}}/fee_profiles/:FEE_PROFILE_ID`
 
+
 #### URL Parameters
 
 Parameter | Description
