@@ -317,10 +317,6 @@ def generate_template_variables(config_values):
     upload_dispute_file_scenario = api_client.upload_dispute_file(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
     list_disputes_scenario = api_client.list_disputes()
 
-
-
-    print create_bank_debit_scenario['response_id']
-    print create_sale_scenario['response_id']
     create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_sale_scenario['response_id'])
     # create_settlement_split_payout_scenario = api_client.create_settlement(create_identity_corporation_scenario['response_id'], create_bank_debit_scenario['response_id'])
 
