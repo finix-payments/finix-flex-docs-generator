@@ -14,7 +14,7 @@ Setting new pricing for a `Merchant` will only impact the pricing for this merch
 
 Field | Type | Description
 ----- | ---- | -----------
-:MERCHANT_ID | *string*, **required** | ID of `Merchant`
+application| *string*, **required** | ID of `Application`
 basis_points | *integer*, **optional** | Percentage-based fee incurred against the full amount of each card-based Transfer. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%)
 fixed_fee | *integer*, **optional** | Fee in cents incurred for each individual card-based `Transfer`
 ach_basis_points | *integer*, **optional** | Percentage-based fee incurred against the full amount of an eCheck (ACH Debit). Calculated as one hundredth of one percent (1 basis point = .0001 or .01%)

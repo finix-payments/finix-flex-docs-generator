@@ -333,13 +333,14 @@ admin_snippets_by_resource = {
         '1_create_new_profile',
         '2_locate_application_profile',
         '3_update_application_profile',
+        '1_create_new_profile_qualified_tier'
     ],
     'guide_merchant_fee_profiles': [
         "definition",
         '1_create_new_profile',
         '2_locate_merchant',
         '3_locate_merchant_profile',
-        '4_update_merchant_profile',
+        '4_update_merchant_profile'
     ],
     'fee_profile': [
         "fetch_fee_profile"
