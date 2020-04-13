@@ -8,6 +8,10 @@ Qualified tiers allow Payment Facilitators to create various fee tiers based on 
 
 Each Card Network within the `Fee Profile` must have at least one tier associated to it. The Payment Facilitator can create an unlimited amount of tiers; however, at least one tier required.
 
+<aside class="warning">
+This feature is not currently supported for card present integrations
+</aside>
+
 
 #### HTTP Request
 
@@ -47,7 +51,7 @@ debit | *array*, **required** | Fee buckets for debit card purchases
 
 
 <aside class="notice">
-IMPORTANT: The last bucket in each tier must have the max_interchange completely omitted. Or max_interchange = null. This is because the last interchange bound goes to infinity.
+The last bucket in each tier must have the max_interchange completely omitted. Or max_interchange = null. This is because the last interchange bound goes to infinity.
 </aside>
 
 
