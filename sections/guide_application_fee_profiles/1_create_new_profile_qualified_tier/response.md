@@ -6,7 +6,7 @@
 
 Qualified tiers allow Payment Facilitators to create various fee tiers based on the interchange percentage. The interchange percentage is the approximate interchange fee amount divided by the purchase amount. When an interchange percent falls within a certain tier, a fixed fee and basis point fee is created for that sale.
 
-Each payment card within the `Fee Profile` must have at least one tier associated to it. The Payment Facilitator can create an unlimited amount of tiers; however, at least one tier required.
+Each Card Network within the `Fee Profile` must have at least one tier associated to it. The Payment Facilitator can create an unlimited amount of tiers; however, at least one tier required.
 
 
 #### HTTP Request
