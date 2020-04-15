@@ -1177,6 +1177,20 @@ class Client(object):
         endpoint = self.staging_base_url + '/settlement/settlements/' + settlement_id + "/funding_instruction_preview"
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
+    def fetch_settlement_via_review_queue(self):
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + 'review_queue?entity_type=SETTLEMENT&outcome=PENDING'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+
+    def approve_settlement_via_review_queue(self, review_queue_id, outcome):
+        values = {
+            "outcome" : outcome
+        }
+        values = format_json(json.dumps(values))
+        endpoint = self.staging_base_url + '/review_queue/' + review_queue_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth, 'PUT')
+
     def enable_sale(self, application_id):
         values = {
             "application_config" : {
