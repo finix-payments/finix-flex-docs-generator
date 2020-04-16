@@ -322,20 +322,23 @@ def generate_template_variables(config_values):
 
 
 
-    fetch_settlement_via_review_queue = api_client.fetch_settlement_via_review_queue()
+    fetch_settlement_via_review_queue_scenario = api_client.fetch_settlement_via_review_queue()
+    # print json.loads(approve_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"]
 
-    approve_settlement_via_review_queue = api_client.approve_settlement_via_review_queue(fetch_settlement_via_review_queue["response_id"], "ACCEPTED")
+
+    approve_settlement_via_review_queue_scenario = api_client.approve_settlement_via_review_queue(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"], "ACCEPTED")
+
+    review_queue_filter_scenario = api_client.review_queue_filter(json.loads(approve_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
 
     # remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
 
 
-    remove_transfer_scenario = api_client.remove_transfer(fetch_settlement_via_review_queue['entity_id'], fetch_transfer_scenario['response_id'])
+    remove_transfer_scenario = api_client.remove_transfer(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], fetch_transfer_scenario['response_id'])
 
-    fetch_settlement_scenario = api_client.fetch_settlement(fetch_settlement_via_review_queue['entity_id'])
+    fetch_settlement_scenario = api_client.fetch_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
     # fund_settlement_split_payout_scenario = api_client.create_split_payout_settlement(fetch_settlement_scenario['response_id'],fetch_bank_account_scenario["response_id"], fetch_identity_scenario["response_id"])
-    fund_settlement_scenario = api_client.fund_settlement(create_settlement_scenario["response_id"], create_bank_account_scenario["response_id"])
 
-
+    fund_settlement_scenario = api_client.fund_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], create_bank_account_scenario["response_id"])
 
 
     fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
@@ -725,11 +728,15 @@ def generate_template_variables(config_values):
         "fetch_settlement_transfers_scenario_request": fetch_settlement_transfers_scenario["request_body"],
         "fetch_settlement_transfers_scenario_response": fetch_settlement_transfers_scenario["response_body"],
 
-        "fetch_settlement_via_review_queue_response": fetch_settlement_via_review_queue["response_body"],
-        "fetch_settlement_via_review_queue_id": fetch_settlement_via_review_queue["response_id"],
+        "fetch_settlement_via_review_queue_response": fetch_settlement_via_review_queue_scenario["response_body"],
+        "fetch_settlement_via_review_queue_id": json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"],
 
-        "approve_settlement_via_review_queue_curl_request": approve_settlement_via_review_queue["curl_request_body"],
-        "approve_settlement_via_review_queue_response": approve_settlement_via_review_queue["response_body"],
+        "approve_settlement_via_review_queue_curl_request": approve_settlement_via_review_queue_scenario["curl_request_body"],
+        "approve_settlement_via_review_queue_response": approve_settlement_via_review_queue_scenario["response_body"],
+        "approve_settlement_via_review_queue_id": json.loads(approve_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"],
+
+        "review_queue_filter_entity_id": json.loads(review_queue_filter_scenario_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
+
 
         # APPLICATIONS -----------------------------------------------------------------------------------------------------------
 

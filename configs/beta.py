@@ -444,6 +444,7 @@ admin_snippets_by_resource = {
         "definition",
         # "create_settlement",
         "fetch_settlement_via_review_queue",
+        "review_queue_filter",
         "remove_transfer",
         "fetch_settlement",
         "fund_settlement",
