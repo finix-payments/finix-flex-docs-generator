@@ -8,7 +8,7 @@ This call can filter the review queue for an individual `Settlement`. The respon
 
 #### HTTP Request
 
-`GET {{staging_base_url}}/review_queue?entity_type=SETTLEMENT&entity_id=:ENTITY_ID `
+`GET {{staging_base_url}}/review_queue?entity_type=SETTLEMENT&entity_id=:ENTITY_ID`
 
 #### URL Parameters
 
