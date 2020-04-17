@@ -25,3 +25,4 @@ doc/
 *.iml
 testing/
 *.pyc
+.DS_Store
