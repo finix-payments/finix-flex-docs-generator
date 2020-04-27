@@ -328,7 +328,7 @@ def generate_template_variables(config_values):
 
     approve_settlement_via_review_queue_scenario = api_client.approve_settlement_via_review_queue(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"], "ACCEPTED")
 
-    import ipdb; ipdb.set_trace()
+    # import ipdb; ipdb.set_trace()
     review_queue_filter_scenario = api_client.review_queue_filter(json.loads(approve_settlement_via_review_queue_scenario["response_body"])["entity_id"])
 
     # remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
@@ -336,10 +336,10 @@ def generate_template_variables(config_values):
 
     remove_transfer_scenario = api_client.remove_transfer(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], fetch_transfer_scenario['response_id'])
 
-    fetch_settlement_scenario = api_client.fetch_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
-    # fund_settlement_split_payout_scenario = api_client.create_split_payout_settlement(fetch_settlement_scenario['response_id'],fetch_bank_account_scenario["response_id"], fetch_identity_scenario["response_id"])
-
-    fund_settlement_scenario = api_client.fund_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], create_bank_account_scenario["response_id"])
+    # fetch_settlement_scenario = api_client.fetch_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
+    # # fund_settlement_split_payout_scenario = api_client.create_split_payout_settlement(fetch_settlement_scenario['response_id'],fetch_bank_account_scenario["response_id"], fetch_identity_scenario["response_id"])
+    #
+    # fund_settlement_scenario = api_client.fund_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], create_bank_account_scenario["response_id"])
 
 
     # fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
@@ -734,9 +734,9 @@ def generate_template_variables(config_values):
 
         "approve_settlement_via_review_queue_curl_request": approve_settlement_via_review_queue_scenario["curl_request_body"],
         "approve_settlement_via_review_queue_response": approve_settlement_via_review_queue_scenario["response_body"],
-        "approve_settlement_via_review_queue_id": json.loads(approve_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"],
+        "approve_settlement_via_review_queue_id": json.loads(approve_settlement_via_review_queue_scenario["response_body"])["entity_id"],
 
-        "review_queue_filter_entity_id": json.loads(review_queue_filter_scenario_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
+        "review_queue_filter_entity_id": json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
 
 
         # APPLICATIONS -----------------------------------------------------------------------------------------------------------

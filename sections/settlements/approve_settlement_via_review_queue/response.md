@@ -8,13 +8,16 @@ In order to successfully fund a merchant from a `Settlement`, you need to approv
 
 #### HTTP Request
 
-`GET {{staging_base_url}}/review_queue?entity_type=SETTLEMENT&outcome=PENDING' `
+`GET {{staging_base_url}}/review_queue?entity_type=SETTLEMENT&outcome=PENDING`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
 entity_type |
+
+entity_type |
+
 outcome |
 
 
