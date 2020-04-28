@@ -13,9 +13,9 @@ This call allows you to view all `Pending` `Settlements` in the `Review Queue`.
 #### URL Parameters
 
 Parameter | Description
---------- | -------------------------------------------------------------------
-entity_type |
-outcome |
+----- | -----------------------
+:ENTITY_TYPE | Refers to the type of `Review Queue` item. The entity_types available are: IDENTITY, MERCHANT, SETTLEMENT.
+:OUTCOME | Refers to the status of the `Settlement`. The outcome types available are: PENDING, APPROVED and REJECTED. PENDING means no action has been taken. APPROVED means the settlement has been approved. REJECTED means the settlement has been rejected
 
 
 
@@ -23,15 +23,15 @@ outcome |
 
 Field | Type | Description
 ----- | ---- | -----------
-id | *string*    | `Review Queue` ID
-tags  | *objects* | Key value pair for annotating custom meta data
-review_type | *string* | Status of the `Review Queue` item
+id | *string* | `Review Queue` ID
+application | *string* | `Application` ID
+completed_at | *string* | Timestamp of when the `Review Queue` was updated to its final state
+entity_id | *string* | Entity ID. This ID can refer to any entity type
 entity_type | *string* | Type of `Review Queue` item
 outcome | *string* | Status of the `Settlement`
-application | *string* | `Application` ID
-reviewed_by | *string* | User ID of the person who is approving or rejecting the `Review Queue` item
-entity_id | *string* | Entity ID. This ID can refer to belong to any entity type
 processor_type | *string* | `Processor` type
+reviewed_by | *string* | `User` ID of the person who is approving or rejecting the `Review Queue` item
+review_type | *string* | Status of the `Review Queue` item
+tags  | *object* | Key value pair for annotating custom meta data
 created_at | *string* | Timestamp of when the `Review Queue` was created
 updated_at | *string* | Timestamp of when the `Review Queue` was updated
-completed_at | *string* | Timestamp of when the `Review Queue` was updated to its final state

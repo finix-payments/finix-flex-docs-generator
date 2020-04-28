@@ -317,39 +317,34 @@ def generate_template_variables(config_values):
     upload_dispute_file_scenario = api_client.upload_dispute_file(json.loads(create_dispute_scenario["response_body"])["_embedded"]["disputes"][0]["id"])
     list_disputes_scenario = api_client.list_disputes()
 
+    # Deprecated Settlement v1 Calls
     # create_settlement_scenario = api_client.create_settlement(create_identity_individual_sole_proprietorship_scenario['response_id'], create_sale_scenario['response_id'])
     # create_settlement_split_payout_scenario = api_client.create_settlement(create_identity_corporation_scenario['response_id'], create_bank_debit_scenario['response_id'])
+    # remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
+    #remove_transfer_scenario = api_client.remove_transfer(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], fetch_transfer_scenario['response_id'])
+    #fetch_settlement_scenario = api_client.fetch_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
+    #fund_settlement_split_payout_scenario = api_client.create_split_payout_settlement(fetch_settlement_scenario['response_id'],fetch_bank_account_scenario["response_id"], fetch_identity_scenario["response_id"])
+    #fund_settlement_scenario = api_client.fund_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], create_bank_account_scenario["response_id"])
+    #fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
+    #list_settlement_transfers_scenario = api_client.list_settlement_transfers(create_settlement_scenario["response_id"])
+    #list_settlement_funding_transfers_scenario = api_client.list_settlement_funding_transfers(fund_settlement_scenario["response_id"])
+    #list_settlements_scenario = api_client.list_settlements()
 
-
-
+    # Settlement Engine v2 Calls
     fetch_settlement_via_review_queue_scenario = api_client.fetch_settlement_via_review_queue()
-    # print json.loads(approve_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"]
-
-
     approve_settlement_via_review_queue_scenario = api_client.approve_settlement_via_review_queue(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"], "ACCEPTED")
 
+    # v2 call currently not functional
+    #fetch_settlement_fees_scenario = api_client.fetch_settlement_fees(json.loads(fetch_settlement_via_review_queue_scenario['response_body'])["_embedded"]["review_queue_items"][0]["entity_id"])
+    
+    fetch_settlement_by_id_scenario = api_client.fetch_settlement_by_id(json.loads(fetch_settlement_via_review_queue_scenario['response_body'])["_embedded"]["review_queue_items"][0]["entity_id"])
+    list_fees = api_client.list_fees()
+    fetch_fees_by_id_scenario = api_client.fetch_fees_by_id(json.loads(list_fees['response_body'])["_embedded"]["fees"][0]["id"])
     # import ipdb; ipdb.set_trace()
-    review_queue_filter_scenario = api_client.review_queue_filter(json.loads(approve_settlement_via_review_queue_scenario["response_body"])["entity_id"])
-
-    # remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])
-
     list_settlements_v2_scenario = api_client.list_settlements_v2()
-
     list_settlement_transfers_v2_scenario = api_client.list_settlement_transfers_v2(json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
-
     list_settlement_funding_instructions_v2_scenario = api_client.list_settlement_funding_instructions_v2(json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
 
-    # remove_transfer_scenario = api_client.remove_transfer(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], fetch_transfer_scenario['response_id'])
-
-    # fetch_settlement_scenario = api_client.fetch_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
-    # fund_settlement_split_payout_scenario = api_client.create_split_payout_settlement(fetch_settlement_scenario['response_id'],fetch_bank_account_scenario["response_id"], fetch_identity_scenario["response_id"])
-    # fund_settlement_scenario = api_client.fund_settlement(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"], create_bank_account_scenario["response_id"])
-
-
-    # fetch_settlement_transfers_scenario = api_client.fetch_settlement_transfers(create_settlement_scenario['response_id'])
-    # list_settlement_transfers_scenario = api_client.list_settlement_transfers(create_settlement_scenario["response_id"])
-    # list_settlement_funding_transfers_scenario = api_client.list_settlement_funding_transfers(fund_settlement_scenario["response_id"])
-    # list_settlements_scenario = api_client.list_settlements()
 
     toggle_merchant_processing_scenario = api_client.toggle_merchant_processing(provision_merchant_scenario["response_id"], False)
     toggle_merchant_settlements_scenario = api_client.toggle_merchant_settlements(provision_merchant_scenario["response_id"], False)
@@ -512,8 +507,6 @@ def generate_template_variables(config_values):
         "create_bank_debit_idempotency_scenario_response": create_bank_debit_idempotency_scenario["response_body"],
         "create_bank_debit_idempotency_scenario_id": create_bank_debit_idempotency_scenario["response_id"],
         "create_bank_debit_idempotency_scenario_idempotency_id": json.loads(create_bank_debit_idempotency_scenario["response_body"])['idempotency_id'],
-
-        # "remove_transfer_scenario_curl_request": remove_transfer_scenario['curl_request_body'],
 
         "fetch_transfer_scenario_response": fetch_transfer_scenario["response_body"],
         "fetch_transfer_scenario_id": fetch_transfer_scenario["response_id"],
@@ -700,13 +693,6 @@ def generate_template_variables(config_values):
         # "create_settlement_scenario_response": create_settlement_scenario["response_body"],
         # "create_settlement_scenario_id": create_settlement_scenario["response_id"],
 
-        # "create_settlement_split_payout_scenario_curl_request": create_settlement_split_payout_scenario["curl_request_body"],
-        # "create_settlement_split_payout_scenario_php_request": create_settlement_split_payout_scenario["php_request_body"],
-        # "create_settlement_split_payout_scenario_ruby_request": create_settlement_split_payout_scenario["ruby_request_body"],
-        # "create_settlement_split_payout_scenario_python_request": create_settlement_split_payout_scenario["python_request_body"],
-        # "create_settlement_split_payout_scenario_response": create_settlement_split_payout_scenario["response_body"],
-        # "create_settlement_split_payout_scenario_id": create_settlement_split_payout_scenario["response_id"],
-        #
         # "fund_settlement_split_payout_scenario_curl_request": fund_settlement_split_payout_scenario["curl_request_body"],
         # "fund_settlement_split_payout_scenario_php_request": fund_settlement_split_payout_scenario["php_request_body"],
         # "fund_settlement_split_payout_scenario_ruby_request": fund_settlement_split_payout_scenario["ruby_request_body"],
@@ -714,7 +700,7 @@ def generate_template_variables(config_values):
         # "fund_settlement_split_payout_scenario_response": fund_settlement_split_payout_scenario["response_body"],
         # "fund_settlement_split_payout_scenario_id": fund_settlement_split_payout_scenario["response_id"],
 
-
+        #"remove_transfer_scenario_curl_request": remove_transfer_scenario['curl_request_body'],
 
         # "fund_settlement_scenario_curl_request": fund_settlement_scenario["curl_request_body"],
         # "fund_settlement_scenario_php_request": fund_settlement_scenario["php_request_body"],
@@ -729,19 +715,26 @@ def generate_template_variables(config_values):
         # "list_settlements_scenario_response": list_settlements_scenario["response_body"],
         # "list_settlement_transfers_scenario_response": list_settlement_transfers_scenario["response_body"],
         # "list_settlement_funding_transfers_scenario_response": list_settlement_funding_transfers_scenario["response_body"],
-        #
-        # "fetch_settlement_scenario_response": fetch_settlement_scenario["response_body"],
-        # "fetch_settlement_scenario_id": fetch_settlement_scenario["response_id"],
-        #
-        # "list_settlements_scenario_response": list_settlements_scenario["response_body"],
-        # "list_settlement_transfers_scenario_response": list_settlement_transfers_scenario["response_body"],
-        # "list_settlement_funding_transfers_scenario_response": list_settlement_funding_transfers_scenario["response_body"],
 
         # "fetch_settlement_transfers_scenario_request": fetch_settlement_transfers_scenario["request_body"],
         # "fetch_settlement_transfers_scenario_response": fetch_settlement_transfers_scenario["response_body"],
 
         "fetch_settlement_via_review_queue_scenario_response": fetch_settlement_via_review_queue_scenario["response_body"],
         "fetch_settlement_via_review_queue_scenario_id": json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"],
+
+        "fetch_settlement_by_id_scenario_response" : fetch_settlement_by_id_scenario["response_body"],
+        "fetch_settlement_by_id_scenario_id" : fetch_settlement_by_id_scenario["response_id"],
+
+        #"fetch_funding_instructions_by_settlement_scenario_response" : fetch_funding_instructions_by_settlement_scenario["response_body"],
+        #"fetch_funding_instructions_by_settlement_scenario_id" : fetch_funding_instructions_by_settlement_scenario["response_id"],
+
+        #"fetch_settlement_fees_scenario_response" : fetch_settlement_fees_scenario["response_body"],
+        #"fetch_settlement_fees_scenario_id" : fetch_settlement_fees_scenario["response_id"],
+
+        "list_fees_response" : list_fees['response_body'],
+
+        "fetch_fees_by_id_scenario_response" : fetch_fees_by_id_scenario["response_body"],
+        "fetch_fees_by_id_scenario_id" : fetch_fees_by_id_scenario["response_id"],
 
         "approve_settlement_via_review_queue_curl_request": approve_settlement_via_review_queue_scenario["curl_request_body"],
         "approve_settlement_via_review_queue_response": approve_settlement_via_review_queue_scenario["response_body"],
@@ -761,8 +754,6 @@ def generate_template_variables(config_values):
         # "list_settlement_funding_instructions_v2_scenario_curl_request": list_settlement_funding_instructions_v2_scenario["curl_request_body"],
         "list_settlement_funding_instructions_v2_scenario_response": list_settlement_funding_instructions_v2_scenario["response_body"],
         "list_settlement_funding_instructions_v2_scenario_id": json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
-
-        "review_queue_filter_entity_id": json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
 
         # "list_settlement_funding_instructions_v2_scenario_id": json.loads(list_settlement_funding_transfers_v2_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
         

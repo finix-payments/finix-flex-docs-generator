@@ -227,11 +227,16 @@ snippets_by_resource = {
         ],
     "settlements": [
         "definition",
-        # "create_settlement",
-        # "fetch_settlement",
+        # Deprecated v1 Calls
+        #"create_settlement",
+        #"fetch_settlement",
         # "list_settlements",
-        # "list_settlement_funding_transfers",
-        # "list_settlement_transfers",
+        #"list_settlement_funding_transfers",
+        #"list_settlement_transfers",
+        # v2 Calls
+        "fetch_settlement_by_id",
+        # v2 settlment call below doesn't work
+        #"fetch_settlement_fees",
         ],
     "guide_tokenization_js": [
         "definition",
@@ -442,19 +447,27 @@ admin_snippets_by_resource = {
         ],
     "settlements": [
         "definition",
+        # Deprecated v1 Calls
         # "create_settlement",
-        "fetch_settlement_via_review_queue",
-        "review_queue_filter",
-        # "remove_transfer",
-        # "fetch_settlement",
-        # "fund_settlement",
+        #"remove_transfer",
+        #"fetch_settlement",
+        #"fund_settlement",
         # "list_settlements",
-        # "list_settlement_funding_transfers",
-        # "list_settlement_transfers",
+        #"list_settlement_funding_transfers",
+        #"list_settlement_transfers",
         "split_payout",
+        # v2 Calls
+        "fetch_settlement_via_review_queue",
+        "approve_settlement_via_review_queue",
+        "review_queue_filter",
+        "fetch_settlement_by_id",
+        "list_fees",
+        "fetch_fees_by_id",
         "list_settlements_v2",
         "list_settlement_transfers_v2",
         "list_settlement_funding_instructions_v2"
+        # v2 call below doesnt work
+        #"fetch_settlement_fees"
         ],
     "guide_tokenization_js": [
         "definition",

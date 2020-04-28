@@ -1196,22 +1196,26 @@ class Client(object):
         endpoint = self.staging_base_url + '/review_queue?entity_type=SETTLEMENT&entity_id=' + settlement_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-    def list_settlements_v2(self):
+    def fetch_settlement_by_id(self, entity_id):
         values = None
-        endpoint = self.staging_base_url + '/settlement_engine/settlements'
+        endpoint = self.staging_base_url + '/settlement_engine/settlements/'+ entity_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-    def list_settlement_transfers_v2(self, settlement_id):
+    # Below v2 settlement engine not functional
+    # def fetch_settlement_fees(self, entity_id):
+    #     values = None
+    #     endpoint = self.staging_base_url + '/settlement_engine/settlements/'+ entity_id + '/fees'
+    #     return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def list_fees(self):
         values = None
-        endpoint = self.staging_base_url + '/settlement_engine/settlements/' + settlement_id + "/transfers"
+        endpoint = self.staging_base_url + '/fees'
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
-
-    def list_settlement_funding_instructions_v2(self, settlement_id):
+    def fetch_fees_by_id(self, fee_id):
         values = None
-        endpoint = self.staging_base_url + '/settlement_engine/settlements/' + settlement_id + "/funding_instructions"
+        endpoint = self.staging_base_url + '/fees/' + fee_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
-
 
     def enable_sale(self, application_id):
         values = {
