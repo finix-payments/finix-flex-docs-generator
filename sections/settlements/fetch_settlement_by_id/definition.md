@@ -1,1 +1,1 @@
-## Fetch a Settlement by ID [V2]
+## Fetch a Settlement by ID [v2]

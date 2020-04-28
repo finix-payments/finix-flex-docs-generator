@@ -227,15 +227,15 @@ snippets_by_resource = {
         ],
     "settlements": [
         "definition",
+        # Deprecated v1 Calls
         #"create_settlement",
         #"fetch_settlement",
         # "list_settlements",
         #"list_settlement_funding_transfers",
         #"list_settlement_transfers",
+        # v2 Calls
         "fetch_settlement_by_id",
         #"fetch_settlement_fees",
-        #"list_fees",
-        #"fetch_fees_by_id",
         ],
     "guide_tokenization_js": [
         "definition",
@@ -446,9 +446,8 @@ admin_snippets_by_resource = {
         ],
     "settlements": [
         "definition",
+        # Deprecated v1 Calls
         # "create_settlement",
-        "fetch_settlement_via_review_queue",
-        "review_queue_filter",
         #"remove_transfer",
         #"fetch_settlement",
         #"fund_settlement",
@@ -456,6 +455,10 @@ admin_snippets_by_resource = {
         # "list_settlements",
         #"list_settlement_funding_transfers",
         #"list_settlement_transfers",
+        # v2 Calls
+        "fetch_settlement_via_review_queue",
+        "approve_settlement_via_review_queue",
+        "review_queue_filter",
         "fetch_settlement_by_id",
         #"fetch_settlement_fees",
         "list_fees",

@@ -4,7 +4,7 @@
 {{fetch_fees_by_id_scenario_response}}
 ```
 
-This call allows you to view fees for a `Settlement` by the `Fee` ID. The prefix FE precedes the `Fee` ID. 
+This call allows you to view fees for a `Settlement` by the `Fee` ID.
 
 
 #### HTTP Request

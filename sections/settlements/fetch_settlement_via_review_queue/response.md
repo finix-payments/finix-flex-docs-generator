@@ -31,7 +31,7 @@ entity_type | *string* | Type of `Review Queue` item
 outcome | *string* | Status of the `Settlement`
 processor_type | *string* | `Processor` type
 reviewed_by | *string* | `User` ID of the person who is approving or rejecting the `Review Queue` item
-review_type | *string* | Status of the review queue item
+review_type | *string* | Status of the `Review Queue` item
 tags  | *object* | Key value pair for annotating custom meta data
 created_at | *string* | Timestamp of when the `Review Queue` was created
 updated_at | *string* | Timestamp of when the `Review Queue` was updated
