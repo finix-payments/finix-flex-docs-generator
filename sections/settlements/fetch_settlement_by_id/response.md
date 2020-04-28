@@ -4,7 +4,7 @@
 {{fetch_settlement_by_id_scenario_response}}
 ```
 
-Fetch a previously created `Settlement`.
+Fetch a previously created `Settlement`
 
 #### HTTP Request
 

@@ -4,7 +4,7 @@
 {{review_queue_filter_scenario_response}}
 ```
 
-This call can filter the review queue for an individual `Settlement`. The response displays the status of the `Settlement`.   
+This call can filter the `Review Queue` for an individual `Settlement`. The response displays the status of the `Settlement`.   
 
 #### HTTP Request
 
