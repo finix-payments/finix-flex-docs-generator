@@ -1,7 +1,7 @@
 > Example Response:
 
 ```json
-{{fetch_settlement_via_review_queue_response}}
+{{fetch_settlement_via_review_queue_scenario_response}}
 ```
 
 This call allows you to view all `Pending` `Settlements` in the `Review Queue`.
