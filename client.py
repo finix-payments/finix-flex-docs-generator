@@ -1196,6 +1196,30 @@ class Client(object):
         endpoint = self.staging_base_url + '/review_queue?entity_type=SETTLEMENT&entity_id=' + settlement_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
+    def fetch_settlement_by_id(self, entity_id):
+        values = None
+        endpoint = self.staging_base_url + '/settlement_engine/settlements/'+ entity_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    # def fetch_funding_instructions_by_settlement(self, entity_id):
+    #     values = None
+    #     endpoint = self.staging_base_url + '/settlement_engine/settlements/'+ entity_id + '/funding_instructions'
+    #     return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    # def fetch_settlement_fees(self, entity_id):
+    #     values = None
+    #     endpoint = self.staging_base_url + '/settlement_engine/settlements/'+ entity_id + '/fees'
+    #     return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def list_fees(self):
+        values = None
+        endpoint = self.staging_base_url + '/fees'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def fetch_fees_by_id(self, fee_id):
+        values = None
+        endpoint = self.staging_base_url + '/fees/' + fee_id
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
 
     def enable_sale(self, application_id):
         values = {
@@ -1528,36 +1552,36 @@ class Client(object):
             return formatted_response(endpoint, values, self.encoded_auth, 'PUT')
 
 
-    def create_settlement(self, identity_id, transfer_id):
-        # transfer_id is the ID of a recently created debit transfer. Here we're
-        # checking  to see if its ready to settle, typically waiting period
-        # should be 3600 milliseconds before
-        # field changes
-        print ('hit settlement creation')
-        start = time.time()
-        minutes = 5
-        endpoint = self.staging_base_url + '/transfers/' + transfer_id
-        while not transfer_ready_to_settle(endpoint, self.encoded_auth):
-            elapsed_time = time.time() - start
-            if (elapsed_time // 60) % minutes == 0 and elapsed_time > 60:
-                transfer_response = self.fetch_transfer(transfer_id)
-                minutes = minutes + 20
-                counter = stringified_elapsed_time(start)
-                channel = 'dev'
-                # This is the full response body
-                # message = '*Transfer Reconciliation Latency Alert*\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\n```' + transfer_response['response_body'] + '```'
-                # message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
-                # message_slack(channel, message)
-        values = {
-            "currency": "USD",
-            "processor": "DUMMY_V1",
-            "tags": {
-                "Internal Daily Settlement ID": "21DFASJSAKAS"
-            }
-        }
-        values = format_json(json.dumps(values))
-        endpoint = self.staging_base_url + '/identities/' + identity_id + "/settlements"
-        return formatted_response(endpoint, values, self.encoded_auth)
+    # def create_settlement(self, identity_id, transfer_id):
+    #     # transfer_id is the ID of a recently created debit transfer. Here we're
+    #     # checking  to see if its ready to settle, typically waiting period
+    #     # should be 3600 milliseconds before
+    #     # field changes
+    #     print ('hit settlement creation')
+    #     start = time.time()
+    #     minutes = 5
+    #     endpoint = self.staging_base_url + '/transfers/' + transfer_id
+    #     while not transfer_ready_to_settle(endpoint, self.encoded_auth):
+    #         elapsed_time = time.time() - start
+    #         if (elapsed_time // 60) % minutes == 0 and elapsed_time > 60:
+    #             transfer_response = self.fetch_transfer(transfer_id)
+    #             minutes = minutes + 20
+    #             counter = stringified_elapsed_time(start)
+    #             channel = 'dev'
+    #             # This is the full response body
+    #             # message = '*Transfer Reconciliation Latency Alert*\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\n```' + transfer_response['response_body'] + '```'
+    #             # message = '*Transfer Reconciliation Latency Alert* (Exp 3mins)\nElapsed Time: ' + counter + '\nEnvironment: ' + self.staging_base_url + '\nTransfer ID: `' + transfer_response['response_id'] + '`'
+    #             # message_slack(channel, message)
+    #     values = {
+    #         "currency": "USD",
+    #         "processor": "DUMMY_V1",
+    #         "tags": {
+    #             "Internal Daily Settlement ID": "21DFASJSAKAS"
+    #         }
+    #     }
+    #     values = format_json(json.dumps(values))
+    #     endpoint = self.staging_base_url + '/identities/' + identity_id + "/settlements"
+    #     return formatted_response(endpoint, values, self.encoded_auth)
 
 
     def create_split_payout_settlement(self, settlement_id, payment_instrument_id, merchant_identity):
@@ -1595,11 +1619,11 @@ class Client(object):
 
 
 
-    def fetch_settlement(self, settlement_id):
-
-        values = None
-        endpoint = self.staging_base_url + '/settlements/' + settlement_id
-        return formatted_response(endpoint, values, self.encoded_auth)
+    # def fetch_settlement(self, settlement_id):
+    #
+    #     values = None
+    #     endpoint = self.staging_base_url + '/settlements/' + settlement_id
+    #     return formatted_response(endpoint, values, self.encoded_auth)
 
 
     def fetch_settlement_transfers(self, settlement_id):
@@ -2020,15 +2044,16 @@ class Client(object):
         endpoint = self.staging_base_url + '/settlements'
         return formatted_response(endpoint, values, self.encoded_auth)
 
+
     def list_settlement_transfers(self, id):
         values = None
         endpoint = self.staging_base_url + '/settlements/' + id + '/transfers'
         return formatted_response(endpoint, values, self.encoded_auth)
 
-    def list_settlement_funding_transfers(self, id):
-        values = None
-        endpoint = self.staging_base_url + '/settlements/' + id + '/funding_transfers'
-        return formatted_response(endpoint, values, self.encoded_auth)
+    # def list_settlement_funding_transfers(self, id):
+    #     values = None
+    #     endpoint = self.staging_base_url + '/settlements/' + id + '/funding_transfers'
+    #     return formatted_response(endpoint, values, self.encoded_auth)
 
     def list_applications(self, product_type=None):
         values = None
