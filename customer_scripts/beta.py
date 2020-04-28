@@ -328,7 +328,6 @@ def generate_template_variables(config_values):
 
     approve_settlement_via_review_queue_scenario = api_client.approve_settlement_via_review_queue(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"], "ACCEPTED")
 
-    # import ipdb; ipdb.set_trace()
     review_queue_filter_scenario = api_client.review_queue_filter(json.loads(approve_settlement_via_review_queue_scenario["response_body"])["entity_id"])
 
     # remove_transfer_scenario = api_client.remove_transfer(create_settlement_scenario['response_id'], fetch_transfer_scenario['response_id'])

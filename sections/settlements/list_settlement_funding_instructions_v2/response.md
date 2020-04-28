@@ -27,10 +27,10 @@ amount | *integer* | Total amount for the funding instructions
 code | *string*| The end state of the funding instructions
 created_at | *string* | Timestamp when the resource was created
 currency | *string* | Currency type 
-destination_instrument_id | *string* | Payment instrument ID of destination for funds 
+destination_instrument_id | *string* | `Payment instrument` ID of destination for funds 
 level | *string* | Description of the level to be paid
 name | *string* | Description of the funding instructions 
-overriden | *boolean* | The default  is "false". When it is set to "true", the customer has changed the default payment for a `Settlement`
+overriden | *boolean* | The default is "false". When it is set to "true", the customer has changed the default payment for a `Settlement`
 rail | *instrument* | The rail used for a the funding instructions 
 source_instrument_id | *string* | `Payment instrument` ID of source of funds 
 tags  | *objects* | Key value pair for annotating custom meta data

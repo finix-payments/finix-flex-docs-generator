@@ -8,7 +8,7 @@ This call allows you to view all `Pending` `Settlements` in the `Review Queue`.
 
 #### HTTP Request
 
-`GET {{staging_base_url}}/review_queue?entity_type=SETTLEMENT&outcome=PENDING/settlements`
+`GET {{staging_base_url}}/review_queue?entity_type=SETTLEMENT&outcome=PENDING`
 
 #### URL Parameters
 
