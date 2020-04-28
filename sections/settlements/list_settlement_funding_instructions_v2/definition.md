@@ -1,4 +1,1 @@
 ## View Funding Instructions in a Batch Settlement [v2]
-
-
-

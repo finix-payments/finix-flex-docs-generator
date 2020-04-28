@@ -32,6 +32,6 @@ level | *string* | Description of the level to be paid
 name | *string* | Description of the funding instructions 
 overriden | *boolean* | The default  is "false". When it is set to "true", the customer has changed the default payment for a `Settlement`
 rail | *instrument* | The rail used for a the funding instructions 
-source_instrument_id | *string* | Payment instrument ID of source of funds 
+source_instrument_id | *string* | `Payment instrument` ID of source of funds 
 tags  | *objects* | Key value pair for annotating custom meta data
 updated_at | *string* | Timestamp when any change occurs to any of the fields listed above 

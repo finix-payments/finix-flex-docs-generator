@@ -448,13 +448,17 @@ admin_snippets_by_resource = {
         # "remove_transfer",
         # "fetch_settlement",
         # "fund_settlement",
-        "split_payout",
         # "list_settlements",
         # "list_settlement_funding_transfers",
         # "list_settlement_transfers",
+        "split_payout",
+<<<<<<< HEAD
         "list_settlements_v2",
         "list_settlement_transfers_v2",
         "list_settlement_funding_instructions_v2"
+=======
+
+>>>>>>> c76305dcb707c22a18d0678af1eabb4f77792ca5
         ],
     "guide_tokenization_js": [
         "definition",
