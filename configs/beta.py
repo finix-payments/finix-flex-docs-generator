@@ -235,6 +235,7 @@ snippets_by_resource = {
         #"list_settlement_transfers",
         # v2 Calls
         "fetch_settlement_by_id",
+        # v2 settlment call below doesn't work
         #"fetch_settlement_fees",
         ],
     "guide_tokenization_js": [
@@ -451,19 +452,22 @@ admin_snippets_by_resource = {
         #"remove_transfer",
         #"fetch_settlement",
         #"fund_settlement",
-        "split_payout",
         # "list_settlements",
         #"list_settlement_funding_transfers",
         #"list_settlement_transfers",
+        "split_payout",
         # v2 Calls
         "fetch_settlement_via_review_queue",
         "approve_settlement_via_review_queue",
         "review_queue_filter",
         "fetch_settlement_by_id",
-        #"fetch_settlement_fees",
         "list_fees",
         "fetch_fees_by_id",
-
+        "list_settlements_v2",
+        "list_settlement_transfers_v2",
+        "list_settlement_funding_instructions_v2"
+        # v2 call below doesnt work
+        #"fetch_settlement_fees"
         ],
     "guide_tokenization_js": [
         "definition",
