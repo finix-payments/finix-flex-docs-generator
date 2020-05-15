@@ -67,15 +67,6 @@ snippets_by_resource = {
     "api_endpoints":[
         "definition",
     ],
-    # "disputes": [
-    #     "definition",
-    #     # "create_dispute",
-    #     "fetch_dispute",
-    #     "list_disputes",
-    # ],
-    # "guide_admin_overview": [
-    #     "definition",
-    #     ],
     "guide_authentication_payouts": [
         "definition",
         "authentication",
