@@ -1201,6 +1201,23 @@ class Client(object):
         endpoint = self.staging_base_url + '/settlement_engine/settlements/'+ entity_id
         return formatted_response(endpoint, values, self.platform_encoded_auth)
 
+    def list_settlements_v2(self):
+        values = None
+        endpoint = self.staging_base_url + '/settlement_engine/settlements'
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+    def list_settlement_transfers_v2(self, settlement_id):
+        values = None
+        endpoint = self.staging_base_url + '/settlement_engine/settlements/' + settlement_id + "/transfers"
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+
+    def list_settlement_funding_instructions_v2(self, settlement_id):
+        values = None
+        endpoint = self.staging_base_url + '/settlement_engine/settlements/' + settlement_id + "/funding_instructions"
+        return formatted_response(endpoint, values, self.platform_encoded_auth)
+
+
     # Below v2 settlement engine not functional
     # def fetch_settlement_fees(self, entity_id):
     #     values = None
