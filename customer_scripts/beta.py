@@ -221,7 +221,7 @@ def generate_template_variables(config_values):
     create_bank_debit_scenario = api_client.create_debit(create_identity_individual_sole_proprietorship_scenario['response_id'], create_buyer_bank_account_scenario["response_id"], random.randint(100, 900000))
     create_sale_scenario = api_client.create_sale(provision_merchant_settle_upon_scenario["response_id"], create_card_scenario["response_id"], random.randint(100, 900000))
     # print create_sale_scenario
-    # import ipdb; ipdb.set_trace()
+
     create_user_merchant_role_scenario = api_client.create_user_merchant_role(create_identity_individual_sole_proprietorship_scenario["response_id"])
     disable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], False)
     enable_user_scenario = api_client.disable_user(create_user_merchant_role_scenario["response_id"], True)
@@ -333,18 +333,16 @@ def generate_template_variables(config_values):
     # Settlement Engine v2 Calls
     fetch_settlement_via_review_queue_scenario = api_client.fetch_settlement_via_review_queue()
     approve_settlement_via_review_queue_scenario = api_client.approve_settlement_via_review_queue(json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"], "ACCEPTED")
+    review_queue_filter_scenario = api_client.review_queue_filter(json.loads(approve_settlement_via_review_queue_scenario["response_body"])["entity_id"])
 
     # v2 call currently not functional
     #fetch_settlement_fees_scenario = api_client.fetch_settlement_fees(json.loads(fetch_settlement_via_review_queue_scenario['response_body'])["_embedded"]["review_queue_items"][0]["entity_id"])
-    
     fetch_settlement_by_id_scenario = api_client.fetch_settlement_by_id(json.loads(fetch_settlement_via_review_queue_scenario['response_body'])["_embedded"]["review_queue_items"][0]["entity_id"])
     list_fees = api_client.list_fees()
     fetch_fees_by_id_scenario = api_client.fetch_fees_by_id(json.loads(list_fees['response_body'])["_embedded"]["fees"][0]["id"])
-    # import ipdb; ipdb.set_trace()
     list_settlements_v2_scenario = api_client.list_settlements_v2()
     list_settlement_transfers_v2_scenario = api_client.list_settlement_transfers_v2(json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
     list_settlement_funding_instructions_v2_scenario = api_client.list_settlement_funding_instructions_v2(json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"])
-
 
     toggle_merchant_processing_scenario = api_client.toggle_merchant_processing(provision_merchant_scenario["response_id"], False)
     toggle_merchant_settlements_scenario = api_client.toggle_merchant_settlements(provision_merchant_scenario["response_id"], False)
@@ -742,6 +740,7 @@ def generate_template_variables(config_values):
         # "approve_settlement_via_review_queue_id": json.loads(fetch_settlement_via_review_queue_scenario["response_body"])["_embedded"]["review_queue_items"][0]["id"],
 
         "review_queue_filter_entity_id": json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
+        "review_queue_filter_scenario_response": review_queue_filter_scenario["response_body"],
 
         "list_settlements_v2_scenario_response": list_settlements_v2_scenario["response_body"],
 
@@ -756,7 +755,6 @@ def generate_template_variables(config_values):
         "list_settlement_funding_instructions_v2_scenario_id": json.loads(review_queue_filter_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
 
         # "list_settlement_funding_instructions_v2_scenario_id": json.loads(list_settlement_funding_transfers_v2_scenario["response_body"])["_embedded"]["review_queue_items"][0]["entity_id"],
-        
 
         # APPLICATIONS -----------------------------------------------------------------------------------------------------------
 

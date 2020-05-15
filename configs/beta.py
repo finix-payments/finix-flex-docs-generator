@@ -587,7 +587,7 @@ admin_resource_ordering = [
     'guide_merchant_fee_profiles',
     'fee_profile',
     "identities",
-    # # "identity_verifications",
+   # "identity_verifications",
     "merchants",
     "payment_instruments",
     "settlements",

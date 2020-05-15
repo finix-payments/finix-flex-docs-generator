@@ -3,23 +3,24 @@
 ```json
 {{approve_settlement_via_review_queue_response}}
 ```
-
 In order to successfully fund a merchant from a `Settlement`, you need to approve the settlement. `Settlement` approvals occur using the `Review Queue`. This call can approve a `Settlement(s)` in the `Review Queue`. The outcome is noted as `APPROVED` in the response.  
 
 #### HTTP Request
 
-`GET {{staging_base_url}}/review_queue?entity_type=SETTLEMENT&outcome=PENDING`
+`POST {{staging_base_url}}/review_queue/:REVIEW_QUEUE_ID`
 
 #### URL Parameters
 
 Parameter | Description
 --------- | -------------------------------------------------------------------
-entity_type |
+:REVIEW_QUEUE_ID | ID of the `Review Queue`
 
-entity_type |
+#### Request Arguments
 
-outcome |
-
+Field | Type | Description
+----- | ---- | -----------
+outcome | *string*, **required** | Pass in ACCEPTED to approve the `Review Queue`
+tags | *object*, **optional** | Key value pair for annotating custom meta data (e.g. order numbers)
 
 
 #### Response
