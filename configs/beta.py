@@ -83,7 +83,7 @@ snippets_by_resource = {
 
     "disputes": [
         "definition",
-        "upload_dispute",
+        # "upload_dispute",
         "fetch_dispute",
         "list_disputes"
     ],
@@ -275,7 +275,7 @@ snippets_by_resource = {
         "update_webhook",
         "fetch_webhook",
         "list_webhooks",
-        "sample_payloads",
+        # "sample_payloads",
         ],
     "fees": [
         "definition"
