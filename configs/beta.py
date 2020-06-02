@@ -83,7 +83,7 @@ snippets_by_resource = {
 
     "disputes": [
         "definition",
-        "upload_dispute",
+        # "upload_dispute",
         "fetch_dispute",
         "list_disputes"
     ],
@@ -235,6 +235,9 @@ snippets_by_resource = {
         #"list_settlement_transfers",
         # v2 Calls
         "fetch_settlement_by_id",
+        "list_settlements_v2",
+        "list_settlement_transfers_v2",
+        "list_settlement_funding_instructions_v2"
         # v2 settlment call below doesn't work
         #"fetch_settlement_fees",
         ],
@@ -272,7 +275,7 @@ snippets_by_resource = {
         "update_webhook",
         "fetch_webhook",
         "list_webhooks",
-        "sample_payloads",
+        # "sample_payloads",
         ],
     "fees": [
         "definition"
@@ -287,6 +290,9 @@ snippets_by_resource = {
         'definition'
     ],
     'tags': [
+        'definition',
+    ],
+    'filters': [
         'definition',
     ],
     'errors_payouts': [
@@ -525,6 +531,9 @@ admin_snippets_by_resource = {
     'tags': [
         'definition'
     ],
+    'filters': [
+        'definition',
+    ],
     'errors_payouts': [
         'definition'
     ]
@@ -539,11 +548,13 @@ resource_ordering = [
     "errors_payouts",
     "idempotent_requests",
     "tags",
-    # "test_data_finix",
-    # "guide_general_overview_finix",
-    # "guide_getting_started",
-    # "guide_push_to_card",
-    # "guide_pull_from_card",
+    "filters",
+    "test_data_finix",
+    "guide_general_overview_finix",
+    "guide_getting_started",
+    "guide_push_to_card",
+    "guide_pull_from_card",
+
     # "guide_iframe",
     "guide_hosted_fields_payouts",
     "guide_mobile",
@@ -569,6 +580,7 @@ admin_resource_ordering = [
     'faqs',
     "dashboard_overview_finix",
     "tags",
+    "filters",
     "test_data_finix",
     # "guide_general_overview_finix",
     "guide_getting_started",
